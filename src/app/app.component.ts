@@ -132,7 +132,11 @@ export class AppComponent implements OnInit {
     )}`;
   }
 
-  handleSearch(caseReference: string | null) {
-    window.location.href = `${this.searchUrl}&caseReference=${caseReference}`;
+  handleSearch(reference: string | null) {
+    let target = this.searchUrl;
+    if (reference) {
+      target = `${this.searchUrl}&reference=${reference}`;
+    }
+    window.location.href = target;
   }
 }
