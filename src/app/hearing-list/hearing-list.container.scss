@@ -1,0 +1,62 @@
+.hearing-list {
+  hr {
+    border: 2px solid;
+  }
+
+  .collapsible-container {
+    pdk-collapsible {
+      ::ng-deep .pdk-collapsable {
+        margin-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    .filter-summary {
+      font-size: 16px;
+    }
+  }
+
+  .no-results-label {
+    font-size: 16px;
+  }
+
+  .no-padding {
+    padding-left: 0;
+  }
+
+  .no-padding-right {
+    padding-right: 0;
+  }
+
+  .scrollable-panel {
+    max-height: 850px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .attendees-menu.active {
+    background-color: blue;
+  }
+
+  ::ng-deep pdk-grid.scrollable > div {
+    @extend .scrollable-panel;
+  }
+
+  ::ng-deep pdk-grid.no-padding-right > div {
+    @extend .no-padding-right;
+  }
+
+  .save-attendees-panel {
+    text-align: right;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-width: 10px 0 5px 0;
+    padding: 26px 0 30px 0;
+  }
+}
+.flex-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}

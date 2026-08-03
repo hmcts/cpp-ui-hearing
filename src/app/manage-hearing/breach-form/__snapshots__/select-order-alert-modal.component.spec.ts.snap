@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectOrderModalComponent should render the component 1`] = `
+<ng-component>
+  <select-order-alert>
+    <div
+      bsmodal=""
+      class="modal fade in"
+      role="alertdialog"
+    >
+      <div
+        class="modal-dialog"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="govuk-!-padding-4"
+            pdk-padding="4"
+          >
+            <pdk-warning-text
+              class="govuk-body-m"
+              icon="true"
+              pdk-typography="body-medium"
+              type="warning"
+            >
+              <div
+                class="govuk-warning-text"
+              >
+                <span
+                  aria-hidden="true"
+                  class="govuk-warning-text__icon"
+                >
+                  !
+                </span>
+                <strong
+                  class="govuk-warning-text__text"
+                >
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Warning
+                  </span>
+                   ENTER_BREACHES.ALERT.TITLE 
+                </strong>
+              </div>
+            </pdk-warning-text>
+            <p
+              class="govuk-!-margin-top-4 govuk-body-m"
+              pdk-margin-top="4"
+              pdk-typography="body-medium"
+            >
+               ENTER_BREACHES.ALERT.DESCRIPTION 
+            </p>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+              type="submit"
+            >
+               COMMON.CONTINUE 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </select-order-alert>
+</ng-component>
+`;

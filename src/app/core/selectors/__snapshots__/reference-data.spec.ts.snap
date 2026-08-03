@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReferenceData selectors should return the court centres for the given ou-codes 1`] = `
+[
+  {
+    "courtrooms": [
+      {
+        "id": "room1Id",
+        "name": "test court room 01",
+        "welshCourtroomName": "welsh court room 01",
+      },
+      {
+        "id": "room2Id",
+        "name": "test court room 02",
+        "welshCourtroomName": "welsh court room 02",
+      },
+    ],
+    "id": "id",
+    "oucode": "oucode",
+    "oucodeL3Name": "oucodeL3Name",
+  },
+]
+`;

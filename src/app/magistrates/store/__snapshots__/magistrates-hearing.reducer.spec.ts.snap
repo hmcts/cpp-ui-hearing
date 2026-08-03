@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hearingReducer should add the hearing summaries to the store 1`] = `
+{
+  "summaries": [
+    {
+      "courtCentreId": "court-centre-id-test",
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 1,
+          "listingSequence": 0,
+          "sittingDay": "2019-12-03T18:32:00.000Z",
+        },
+      ],
+      "id": "hearing-id-test",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "dateOfBirth": "1994-12-02",
+              "firstName": "Wilson",
+              "id": "defendant1-id-test",
+              "lastName": "Prohaska",
+              "middleName": "Vernon",
+              "offences": [
+                {
+                  "id": "offence1-id-test",
+                  "offenceTitle": "Section 18 - attempt    wounding with intent",
+                  "wording": "Wound / inflict grievous bodily harm without intent",
+                  "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+                },
+                {
+                  "id": "offence2-id-test",
+                  "offenceTitle": "Section 18 - attempt    wounding with intent",
+                  "wording": "Wound / inflict grievous bodily harm without intent",
+                  "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+                },
+              ],
+            },
+            {
+              "dateOfBirth": "1991-12-02",
+              "firstName": "Kenna",
+              "id": "defendant2-id-test",
+              "lastName": "McKenzie",
+              "middleName": "Lillie",
+              "offences": [
+                {
+                  "id": "offence3-id-test",
+                  "offenceTitle": "Section 18 - attempt    wounding with intent",
+                  "wording": "Wound / inflict grievous bodily harm without intent",
+                  "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+                },
+                {
+                  "id": "offence4-id-test",
+                  "offenceTitle": "Section 18 - attempt    wounding with intent",
+                  "wording": "Wound / inflict grievous bodily harm without intent",
+                  "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+                },
+              ],
+            },
+          ],
+          "id": "prosecution-case1-id-test",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "57GD1981019",
+            "prosecutionAuthorityCode": "B01BH",
+            "prosecutionAuthorityId": "prosecution-authority1-id-test",
+            "prosecutionAuthorityReference": "test reference",
+          },
+        },
+      ],
+      "roomId": "room1-id-test",
+      "sittingDay": "2019-12-03T18:32:00.000Z",
+      "totalCases": 1,
+      "type": {
+        "description": "First Hearing",
+        "id": "type-id-test",
+      },
+    },
+  ],
+}
+`;

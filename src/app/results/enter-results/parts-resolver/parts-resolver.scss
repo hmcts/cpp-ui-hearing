@@ -1,0 +1,41 @@
+cpp-parts-resolver {
+  display: inline-block;
+
+  ul.parts-resolver > li {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 16px;
+
+    cpp-parts-resolver-options {
+      position: absolute;
+      top: auto;
+      left: 0;
+      z-index: 100;
+      display: block;
+      background-color: white;
+      border: 1px solid #505a5f;
+
+      > ul {
+        > li a {
+          display: block;
+          font-size: 16px;
+          text-decoration: none;
+          &:hover {
+            background-color: #eee;
+          }
+        }
+      }
+    }
+
+    > [role='button'] {
+      display: block;
+      border-bottom: 1px solid;
+      text-decoration: none;
+    }
+  }
+
+  [role='button'] {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "caseURN": "abcd",
+    "defendantsByOffence": {
+      "ec09757a-bf2a-4f30-9887-94e0eee26206": {
+        "defendants": [
+          {
+            "defendantId": "10920650-d21d-11e8-8bbe-b7353eff5c9a",
+            "firstName": "Isabella",
+            "lastName": "Magnani",
+            "caseId": "10925470-d21d-11e8-8bbe-b7353eff5c9a",
+            "offences": [
+              {
+                "arrestDate": "2018-01-01",
+                "chargeDate": "2018-01-31",
+                "count": 2,
+                "endDate": "2018-08-30",
+                "id": "10925471-d21d-11e8-8bbe-b7353eff5c9a",
+                "indicatedPlea": {
+                  "allocationDecision": {
+                    "courtDecision": "CONSENT_SUMMARY_TRIAL",
+                    "defendantRepresentation": "ELECT_TRIAL_ON_INDICTMENT",
+                    "indicationOfSentence": "jSce28pitA",
+                    "prosecutionRepresentation": "ELECT_TRIAL_ON_INDICTMENT"
+                  },
+                  "indicatedPleaDate": "2018-02-14",
+                  "indicatedPleaValue": "INDICATED_GUILTY",
+                  "offenceId": "10925471-d21d-11e8-8bbe-b7353eff5c9a",
+                  "source": "ONLINE"
+                },
+                "modeOfTrial": "modeOfTrial",
+                "notifiedPlea": {
+                  "notifiedPleaDate": "2018-06-24",
+                  "notifiedPleaValue": "NOTIFIED_NOT_GUILTY",
+                  "offenceId": "10925471-d21d-11e8-8bbe-b7353eff5c9a"
+                },
+                "offenceCode": "OFF123",
+                "offenceDefinitionId": "ec09757a-bf2a-4f30-9887-94e0eee26206",
+                "offenceFacts": {
+                  "alcoholReadingAmount": "100 units",
+                  "alcoholReadingMethod": "pipe",
+                  "vehicleRegistration": "ABC bbc"
+                },
+                "offenceLegislation": "Contrary to section 1(1)    of the Criminal Attempts Act 1981.",
+                "offenceLegislationWelsh": "Yn groes i Adran 1(1) Deddf Ymgeisiau i Droseddu 1981.",
+                "offenceTitle": "Section 18 - attempt wounding with intent",
+                "offenceTitleWelsh": "Adran 18 - ymgais i glwyfo gan fwriadu",
+                "orderIndex": 634464054,
+                "plea": {
+                  "offenceId": "10925471-d21d-11e8-8bbe-b7353eff5c9a",
+                  "originatingHearingId": "10920651-d21d-11e8-8bbe-b7353eff5c9a",
+                  "pleaDate": "2018-10-17",
+                  "pleaValue": "NOT_GUILTY"
+                },
+                "startDate": "2018-11-20",
+                "verdict": {
+                  "jurors": {
+                    "numberOfJurors": 10,
+                    "numberOfSplitJurors": 1,
+                    "unanimous": false
+                  },
+                  "offenceId": "10925471-d21d-11e8-8bbe-b7353eff5c9a",
+                  "originatingHearingId": "10920651-d21d-11e8-8bbe-b7353eff5c9a",
+                  "verdictDate": "2018-10-17",
+                  "verdictType": {
+                    "category": "",
+                    "categoryType": "",
+                    "id": "c81e728d-9d4c-3f63-af06-7f89cc14862c"
+                  },
+                  "isDeleted": false
+                },
+                "wording": "Offence wording",
+                "wordingWelsh": "Offence wording in Welsh"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

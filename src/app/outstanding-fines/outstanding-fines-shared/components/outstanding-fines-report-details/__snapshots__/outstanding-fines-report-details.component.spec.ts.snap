@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OutstandingFinesTableComponent should render the template with the values expected 1`] = `
+<test-host-component>
+  <outstanding-fines-report-details>
+    <div
+      class="outstanding-fines-top-level"
+    >
+      <div
+        class="outstanding-fines-data"
+      >
+        <span
+          class="outstanding-fines-label courthouse-label"
+        >
+          OUTSTANDING_FINES.COURT_HOUSE
+        </span>
+        <span>
+          Lavender Court House
+        </span>
+      </div>
+      <div
+        class="outstanding-fines-data"
+      >
+        <span
+          class="outstanding-fines-label courtrooms-label"
+        >
+          OUTSTANDING_FINES.COURT_ROOMS
+        </span>
+        <span>
+          Courtroom 1, Courtroom 2
+        </span>
+      </div>
+      <div
+        class="outstanding-fines-data"
+      >
+        <span
+          class="outstanding-fines-label hearingdate-label"
+        >
+          OUTSTANDING_FINES.HEARING_DATE
+        </span>
+        <span>
+          15 November 2019
+        </span>
+      </div>
+      <div
+        class="outstanding-fines-data"
+      >
+        <span
+          class="outstanding-fines-label reportcreated-label"
+        >
+          OUTSTANDING_FINES.REPORT_CREATED
+        </span>
+        <span>
+          14 November 2019
+        </span>
+      </div>
+      <div
+        class="outstanding-fines-data"
+      >
+        <span
+          class="outstanding-fines-label createdby-label"
+        >
+          OUTSTANDING_FINES.CREATED_BY
+        </span>
+        <span>
+          Mark Simons
+        </span>
+      </div>
+    </div>
+  </outstanding-fines-report-details>
+</test-host-component>
+`;

@@ -1,0 +1,122 @@
+<form #form="ngForm" pdk-form (errors)="errors.emit($event)" (validSubmit)="applySearch()">
+  <pdk-grid container>
+    <pdk-grid one-third>
+      <h2 pdk-typography="heading-medium" pdk-margin-top="-5">Filter by</h2>
+      <pdk-form-field
+        labelType="small"
+        label="Court"
+        pdk-padding-top="2"
+        labelForErrorSummary="Select court"
+        [errorMessages]="[
+          {
+            rule: 'required',
+            message: 'Select court'
+          }
+        ]"
+      >
+        <cpp-organisation-unit-autosuggest
+          data-role="court-centre-filter"
+          [id]="'courtCentreId'"
+          name="courtCentre"
+          [ngModel]="selectedOrganisationUnit"
+          (ngModelChange)="courtCentreSelected($event)"
+          [ariaDescribedBy]="'aria-describedby-organisation-autosuggest'"
+          required
+        >
+        </cpp-organisation-unit-autosuggest>
+      </pdk-form-field>
+    </pdk-grid>
+    <pdk-grid one-quarter pdk-padding-top="1">
+      <pdk-form-field
+        labelType="small"
+        id="courtRoomFilter"
+        label="Courtroom"
+        pdk-padding-top="6"
+        labelForErrorSummary="Select courtroom"
+        [errorMessages]="[
+          {
+            rule: 'required',
+            message: 'Select courtroom'
+          }
+        ]"
+      >
+        <pdk-select
+          justified
+          data-role="court-room-filter"
+          [name]="'courtRoomFilter'"
+          [options]="courtRoomOptions"
+          [placeholder]="'HEARING_LIST.FILTER.COURT_ROOM.PLACEHOLDER' | translate"
+          [ngModel]="selectedOptions.courtRoomFilter && selectedOptions.courtRoomFilter.id"
+          (ngModelChange)="courtRoomSelected($event)"
+          required
+        >
+        </pdk-select>
+      </pdk-form-field>
+    </pdk-grid>
+    <pdk-grid one-third>
+      <pdk-form-field
+        id="dateFilter"
+        labelForErrorSummary="Enter hearing date"
+        labelType="small"
+        label="Date"
+        [errorMessages]="[
+          {
+            rule: 'required',
+            message: 'Enter hearing date'
+          }
+        ]"
+      >
+        <pdk-date-input
+          name="dateFilter"
+          [ngModel]="selectedOptions.dateFilter"
+          (ngModelChange)="onChanges({ dateFilter: $event })"
+          picker
+          required
+        >
+        </pdk-date-input>
+      </pdk-form-field>
+    </pdk-grid>
+  </pdk-grid>
+
+  <pdk-grid container>
+    <pdk-grid container>
+      <pdk-grid two-thirds>
+        <pdk-grid one-quarter>
+          <pdk-form-field
+            labelType="small"
+            label="{{ 'HEARING_LIST.FILTER.START_TIME.LABEL' | translate }}"
+          >
+            <pdk-time-input
+              name="chargeStartTime"
+              auto-shift="true"
+              labelHidden="false"
+              [ngModel]="selectedOptions.startTimeFilter"
+              (ngModelChange)="onChanges({ startTimeFilter: $event })"
+            ></pdk-time-input>
+          </pdk-form-field>
+        </pdk-grid>
+        <pdk-grid one-quarter>
+          <pdk-form-field
+            labelType="small"
+            label="{{ 'HEARING_LIST.FILTER.END_TIME.LABEL' | translate }}"
+          >
+            <pdk-time-input
+              name="chargeEndTime"
+              auto-shift="true"
+              labelHidden="false"
+              [ngModel]="selectedOptions.endTimeFilter"
+              (ngModelChange)="onChanges({ endTimeFilter: $event })"
+            ></pdk-time-input>
+          </pdk-form-field>
+        </pdk-grid>
+        <pdk-grid one-quarter> </pdk-grid>
+      </pdk-grid>
+    </pdk-grid>
+  </pdk-grid>
+
+  <pdk-grid container>
+    <button pdk-margin-left="3" pdk-margin-bottom="0" pdk-button type="submit">
+      Apply filters
+    </button>
+  </pdk-grid>
+</form>

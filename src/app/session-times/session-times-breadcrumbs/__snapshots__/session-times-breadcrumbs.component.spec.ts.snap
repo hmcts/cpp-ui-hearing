@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SessionTimesBreadcrumbsComponent should match the snapshot 1`] = `
+<session-times-breadcrumbs
+  appUrl={[Function String]}
+>
+  <ol
+    class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-breadcrumbs govuk-breadcrumbs__list"
+    pdk-breadcrumb-list=""
+    pdk-margin-bottom="2"
+    pdk-margin-top="2"
+  >
+    <li
+      class="govuk-breadcrumbs__list-item"
+      pdk-breadcrumb-list-item=""
+    >
+      <a
+        href="http://app/url"
+      >
+        HEADER.HOME
+      </a>
+    </li>
+    <li
+      class="govuk-breadcrumbs__list-item"
+      pdk-breadcrumb-list-item=""
+    >
+       SESSION_TIMES.TITLE 
+    </li>
+  </ol>
+</session-times-breadcrumbs>
+`;

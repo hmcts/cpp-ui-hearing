@@ -1,0 +1,16 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.menu {
+  border-right: 1px solid govuk.govuk-colour('mid-grey');
+}
+
+.shared {
+  ::ng-deep panel-item {
+    .active {
+      background-color: govuk.govuk-colour('purple');
+      &:hover {
+        background-color: govuk.govuk-colour('purple');
+      }
+    }
+  }
+}

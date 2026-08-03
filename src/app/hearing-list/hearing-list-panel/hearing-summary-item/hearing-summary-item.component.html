@@ -1,0 +1,49 @@
+<div class="hearing-summary-item">
+  <input data-test-id="hearingId" type="hidden" [attr.value]="hearing.id" aria-hidden="true" />
+
+  <span class="hearing-tags" pdk-typography="body-small">
+    {{ hearing.hearingLanguage === 'WELSH' ? ('HEARING_LIST.WELSH' | translate) : '' }}
+    <reporting-restrictions [offences]="allOffences" [isActive]="isActive">
+    </reporting-restrictions>
+  </span>
+  @if (hasSharedResults()) {
+  <span class="hearing-shared" pdk-typography="body-small">
+    {{ 'HEARING_LIST.SHARED' | translate }}
+  </span>
+  }
+  <div class="seq-container">
+    <span pdk-label="small" class="sequence-number">
+      {{ !bulkCase ? hearingSequenceNumber : ' ' }}
+    </span>
+  </div>
+  <div class="hearing-summary-details">
+    <div pdk-margin-bottom="2" class="type smallerFont" data-test-id="hearingType">
+      {{ hearing.type.description }}
+    </div>
+    <div class="details">
+      <div
+        data-test-id="defendantNames"
+        pdk-margin-bottom="2"
+        class="defendant"
+        textContent="{{ !bulkCase ? (hearing | hearingPartyLabel) : bulkHearingSummaryTitle }}"
+      ></div>
+      <div class="urn-content smallerFont">
+        <div pdk-margin-bottom="1">
+          @if (!bulkCase) {
+          <span class="urn">{{ caseReferenceLabel | translate }}</span>
+          }
+          <span data-test-id="reference">{{
+            !bulkCase ? (hearing | caseReference) : bulkCaseOffenceTitle
+          }}</span>
+          <span pdk-visually-hidden
+            >Case reference: (<span data-test-id="reference">{{
+              !bulkCase ? (hearing | caseReference : false) : bulkCaseOffenceTitle
+            }}</span
+            >)</span
+          >
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

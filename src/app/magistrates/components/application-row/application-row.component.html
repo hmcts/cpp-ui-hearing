@@ -1,0 +1,49 @@
+<td pdk-table-cell class="bold">
+  @if (!isChildApplication) { @if (sequence) {
+  <span>{{ sequence }}</span>
+  } }
+</td>
+<td pdk-table-cell class="bold" data-role="time">
+  @if (!isChildApplication) { @if (sittingDay) {
+  <span>{{ sittingDay | date : 'H:mm' }}</span>
+  } }
+</td>
+<td pdk-table-cell nowrap>
+  @if (!isChildApplication) {
+  <div data-role="application-reference">
+    <span>{{ reference }}</span>
+  </div>
+  }
+</td>
+<td pdk-table-cell>
+  @if (!isChildApplication) {
+  <div data-role="prosecutor">{{ prosecutor }}</div>
+  }
+</td>
+<td pdk-table-cell [ngClass]="{ 'no-border': isChildApplication }">
+  @if (!isChildApplication && !isParentApplication) {
+  <div class="bold" pdk-margin-bottom="4">
+    @if (respondentName) {
+    <span data-role="respondentName">{{ respondentName }} </span>
+    }
+  </div>
+  }
+  <span class="application-details-width">
+    <application-details [legislation]="applicationLegislation" [type]="applicationType">
+    </application-details>
+  </span>
+</td>
+<td pdk-table-cell pdk-padding-left="9">
+  @if (!isChildApplication) {
+  <div data-role="hearing-type">{{ description }}</div>
+  }
+</td>
+<td pdk-table-cell colspan="2" pdk-padding-top="6" class="next-position">
+  @if (!isChildApplication) {
+  <a pdk-link href="javascript:void(0)" (click)="select.emit()" class="action-link">
+    <div class="next-img">
+      <span pdk-visually-hidden>Go to Application materials</span>
+    </div>
+  </a>
+  }
+</td>

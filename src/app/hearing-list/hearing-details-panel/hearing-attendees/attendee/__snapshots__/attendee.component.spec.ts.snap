@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttendeeComponent should render the template with the values expected 1`] = `
+<test-host-component
+  name={[Function String]}
+  type={[Function String]}
+>
+  <attendee>
+    <div
+      class="attendee govuk-!-margin-bottom-2"
+      pdk-margin-bottom="2"
+    >
+      <div
+        class="type govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+        pdk-margin-bottom="1"
+        pdk-text-colour="dark-grey"
+        pdk-typography="body-xsmall"
+      >
+         Defence 
+      </div>
+      <div
+        class="name govuk-!-margin-bottom-1 govuk-body-s"
+        data-role="attendee-name"
+        pdk-margin-bottom="1"
+        pdk-typography="body-small"
+      >
+         Fabio Tisci 
+      </div>
+    </div>
+  </attendee>
+</test-host-component>
+`;

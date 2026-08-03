@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingOffencesComponent When number of offences is equal to One 1`] = `
+<hearing-offences
+  offences={[Function Array]}
+>
+  <div>
+    <div
+      class="offence"
+      data-test-id="hearingOffence"
+    >
+       Offence title 
+    </div>
+  </div>
+</hearing-offences>
+`;
+
+exports[`HearingOffencesComponent When number of offences is greater than One 1`] = `
+<hearing-offences
+  offences={[Function Array]}
+>
+  <details
+    class="font-small govuk-details"
+    pdk-details=""
+  >
+    <summary
+      class="govuk-details__summary"
+    >
+      <span
+        class="govuk-details__summary-text"
+      >
+        <span
+          class="summary"
+        >
+          3 Offences
+        </span>
+      </span>
+    </summary>
+    <pdk-details-text
+      class="govuk-details__text"
+    >
+      <div
+        class="offence govuk-!-margin-top-1"
+        pdk-margin-top="1"
+      >
+        <span
+          data-test-id="hearingOffence"
+        >
+          Offence title
+        </span>
+      </div>
+      <div
+        class="offence govuk-!-margin-top-1"
+        pdk-margin-top="1"
+      >
+        <span
+          data-test-id="hearingOffence"
+        >
+          Test title 4
+        </span>
+      </div>
+      <div
+        class="offence govuk-!-margin-top-1"
+        pdk-margin-top="1"
+      >
+        <span
+          data-test-id="hearingOffence"
+        >
+          Test title 5
+        </span>
+      </div>
+    </pdk-details-text>
+  </details>
+</hearing-offences>
+`;

@@ -1,0 +1,28 @@
+<div>
+  <div
+    pdk-margin-top="4"
+    pdk-margin-bottom="4"
+    pdk-text-colour="dark-grey"
+    class="bold"
+    data-role="offence-title"
+    data-test-id="offenceTitle"
+  >
+    {{ offenceTitle }}
+    @if (showOffenceBulkDefendant) {
+    <span>({{ 'COMMON.BULK_DEFENDANT' | translate }})</span>
+    }
+  </div>
+  @if (showOffenceParticulars && !showBulkDefendant) {
+  <div pdk-margin-bottom="4">
+    <details pdk-details [open]="false">
+      <summary>
+        <span>Show particulars</span>
+        <span pdk-visually-hidden>for {{ firstname }} {{ lastname }} {{ offenceTitle }}</span>
+      </summary>
+      <pdk-details-text pdk-typography="body-small" data-test-id="offenceWording">
+        {{ offenceWording }}
+      </pdk-details-text>
+    </details>
+  </div>
+  }
+</div>

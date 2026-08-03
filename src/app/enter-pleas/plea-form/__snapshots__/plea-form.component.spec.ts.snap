@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PleaFormComponent should render the template with the values expected 1`] = `
+<ng-component
+  civilCasePleaOptions={[Function Array]}
+  mockMotOptions={[Function Array]}
+  mockPlea={[Function Array]}
+  pleaData={[Function Array]}
+  selectedHearingDate={[Function String]}
+>
+  <plea-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <button
+        class="govuk-button"
+        data-role="submit-pleas"
+        pdk-button=""
+        type="submit"
+      >
+         ENTER_PLEAS.SAVE_AND_CONTINUE 
+      </button>
+      <div
+        class="govuk-!-margin-top-4"
+        pdk-margin-top="4"
+      >
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/undefined"
+          pdk-link=""
+          unvisited=""
+        >
+          COMMON.CANCEL
+        </a>
+      </div>
+    </form>
+  </plea-form>
+</ng-component>
+`;

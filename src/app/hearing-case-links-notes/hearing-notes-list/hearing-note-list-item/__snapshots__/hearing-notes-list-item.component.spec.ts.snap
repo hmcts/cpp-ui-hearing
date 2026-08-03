@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingNotesListItemComponent should be able to toggle note to open template 1`] = `
+<ng-component
+  hearingNotes={[Function Object]}
+>
+  <hearing-note-list-item>
+    Hearing note for 03/12/2018
+    <a
+      class="float-right note-row-more govuk-body-s"
+      data-role="toggle-note"
+      pdk-typography="body-small"
+    >
+      Hide
+    </a>
+    <div>
+      <p
+        class="note-row-content"
+        data-role="text-note"
+        data-test-id="caseNoteContent"
+      >
+         test note case on multi-hearing last 
+      </p>
+      <button
+        class="button mt-m"
+        data-role="print-note"
+        type="button"
+      >
+         COMMON.EXPORT_NOTE 
+      </button>
+    </div>
+  </hearing-note-list-item>
+</ng-component>
+`;
+
+exports[`HearingNotesListItemComponent should have the expected collapsed template 1`] = `
+<ng-component
+  hearingNotes={[Function Object]}
+>
+  <hearing-note-list-item>
+    Hearing note for 03/12/2018
+    <a
+      class="float-right note-row-more govuk-body-s"
+      data-role="toggle-note"
+      pdk-typography="body-small"
+    >
+      View
+    </a>
+  </hearing-note-list-item>
+</ng-component>
+`;

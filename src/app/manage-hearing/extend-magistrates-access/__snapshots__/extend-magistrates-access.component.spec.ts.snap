@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExtendMagistratesAccessComponent should render the template with the values expected 1`] = `undefined`;

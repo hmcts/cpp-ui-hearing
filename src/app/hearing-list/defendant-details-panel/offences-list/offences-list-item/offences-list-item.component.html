@@ -1,0 +1,30 @@
+<div pdk-margin-top="2" pdk-margin-left="2" pdk-padding-top="2">
+  @if (jurisdictionType === 'CROWN' && offence.count) {
+  <div class="bold" pdk-margin-bottom="1" pdk-typography="body-small">
+    Count:{{ offence.count }}
+  </div>
+  }
+  <div class="offence-num" pdk-typography="body-small" [class.bold]="!!boldTitle">
+    {{ offence.orderIndex }}.
+  </div>
+  <div class="offence-info-container">
+    <h4 data-test-id="offenceTitle" pdk-typography="heading-small" pdk-margin-bottom="0">
+      {{ offence.offenceTitle }}
+    </h4>
+    @if (!hideLegislation) {
+    <div data-test-id="offenceLegislation">
+      {{ offence.offenceLegislation }}
+    </div>
+    } @if (!offence.indictmentParticular) {
+    <div data-test-id="offenceWording">
+      {{ offence.wording }}
+    </div>
+    } @if (offence.indictmentParticular) {
+    <div data-test-id="indictmentParticulars" pdk-typography="body-small">
+      {{ offence.indictmentParticular }}
+    </div>
+    } @if (offence.custodyTimeLimit) {
+    <div>CTL: {{ offence.custodyTimeLimit?.timeLimit | date : 'd LLL yyyy' }}</div>
+    }
+  </div>
+</div>

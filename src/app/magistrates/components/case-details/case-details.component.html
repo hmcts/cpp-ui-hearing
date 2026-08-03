@@ -1,0 +1,32 @@
+@if ((firstname && offences) || showBulkDefendant) {
+<div>
+  <span data-test-id="partyName" class="bold">
+    @if (firstname) {
+    <span data-role="firstname">{{ firstname }} </span>
+    } @if (lastname) {
+    <span data-role="lastname">{{ lastname }} </span>
+    } @if (showBulkDefendant) {
+    <span data-role="bulkDefendant">{{ 'COMMON.BULK_DEFENDANT' | translate }}</span>
+    }
+  </span>
+  @if (dateOfBirth) {
+  <span>
+    <span data-role="date-of-birth">({{ dateOfBirth | date : 'd MMM yyyy' }},</span>
+    <span>{{ dateOfBirth | age }})</span>
+  </span>
+  }
+</div>
+@for (offence of offences; track offence.id) {
+<div data-test-id="offence">
+  <offence-details
+    [firstname]="firstname"
+    [lastname]="lastname"
+    [offenceTitle]="offence.offenceTitle"
+    [offenceWording]="offence.wording"
+    [showOffenceParticulars]="showOffenceParticulars"
+    [showOffenceBulkDefendant]="showOffenceBulkDefendant"
+    [showBulkDefendant]="showBulkDefendant"
+  >
+  </offence-details>
+</div>
+} } @else { - }

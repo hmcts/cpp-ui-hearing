@@ -1,0 +1,2029 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraftResultComponent action bar should disable the save and continue button when there are no valid result prompts 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid="false"
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              disabled="disabled"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent action bar should display an error for a failed action 1`] = `
+<ng-component
+  draftResultError={[Function Object]}
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+          <div
+            data-test-id="draftResultError"
+          >
+             There was an error saving the draft results. 
+            <a
+              class="govuk-link"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              Retry
+            </a>
+          </div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent action bar should render 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent applications should render a first hearing application 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+        </h3>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Applications
+        </h4>
+        <ul
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="application"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-application>
+              <dl
+                class="govuk-body-m"
+                pdk-typography="body"
+              >
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application reference
+                  </dt>
+                  <dd>
+                    APPLICATION_URN
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application particulars
+                  </dt>
+                  <dd>
+                    Application particulars text
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application type
+                  </dt>
+                  <dd
+                    data-test-id="application-type"
+                  >
+                    Application type
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application legislation
+                  </dt>
+                  <dd
+                    style="font-weight: normal;"
+                  >
+                    <pdk-foldable-text
+                      class="pdk-!-text-color-dark-grey"
+                      pdk-text-colour="dark-grey"
+                    >
+                    </pdk-foldable-text>
+                  </dd>
+                </div>
+              </dl>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for Application type 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+            </cpp-draft-result-application>
+          </li>
+        </ul>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent applications should render a linked application 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+        </h3>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Applications
+        </h4>
+        <ul
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="application"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-application>
+              <dl
+                class="govuk-body-m"
+                pdk-typography="body"
+              >
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application reference
+                  </dt>
+                  <dd>
+                    APPLICATION_URN
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application particulars
+                  </dt>
+                  <dd>
+                    Application particulars text
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application type
+                  </dt>
+                  <dd
+                    data-test-id="application-type"
+                  >
+                    Application type
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application legislation
+                  </dt>
+                  <dd
+                    style="font-weight: normal;"
+                  >
+                    <pdk-foldable-text
+                      class="pdk-!-text-color-dark-grey"
+                      pdk-text-colour="dark-grey"
+                    >
+                    </pdk-foldable-text>
+                  </dd>
+                </div>
+              </dl>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for Application type 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+            </cpp-draft-result-application>
+          </li>
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                  Offence title
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+                <pdk-foldable-text
+                  class="pdk-!-text-color-dark-grey"
+                  data-test-id="offenceWording"
+                  pdk-text-colour="dark-grey"
+                >
+                   Offence wording 
+                </pdk-foldable-text>
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for Offence title 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      Offence title
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+        </ul>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent applications should render a standalone application 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           James GRAY 
+        </h3>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Applications
+        </h4>
+        <ul
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="application"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-application>
+              <dl
+                class="govuk-body-m"
+                pdk-typography="body"
+              >
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application reference
+                  </dt>
+                  <dd>
+                    APPLICATION_URN
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application particulars
+                  </dt>
+                  <dd>
+                    Application particulars text
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application type
+                  </dt>
+                  <dd
+                    data-test-id="application-type"
+                  >
+                    STANDALONE
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application legislation
+                  </dt>
+                  <dd
+                    style="font-weight: normal;"
+                  >
+                    <pdk-foldable-text
+                      class="pdk-!-text-color-dark-grey"
+                      pdk-text-colour="dark-grey"
+                    >
+                    </pdk-foldable-text>
+                  </dd>
+                </div>
+              </dl>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for STANDALONE 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+            </cpp-draft-result-application>
+          </li>
+        </ul>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent offences should collapse offences belonging to linked applications 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           James GRAY 
+        </h3>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Applications
+        </h4>
+        <ul
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="application"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-application>
+              <dl
+                class="govuk-body-m"
+                pdk-typography="body"
+              >
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application reference
+                  </dt>
+                  <dd>
+                    APPLICATION_URN
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <dt
+                    class="pdk-!-text-color-dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    Application particulars
+                  </dt>
+                  <dd>
+                    Application particulars text
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application type
+                  </dt>
+                  <dd
+                    data-test-id="application-type"
+                  >
+                    Application type
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Application legislation
+                  </dt>
+                  <dd
+                    style="font-weight: normal;"
+                  >
+                    <pdk-foldable-text
+                      class="pdk-!-text-color-dark-grey"
+                      pdk-text-colour="dark-grey"
+                    >
+                    </pdk-foldable-text>
+                  </dd>
+                </div>
+              </dl>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for Application type 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+            </cpp-draft-result-application>
+          </li>
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                  Offence title
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+                <pdk-foldable-text
+                  class="pdk-!-text-color-dark-grey"
+                  data-test-id="offenceWording"
+                  pdk-text-colour="dark-grey"
+                >
+                   Offence wording 
+                </pdk-foldable-text>
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for Offence title 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      Offence title
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+        </ul>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent offences should render an empty offence 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           James GRAY 
+        </h3>
+        <h4
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            Case reference: 
+          </span>
+          CASE_URN 
+        </h4>
+        <pdk-checkbox
+          checkboxtype="small"
+          class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+          data-test-id="toggleAllShadowListing"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              type="checkbox"
+              value="true"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Exclude all offences from list (next hearing)
+            </label>
+          </div>
+        </pdk-checkbox>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Offences
+        </h4>
+        <ol
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                  Offence title
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+                <pdk-foldable-text
+                  class="pdk-!-text-color-dark-grey"
+                  data-test-id="offenceWording"
+                  pdk-text-colour="dark-grey"
+                >
+                   Offence wording 
+                </pdk-foldable-text>
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for Offence title 
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      Offence title
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+        </ol>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent readonly should render the component in a read only state 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly={[Function Boolean]}
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           James GRAY 
+        </h3>
+        <h4
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            Case reference: 
+          </span>
+          CASE_URN 
+        </h4>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Offences
+        </h4>
+        <ol
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                  Offence title
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+                <pdk-foldable-text
+                  class="pdk-!-text-color-dark-grey"
+                  data-test-id="offenceWording"
+                  pdk-text-colour="dark-grey"
+                >
+                   Offence wording 
+                </pdk-foldable-text>
+              </div>
+            </cpp-draft-result-offence>
+          </li>
+        </ol>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent shadow listing should recognise when all offences are selected manually 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           James GRAY 
+        </h3>
+        <h4
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            Case reference: 
+          </span>
+          CASE_URN 
+        </h4>
+        <pdk-checkbox
+          checkboxtype="small"
+          class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+          data-test-id="toggleAllShadowListing"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              type="checkbox"
+              value="true"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Exclude all offences from list (next hearing)
+            </label>
+          </div>
+        </pdk-checkbox>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Offences
+        </h4>
+        <ol
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for  
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-valid ng-dirty"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for  
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+        </ol>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;
+
+exports[`DraftResultComponent shadow listing should recognise when an offence is deselected manually 1`] = `
+<ng-component
+  draftResultError="null"
+  draftResultPromptsValid={[Function Boolean]}
+  draftResultRelations={[Function Object]}
+  draftResultSaving="false"
+  hearing={[Function Object]}
+  onErrors={[Function Function]}
+  onParseTextValues={[Function Function]}
+  onRetryFailedAction={[Function Function]}
+  onSaveAndContinue={[Function Function]}
+  onShadowListedOffenceIdsChange={[Function Function]}
+  readonly="false"
+  shadowListedOffenceIds={[Function Array]}
+  sharedTargetIds={[Function Array]}
+>
+  <cpp-draft-result>
+    <cpp-draft-result-action-bar>
+      <div
+        class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+        pdk-border-colour="mid-grey"
+        pdk-fill-colour="light-grey"
+        pdk-padding-horizontal="3"
+      >
+        <div>
+        </div>
+        <pdk-button-group
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <div
+            class="govuk-button-group"
+          >
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button"
+              pdk-button=""
+              pdk-margin-bottom="0"
+            >
+               Create draft results 
+            </button>
+            <button
+              class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+              pdk-button="secondary"
+              pdk-margin-bottom="0"
+            >
+               Save and continue 
+            </button>
+          </div>
+        </pdk-button-group>
+      </div>
+    </cpp-draft-result-action-bar>
+    <cpp-draft-result-body>
+      <div
+        class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+        data-test-id="targetGroupsBySubject"
+        pdk-margin-vertical="6"
+      >
+        <h3
+          class="govuk-heading-m"
+          pdk-typography="heading-medium"
+        >
+           James GRAY 
+        </h3>
+        <h4
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            Case reference: 
+          </span>
+          CASE_URN 
+        </h4>
+        <pdk-checkbox
+          checkboxtype="small"
+          class="govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+          data-test-id="toggleAllShadowListing"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              type="checkbox"
+              value="true"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Exclude all offences from list (next hearing)
+            </label>
+          </div>
+        </pdk-checkbox>
+        <h4
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Offences
+        </h4>
+        <ol
+          class="govuk-list"
+          pdk-list=""
+        >
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for  
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-valid ng-dirty"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+          <li
+            class="govuk-!-margin-top-6 govuk-!-margin-bottom-6 govuk-body-s"
+            data-test-id="offence"
+            pdk-margin-vertical="6"
+            pdk-typography="body-small"
+          >
+            <cpp-draft-result-offence>
+              <h5
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                <span
+                  class="offence-index govuk-!-margin-right-2"
+                  pdk-margin-right="2"
+                >
+                   . 
+                </span>
+                <span
+                  data-test-id="offenceTitle"
+                >
+                </span>
+              </h5>
+              <div
+                class="pdk-!-negative-margin-top-4 govuk-!-margin-bottom-4 govuk-body-m"
+                pdk-margin-bottom="4"
+                pdk-margin-top="-4"
+                pdk-typography="body"
+              >
+              </div>
+              <cpp-draft-result-parser>
+                <form
+                  class="ng-untouched ng-pristine ng-valid"
+                  novalidate=""
+                  pdk-form=""
+                >
+                  <pdk-form-field
+                    labeltype="none"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-form-control-undefined-GENERATED_ID"
+                      >
+                         Enter result for  
+                      </label>
+                      <textarea
+                        class="ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        name="rawText"
+                        ngmodel=""
+                        pdk-resize=""
+                        pdk-text-input=""
+                        style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                      >
+                      </textarea>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </form>
+              </cpp-draft-result-parser>
+              <pdk-checkbox
+                checkboxtype="small"
+                class="pdk-!-negative-margin-top-4 govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                data-test-id="toggleShadowListing"
+                pdk-margin-top="-4"
+              >
+                <div
+                  class="govuk-checkboxes__item"
+                >
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="pdk-checkbox-GENERATED_ID"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     Exclude 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                    </span>
+                     offence from list (next hearing) 
+                  </label>
+                </div>
+              </pdk-checkbox>
+            </cpp-draft-result-offence>
+          </li>
+        </ol>
+      </div>
+    </cpp-draft-result-body>
+  </cpp-draft-result>
+</ng-component>
+`;

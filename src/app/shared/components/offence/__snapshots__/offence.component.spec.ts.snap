@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OffenceComponent should compile correctly 1`] = `
+<ng-component
+  offence={[Function Object]}
+>
+  <offence>
+    <pdk-inset-text
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+      pdk-margin-vertical="2"
+    >
+      <div
+        class="govuk-inset-text"
+      >
+        <span
+          class="pdk-!-text-color-dark-grey"
+          pdk-text-colour="dark-grey"
+        >
+          CTO101
+        </span>
+        <br />
+        <span
+          class="bold govuk-body-l"
+          pdk-typography="body-large"
+        >
+          Offence title
+        </span>
+        <br />
+        <span
+          class="pdk-!-text-color-dark-grey govuk-body-m"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-medium"
+        >
+          Bondi Beach
+        </span>
+      </div>
+    </pdk-inset-text>
+  </offence>
+</ng-component>
+`;
+
+exports[`OffenceComponent should handle offence with empty strings 1`] = `
+<ng-component
+  offence={[Function Object]}
+>
+  <offence>
+    <pdk-inset-text
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+      pdk-margin-vertical="2"
+    >
+      <div
+        class="govuk-inset-text"
+      >
+        <span
+          class="pdk-!-text-color-dark-grey"
+          pdk-text-colour="dark-grey"
+        >
+        </span>
+        <br />
+        <span
+          class="bold govuk-body-l"
+          pdk-typography="body-large"
+        >
+        </span>
+        <br />
+        <span
+          class="pdk-!-text-color-dark-grey govuk-body-m"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-medium"
+        >
+        </span>
+      </div>
+    </pdk-inset-text>
+  </offence>
+</ng-component>
+`;
+
+exports[`OffenceComponent should handle offence with long text 1`] = `
+<ng-component
+  offence={[Function Object]}
+>
+  <offence>
+    <pdk-inset-text
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+      pdk-margin-vertical="2"
+    >
+      <div
+        class="govuk-inset-text"
+      >
+        <span
+          class="pdk-!-text-color-dark-grey"
+          pdk-text-colour="dark-grey"
+        >
+          VERY_LONG_OFFENCE_CODE_THAT_MIGHT_WRAP
+        </span>
+        <br />
+        <span
+          class="bold govuk-body-l"
+          pdk-typography="body-large"
+        >
+          This is a very long offence title that might wrap to multiple lines in the UI
+        </span>
+        <br />
+        <span
+          class="pdk-!-text-color-dark-grey govuk-body-m"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-medium"
+        >
+          This is a very long piece of legislation text that might also wrap
+        </span>
+      </div>
+    </pdk-inset-text>
+  </offence>
+</ng-component>
+`;
+
+exports[`OffenceComponent should render all offence properties correctly 1`] = `
+<ng-component
+  offence={[Function Object]}
+>
+  <offence>
+    <pdk-inset-text
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+      pdk-margin-vertical="2"
+    >
+      <div
+        class="govuk-inset-text"
+      >
+        <span
+          class="pdk-!-text-color-dark-grey"
+          pdk-text-colour="dark-grey"
+        >
+          CTO101
+        </span>
+        <br />
+        <span
+          class="bold govuk-body-l"
+          pdk-typography="body-large"
+        >
+          Offence title
+        </span>
+        <br />
+        <span
+          class="pdk-!-text-color-dark-grey govuk-body-m"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-medium"
+        >
+          Bondi Beach
+        </span>
+      </div>
+    </pdk-inset-text>
+  </offence>
+</ng-component>
+`;
+
+exports[`OffenceComponent should update when offence input changes 1`] = `
+<ng-component
+  offence={[Function Object]}
+>
+  <offence>
+    <pdk-inset-text
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+      pdk-margin-vertical="2"
+    >
+      <div
+        class="govuk-inset-text"
+      >
+        <span
+          class="pdk-!-text-color-dark-grey"
+          pdk-text-colour="dark-grey"
+        >
+          ABC999
+        </span>
+        <br />
+        <span
+          class="bold govuk-body-l"
+          pdk-typography="body-large"
+        >
+          New Offence Title
+        </span>
+        <br />
+        <span
+          class="pdk-!-text-color-dark-grey govuk-body-m"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-medium"
+        >
+          New Legislation
+        </span>
+      </div>
+    </pdk-inset-text>
+  </offence>
+</ng-component>
+`;

@@ -1,0 +1,244 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuggestedEventsComponent when jurisdiction type is crown when there are logged events and hearing is running should render the template with the values expected 1`] = `
+<test-host-component
+  changeHearingType={[Function Function]}
+  eventSelected={[Function Function]}
+  loggedEvents={[Function Array]}
+>
+  <suggested-events>
+    <div
+      class="suggested-events-row"
+    >
+      <div>
+        <div>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="Pause Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-pause"
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.PAUSE 
+            </button>
+          </span>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="Resume Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-resume"
+              disabled=""
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.RESUME 
+            </button>
+          </span>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="End Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-end"
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.END_HEARING 
+            </button>
+          </span>
+        </div>
+        <span>
+        </span>
+      </div>
+    </div>
+  </suggested-events>
+</test-host-component>
+`;
+
+exports[`SuggestedEventsComponent when jurisdiction type is crown when there are logged events and hearing is stopped should render the template with the values expected 1`] = `
+<test-host-component
+  changeHearingType={[Function Function]}
+  eventSelected={[Function Function]}
+  loggedEvents={[Function Array]}
+>
+  <suggested-events>
+    <div
+      class="suggested-events-row"
+    >
+      <div>
+        <div>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="Pause Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-pause"
+              disabled=""
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.PAUSE 
+            </button>
+          </span>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="Resume Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-resume"
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.RESUME 
+            </button>
+          </span>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="End Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-end"
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.END_HEARING 
+            </button>
+          </span>
+        </div>
+        <span>
+        </span>
+      </div>
+    </div>
+  </suggested-events>
+</test-host-component>
+`;
+
+exports[`SuggestedEventsComponent when jurisdiction type is crown when there are no logged events should render the template with the values expected 1`] = `
+<test-host-component
+  changeHearingType={[Function Function]}
+  eventSelected={[Function Function]}
+  loggedEvents={[Function Array]}
+>
+  <suggested-events>
+    <div
+      class="suggested-events-row"
+    >
+      <span
+        class="govuk-!-margin-bottom-1"
+        pdk-margin-bottom="1"
+      >
+        <button
+          class="link-button bold pdk-!-text-color-blue govuk-link govuk-body-m"
+          data-role="suggested-event-start"
+          pdk-link=""
+          pdk-typography="body-medium"
+        >
+           HEARING_EVENTS_LOG.START_HEARING 
+        </button>
+      </span>
+      <div
+        class="event-log-heading-row govuk-!-margin-top-2"
+        pdk-margin-top="2"
+      >
+        <h3
+          class="bold govuk-!-margin-bottom-2 govuk-body-s"
+          data-role="event-log-heading-text"
+          pdk-margin-bottom="2"
+          pdk-typography="body-small"
+        >
+           HEARING_EVENTS_LOG.HEADING_TITLE 
+        </h3>
+      </div>
+    </div>
+    <div>
+    </div>
+  </suggested-events>
+</test-host-component>
+`;
+
+exports[`SuggestedEventsComponent when jurisdiction type is magistrates when there are logged events should render "change hearing type link when jurisdiction type is magistrates 1`] = `
+<test-host-component
+  changeHearingType={[Function Function]}
+  eventSelected={[Function Function]}
+  loggedEvents={[Function Array]}
+>
+  <suggested-events>
+    <div
+      class="suggested-events-row"
+    >
+      <div>
+        <div>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="Pause Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-pause"
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.PAUSE 
+            </button>
+          </span>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="Resume Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-resume"
+              disabled=""
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.RESUME 
+            </button>
+          </span>
+          <span
+            class="suggested-event govuk-!-margin-bottom-1"
+            pdk-margin-bottom="1"
+          >
+            <button
+              aria-label="End Hearing"
+              class="link-button bold govuk-link govuk-body-s"
+              data-role="suggested-event-end"
+              pdk-link=""
+              pdk-typography="body-small"
+            >
+               HEARING_EVENTS_LOG.END_HEARING 
+            </button>
+          </span>
+        </div>
+        <span>
+          <button
+            class="link-button bold govuk-link govuk-body-s"
+            data-role="suggested-event-change-type"
+            pdk-link=""
+            pdk-typography="body-small"
+          >
+             HEARING_EVENTS_LOG.CHANGE_HEARING_TYPE 
+          </button>
+        </span>
+      </div>
+    </div>
+  </suggested-events>
+</test-host-component>
+`;

@@ -1,0 +1,32 @@
+<div class="offences-list" pdk-padding-top="3">
+  @if (!isBulkCase()) {
+  <span pdk-visually-hidden>Case reference: </span>
+  <h4 pdk-typography="heading-small" pdk-margin-bottom="2" data-role="offences-case-reference">
+    {{
+      defendantCase.prosecutionCaseIdentifier.caseURN
+        ? defendantCase.prosecutionCaseIdentifier.caseURN
+        : defendantCase.prosecutionCaseIdentifier.prosecutionAuthorityReference
+    }}
+  </h4>
+  @if (defendant.personDefendant && defendant.personDefendant.bailStatus) {
+  <div>
+    <span>{{ 'HEARING_LIST.BAIL_STATUS' | translate }}</span>
+    <span class="bold">
+      {{ resolveBailStatusDisplay() }}
+    </span>
+  </div>
+  } }
+  <ul>
+    @for (offence of defendantCase.offences; track offence.id; let i = $index) {
+    <li class="offence-list-item" [class.border-bottom-solid]="hasBorderBottomSolid(i)">
+      <offences-list-item
+        [offence]="offence"
+        [hideLegislation]="true"
+        [boldTitle]="true"
+        [jurisdictionType]="jurisdictionType"
+      >
+      </offences-list-item>
+    </li>
+    }
+  </ul>
+</div>

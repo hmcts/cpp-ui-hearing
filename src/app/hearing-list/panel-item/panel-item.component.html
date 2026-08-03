@@ -1,0 +1,11 @@
+<button
+  pdk-button="default"
+  class="side-menu-item right-arrow"
+  [attr.aria-expanded]="active"
+  [pdk-fill-colour]="active ? 'blue' : ''"
+  [pdk-text-colour]="active ? 'white' : ''"
+  [class.active]="active"
+  (click)="select.emit()"
+>
+  <ng-content></ng-content>
+</button>

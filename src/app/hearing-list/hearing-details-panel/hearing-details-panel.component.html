@@ -1,0 +1,34 @@
+<div class="attendees-column" pdk-border-colour="mid-grey">
+  <button
+    pdk-button
+    data-role="go-to-hearing-btn"
+    class="button wide-button"
+    (click)="goToHearing()"
+  >
+    {{ 'HEARING_LIST.GO_TO_HEARING' | translate }}
+  </button>
+  <headline-summary
+    [hearing]="hearing"
+    [hearingCasesCount]="hearingCasesCount"
+    [casesAndApplicationsGroupedByDefendant]="casesAndApplicationsGroupedByDefendant"
+  >
+  </headline-summary>
+  <hearing-attendees
+    [applicationSubjects]="applicationSubjects"
+    [changeJudiciaryLink]="changeJudiciaryLink"
+    [hearing]="hearing"
+    [casesAndApplicationsGroupedByDefendant]="casesAndApplicationsGroupedByDefendant"
+    [isStandAloneApplication]="isStandAloneApplication"
+    [prosecutionCounsels]="prosecutionCounsels"
+    [defenceCounsels]="defenceCounsels"
+    [intermediariesCounsel]="intermediariesCounsel"
+    [companyRepresentatives]="companyRepresentatives"
+    [activeSubjectId]="activeSubjectId"
+    [activeDefendant]="activeDefendant"
+    (onSubjectSelected)="onSubjectSelected.emit($event)"
+    (onDefendantSelected)="defendantSelected($event)"
+    (onGoToAddCounsels)="goToAddCounsels()"
+    (onGoToCaseDetails)="goToCaseDetails($event)"
+  >
+  </hearing-attendees>
+</div>

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingListFeedbackPanelComponent should create 1`] = `
+<hearing-list-feedback-panel
+  configFeedbackUrl={[Function String]}
+  configGuidanceUrl={[Function String]}
+  feedbackText={[Function String]}
+  guidanceText={[Function String]}
+  title={[Function String]}
+>
+  <div>
+    <h4
+      class="govuk-!-margin-bottom-2 govuk-!-margin-top-3 govuk-heading-s"
+      pdk-margin-bottom="2"
+      pdk-margin-top="3"
+      pdk-typography="heading-small"
+    >
+       Feedback and Guaidance 
+    </h4>
+    <a
+      class="govuk-link"
+      href="https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2CzEj
+      _HFSxpKoqBZAvjaEIRUMTRCRFpORVlPUlRHRDhDRTBTMzRWUjlFViQlQCN0PWcu"
+      pdk-link=""
+      target="”_blank”"
+    >
+       Feedback 
+    </a>
+    <a
+      class="govuk-link"
+      href="https://justiceuk.sharepoint.com/sites/HMCTSLandDHub/SitePages/Common-Platform.aspx"
+      pdk-link=""
+      target="”_blank”"
+    >
+       Guidance 
+    </a>
+  </div>
+</hearing-list-feedback-panel>
+`;

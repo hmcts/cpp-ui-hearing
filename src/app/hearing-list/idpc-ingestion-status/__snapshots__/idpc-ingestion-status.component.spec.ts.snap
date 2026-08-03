@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IdpcIngestionStatusComponent should render properly when phase is COMPLETED 1`] = `
+<idpc-ingestion-status
+  idpcingestionPhases={[Function Object]}
+  phase={[Function String]}
+>
+</idpc-ingestion-status>
+`;
+
+exports[`IdpcIngestionStatusComponent should render properly when phase is FAILED 1`] = `
+<idpc-ingestion-status
+  idpcingestionPhases={[Function Object]}
+  phase={[Function String]}
+>
+</idpc-ingestion-status>
+`;
+
+exports[`IdpcIngestionStatusComponent should render properly when phase is FORBIDDEN 1`] = `
+<idpc-ingestion-status
+  idpcingestionPhases={[Function Object]}
+  phase={[Function String]}
+>
+</idpc-ingestion-status>
+`;
+
+exports[`IdpcIngestionStatusComponent should render properly when phase is IN_PROGRESS 1`] = `
+<idpc-ingestion-status
+  idpcingestionPhases={[Function Object]}
+  phase={[Function String]}
+>
+</idpc-ingestion-status>
+`;
+
+exports[`IdpcIngestionStatusComponent should render properly when phase is STARTED 1`] = `
+<idpc-ingestion-status
+  idpcingestionPhases={[Function Object]}
+  phase={[Function String]}
+>
+</idpc-ingestion-status>
+`;
+
+exports[`IdpcIngestionStatusComponent should render properly when phase is null 1`] = `
+<idpc-ingestion-status
+  idpcingestionPhases={[Function Object]}
+  phase="null"
+>
+</idpc-ingestion-status>
+`;

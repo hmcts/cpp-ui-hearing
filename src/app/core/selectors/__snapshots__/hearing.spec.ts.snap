@@ -1,0 +1,636 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hearing selectors should return hearing details from the defendants of the current hearing 1`] = `
+[
+  {
+    "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966",
+    "firstName": "Harry",
+    "lastName": "Kane Junior",
+    "masterDefendantId": undefined,
+    "offences": [
+      {
+        "allocationDecision": {
+          "courtIndicatedSentence": {},
+          "motReasonCode": "02",
+          "motReasonDescription": ":motReasonDescription",
+          "motReasonId": ":motReasonId",
+          "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+          "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+        },
+        "arrestDate": "2018-01-01",
+        "chargeDate": "2018-01-01",
+        "convictionDate": "2018-05-01",
+        "count": 0,
+        "endDate": "2018-01-01",
+        "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        "index": 0,
+        "indicatedPlea": {
+          "indicatedPleaDate": "2018-05-01",
+          "indicatedPleaValue": "INDICATED_GUILTY",
+          "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+          "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+        },
+        "notifiedPlea": {
+          "notifiedPleaDate": "2018-04-01",
+          "notifiedPleaValue": "NOTIFIED_GUILTY",
+          "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        },
+        "offenceCode": "AAA",
+        "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+        "offenceFacts": {
+          "alcoholReadingAmount": "111",
+          "alcoholReadingMethod": "2222",
+          "vehicleRegistration": "AA12345",
+        },
+        "offenceLegislation": "legislation",
+        "offenceLegislationWelsh": "legislation in Welsh",
+        "offenceTitle": "a title",
+        "offenceTitleWelsh": "a title in Welsh",
+        "orderIndex": 1,
+        "plea": {
+          "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+          "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+          "pleaDate": "2018-05-01",
+          "pleaValue": "NOT_GUILTY",
+        },
+        "startDate": "2018-01-01",
+        "verdict": {
+          "applicationId": undefined,
+          "jurors": {
+            "numberOfJurors": 12,
+            "numberOfSplitJurors": 0,
+            "unanimous": true,
+          },
+          "lesserOrAlternativeOffence": {
+            "offenceCode": "FDSE",
+            "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+            "offenceLegislation": "Legislation for this offence",
+            "offenceLegislationWelsh": "Legislation for this offence in Welsh",
+            "offenceTitle": "A lesser offence",
+            "offenceTitleWelsh": "A lesser offence in Welsh",
+          },
+          "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+          "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+          "verdictDate": "2018-05-01",
+          "verdictType": {
+            "category": "Guilty",
+            "categoryType": "GUILTY",
+            "code": "",
+            "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+            "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+            "jurisdiction": "",
+            "sequence": 1,
+          },
+        },
+        "wording": "No Travel Card",
+        "wordingWelsh": "No Travel Card In Welsh",
+      },
+    ],
+  },
+]
+`;
+
+exports[`Hearing selectors should return individual defendants from the current hearing 1`] = `
+[
+  {
+    "additionalNationalityCode": "USA",
+    "additionalNationalityDescription": "United States of America",
+    "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+    "address": {
+      "address1": "22",
+      "address2": "Acacia Avenue",
+      "address3": "Acacia Town",
+      "address4": "Acacia City",
+      "address5": "Acacia Country",
+      "postcode": "GIR 0AA",
+    },
+    "contact": {
+      "fax": "3425678",
+      "home": "123456",
+      "mobile": "45678910",
+      "primaryEmail": "harry.kanejunior@spurs.co.uk",
+      "secondaryEmail": "harry.kanejunior@hotmail.com",
+      "work": "7891011",
+    },
+    "dateOfBirth": "2010-01-01",
+    "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966",
+    "disabilityStatus": "a",
+    "documentationLanguageNeeds": "WELSH",
+    "ethnicityCode": "IC1",
+    "ethnicityDescription": "IC1 Description",
+    "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+    "firstName": "Harry",
+    "gender": "MALE",
+    "interpreterLanguageNeeds": "Welsh",
+    "lastName": "Kane Junior",
+    "masterDefendantId": "f1dg2d9d-29ec-4934-a932-22a50f223999",
+    "middleName": "Jack",
+    "nationalInsuranceNumber": "NH323232B",
+    "nationalityCode": "GBR",
+    "nationalityDescription": "United Kingdom",
+    "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+    "occupation": "Kid",
+    "occupationCode": "F",
+    "specificRequirements": "Screen",
+    "title": "MR",
+  },
+]
+`;
+
+exports[`Hearing selectors should return the getCurrentOffence 1`] = `undefined`;
+
+exports[`Hearing selectors should return the getCurrentOffence 2`] = `
+{
+  "allocationDecision": {
+    "courtIndicatedSentence": {},
+    "motReasonCode": "02",
+    "motReasonDescription": ":motReasonDescription",
+    "motReasonId": ":motReasonId",
+    "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+    "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+  },
+  "arrestDate": "2018-01-01",
+  "chargeDate": "2018-01-01",
+  "convictionDate": "2018-05-01",
+  "count": 0,
+  "endDate": "2018-01-01",
+  "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+  "index": 0,
+  "indicatedPlea": {
+    "indicatedPleaDate": "2018-05-01",
+    "indicatedPleaValue": "INDICATED_GUILTY",
+    "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+    "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+  },
+  "notifiedPlea": {
+    "notifiedPleaDate": "2018-04-01",
+    "notifiedPleaValue": "NOTIFIED_GUILTY",
+    "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+  },
+  "offenceCode": "AAA",
+  "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+  "offenceFacts": {
+    "alcoholReadingAmount": "111",
+    "alcoholReadingMethod": "2222",
+    "vehicleRegistration": "AA12345",
+  },
+  "offenceLegislation": "legislation",
+  "offenceLegislationWelsh": "legislation in Welsh",
+  "offenceTitle": "a title",
+  "offenceTitleWelsh": "a title in Welsh",
+  "orderIndex": 1,
+  "plea": {
+    "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+    "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+    "pleaDate": "2018-05-01",
+    "pleaValue": "NOT_GUILTY",
+  },
+  "startDate": "2018-01-01",
+  "verdict": {
+    "applicationId": undefined,
+    "jurors": {
+      "numberOfJurors": 12,
+      "numberOfSplitJurors": 0,
+      "unanimous": true,
+    },
+    "lesserOrAlternativeOffence": {
+      "offenceCode": "FDSE",
+      "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+      "offenceLegislation": "Legislation for this offence",
+      "offenceLegislationWelsh": "Legislation for this offence in Welsh",
+      "offenceTitle": "A lesser offence",
+      "offenceTitleWelsh": "A lesser offence in Welsh",
+    },
+    "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+    "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+    "verdictDate": "2018-05-01",
+    "verdictType": {
+      "category": "Guilty",
+      "categoryType": "GUILTY",
+      "code": "",
+      "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+      "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+      "jurisdiction": "",
+      "sequence": 1,
+    },
+  },
+  "wording": "No Travel Card",
+  "wordingWelsh": "No Travel Card In Welsh",
+}
+`;
+
+exports[`Hearing selectors should return the getDefendantByOffenceId 1`] = `undefined`;
+
+exports[`Hearing selectors should return the getDefendantByOffenceId 2`] = `
+{
+  "aliases": [
+    {
+      "firstName": "johnny robber",
+    },
+    {
+      "firstName": "jack the knife",
+    },
+  ],
+  "associatedPersons": [
+    {
+      "person": {
+        "additionalNationalityCode": "USA",
+        "additionalNationalityDescription": "United States of America",
+        "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+        "address": {
+          "address1": "22",
+          "address2": "Acacia Avenue",
+          "address3": "Acacia Town",
+          "address4": "Acacia City",
+          "address5": "Acacia Country",
+          "postcode": "GIR 0AA",
+        },
+        "contact": {
+          "fax": "3425678",
+          "home": "123456",
+          "mobile": "45678910",
+          "primaryEmail": "harry.kane@spurs.co.uk",
+          "secondaryEmail": "harry.kane@hotmail.com",
+          "work": "7891011",
+        },
+        "dateOfBirth": "1995-01-01",
+        "disabilityStatus": "a",
+        "documentationLanguageNeeds": "WELSH",
+        "ethnicityCode": "IC1",
+        "ethnicityDescription": "IC1 Description",
+        "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+        "firstName": "Harry",
+        "gender": "MALE",
+        "interpreterLanguageNeeds": "Hindi",
+        "lastName": "Kane",
+        "middleName": "Jack",
+        "nationalInsuranceNumber": "NH222222B",
+        "nationalityCode": "GBR",
+        "nationalityDescription": "United Kingdom",
+        "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+        "occupation": "Footballer",
+        "occupationCode": "F",
+        "title": "MR",
+      },
+      "role": "parent",
+    },
+  ],
+  "id": "e1d32d9d-29ec-4934-a932-22a50f223966",
+  "mitigation": "I was not there",
+  "mitigationWelsh": "I was not there in Welsh",
+  "numberOfPreviousConvictionsCited": 5,
+  "offences": [
+    {
+      "allocationDecision": {
+        "courtIndicatedSentence": {},
+        "motReasonCode": "02",
+        "motReasonDescription": ":motReasonDescription",
+        "motReasonId": ":motReasonId",
+        "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+      },
+      "arrestDate": "2018-01-01",
+      "chargeDate": "2018-01-01",
+      "convictionDate": "2018-05-01",
+      "count": 0,
+      "endDate": "2018-01-01",
+      "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+      "index": 0,
+      "indicatedPlea": {
+        "indicatedPleaDate": "2018-05-01",
+        "indicatedPleaValue": "INDICATED_GUILTY",
+        "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+      },
+      "notifiedPlea": {
+        "notifiedPleaDate": "2018-04-01",
+        "notifiedPleaValue": "NOTIFIED_GUILTY",
+        "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+      },
+      "offenceCode": "AAA",
+      "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+      "offenceFacts": {
+        "alcoholReadingAmount": "111",
+        "alcoholReadingMethod": "2222",
+        "vehicleRegistration": "AA12345",
+      },
+      "offenceLegislation": "legislation",
+      "offenceLegislationWelsh": "legislation in Welsh",
+      "offenceTitle": "a title",
+      "offenceTitleWelsh": "a title in Welsh",
+      "orderIndex": 1,
+      "plea": {
+        "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+        "pleaDate": "2018-05-01",
+        "pleaValue": "NOT_GUILTY",
+      },
+      "startDate": "2018-01-01",
+      "verdict": {
+        "applicationId": undefined,
+        "jurors": {
+          "numberOfJurors": 12,
+          "numberOfSplitJurors": 0,
+          "unanimous": true,
+        },
+        "lesserOrAlternativeOffence": {
+          "offenceCode": "FDSE",
+          "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+          "offenceLegislation": "Legislation for this offence",
+          "offenceLegislationWelsh": "Legislation for this offence in Welsh",
+          "offenceTitle": "A lesser offence",
+          "offenceTitleWelsh": "A lesser offence in Welsh",
+        },
+        "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+        "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+        "verdictDate": "2018-05-01",
+        "verdictType": {
+          "category": "Guilty",
+          "categoryType": "GUILTY",
+          "code": "",
+          "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+          "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+          "jurisdiction": "",
+          "sequence": 1,
+        },
+      },
+      "wording": "No Travel Card",
+      "wordingWelsh": "No Travel Card In Welsh",
+    },
+  ],
+  "personDefendant": {
+    "arrestSummonsNumber": "arrest123",
+    "bailStatus": "inCustody",
+    "custodyTimeLimit": "2018-01-01",
+    "driverNumber": "AACC12345",
+    "employerOrganisation": {
+      "address": {
+        "address1": "Disney Road",
+        "address2": "Disney Town",
+        "address3": "Disney District",
+        "address4": "Paris",
+        "address5": "France",
+        "postcode": "DI5 9EY",
+      },
+      "contact": {
+        "fax": "a",
+        "primaryEmail": "person@hotmail.com",
+        "secondaryEmail": "associate@hotmail.com",
+        "work": "0207 654 3246 extn 1234",
+      },
+      "id": "8625b50c-afc4-4d63-add2-68b9bf01b1fd",
+      "incorporationNumber": "Mickeymouse1",
+      "name": "Disneyland Paris",
+    },
+    "employerPayrollReference": "payyou1234",
+    "observedEthnicityCode": "IC1",
+    "observedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+    "perceivedBirthYear": 2015,
+    "personDetails": {
+      "additionalNationalityCode": "USA",
+      "additionalNationalityDescription": "United States of America",
+      "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+      "address": {
+        "address1": "22",
+        "address2": "Acacia Avenue",
+        "address3": "Acacia Town",
+        "address4": "Acacia City",
+        "address5": "Acacia Country",
+        "postcode": "GIR 0AA",
+      },
+      "contact": {
+        "fax": "3425678",
+        "home": "123456",
+        "mobile": "45678910",
+        "primaryEmail": "harry.kanejunior@spurs.co.uk",
+        "secondaryEmail": "harry.kanejunior@hotmail.com",
+        "work": "7891011",
+      },
+      "dateOfBirth": "2010-01-01",
+      "disabilityStatus": "a",
+      "documentationLanguageNeeds": "WELSH",
+      "ethnicityCode": "IC1",
+      "ethnicityDescription": "IC1 Description",
+      "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+      "firstName": "Harry",
+      "gender": "MALE",
+      "interpreterLanguageNeeds": "Welsh",
+      "lastName": "Kane Junior",
+      "middleName": "Jack",
+      "nationalInsuranceNumber": "NH323232B",
+      "nationalityCode": "GBR",
+      "nationalityDescription": "United Kingdom",
+      "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+      "occupation": "Kid",
+      "occupationCode": "F",
+      "specificRequirements": "Screen",
+      "title": "MR",
+    },
+    "pncId": "1234567",
+    "selfDefinedEthnicityCode": "IC1",
+    "selfDefinedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+  },
+  "prosecutionAuthorityReference": "TFL12345-ABC",
+  "prosecutionCaseId": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+  "witnessStatement": "he did not do it",
+  "witnessStatementWelsh": "he did not do it in Welsh",
+}
+`;
+
+exports[`Hearing selectors should return the hearing summaries grouped by case id 1`] = `
+[
+  {
+    "cases": [
+      {
+        "caseId": "c95339e1-2de5-4ade-9650-6c0666e87eeb",
+        "caseReference": "31DS4578527",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+            "id": "2cd10cbe-504a-497a-8241-4ae96845512e",
+            "name": "Test124 DEF12",
+          },
+        ],
+        "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+      },
+      {
+        "caseId": "0d4aeb8a-37aa-46dd-8f76-d4c8d4e3be1b",
+        "caseReference": "31DS9378527",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+            "id": "bb12a255-74ba-4a85-bebe-f37fa4d41909",
+            "name": "Test34 DEF3",
+          },
+          {
+            "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+            "id": "dc4b6901-1d0b-497b-a09c-6b9654f78a9f",
+            "name": "Test23 DEF2",
+          },
+          {
+            "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+            "id": "018a1270-e65c-4c24-acd7-a3f183f278d0",
+            "name": "Test12 DEF1",
+          },
+        ],
+        "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+      },
+      {
+        "caseId": "1a56f502-88d2-4117-aab1-90cc277f0dfd",
+        "caseReference": "12MarVTC143",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "952772be-1c54-4e6c-a72b-5d3cf4ebb267",
+            "id": "d0689f1e-5fdc-446e-8b1f-c2a2b307d189",
+            "name": "Creola SANFORD61",
+          },
+        ],
+        "hearingId": "952772be-1c54-4e6c-a72b-5d3cf4ebb267",
+      },
+      {
+        "caseId": "8533cae2-9fdb-4878-ba64-22943f0159bb",
+        "caseReference": "12MarVTC342",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "c4be3132-e703-44ad-b176-e497551d1691",
+            "id": "989b4d1c-37e6-4cf7-b950-40f9ac7098ce",
+            "name": "Creola SANFORD61",
+          },
+        ],
+        "hearingId": "c4be3132-e703-44ad-b176-e497551d1691",
+      },
+      {
+        "caseId": "d7fd987d-28d5-47f8-85df-dc44ddf56af1",
+        "caseReference": "12MarVTC386",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "615917ae-988e-4721-9c96-4fe7a7a594dd",
+            "id": "64aa4331-e141-4a1f-aaa8-759f133f9a8d",
+            "name": "Cordie KUHLMAN36",
+          },
+        ],
+        "hearingId": "615917ae-988e-4721-9c96-4fe7a7a594dd",
+      },
+      {
+        "caseId": "b8dc5796-165e-4a72-a708-2426ea8eb337",
+        "caseReference": "12MarVTC899",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "c3afbd62-39ce-4a14-88a7-fe8f0ba2289e",
+            "id": "c5c80c3e-8c4c-4cfd-a715-c1d94dbd1ca9",
+            "name": "Philip WEIMANN63",
+          },
+        ],
+        "hearingId": "c3afbd62-39ce-4a14-88a7-fe8f0ba2289e",
+      },
+      {
+        "caseId": "96e43d86-15df-4cfd-959c-843b417079e4",
+        "caseReference": "13MarVTC297",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "ffcc03b7-b504-461d-abff-42a121b197af",
+            "id": "f8e81ea6-40cc-4921-8da9-45d61882468c",
+            "name": "Bethel PFANNERSTILL26",
+          },
+        ],
+        "hearingId": "ffcc03b7-b504-461d-abff-42a121b197af",
+      },
+      {
+        "caseId": "a47a8bb2-a2ed-414f-94c3-ed0c04a3ee48",
+        "caseReference": "13MarVTC670",
+        "courtroomName": "Courtroom 01",
+        "defendants": [
+          {
+            "hearingId": "b38178ca-1cd6-4857-b178-6ff0e90e5dde",
+            "id": "b45ddef0-bf35-4eb7-acf2-28434cfa9ea7",
+            "name": "Maxine HUELS97",
+          },
+        ],
+        "hearingId": "b38178ca-1cd6-4857-b178-6ff0e90e5dde",
+      },
+    ],
+    "courtroomName": "Courtroom 01",
+  },
+  {
+    "cases": [
+      {
+        "caseId": "c95339e1-2de5-4ade-9650-6c0666e87eeb",
+        "caseReference": "31DS4578527",
+        "courtroomName": "Courtroom 02",
+        "defendants": [
+          {
+            "hearingId": "b50d8216-7130-4f3a-89b4-b082c1cec931",
+            "id": "2cd10cbe-504a-497a-8241-4ae96845512e",
+            "name": "Test124 DEF12",
+          },
+        ],
+        "hearingId": "b50d8216-7130-4f3a-89b4-b082c1cec931",
+      },
+    ],
+    "courtroomName": "Courtroom 02",
+  },
+]
+`;
+
+exports[`getListingNoteByCourtRoomAndDate getAllOffencesFromHearing should select all offences from hearing 1`] = `
+[
+  {
+    "offenceTitle": "Defendant offence",
+  },
+  {
+    "offenceTitle": "Application offence",
+  },
+  {
+    "offenceTitle": "Court order offence",
+  },
+]
+`;
+
+exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant should select all subject legal entity defendants from hearing 1`] = `
+[
+  {
+    "defendantId": "master-defendant-id",
+    "firstName": "Org",
+    "lastName": "",
+    "masterDefendantId": "master-defendant-id",
+    "offences": [
+      {
+        "offenceTitle": "Application offence",
+      },
+      [
+        {
+          "offenceTitle": "Court order offence",
+        },
+      ],
+    ],
+  },
+]
+`;
+
+exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant should select all subject person defendants from hearing 1`] = `
+[
+  {
+    "defendantId": "master-defendant-id",
+    "firstName": "F",
+    "lastName": "L",
+    "masterDefendantId": "master-defendant-id",
+    "offences": [
+      {
+        "offenceTitle": "Application offence",
+      },
+      [
+        {
+          "offenceTitle": "Court order offence",
+        },
+      ],
+    ],
+  },
+]
+`;

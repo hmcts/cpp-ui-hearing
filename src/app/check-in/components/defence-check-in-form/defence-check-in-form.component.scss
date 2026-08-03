@@ -1,0 +1,25 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+form {
+  width: 100%;
+}
+
+.courtrooms {
+  display: flex;
+  flex-direction: row;
+
+  .select-unselect-all {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+}
+
+.form-has-errors {
+  border-left: 5px solid govuk.govuk-colour('red');
+  padding-left: 15px;
+}
+
+.toggle-accordion-items {
+  text-align: right;
+}

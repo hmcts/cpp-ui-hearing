@@ -1,0 +1,12 @@
+<h1 class="heading-large page-header" data-role="outstanding-fines-header">
+  {{ 'OUTSTANDING_FINES.OUTSTANDING_REPORT_FOR' | translate }}{{ defendantNames?.defendantFirstName
+  }} {{ defendantNames?.defendantLastName}}
+</h1>
+
+@if ((outstandingFinesDefendant$ | async).length !== 0) {
+<outstanding-fines-table
+  [outstandingFines]="outstandingFinesDefendant$ | async"
+></outstanding-fines-table>
+} @else {
+<p>{{'OUTSTANDING_FINES.NO_RECORDS_FOUND' | translate}}</p>
+}

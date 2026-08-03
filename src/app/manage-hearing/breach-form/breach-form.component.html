@@ -1,0 +1,91 @@
+@if (showCaseOrderAlert) {
+<select-order-alert (onDismiss)="dismissShowCaseOrderAlert()"></select-order-alert>
+}
+<pdk-warning-text pdk-margin-top="1" pdk-margin-bottom="1">
+  {{ 'ENTER_BREACHES.ACTIVE_ORDERS' | translate }}
+</pdk-warning-text>
+<pdk-checkbox
+  [ngModel]="openActiveOrdersForm"
+  (change)="toggleActiveOrders($event.checked)"
+  data-test-id="showActiveOrders"
+  data-role="tick-input"
+  pdk-margin-top="5"
+  pdk-margin-bottom="7"
+>
+  {{ 'ENTER_BREACHES.SHOW_ACTIVE' | translate }}
+</pdk-checkbox>
+
+@if (openActiveOrdersForm) {
+<h4 pdk-typography="heading-small">{{ 'ENTER_BREACHES.SELECT_ACTIVE_ORDERS' | translate }}</h4>
+<form
+  pdk-form
+  novalidate
+  (errors)="handleError($event)"
+  (validSubmit)="submitBreachForm()"
+  data-test-id="OrderBreachForm"
+>
+  @for (modelBreach of modelBreaches; track modelBreach.orderId; let i = $index) { @if
+  (modelBreach.selected && courtOrders[i].showUnpaidWorkWarning) {
+  <pdk-warning-text pdk-margin-top="1" pdk-margin-bottom="1">
+    {{ 'ENTER_BREACHES.UNPAID_WORK_HOURS_COMPLETED' | translate }}
+  </pdk-warning-text>
+  }
+  <pdk-checkbox
+    name="breachSelected"
+    [ngModel]="modelBreach.selected"
+    (change)="toggleSelectedCourtOrder(i, $event.checked)"
+    data-role="tick-input"
+  >
+    {{ courtOrders[i].label }}
+  </pdk-checkbox>
+  @if (modelBreach.selected) {
+  <pdk-inset-text pdk-padding-top="0" pdk-padding-bottom="0">
+    <div pdk-text-colour="dark-grey">
+      {{ 'ENTER_BREACHES.COURT' | translate }}:
+      <span>{{ courtOrders[i].orderingCourt.name }}</span>
+    </div>
+    <div pdk-text-colour="dark-grey">
+      {{ 'ENTER_BREACHES.DATE' | translate }}:
+      <span>{{ courtOrders[i].startDate | cppDate }}</span>
+    </div>
+    <div pdk-text-colour="dark-grey">
+      {{ 'ENTER_BREACHES.CASE_REFERENCE' | translate }}:
+      <span>{{ uniqueCaseReferences(courtOrders[i].courtOrderOffences) | displayList }}</span>
+    </div>
+    <pdk-form-field
+      pdk-margin-top="3"
+      [errorMessages]="[
+              {
+                rule: 'required',
+                message: 'ENTER_BREACHES.BREACH_TYPE_REQUIRED' | translate,
+              },
+            ]"
+      label="{{ 'ENTER_BREACHES.SELECT_BREACH_TYPE' | translate }}"
+      labelType="small"
+    >
+      <pdk-autosuggest-lite
+        [attr.data-test-id]="'breachType-' + i"
+        [(ngModel)]="modelBreach.breachType"
+        name="breachType"
+        (inputText)="handleSearchSuggestions($event)"
+        [suggestions]="filteredBreachTypes"
+        suggestionKey="id"
+        suggestionTitle="type"
+        suggestionSubtitle="legislation"
+        required
+      >
+      </pdk-autosuggest-lite>
+      @if (modelBreach.breachType) {
+      <pdk-inset-text>
+        <div pdk-text-colour="dark-grey">{{ modelBreach.breachType.type }}</div>
+        <div>{{ modelBreach.breachType.legislation }}</div>
+      </pdk-inset-text>
+      }
+    </pdk-form-field>
+  </pdk-inset-text>
+  } }
+  <button pdk-margin-top="3" data-test-id="submitBreaches" pdk-button type="submit">
+    {{ 'ENTER_BREACHES.SAVE_AND_CONTINUE' | translate }}
+  </button>
+</form>
+}

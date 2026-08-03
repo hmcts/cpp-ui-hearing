@@ -1,0 +1,9 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.delete-counsel-link {
+  text-align: right;
+
+  & .disabledLink {
+    color: govuk.govuk-colour('dark-grey');
+  }
+}

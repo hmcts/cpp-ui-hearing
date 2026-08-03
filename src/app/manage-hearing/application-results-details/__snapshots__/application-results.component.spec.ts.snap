@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationResultsComponent should render the component 1`] = `
+<test-host-component
+  courtApplication={[Function Object]}
+  hearingType={[Function String]}
+>
+  <application-results>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-!-padding-bottom-4 govuk-grid-column-full"
+        full=""
+        pdk-padding-bottom="4"
+      >
+        <div
+          class="pdk-!-text-color-dark-grey"
+          pdk-text-colour="dark-grey"
+        >
+           APPLICATION.REFERENCE 
+        </div>
+        <div>
+          <h4
+            class="govuk-!-margin-bottom-0 govuk-heading-s"
+            pdk-margin-bottom="0"
+            pdk-typography="heading-small"
+          >
+             SHRUQK2SME 
+          </h4>
+        </div>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <span
+          data-test-id="applicationType"
+        >
+          Further offence committed during youth offender panel referral period
+        </span>
+        <div
+          class="pdk-!-text-color-dark-grey govuk-!-margin-top-2 govuk-body-s"
+          pdk-margin-top="2"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-small"
+        >
+           APPLICATION.DUE_ON 05 January 2021 
+        </div>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <div
+          class="govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+        >
+          <cpp-shareable-results-container>
+             applicationId: 7db9bc70-41b5-4586-aa48-ad0894473fd9
+            <br />
+             caseId: 
+            <br />
+             masterDefendantId: 
+            <br />
+             offenceId: 
+            <br />
+             showResultsPlaceholder: true
+            <br />
+          </cpp-shareable-results-container>
+        </div>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <hr
+          class="border pdk-!-border-color-mid-grey"
+          pdk-border-colour="mid-grey"
+        />
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-full"
+        full=""
+      >
+      </pdk-grid>
+    </pdk-grid>
+  </application-results>
+</test-host-component>
+`;

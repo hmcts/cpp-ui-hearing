@@ -1,0 +1,12 @@
+.multiday-dropdown {
+  .date-select {
+    width: 615px;
+    display: inline-block;
+    margin-left: 40px;
+  }
+
+  ::ng-deep label {
+    font-weight: 400;
+    display: inline !important;
+  }
+}

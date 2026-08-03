@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingCaseLinksNotesComponent should have the expected template 1`] = `
+<hearing-case-links-notes
+  canAddChildApplication="false"
+  hearing={[Function Object]}
+  hearingNotes={[Function Array]}
+  onGoToCaseLink={[Function EventEmitter_]}
+  onGoToCreateTask={[Function EventEmitter_]}
+  prosecutionCasesWithoutBulkCases={[Function Array]}
+  store={[Function Object]}
+>
+  <div
+    class="hearing-documents-notes"
+  >
+    <pdk-tabs
+      data-test-id="referenceTabs"
+    >
+      <pdk-tabs-container>
+        <div
+          class="js-enabled govuk-tabs"
+        >
+          <ul
+            class="govuk-tabs__list"
+            role="tablist"
+          >
+            <li
+              class="govuk-tabs__list-item govuk-tabs__list-item--selected"
+              role="presentation"
+            >
+              <a
+                aria-controls="pdk-tab-section-0"
+                aria-selected="true"
+                class="govuk-tabs__tab"
+                href="javascript:void(0);"
+                role="tab"
+                tabindex="0"
+              >
+                 COMMON.TAB_CASE_LINKS 
+              </a>
+            </li>
+            <li
+              class="govuk-tabs__list-item"
+              role="presentation"
+            >
+              <a
+                aria-controls="pdk-tab-section-1"
+                aria-selected="false"
+                class="govuk-tabs__tab"
+                href="javascript:void(0);"
+                role="tab"
+                tabindex="-1"
+              >
+                 COMMON.TAB_NOTES 
+              </a>
+            </li>
+          </ul>
+          <pdk-tab>
+            <section
+              aria-hidden="false"
+              class="govuk-tabs__panel"
+              id="pdk-tab-section-0"
+              role="tabpanel"
+            >
+              <hearing-case-links>
+                <div
+                  class="hearing-case-links"
+                >
+                  <div
+                    data-test-id="90EU623841"
+                  >
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      Case reference: 
+                    </span>
+                    <h4
+                      class="govuk-!-margin-bottom-1 govuk-heading-s"
+                      data-test-id="reference"
+                      pdk-margin-bottom="1"
+                      pdk-typography="heading-small"
+                    >
+                       90EU623841 
+                    </h4>
+                    <pdk-inset-text
+                      class="govuk-!-margin-top-3"
+                      pdk-margin-top="3"
+                    >
+                      <div
+                        class="govuk-inset-text"
+                      >
+                        <div
+                          class="case-links"
+                        >
+                          <a
+                            class="govuk-link"
+                            href="javascript:void(0);"
+                            pdk-link=""
+                          >
+                             COMMON.CASE_AT_A_GLANCE 
+                          </a>
+                          <a
+                            class="govuk-!-margin-top-2 govuk-link"
+                            href="javascript:void(0);"
+                            pdk-link=""
+                            pdk-margin-top="2"
+                          >
+                             COMMON.CASE_MATERIAL 
+                          </a>
+                          <a
+                            class="govuk-!-margin-top-2 govuk-link"
+                            href="javascript:void(0);"
+                            pdk-link=""
+                            pdk-margin-top="2"
+                          >
+                             HEARING_LIST.GO_TO_ADD_APPLICATION 
+                          </a>
+                          <a
+                            class="govuk-!-margin-top-2 govuk-link"
+                            href="javascript:void(0);"
+                            pdk-link=""
+                            pdk-margin-top="2"
+                          >
+                             HEARING_LIST.GO_TO_CREATE_TASK 
+                          </a>
+                        </div>
+                      </div>
+                    </pdk-inset-text>
+                  </div>
+                </div>
+              </hearing-case-links>
+            </section>
+          </pdk-tab>
+          <pdk-tab>
+            <section
+              aria-hidden="true"
+              class="govuk-tabs__panel govuk-tabs__panel--hidden"
+              id="pdk-tab-section-1"
+              role="tabpanel"
+            >
+              <hearing-note-text>
+                <div
+                  data-test-id="hearingNoteForm"
+                >
+                  <form
+                    class="ng-untouched ng-pristine ng-valid"
+                    novalidate=""
+                    pdk-form=""
+                  >
+                    <pdk-form-field
+                      labeltype="small"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <label
+                          class="govuk-label govuk-label--s"
+                          for="caseNote"
+                        >
+                           COMMON.NEW_NOTE 
+                        </label>
+                        <textarea
+                          class="note-textarea ng-untouched ng-pristine ng-valid govuk-input"
+                          id="caseNote"
+                          name="newNote"
+                          pdk-input=""
+                          pdk-resize=""
+                          pdk-text-input=""
+                          placeholder="COMMON.START_TYPING"
+                          style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                        />
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <button
+                      class="button govuk-button"
+                      data-role="save-note"
+                      disabled="disabled"
+                      pdk-button=""
+                      type="submit"
+                    >
+                       COMMON.SAVE_NOTE 
+                    </button>
+                  </form>
+                </div>
+              </hearing-note-text>
+              <hearing-note-list>
+              </hearing-note-list>
+            </section>
+          </pdk-tab>
+        </div>
+      </pdk-tabs-container>
+    </pdk-tabs>
+    <pdk-divider>
+      <hr
+        class="pdk-divider"
+      />
+    </pdk-divider>
+  </div>
+</hearing-case-links-notes>
+`;

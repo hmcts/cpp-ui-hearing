@@ -1,0 +1,158 @@
+<div class="defendant-details" data-role="defendant-details-panel">
+  @if (!isBulkDefendant) { @if (hearing) {
+  <div class="case-markers">
+    @if (defendant) {
+    <h4 pdk-margin-bottom="2" pdk-typography="body-large" class="bold">
+      {{ 'HEARING_LIST.CASE_MARKERS' | translate }}
+    </h4>
+    } @for (defendantCase of defendant?.prosecutionCases; track defendantCase.id) {
+    <div pdk-margin-top="3">
+      <case-markers
+        [prosecutionCaseDetails]="defendantCase"
+        [isStandAloneApplication]="isStandAloneApplication"
+        [markers]="caseMarkers(defendantCase)"
+        (onGoToCaseMarkers)="goToCaseMarker(defendantCase.id)"
+      ></case-markers>
+    </div>
+    }
+  </div>
+  } @if (defendant) {
+  <div class="defendant-particulars" pdk-padding-top="3">
+    @if (defendant.personDefendant) {
+    <h4
+      data-test-id="defendantName"
+      pdk-typography="body-large"
+      pdk-margin-bottom="2"
+      class="defendant-name"
+      data-role="name"
+    >
+      {{ defendant.personDefendant.personDetails.firstName }}
+      {{ defendant.personDefendant.personDetails.lastName | uppercase }}
+    </h4>
+    @if (defendant.isYouth) {
+    <div pdk-typography="body-xsmall" class="youth-marker">Youth</div>
+    } @if (defendant.personDefendant.bailStatus && defendant.personDefendant.custodyTimeLimit) {
+    <div>
+      <span>{{ 'HEARING_LIST.CUSTODY_TIME_LIMIT' | translate }}</span>
+      <span pdk-typography="body-small" class="bold">
+        {{ defendant.personDefendant.custodyTimeLimit | cppDate }}
+      </span>
+    </div>
+    } } @if (defendant.legalAidStatus) {
+    <div pdk-margin-top="4">
+      <span>{{ 'HEARING_LIST.LEGAL_AID_STATUS' | translate }}</span>
+      <span id="legalAidStatus" pdk-typography="body-small" class="bold">{{
+        defendant.legalAidStatus
+      }}</span>
+    </div>
+    } @if (defendant.legalEntityDefendant && !isEmpty(defendant.legalEntityDefendant)) {
+    <h4
+      data-test-id="defendantName"
+      pdk-margin-bottom="2"
+      pdk-typography="body-large"
+      class="bold"
+      data-role="name"
+    >
+      {{ defendant.legalEntityDefendant.organisation.name | uppercase }}
+    </h4>
+    @if (defendant.isYouth) {
+    <div pdk-typography="body-xsmall" class="youth-marker bold">Youth</div>
+    } } @if (reason && reason.length) {
+    <div>
+      <span>{{ 'HEARING_LIST.REFERRAL_REASON' | translate }}</span
+      ><span pdk-typography="body-small">{{ reason }}</span>
+    </div>
+    } @if (reportingRestrictionReason && reportingRestrictionReason.length) {
+    <button
+      pdk-button
+      pdk-fill-colour="red"
+      pdk-typography="body-small"
+      pdk-margin-top="4"
+      type="button"
+      class="button"
+      (click)="openModal(template)"
+      data-role="restrictions-btn"
+    >
+      {{ 'HEARING_LIST.REPORTING_RESTRICTIONS_BUTTON' | translate }}
+    </button>
+    }
+    <ng-template #template>
+      <div class="modal-header text-center" data-role="restrictions-modal">
+        <span pdk-typography="body-medium" class="bold modal-title" style="width: 96%">
+          {{ 'HEARING_LIST.REPORTING_RESTRICTIONS' | translate }}
+        </span>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modalRef.hide()"
+          data-role="restriction-close-btn"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div pdk-typography="body-medium" class="modal-body">
+        {{ reportingRestrictionReason }}
+      </div>
+    </ng-template>
+  </div>
+  @if (!isStandAloneApplication) {
+  <div>
+    @if (defendant?.prosecutionCases) { @for ( defendantCase of defendant?.prosecutionCases; track
+    defendantCase.id; let i = $index ) {
+    <div class="defendant-offences" pdk-padding-top="3" pdk-padding-bottom="3">
+      <offences-list
+        [defendantCase]="defendantCase"
+        [defendant]="defendant"
+        [caseIndex]="i"
+        [jurisdictionType]="hearing?.jurisdictionType"
+        [numberOfCases]="defendant?.prosecutionCases?.length"
+      ></offences-list>
+    </div>
+    } } @if (defendant?.courtApplications) {
+    <div>
+      @for (appC of defendant.courtApplications; track appC.id) {
+      <application-overview [applicationCourt]="appC" (onViewApplication)="viewApplication($event)">
+      </application-overview>
+      }
+    </div>
+    }
+  </div>
+  } } } @else { @if (defendant) {
+  <div>
+    <div class="defendant-particulars" pdk-padding-top="1">
+      <div>
+        <h4 pdk-typography="body-large" pdk-margin-bottom="2" class="defendant-name">
+          {{ 'COMMON.BULK_DEFENDANT' | translate }}
+        </h4>
+      </div>
+    </div>
+    @if (!isStandAloneApplication) {
+    <div>
+      @if (defendant?.prosecutionCases) { @for ( defendantCase of defendant?.prosecutionCases; track
+      defendantCase.id; let i = $index ) {
+      <div class="defendant-offences" pdk-padding-top="3" pdk-padding-bottom="3">
+        <offences-list
+          [defendantCase]="defendantCase"
+          [defendant]="defendant"
+          [caseIndex]="i"
+          [jurisdictionType]="hearing?.jurisdictionType"
+          [numberOfCases]="defendant?.prosecutionCases?.length"
+        ></offences-list>
+      </div>
+      } } @if (defendant?.courtApplications) {
+      <div>
+        @for (appC of defendant?.courtApplications; track appC.id) {
+        <application-overview
+          [applicationCourt]="appC"
+          (onViewApplication)="viewApplication($event)"
+        >
+        </application-overview>
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+  } }
+</div>

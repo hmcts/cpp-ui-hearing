@@ -1,0 +1,27 @@
+@if (!sharedHearing) {
+<div data-test-id="hearingNoteForm">
+  <form pdk-form novalidate (validSubmit)="saveNote()">
+    <pdk-form-field labelType="small" label="{{ 'COMMON.NEW_NOTE' | translate }}">
+      <textarea
+        id="caseNote"
+        class="note-textarea"
+        name="newNote"
+        pdk-resize
+        pdk-input
+        pdk-text-input
+        [(ngModel)]="newNote"
+        placeholder="{{ 'COMMON.START_TYPING' | translate }}"
+      ></textarea>
+    </pdk-form-field>
+    <button
+      pdk-button
+      type="submit"
+      class="button"
+      data-role="save-note"
+      [disabled]="!newNote || originalNote === newNote"
+    >
+      {{ 'COMMON.SAVE_NOTE' | translate }}
+    </button>
+  </form>
+</div>
+}

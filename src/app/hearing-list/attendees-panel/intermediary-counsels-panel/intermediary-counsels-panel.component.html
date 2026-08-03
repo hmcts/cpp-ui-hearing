@@ -1,0 +1,149 @@
+<form pdk-form autocomplete="off" novalidate>
+  <h1 pdk-margin-bottom="6" pdk-typography="heading-medium">
+    {{ 'ENTER_COUNSELS.INTERMEDIARY-INTERPRETER' | translate }}
+  </h1>
+  @for (intermediary of intermediariesCounsel; track intermediary.id; let i = $index) {
+  <div>
+    <div
+      data-test-id="additionalAttendee"
+      pdk-margin-bottom="4"
+      pdk-margin-top="2"
+      data-role="interpreters-intermediaries-counsel"
+      [id]="intermediary.id"
+      [ngModelGroup]="'interpreters-intermediaries-counsel' + i"
+    >
+      <div pdk-margin-bottom="2" class="form-group">
+        <div class="delete-counsel-link">
+          @if (disableDelete()) {
+          <a pdk-link href="javascript:void(0);" class="disabledLink">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          } @if (!disableDelete()) {
+          <a
+            pdk-link
+            href="javascript:void(0);"
+            data-role="delete-counsel-link"
+            (click)="removeCounsel(i)"
+          >
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          }
+        </div>
+
+        <pdk-form-field label="{{ 'ENTER_COUNSELS.ROLE' | translate }}" labelType="small">
+          <pdk-radio-group
+            name="roleId"
+            [ngModel]="intermediary.role"
+            (change)="updateCounselRole(intermediary, $event)"
+            required
+          >
+            @for (item of roleOptions; track item.value) {
+            <pdk-radio-button [value]="item.value" data-role="intermediary-role-option">
+              {{ item.label }}
+            </pdk-radio-button>
+            }
+          </pdk-radio-group>
+        </pdk-form-field>
+
+        <pdk-form-field
+          label="{{ 'ENTER_COUNSELS.FIRST_NAME' | translate }}"
+          data-role="intermediary-firstName"
+          labelType="small"
+        >
+          <input
+            type="text"
+            name="firstName"
+            [(ngModel)]="intermediary.firstName"
+            (change)="updateCounsel(intermediary)"
+            (input)="checkIsValid(intermediariesCounsel)"
+            pdk-text-input
+            required
+          />
+        </pdk-form-field>
+      </div>
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field
+          label="{{ 'ENTER_COUNSELS.LAST_NAME' | translate }}"
+          data-role="intermediary-lastName"
+          labelType="small"
+        >
+          <input
+            type="text"
+            name="lastName"
+            [(ngModel)]="intermediary.lastName"
+            (change)="updateCounsel(intermediary)"
+            (input)="checkIsValid(intermediariesCounsel)"
+            pdk-text-input
+            required
+          />
+        </pdk-form-field>
+      </div>
+
+      <div data-role="defence-representing">
+        <h1
+          data-role="defence-representing-heading"
+          pdk-margin-bottom="6"
+          pdk-typography="heading-medium"
+        >
+          {{ 'ENTER_COUNSELS.ATTENDING_FOR' | translate }}
+        </h1>
+        <pdk-form-field
+          class="defendant-group-container"
+          label="{{ 'ENTER_COUNSELS.DEFENDANTS' | translate }}"
+          labelType="small"
+        >
+          <pdk-radio-group
+            name="defendantId"
+            [ngModel]="intermediary.attendant.defendantId"
+            (change)="updateDefendant(intermediary, $event)"
+            required
+          >
+            @for (item of defendantOptions; track item.value) {
+            <div class="radio-button-container clearfix">
+              <pdk-radio-button [value]="item.value" data-role="defence-representing-option">{{
+                item.label
+              }}</pdk-radio-button>
+            </div>
+            }
+            <div class="clearfix witness-container">
+              <div class="witness-radio">
+                <label class="lbl-witness">
+                  Witness
+                  <pdk-radio-button
+                    [value]="attendantType.WITNESS"
+                    data-role="defence-representing-option"
+                  >
+                  </pdk-radio-button>
+                </label>
+              </div>
+            </div>
+          </pdk-radio-group>
+        </pdk-form-field>
+
+        <pdk-form-field
+          data-role="intermediary-representing-witness"
+          label="Witness name"
+          labelType="none"
+        >
+          <input
+            type="text"
+            name="witnessName"
+            placeholder="Enter witness name"
+            [(ngModel)]="intermediary.attendant.name"
+            [disabled]="isWitnessDisabled(i)"
+            (change)="updateCounsel(intermediary)"
+            (input)="checkIsValid(intermediariesCounsel)"
+            pdk-text-input
+            required
+          />
+        </pdk-form-field>
+      </div>
+      <hr />
+    </div>
+  </div>
+  }
+  <a pdk-link href="javascript:void(0);" (click)="addIntermediary()">
+    {{ 'ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE' | translate }}
+  </a>
+  <hr />
+</form>

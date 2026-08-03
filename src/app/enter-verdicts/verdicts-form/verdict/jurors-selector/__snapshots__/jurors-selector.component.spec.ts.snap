@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JurorsSelectorComponent should render the template with the values expected 1`] = `
+<ng-component
+  offence={[Function Object]}
+>
+  <jurors-selector>
+    <div
+      class="jurors-selector"
+      data-role="jurors-selector"
+    >
+      <span>
+        <span>
+          ENTER_VERDICTS.JURORS:
+        </span>
+        <span
+          class="jurors-selector-value"
+        >
+           10 
+          <span
+            class="jurors-selector jurors-selector-value"
+          >
+            |
+          </span>
+           9:1 
+        </span>
+      </span>
+      <a
+        class="govuk-link"
+        data-role="jurors-selector-edit-apply-btn"
+        href="javascript:;"
+        pdk-link=""
+      >
+         ENTER_VERDICTS.EDIT 
+      </a>
+    </div>
+  </jurors-selector>
+</ng-component>
+`;

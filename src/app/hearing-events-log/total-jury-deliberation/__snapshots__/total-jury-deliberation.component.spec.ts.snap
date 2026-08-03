@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TotalJuryDeliberationComponent should have the expected template 1`] = `
+<total-jury-deliberation
+  DISCHARGE_JURY={[Function String]}
+  HEARING_ENDED={[Function String]}
+  JURY_RETIRES={[Function String]}
+  JURY_RETURNED={[Function String]}
+  changeDetectorRef={[Function ViewRef]}
+  deliberationTimerInMinutes="0"
+  destroy$={[Function Subject]}
+  zone={[Function NgZone]}
+>
+</total-jury-deliberation>
+`;

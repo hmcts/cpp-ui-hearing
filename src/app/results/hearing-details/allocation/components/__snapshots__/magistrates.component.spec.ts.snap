@@ -1,0 +1,414 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  cancel={[Function EventEmitter_]}
+  currentHearingDate={[Function Date]}
+  currentPage="0"
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  minimumDate={[Function String]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef="undefined"
+  totalResults={[Function Number]}
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "isSlotBased": true
+  }
+        </p>
+        <p>
+          minimumDate: "2018-02-20"
+        </p>
+      </div>
+    </scheduling-filters>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;
+
+exports[`MagistratesSchedulingComponent should display the courtrooms for the selected organisation unit 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  cancel={[Function EventEmitter_]}
+  currentHearingDate={[Function Date]}
+  currentPage="0"
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  minimumDate={[Function String]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef="undefined"
+  totalResults={[Function Number]}
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "organisationUnit": {
+      "id": "*",
+      "courtrooms": [
+        {
+          "id": "COURTROOM_1",
+          "courtroomId": 1,
+          "courtroomName": "Court room 1"
+        }
+      ]
+    }
+  }
+        </p>
+        <p>
+          minimumDate: "2018-02-20"
+        </p>
+      </div>
+    </scheduling-filters>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;
+
+exports[`MagistratesSchedulingComponent should raise an error summary when submitting invalid filters 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  cancel={[Function EventEmitter_]}
+  currentHearingDate={[Function Date]}
+  currentPage="0"
+  errors={[Function Array]}
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  minimumDate={[Function String]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef="undefined"
+  totalResults={[Function Number]}
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <pdk-error-summary>
+      <div
+        class="govuk-error-summary"
+        tabindex="-1"
+      >
+        <div
+          aria-labelledby="pdk-error-sumamry-GENERATED_ID"
+          role="alert"
+        >
+          <h2
+            class="govuk-error-summary__title"
+            id="pdk-error-sumamry-GENERATED_ID"
+          >
+            There is a problem
+          </h2>
+          <div
+            class="govuk-error-summary__body"
+          >
+            <ul
+              class="govuk-list govuk-error-summary__list"
+            >
+              <li>
+                <a
+                  href="javascript:void(0)"
+                >
+                   Error message 
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </pdk-error-summary>
+    <scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "isSlotBased": true
+  }
+        </p>
+        <p>
+          minimumDate: "2018-02-20"
+        </p>
+      </div>
+    </scheduling-filters>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;
+
+exports[`MagistratesSchedulingComponent should render a search containing no results 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  cancel={[Function EventEmitter_]}
+  currentHearingDate={[Function Date]}
+  currentPage="0"
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  minimumDate={[Function String]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef="undefined"
+  totalResults="0"
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "isSlotBased": true
+  }
+        </p>
+        <p>
+          minimumDate: "2018-02-20"
+        </p>
+      </div>
+    </scheduling-filters>
+    <pdk-inset-text>
+      <div
+        class="govuk-inset-text"
+      >
+        <b>
+          0 sessions found. Only sessions with available time or slots are returned
+        </b>
+      </div>
+    </pdk-inset-text>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;
+
+exports[`MagistratesSchedulingComponent when hearing slots exist should render the slots 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  cancel={[Function EventEmitter_]}
+  currentHearingDate={[Function Date]}
+  currentPage={[Function Number]}
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  minimumDate={[Function String]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef={[Function MockSchedulingSlotsComponent]}
+  totalResults={[Function Number]}
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "availableDurationMins": 99
+  }
+        </p>
+        <p>
+          minimumDate: "2018-02-20"
+        </p>
+      </div>
+    </scheduling-filters>
+    <pdk-inset-text>
+      <div
+        class="govuk-inset-text"
+      >
+        <b>
+          3 sessions found. Only sessions with available time or slots are returned
+        </b>
+      </div>
+    </pdk-inset-text>
+    <div
+      id="magistrates-scheduling-slots"
+    >
+      <scheduling-slots>
+        <div>
+          <p>
+            Mock Scheduling Slots
+          </p>
+          <p>
+            selectionMode: single
+          </p>
+          <p>
+            formConfig: {
+    "formFields": [
+      "hearingType"
+    ]
+  }
+          </p>
+          <p>
+            currentPage: 1
+          </p>
+          <p>
+            hearingSlotMinutes: 99
+          </p>
+          <p>
+            hearingSlots: [
+    {
+      "courtScheduleId": "A",
+      "sessionDate": "2019-10-31",
+      "courtHouseName": "Lavender Hill Magistrates' Court",
+      "courtRoomName": "Courtroom 2",
+      "courtSession": "AM",
+      "businessType": "AT",
+      "availableDuration": 0,
+      "maxDuration": 0,
+      "availableSlots": 10,
+      "maxSlots": 20
+    },
+    {
+      "courtScheduleId": "B",
+      "sessionDate": "2019-10-31",
+      "courtHouseName": "Lavender Hill Magistrates' Court",
+      "courtRoomName": "Courtroom 2",
+      "courtSession": "AM",
+      "businessType": "TRL",
+      "availableSlots": 0,
+      "maxSlots": 0,
+      "availableDuration": 90,
+      "maxDuration": 195
+    }
+  ]
+          </p>
+          <p>
+            hearingTypes: []
+          </p>
+          <p>
+            pageSize: 10
+          </p>
+          <p>
+            rotaBusinessTypes: []
+          </p>
+          <p>
+            totalResults: 3
+          </p>
+        </div>
+      </scheduling-slots>
+    </div>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;

@@ -1,0 +1,6 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.hearing-events-log-container {
+  border-top: 0.47em solid govuk.govuk-colour('blue');
+  padding-top: 0.47em;
+}

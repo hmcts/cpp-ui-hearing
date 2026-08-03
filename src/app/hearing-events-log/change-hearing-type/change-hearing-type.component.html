@@ -1,0 +1,33 @@
+<div class="change-hearing-type-heading-row">
+  <h3 pdk-typography="heading-small" pdk-margin-top="2" pdk-margin-bottom="2">
+    {{ 'HEARING_EVENTS_LOG.CHANGE_HEARING_TYPE' | translate }}
+  </h3>
+  <a
+    pdk-link
+    pdk-margin-top="3"
+    href="javascript:void(0)"
+    data-role="change-hearing-type-cancel"
+    pdk-typography="body-small"
+    (click)="back()"
+    >{{ 'COMMON.CANCEL' | translate }}</a
+  >
+</div>
+<hr />
+<form pdk-form novalidate (validSubmit)="submit()">
+  <hearing-type-selector
+    [hearingTypes]="hearingTypes"
+    (hearingTypeSelected)="selectedHearingType = $event"
+  >
+  </hearing-type-selector>
+
+  <event-note
+    [eventNoteCharacterLimit]="eventNoteCharacterLimit"
+    [(eventNote)]="eventNote"
+  ></event-note>
+
+  <pdk-form-group>
+    <button pdk-button type="submit" data-role="save-hearing-type-btn">
+      {{ 'COMMON.SAVE_CHANGES' | translate }}
+    </button>
+  </pdk-form-group>
+</form>

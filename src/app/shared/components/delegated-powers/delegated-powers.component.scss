@@ -1,0 +1,21 @@
+.delegated-powers {
+  text-align: right;
+
+  pdk-select {
+    padding-left: 25px;
+
+    &.powers-on ::ng-deep {
+      select {
+        background-color: #ffbf47;
+      }
+    }
+  }
+
+  pdk-form-field {
+    ::ng-deep {
+      label {
+        display: inline;
+      }
+    }
+  }
+}

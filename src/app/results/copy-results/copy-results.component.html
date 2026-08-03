@@ -1,0 +1,175 @@
+@if (errors?.length > 0) {
+<pdk-error-summary data-role="error-summary" [errors]="errors" focusOnChange></pdk-error-summary>
+}
+
+<h1 pdk-typography="heading-xlarge" pdk-margin-bottom="4">Apply results to other offences</h1>
+
+<form #form="ngForm" novalidate (ngSubmit)="handleSubmit()">
+  <h2 pdk-typography="heading-medium">Select results you want to apply</h2>
+
+  <div pdk-padding="4" pdk-fill-colour="light-grey" pdk-margin-bottom="6">
+    @if (copyFromOffence) {
+    <h2 pdk-typography="heading-medium" pdk-margin-bottom="0">
+      {{ copyFromOffence.subject | targetSubjectName }}
+    </h2>
+    <h2 pdk-typography="heading-small">
+      {{ copyFromOffence.prosecutionCase | caseReference }}
+    </h2>
+    <h3 pdk-typography="heading-small">
+      @if (copyFromOffence.offence.count && hearing.jurisdictionType === 'CROWN') { Count
+      {{ copyFromOffence.offence.count }} - } @if (!copyFromOffence.offence.count ||
+      hearing.jurisdictionType === 'MAGISTRATES') { {{ copyFromOffence.offenceIndex }}. }
+      {{ copyFromOffence.offence.offenceTitle }}
+    </h3>
+    <div pdk-margin-bottom="4">
+      @if (copyFromOffence.offence.wording) {
+      <pdk-foldable-text pdk-text-colour="dark-grey">
+        {{ copyFromOffence.offence.wording }}
+      </pdk-foldable-text>
+      }
+    </div>
+    }
+
+    <fieldset pdk-fieldset>
+      <legend pdk-legend pdk-visually-hidden>Select results you want to apply</legend>
+
+      <pdk-checkbox-group
+        name="selectedResultLineIds"
+        [(ngModel)]="selectedResultLineIds"
+        [minCount]="1"
+      >
+        @for (resultGroup of resultGroups; track resultGroup.resultLineId) {
+        <div>
+          <div pdk-margin-bottom="4">
+            <pdk-checkbox
+              data-test-id="copyFromTarget"
+              class="copy-results__parent-result-checkbox"
+              [value]="resultGroup.resultLineId"
+            >
+              <ul pdk-list pdk-margin-top="-2">
+                @for ( resultLine of resultGroup.resultLines; track resultLine.resultLineId; let
+                last = $last ) {
+                <li [pdk-margin-bottom]="last ? -3 : 3">
+                  <div pdk-margin-right="1" cpp-draft-result-line-tag>
+                    <b data-test-id="resultLineTitle">{{ resultLine.label }}</b>
+                  </div>
+                  <cpp-result-prompts-summary
+                    [resultPrompts]="resultLine.resultPrompts"
+                  ></cpp-result-prompts-summary>
+                </li>
+                }
+              </ul>
+            </pdk-checkbox>
+          </div>
+        </div>
+        }
+      </pdk-checkbox-group>
+    </fieldset>
+  </div>
+
+  <h2 pdk-typography="heading-medium">Select offences to apply to</h2>
+
+  <pdk-checkbox
+    data-test-id="copyToAllTargetGroups"
+    [ngModel]="allTargetIdsSelected"
+    (ngModelChange)="handleToggleAllTargetIds()"
+    [ngModelOptions]="{ standalone: true }"
+  >
+    Apply to all
+  </pdk-checkbox>
+
+  <hr pdk-margin-vertical="4" />
+
+  <pdk-form-field label="Select targets to apply to" labelType="none" pdk-margin="0">
+    <pdk-checkbox-group name="selectedTargetIds" [(ngModel)]="selectedTargetIds" [minCount]="1">
+      @for (targetGroupsForSubject of targetsGroupedBySubject; track $index) { @if
+      (canCopyToGroup(targetGroupsForSubject)) {
+      <div data-test-id="targetGroupsBySubject">
+        <h3 data-test-id="subjectName" pdk-typography="heading-medium">
+          {{ targetGroupsForSubject.subject | targetSubjectName }}
+        </h3>
+        @for (targetGroup of targetGroupsForSubject.targetGroups; track $index) {
+        <div>
+          @if (targetGroup.prosecutionCase) {
+          <h4 data-test-id="caseReference" pdk-typography="heading-small">
+            {{ targetGroup.prosecutionCase | caseReference }}
+          </h4>
+          } @if (targetGroup.offenceItems.length > 0) {
+          <ol pdk-list>
+            @for ( offenceItem of targetGroup.offenceItems; track offenceItem.offenceId; let i =
+            $index; let last = $last ) { @if (offenceItem.offenceId !== copyFromTargetId) {
+            <li>
+              @if (getTargetHasError(offenceItem.offenceId)) { @for ( shortcode of
+              sortcodesOfResultLinesToCopy(offenceItem.offenceId); track $index ) {
+              <pdk-error-message
+                [id]="offenceItem.offenceId + '-' + shortcode"
+                [errors]="{ defendantLevelError: {}, caseDefendantLevelError: {} }"
+                [errorMessages]="getErrorMessages(offenceItem.offenceId, shortcode)"
+                labelType="small"
+              >
+              </pdk-error-message>
+              } }
+              <pdk-checkbox
+                data-test-id="copyToTarget"
+                [value]="offenceItem.offenceId"
+                pdk-margin-bottom="2"
+              >
+                @if ( offenceItem.offence.count && hearing.jurisdictionType === 'CROWN' ) { Count
+                {{ offenceItem.offence.count }} - } @if ( !offenceItem.offence.count ||
+                hearing.jurisdictionType === 'MAGISTRATES' ) { {{ i + 1 }}. }
+                <span data-test-id="offenceTitle">
+                  {{ offenceItem.offence.offenceTitle }}
+                </span>
+                <div pdk-margin-bottom="4">
+                  @if (offenceItem.offence.wording) {
+                  <pdk-foldable-text pdk-text-colour="dark-grey">
+                    {{ offenceItem.offence.wording }}
+                  </pdk-foldable-text>
+                  }
+                </div>
+              </pdk-checkbox>
+            </li>
+            } }
+          </ol>
+          }
+          <ul>
+            @for ( applicationItem of targetGroup.applicationItems; track
+            applicationItem.applicationId ) { @if (hasAmendApplication(applicationItem)) {
+            <li>
+              <pdk-checkbox
+                data-test-id="copyToTarget"
+                [value]="applicationItem.applicationId"
+                pdk-margin-bottom="2"
+              >
+                <span data-test-id="applicationType">
+                  {{ applicationItem.application.type.type }}
+                </span>
+              </pdk-checkbox>
+            </li>
+            } }
+          </ul>
+        </div>
+        }
+      </div>
+      } }
+    </pdk-checkbox-group>
+  </pdk-form-field>
+
+  <hr pdk-margin-vertical="4" />
+
+  <pdk-checkbox
+    data-test-id="copyToAllTargetGroups"
+    [ngModel]="allTargetIdsSelected"
+    (ngModelChange)="handleToggleAllTargetIds()"
+    [ngModelOptions]="{ standalone: true }"
+  >
+    Apply to all
+  </pdk-checkbox>
+
+  <div pdk-margin-vertical="4">
+    <button type="submit" [disabled]="!form.valid" pdk-button>Apply results</button>
+  </div>
+</form>
+<div>
+  <a pdk-link routerLink="../../">Cancel</a>
+</div>

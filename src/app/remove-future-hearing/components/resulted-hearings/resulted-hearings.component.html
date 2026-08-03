@@ -1,0 +1,98 @@
+@if (hearingSummaries.length > 0 && !isReadOnly) {
+<h2 pdk-margin-top="6" pdk-typography="heading-medium">Resulted hearings</h2>
+<table pdk-table>
+  <thead pdk-table-head>
+    <tr pdk-table-row>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.DATE' | translate }}</th>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.TIME' | translate }}</th>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.DEFENDANT_NAME' | translate }}</th>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.COURT_DETAILS' | translate }}</th>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.HEARING_TYPE' | translate }}</th>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.SESSION' | translate }}</th>
+      <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.OFFENCE_DETAILS' | translate }}</th>
+    </tr>
+  </thead>
+  <tbody pdk-table-body>
+    @for ( hearingSummary of hearingSummaries; track hearingSummary.id; let hearingIndex = $index )
+    { @for ( caseSummary of hearingSummary.prosecutionCaseSummaries; track caseSummary.id; let
+    caseIndex = $index ) { @for ( defendant of caseSummary.defendants; track defendant.id; let
+    defendantIndex = $index ) { @for (offence of defendant.offences; track offence.id; let
+    offenceIndex = $index) {
+    <tr
+      pdk-table-row
+      [ngClass]="{
+                  'main-row': isFirstRowForHearing(caseIndex, defendantIndex, offenceIndex),
+                }"
+    >
+      <td>
+        @if ( (!isReadOnly && isFirstRowForHearing(caseIndex, defendantIndex, offenceIndex)) ||
+        (isReadOnly && hasRowDisplayed( caseIndex, defendantIndex, offenceIndex, 'date',
+        hearingIndex )) ) { @for ( hearingDay of hearingSummary.hearingDays; track hearingDay; let
+        firstDay = $first; let lastDay = $last ) { @if (firstDay) {
+        <span>
+          {{ hearingDay.sittingDay | date : 'd MMMM yyyy' }}
+        </span>
+        } @if (lastDay && hearingSummary.hearingDays.length > 1) {
+        <span> - {{ hearingDay.sittingDay | date : 'd MMMM yyyy' }} </span>
+        } } }
+      </td>
+      <td>
+        @if ( (!isReadOnly && isFirstRowForHearing(caseIndex, defendantIndex, offenceIndex)) ||
+        (isReadOnly && hasRowDisplayed( caseIndex, defendantIndex, offenceIndex, 'time',
+        hearingIndex )) ) { @for ( hearingDay of hearingSummary.hearingDays; track hearingDay; let
+        firstDay = $first ) { @if (firstDay) {
+        <span>
+          {{ hearingDay.sittingDay | date : 'H:mma' | lowercase }}
+        </span>
+        } } }
+      </td>
+      <td>
+        @if ( isFirstRowForOffence(offenceIndex) || (isReadOnly && hasOffenceDisplayed(caseIndex,
+        defendantIndex, offenceIndex, hearingIndex)) ) { @if (defendant.firstName &&
+        defendant.lastName) {
+        <div>{{ defendant | fullName : false }}</div>
+        } @if (defendant.organisationName) {
+        <div>{{ defendant.organisationName }}</div>
+        }
+        <a
+          pdk-link
+          target="_blank"
+          href="{{ basePath() }}/prosecution-casefile/case-at-a-glance/{{ caseSummary.id }}"
+        >
+          {{ caseSummary.prosecutionCaseIdentifier.caseURN }}
+        </a>
+        }
+      </td>
+      <td>
+        @if ( (!isReadOnly && isFirstRowForHearing(caseIndex, defendantIndex, offenceIndex)) ||
+        (isReadOnly && hasRowDisplayed( caseIndex, defendantIndex, offenceIndex, 'description',
+        hearingIndex )) ) { @if (hearingSummary.courtCentre) {
+        <div>{{ hearingSummary.courtCentre.name }},</div>
+        <div>{{ hearingSummary.courtCentre.roomName }}</div>
+        } }
+      </td>
+      <td>
+        @if ( (!isReadOnly && isFirstRowForHearing(caseIndex, defendantIndex, offenceIndex)) ||
+        (isReadOnly && hasRowDisplayed( caseIndex, defendantIndex, offenceIndex, 'hearingType',
+        hearingIndex )) ) {
+        {{ hearingSummary.type.description }}
+        }
+      </td>
+      <td>
+        @if ( (!isReadOnly && isFirstRowForHearing(caseIndex, defendantIndex, offenceIndex)) ||
+        (isReadOnly && hasRowDisplayed( caseIndex, defendantIndex, offenceIndex, 'session',
+        hearingIndex )) ) { @for ( hearingDay of hearingSummary.hearingDays; track hearingDay; let
+        firstDay = $first ) { @if (firstDay) {
+        <div>
+          {{ hearingDay.sittingDay | date : 'a' | titlecase }}
+        </div>
+        } } }
+      </td>
+      <td>
+        <div>{{ offence.offenceTitle }}</div>
+      </td>
+    </tr>
+    } } } }
+  </tbody>
+</table>
+}

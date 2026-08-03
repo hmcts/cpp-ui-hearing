@@ -1,0 +1,124 @@
+<nav pdk-service-nav clear pdk-margin-bottom="6">
+  @if (!isBoxwork) {
+  <ul pdk-service-nav-list role="tablist">
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      #listlinkActive="routerLinkActive"
+      [selected]="listlinkActive.isActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="presentation"
+    >
+      <a routerLink="/" [queryParams]="hearingListFilter" id="back-to-hearing-list" role="tab">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="13"
+          width="17"
+          viewBox="0 0 17 13"
+          style="vertical-align: middle; margin-right: 0.5rem"
+        >
+          <path
+            fill="currentColor"
+            d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"
+          ></path>
+        </svg>
+        {{ 'MANAGE_HEARING.BACK_TO_HEARING_LIST' | translate }}
+      </a>
+    </li>
+    @if (isManageHearingPageApplicableFlag) {
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      #manageHearingActive="routerLinkActive"
+      [selected]="manageHearingActive.isActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="presentation"
+    >
+      <a routerLink="./" id="manage-hearing-link" role="tab">
+        {{ 'MANAGE_HEARING.MANAGE_HEARING' | translate }}
+      </a>
+    </li>
+    } @if (!isManageHearingPageApplicableFlag) {
+    <li pdk-service-nav-list-item role="presentation">
+      <span pdk-text-colour="mid-grey" id="manage-hearing-link" role="tab">
+        {{ 'MANAGE_HEARING.MANAGE_HEARING' | translate }}
+      </span>
+    </li>
+    }
+    <ng-container *ngTemplateOutlet="commonTabs"></ng-container>
+  </ul>
+  } @else {
+  <ul pdk-service-nav-list role="tablist">
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      #boxworkActive="routerLinkActive"
+      [selected]="boxworkActive.isActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="presentation"
+    >
+      <a routerLink="./" id="manage-hearing-link" role="tab">
+        {{ 'MANAGE_HEARING.MANAGE_BOX_WORK' | translate }}
+      </a>
+    </li>
+    <ng-container *ngTemplateOutlet="commonTabs"></ng-container>
+  </ul>
+  }
+
+  <ng-template #commonTabs>
+    @if (isPleaApplicableFlag) {
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      #enterPleaActive="routerLinkActive"
+      [selected]="enterPleaActive.isActive"
+      role="presentation"
+    >
+      <a routerLink="./enter-pleas" id="enter-plea-link" role="tab">
+        {{ 'MANAGE_HEARING.ENTER_PLEAS' | translate }}
+      </a>
+    </li>
+    } @if (!isPleaApplicableFlag) {
+    <li pdk-service-nav-list-item role="presentation">
+      <span pdk-text-colour="black" tint="50" id="enter-plea-link" role="tab" aria-disabled="true">
+        {{ 'MANAGE_HEARING.ENTER_PLEAS' | translate }}
+      </span>
+    </li>
+    } @if (isVerdictsPageAvailable) {
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      #enterVerdictActive="routerLinkActive"
+      [selected]="enterVerdictActive.isActive"
+      role="presentation"
+    >
+      <a routerLink="./enter-verdicts" id="enter-verdict-link" role="tab">
+        {{ 'MANAGE_HEARING.ENTER_VERDICTS' | translate }}
+      </a>
+    </li>
+    } @if (!isVerdictsPageAvailable) {
+    <li pdk-service-nav-list-item role="presentation">
+      <span
+        pdk-text-colour="black"
+        tint="50"
+        id="enter-verdict-link"
+        role="tab"
+        aria-disabled="true"
+      >
+        {{ 'MANAGE_HEARING.ENTER_VERDICTS' | translate }}
+      </span>
+    </li>
+    }
+
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      [selected]="isEnterResultsActive"
+      role="presentation"
+    >
+      <a routerLink="./enter-results" id="enter-results-link">
+        {{ 'MANAGE_HEARING.ENTER_HEARING_RESULTS' | translate }}
+      </a>
+    </li>
+  </ng-template>
+</nav>

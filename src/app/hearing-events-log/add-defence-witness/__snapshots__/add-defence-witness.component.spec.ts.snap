@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddDefenceWitnessComponent should render the template with the values expected 1`] = `
+<test-host-component
+  cancel={[Function Function]}
+  witnessName={[Function String]}
+  witnessNameSelected={[Function Function]}
+>
+  <add-defence-witness>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <div
+        class="event-log-heading-row govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+        pdk-margin-bottom="2"
+        pdk-margin-top="2"
+      >
+        <h2
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+          <span>
+            HEARING_EVENTS_LOG.ADD_WITNESS_NAME
+          </span>
+        </h2>
+        <a
+          class="govuk-body-xs govuk-link"
+          data-role="witness-name-back"
+          href="javascript:void(0)"
+          pdk-link=""
+          pdk-typography="body-xsmall"
+        >
+          COMMON.BACK
+        </a>
+      </div>
+      <div
+        class="witness-name-form-field"
+      >
+        <pdk-form-field
+          class="govuk-!-margin-bottom-0"
+          label="Witness name"
+          labeltype="none"
+          pdk-margin-bottom="0"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-visually-hidden govuk-label"
+              for="pdk-form-control-undefined-GENERATED_ID"
+            >
+               Witness name 
+            </label>
+            <input
+              class="ng-untouched ng-pristine ng-valid govuk-body-xs govuk-input"
+              data-role="witness-name-input"
+              id="pdk-form-control-undefined-GENERATED_ID"
+              name="witness-title"
+              nowhitespacevalidator=""
+              pdk-text-input=""
+              pdk-typography="body-xsmall"
+              required=""
+              type="text"
+            />
+          </pdk-form-group>
+        </pdk-form-field>
+      </div>
+      <button
+        class="button govuk-!-margin-top-2 govuk-button"
+        data-role="witness-name-save"
+        disabled="disabled"
+        pdk-button=""
+        pdk-margin-top="2"
+        type="submit"
+      >
+         COMMON.SAVE 
+      </button>
+    </form>
+  </add-defence-witness>
+</test-host-component>
+`;

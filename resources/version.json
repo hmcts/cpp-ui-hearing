@@ -1,0 +1,28 @@
+{
+  "Main": {
+    "ArtifactId": "${project.artifactId}",
+    "Version": "${project.version}",
+    "GroupId": "${project.groupId}",
+    "Build-Date": "${ci.buildTimestamp}",
+    "Node Version": "${node.version}",
+    "NPM Version": "${npm.version}"
+  },
+  "SCM": {
+    "Type": "Git",
+    "Revision": "${git.revision}",
+    "Branch": "${git.branch}",
+    "Url": "${git.url}"
+  },
+  "CI": {
+    "Type": "${ci.type}",
+    "Build": "${ci.build}",
+    "BuildNode": "${ci.buildNode}",
+    "BuildTimestamp": "${ci.buildTimestamp}",
+    "BuildUrl": "${ci.buildUrl}",
+    "BuildTag": "${ci.buildTag}",
+    "BuiltBy": "${ci.builtBy}",
+    "Job": "${ci.job}",
+    "JobUrl": "${ci.jobUrl}",
+    "MavenVersion": "${maven.version}"
+  }
+}

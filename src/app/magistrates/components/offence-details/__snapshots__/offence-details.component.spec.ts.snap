@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OffenceDetailsComponent should display Hide particulars label when offence wording section is open 1`] = `
+<test-host-component
+  offenceTitle={[Function String]}
+  offenceWording={[Function String]}
+>
+  <offence-details>
+    <div>
+      <div
+        class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+        data-role="offence-title"
+        data-test-id="offenceTitle"
+        pdk-margin-bottom="4"
+        pdk-margin-top="4"
+        pdk-text-colour="dark-grey"
+      >
+         test offence title 
+      </div>
+      <div
+        class="govuk-!-margin-bottom-4"
+        pdk-margin-bottom="4"
+      >
+        <details
+          class="govuk-details"
+          pdk-details=""
+        >
+          <summary
+            class="govuk-details__summary"
+          >
+            <span
+              class="govuk-details__summary-text"
+            >
+              <span>
+                Show particulars
+              </span>
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                for   test offence title
+              </span>
+            </span>
+          </summary>
+          <pdk-details-text
+            class="govuk-details__text govuk-body-s"
+            data-test-id="offenceWording"
+            pdk-typography="body-small"
+          >
+             test offence wording 
+          </pdk-details-text>
+        </details>
+      </div>
+    </div>
+  </offence-details>
+</test-host-component>
+`;
+
+exports[`OffenceDetailsComponent should not toggle text when offence wording is clicked 1`] = `
+<test-host-component
+  offenceTitle={[Function String]}
+  offenceWording={[Function String]}
+>
+  <offence-details>
+    <div>
+      <div
+        class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+        data-role="offence-title"
+        data-test-id="offenceTitle"
+        pdk-margin-bottom="4"
+        pdk-margin-top="4"
+        pdk-text-colour="dark-grey"
+      >
+         test offence title 
+      </div>
+      <div
+        class="govuk-!-margin-bottom-4"
+        pdk-margin-bottom="4"
+      >
+        <details
+          class="govuk-details"
+          pdk-details=""
+        >
+          <summary
+            class="govuk-details__summary"
+          >
+            <span
+              class="govuk-details__summary-text"
+            >
+              <span>
+                Show particulars
+              </span>
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                for   test offence title
+              </span>
+            </span>
+          </summary>
+          <pdk-details-text
+            class="govuk-details__text govuk-body-s"
+            data-test-id="offenceWording"
+            pdk-typography="body-small"
+          >
+             test offence wording 
+          </pdk-details-text>
+        </details>
+      </div>
+    </div>
+  </offence-details>
+</test-host-component>
+`;
+
+exports[`OffenceDetailsComponent should render the component correctly 1`] = `
+<test-host-component
+  offenceTitle={[Function String]}
+  offenceWording={[Function String]}
+>
+  <offence-details>
+    <div>
+      <div
+        class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+        data-role="offence-title"
+        data-test-id="offenceTitle"
+        pdk-margin-bottom="4"
+        pdk-margin-top="4"
+        pdk-text-colour="dark-grey"
+      >
+         test offence title 
+      </div>
+      <div
+        class="govuk-!-margin-bottom-4"
+        pdk-margin-bottom="4"
+      >
+        <details
+          class="govuk-details"
+          pdk-details=""
+        >
+          <summary
+            class="govuk-details__summary"
+          >
+            <span
+              class="govuk-details__summary-text"
+            >
+              <span>
+                Show particulars
+              </span>
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                for   test offence title
+              </span>
+            </span>
+          </summary>
+          <pdk-details-text
+            class="govuk-details__text govuk-body-s"
+            data-test-id="offenceWording"
+            pdk-typography="body-small"
+          >
+             test offence wording 
+          </pdk-details-text>
+        </details>
+      </div>
+    </div>
+  </offence-details>
+</test-host-component>
+`;

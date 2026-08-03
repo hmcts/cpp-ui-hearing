@@ -1,0 +1,477 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingDetailsPanelComponent should render the template with the values expected 1`] = `
+<test-host-component
+  applicantSelected={[Function Function]}
+  applicationSubjects={[Function Array]}
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  companyRepresentatives={[Function Array]}
+  defenceCounsels={[Function Array]}
+  defendantSelected={[Function Function]}
+  goToAddCounsels={[Function Function]}
+  goToHearing={[Function Function]}
+  intermediariesCounsel={[Function Array]}
+  isStandAloneApplication="false"
+  prosecutionCounsels={[Function Array]}
+  selectedApplicant="null"
+  selectedDefendant="null"
+  selectedHearing={[Function Object]}
+>
+  <hearing-details-panel>
+    <div
+      class="attendees-column pdk-!-border-color-mid-grey"
+      pdk-border-colour="mid-grey"
+    >
+      <button
+        class="button wide-button govuk-button"
+        data-role="go-to-hearing-btn"
+        pdk-button=""
+      >
+         HEARING_LIST.GO_TO_HEARING 
+      </button>
+      <headline-summary>
+        <div
+          class="headline-summary"
+        >
+        </div>
+      </headline-summary>
+      <hearing-attendees>
+        <div>
+        </div>
+        <div
+          class="attendee-details"
+        >
+          <pdk-divider>
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <h3
+            class="govuk-!-margin-bottom-4 govuk-heading-m"
+            pdk-margin-bottom="4"
+            pdk-typography="heading-medium"
+          >
+             HEARING_LIST.JUDICIARY 
+          </h3>
+          <ul
+            class="attendee"
+            data-test-id="judiciaries"
+          >
+          </ul>
+          <div
+            class="govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <a
+              class="govuk-!-margin-bottom-1 govuk-body-s govuk-link"
+              data-role="change-judiciary-details-link"
+              href="http://test/?something=123"
+              id="change-judiciary-details-link"
+              pdk-link=""
+              pdk-margin-bottom="1"
+              pdk-typography="body-small"
+            >
+               HEARING_LIST.CHANGE_JUDICIARY_DETAILS 
+            </a>
+          </div>
+          <pdk-divider>
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <h3
+            class="govuk-!-margin-bottom-4 govuk-heading-m"
+            pdk-margin-bottom="4"
+            pdk-typography="heading-medium"
+          >
+             HEARING_LIST.ATTENDEES 
+          </h3>
+          <div
+            class="attendee govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <dl
+              data-test-id="prosecutionCounsels"
+            >
+              <dt
+                class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                pdk-margin-bottom="1"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-xsmall"
+              >
+                 HEARING_LIST.PROSECUTION 
+              </dt>
+              <dd>
+                <span>
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    No HEARING_LIST.PROSECUTION
+                  </span>
+                  – 
+                </span>
+              </dd>
+            </dl>
+            <dl
+              class="attendee govuk-!-margin-bottom-2"
+              data-test-id="defenceCounsels"
+              pdk-margin-bottom="2"
+            >
+              <dt
+                class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                pdk-margin-bottom="1"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-xsmall"
+              >
+                 HEARING_LIST.DEFENCE 
+              </dt>
+              <dd>
+                <span>
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    No HEARING_LIST.DEFENCE
+                  </span>
+                  – 
+                </span>
+              </dd>
+            </dl>
+            <dl
+              class="attendee govuk-!-margin-bottom-2"
+              data-test-id="companyRepresentatives"
+              pdk-margin-bottom="2"
+            >
+              <dt
+                class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                pdk-margin-bottom="1"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-xsmall"
+              >
+                 HEARING_LIST.REPRESENTATIVE 
+              </dt>
+              <dd>
+                <span>
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    No HEARING_LIST.REPRESENTATIVE
+                  </span>
+                  – 
+                </span>
+              </dd>
+            </dl>
+            <intermediary-attendees>
+              <section
+                class="intermediry-counsels"
+              >
+                <dl
+                  class="attendee govuk-!-margin-bottom-2"
+                  data-test-id="interpreters"
+                  pdk-margin-bottom="2"
+                >
+                  <dt
+                    class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                    pdk-margin-bottom="1"
+                    pdk-text-colour="dark-grey"
+                    pdk-typography="body-xsmall"
+                  >
+                     HEARING_LIST.INTERPRETER 
+                  </dt>
+                  <dd>
+                    <ul>
+                    </ul>
+                    <span>
+                      <span
+                        class="govuk-visually-hidden"
+                        pdk-visually-hidden=""
+                      >
+                        No HEARING_LIST.INTERPRETER
+                      </span>
+                      – 
+                    </span>
+                  </dd>
+                </dl>
+                <dl
+                  class="attendee govuk-!-margin-bottom-2"
+                  data-test-id="intermediaries"
+                  pdk-margin-bottom="2"
+                >
+                  <dt
+                    class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                    pdk-margin-bottom="1"
+                    pdk-text-colour="dark-grey"
+                    pdk-typography="body-xsmall"
+                  >
+                     HEARING_LIST.INTERMEDIARIES 
+                  </dt>
+                  <dd>
+                    <ul>
+                    </ul>
+                    <span>
+                      <span
+                        class="govuk-visually-hidden"
+                        pdk-visually-hidden=""
+                      >
+                        No HEARING_LIST.INTERMEDIARIES
+                      </span>
+                      – 
+                    </span>
+                  </dd>
+                </dl>
+              </section>
+            </intermediary-attendees>
+            <div
+              class="govuk-!-margin-bottom-2"
+              pdk-margin-bottom="2"
+            >
+              <a
+                class="govuk-!-margin-bottom-1 govuk-body-xs govuk-link"
+                data-role="change-counsel-details-link"
+                href="javascript:void(0);"
+                id="change-counsel-details-link"
+                pdk-link=""
+                pdk-margin-bottom="1"
+                pdk-typography="body-xsmall"
+              >
+                 HEARING_LIST.CHANGE_ATTENDEE_DETAILS 
+              </a>
+            </div>
+          </div>
+        </div>
+      </hearing-attendees>
+    </div>
+  </hearing-details-panel>
+</test-host-component>
+`;
+
+exports[`HearingDetailsPanelComponent should render with stand alone application 1`] = `
+<test-host-component
+  applicantSelected={[Function Function]}
+  applicationSubjects={[Function Array]}
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  companyRepresentatives={[Function Array]}
+  defenceCounsels={[Function Array]}
+  defendantSelected={[Function Function]}
+  goToAddCounsels={[Function Function]}
+  goToHearing={[Function Function]}
+  intermediariesCounsel={[Function Array]}
+  isStandAloneApplication={[Function Boolean]}
+  prosecutionCounsels={[Function Array]}
+  selectedApplicant="null"
+  selectedDefendant="null"
+  selectedHearing={[Function Object]}
+>
+  <hearing-details-panel>
+    <div
+      class="attendees-column pdk-!-border-color-mid-grey"
+      pdk-border-colour="mid-grey"
+    >
+      <button
+        class="button wide-button govuk-button"
+        data-role="go-to-hearing-btn"
+        pdk-button=""
+      >
+         HEARING_LIST.GO_TO_HEARING 
+      </button>
+      <headline-summary>
+        <div
+          class="headline-summary"
+        >
+          <pdk-summary-item
+            class="govuk-!-margin-top-2 govuk-!-margin-bottom-4 govuk-heading-s"
+            data-role="applications-summary-label"
+            inline=""
+            pdk-margin-bottom="4"
+            pdk-margin-top="2"
+            pdk-typography="heading-small"
+          >
+            <dl
+              class="pdk-summary-item pdk-summary-item--inline"
+            >
+              <dt
+                class="pdk-summary-item__number"
+              >
+                 1 
+              </dt>
+              <dd
+                class="pdk-summary-item__label"
+              >
+                HEARING_LIST.APPLICATION
+              </dd>
+            </dl>
+          </pdk-summary-item>
+        </div>
+      </headline-summary>
+      <hearing-attendees>
+        <div
+          class="attendee-details"
+        >
+          <pdk-divider>
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <h3
+            class="govuk-!-margin-bottom-4 govuk-heading-m"
+            pdk-margin-bottom="4"
+            pdk-typography="heading-medium"
+          >
+             HEARING_LIST.JUDICIARY 
+          </h3>
+          <ul
+            class="attendee"
+            data-test-id="judiciaries"
+          >
+          </ul>
+          <div
+            class="govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <a
+              class="govuk-!-margin-bottom-1 govuk-body-s govuk-link"
+              data-role="change-judiciary-details-link"
+              href="http://test/?something=123"
+              id="change-judiciary-details-link"
+              pdk-link=""
+              pdk-margin-bottom="1"
+              pdk-typography="body-small"
+            >
+               HEARING_LIST.CHANGE_JUDICIARY_DETAILS 
+            </a>
+          </div>
+          <pdk-divider>
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <h3
+            class="govuk-!-margin-bottom-4 govuk-heading-m"
+            pdk-margin-bottom="4"
+            pdk-typography="heading-medium"
+          >
+             HEARING_LIST.ATTENDEES 
+          </h3>
+          <dl
+            class="hearing-counsels"
+            data-test-id="applicantCounsels"
+          >
+            <dt
+              class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+              pdk-margin-bottom="1"
+              pdk-text-colour="dark-grey"
+              pdk-typography="body-xsmall"
+            >
+               HEARING_LIST.APPELLANT attendees 
+            </dt>
+            <dd>
+              <ul>
+              </ul>
+              <span>
+                <span
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                >
+                  No HEARING_LIST.APPELLANT attendees
+                </span>
+                – 
+              </span>
+            </dd>
+          </dl>
+          <dl
+            class="hearing-counsels"
+            data-test-id="respondentCounsels"
+          >
+            <dt
+              class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+              pdk-margin-bottom="1"
+              pdk-text-colour="dark-grey"
+              pdk-typography="body-xsmall"
+            >
+               Respondent attendees 
+            </dt>
+            <dd>
+              <span>
+                -
+              </span>
+            </dd>
+          </dl>
+          <intermediary-attendees>
+            <section
+              class="intermediry-counsels"
+            >
+              <dl
+                class="attendee govuk-!-margin-bottom-2"
+                data-test-id="interpreters"
+                pdk-margin-bottom="2"
+              >
+                <dt
+                  class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                  pdk-margin-bottom="1"
+                  pdk-text-colour="dark-grey"
+                  pdk-typography="body-xsmall"
+                >
+                   HEARING_LIST.INTERPRETER 
+                </dt>
+                <dd>
+                  <ul>
+                  </ul>
+                  <span>
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      No HEARING_LIST.INTERPRETER
+                    </span>
+                    – 
+                  </span>
+                </dd>
+              </dl>
+              <dl
+                class="attendee govuk-!-margin-bottom-2"
+                data-test-id="intermediaries"
+                pdk-margin-bottom="2"
+              >
+                <dt
+                  class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+                  pdk-margin-bottom="1"
+                  pdk-text-colour="dark-grey"
+                  pdk-typography="body-xsmall"
+                >
+                   HEARING_LIST.INTERMEDIARIES 
+                </dt>
+                <dd>
+                  <ul>
+                  </ul>
+                  <span>
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      No HEARING_LIST.INTERMEDIARIES
+                    </span>
+                    – 
+                  </span>
+                </dd>
+              </dl>
+            </section>
+          </intermediary-attendees>
+          <a
+            class="govuk-!-margin-bottom-1 govuk-body-xs govuk-link"
+            data-role="change-attendees-details-link"
+            href="javascript:void(0)"
+            id="change-attendees-details-link"
+            pdk-link=""
+            pdk-margin-bottom="1"
+            pdk-typography="body-xsmall"
+          >
+             HEARING_LIST.CHANGE_ATTENDEE_DETAILS 
+          </a>
+        </div>
+      </hearing-attendees>
+    </div>
+  </hearing-details-panel>
+</test-host-component>
+`;

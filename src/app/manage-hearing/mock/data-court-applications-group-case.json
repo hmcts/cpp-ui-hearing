@@ -1,0 +1,792 @@
+{
+  "id": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+  "type": {
+    "id": "6e1bef55-7e13-4615-b3ba-8663f4438e16",
+    "description": "Trial"
+  },
+  "jurisdictionType": "MAGISTRATES",
+  "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992",
+  "hearingLanguage": "WELSH",
+  "hearingDays": [
+    {
+      "sittingDay": "2018-08-01 10:30:00",
+      "listingSequence": 1,
+      "listedDurationMinutes": 240
+    },
+    {
+      "sittingDay": "2018-08-02 14:30:00",
+      "listingSequence": 2,
+      "listedDurationMinutes": 360
+    }
+  ],
+  "courtApplications": [
+    {
+      "applicant": {
+        "id": "6b7b9adc-ccee-4b13-b2c7-499c28e98962",
+        "notificationRequired": false,
+        "prosecutingAuthority": {
+          "address": {
+            "address1": "Barton House",
+            "address2": "Bond Street",
+            "address3": "Bristol",
+            "postcode": "BS98 1TL"
+          },
+          "majorCreditorCode": "TVL3",
+          "name": "TV Licensing",
+          "prosecutionAuthorityCode": "TVL",
+          "prosecutionAuthorityId": "6b7b9adc-ccee-4b13-b2c7-499c28e98962",
+          "prosecutionAuthorityOUCode": "GAEAA01",
+          "welshName": "Thrwyddedu Teledu"
+        },
+        "summonsRequired": false
+      },
+      "applicationReceivedDate": "2021-11-22",
+      "applicationReference": "25GD1437950",
+      "applicationStatus": "IN_PROGRESS",
+      "courtApplicationCases": [
+        {
+          "caseStatus": "ACTIVE",
+          "isSJP": false,
+          "offences": [
+            {
+              "chargeDate": "2021-09-15",
+              "count": 0,
+              "dvlaOffenceCode": "DR10",
+              "endDate": "2021-09-11",
+              "id": "9afb23e2-d84f-44e9-84e1-452e8ffafe0a",
+              "modeOfTrial": "Summary",
+              "offenceCode": "RT88007",
+              "offenceDateCode": 4,
+              "offenceDefinitionId": "323b0db0-995e-3ff0-9a01-a28c6a601120",
+              "offenceFacts": {
+                "vehicleRegistration": "AA11 ABC"
+              },
+              "offenceLegislation": "Contrary to section 5(1)(a) of the Road Traffic Act 1988 and Schedule 2 to the Road Traffic Offenders Act 1988.",
+              "offenceLegislationWelsh": "Yn groes i adran 5(1)(a) Deddf Traffig Ffyrdd 1988 ac Atodlen 2 Deddf Troseddwyr Traffig Ffyrdd 1988.",
+              "offenceTitle": "Drive motor vehicle when alcohol level above limit",
+              "offenceTitleWelsh": "Gyrru cerbyd modur pan oedd y lefel alcohol yn uwch na'r terfyn",
+              "orderIndex": 1,
+              "startDate": "2021-09-11",
+              "wording": "Test Prosecution charge wording",
+              "wordingWelsh": "Test Prosecution charge wording in Welsh",
+              "plea": {
+                "offenceId": "9afb23e2-d84f-44e9-84e1-452e8ffafe0a",
+                "originatingHearingId": "f01ba156-0c37-46ff-94d7-e198b6dd4cc3",
+                "pleaDate": null,
+                "pleaValue": null
+              },
+              "allocationDecision": {
+                "offenceId": "9afb23e2-d84f-44e9-84e1-452e8ffafe0a",
+                "originatingHearingId": "f01ba156-0c37-46ff-94d7-e198b6dd4cc3",
+                "motReasonCode": null,
+                "motReasonDescription": null,
+                "motReasonId": null,
+                "courtIndicatedSentence": {}
+              },
+              "verdict": {
+                "offenceId": "9afb23e2-d84f-44e9-84e1-452e8ffafe0a",
+                "verdictDate": null,
+                "verdictType": {
+                  "id": null,
+                  "code": "",
+                  "description": "",
+                  "category": "",
+                  "categoryType": "",
+                  "jurisdiction": ""
+                },
+                "originatingHearingId": "f01ba156-0c37-46ff-94d7-e198b6dd4cc3",
+                "lesserOrAlternativeOffence": null,
+                "jurors": {
+                  "numberOfJurors": 12,
+                  "numberOfSplitJurors": 0,
+                  "unanimous": true
+                }
+              }
+            }
+          ],
+          "prosecutionCaseId": "26bda3ec-1504-4fa0-9a20-eb989b1f18cd",
+          "prosecutionCaseIdentifier": {
+            "address": {
+              "address1": "Barton House",
+              "address2": "Bond Street",
+              "address3": "Bristol",
+              "postcode": "BS98 1TL"
+            },
+            "majorCreditorCode": "TVL3",
+            "prosecutionAuthorityCode": "TVL",
+            "prosecutionAuthorityId": "6b7b9adc-ccee-4b13-b2c7-499c28e98962",
+            "prosecutionAuthorityName": "TV Licensing",
+            "prosecutionAuthorityOUCode": "GAEAA01",
+            "caseURN": "25GD1437950"
+          }
+        }
+      ],
+      "courtApplicationPayment": {
+        "feeStatus": "OUTSTANDING",
+        "paymentReference": "Def1"
+      },
+      "id": "654d4a8a-967d-4b93-98d1-24787c1f3dcb",
+      "isGroupCaseApplication": true,
+      "respondents": [
+        {
+          "id": "98cddd18-49ee-4c5a-a2cd-5339f8de2b34",
+          "masterDefendant": {
+            "isYouth": false,
+            "masterDefendantId": "98cddd18-49ee-4c5a-a2cd-5339f8de2b34",
+            "personDefendant": {
+              "arrestSummonsNumber": "SummonsNumber001",
+              "driverNumber": "KER99861065SE9RM",
+              "personDetails": {
+                "address": {
+                  "address1": "Address Line 1",
+                  "address2": "Address Line 2",
+                  "address3": "Address Line 3",
+                  "address4": "Address Line 4",
+                  "address5": "Address Line 5",
+                  "postcode": "SE1H 1XX"
+                },
+                "contact": {
+                  "home": "1231231230",
+                  "mobile": "1231231230",
+                  "primaryEmail": "aer@af.com",
+                  "secondaryEmail": "aer@af.com",
+                  "work": "1231231230"
+                },
+                "dateOfBirth": "1997-08-11",
+                "documentationLanguageNeeds": "ENGLISH",
+                "ethnicity": {
+                  "selfDefinedEthnicityCode": "W1",
+                  "selfDefinedEthnicityDescription": "British",
+                  "selfDefinedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b"
+                },
+                "firstName": "Rebeka",
+                "gender": "MALE",
+                "hearingLanguageNeeds": "ENGLISH",
+                "interpreterLanguageNeeds": "no special language needs",
+                "lastName": "Gaylord",
+                "middleName": "Adam Theodore",
+                "nationalInsuranceNumber": "SN123456C",
+                "occupation": "TA",
+                "occupationCode": "666",
+                "specificRequirements": "no special needs",
+                "title": "Mr"
+              }
+            },
+            "prosecutionAuthorityReference": "2dec544f-5fea-4a61-8ff3-a80c5155099d"
+          },
+          "notificationRequired": false,
+          "summonsRequired": true
+        }
+      ],
+      "subject": {
+        "id": "98cddd18-49ee-4c5a-a2cd-5339f8de2b34",
+        "masterDefendant": {
+          "isYouth": false,
+          "masterDefendantId": "98cddd18-49ee-4c5a-a2cd-5339f8de2b34",
+          "personDefendant": {
+            "arrestSummonsNumber": "SummonsNumber001",
+            "driverNumber": "KER99861065SE9RM",
+            "personDetails": {
+              "address": {
+                "address1": "Address Line 1",
+                "address2": "Address Line 2",
+                "address3": "Address Line 3",
+                "address4": "Address Line 4",
+                "address5": "Address Line 5",
+                "postcode": "SE1H 1XX"
+              },
+              "contact": {
+                "home": "1231231230",
+                "mobile": "1231231230",
+                "primaryEmail": "aer@af.com",
+                "secondaryEmail": "aer@af.com",
+                "work": "1231231230"
+              },
+              "dateOfBirth": "1997-08-11",
+              "documentationLanguageNeeds": "ENGLISH",
+              "ethnicity": {
+                "selfDefinedEthnicityCode": "W1",
+                "selfDefinedEthnicityDescription": "British",
+                "selfDefinedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b"
+              },
+              "firstName": "Rebeka",
+              "gender": "MALE",
+              "hearingLanguageNeeds": "ENGLISH",
+              "interpreterLanguageNeeds": "no special language needs",
+              "lastName": "Gaylord",
+              "middleName": "Adam Theodore",
+              "nationalInsuranceNumber": "SN123456C",
+              "occupation": "TA",
+              "occupationCode": "666",
+              "specificRequirements": "no special needs",
+              "title": "Mr"
+            }
+          },
+          "prosecutionAuthorityReference": "2dec544f-5fea-4a61-8ff3-a80c5155099d"
+        },
+        "notificationRequired": false,
+        "summonsRequired": true
+      },
+      "type": {
+        "appealFlag": false,
+        "applicantAppellantFlag": false,
+        "boxworkNotifTemplate": "NOT_APPLICABLE",
+        "breachType": "NOT_APPLICABLE",
+        "categoryCode": "CO",
+        "commrOfOathFlag": false,
+        "contestedFeeApplicable": false,
+        "courtExtractAvlFlag": false,
+        "courtOfAppealFlag": false,
+        "exParte": false,
+        "id": "cb05a560-48f9-415d-b230-55b78f8cb4a8",
+        "initialFeeApplicable": false,
+        "jurisdiction": "EITHER",
+        "lastModified": "2021-11-19T17:36:20.693Z",
+        "linkType": "FIRST_HEARING",
+        "listingNotifTemplate": "NOT_APPLICABLE",
+        "offenceActiveOrder": "OFFENCE",
+        "pleaApplicableFlag": false,
+        "prefix": "Resentenced",
+        "prosecutorThirdPartyFlag": false,
+        "resentencingActivationCode": "CJO3522",
+        "spiOutApplicableFlag": false,
+        "summonsTemplateType": "FIRST_HEARING",
+        "type": "Application for first hearing summons for criminal case"
+      }
+    }
+  ],
+  "courtCentre": {
+    "id": "75eb4a5f-556f-4020-bada-ceeba8c73086",
+    "name": "Carmarthen Magistrates' Court",
+    "welshName": "Llys Ynadon Caernarfon",
+    "roomId": "ad5f9d57-075c-4d40-8d32-75209bd2cbd9",
+    "roomName": "Room 1",
+    "welshRoomName": "Ystafell 1"
+  },
+  "judiciary": [
+    {
+      "judicialId": "8ebc222c-9b33-402b-bfb1-4ca973058a57",
+      "judicialRoleType": "MAGISTRATE",
+      "isDeputy": false,
+      "isBenchChairman": true,
+      "firstName": "NameA",
+      "lastName": "LastNameA"
+    },
+    {
+      "judicialId": "0fdc14b3-ec5b-486d-ad82-a7be9e359e3a",
+      "judicialRoleType": "MAGISTRATE",
+      "isDeputy": false,
+      "isBenchChairman": false,
+      "firstName": "NameB",
+      "lastName": "LastNameB"
+    },
+    {
+      "judicialId": "5df0e71e-a9cc-43ab-9522-5783aa3723eb",
+      "judicialRoleType": "MAGISTRATE",
+      "isDeputy": false,
+      "isBenchChairman": false,
+      "firstName": "NameC",
+      "lastName": "LastNameC"
+    }
+  ],
+  "prosecutionCases": [
+    {
+      "id": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+      "prosecutionCaseIdentifier": {
+        "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+        "prosecutionAuthorityCode": "TFL",
+        "prosecutionAuthorityReference": "TFL12345",
+        "caseURN": "12345678"
+      },
+      "originatingOrganisation": "G01FT01AB",
+      "initiationCode": "J",
+      "caseStatus": "SJP Referral",
+      "statementOfFacts": "You did it",
+      "statementOfFactsWelsh": "You did it in Welsh",
+      "defendants": [
+        {
+          "id": "e1d32d9d-29ec-4934-a932-22a50f223966",
+          "masterDefendantId": "e1d32d9d-29ec-4934-a932-22a50f223966",
+          "prosecutionCaseId": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+          "numberOfPreviousConvictionsCited": 5,
+          "prosecutionAuthorityReference": "TFL12345-ABC",
+          "witnessStatement": "he did not do it",
+          "witnessStatementWelsh": "he did not do it in Welsh",
+          "mitigation": "I was not there",
+          "mitigationWelsh": "I was not there in Welsh",
+          "aliases": [
+            {
+              "firstName": "johnny robber"
+            },
+            {
+              "firstName": "jack the knife"
+            }
+          ],
+          "offences": [
+            {
+              "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f9",
+              "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c34",
+              "offenceCode": "AAA",
+              "offenceTitle": "Test offence",
+              "offenceTitleWelsh": "Test offence in Welsh",
+              "offenceLegislation": "Legislation",
+              "offenceLegislationWelsh": "Legislation in Welsh",
+              "wording": "No Travel Card",
+              "wordingWelsh": "No Travel Card In Welsh",
+              "startDate": "2018-01-01",
+              "endDate": "2018-01-01",
+              "arrestDate": "2018-01-01",
+              "chargeDate": "2018-01-01",
+              "orderIndex": 1,
+              "convictionDate": "2018-05-01",
+              "count": 0,
+              "notifiedPlea": {
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f9",
+                "notifiedPleaDate": "2018-04-01",
+                "notifiedPleaValue": "NOTIFIED_NOT_GUILTY"
+              },
+              "plea": {
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f9",
+                "pleaDate": "2018-04-01",
+                "pleaValue": "NOT_GUILTY"
+              },
+              "verdict": {
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f9",
+                "verdictDate": "2018-05-01",
+                "verdictType": {
+                  "id": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                  "sequence": 1,
+                  "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+                  "category": "Guilty",
+                  "categoryType": "GUILTY"
+                },
+                "lesserOrAlternativeOffence": {
+                  "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+                  "offenceCode": "FDSE",
+                  "offenceTitle": "A lesser offence",
+                  "offenceTitleWelsh": "A lesser offence in Welsh",
+                  "offenceLegislation": "Legislation for this offence",
+                  "offenceLegislationWelsh": "Legislation for this offence in Welsh"
+                }
+              },
+              "offenceFacts": {
+                "vehicleRegistration": "AA12345",
+                "alcoholReadingAmount": "111",
+                "alcoholReadingMethod": "2222"
+              }
+            }
+          ],
+          "associatedPersons": [
+            {
+              "person": {
+                "title": "MR",
+                "firstName": "Harry",
+                "middleName": "Jack",
+                "lastName": "Kane",
+                "dateOfBirth": "1995-01-01",
+                "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+                "nationalityCode": "GBR",
+                "nationalityDescription": "United Kingdom",
+                "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+                "additionalNationalityCode": "USA",
+                "additionalNationalityDescription": "United States of America",
+                "disabilityStatus": "a",
+                "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+                "ethnicityCode": "IC1",
+                "ethnicityDescription": "IC1 Description",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "Hindi",
+                "documentationLanguageNeeds": "WELSH",
+                "nationalInsuranceNumber": "NH222222B",
+                "occupation": "Footballer",
+                "occupationCode": "F",
+                "address": {
+                  "address1": "22",
+                  "address2": "Acacia Avenue",
+                  "address3": "Acacia Town",
+                  "address4": "Acacia City",
+                  "address5": "Acacia Country",
+                  "postcode": "GIR 0AA"
+                },
+                "contact": {
+                  "home": "123456",
+                  "work": "7891011",
+                  "mobile": "45678910",
+                  "primaryEmail": "harry.kane@spurs.co.uk",
+                  "secondaryEmail": "harry.kane@hotmail.com",
+                  "fax": "3425678"
+                }
+              },
+              "role": "parent"
+            }
+          ],
+          "personDefendant": {
+            "personDetails": {
+              "title": "MR",
+              "firstName": "Stuart",
+              "middleName": "Jack",
+              "lastName": "Pierce",
+              "dateOfBirth": "2010-01-01",
+              "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+              "nationalityCode": "GBR",
+              "nationalityDescription": "United Kingdom",
+              "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+              "additionalNationalityCode": "USA",
+              "additionalNationalityDescription": "United States of America",
+              "disabilityStatus": "a",
+              "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+              "ethnicityCode": "IC1",
+              "ethnicityDescription": "IC1 Description",
+              "gender": "MALE",
+              "interpreterLanguageNeeds": "Welsh",
+              "documentationLanguageNeeds": "WELSH",
+              "nationalInsuranceNumber": "NH323232B",
+              "occupation": "Kid",
+              "occupationCode": "F",
+              "specificRequirements": "Screen",
+              "address": {
+                "address1": "22",
+                "address2": "Acacia Avenue",
+                "address3": "Acacia Town",
+                "address4": "Acacia City",
+                "address5": "Acacia Country",
+                "postcode": "GIR 0AA"
+              },
+              "contact": {
+                "home": "123456",
+                "work": "7891011",
+                "mobile": "45678910",
+                "primaryEmail": "harry.kanejunior@spurs.co.uk",
+                "secondaryEmail": "harry.kanejunior@hotmail.com",
+                "fax": "3425678"
+              }
+            },
+            "bailStatus": "inCustody",
+            "custodyTimeLimit": "2018-01-01",
+            "perceivedBirthYear": 2015,
+            "observedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+            "observedEthnicityCode": "IC1",
+            "selfDefinedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+            "selfDefinedEthnicityCode": "IC1",
+            "driverNumber": "AACC12345",
+            "pncId": "1234567",
+            "arrestSummonsNumber": "arrest123",
+            "employerOrganisation": {
+              "id": "8625b50c-afc4-4d63-add2-68b9bf01b1fd",
+              "name": "Disneyland Paris",
+              "incorporationNumber": "Mickeymouse1",
+              "address": {
+                "address1": "Disney Road",
+                "address2": "Disney Town",
+                "address3": "Disney District",
+                "address4": "Paris",
+                "address5": "France",
+                "postcode": "DI5 9EY"
+              },
+              "contact": {
+                "work": "0207 654 3246 extn 1234",
+                "primaryEmail": "person@hotmail.com",
+                "secondaryEmail": "associate@hotmail.com",
+                "fax": "a"
+              }
+            },
+            "employerPayrollReference": "payyou1234"
+          }
+        }
+      ]
+    },
+    {
+      "id": "7279b2c3-b0d3-4889-ae8e-1ecc20c39e29",
+      "prosecutionCaseIdentifier": {
+        "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+        "prosecutionAuthorityCode": "TFL",
+        "prosecutionAuthorityReference": "TFL12345",
+        "caseURN": "87654321"
+      },
+      "originatingOrganisation": "G01FT01AB",
+      "initiationCode": "J",
+      "caseStatus": "SJP Referral",
+      "statementOfFacts": "You did it",
+      "statementOfFactsWelsh": "You did it in Welsh",
+      "defendants": [
+        {
+          "id": "91d32d9d-29ec-4934-a932-22a50f223964",
+          "masterDefendantId": "91d32d9d-29ec-4934-a932-22a50f223964",
+          "prosecutionCaseId": "7279b2c3-b0d3-4889-ae8e-1ecc20c39e29",
+          "numberOfPreviousConvictionsCited": 5,
+          "prosecutionAuthorityReference": "TFL12345-ABC",
+          "witnessStatement": "he did not do it",
+          "witnessStatementWelsh": "he did not do it in Welsh",
+          "mitigation": "I was not there",
+          "mitigationWelsh": "I was not there in Welsh",
+          "offences": [
+            {
+              "id": "5789ab16-0bb7-4ef1-87ef-c936bf0364f0",
+              "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+              "offenceCode": "AAA",
+              "offenceTitle": "a very bad offence",
+              "offenceTitleWelsh": "a title in Welsh",
+              "offenceLegislation": "legislation",
+              "offenceLegislationWelsh": "legislation in Welsh",
+              "wording": "Hit the police",
+              "wordingWelsh": "No Travel Card In Welsh",
+              "startDate": "2018-01-01",
+              "endDate": "2018-01-01",
+              "arrestDate": "2018-01-01",
+              "chargeDate": "2018-01-01",
+              "orderIndex": 1,
+              "convictionDate": "2018-05-01",
+              "count": 1,
+              "notifiedPlea": {
+                "offenceId": "5789ab16-0bb7-4ef1-87ef-c936bf0364f0",
+                "notifiedPleaDate": "2018-04-01",
+                "notifiedPleaValue": "NOTIFIED_NOT_GUILTY"
+              },
+              "plea": {
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                "offenceId": "5789ab16-0bb7-4ef1-87ef-c936bf0364f0",
+                "pleaDate": "2018-04-01",
+                "pleaValue": "NOT_GUILTY"
+              },
+              "verdict": {
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                "offenceId": "5789ab16-0bb7-4ef1-87ef-c936bf0364f0",
+                "verdictDate": "2018-05-01",
+                "verdictType": {
+                  "id": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                  "sequence": 1,
+                  "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+                  "category": "Guilty",
+                  "categoryType": "GUILTY"
+                },
+                "lesserOrAlternativeOffence": {
+                  "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+                  "offenceCode": "FDSE",
+                  "offenceTitle": "A lesser offence",
+                  "offenceTitleWelsh": "A lesser offence in Welsh",
+                  "offenceLegislation": "Legislation for this offence",
+                  "offenceLegislationWelsh": "Legislation for this offence in Welsh"
+                }
+              },
+              "offenceFacts": {
+                "vehicleRegistration": "AA12345",
+                "alcoholReadingAmount": "111",
+                "alcoholReadingMethod": "2222"
+              }
+            }
+          ],
+          "aliases": [
+            {
+              "firstName": "johnny robber"
+            },
+            {
+              "firstName": "jack the knife"
+            }
+          ],
+          "associatedPersons": [
+            {
+              "person": {
+                "title": "MR",
+                "firstName": "Harry",
+                "middleName": "Jack",
+                "lastName": "Kane",
+                "dateOfBirth": "1995-01-01",
+                "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+                "nationalityCode": "GBR",
+                "nationalityDescription": "United Kingdom",
+                "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+                "additionalNationalityCode": "USA",
+                "additionalNationalityDescription": "United States of America",
+                "disabilityStatus": "a",
+                "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+                "ethnicityCode": "IC1",
+                "ethnicityDescription": "IC1 Description",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "Hindi",
+                "documentationLanguageNeeds": "WELSH",
+                "nationalInsuranceNumber": "NH222222B",
+                "occupation": "Footballer",
+                "occupationCode": "F",
+                "address": {
+                  "address1": "22",
+                  "address2": "Acacia Avenue",
+                  "address3": "Acacia Town",
+                  "address4": "Acacia City",
+                  "address5": "Acacia Country",
+                  "postcode": "GIR 0AA"
+                },
+                "contact": {
+                  "home": "123456",
+                  "work": "7891011",
+                  "mobile": "45678910",
+                  "primaryEmail": "harry.kane@spurs.co.uk",
+                  "secondaryEmail": "harry.kane@hotmail.com",
+                  "fax": "3425678"
+                }
+              },
+              "role": "parent"
+            }
+          ],
+          "personDefendant": {
+            "personDetails": {
+              "title": "MR",
+              "firstName": "Harry",
+              "middleName": "Jack",
+              "lastName": "Kane Junior",
+              "dateOfBirth": "2010-01-01",
+              "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+              "nationalityCode": "GBR",
+              "nationalityDescription": "United Kingdom",
+              "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+              "additionalNationalityCode": "USA",
+              "additionalNationalityDescription": "United States of America",
+              "disabilityStatus": "a",
+              "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+              "ethnicityCode": "IC1",
+              "ethnicityDescription": "IC1 Description",
+              "gender": "MALE",
+              "interpreterLanguageNeeds": "Welsh",
+              "documentationLanguageNeeds": "WELSH",
+              "nationalInsuranceNumber": "NH323232B",
+              "occupation": "Kid",
+              "occupationCode": "F",
+              "specificRequirements": "Screen",
+              "address": {
+                "address1": "22",
+                "address2": "Acacia Avenue",
+                "address3": "Acacia Town",
+                "address4": "Acacia City",
+                "address5": "Acacia Country",
+                "postcode": "GIR 0AA"
+              },
+              "contact": {
+                "home": "123456",
+                "work": "7891011",
+                "mobile": "45678910",
+                "primaryEmail": "harry.kanejunior@spurs.co.uk",
+                "secondaryEmail": "harry.kanejunior@hotmail.com",
+                "fax": "3425678"
+              }
+            },
+            "bailStatus": "inCustody",
+            "custodyTimeLimit": "2018-01-01",
+            "perceivedBirthYear": 2015,
+            "observedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+            "observedEthnicityCode": "IC1",
+            "selfDefinedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+            "selfDefinedEthnicityCode": "IC1",
+            "driverNumber": "AACC12345",
+            "pncId": "1234567",
+            "arrestSummonsNumber": "arrest123",
+            "employerOrganisation": {
+              "id": "8625b50c-afc4-4d63-add2-68b9bf01b1fd",
+              "name": "Disneyland Paris",
+              "incorporationNumber": "Mickeymouse1",
+              "address": {
+                "address1": "Disney Road",
+                "address2": "Disney Town",
+                "address3": "Disney District",
+                "address4": "Paris",
+                "address5": "France",
+                "postcode": "DI5 9EY"
+              },
+              "contact": {
+                "work": "0207 654 3246 extn 1234",
+                "primaryEmail": "person@hotmail.com",
+                "secondaryEmail": "associate@hotmail.com",
+                "fax": "a"
+              }
+            },
+            "employerPayrollReference": "payyou1234"
+          }
+        }
+      ]
+    }
+  ],
+  "hasSharedResults": false,
+  "defendantReferralReasons": [
+    {
+      "id": "01e550d0-d27f-48c9-9e44-783aaa0e62c9",
+      "description": "referred fo trial under section 12 magistrates court act",
+      "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966"
+    }
+  ],
+  "prosecutionCounsels": [
+    {
+      "id": "ea90d649-de68-470d-935c-46cb1027882b",
+      "title": "Mr",
+      "firstName": "Thomas",
+      "middleName": "Albert",
+      "lastName": "Blood",
+      "status": "QC",
+      "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"],
+      "attendanceDays": ["2018-08-01", "2018-08-02"]
+    }
+  ],
+  "defenceCounsels": [
+    {
+      "id": "d9188ab0-cf61-4e19-a323-0173054e031e",
+      "title": "Mrs",
+      "firstName": "Margaret",
+      "middleName": "Janet",
+      "lastName": "Cell",
+      "status": "Leading QC",
+      "defendants": ["e1d32d9d-29ec-4934-a932-22a50f223966"],
+      "attendanceDays": ["2018-08-01", "2018-08-02"]
+    }
+  ],
+  "companyRepresentatives": [
+    {
+      "id": "d9188ab0-cf61-4e19-a323-0173054e031e",
+      "title": "Mrs",
+      "firstName": "Margaret",
+      "lastName": "Cell",
+      "position": "DIRECTOR",
+      "defendants": ["e1d32d9d-29ec-4934-a932-22a50f223966"],
+      "attendanceDays": ["2018-08-01", "2018-08-02"]
+    }
+  ],
+  "defendantAttendance": [
+    {
+      "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966",
+      "attendanceDays": [
+        {
+          "day": "2018-08-01",
+          "isInAttendance": true
+        },
+        {
+          "day": "2018-08-03",
+          "isInAttendance": false
+        }
+      ]
+    }
+  ],
+  "hearingCaseNotes": [
+    {
+      "courtClerk": {
+        "id": "b37a9a88-bc2a-44bc-a474-97c341729a8e",
+        "firstName": "Charles",
+        "lastName": "Manson"
+      },
+      "note": "Difficult defendant, make sure a policeman is available",
+      "noteDateTime": "2018-08-02 10:53",
+      "noteType": "HMCTS",
+      "originatingHearingId": "ded4660f-443f-467a-863b-966b7cd8a6f0",
+      "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"]
+    },
+    {
+      "courtClerk": {
+        "id": "b37a9a88-bc2a-44bc-a474-97c341729a8e",
+        "firstName": "Charles",
+        "lastName": "Manson"
+      },
+      "note": "A legal note for the extract",
+      "noteDateTime": "2018-08-02 11:53",
+      "noteType": "LEGAL",
+      "originatingHearingId": "ded4660f-443f-467a-863b-966b7cd8a6f0",
+      "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"]
+    }
+  ]
+}

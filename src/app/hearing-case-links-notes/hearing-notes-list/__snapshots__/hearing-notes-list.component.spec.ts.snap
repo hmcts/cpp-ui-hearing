@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingNotesListComponent should have the expected template 1`] = `
+<test-host
+  multiHearing={[Function Boolean]}
+  sharedHearing={[Function Boolean]}
+>
+  <hearing-note-list>
+    <div
+      class="wrapper-notes"
+      data-test-id="hearingNoteList"
+    >
+    </div>
+  </hearing-note-list>
+</test-host>
+`;

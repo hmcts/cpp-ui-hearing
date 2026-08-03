@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DelegatedPowersComponent should render the template with the values expected 1`] = `
+<ng-component>
+  <delegated-powers>
+    <div
+      class="delegated-powers"
+    >
+      <form
+        class="ng-untouched ng-pristine ng-valid"
+        novalidate=""
+        pdk-form=""
+      >
+        <pdk-form-field
+          id="delegatedPowers"
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="pdk-select-GENERATED_ID"
+            >
+               COMMON.DELEGATED_POWERS 
+            </label>
+            <pdk-select
+              class="ng-untouched ng-pristine ng-valid"
+            >
+              <select
+                class="govuk-select"
+                id="pdk-select-GENERATED_ID"
+                name="delegatedPowers"
+              >
+                <option
+                  value="POWERS_OFF"
+                >
+                   COMMON.DELEGATED_POWERS_OFF 
+                </option>
+                <option
+                  value="POWERS_ON"
+                >
+                   COMMON.DELEGATED_POWERS_ON 
+                </option>
+              </select>
+            </pdk-select>
+          </pdk-form-group>
+        </pdk-form-field>
+      </form>
+    </div>
+  </delegated-powers>
+</ng-component>
+`;

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResolvedDraftResultLineComponent should render 1`] = `
+<cpp-resolved-draft-result-line
+  addChild={[Function EventEmitter_]}
+  amend={[Function EventEmitter_]}
+  amendmentService="undefined"
+  atLeastOneOf={[Function Array]}
+  belongsToOptionalBranch="false"
+  conditionalMandatoryValue={[Function EventEmitter_]}
+  destroy={[Function EventEmitter_]}
+  elementRef={[Function ElementRef]}
+  errors={[Function EventEmitter_]}
+  groupedWithResultDefinitionIds={[Function Array]}
+  handleChildResultDefinitionSelected={[Function AsyncFunction]}
+  hasAmendApplication="false"
+  oneOf={[Function Array]}
+  resultPromptsChange={[Function EventEmitter_]}
+  showResultLineParser={[Function EventEmitter_]}
+>
+  <div
+    class="result-line-header"
+  >
+    <div
+      class="govuk-!-margin-right-1"
+      cpp-draft-result-line-tag=""
+      data-test-id="resultLineTitle"
+      pdk-margin-right="1"
+    >
+      <div
+        class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0"
+        pdk-margin="0"
+        pdk-padding-horizontal="1"
+        pdk-typography="body-small"
+        style="display: inline-block; background-color: #d5d7ed;"
+      >
+        <h6
+          class="govuk-!-margin-0"
+          pdk-margin="0"
+          pdk-typography="body-small"
+        >
+          <b>
+          </b>
+        </h6>
+      </div>
+    </div>
+  </div>
+</cpp-resolved-draft-result-line>
+`;

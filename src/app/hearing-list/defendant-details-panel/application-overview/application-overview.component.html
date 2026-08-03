@@ -1,0 +1,51 @@
+@if (applicationCourt) {
+<div>
+  <hr pdk-border-colour="black" pdk-margin-bottom="2" />
+  <h3 pdk-typography="heading-small" pdk-margin-bottom="0">
+    {{ applicationCourt.type.type }}
+  </h3>
+
+  <div pdk-text-colour="dark-grey" pdk-typography="body-xsmall">
+    {{ 'HEARING_LIST.APPLI_OVERVIEW_RECEIVED_ON' | translate }}
+    {{ applicationCourt.applicationReceivedDate | date : 'dd MMMM yyyy' }}
+  </div>
+  <p>
+    {{ applicationCourt.type.legislation }}
+  </p>
+  @if (applicationCourt.applicationParticulars) {
+  <p>
+    {{ applicationCourt.applicationParticulars }}
+  </p>
+  }
+  <p>
+    <b>{{ 'HEARING_LIST.' + applicantSynonym | translate }}</b>
+    {{ applicationCourt.applicant | applicationPartyName }}
+  </p>
+
+  @if (applicationCourt.respondents?.length) {
+  <p>
+    <b>{{ 'HEARING_LIST.RESPONDENTS' | translate }}</b>
+    {{ applicationCourt.respondents | applicationParties }}
+  </p>
+  }
+  <hr pdk-border-colour="dark-grey" pdk-margin-bottom="2" class="border" />
+  @for ( prosecutionCase of applicationCourt.courtApplicationCases; track
+  prosecutionCase.prosecutionCaseId; let last = $last ) {
+  <div>
+    <h4 pdk-typography="heading-small" pdk-margin-bottom="2">
+      {{ prosecutionCase.prosecutionCaseReference }}
+    </h4>
+    @for (offence of prosecutionCase.offences; track offence.id; let i = $index) {
+    <offences-list-item
+      [count]="i + 1"
+      [offence]="offence"
+      [hideLegislation]="false"
+      [boldTitle]="true"
+    >
+    </offences-list-item>
+    }
+    <hr pdk-border-colour="dark-grey" pdk-margin-bottom="2" class="border" />
+  </div>
+  }
+</div>
+}

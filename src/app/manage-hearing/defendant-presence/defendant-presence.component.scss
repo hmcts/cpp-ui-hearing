@@ -1,0 +1,15 @@
+.defendant-presence {
+  & .presence-form {
+    margin: 15px 0;
+  }
+
+  & .presence-form ::ng-deep {
+    legend {
+      margin: 10px 0;
+    }
+  }
+
+  & .save-presence-btn {
+    margin-top: 20px;
+  }
+}

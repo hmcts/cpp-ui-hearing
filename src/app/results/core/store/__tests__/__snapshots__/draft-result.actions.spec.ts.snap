@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Draft Result actions Should store reusable info action 1`] = `
+{
+  "reusableResults": [
+    {
+      "applicationId": "12",
+      "cacheDataPath": "",
+      "offenceId": "",
+      "promptRef": "",
+      "type": "NAMEADDRESS",
+      "value": "",
+    },
+  ],
+  "type": "SET_REUSABLE_INFO_SUCCESS",
+}
+`;

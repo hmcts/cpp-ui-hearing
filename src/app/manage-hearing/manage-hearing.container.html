@@ -1,0 +1,125 @@
+<h1 pdk-visually-hidden>Manage Hearing</h1>
+
+<div [hidden]="hasApiActivity$ | async">
+  <pdk-grid container>
+    <pdk-grid full>
+      @if ((pendingAttendanceDefendants$ | async)?.length > 0 && getAllErrors()?.length === 0 &&
+      (isFirstHearing$ | async) === false) {
+      <div class="notification-banner">
+        <span class="notification-banner__title">
+          {{ 'MANAGE_HEARING.IMPORTANT' | translate }}
+        </span>
+
+        <span class="notification-banner__msg"> {{ participant | translate }} </span>
+      </div>
+      }
+    </pdk-grid>
+
+    <pdk-grid full>
+      @if (getAllErrors()?.length > 0) {
+      <pdk-error-summary [errors]="getAllErrors()"></pdk-error-summary>
+      }
+    </pdk-grid>
+
+    <pdk-grid full>
+      @if (!((bulkCaseOnly$ | async) || (isGroupCaseApplication$ | async))) {
+      <pdk-checkbox
+        class="youth-selector"
+        checkboxType="small"
+        pdk-margin-top="4"
+        [ngModel]="isAllSelected | async"
+        (change)="youthCourtToggle()"
+      >
+        {{ 'MANAGE_HEARING.SITTING_YOUTH_COURT_ALL' | translate }}
+      </pdk-checkbox>
+      }
+      <div class="extend-magistrate-access" pdk-margin-top="4">
+        <extend-magistrates-access
+          [hearingId]="this.selectedHearingId"
+          [hearingAccessPermissionId]="hearingAccessPermissionId$ | async"
+          [isLegalAdviser]="isLegalAdviser$ | async"
+        >
+        </extend-magistrates-access>
+      </div>
+    </pdk-grid>
+  </pdk-grid>
+
+  <!-- Results List -->
+
+  <pdk-grid container>
+    @if (!((hearing$ | async)?.courtApplications?.length)) {
+    <case-access-alert
+      [urns]="urns$ | async"
+      [hearingIds]="todayHearingListIds$ | async"
+      [selectedHearingId]="selectedHearingId"
+      [userId]="loggedInUser?.userId"
+      [checkOneTime]="true"
+    >
+    </case-access-alert>
+    }
+    <pdk-grid full>
+      @if ((casesAndApplicationsGroupedByDefendant$ | async)?.length) {
+      <hearing-results-list
+        [hearing]="hearing$ | async"
+        [hearingId]="selectedHearingId"
+        [pleasMapping]="pleasMapping$ | async"
+        [guiltyPleasValues]="guiltyPleasValues$ | async"
+        [selectedHearingDate]="selectedHearingDate"
+        [verdictTypes]="verdictTypes$ | async"
+        [todayDefendantsAttendance]="todaysDefendantsAttendance$ | async"
+        [reasonOptions]="reasonOptions"
+        [casesAndApplicationsGroupedByDefendant]="casesAndApplicationsGroupedByDefendant$ | async"
+        [hearingType]="hearingType$ | async"
+        [earliestNextHearingDate]="earliestNextHearingDate"
+        [activeCourtOrders]="activeCourtOrders$ | async"
+        [breachTypes]="breachTypes$ | async"
+        [isPleaApplicableFlag]="isPleaApplicableFlag$ | async"
+        [isVerdictsPageAvailable]="isVerdictsPageAvailable$ | async"
+        [attendanceErrors]="attendanceErrors"
+        [offenceLevelWarningMessages]="offenceLevelWarningMessages$ | async"
+        [defendantLevelWarningMessages]="defendantLevelWarningMessages$ | async"
+        (onPresenceChanged)="onPresenceChanged($event)"
+        (onGoToEnterResult)="navigateToAction('enter-results')"
+        (onGoToEnterPlea)="navigateToAction('enter-pleas')"
+        (onGoToEnterVerdict)="navigateToAction('enter-verdicts')"
+        (onOutstandingFine)="outstandingFine($event)"
+        (onYouthCourtToggle)="youthCourtToggle($event)"
+        (onBreachApplications)="onBreachApplications($event)"
+        (onSelectedParticipant)="selectedParticipant($event)"
+      >
+      </hearing-results-list>
+      } @if ((courtApplications$ | async)?.length) {
+      <application-result-details-container
+        [hearing]="hearing$ | async"
+        [hearingId]="selectedHearingId"
+        [courtApplications]="courtApplications$ | async"
+        [isGroupCaseApplicationText]="(isGroupCaseApplication$ | async) && ('MANAGE_HEARING.BULK_DEFENDANTS' | translate)"
+        [hearingType]="hearingType$ | async"
+        [showSubject]="true"
+        [pleasMapping]="pleasMapping$ | async"
+        [guiltyPleasValues]="guiltyPleasValues$ | async"
+        [caseStatus]="caseStatus$ | async"
+        [verdictTypes]="verdictTypes$ | async"
+        [todayDefendantsAttendance]="todaysDefendantsAttendance$ | async"
+        [selectedHearingDate]="selectedHearingDate"
+        [isPleaApplicableFlag]="isPleaApplicableFlag$ | async"
+        [isVerdictsPageAvailable]="isVerdictsPageAvailable$ | async"
+        [attendanceErrors]="attendanceErrors"
+        (onGoToEnterResult)="navigateToAction('enter-results')"
+        (onOutstandingFine)="outstandingFine($event)"
+        (onPresenceChanged)="onPresenceChanged($event)"
+        (onYouthCourtToggle)="youthCourtToggle($event)"
+        (onSelectedParticipant)="selectedParticipant($event)"
+      >
+      </application-result-details-container>
+      }
+      <cpp-share-result-container
+        [pendingAttendanceDefendants]="pendingAttendanceDefendants$ | async"
+        [isApplicationJourney]="(courtApplications$ | async)"
+        [amendApplicationPermission]="isAmendApplicationPermission$ | async"
+        [caseStatus]="caseStatus$ | async"
+        (sharedResultsValidation)="handleSharedResultsValidation($event)"
+      ></cpp-share-result-container>
+    </pdk-grid>
+  </pdk-grid>
+</div>

@@ -1,0 +1,131 @@
+@if ((isCurrentUserAuthorisedToSeeThisHearing$ | async) === false) {
+<pdk-grid container>
+  <pdk-grid full pdk-margin-top="3">
+    <pdk-alert type="secure" icon="true" data-test-id="accessRestrictedBanner">
+      <span> {{ 'COMMON.ACCESS_RESTRICTED' | translate }} </span>
+    </pdk-alert>
+  </pdk-grid>
+</pdk-grid>
+} @if (isCurrentUserAuthorisedToSeeThisHearing$ | async) {
+<div class="manage-hearing">
+  <pdk-grid container>
+    <pdk-grid three-quarters>
+      <div class="date-dropdown">
+        @if ((hearingDays$ | async)?.length > 1) {
+        <multiday-dropdown
+          [days]="hearingDays$ | async"
+          [selectedDay]="selectedHearingDate$ | async"
+          (onSelectDay)="selectedDay($event)"
+        ></multiday-dropdown>
+        }
+      </div>
+    </pdk-grid>
+    @if ((hearingDays$ | async)?.length > 1) {
+    <pdk-grid one-quarter pdk-padding-top="4">
+      <span>{{'MANAGE.TODAY_IS_THE' | translate}}</span>
+      <span class="bold" pdk-margin-left="1">{{ today | date: 'd MMMM y'}}</span>
+    </pdk-grid>
+    }
+  </pdk-grid>
+  <pdk-page-header>
+    @if (!hearingHasBulkCaseOnly) {
+    <pdk-page-header-content reference="{{ urns$ | async }}">
+      <span class="bold-small"> {{ (defendantsNames$ | async) }} </span>
+    </pdk-page-header-content>
+    } @if (hearingHasBulkCaseOnly) {
+    <pdk-page-header-content>
+      <span class="bold-small"> {{ 'COMMON.BULK_DEFENDANT' | translate}} </span>
+    </pdk-page-header-content>
+    }
+  </pdk-page-header>
+
+  @if ((inWorkingArea$ | async) === false) {
+  <div pdk-margin-top="2"></div>
+  <pdk-alert type="secure" icon="true" data-test-id="notInWorkingAreaBanner">
+    <span> {{ 'PAGE_HEADER.SECURE_ALERT_TEXT' | translate }} </span>
+  </pdk-alert>
+  } @if (showFutureHearingsRemoved$ | async) {
+  <div pdk-margin-top="2">
+    <pdk-alert type="success" icon="true">
+      <span> {{ 'MANAGE.FUTURE_HEARINGS_HAVE_BEEN_REMOVED' | translate }} </span>
+    </pdk-alert>
+  </div>
+
+  } @if (amendmentMessage?.message) {
+  <div pdk-margin-top="2"></div>
+  <pdk-alert type="secure" icon="true" data-test-id="amendmentMessageBanner">
+    <div class="alert-message">
+      <span> {{ amendmentMessage.message | translate:{label: amendmentMessage?.user} }} </span>
+      @if (amendmentMessage.message === 'PAGE_HEADER.LOCKED_BY_SOMEONE_ELSE' &&
+      displayUnlockHearingLink) {
+      <span class="text-right">
+        <a
+          data-test-id="unlockHearing"
+          pdk-link
+          unvisited
+          pdk-text-colour="white"
+          role="button"
+          href="javascript:void(0)"
+          (click)="handleUnlockHearing()"
+          >{{ 'MANAGE.UNLOCK_HEARING_MODAL.UNLOCK_HEARING' | translate }}</a
+        >
+      </span>
+      }
+    </div>
+  </pdk-alert>
+  }
+  <pdk-grid container>
+    <pdk-grid [full]="sidebarHidden" [three-quarters]="!sidebarHidden">
+      <div pdk-margin-top="1">
+        <manage-navigation
+          [isVerdictsPageAvailable]="(isVerdictsPageAvailable$ | async)  && (isGroupCaseApplication$ | async) === false"
+          [isBoxwork]="isBoxwork$ | async"
+          [isPleaApplicableFlag]="(isPleaApplicableFlag$ | async) && (isGroupCaseApplication$ | async) === false"
+        >
+        </manage-navigation>
+      </div>
+      <router-outlet (deactivate)="onDeactivated()"></router-outlet>
+    </pdk-grid>
+    @if (!sidebarHidden) {
+    <pdk-grid one-quarter>
+      <div class="mb-xxl mt-xxl">
+        <div pdk-margin-top="1">
+          <trial-outcome [hearing]="hearing$ | async"></trial-outcome>
+        </div>
+
+        @if (hasFutureHearing$ | async) {
+        <div pdk-margin-bottom="4">
+          @if (hearing$ | async; as hearing) {
+          <a
+            [routerLink]="['/', 'remove-future-hearing', hearing.id ]"
+            pdk-typography="body-small"
+            pdk-link
+          >
+            {{ 'MANAGE.REMOVE_FUTURE_HEARING' | translate }}
+          </a>
+          }
+        </div>
+        }
+        <top-menu [topMenu]="topMenu" (onMenuItemClick)="onMenuItemClick($event)"></top-menu>
+        <hearing-events-log
+          [hidden]="!topMenuDetails[0][0]?.active"
+          [jurisdictionType]="(hearing$ | async).jurisdictionType"
+        >
+        </hearing-events-log>
+        <hearing-case-links-notes
+          [hidden]="!topMenuDetails[0][1]?.active"
+          [hearing]="hearing$ | async"
+          [canAddChildApplication]="canAddChildApplications$ | async"
+          [isStandAloneApplication]="isStandaloneApplication"
+          [selectedHearingDate]="selectedHearingDate$ | async"
+          [hearingNotes]="hearingNotes$ | async"
+          (onGoToCaseLink)="goToCaseLink($event)"
+          (onGoToCreateTask)="goToCreateTask($event)"
+        >
+        </hearing-case-links-notes>
+      </div>
+    </pdk-grid>
+    }
+  </pdk-grid>
+</div>
+}

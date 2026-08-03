@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageHearingErrorPageComponent should have the expected template 1`] = `
+<ng-component
+  hearingId={[Function String]}
+  manageHearingError={[Function Object]}
+>
+  <manage-hearing-error-page>
+    <h1
+      class="govuk-heading-xl"
+      pdk-typography="heading-xlarge"
+    >
+      <div>
+        MANAGE_HEARING_ERROR.THERE_WAS_A_PROBLEM
+      </div>
+       MANAGE_HEARING_ERROR.WITH_THE_DRAFT_RESULTS 
+    </h1>
+    <div
+      class="text"
+    >
+      <p
+        class="govuk-body-l"
+        pdk-typography="body-large"
+      >
+         MANAGE_HEARING_ERROR.YOU_CANNOT_PROCEED 
+      </p>
+      <p
+        class="govuk-body-l"
+        pdk-typography="body-large"
+      >
+         MANAGE_HEARING_ERROR.CLICK_ON 
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/hearingId"
+          pdk-link=""
+          unvisited=""
+        >
+          manage hearing
+        </a>
+         MANAGE_HEARING_ERROR.OR 
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/hearingId/enter-results"
+          pdk-link=""
+          unvisited=""
+        >
+          enter results
+        </a>
+         MANAGE_HEARING_ERROR.TO_VIEW_LATEST_CASE_RESULTS 
+      </p>
+    </div>
+  </manage-hearing-error-page>
+</ng-component>
+`;

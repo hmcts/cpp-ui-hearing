@@ -1,0 +1,539 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefenceCounselsPanelComponent should have the expected template 1`] = `
+<ng-component
+  mockCounselsCacheOptions={[Function Object]}
+  mockDefenceCounsels={[Function Array]}
+  mockDefendantsCurrentHearing={[Function Array]}
+>
+  <defence-counsels-panel>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <h1
+        class="govuk-!-margin-bottom-6 govuk-heading-m"
+        pdk-margin-bottom="6"
+        pdk-typography="heading-medium"
+      >
+         ENTER_COUNSELS.DEFENCE 
+      </h1>
+      <div>
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Case reference: 
+        </span>
+        <div
+          class="govuk-!-margin-bottom-4 govuk-!-margin-top-2"
+          data-role="defence-counsel"
+          data-test-id="defenceCounsel"
+          id="1"
+          pdk-margin-bottom="4"
+          pdk-margin-top="2"
+        >
+          <div
+            class="form-group govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <div
+              class="delete-counsel-link"
+            >
+              <a
+                class="govuk-link"
+                href="javascript:void(0);"
+                pdk-link=""
+              >
+                 COMMON.DELETE 
+              </a>
+            </div>
+            <pdk-form-field
+              id="firstName"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.FIRST_NAME 
+                </label>
+                <pdk-autosuggest-lite
+                  class="ng-untouched ng-pristine ng-valid"
+                  data-role="defence-firstname"
+                >
+                  <pdk-autosuggest
+                    highlightcolor="blue"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-autosuggest"
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                            aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                            aria-expanded="false"
+                            autocomplete="off"
+                            class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                            id="pdk-form-control-undefined-GENERATED_ID"
+                            name="stubbed-name"
+                            role="combobox"
+                            type="text"
+                          />
+                          <span
+                            class="govuk-visually-hidden"
+                            id="pdk-autosuggest__instructions-GENERATED_ID"
+                            pdk-visually-hidden=""
+                          >
+                             When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                          </span>
+                          <span
+                            aria-live="polite"
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                            role="status"
+                          >
+                          </span>
+                          <div
+                            class="pdk-autosuggest__suggestions-container"
+                            id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-autosuggest>
+                </pdk-autosuggest-lite>
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+          <div
+            class="form-group govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <pdk-form-field
+              id="lastName"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.LAST_NAME 
+                </label>
+                <pdk-autosuggest-lite
+                  class="ng-untouched ng-pristine ng-valid"
+                  data-role="defence-lastname"
+                >
+                  <pdk-autosuggest
+                    highlightcolor="blue"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-autosuggest"
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                            aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                            aria-expanded="false"
+                            autocomplete="off"
+                            class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                            id="pdk-form-control-undefined-GENERATED_ID"
+                            name="stubbed-name"
+                            role="combobox"
+                            type="text"
+                          />
+                          <span
+                            class="govuk-visually-hidden"
+                            id="pdk-autosuggest__instructions-GENERATED_ID"
+                            pdk-visually-hidden=""
+                          >
+                             When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                          </span>
+                          <span
+                            aria-live="polite"
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                            role="status"
+                          >
+                          </span>
+                          <div
+                            class="pdk-autosuggest__suggestions-container"
+                            id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-autosuggest>
+                </pdk-autosuggest-lite>
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+          <div
+            class="form-group govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <pdk-form-field
+              id="status"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.STATUS_ON_CASE 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     ENTER_COUNSELS.STATUS_SUBTEXT 
+                  </div>
+                </pdk-hint>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  data-role="defence-status"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="defence-status"
+                  pdk-text-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+          <div
+            data-role="defence-representing"
+          >
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     ENTER_COUNSELS.REPRESENTING 
+                  </legend>
+                  <pdk-checkbox-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    required=""
+                  >
+                    <div
+                      class="govuk-checkboxes"
+                    >
+                      <pdk-checkbox
+                        class="govuk-!-margin-bottom-2 govuk-checkboxes"
+                        pdk-margin-bottom="2"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            name="pdk-checkbox-group-GENERATED_ID"
+                            type="checkbox"
+                            value="test-defendant"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          >
+                             Victoria Dale 
+                          </label>
+                        </div>
+                      </pdk-checkbox>
+                    </div>
+                  </pdk-checkbox-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+        </div>
+        <hr />
+      </div>
+      <div>
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Case reference: 
+        </span>
+        <div
+          class="govuk-!-margin-bottom-4 govuk-!-margin-top-2"
+          data-role="defence-counsel"
+          data-test-id="defenceCounsel"
+          id="2"
+          pdk-margin-bottom="4"
+          pdk-margin-top="2"
+        >
+          <div
+            class="form-group govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <div
+              class="delete-counsel-link"
+            >
+              <a
+                class="govuk-link"
+                href="javascript:void(0);"
+                pdk-link=""
+              >
+                 COMMON.DELETE 
+              </a>
+            </div>
+            <pdk-form-field
+              id="firstName"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.FIRST_NAME 
+                </label>
+                <pdk-autosuggest-lite
+                  class="ng-untouched ng-pristine ng-valid"
+                  data-role="defence-firstname"
+                >
+                  <pdk-autosuggest
+                    highlightcolor="blue"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-autosuggest"
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                            aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                            aria-expanded="false"
+                            autocomplete="off"
+                            class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                            id="pdk-form-control-undefined-GENERATED_ID"
+                            name="stubbed-name"
+                            role="combobox"
+                            type="text"
+                          />
+                          <span
+                            class="govuk-visually-hidden"
+                            id="pdk-autosuggest__instructions-GENERATED_ID"
+                            pdk-visually-hidden=""
+                          >
+                             When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                          </span>
+                          <span
+                            aria-live="polite"
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                            role="status"
+                          >
+                          </span>
+                          <div
+                            class="pdk-autosuggest__suggestions-container"
+                            id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-autosuggest>
+                </pdk-autosuggest-lite>
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+          <div
+            class="form-group govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <pdk-form-field
+              id="lastName"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.LAST_NAME 
+                </label>
+                <pdk-autosuggest-lite
+                  class="ng-untouched ng-pristine ng-valid"
+                  data-role="defence-lastname"
+                >
+                  <pdk-autosuggest
+                    highlightcolor="blue"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-autosuggest"
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                            aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                            aria-expanded="false"
+                            autocomplete="off"
+                            class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                            id="pdk-form-control-undefined-GENERATED_ID"
+                            name="stubbed-name"
+                            role="combobox"
+                            type="text"
+                          />
+                          <span
+                            class="govuk-visually-hidden"
+                            id="pdk-autosuggest__instructions-GENERATED_ID"
+                            pdk-visually-hidden=""
+                          >
+                             When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                          </span>
+                          <span
+                            aria-live="polite"
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                            role="status"
+                          >
+                          </span>
+                          <div
+                            class="pdk-autosuggest__suggestions-container"
+                            id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-autosuggest>
+                </pdk-autosuggest-lite>
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+          <div
+            class="form-group govuk-!-margin-bottom-2"
+            pdk-margin-bottom="2"
+          >
+            <pdk-form-field
+              id="status"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.STATUS_ON_CASE 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     ENTER_COUNSELS.STATUS_SUBTEXT 
+                  </div>
+                </pdk-hint>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  data-role="defence-status"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="defence-status"
+                  pdk-text-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+          <div
+            data-role="defence-representing"
+          >
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     ENTER_COUNSELS.REPRESENTING 
+                  </legend>
+                  <pdk-checkbox-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    required=""
+                  >
+                    <div
+                      class="govuk-checkboxes"
+                    >
+                      <pdk-checkbox
+                        class="govuk-!-margin-bottom-2 govuk-checkboxes"
+                        pdk-margin-bottom="2"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            name="pdk-checkbox-group-GENERATED_ID"
+                            type="checkbox"
+                            value="test-defendant"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          >
+                             Victoria Dale 
+                          </label>
+                        </div>
+                      </pdk-checkbox>
+                    </div>
+                  </pdk-checkbox-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+        </div>
+        <hr />
+      </div>
+      <a
+        class="govuk-link"
+        href="javascript:void(0);"
+        pdk-link=""
+      >
+         ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE 
+      </a>
+      <hr />
+    </form>
+  </defence-counsels-panel>
+</ng-component>
+`;

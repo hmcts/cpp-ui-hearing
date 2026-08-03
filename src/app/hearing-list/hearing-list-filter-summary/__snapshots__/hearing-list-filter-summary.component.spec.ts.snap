@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingListFilterSummaryComponent should render the template with the values expected 1`] = `
+<hearing-list-filter-summary
+  backToHearingList={[Function EventEmitter_]}
+  showFilters={[Function EventEmitter_]}
+>
+  <div
+    class="filter-summary"
+  >
+  </div>
+</hearing-list-filter-summary>
+`;

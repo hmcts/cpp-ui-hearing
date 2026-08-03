@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourtLocationComponent should render the component correctly 1`] = `
+<test-host-component
+  courtName={[Function String]}
+  hearingDate={[Function String]}
+>
+  <court-location>
+    <div
+      class="govuk-!-margin-bottom-0 govuk-body-m"
+      data-role="court-name"
+      pdk-margin-bottom="0"
+      pdk-typography="body"
+    >
+      Lavender Hill Magistrates Court
+    </div>
+    <div
+      class="govuk-!-margin-bottom-0 govuk-body-m"
+      data-role="hearing-date"
+      pdk-margin-bottom="0"
+      pdk-typography="body"
+    >
+       06 December 2019
+    </div>
+  </court-location>
+</test-host-component>
+`;

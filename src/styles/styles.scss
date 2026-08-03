@@ -1,0 +1,185 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+@use 'govuk-frontend/govuk/settings/colours-applied' as colours;
+
+// to be removed once fixed on PDK
+*,
+::after,
+::before {
+  box-sizing: unset;
+}
+
+//START_MODAL
+//this is a strong contender for the PDK. For the purposes of porting ui.app
+//this block was copied over from there, with minimal changes
+.modal-open {
+  padding-right: 0px !important;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 998;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 997;
+  background-color: #000;
+}
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+.modal-header {
+  background: govuk.govuk-colour('red');
+  margin: 10px;
+  padding: 5px;
+}
+.modal-header .close {
+  margin-top: -2px;
+}
+.modal-title {
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.42857143;
+}
+.modal-body {
+  position: relative;
+  padding: 5px 15px;
+}
+.modal-footer {
+  padding: 0 15px;
+}
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 480px;
+    margin: 240px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+}
+
+#content {
+  max-width: 1410px;
+  padding: 0 30px;
+  margin-bottom: 90px;
+}
+
+.width-100 {
+  width: 100%;
+  max-width: 100%;
+}
+
+.height-100 {
+  height: 100%;
+  max-height: 100%;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.error-border input {
+  border: 4px solid #b10e1e !important;
+}
+
+.link-button {
+  color: govuk.govuk-colour('blue') !important;
+  background: none;
+  box-shadow: none;
+  border: none;
+
+  &:hover {
+    color: colours.$govuk-link-hover-colour !important;
+    cursor: pointer;
+  }
+
+  &:focus {
+    color: govuk.govuk-colour('black') !important;
+  }
+
+  &:disabled {
+    color: govuk.govuk-tint(govuk.govuk-colour('black'), 50) !important;
+    pointer-events: none;
+  }
+}

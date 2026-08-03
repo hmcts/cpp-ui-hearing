@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`top-menu renders menu with first link active 1`] = `
+<test-top-menu
+  topMenu={[Function Array]}
+>
+  <top-menu>
+    <div
+      class="global-nav govuk-body-m"
+      pdk-typography="body-medium"
+    >
+      <div
+        class="global-nav-actions"
+      >
+        <a
+          aria-controls="global-nav"
+          aria-expanded="false"
+          class="global-nav-toggle"
+          href="javascript:void(0);"
+        >
+          Menu
+        </a>
+      </div>
+      <nav
+        aria-expanded="false"
+        aria-label="Menu"
+        class="govuk-!-margin-0 govuk-template--rebranded"
+        clear=""
+        id="global-nav"
+        pdk-margin="0"
+        pdk-service-nav=""
+      >
+        <div
+          class="govuk-service-navigation pdk-service-nav-clear"
+        >
+          <div
+            class="govuk-service-navigation__container"
+          >
+            <div
+              class="govuk-service-navigation__wrapper"
+            >
+              <h3
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                Global Navigation
+              </h3>
+              <ul
+                class="govuk-service-navigation__list"
+                pdk-service-nav-list=""
+                role="tablist"
+              >
+                <li
+                  class="pdk-service-nav-list-item govuk-service-navigation__item govuk-service-navigation__item--active"
+                  pdk-service-nav-list-item=""
+                  role="presentation"
+                >
+                  <button
+                    class="tab-title"
+                    role="tab"
+                  >
+                    <span
+                      class="pdk-!-text-color-blue govuk-!-margin-bottom-0 govuk-heading-s"
+                      pdk-margin-bottom="0"
+                      pdk-text-colour="blue"
+                      pdk-typography="heading-small"
+                    >
+                      page 1
+                    </span>
+                  </button>
+                </li>
+                <li
+                  class="pdk-service-nav-list-item govuk-service-navigation__item"
+                  pdk-service-nav-list-item=""
+                  role="presentation"
+                >
+                  <button
+                    class="tab-title"
+                    role="tab"
+                  >
+                    <span
+                      class="pdk-!-text-color-blue govuk-!-margin-bottom-0 govuk-heading-s"
+                      pdk-margin-bottom="0"
+                      pdk-text-colour="blue"
+                      pdk-typography="heading-small"
+                    >
+                      page 2
+                    </span>
+                  </button>
+                </li>
+                <li
+                  class="pdk-service-nav-list-item govuk-service-navigation__item"
+                  pdk-service-nav-list-item=""
+                  role="presentation"
+                >
+                  <button
+                    class="tab-title"
+                    role="tab"
+                  >
+                    <span
+                      class="pdk-!-text-color-blue govuk-!-margin-bottom-0 govuk-heading-s"
+                      pdk-margin-bottom="0"
+                      pdk-text-colour="blue"
+                      pdk-typography="heading-small"
+                    >
+                      page 3
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </top-menu>
+</test-top-menu>
+`;
+
+exports[`top-menu renders menu with second link active 1`] = `
+<test-top-menu
+  topMenu={[Function Array]}
+>
+  <top-menu>
+    <div
+      class="global-nav govuk-body-m"
+      pdk-typography="body-medium"
+    >
+      <div
+        class="global-nav-actions"
+      >
+        <a
+          aria-controls="global-nav"
+          aria-expanded="false"
+          class="global-nav-toggle"
+          href="javascript:void(0);"
+        >
+          Menu
+        </a>
+      </div>
+      <nav
+        aria-expanded="false"
+        aria-label="Menu"
+        class="govuk-!-margin-0 govuk-template--rebranded"
+        clear=""
+        id="global-nav"
+        pdk-margin="0"
+        pdk-service-nav=""
+      >
+        <div
+          class="govuk-service-navigation pdk-service-nav-clear"
+        >
+          <div
+            class="govuk-service-navigation__container"
+          >
+            <div
+              class="govuk-service-navigation__wrapper"
+            >
+              <h3
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                Global Navigation
+              </h3>
+              <ul
+                class="govuk-service-navigation__list"
+                pdk-service-nav-list=""
+                role="tablist"
+              >
+                <li
+                  class="pdk-service-nav-list-item govuk-service-navigation__item"
+                  pdk-service-nav-list-item=""
+                  role="presentation"
+                >
+                  <button
+                    class="tab-title"
+                    role="tab"
+                  >
+                    <span
+                      class="pdk-!-text-color-blue govuk-!-margin-bottom-0 govuk-heading-s"
+                      pdk-margin-bottom="0"
+                      pdk-text-colour="blue"
+                      pdk-typography="heading-small"
+                    >
+                      page 1
+                    </span>
+                  </button>
+                </li>
+                <li
+                  class="pdk-service-nav-list-item govuk-service-navigation__item govuk-service-navigation__item--active"
+                  pdk-service-nav-list-item=""
+                  role="presentation"
+                >
+                  <button
+                    class="tab-title"
+                    role="tab"
+                  >
+                    <span
+                      class="pdk-!-text-color-blue govuk-!-margin-bottom-0 govuk-heading-s"
+                      pdk-margin-bottom="0"
+                      pdk-text-colour="blue"
+                      pdk-typography="heading-small"
+                    >
+                      page 2
+                    </span>
+                  </button>
+                </li>
+                <li
+                  class="pdk-service-nav-list-item govuk-service-navigation__item"
+                  pdk-service-nav-list-item=""
+                  role="presentation"
+                >
+                  <button
+                    class="tab-title"
+                    role="tab"
+                  >
+                    <span
+                      class="pdk-!-text-color-blue govuk-!-margin-bottom-0 govuk-heading-s"
+                      pdk-margin-bottom="0"
+                      pdk-text-colour="blue"
+                      pdk-typography="heading-small"
+                    >
+                      page 3
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </top-menu>
+</test-top-menu>
+`;

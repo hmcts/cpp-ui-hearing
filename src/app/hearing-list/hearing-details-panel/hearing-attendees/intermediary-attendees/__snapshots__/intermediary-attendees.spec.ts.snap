@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IntermediaryAttendeesComponent should render the template with the values expected 1`] = `
+<test-host-component
+  intermediariesCounsel={[Function Array]}
+>
+  <intermediary-attendees>
+    <section
+      class="intermediry-counsels"
+    >
+      <dl
+        class="attendee govuk-!-margin-bottom-2"
+        data-test-id="interpreters"
+        pdk-margin-bottom="2"
+      >
+        <dt
+          class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+          pdk-margin-bottom="1"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-xsmall"
+        >
+           HEARING_LIST.INTERPRETER 
+        </dt>
+        <dd>
+          <ul>
+            <li
+              class="name govuk-!-margin-bottom-1 govuk-body-s"
+              data-role="attendee-name"
+              data-test-id="attendee"
+              id="interpreter-name"
+              pdk-margin-bottom="1"
+              pdk-typography="body-small"
+            >
+              <div
+                data-test-id="name"
+              >
+                Icf-1 ICL-1
+              </div>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <dl
+        class="attendee govuk-!-margin-bottom-2"
+        data-test-id="intermediaries"
+        pdk-margin-bottom="2"
+      >
+        <dt
+          class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+          pdk-margin-bottom="1"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-xsmall"
+        >
+           HEARING_LIST.INTERMEDIARIES 
+        </dt>
+        <dd>
+          <ul>
+            <li
+              class="name govuk-!-margin-bottom-1 govuk-body-s"
+              data-role="attendee-name"
+              data-test-id="attendee"
+              id="intermediary-name"
+              pdk-margin-bottom="1"
+              pdk-typography="body-small"
+            >
+              <div
+                data-test-id="name"
+              >
+                Icf-2 ICL-2
+              </div>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    </section>
+  </intermediary-attendees>
+</test-host-component>
+`;

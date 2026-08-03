@@ -1,0 +1,32 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.outstanding-fines-top-level {
+  display: flex;
+  margin-bottom: 40px;
+  flex-direction: column;
+}
+
+.outstanding-fines-data {
+  display: flex;
+}
+
+.outstanding-fines-label {
+  margin-right: 60px;
+  color: govuk.govuk-colour('dark-grey');
+
+  &.courthouse-label {
+    margin-right: 62px;
+  }
+
+  &.hearingdate-label {
+    margin-right: 50px;
+  }
+
+  &.reportcreated-label {
+    margin-right: 33px;
+  }
+
+  &.createdby-label {
+    margin-right: 68px;
+  }
+}

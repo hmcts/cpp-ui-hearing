@@ -1,0 +1,14 @@
+{
+  "targets": [
+    {
+      "defendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "draftResult": "{\"targetId\":\"198cf550-f045-11eb-a895-7d779bee7724\",\"caseId\":\"966b0f51-cf1a-4cfc-8f01-5a00ea8498f9\",\"caseUrn\":\"12GD0104LAA\",\"defendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"masterDefendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"offenceId\":\"edeb266e-2463-4704-8dd4-fe76fd463533\",\"defendantFirstName\":\"Max\",\"defendantLastName\":\"Kshlerin\",\"addMoreResults\":false,\"requestApproval\":false,\"results\":[{\"resultLineId\":\"97ee41f8-b066-4bcb-8cb9-6eb24b0a6fc8\",\"originalText\":\"PRBCS3\",\"resultCode\":\"4558f9b2-47f8-4430-a0f8-684df5d55761\",\"resultLevel\":\"O\",\"isCompleted\":true,\"ignoreResult\":false,\"parts\":[{\"value\":\"Pre-release bail condition: Surety - find sureties\",\"type\":\"RESULT\",\"state\":\"RESOLVED\",\"resultChoices\":[]},{\"code\":\"5139e711-b645-4b1c-af81-84f5887abdf6\",\"label\":\"Number of sureties\",\"value\":\"27\",\"type\":\"INT\",\"state\":\"RESOLVED\",\"promptRef\":\"numberOfSureties\",\"hidden\":false,\"resultChoices\":[]}],\"choices\":[{\"code\":\"5139e711-b645-4b1c-af81-84f5887abdf6\",\"value\":\"27\",\"label\":\"Number of sureties\",\"maxLength\":\"50\",\"minLength\":\"1\",\"type\":\"INT\",\"required\":true,\"promptRef\":\"numberOfSureties\",\"hidden\":false,\"readOnly\":false}],\"isEditing\":false,\"noResultFound\":false,\"dirty\":true,\"orderedDate\":\"2021-07-26\",\"parentResultLineIds\":[],\"childResultLineIds\":[],\"childResultLines\":[],\"hasBeenGrouped\":true,\"conditionalMandatory\":false}],\"lastUpdatedAt\":1627575877515}",
+      "hearingDay": "2021-07-26",
+      "hearingId": "48d0f669-1562-40d5-a371-3bc6a96d3371",
+      "masterDefendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "offenceId": "edeb266e-2463-4704-8dd4-fe76fd463533",
+      "resultLines": [],
+      "targetId": "198cf550-f045-11eb-a895-7d779bee7724"
+    }
+  ]
+}

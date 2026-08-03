@@ -1,0 +1,107 @@
+<div pdk-fill-colour="light-grey" pdk-padding-top="4">
+  <pdk-grid container>
+    @if (!resetCourtFilterForm) {
+    <form
+      #courtFilterForm="ngForm"
+      pdk-form
+      (errors)="courtFilterFormErrors.emit($event)"
+      (validSubmit)="onFormSubmit()"
+      novalidate
+      pdk-margin-top="1"
+      class="session-times-court-filter-form"
+    >
+      <pdk-grid full>
+        <pdk-grid one-third>
+          <pdk-form-field
+            label="{{ 'SESSION_TIMES.COURT_HOUSE' | translate }}"
+            labelType="small"
+            [labelForErrorSummary]="'SESSION_TIMES.COURT_HOUSE_REQUIRED_MESSAGE' | translate"
+            hintText="{{ 'SESSION_TIMES.COURT_HOUSE_HINT' | translate }}"
+            class="bold session-times-courtHouse-field"
+            [errorMessages]="[
+                {
+                  rule: 'required',
+                  message: 'SESSION_TIMES.COURT_HOUSE_REQUIRED_MESSAGE' | translate,
+                },
+              ]"
+          >
+            <cpp-organisation-unit-autosuggest
+              data-role="court-centre-filter"
+              name="organisationUnit"
+              ngModel
+              (ngModelChange)="selectCourtCentre($event)"
+              required
+            >
+            </cpp-organisation-unit-autosuggest>
+          </pdk-form-field>
+        </pdk-grid>
+
+        <pdk-grid one-third>
+          <pdk-form-field
+            label="{{ 'SESSION_TIMES.COURT_ROOM' | translate }}"
+            labelType="small"
+            [labelForErrorSummary]="'SESSION_TIMES.COURT_ROOM_REQUIRED_MESSAGE' | translate"
+            hintText="{{ 'SESSION_TIMES.COURT_ROOM_HINT' | translate }}"
+            [errorMessages]="[
+                {
+                  rule: 'required',
+                  message: 'SESSION_TIMES.COURT_ROOM_REQUIRED_MESSAGE' | translate,
+                },
+              ]"
+          >
+            <pdk-select
+              [id]="'courtRoomId'"
+              [name]="'courtRoomId'"
+              data-role="court-room-filter"
+              [options]="courtRoomsOptions"
+              [(ngModel)]="selectedOptions.courtRoomId"
+              required
+              justified
+            >
+            </pdk-select>
+          </pdk-form-field>
+        </pdk-grid>
+
+        <pdk-grid one-third>
+          <pdk-form-field
+            id="sessionDate"
+            labelType="small"
+            label="{{ 'SESSION_TIMES.SESSION_DATE' | translate }}"
+            [labelForErrorSummary]="dateLabelErrorTransalationKey | translate"
+            [errorMessages]="[
+                {
+                  rule: 'sessionDateInFuture',
+                  message: 'SESSION_TIMES.SESSION_DATE_IN_FUTURE_ERROR' | translate,
+                },
+                {
+                  rule: 'required',
+                  message: 'SESSION_TIMES.SESSION_DATE_REQUIRED_MESSAGE' | translate,
+                },
+              ]"
+          >
+            <pdk-date-input
+              data-role="session-date-filter"
+              name="sessionDateFilter"
+              [id]="'sessionDateFilter'"
+              [ariaDescribedBy]="'date'"
+              [ngModel]="selectedOptions.sessionDate"
+              required
+              sessionDateValidator
+              (sessionDateValidated)="onSessionDateValidator($event)"
+              picker
+            >
+            </pdk-date-input>
+          </pdk-form-field>
+        </pdk-grid>
+      </pdk-grid>
+      <pdk-grid full>
+        <pdk-grid one-third>
+          <button pdk-button data-role="apply-filters-btn" type="submit">
+            {{ 'SESSION_TIMES.APPLY_FILTERS' | translate }}
+          </button>
+        </pdk-grid>
+      </pdk-grid>
+    </form>
+    }
+  </pdk-grid>
+</div>

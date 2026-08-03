@@ -1,15 +1,19 @@
-name: CPP Context Verify & Validation
+name: CPP UI Verify & Validation
 
 # Need to update this for actual migration
-trigger: none
+trigger:
+  branches:
+    include:
+      - main
+      - 'team/*'
+    exclude:
+      - 'dev/release-*'
+  paths:
+    include:
+      - '*'
 
 pr:
   - '*'
-
-parameters:
-  - name: RUN_RELEASE
-    type: boolean
-    default: false
 
 resources:
   repositories:
@@ -20,20 +24,18 @@ resources:
       ref: 'main'
 
 pool:
-  name: "MDV-ADO-AGENT-AKS-01"
-  demands:
-    - identifier -equals centos8-j17
+  name: 'MDV-ADO-AGENTS-01'
 
 variables:
-  sonarqubeProject: "uk.gov.moj.cpp.common:common-bom"
+  sonarqubeProject: 'uk.gov.moj.cpp.ui:ui-hearing'
 
 stages:
   - ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
-      - template: pipelines/platform-verify.yaml@cppAzureDevOpsTemplates
-
-  - ${{ if eq(variables['Build.Reason'], 'Manual') }}:
-      - template: pipelines/library-validation.yaml@cppAzureDevOpsTemplates
+      - template: pipelines/ui-verify.yaml@cppAzureDevOpsTemplates
         parameters:
-          serviceName: 'commonbom'
-          RUN_RELEASE: ${{ parameters.RUN_RELEASE }}
-          JOB_TYPE: 'library'
+          sonarqube_project: ${{ variables['sonarqubeProject'] }}
+
+  - ${{ if eq(variables['Build.Reason'], 'IndividualCI') }}:
+      - template: pipelines/ui-validation.yaml@cppAzureDevOpsTemplates
+        parameters:
+          repo: '$(Build.Repository.Name)'

@@ -1,0 +1,47 @@
+<pdk-grid container>
+  <div class="court-center-selection">
+    <h1 pdk-typography="heading-large" pdk-margin-left="3" pdk-margin-bottom="1" pdk-margin-top="2">
+      Select Court
+    </h1>
+    <pdk-grid three-quarters>
+      <form
+        pdk-form
+        (errors)="this.errors.emit($event)"
+        (validSubmit)="onContinue()"
+        novalidate
+        pdk-margin-top="1"
+        data-test-id="courtCalendarFilters"
+      >
+        <pdk-form-field
+          label="Select court"
+          pdk-margin-top="3"
+          [errorMessages]="[{ rule: 'required', message: 'Provide this information' }]"
+        >
+          <cpp-organisation-unit-autosuggest
+            id="crownCourtCentre"
+            name="courtCentre"
+            [ariaDescribedBy]="'aria-describedby-auto-suggest'"
+            [(ngModel)]="selectedCourtCentre"
+            [jurisdictionCode]="jurisdictionType === 'CROWN' ? 'C' : 'B'"
+            required
+            data-role="allocate-court-centre-input"
+          ></cpp-organisation-unit-autosuggest>
+        </pdk-form-field>
+
+        <button pdk-button data-role="continue-btn" pdk-margin-bottom="1" type="submit">
+          Continue
+        </button>
+        <div pdk-margin-top="2">
+          <a
+            pdk-link
+            [routerLink]="backUrl"
+            [queryParams]="queryParams"
+            data-role="cancel-btn"
+            (click)="cancel.emit()"
+            >Back</a
+          >
+        </div>
+      </form>
+    </pdk-grid>
+  </div>
+</pdk-grid>

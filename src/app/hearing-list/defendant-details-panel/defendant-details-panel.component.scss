@@ -1,0 +1,43 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.defendant-details {
+  padding-right: 15px;
+
+  & .defendant-particulars {
+    margin-top: 5px;
+    border-top: 3px solid govuk.govuk-colour('black');
+  }
+
+  & .case-markers {
+    padding-bottom: 10px;
+  }
+
+  .app-btn-wrap {
+    display: block;
+    float: right;
+  }
+
+  .wide-button {
+    width: 245px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .wide-button:hover {
+    background-color: rgba(0, 0, 0, 0.22);
+  }
+}
+
+.youth-marker {
+  color: darkgreen;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.defendant-name {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.application-overview-list {
+  border-top: 1px solid govuk.govuk-colour('dark-grey');
+}

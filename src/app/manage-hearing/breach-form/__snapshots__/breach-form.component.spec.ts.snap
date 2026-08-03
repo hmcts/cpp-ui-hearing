@@ -1,0 +1,317 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreachFormComponent breach form should show altert dialog when submit button is clicked for an empty form 1`] = `
+<select-order-alert>
+  <div
+    bsmodal=""
+    class="modal fade in"
+    role="alertdialog"
+  >
+    <div
+      class="modal-dialog"
+    >
+      <div
+        class="modal-content"
+      >
+        <div
+          class="govuk-!-padding-4"
+          pdk-padding="4"
+        >
+          <pdk-warning-text
+            class="govuk-body-m"
+            icon="true"
+            pdk-typography="body-medium"
+            type="warning"
+          >
+            <div
+              class="govuk-warning-text"
+            >
+              <span
+                aria-hidden="true"
+                class="govuk-warning-text__icon"
+              >
+                !
+              </span>
+              <strong
+                class="govuk-warning-text__text"
+              >
+                <span
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                >
+                  Warning
+                </span>
+                 ENTER_BREACHES.ALERT.TITLE 
+              </strong>
+            </div>
+          </pdk-warning-text>
+          <p
+            class="govuk-!-margin-top-4 govuk-body-m"
+            pdk-margin-top="4"
+            pdk-typography="body-medium"
+          >
+             ENTER_BREACHES.ALERT.DESCRIPTION 
+          </p>
+          <button
+            class="govuk-!-margin-bottom-0 govuk-button"
+            pdk-button=""
+            pdk-margin-bottom="0"
+            type="submit"
+          >
+             COMMON.CONTINUE 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</select-order-alert>
+`;
+
+exports[`BreachFormComponent breach form should show when checkbox is selected 1`] = `
+<pdk-inset-text
+  class="govuk-!-padding-top-0 govuk-!-padding-bottom-0"
+  pdk-padding-bottom="0"
+  pdk-padding-top="0"
+>
+  <div
+    class="govuk-inset-text"
+  >
+    <div
+      class="pdk-!-text-color-dark-grey"
+      pdk-text-colour="dark-grey"
+    >
+       ENTER_BREACHES.COURT: 
+      <span>
+        court name 1
+      </span>
+    </div>
+    <div
+      class="pdk-!-text-color-dark-grey"
+      pdk-text-colour="dark-grey"
+    >
+       ENTER_BREACHES.DATE: 
+      <span>
+        1 January 2021
+      </span>
+    </div>
+    <div
+      class="pdk-!-text-color-dark-grey"
+      pdk-text-colour="dark-grey"
+    >
+       ENTER_BREACHES.CASE_REFERENCE: 
+      <span>
+        prosecutionAuthorityReference 1.1 and caseURN 1.2
+      </span>
+    </div>
+    <pdk-form-field
+      class="govuk-!-margin-top-3"
+      labeltype="small"
+      pdk-margin-top="3"
+    >
+      
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        
+        <label
+          class="govuk-label govuk-label--s"
+          for="pdk-form-control-undefined-GENERATED_ID"
+        >
+           ENTER_BREACHES.SELECT_BREACH_TYPE 
+        </label>
+        
+        
+        
+        <pdk-autosuggest-lite
+          class="ng-untouched ng-pristine ng-valid"
+          data-test-id="breachType-0"
+          name="breachType"
+          required=""
+          suggestionkey="id"
+          suggestionsubtitle="legislation"
+          suggestiontitle="type"
+        >
+          <pdk-autosuggest
+            highlightcolor="blue"
+          >
+            <pdk-interaction-container>
+              <div>
+                <div
+                  class="pdk-autosuggest"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                    aria-expanded="false"
+                    autocomplete="off"
+                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                    id="pdk-form-control-undefined-GENERATED_ID"
+                    role="combobox"
+                    type="text"
+                  />
+                  <span
+                    class="govuk-visually-hidden"
+                    id="pdk-autosuggest__instructions-GENERATED_ID"
+                    pdk-visually-hidden=""
+                  >
+                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                  </span>
+                  <span
+                    aria-live="polite"
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                    role="status"
+                  >
+                      
+                  </span>
+                  <div
+                    class="pdk-autosuggest__suggestions-container"
+                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                  >
+                    
+                  </div>
+                </div>
+              </div>
+            </pdk-interaction-container>
+          </pdk-autosuggest>
+          
+        </pdk-autosuggest-lite>
+        
+        
+        
+      </pdk-form-group>
+    </pdk-form-field>
+  </div>
+</pdk-inset-text>
+`;
+
+exports[`BreachFormComponent should render the template with the active orders form open 1`] = `
+<ng-component
+  breachTypes={[Function Array]}
+  courtOrders={[Function Array]}
+>
+  <breach-form>
+    <pdk-warning-text
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1"
+      pdk-margin-bottom="1"
+      pdk-margin-top="1"
+    >
+      <div
+        class="govuk-warning-text"
+      >
+        <span
+          aria-hidden="true"
+          class="govuk-warning-text__icon"
+        >
+          !
+        </span>
+        <strong
+          class="govuk-warning-text__text"
+        >
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            Warning
+          </span>
+           ENTER_BREACHES.ACTIVE_ORDERS
+        </strong>
+      </div>
+    </pdk-warning-text>
+    <pdk-checkbox
+      class="govuk-!-margin-top-5 govuk-!-margin-bottom-7 govuk-checkboxes ng-untouched ng-valid ng-dirty"
+      data-role="tick-input"
+      data-test-id="showActiveOrders"
+      pdk-margin-bottom="7"
+      pdk-margin-top="5"
+    >
+      <div
+        class="govuk-checkboxes__item"
+      >
+        <input
+          class="govuk-checkboxes__input"
+          id="pdk-checkbox-GENERATED_ID"
+          type="checkbox"
+          value="true"
+        />
+        <label
+          class="govuk-label govuk-checkboxes__label"
+          for="pdk-checkbox-GENERATED_ID"
+        >
+           ENTER_BREACHES.SHOW_ACTIVE
+        </label>
+      </div>
+    </pdk-checkbox>
+    <h4
+      class="govuk-heading-s"
+      pdk-typography="heading-small"
+    >
+      ENTER_BREACHES.SELECT_ACTIVE_ORDERS
+    </h4>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      data-test-id="OrderBreachForm"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-checkbox
+        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+        data-role="tick-input"
+        name="breachSelected"
+      >
+        <div
+          class="govuk-checkboxes__item"
+        >
+          <input
+            class="govuk-checkboxes__input"
+            id="pdk-checkbox-GENERATED_ID"
+            name="breachSelected"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="govuk-label govuk-checkboxes__label"
+            for="pdk-checkbox-GENERATED_ID"
+          >
+             label 1 
+          </label>
+        </div>
+      </pdk-checkbox>
+      <pdk-checkbox
+        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+        data-role="tick-input"
+        name="breachSelected"
+      >
+        <div
+          class="govuk-checkboxes__item"
+        >
+          <input
+            class="govuk-checkboxes__input"
+            id="pdk-checkbox-GENERATED_ID"
+            name="breachSelected"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="govuk-label govuk-checkboxes__label"
+            for="pdk-checkbox-GENERATED_ID"
+          >
+             label 2 
+          </label>
+        </div>
+      </pdk-checkbox>
+      <button
+        class="govuk-!-margin-top-3 govuk-button"
+        data-test-id="submitBreaches"
+        pdk-button=""
+        pdk-margin-top="3"
+        type="submit"
+      >
+         ENTER_BREACHES.SAVE_AND_CONTINUE 
+      </button>
+    </form>
+  </breach-form>
+</ng-component>
+`;

@@ -1,0 +1,121 @@
+@if ( showSummaryMOTPleaForm( offence.modeOfTrial, offence.allocationDecision, hearingType,
+defendant?.isYouth ) ) {
+<pdk-grid container>
+  <pdk-grid two-thirds>
+    <plea-options
+      label="{{ 'ENTER_PLEAS.PLEA' | translate }}"
+      type="chargeType"
+      [hasCivilCase]="hasCivilCase"
+      [offence]="offence"
+      [defendant]="defendant"
+      [standardPleaOptions]="standardPleaOptions"
+      [isGuiltyToLesserOffence]="isGuiltyToLesserOffenceNamely(offence.plea?.pleaValue)"
+      [selectedOffenceCode]="offence.plea?.lesserOrAlternativeOffence?.offenceCode"
+      (pleaSelected)="update(offence, $event)"
+      (onUpdateLesserOrAlternativeOffence)="updateLesserOrAlternativeOffence($event, offence)"
+      [defaultPleaValue]="offence.plea.pleaValue"
+      (clearPlea)="clearPlea(offence, false)"
+      [hearingType]="hearingType"
+      [magsPleaOnlyOptions]="magsPleaOnlyOptions"
+      [crownPleaOnlyOptions]="crownPleaOnlyOptions"
+      [additionalOptions]="additionalOptions"
+      [civilCasePleaOptions]="civilCasePleaOptions"
+    >
+    </plea-options>
+  </pdk-grid>
+</pdk-grid>
+} @if ( showEitherWayMOTPleaForm( offence.modeOfTrial, offence.allocationDecision, hearingType,
+defendant?.isYouth ) ) {
+<div pdk-margin-top="4" class="plea-allocation">
+  @if (showIndicatedPlea(offence.modeOfTrial, defendant?.isYouth)) {
+  <plea-options
+    label="{{ 'ENTER_PLEAS.INDICATED_PLEA' | translate }}"
+    type="indicatedPleaType"
+    [hasCivilCase]="hasCivilCase"
+    [offence]="offence"
+    [defendant]="defendant"
+    [standardPleaOptions]="indicatedPleaOptions"
+    (pleaSelected)="setIndicatedPlea(offence, $event)"
+    [defaultPleaValue]="offence.indicatedPlea?.indicatedPleaValue"
+    (clearPlea)="clearPlea(offence, true)"
+    [hearingType]="hearingType"
+    [civilCasePleaOptions]="civilCasePleaOptions"
+  >
+  </plea-options>
+  }
+  <div pdk-margin-top="4" pdk-margin-bottom="4">
+    <pdk-form-field label="{{ 'ENTER_PLEAS.ALLOCATION_DECISION' | translate }}" labelType="small">
+      <pdk-select
+        class="allocation-decision"
+        data-role="allocation-decision"
+        [name]="'allocationDecision-' + offence.id"
+        [options]="motReasonOptions"
+        [placeholder]="'ENTER_PLEAS.ALLOCATION_DECISION_PLACEHOLDER' | translate"
+        [ngModel]="offence.allocationDecision.motReasonId"
+        (ngModelChange)="updateAllocationDecision(offence, $event)"
+        [disabled]="disableAllocationDecision(offence)"
+      >
+      </pdk-select>
+    </pdk-form-field>
+  </div>
+
+  <pdk-grid container>
+    <pdk-grid two-thirds>
+      <plea-options
+        label="{{ 'ENTER_PLEAS.PLEA' | translate }}"
+        [offence]="offence"
+        [defendant]="defendant"
+        [hasCivilCase]="hasCivilCase"
+        [standardPleaOptions]="standardPleaOptions"
+        (pleaSelected)="update(offence, $event)"
+        [defaultPleaValue]="offence.plea.pleaValue"
+        [disabled]="disableEitherWayPlea(offence)"
+        (clearPlea)="clearPlea(offence, false)"
+        [hearingType]="hearingType"
+        [civilCasePleaOptions]="civilCasePleaOptions"
+      >
+      </plea-options>
+    </pdk-grid>
+  </pdk-grid>
+  @if (showSentencingIndication(offence.modeOfTrial)) {
+  <div
+    class="plea-allocation"
+    pdk-margin-top="4"
+    pdk-margin-bottom="4"
+    [attr.data-role]="'plea-offence-' + offence.id"
+  >
+    <pdk-form-field label="{{ 'ENTER_PLEAS.SENTENCING_DECISION' | translate }}" labelType="small">
+      <pdk-select
+        data-role="sentencing-decision"
+        [name]="'sentencingDecision-' + offence.id"
+        [options]="sentencingDecisionOptions"
+        [placeholder]="'ENTER_PLEAS.SENTENCING_DECISION_PLACEHOLDER' | translate"
+        [ngModel]="offence.allocationDecision?.courtIndicatedSentence?.courtIndicatedSentenceTypeId"
+        (ngModelChange)="setSentencingDecision(offence, $event)"
+        [disabled]="disableSentencingDecision(offence)"
+      >
+      </pdk-select>
+    </pdk-form-field>
+  </div>
+  } @if (showApplyAll(offence)) {
+  <div class="apply-all">
+    <a
+      pdk-link
+      data-role="apply-all"
+      href="javascript:void(0)"
+      (click)="applyDecision.emit({ defendant: defendant, offence: offence })"
+      >{{ 'ENTER_PLEAS.APPLY_TO_OTHER_OFFENCES' | translate }}
+      {{ defendant | fullName : true }}
+    </a>
+  </div>
+  }
+</div>
+} @if (getDelegatedPowersForDefendant(offence)) {
+<div full class="edited-powers">
+  {{ 'ENTER_PLEAS.EDITED_POWERS' | translate }}
+</div>
+} @if (offence.plea?.pleaDate) {
+<div pdk-text-colour="dark-grey" class="plea-date">
+  Plea entered on {{ offence.plea.pleaDate | date : 'dd MMMM yyyy' }}
+</div>
+}

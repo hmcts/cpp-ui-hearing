@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingEventsLogContainer Boxwork hearing should have the expected template 1`] = `
+<hearing-events-log
+  CHANGE_HEARING_TYPE={[Function String]}
+  HEARING_RESUMED={[Function String]}
+  HEARING_STARTED={[Function String]}
+  activatedRoute={[Function Object]}
+  destroy$={[Function Subject]}
+  eventDefinitions={[Function Array]}
+  eventsLogState$={[Function Observable]}
+  hearingDefenceCounsels$={[Function Observable]}
+  hearingEventLogCount$={[Function Observable]}
+  hearingEventsLogService={[Function HearingEventsLogService]}
+  hearingId={[Function String]}
+  hearingPersonDetails$={[Function Observable]}
+  hearingTypes$={[Function Observable]}
+  isBoxwork$={[Function Observable]}
+  isHearingEventLogEnded$={[Function Observable]}
+  isHearingEventLogPaused$={[Function Observable]}
+  loggedEvents={[Function Array]}
+  selectedHearingDate={[Function String]}
+  showStartEventLogConfirmation="false"
+  store={[Function Object]}
+  witnessNames$={[Function Observable]}
+  zone={[Function NgZone]}
+>
+  <total-jury-deliberation>
+  </total-jury-deliberation><div
+    class="hearing-events-log-container"
+  >
+    <suggested-events>
+      <div
+        class="suggested-events-row"
+      >
+        <span
+          class="govuk-!-margin-bottom-1"
+          pdk-margin-bottom="1"
+        >
+          <button
+            class="link-button bold pdk-!-text-color-blue govuk-link govuk-body-m"
+            data-role="suggested-event-start"
+            pdk-link=""
+            pdk-typography="body-medium"
+          >
+             HEARING_EVENTS_LOG.START_HEARING 
+          </button>
+        </span>
+        <div
+          class="event-log-heading-row govuk-!-margin-top-2"
+          pdk-margin-top="2"
+        >
+          <h3
+            class="bold govuk-!-margin-bottom-2 govuk-body-s"
+            data-role="event-log-heading-text"
+            pdk-margin-bottom="2"
+            pdk-typography="body-small"
+          >
+             HEARING_EVENTS_LOG.HEADING_TITLE 
+          </h3>
+        </div>
+      </div>
+      <div>
+      </div>
+    </suggested-events>
+  </div>
+</hearing-events-log>
+`;
+
+exports[`HearingEventsLogContainer should have the expected template 1`] = `
+<hearing-events-log
+  CHANGE_HEARING_TYPE={[Function String]}
+  HEARING_RESUMED={[Function String]}
+  HEARING_STARTED={[Function String]}
+  activatedRoute={[Function Object]}
+  destroy$={[Function Subject]}
+  eventDefinitions={[Function Array]}
+  eventsLogState$={[Function Observable]}
+  hearingDefenceCounsels$={[Function Observable]}
+  hearingEventLogCount$={[Function Observable]}
+  hearingEventsLogService={[Function HearingEventsLogService]}
+  hearingId={[Function String]}
+  hearingPersonDetails$={[Function Observable]}
+  hearingTypes$={[Function Observable]}
+  isBoxwork$={[Function Observable]}
+  isHearingEventLogEnded$={[Function Observable]}
+  isHearingEventLogPaused$={[Function Observable]}
+  loggedEvents={[Function Array]}
+  selectedHearingDate={[Function String]}
+  showStartEventLogConfirmation="false"
+  store={[Function Object]}
+  witnessNames$={[Function Observable]}
+  zone={[Function NgZone]}
+>
+  <total-jury-deliberation>
+  </total-jury-deliberation><div
+    class="hearing-events-log-container"
+  >
+    <suggested-events>
+      <div
+        class="suggested-events-row"
+      >
+        <span
+          class="govuk-!-margin-bottom-1"
+          pdk-margin-bottom="1"
+        >
+          <button
+            class="link-button bold pdk-!-text-color-blue govuk-link govuk-body-m"
+            data-role="suggested-event-start"
+            pdk-link=""
+            pdk-typography="body-medium"
+          >
+             HEARING_EVENTS_LOG.START_HEARING 
+          </button>
+        </span>
+        <div
+          class="event-log-heading-row govuk-!-margin-top-2"
+          pdk-margin-top="2"
+        >
+          <h3
+            class="bold govuk-!-margin-bottom-2 govuk-body-s"
+            data-role="event-log-heading-text"
+            pdk-margin-bottom="2"
+            pdk-typography="body-small"
+          >
+             HEARING_EVENTS_LOG.HEADING_TITLE 
+          </h3>
+        </div>
+      </div>
+      <div>
+      </div>
+    </suggested-events>
+  </div>
+</hearing-events-log>
+`;

@@ -1,0 +1,141 @@
+.offence-index {
+  font-weight: 700 !important;
+  float: left !important;
+  width: auto !important;
+  margin-right: 10px !important;
+}
+
+.offence-count-section {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.case {
+  margin: 0;
+  display: inline-block;
+}
+
+.jurors-numbers {
+  font-weight: 700;
+}
+
+.action-bar-column {
+  & ::ng-deep {
+    text-align: right;
+  }
+}
+
+h1.defendant-name {
+  padding: 0;
+}
+
+.defendant-name {
+  font-weight: 700 !important;
+  margin: 0;
+}
+
+.hearing-results-list {
+  & .nationality {
+    margin: 15px 0;
+  }
+
+  & .presence-badger {
+    font-size: 1rem;
+    line-height: 1.25;
+    padding: 0.1875em 0.375em;
+    margin: 15px 0 0 0;
+    display: inline-block;
+  }
+
+  .youth-selector {
+    border: 1px solid #1d70b8;
+    padding: 0 0 0 15px;
+    float: right;
+  }
+
+  .defendant-divider {
+    ::ng-deep .divider-border-thick {
+      margin-top: 30px;
+      margin-bottom: 8px;
+    }
+  }
+
+  ::ng-deep {
+    .pdk-action-details__action {
+      margin-left: 0.5em;
+    }
+  }
+
+  .offence {
+    margin-top: 20px;
+
+    &-index {
+      float: left;
+      width: 30px;
+      font-weight: 700;
+    }
+  }
+}
+
+.date-message {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+[data-role='offence-custody-time-limit'] {
+  padding-top: 20px;
+}
+
+[data-role='defendantAddress'],
+[data-role='custodyEstablishment'],
+[data-role='dateOfBirth'],
+[data-role='age'],
+[data-role='nationality'],
+[data-role='guardianTitle'],
+[data-role='guardianAddress'] {
+  display: flex;
+}
+
+.defendant-details-label {
+  flex-basis: 35%;
+}
+
+.defendant-address,
+.custody-establishment,
+.date-of-birth,
+.defendant-age,
+.defendant-nationality,
+.guardian-name,
+.guardian-address {
+  flex-basis: 65%;
+}
+
+.defendant-age {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 25%;
+}
+
+.defendant-details {
+  margin-bottom: 20px;
+}
+
+.youth-marker {
+  color: darkgreen;
+  font-weight: 700;
+}
+
+.hearing-results-header {
+  display: flex;
+
+  button {
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
+}
+
+.buttons-row {
+  text-align: right;
+}

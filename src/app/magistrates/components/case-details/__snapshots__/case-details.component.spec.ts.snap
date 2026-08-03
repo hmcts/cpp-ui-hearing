@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CaseDetailsComponent should render the component correctly 1`] = `
+<test-host-component
+  dateOfBirth={[Function String]}
+  firstname={[Function String]}
+  lastname={[Function String]}
+  offences={[Function Array]}
+>
+  <case-details>
+    <div>
+      <span
+        class="bold"
+        data-test-id="partyName"
+      >
+        <span
+          data-role="firstname"
+        >
+          testFirstName 
+        </span>
+        <span
+          data-role="lastname"
+        >
+          testLastName 
+        </span>
+      </span>
+      <span>
+        <span
+          data-role="date-of-birth"
+        >
+          (6 Dec 1991,
+        </span>
+        <span>
+          32)
+        </span>
+      </span>
+    </div>
+    <div
+      data-test-id="offence"
+    >
+      <offence-details>
+        <div>
+          <div
+            class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+            data-role="offence-title"
+            data-test-id="offenceTitle"
+            pdk-margin-bottom="4"
+            pdk-margin-top="4"
+            pdk-text-colour="dark-grey"
+          >
+             test offence title 
+          </div>
+        </div>
+      </offence-details>
+    </div>
+    <div
+      data-test-id="offence"
+    >
+      <offence-details>
+        <div>
+          <div
+            class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+            data-role="offence-title"
+            data-test-id="offenceTitle"
+            pdk-margin-bottom="4"
+            pdk-margin-top="4"
+            pdk-text-colour="dark-grey"
+          >
+             test offence title 2 
+          </div>
+        </div>
+      </offence-details>
+    </div>
+  </case-details>
+</test-host-component>
+`;

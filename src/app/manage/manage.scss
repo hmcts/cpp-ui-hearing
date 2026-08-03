@@ -1,0 +1,59 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.manage-hearing {
+  .related-panel {
+    width: 30%;
+  }
+  .related-bar {
+    height: 10px;
+    background-color: govuk.govuk-colour('blue');
+  }
+  .date {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    text-align: right;
+  }
+  ::ng-deep .form-group {
+    margin-bottom: 0px;
+  }
+  .date-dropdown {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    text-align: left;
+    padding-left: 21px;
+  }
+
+  ::ng-deep {
+    .pdk-page-header {
+      width: 100% !important;
+    }
+
+    .pdk-page-header-reference {
+      padding-left: 12px !important;
+    }
+
+    .pdk-alert__message {
+      width: 100% !important;
+    }
+  }
+}
+
+.alert-message {
+  display: flex;
+}
+
+.text-right {
+  margin-left: auto;
+}
+
+::ng-deep {
+  .full-width {
+    .govuk-grid-column-three-quarters {
+      width: 100% !important;
+    }
+  }
+
+  .width-75 {
+    width: 75%;
+  }
+}

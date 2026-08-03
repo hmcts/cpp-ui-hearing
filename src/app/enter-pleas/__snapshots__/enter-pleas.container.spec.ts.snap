@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnterPleasContainer should have the expected template 1`] = `
+<enter-pleas
+  activatedRoute={[Function Object]}
+  alcoholMethodsOptions$={[Function _Store]}
+  allHearingOffences$={[Function _Store]}
+  civilCasePleaOptions$={[Function _Store]}
+  crownExtraPleaOptions$={[Function _Store]}
+  delegatedPowers="false"
+  destroy$={[Function Subject]}
+  eitherWayPleaOptions$={[Function _Store]}
+  enterPleasStep={[Function String]}
+  guiltyPleasValues={[Function Array]}
+  hasCivilCase$={[Function _Store]}
+  hearingDefendants={[Function Array]}
+  hearingId={[Function String]}
+  hearingType$={[Function _Store]}
+  indicatedPleaOptions$={[Function _Store]}
+  isFormSubmitted="false"
+  magsExtraPleaOptions$={[Function _Store]}
+  motReasonOptions$={[Function _Store]}
+  originalOffencesMap={[Function Object]}
+  pleas$={[Function _Store]}
+  router={[Function Object]}
+  selectedHearingDate$={[Function _Store]}
+  sentencingDecisionOptions$={[Function _Store]}
+  standardPleaOptions$={[Function _Store]}
+  store={[Function _MockStore]}
+  window={[Function Object]}
+>
+  <header>
+    <h1
+      class="govuk-!-margin-top-3 govuk-heading-xl"
+      pdk-margin-top="3"
+      pdk-typography="heading-xlarge"
+    >
+      Enter pleas
+    </h1>
+    <delegated-powers>
+      <div
+        class="delegated-powers"
+      >
+        <form
+          class="ng-untouched ng-pristine ng-valid"
+          novalidate=""
+          pdk-form=""
+        >
+          <pdk-form-field
+            id="delegatedPowers"
+            labeltype="small"
+          >
+            <pdk-form-group
+              class="pdk-form-group"
+            >
+              <label
+                class="govuk-label govuk-label--s"
+                for="pdk-select-GENERATED_ID"
+              >
+                 COMMON.DELEGATED_POWERS 
+              </label>
+              <pdk-select
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <select
+                  class="govuk-select"
+                  id="pdk-select-GENERATED_ID"
+                  name="delegatedPowers"
+                >
+                  <option
+                    value="POWERS_OFF"
+                  >
+                     COMMON.DELEGATED_POWERS_OFF 
+                  </option>
+                  <option
+                    value="POWERS_ON"
+                  >
+                     COMMON.DELEGATED_POWERS_ON 
+                  </option>
+                </select>
+              </pdk-select>
+            </pdk-form-group>
+          </pdk-form-field>
+        </form>
+      </div>
+    </delegated-powers>
+  </header><plea-form>
+    <div>
+      Plea Form Mock
+    </div>
+  </plea-form>
+</enter-pleas>
+`;

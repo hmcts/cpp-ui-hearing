@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingCaseLinksComponent should match the snapshot 1`] = `
+<hearing-case-links
+  canAddChildApplication="false"
+  courtApplications={[Function Array]}
+  hearingCaseLinkType={[Function Object]}
+  isStandAloneApplication="false"
+  onGoToCaseLink={[Function EventEmitter_]}
+  onGoToCreateTask={[Function EventEmitter_]}
+  prosecutionCases={[Function Array]}
+>
+  <div
+    class="hearing-case-links"
+  >
+    <div
+      data-test-id="URN1"
+    >
+      <span
+        class="govuk-visually-hidden"
+        pdk-visually-hidden=""
+      >
+        Case reference: 
+      </span>
+      <h4
+        class="govuk-!-margin-bottom-1 govuk-heading-s"
+        data-test-id="reference"
+        pdk-margin-bottom="1"
+        pdk-typography="heading-small"
+      >
+         URN1 
+      </h4>
+      <pdk-inset-text
+        class="govuk-!-margin-top-3"
+        pdk-margin-top="3"
+      >
+        <div
+          class="govuk-inset-text"
+        >
+          <div
+            class="case-links"
+          >
+            <a
+              class="govuk-link"
+              href="javascript:void(0);"
+              pdk-link=""
+            >
+               COMMON.CASE_AT_A_GLANCE 
+            </a>
+            <a
+              class="govuk-!-margin-top-2 govuk-link"
+              href="javascript:void(0);"
+              pdk-link=""
+              pdk-margin-top="2"
+            >
+               COMMON.CASE_MATERIAL 
+            </a>
+            <a
+              class="govuk-!-margin-top-2 govuk-link"
+              href="javascript:void(0);"
+              pdk-link=""
+              pdk-margin-top="2"
+            >
+               HEARING_LIST.GO_TO_ADD_APPLICATION 
+            </a>
+            <a
+              class="govuk-!-margin-top-2 govuk-link"
+              href="javascript:void(0);"
+              pdk-link=""
+              pdk-margin-top="2"
+            >
+               HEARING_LIST.GO_TO_CREATE_TASK 
+            </a>
+          </div>
+        </div>
+      </pdk-inset-text>
+    </div>
+  </div>
+</hearing-case-links>
+`;

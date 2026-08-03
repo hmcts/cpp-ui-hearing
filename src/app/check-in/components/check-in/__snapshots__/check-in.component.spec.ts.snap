@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckInComponent should match the snapshot 1`] = `
+<check-in
+  hearingSummariesGroupedByCaseId={[Function Array]}
+  onAddCheckinErrors={[Function EventEmitter_]}
+  onCheckInHearing={[Function EventEmitter_]}
+  onCheckInProsecution={[Function EventEmitter_]}
+  onSelectCourtCentre={[Function EventEmitter_]}
+  userGroups={[Function Array]}
+>
+  <find-court>
+    <h1
+      class="govuk-heading-l"
+      pdk-typography="heading-large"
+    >
+      CHECK_IN.TITLE
+    </h1>
+    <span
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       15 January 2024
+    </span>
+    <pdk-inset-text
+      class="indent bold-small"
+      size="wide"
+    >
+      <div
+        class="govuk-inset-text"
+      >
+        CHECK_IN.NOTICE
+      </div>
+    </pdk-inset-text>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-form-field>
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="pdk-form-control-undefined-GENERATED_ID"
+          >
+             CHECK_IN.COURT 
+          </label>
+          <cpp-organisation-unit-autosuggest
+            class="ng-untouched ng-pristine ng-valid"
+            data-role="court-centre-filter"
+            name="courtCentre"
+            ngmodel=""
+            required=""
+          >
+            <pdk-autosuggest-lite>
+              <pdk-autosuggest
+                highlightcolor="blue"
+              >
+                <pdk-interaction-container>
+                  <div>
+                    <div
+                      class="pdk-autosuggest"
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID aria-describedby-organisation-autosuggest"
+                        aria-expanded="false"
+                        autocomplete="off"
+                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                        id="pdk-form-control-undefined-GENERATED_ID"
+                        role="combobox"
+                        type="text"
+                      />
+                      <span
+                        class="govuk-visually-hidden"
+                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                        pdk-visually-hidden=""
+                      >
+                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                      </span>
+                      <span
+                        aria-live="polite"
+                        class="govuk-visually-hidden"
+                        pdk-visually-hidden=""
+                        role="status"
+                      >
+                      </span>
+                      <div
+                        class="pdk-autosuggest__suggestions-container"
+                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                      >
+                      </div>
+                    </div>
+                  </div>
+                </pdk-interaction-container>
+              </pdk-autosuggest>
+            </pdk-autosuggest-lite>
+          </cpp-organisation-unit-autosuggest>
+        </pdk-form-group>
+      </pdk-form-field>
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <button
+          class="govuk-button"
+          data-role="show-hearings-btn"
+          pdk-button=""
+          type="submit"
+        >
+           CHECK_IN.SHOW_HEARING 
+        </button>
+      </pdk-form-group>
+    </form>
+    <div>
+      <a
+        class="govuk-link"
+        href=""
+        pdk-link=""
+      >
+         CHECK_IN.CANCEL 
+      </a>
+    </div>
+  </find-court>
+</check-in>
+`;

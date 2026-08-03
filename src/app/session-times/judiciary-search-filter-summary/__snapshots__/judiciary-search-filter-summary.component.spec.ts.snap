@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudiciarySearchFilterSummaryComponent should render the template with the values expected 1`] = `
+<test-host-component
+  selectedCourtCentre={[Function String]}
+  selectedCourtRoom={[Function String]}
+  sessionDate={[Function String]}
+>
+  <judiciary-search-filter-summary>
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <div
+        class="pdk-!-fill-color-light-grey govuk-!-padding-4 govuk-!-margin-top-3"
+        pdk-fill-colour="light-grey"
+        pdk-margin-top="3"
+        pdk-padding="4"
+      >
+         20 October 2020 
+      </div>
+      <pdk-divider
+        class="govuk-!-margin-0"
+        pdk-margin="0"
+      >
+        <hr
+          class="pdk-divider"
+        />
+      </pdk-divider>
+      <div
+        class="govuk-!-padding-left-4 pdk-focusable"
+        pdk-border=""
+        pdk-focusable=""
+        pdk-padding-left="4"
+        role="status"
+        tabindex="0"
+      >
+        <h3>
+          Lavender Hill - Courtroom 1
+        </h3>
+      </div>
+      <pdk-divider
+        class="govuk-!-margin-0"
+        pdk-margin="0"
+      >
+        <hr
+          class="pdk-divider"
+        />
+      </pdk-divider>
+    </pdk-grid>
+  </judiciary-search-filter-summary>
+</test-host-component>
+`;

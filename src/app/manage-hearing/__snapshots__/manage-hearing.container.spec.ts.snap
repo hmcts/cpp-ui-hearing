@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageHearingContainer when results have been entered with court applications should render the template with the values expected 1`] = `
+<ng-component>
+  <manage-hearing>
+    <h1
+      class="govuk-visually-hidden"
+      pdk-visually-hidden=""
+    >
+      Manage Hearing
+    </h1>
+    <div
+      hidden=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <div
+            class="extend-magistrate-access govuk-!-margin-top-4"
+            pdk-margin-top="4"
+          >
+            <extend-magistrates-access>
+              <div>
+                Mock Extend Magistrates Access
+              </div>
+            </extend-magistrates-access>
+          </div>
+        </pdk-grid>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <case-access-alert>
+          <div>
+            Mock Case Access Alert
+          </div>
+        </case-access-alert>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <cpp-share-result-container>
+            <div>
+              Mock Share Result Container
+            </div>
+          </cpp-share-result-container>
+        </pdk-grid>
+      </pdk-grid>
+    </div>
+  </manage-hearing>
+</ng-component>
+`;
+
+exports[`ManageHearingContainer when results have been entered with court applications with group cases should render the template with the values expected 1`] = `
+<ng-component>
+  <manage-hearing>
+    <h1
+      class="govuk-visually-hidden"
+      pdk-visually-hidden=""
+    >
+      Manage Hearing
+    </h1>
+    <div
+      hidden=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <div
+            class="extend-magistrate-access govuk-!-margin-top-4"
+            pdk-margin-top="4"
+          >
+            <extend-magistrates-access>
+              <div>
+                Mock Extend Magistrates Access
+              </div>
+            </extend-magistrates-access>
+          </div>
+        </pdk-grid>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <case-access-alert>
+          <div>
+            Mock Case Access Alert
+          </div>
+        </case-access-alert>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <cpp-share-result-container>
+            <div>
+              Mock Share Result Container
+            </div>
+          </cpp-share-result-container>
+        </pdk-grid>
+      </pdk-grid>
+    </div>
+  </manage-hearing>
+</ng-component>
+`;
+
+exports[`ManageHearingContainer when results have been entered with no court applications should render the template with the values expected 1`] = `
+<ng-component>
+  <manage-hearing>
+    <h1
+      class="govuk-visually-hidden"
+      pdk-visually-hidden=""
+    >
+      Manage Hearing
+    </h1>
+    <div
+      hidden=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <div
+            class="extend-magistrate-access govuk-!-margin-top-4"
+            pdk-margin-top="4"
+          >
+            <extend-magistrates-access>
+              <div>
+                Mock Extend Magistrates Access
+              </div>
+            </extend-magistrates-access>
+          </div>
+        </pdk-grid>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <case-access-alert>
+          <div>
+            Mock Case Access Alert
+          </div>
+        </case-access-alert>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <cpp-share-result-container>
+            <div>
+              Mock Share Result Container
+            </div>
+          </cpp-share-result-container>
+        </pdk-grid>
+      </pdk-grid>
+    </div>
+  </manage-hearing>
+</ng-component>
+`;
+
+exports[`ManageHearingContainer when sharing results should render the template with the values expected 1`] = `
+<ng-component>
+  <manage-hearing>
+    <h1
+      class="govuk-visually-hidden"
+      pdk-visually-hidden=""
+    >
+      Manage Hearing
+    </h1>
+    <div
+      hidden=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <div
+            class="extend-magistrate-access govuk-!-margin-top-4"
+            pdk-margin-top="4"
+          >
+            <extend-magistrates-access>
+              <div>
+                Mock Extend Magistrates Access
+              </div>
+            </extend-magistrates-access>
+          </div>
+        </pdk-grid>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <case-access-alert>
+          <div>
+            Mock Case Access Alert
+          </div>
+        </case-access-alert>
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <cpp-share-result-container>
+            <div>
+              Mock Share Result Container
+            </div>
+          </cpp-share-result-container>
+        </pdk-grid>
+      </pdk-grid>
+    </div>
+  </manage-hearing>
+</ng-component>
+`;

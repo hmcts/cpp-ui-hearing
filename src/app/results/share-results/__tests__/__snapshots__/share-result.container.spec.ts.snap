@@ -1,0 +1,487 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShareResultContainerComponent when a shared result has been amended admin error should always display a cancel option to the amending user 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button govuk-button--secondary"
+          pdk-button="secondary"
+        >
+          Cancel amendments
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended admin error should display a request approval option to the amending user for a valid draft result (admin error amendment) 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+          Request approval
+        </button>
+        <button
+          class="govuk-button govuk-button--secondary"
+          pdk-button="secondary"
+        >
+          Cancel amendments
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended admin error should render empty to the user who did not commence the amendments 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended requested for approval should display adjudication buttons to a different user 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+          Validate amendments
+        </button>
+        <button
+          class="govuk-button govuk-button--secondary"
+          pdk-button="secondary"
+        >
+          Reject amendments
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended requested for approval should display no options to the user who requested the approval 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended requested for approval should display validation buttons to a different user 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+           Share with relevant parties 
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended user error should always display a cancel option to the amending user 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button govuk-button--secondary"
+          pdk-button="secondary"
+        >
+          Cancel amendments
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended user error should display a request approval option to the amending user for a valid draft result (user error amendment) 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+          Request approval
+        </button>
+        <button
+          class="govuk-button govuk-button--secondary"
+          pdk-button="secondary"
+        >
+          Cancel amendments
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when a shared result has been amended user error should display no options to the user who did not commence the amendments 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when the hearing has no shared results should not share the results when there are defendants with the attendance pending 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+           Share with relevant parties 
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when the hearing has no shared results should render empty when the draft result is invalid 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when the hearing has no shared results should render empty when the draft result is valid but has no result lines 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when the hearing has no shared results should render the share button when the draft result is valid 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+           Share with relevant parties 
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when the hearing has shared results should render empty when there are no dirty result lines 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;
+
+exports[`ShareResultContainerComponent when the hearing has shared results should render the shared button when there are dirty result lines 1`] = `
+<cpp-share-result-container
+  amendApplicationPermission={[Function Function]}
+  amendedByCurrentUser$={[Function _Store]}
+  caseStatus={[Function Function]}
+  citSubreasonEnabled$={[Function _Store]}
+  draftResult$={[Function _Store]}
+  hasValidationErrors$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  hearingTypes$={[Function Observable]}
+  individualDefendants$={[Function _Store]}
+  isApplicationJourney={[Function Function]}
+  isCurrentHearingInWelshCourt={[Function _Store]}
+  modalService={[Function Object]}
+  pendingAttendanceDefendants={[Function Function]}
+  sharedResultsValidation={[Function OutputEmitterRef]}
+  store={[Function _Store]}
+>
+  <cpp-share-result-action-bar>
+    <pdk-button-group>
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+        >
+           Share with relevant parties 
+        </button>
+      </div>
+    </pdk-button-group>
+  </cpp-share-result-action-bar>
+</cpp-share-result-container>
+`;

@@ -1,0 +1,969 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingListFilterComponent should create the right templates with default values 1`] = `
+<hearing-list-filter
+  buildFilterOption={[Function Function]}
+  courtRoomOptions={[Function Array]}
+  dateOptions={[Function Array]}
+  dateOptionsConfig={[Function Object]}
+  errors={[Function EventEmitter_]}
+  onApplySearch={[Function EventEmitter_]}
+  onChange={[Function EventEmitter_]}
+  selectedCourtCentre="null"
+  selectedOptions={[Function Object]}
+  selectedOrganisationUnit="null"
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+    pdk-form=""
+  >
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <h2
+          class="pdk-!-negative-margin-top-5 govuk-heading-m"
+          pdk-margin-top="-5"
+          pdk-typography="heading-medium"
+        >
+          Filter by
+        </h2>
+        <pdk-form-field
+          class="govuk-!-padding-top-2"
+          label="Court"
+          labelforerrorsummary="Select court"
+          labeltype="small"
+          pdk-padding-top="2"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="courtCentreId"
+            >
+               Court 
+            </label>
+            <cpp-organisation-unit-autosuggest
+              class="ng-untouched ng-pristine ng-valid"
+              data-role="court-centre-filter"
+              name="courtCentre"
+              required=""
+            >
+              <pdk-autosuggest-lite>
+                <pdk-autosuggest
+                  highlightcolor="blue"
+                >
+                  <pdk-interaction-container>
+                    <div>
+                      <div
+                        class="pdk-autosuggest"
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                          aria-describedby="pdk-autosuggest__instructions-GENERATED_ID aria-describedby-organisation-autosuggest"
+                          aria-expanded="false"
+                          autocomplete="off"
+                          class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                          id="courtCentreId"
+                          name="stubbed-name"
+                          role="combobox"
+                          type="text"
+                        />
+                        <span
+                          class="govuk-visually-hidden"
+                          id="pdk-autosuggest__instructions-GENERATED_ID"
+                          pdk-visually-hidden=""
+                        >
+                           When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                        </span>
+                        <span
+                          aria-live="polite"
+                          class="govuk-visually-hidden"
+                          pdk-visually-hidden=""
+                          role="status"
+                        >
+                        </span>
+                        <div
+                          class="pdk-autosuggest__suggestions-container"
+                          id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </pdk-interaction-container>
+                </pdk-autosuggest>
+              </pdk-autosuggest-lite>
+            </cpp-organisation-unit-autosuggest>
+          </pdk-form-group>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-!-padding-top-1 govuk-grid-column-one-quarter"
+        one-quarter=""
+        pdk-padding-top="1"
+      >
+        <pdk-form-field
+          class="govuk-!-padding-top-6"
+          id="courtRoomFilter"
+          label="Courtroom"
+          labelforerrorsummary="Select courtroom"
+          labeltype="small"
+          pdk-padding-top="6"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="pdk-select-GENERATED_ID"
+            >
+               Courtroom 
+            </label>
+            <pdk-select
+              class="ng-untouched ng-pristine ng-valid"
+              data-role="court-room-filter"
+              justified=""
+              required=""
+            >
+              <select
+                class="govuk-select pdk-select--justified"
+                id="pdk-select-GENERATED_ID"
+                name="courtRoomFilter"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  HEARING_LIST.FILTER.COURT_ROOM.PLACEHOLDER
+                </option>
+              </select>
+            </pdk-select>
+          </pdk-form-group>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <pdk-form-field
+          id="dateFilter"
+          label="Date"
+          labelforerrorsummary="Enter hearing date"
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <fieldset
+              class="govuk-fieldset"
+              pdk-fieldset=""
+            >
+              <legend
+                class="govuk-fieldset__legend govuk-fieldset__legend--s"
+              >
+                 Date 
+              </legend>
+              <pdk-date-input
+                class="ng-untouched ng-pristine ng-valid"
+                name="dateFilter"
+                picker=""
+                required=""
+              >
+                <pdk-interaction-container>
+                  <div>
+                    <div
+                      class="pdk-date-input"
+                    >
+                      <div
+                        class="govuk-date-input ng-untouched ng-pristine ng-invalid"
+                      >
+                        <div
+                          class="govuk-date-input__item"
+                        >
+                          <label
+                            class="govuk-date-input__label govuk-label"
+                            for="pdk-date-input-GENERATED_ID-day"
+                            pdk-label=""
+                          >
+                             Day 
+                          </label>
+                          <input
+                            autocomplete="off"
+                            class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                            formcontrolname="day"
+                            id="pdk-date-input-GENERATED_ID-day"
+                            name="dateDay"
+                            required=""
+                            type="number"
+                          />
+                        </div>
+                        <div
+                          class="govuk-date-input__item"
+                        >
+                          <label
+                            class="govuk-date-input__label govuk-label"
+                            for="pdk-date-input-GENERATED_ID-month"
+                            pdk-label=""
+                          >
+                             Month 
+                          </label>
+                          <input
+                            autocomplete="off"
+                            class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                            formcontrolname="month"
+                            id="pdk-date-input-GENERATED_ID-month"
+                            name="dateMonth"
+                            required=""
+                            type="number"
+                          />
+                        </div>
+                        <div
+                          class="govuk-date-input__item"
+                        >
+                          <label
+                            class="govuk-date-input__label govuk-label"
+                            for="pdk-date-input-GENERATED_ID-year"
+                            pdk-label=""
+                          >
+                             Year 
+                          </label>
+                          <input
+                            autocomplete="off"
+                            class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-4"
+                            formcontrolname="year"
+                            id="pdk-date-input-GENERATED_ID-year"
+                            name="dateYear"
+                            required=""
+                            type="number"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="pdk-!-negative-margin-left-2"
+                        pdk-margin-left="-2"
+                      >
+                        <pdk-date-picker-toggle>
+                          <pdk-interaction-container>
+                            <div>
+                              <div
+                                aria-expanded="false"
+                                aria-label="Toggle date picker"
+                                class="pdk-date-picker__toggle"
+                                role="button"
+                                tabindex="0"
+                              >
+                                <pdk-date-picker-icon
+                                  style="margin-top: -4px; display: inline-block; vertical-align: middle;"
+                                >
+                                  <div
+                                    style="display: flex; align-items: center; justify-content: center;"
+                                  >
+                                    <i
+                                      style="height: 28px; width: 28px; fill: #333;"
+                                    >
+                                      <svg
+                                        viewBox="0 0 448 512"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+                                        />
+                                      </svg>
+                                    </i>
+                                  </div>
+                                </pdk-date-picker-icon>
+                              </div>
+                            </div>
+                          </pdk-interaction-container>
+                        </pdk-date-picker-toggle>
+                      </div>
+                    </div>
+                  </div>
+                </pdk-interaction-container>
+              </pdk-date-input>
+            </fieldset>
+          </pdk-form-group>
+        </pdk-form-field>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <pdk-grid
+            class="govuk-grid-column-one-quarter"
+            one-quarter=""
+          >
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     HEARING_LIST.FILTER.START_TIME.LABEL 
+                  </legend>
+                  <pdk-time-input
+                    auto-shift="true"
+                    class="ng-untouched ng-pristine ng-valid"
+                    labelhidden="false"
+                    name="chargeStartTime"
+                  >
+                    <div
+                      class="pdk-time-input ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="pdk-time-input__item pdk-time-input__item--hour"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-hours"
+                          pdk-label=""
+                        >
+                           Hours 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="hours"
+                          id="pdk-time-input-GENERATED_ID-hours"
+                          maxlength="2"
+                          name="timeHours"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                      <div
+                        class="pdk-time-input__item"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-minutes"
+                          pdk-label=""
+                        >
+                           Minutes 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="minutes"
+                          id="pdk-time-input-GENERATED_ID-minutes"
+                          maxlength="2"
+                          minlength="2"
+                          name="timeMinutes"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </pdk-time-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-column-one-quarter"
+            one-quarter=""
+          >
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     HEARING_LIST.FILTER.END_TIME.LABEL 
+                  </legend>
+                  <pdk-time-input
+                    auto-shift="true"
+                    class="ng-untouched ng-pristine ng-valid"
+                    labelhidden="false"
+                    name="chargeEndTime"
+                  >
+                    <div
+                      class="pdk-time-input ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="pdk-time-input__item pdk-time-input__item--hour"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-hours"
+                          pdk-label=""
+                        >
+                           Hours 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="hours"
+                          id="pdk-time-input-GENERATED_ID-hours"
+                          maxlength="2"
+                          name="timeHours"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                      <div
+                        class="pdk-time-input__item"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-minutes"
+                          pdk-label=""
+                        >
+                           Minutes 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="minutes"
+                          id="pdk-time-input-GENERATED_ID-minutes"
+                          maxlength="2"
+                          minlength="2"
+                          name="timeMinutes"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </pdk-time-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-column-one-quarter"
+            one-quarter=""
+          />
+        </pdk-grid>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <button
+        class="govuk-!-margin-left-3 govuk-!-margin-bottom-0 govuk-button"
+        pdk-button=""
+        pdk-margin-bottom="0"
+        pdk-margin-left="3"
+        type="submit"
+      >
+         Apply filters 
+      </button>
+    </pdk-grid>
+  </form>
+</hearing-list-filter>
+`;
+
+exports[`HearingListFilterComponent should create the right templates with previously populated filters 1`] = `
+<hearing-list-filter
+  buildFilterOption={[Function Function]}
+  courtRoomOptions={[Function Array]}
+  dateOptions={[Function Array]}
+  dateOptionsConfig={[Function Object]}
+  errors={[Function EventEmitter_]}
+  onApplySearch={[Function EventEmitter_]}
+  onChange={[Function EventEmitter_]}
+  selectedCourtCentre="null"
+  selectedOptions={[Function Object]}
+  selectedOrganisationUnit="null"
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+    pdk-form=""
+  >
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <h2
+          class="pdk-!-negative-margin-top-5 govuk-heading-m"
+          pdk-margin-top="-5"
+          pdk-typography="heading-medium"
+        >
+          Filter by
+        </h2>
+        <pdk-form-field
+          class="govuk-!-padding-top-2"
+          label="Court"
+          labelforerrorsummary="Select court"
+          labeltype="small"
+          pdk-padding-top="2"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="courtCentreId"
+            >
+               Court 
+            </label>
+            <cpp-organisation-unit-autosuggest
+              class="ng-untouched ng-pristine ng-valid"
+              data-role="court-centre-filter"
+              name="courtCentre"
+              required=""
+            >
+              <pdk-autosuggest-lite>
+                <pdk-autosuggest
+                  highlightcolor="blue"
+                >
+                  <pdk-interaction-container>
+                    <div>
+                      <div
+                        class="pdk-autosuggest"
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                          aria-describedby="pdk-autosuggest__instructions-GENERATED_ID aria-describedby-organisation-autosuggest"
+                          aria-expanded="false"
+                          autocomplete="off"
+                          class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                          id="courtCentreId"
+                          name="stubbed-name"
+                          role="combobox"
+                          type="text"
+                        />
+                        <span
+                          class="govuk-visually-hidden"
+                          id="pdk-autosuggest__instructions-GENERATED_ID"
+                          pdk-visually-hidden=""
+                        >
+                           When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                        </span>
+                        <span
+                          aria-live="polite"
+                          class="govuk-visually-hidden"
+                          pdk-visually-hidden=""
+                          role="status"
+                        >
+                        </span>
+                        <div
+                          class="pdk-autosuggest__suggestions-container"
+                          id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </pdk-interaction-container>
+                </pdk-autosuggest>
+              </pdk-autosuggest-lite>
+            </cpp-organisation-unit-autosuggest>
+          </pdk-form-group>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-!-padding-top-1 govuk-grid-column-one-quarter"
+        one-quarter=""
+        pdk-padding-top="1"
+      >
+        <pdk-form-field
+          class="govuk-!-padding-top-6"
+          id="courtRoomFilter"
+          label="Courtroom"
+          labelforerrorsummary="Select courtroom"
+          labeltype="small"
+          pdk-padding-top="6"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="pdk-select-GENERATED_ID"
+            >
+               Courtroom 
+            </label>
+            <pdk-select
+              class="ng-untouched ng-pristine ng-valid"
+              data-role="court-room-filter"
+              justified=""
+              required=""
+            >
+              <select
+                class="govuk-select pdk-select--justified"
+                id="pdk-select-GENERATED_ID"
+                name="courtRoomFilter"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  HEARING_LIST.FILTER.COURT_ROOM.PLACEHOLDER
+                </option>
+              </select>
+            </pdk-select>
+          </pdk-form-group>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <pdk-form-field
+          id="dateFilter"
+          label="Date"
+          labelforerrorsummary="Enter hearing date"
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <fieldset
+              class="govuk-fieldset"
+              pdk-fieldset=""
+            >
+              <legend
+                class="govuk-fieldset__legend govuk-fieldset__legend--s"
+              >
+                 Date 
+              </legend>
+              <pdk-date-input
+                class="ng-untouched ng-pristine ng-valid"
+                name="dateFilter"
+                picker=""
+                required=""
+              >
+                <pdk-interaction-container>
+                  <div>
+                    <div
+                      class="pdk-date-input"
+                    >
+                      <div
+                        class="govuk-date-input ng-untouched ng-pristine ng-invalid"
+                      >
+                        <div
+                          class="govuk-date-input__item"
+                        >
+                          <label
+                            class="govuk-date-input__label govuk-label"
+                            for="pdk-date-input-GENERATED_ID-day"
+                            pdk-label=""
+                          >
+                             Day 
+                          </label>
+                          <input
+                            autocomplete="off"
+                            class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                            formcontrolname="day"
+                            id="pdk-date-input-GENERATED_ID-day"
+                            name="dateDay"
+                            required=""
+                            type="number"
+                          />
+                        </div>
+                        <div
+                          class="govuk-date-input__item"
+                        >
+                          <label
+                            class="govuk-date-input__label govuk-label"
+                            for="pdk-date-input-GENERATED_ID-month"
+                            pdk-label=""
+                          >
+                             Month 
+                          </label>
+                          <input
+                            autocomplete="off"
+                            class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                            formcontrolname="month"
+                            id="pdk-date-input-GENERATED_ID-month"
+                            name="dateMonth"
+                            required=""
+                            type="number"
+                          />
+                        </div>
+                        <div
+                          class="govuk-date-input__item"
+                        >
+                          <label
+                            class="govuk-date-input__label govuk-label"
+                            for="pdk-date-input-GENERATED_ID-year"
+                            pdk-label=""
+                          >
+                             Year 
+                          </label>
+                          <input
+                            autocomplete="off"
+                            class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-4"
+                            formcontrolname="year"
+                            id="pdk-date-input-GENERATED_ID-year"
+                            name="dateYear"
+                            required=""
+                            type="number"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="pdk-!-negative-margin-left-2"
+                        pdk-margin-left="-2"
+                      >
+                        <pdk-date-picker-toggle>
+                          <pdk-interaction-container>
+                            <div>
+                              <div
+                                aria-expanded="false"
+                                aria-label="Toggle date picker"
+                                class="pdk-date-picker__toggle"
+                                role="button"
+                                tabindex="0"
+                              >
+                                <pdk-date-picker-icon
+                                  style="margin-top: -4px; display: inline-block; vertical-align: middle;"
+                                >
+                                  <div
+                                    style="display: flex; align-items: center; justify-content: center;"
+                                  >
+                                    <i
+                                      style="height: 28px; width: 28px; fill: #333;"
+                                    >
+                                      <svg
+                                        viewBox="0 0 448 512"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+                                        />
+                                      </svg>
+                                    </i>
+                                  </div>
+                                </pdk-date-picker-icon>
+                              </div>
+                            </div>
+                          </pdk-interaction-container>
+                        </pdk-date-picker-toggle>
+                      </div>
+                    </div>
+                  </div>
+                </pdk-interaction-container>
+              </pdk-date-input>
+            </fieldset>
+          </pdk-form-group>
+        </pdk-form-field>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <pdk-grid
+            class="govuk-grid-column-one-quarter"
+            one-quarter=""
+          >
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     HEARING_LIST.FILTER.START_TIME.LABEL 
+                  </legend>
+                  <pdk-time-input
+                    auto-shift="true"
+                    class="ng-untouched ng-pristine ng-valid"
+                    labelhidden="false"
+                    name="chargeStartTime"
+                  >
+                    <div
+                      class="pdk-time-input ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="pdk-time-input__item pdk-time-input__item--hour"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-hours"
+                          pdk-label=""
+                        >
+                           Hours 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="hours"
+                          id="pdk-time-input-GENERATED_ID-hours"
+                          maxlength="2"
+                          name="timeHours"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                      <div
+                        class="pdk-time-input__item"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-minutes"
+                          pdk-label=""
+                        >
+                           Minutes 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="minutes"
+                          id="pdk-time-input-GENERATED_ID-minutes"
+                          maxlength="2"
+                          minlength="2"
+                          name="timeMinutes"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </pdk-time-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-column-one-quarter"
+            one-quarter=""
+          >
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     HEARING_LIST.FILTER.END_TIME.LABEL 
+                  </legend>
+                  <pdk-time-input
+                    auto-shift="true"
+                    class="ng-untouched ng-pristine ng-valid"
+                    labelhidden="false"
+                    name="chargeEndTime"
+                  >
+                    <div
+                      class="pdk-time-input ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="pdk-time-input__item pdk-time-input__item--hour"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-hours"
+                          pdk-label=""
+                        >
+                           Hours 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="hours"
+                          id="pdk-time-input-GENERATED_ID-hours"
+                          maxlength="2"
+                          name="timeHours"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                      <div
+                        class="pdk-time-input__item"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-time-input-GENERATED_ID-minutes"
+                          pdk-label=""
+                        >
+                           Minutes 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="minutes"
+                          id="pdk-time-input-GENERATED_ID-minutes"
+                          maxlength="2"
+                          minlength="2"
+                          name="timeMinutes"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </pdk-time-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-column-one-quarter"
+            one-quarter=""
+          />
+        </pdk-grid>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-row"
+      container=""
+    >
+      <button
+        class="govuk-!-margin-left-3 govuk-!-margin-bottom-0 govuk-button"
+        pdk-button=""
+        pdk-margin-bottom="0"
+        pdk-margin-left="3"
+        type="submit"
+      >
+         Apply filters 
+      </button>
+    </pdk-grid>
+  </form>
+</hearing-list-filter>
+`;

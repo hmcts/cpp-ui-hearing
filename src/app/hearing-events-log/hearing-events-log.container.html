@@ -1,0 +1,70 @@
+<total-jury-deliberation [loggedEvents]="loggedEvents"></total-jury-deliberation>
+
+@if (showStartEventLogConfirmation) {
+<confirm-start-event
+  (cancelStartEvent)="startEventConfirmationCancelled()"
+  (confirmStartEvent)="startEventConfirmed()"
+>
+</confirm-start-event>
+}
+
+<div class="hearing-events-log-container">
+  <suggested-events
+    [loggedEvents]="loggedEvents"
+    [isHearingEventLogPaused]="isHearingEventLogPaused$ | async"
+    [isHearingEventLogEnded]="isHearingEventLogEnded$ | async"
+    [showStartLogBtn]="showStartEventLogConfirmation"
+    [showResumeLogBtn]="showStartEventLogConfirmation"
+    [showChangeTypeLink]="(eventsLogState$ | async) === 'DISPLAY_EVENTS'"
+    [jurisdictionType]="jurisdictionType"
+    [isBoxwork]="isBoxwork$ | async"
+    [hearingEventLogCount]="hearingEventLogCount$ | async"
+    (eventSelected)="onSuggestEvent($event)"
+    (changeHearingType)="displayChangeHearingType()"
+    (downloadFullEventLog)="downloadFullEventLog();"
+  ></suggested-events>
+  @if ((((eventsLogState$ | async) === 'DISPLAY_EVENTS') && loggedEvents.length > 0)) {
+  <logged-events
+    [loggedEvents]="loggedEvents"
+    [eventDefinitions]="eventDefinitions"
+    [time]="time"
+    [hearingDefendants]="hearingPersonDetails$ | async"
+    [hearingDefenceCounsels]="hearingDefenceCounsels$ | async"
+    [isHearingEventLogPaused]="isHearingEventLogPaused$ | async"
+    [hearingEventLogCount]="hearingEventLogCount$ | async"
+    [selectedHearingDate]="selectedHearingDate"
+    [witnessNames]="witnessNames$ | async"
+    [jurisdictionType]="jurisdictionType"
+    (addDefenceWitness)="displayAddDefenceWitness()"
+    (eventSelected)="onEventSelected($event);"
+    (changeEvent)="displayChangeEvent($event);"
+    (downloadTodayEventLog)="downloadTodayEventLog();"
+    (downloadFullEventLog)="downloadFullEventLog();"
+  ></logged-events>
+  } @if ((eventsLogState$ | async) === 'CHANGE_EVENT') {
+  <change-event-details
+    [event]="currentEvent"
+    [loggedEvents]="loggedEvents"
+    [eventDefinitions]="eventDefinitions"
+    [hearingDefendants]="hearingPersonDetails$ | async"
+    [hearingDefenceCounsels]="hearingDefenceCounsels$ | async"
+    [witnessNames]="witnessNames$ | async"
+    [jurisdictionType]="jurisdictionType"
+    [hearingTypes]="hearingTypes$ | async"
+    (eventChanged)="onEventChanged($event)"
+    (eventCreated)="onEventCreated($event)"
+    (cancel)="displayEvents()"
+  ></change-event-details>
+  } @if ((eventsLogState$ | async) === 'ADD_DEFENCE_WITNESS') {
+  <add-defence-witness
+    (onCancel)="displayEvents()"
+    (onWitnessNameSelected)="onWitnessNameSelected($event)"
+  ></add-defence-witness>
+  } @if ((eventsLogState$ | async) === 'CHANGE_HEARING_TYPE') {
+  <change-hearing-type
+    [hearingTypes]="hearingTypes$ | async"
+    (cancel)="displayEvents()"
+    (onChangeHearingType)="onHearingTypeChange($event)"
+  ></change-hearing-type>
+  }
+</div>

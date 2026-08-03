@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JudiciaryTypeaheadComponent should create the right templates with actions 1`] = `
+<ng-component
+  courtCentres={[Function Array]}
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+  >
+    <judiciary-typeahead>
+      <div
+        class="judiciary-typeahead"
+      >
+        <pdk-autosuggest-lite
+          suggestionkey="id"
+          suggestionsubtitle="judicialMemberLocation"
+        >
+          <pdk-autosuggest
+            highlightcolor="blue"
+          >
+            <pdk-interaction-container>
+              <div>
+                <div
+                  class="pdk-autosuggest"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                    aria-expanded="false"
+                    aria-label="Judge name"
+                    autocomplete="off"
+                    class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                    name="stubbed-name"
+                    role="combobox"
+                    type="text"
+                  />
+                  <span
+                    class="govuk-visually-hidden"
+                    id="pdk-autosuggest__instructions-GENERATED_ID"
+                    pdk-visually-hidden=""
+                  >
+                     When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                  </span>
+                  <span
+                    aria-live="polite"
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                    role="status"
+                  >
+                  </span>
+                  <div
+                    class="pdk-autosuggest__suggestions-container"
+                    id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                  >
+                  </div>
+                </div>
+              </div>
+            </pdk-interaction-container>
+          </pdk-autosuggest>
+        </pdk-autosuggest-lite>
+      </div>
+    </judiciary-typeahead>
+  </form>
+</ng-component>
+`;

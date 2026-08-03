@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Remove future hearing container should display hearings 1`] = `
+<remove-future-hearing
+  hearingId$={[Function _Store]}
+  isReadOnly="false"
+  notResultedFutureHearings$={[Function _Store]}
+  reasonsForVacated$={[Function _Store]}
+  resultedFutureHearings$={[Function _Store]}
+  store={[Function _MockStore]}
+>
+  <div
+    class="govuk-!-padding-top-6"
+    pdk-padding-top="6"
+  >
+    <remove-future-hearing-form>
+      <pre>
+        [
+    {
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "type": {
+        "description": "First hearing",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179"
+      },
+      "jurisdictionType": "CROWN",
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "hearingLanguage": "ENGLISH",
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z"
+        }
+      ],
+      "prosecutionCaseSummaries": [
+        {
+          "id": "string",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityReference": "string",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "caseURN": "90EU623841"
+          },
+          "defendants": [
+            {
+              "id": "1",
+              "firstName": "test",
+              "lastName": "test"
+            }
+          ]
+        }
+      ],
+      "hasSharedResults": false,
+      "courtApplicationSummaries": []
+    }
+  ]
+      </pre>
+      <pre>
+        "hearing-id"
+      </pre>
+    </remove-future-hearing-form>
+    <resulted-hearings>
+      <pre>
+        []
+      </pre>
+    </resulted-hearings>
+  </div>
+</remove-future-hearing>
+`;

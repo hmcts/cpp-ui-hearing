@@ -1,0 +1,44 @@
+<div class="headline-summary">
+  @if (!!numOfDefendants) {
+  <pdk-summary-item
+    [count]="numOfDefendants"
+    data-role="defendants-summary-label"
+    pdk-typography="heading-small"
+    pdk-margin-top="4"
+    [label]="numOfDefendants | i18nPlural : summaryPluralMap?.defendant"
+    inline
+  >
+  </pdk-summary-item>
+  } @if (!!numOfCases) {
+  <pdk-summary-item
+    [count]="numOfCases"
+    data-role="cases-summary-label"
+    pdk-typography="heading-small"
+    pdk-margin-top="2"
+    [label]="numOfCases | i18nPlural : summaryPluralMap?.case"
+    inline
+  >
+  </pdk-summary-item>
+  } @if (!!numOfOffences) {
+  <pdk-summary-item
+    [count]="numOfOffences"
+    data-role="offences-summary-label"
+    pdk-typography="heading-small"
+    pdk-margin-top="2"
+    [label]="numOfOffences | i18nPlural : summaryPluralMap?.offence"
+    inline
+  >
+  </pdk-summary-item>
+  } @if (!!numOfApplications) {
+  <pdk-summary-item
+    [count]="numOfApplications"
+    data-role="applications-summary-label"
+    pdk-typography="heading-small"
+    pdk-margin-top="2"
+    pdk-margin-bottom="4"
+    [label]="numOfApplications | i18nPlural : summaryPluralMap?.application"
+    inline
+  >
+  </pdk-summary-item>
+  }
+</div>

@@ -1,0 +1,14 @@
+{
+  "capabilities": [
+    {
+      "name": "ui.component.include-in-idpc",
+      "type": "component",
+      "description": "Enable inclusion in IDPC"
+    },
+    {
+      "name": "staging.behaviour",
+      "type": "ui",
+      "description": "Enable Staging"
+    }
+  ]
+}

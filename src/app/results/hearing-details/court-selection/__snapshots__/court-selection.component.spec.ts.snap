@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourtSelectionComponent should render component 1`] = `
+<court-selection
+  cancel={[Function EventEmitter_]}
+  continue={[Function EventEmitter_]}
+  errors={[Function EventEmitter_]}
+  jurisdictionType={[Function String]}
+>
+  <pdk-grid
+    class="govuk-grid-row"
+    container=""
+  >
+    <div
+      class="court-center-selection"
+    >
+      <h1
+        class="govuk-!-margin-left-3 govuk-!-margin-bottom-1 govuk-!-margin-top-2 govuk-heading-l"
+        pdk-margin-bottom="1"
+        pdk-margin-left="3"
+        pdk-margin-top="2"
+        pdk-typography="heading-large"
+      >
+         Select Court 
+      </h1>
+      <pdk-grid
+        class="govuk-grid-column-three-quarters"
+        three-quarters=""
+      >
+        <form
+          class="govuk-!-margin-top-1 ng-untouched ng-pristine ng-valid"
+          data-test-id="courtCalendarFilters"
+          novalidate=""
+          pdk-form=""
+          pdk-margin-top="1"
+        >
+          <pdk-form-field
+            class="govuk-!-margin-top-3"
+            label="Select court"
+            pdk-margin-top="3"
+          >
+            <pdk-form-group
+              class="pdk-form-group"
+            >
+              <label
+                class="govuk-label"
+                for="pdk-form-control-undefined-GENERATED_ID"
+              >
+                 Select court 
+              </label>
+              <cpp-organisation-unit-autosuggest
+                class="ng-untouched ng-pristine ng-valid"
+                data-role="allocate-court-centre-input"
+                id="crownCourtCentre"
+                name="courtCentre"
+                required=""
+              >
+                <div>
+                  Organisation Unit Autosuggest Mock
+                </div>
+                <div>
+                  jurisdictionCode: B
+                </div>
+                <div>
+                  required: 
+                </div>
+              </cpp-organisation-unit-autosuggest>
+            </pdk-form-group>
+          </pdk-form-field>
+          <button
+            class="govuk-!-margin-bottom-1 govuk-button"
+            data-role="continue-btn"
+            pdk-button=""
+            pdk-margin-bottom="1"
+            type="submit"
+          >
+             Continue 
+          </button>
+          <div
+            class="govuk-!-margin-top-2"
+            pdk-margin-top="2"
+          >
+            <a
+              class="govuk-link"
+              data-role="cancel-btn"
+              pdk-link=""
+            >
+              Back
+            </a>
+          </div>
+        </form>
+      </pdk-grid>
+    </div>
+  </pdk-grid>
+</court-selection>
+`;

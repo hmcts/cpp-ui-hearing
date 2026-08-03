@@ -1,0 +1,308 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefendantDetailsPanelComponent should display legal aid status if status exist 1`] = `
+<test-host-component
+  onViewApplication={[Function EventEmitter_]}
+  reason={[Function String]}
+  reportingRestrictionReason={[Function String]}
+  selectedDefendant={[Function Object]}
+>
+  <defendant-details-panel>
+    <div
+      class="defendant-details"
+      data-role="defendant-details-panel"
+    >
+      <div
+        class="defendant-particulars govuk-!-padding-top-3"
+        pdk-padding-top="3"
+      >
+        <h4
+          class="defendant-name govuk-!-margin-bottom-2 govuk-body-l"
+          data-role="name"
+          data-test-id="defendantName"
+          pdk-margin-bottom="2"
+          pdk-typography="body-large"
+        >
+           Ken THOMPSON 
+        </h4>
+        <div>
+          <span>
+            HEARING_LIST.CUSTODY_TIME_LIMIT
+          </span>
+          <span
+            class="bold govuk-body-s"
+            pdk-typography="body-small"
+          >
+             1 January 2018 
+          </span>
+        </div>
+        <div
+          class="govuk-!-margin-top-4"
+          pdk-margin-top="4"
+        >
+          <span>
+            HEARING_LIST.LEGAL_AID_STATUS
+          </span>
+          <span
+            class="bold govuk-body-s"
+            id="legalAidStatus"
+            pdk-typography="body-small"
+          >
+            Granted
+          </span>
+        </div>
+        <div>
+          <span>
+            HEARING_LIST.REFERRAL_REASON
+          </span>
+          <span
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+            reasonTest
+          </span>
+        </div>
+        <button
+          class="button govuk-!-margin-top-4 pdk-!-fill-color-red govuk-body-s govuk-button"
+          data-role="restrictions-btn"
+          pdk-button=""
+          pdk-fill-colour="red"
+          pdk-margin-top="4"
+          pdk-typography="body-small"
+          type="button"
+        >
+           HEARING_LIST.REPORTING_RESTRICTIONS_BUTTON 
+        </button>
+      </div>
+      <div>
+      </div>
+    </div>
+  </defendant-details-panel>
+</test-host-component>
+`;
+
+exports[`DefendantDetailsPanelComponent should have the expected template 1`] = `
+<test-host-component
+  onViewApplication={[Function EventEmitter_]}
+  reason={[Function String]}
+  reportingRestrictionReason={[Function String]}
+  selectedDefendant={[Function Object]}
+>
+  <defendant-details-panel>
+    <div
+      class="defendant-details"
+      data-role="defendant-details-panel"
+    >
+      <div
+        class="defendant-particulars govuk-!-padding-top-3"
+        pdk-padding-top="3"
+      >
+        <h4
+          class="defendant-name govuk-!-margin-bottom-2 govuk-body-l"
+          data-role="name"
+          data-test-id="defendantName"
+          pdk-margin-bottom="2"
+          pdk-typography="body-large"
+        >
+           Ken THOMPSON 
+        </h4>
+        <div>
+          <span>
+            HEARING_LIST.CUSTODY_TIME_LIMIT
+          </span>
+          <span
+            class="bold govuk-body-s"
+            pdk-typography="body-small"
+          >
+             1 January 2018 
+          </span>
+        </div>
+        <div>
+          <span>
+            HEARING_LIST.REFERRAL_REASON
+          </span>
+          <span
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+            reasonTest
+          </span>
+        </div>
+        <button
+          class="button govuk-!-margin-top-4 pdk-!-fill-color-red govuk-body-s govuk-button"
+          data-role="restrictions-btn"
+          pdk-button=""
+          pdk-fill-colour="red"
+          pdk-margin-top="4"
+          pdk-typography="body-small"
+          type="button"
+        >
+           HEARING_LIST.REPORTING_RESTRICTIONS_BUTTON 
+        </button>
+      </div>
+      <div>
+      </div>
+    </div>
+  </defendant-details-panel>
+</test-host-component>
+`;
+
+exports[`DefendantDetailsPanelComponent should hide reason and reportingRestrictionReason if not present 1`] = `
+<test-host-component
+  onViewApplication={[Function EventEmitter_]}
+  reason=""
+  reportingRestrictionReason=""
+  selectedDefendant={[Function Object]}
+>
+  <defendant-details-panel>
+    <div
+      class="defendant-details"
+      data-role="defendant-details-panel"
+    >
+      <div
+        class="defendant-particulars govuk-!-padding-top-3"
+        pdk-padding-top="3"
+      >
+        <h4
+          class="defendant-name govuk-!-margin-bottom-2 govuk-body-l"
+          data-role="name"
+          data-test-id="defendantName"
+          pdk-margin-bottom="2"
+          pdk-typography="body-large"
+        >
+           Ken THOMPSON 
+        </h4>
+        <div>
+          <span>
+            HEARING_LIST.CUSTODY_TIME_LIMIT
+          </span>
+          <span
+            class="bold govuk-body-s"
+            pdk-typography="body-small"
+          >
+             1 January 2018 
+          </span>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </defendant-details-panel>
+</test-host-component>
+`;
+
+exports[`DefendantDetailsPanelComponent should populate with expected values when defendant has a bulk case 1`] = `
+<test-host-component
+  onViewApplication={[Function EventEmitter_]}
+  reason={[Function String]}
+  reportingRestrictionReason={[Function String]}
+  selectedDefendant={[Function Object]}
+>
+  <defendant-details-panel>
+    <div
+      class="defendant-details"
+      data-role="defendant-details-panel"
+    >
+      <div>
+        <div
+          class="defendant-particulars govuk-!-padding-top-1"
+          pdk-padding-top="1"
+        >
+          <div>
+            <h4
+              class="defendant-name govuk-!-margin-bottom-2 govuk-body-l"
+              pdk-margin-bottom="2"
+              pdk-typography="body-large"
+            >
+               COMMON.BULK_DEFENDANT 
+            </h4>
+          </div>
+        </div>
+        <div>
+          <div
+            class="defendant-offences govuk-!-padding-top-3 govuk-!-padding-bottom-3"
+            pdk-padding-bottom="3"
+            pdk-padding-top="3"
+          >
+            <offences-list>
+              <div
+                class="offences-list govuk-!-padding-top-3"
+                pdk-padding-top="3"
+              >
+                <ul>
+                </ul>
+              </div>
+            </offences-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </defendant-details-panel>
+</test-host-component>
+`;
+
+exports[`DefendantDetailsPanelComponent should render bail date when bail status is IN_CUSTODY 1`] = `
+<test-host-component
+  onViewApplication={[Function EventEmitter_]}
+  reason={[Function String]}
+  reportingRestrictionReason={[Function String]}
+  selectedDefendant={[Function Object]}
+>
+  <defendant-details-panel>
+    <div
+      class="defendant-details"
+      data-role="defendant-details-panel"
+    >
+      <div
+        class="defendant-particulars govuk-!-padding-top-3"
+        pdk-padding-top="3"
+      >
+        <h4
+          class="defendant-name govuk-!-margin-bottom-2 govuk-body-l"
+          data-role="name"
+          data-test-id="defendantName"
+          pdk-margin-bottom="2"
+          pdk-typography="body-large"
+        >
+           Ken THOMPSON 
+        </h4>
+        <div>
+          <span>
+            HEARING_LIST.CUSTODY_TIME_LIMIT
+          </span>
+          <span
+            class="bold govuk-body-s"
+            pdk-typography="body-small"
+          >
+             1 January 2018 
+          </span>
+        </div>
+        <div>
+          <span>
+            HEARING_LIST.REFERRAL_REASON
+          </span>
+          <span
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+            reasonTest
+          </span>
+        </div>
+        <button
+          class="button govuk-!-margin-top-4 pdk-!-fill-color-red govuk-body-s govuk-button"
+          data-role="restrictions-btn"
+          pdk-button=""
+          pdk-fill-colour="red"
+          pdk-margin-top="4"
+          pdk-typography="body-small"
+          type="button"
+        >
+           HEARING_LIST.REPORTING_RESTRICTIONS_BUTTON 
+        </button>
+      </div>
+      <div>
+      </div>
+    </div>
+  </defendant-details-panel>
+</test-host-component>
+`;

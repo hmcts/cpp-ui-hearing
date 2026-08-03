@@ -1,0 +1,283 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationOverviewComponent should create 1`] = `
+<test-host-component
+  applicationMock={[Function Object]}
+  onViewApplication={[Function EventEmitter_]}
+>
+  <application-overview>
+    <div>
+      <hr
+        class="pdk-!-border-color-black govuk-!-margin-bottom-2"
+        pdk-border-colour="black"
+        pdk-margin-bottom="2"
+      />
+      <h3
+        class="govuk-!-margin-bottom-0 govuk-heading-s"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-small"
+      >
+         ApplicationType 
+      </h3>
+      <div
+        class="pdk-!-text-color-dark-grey govuk-body-xs"
+        pdk-text-colour="dark-grey"
+        pdk-typography="body-xsmall"
+      >
+         HEARING_LIST.APPLI_OVERVIEW_RECEIVED_ON 07 January 2019 
+      </div>
+      <p>
+         ApplicationLegislation 
+      </p>
+      <p>
+        <b>
+          HEARING_LIST.APPLICANT
+        </b>
+      </p>
+      <hr
+        class="border pdk-!-border-color-dark-grey govuk-!-margin-bottom-2"
+        pdk-border-colour="dark-grey"
+        pdk-margin-bottom="2"
+      />
+      <div>
+        <h4
+          class="govuk-!-margin-bottom-2 govuk-heading-s"
+          pdk-margin-bottom="2"
+          pdk-typography="heading-small"
+        >
+           URN 
+        </h4>
+        <offences-list-item>
+          <div
+            class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+            pdk-margin-left="2"
+            pdk-margin-top="2"
+            pdk-padding-top="2"
+          >
+            <div
+              class="offence-num bold govuk-body-s"
+              pdk-typography="body-small"
+            >
+               . 
+            </div>
+            <div
+              class="offence-info-container"
+            >
+              <h4
+                class="govuk-!-margin-bottom-0 govuk-heading-s"
+                data-test-id="offenceTitle"
+                pdk-margin-bottom="0"
+                pdk-typography="heading-small"
+              >
+                 mock-offence-title 
+              </h4>
+              <div
+                data-test-id="offenceLegislation"
+              >
+              </div>
+              <div
+                data-test-id="offenceWording"
+              >
+                 mock-wording 
+              </div>
+            </div>
+          </div>
+        </offences-list-item>
+        <hr
+          class="border pdk-!-border-color-dark-grey govuk-!-margin-bottom-2"
+          pdk-border-colour="dark-grey"
+          pdk-margin-bottom="2"
+        />
+      </div>
+    </div>
+  </application-overview>
+</test-host-component>
+`;
+
+exports[`ApplicationOverviewComponent should show \`HEARING_LIST.APPELANT\` label when \`showAppellant\` is true 1`] = `
+<test-host-component
+  applicationMock={[Function Object]}
+  onViewApplication={[Function EventEmitter_]}
+>
+  <application-overview>
+    <div>
+      <hr
+        class="pdk-!-border-color-black govuk-!-margin-bottom-2"
+        pdk-border-colour="black"
+        pdk-margin-bottom="2"
+      />
+      <h3
+        class="govuk-!-margin-bottom-0 govuk-heading-s"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-small"
+      >
+         ApplicationType 
+      </h3>
+      <div
+        class="pdk-!-text-color-dark-grey govuk-body-xs"
+        pdk-text-colour="dark-grey"
+        pdk-typography="body-xsmall"
+      >
+         HEARING_LIST.APPLI_OVERVIEW_RECEIVED_ON 07 January 2019 
+      </div>
+      <p>
+         ApplicationLegislation 
+      </p>
+      <p>
+        <b>
+          HEARING_LIST.APPELLANT
+        </b>
+      </p>
+      <hr
+        class="border pdk-!-border-color-dark-grey govuk-!-margin-bottom-2"
+        pdk-border-colour="dark-grey"
+        pdk-margin-bottom="2"
+      />
+      <div>
+        <h4
+          class="govuk-!-margin-bottom-2 govuk-heading-s"
+          pdk-margin-bottom="2"
+          pdk-typography="heading-small"
+        >
+           URN 
+        </h4>
+        <offences-list-item>
+          <div
+            class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+            pdk-margin-left="2"
+            pdk-margin-top="2"
+            pdk-padding-top="2"
+          >
+            <div
+              class="offence-num bold govuk-body-s"
+              pdk-typography="body-small"
+            >
+               . 
+            </div>
+            <div
+              class="offence-info-container"
+            >
+              <h4
+                class="govuk-!-margin-bottom-0 govuk-heading-s"
+                data-test-id="offenceTitle"
+                pdk-margin-bottom="0"
+                pdk-typography="heading-small"
+              >
+                 mock-offence-title 
+              </h4>
+              <div
+                data-test-id="offenceLegislation"
+              >
+              </div>
+              <div
+                data-test-id="offenceWording"
+              >
+                 mock-wording 
+              </div>
+            </div>
+          </div>
+        </offences-list-item>
+        <hr
+          class="border pdk-!-border-color-dark-grey govuk-!-margin-bottom-2"
+          pdk-border-colour="dark-grey"
+          pdk-margin-bottom="2"
+        />
+      </div>
+    </div>
+  </application-overview>
+</test-host-component>
+`;
+
+exports[`ApplicationOverviewComponent should show \`HEARING_LIST.APPLICANT\` label when \`showAppellant\` is false 1`] = `
+<test-host-component
+  applicationMock={[Function Object]}
+  onViewApplication={[Function EventEmitter_]}
+>
+  <application-overview>
+    <div>
+      <hr
+        class="pdk-!-border-color-black govuk-!-margin-bottom-2"
+        pdk-border-colour="black"
+        pdk-margin-bottom="2"
+      />
+      <h3
+        class="govuk-!-margin-bottom-0 govuk-heading-s"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-small"
+      >
+         ApplicationType 
+      </h3>
+      <div
+        class="pdk-!-text-color-dark-grey govuk-body-xs"
+        pdk-text-colour="dark-grey"
+        pdk-typography="body-xsmall"
+      >
+         HEARING_LIST.APPLI_OVERVIEW_RECEIVED_ON 07 January 2019 
+      </div>
+      <p>
+         ApplicationLegislation 
+      </p>
+      <p>
+        <b>
+          HEARING_LIST.APPLICANT
+        </b>
+      </p>
+      <hr
+        class="border pdk-!-border-color-dark-grey govuk-!-margin-bottom-2"
+        pdk-border-colour="dark-grey"
+        pdk-margin-bottom="2"
+      />
+      <div>
+        <h4
+          class="govuk-!-margin-bottom-2 govuk-heading-s"
+          pdk-margin-bottom="2"
+          pdk-typography="heading-small"
+        >
+           URN 
+        </h4>
+        <offences-list-item>
+          <div
+            class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+            pdk-margin-left="2"
+            pdk-margin-top="2"
+            pdk-padding-top="2"
+          >
+            <div
+              class="offence-num bold govuk-body-s"
+              pdk-typography="body-small"
+            >
+               . 
+            </div>
+            <div
+              class="offence-info-container"
+            >
+              <h4
+                class="govuk-!-margin-bottom-0 govuk-heading-s"
+                data-test-id="offenceTitle"
+                pdk-margin-bottom="0"
+                pdk-typography="heading-small"
+              >
+                 mock-offence-title 
+              </h4>
+              <div
+                data-test-id="offenceLegislation"
+              >
+              </div>
+              <div
+                data-test-id="offenceWording"
+              >
+                 mock-wording 
+              </div>
+            </div>
+          </div>
+        </offences-list-item>
+        <hr
+          class="border pdk-!-border-color-dark-grey govuk-!-margin-bottom-2"
+          pdk-border-colour="dark-grey"
+          pdk-margin-bottom="2"
+        />
+      </div>
+    </div>
+  </application-overview>
+</test-host-component>
+`;

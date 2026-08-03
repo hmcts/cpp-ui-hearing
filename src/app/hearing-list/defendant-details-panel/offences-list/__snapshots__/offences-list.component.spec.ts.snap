@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OffencesListComponent should render the template with the values expected 1`] = `
+<test-host-component
+  defendant={[Function Object]}
+  defendantCase={[Function Object]}
+>
+  <offences-list>
+    <div
+      class="offences-list govuk-!-padding-top-3"
+      pdk-padding-top="3"
+    >
+      <span
+        class="govuk-visually-hidden"
+        pdk-visually-hidden=""
+      >
+        Case reference: 
+      </span>
+      <h4
+        class="govuk-!-margin-bottom-2 govuk-heading-s"
+        data-role="offences-case-reference"
+        pdk-margin-bottom="2"
+        pdk-typography="heading-small"
+      >
+         31GD1715420 
+      </h4>
+      <div>
+        <span>
+          HEARING_LIST.BAIL_STATUS
+        </span>
+        <span
+          class="bold"
+        >
+           BAIL_STATUS_DESCRIPTION 
+        </span>
+      </div>
+      <ul>
+        <li
+          class="offence-list-item border-bottom-solid"
+        >
+          <offences-list-item>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+              pdk-margin-left="2"
+              pdk-margin-top="2"
+              pdk-padding-top="2"
+            >
+              <div
+                class="offence-num bold govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 1. 
+              </div>
+              <div
+                class="offence-info-container"
+              >
+                <h4
+                  class="govuk-!-margin-bottom-0 govuk-heading-s"
+                  data-test-id="offenceTitle"
+                  pdk-margin-bottom="0"
+                  pdk-typography="heading-small"
+                >
+                   Section 18 - attempt    wounding with intent 
+                </h4>
+                <div
+                  data-test-id="offenceWording"
+                >
+                   Wound / inflict grievous bodily harm without intent 
+                </div>
+              </div>
+            </div>
+          </offences-list-item>
+        </li>
+        <li
+          class="offence-list-item"
+        >
+          <offences-list-item>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+              pdk-margin-left="2"
+              pdk-margin-top="2"
+              pdk-padding-top="2"
+            >
+              <div
+                class="offence-num bold govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 1. 
+              </div>
+              <div
+                class="offence-info-container"
+              >
+                <h4
+                  class="govuk-!-margin-bottom-0 govuk-heading-s"
+                  data-test-id="offenceTitle"
+                  pdk-margin-bottom="0"
+                  pdk-typography="heading-small"
+                >
+                   Section 18 - attempt    wounding with intent 
+                </h4>
+                <div
+                  data-test-id="offenceWording"
+                >
+                   Wound / inflict grievous bodily harm without intent 
+                </div>
+              </div>
+            </div>
+          </offences-list-item>
+        </li>
+      </ul>
+    </div>
+  </offences-list>
+</test-host-component>
+`;
+
+exports[`OffencesListComponent should render the template without case reference and bail status if bulkCase 1`] = `
+<test-host-component
+  defendant={[Function Object]}
+  defendantCase={[Function Object]}
+>
+  <offences-list>
+    <div
+      class="offences-list govuk-!-padding-top-3"
+      pdk-padding-top="3"
+    >
+      <ul>
+        <li
+          class="offence-list-item border-bottom-solid"
+        >
+          <offences-list-item>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+              pdk-margin-left="2"
+              pdk-margin-top="2"
+              pdk-padding-top="2"
+            >
+              <div
+                class="offence-num bold govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 1. 
+              </div>
+              <div
+                class="offence-info-container"
+              >
+                <h4
+                  class="govuk-!-margin-bottom-0 govuk-heading-s"
+                  data-test-id="offenceTitle"
+                  pdk-margin-bottom="0"
+                  pdk-typography="heading-small"
+                >
+                   Section 18 - attempt    wounding with intent 
+                </h4>
+                <div
+                  data-test-id="offenceWording"
+                >
+                   Wound / inflict grievous bodily harm without intent 
+                </div>
+              </div>
+            </div>
+          </offences-list-item>
+        </li>
+        <li
+          class="offence-list-item"
+        >
+          <offences-list-item>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+              pdk-margin-left="2"
+              pdk-margin-top="2"
+              pdk-padding-top="2"
+            >
+              <div
+                class="offence-num bold govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 1. 
+              </div>
+              <div
+                class="offence-info-container"
+              >
+                <h4
+                  class="govuk-!-margin-bottom-0 govuk-heading-s"
+                  data-test-id="offenceTitle"
+                  pdk-margin-bottom="0"
+                  pdk-typography="heading-small"
+                >
+                   Section 18 - attempt    wounding with intent 
+                </h4>
+                <div
+                  data-test-id="offenceWording"
+                >
+                   Wound / inflict grievous bodily harm without intent 
+                </div>
+              </div>
+            </div>
+          </offences-list-item>
+        </li>
+      </ul>
+    </div>
+  </offences-list>
+</test-host-component>
+`;

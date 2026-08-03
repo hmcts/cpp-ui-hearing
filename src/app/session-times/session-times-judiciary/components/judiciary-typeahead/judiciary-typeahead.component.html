@@ -1,0 +1,14 @@
+<div class="judiciary-typeahead">
+  <pdk-autosuggest-lite
+    #autosuggest="pdkAutosuggestLite"
+    (inputText)="input$.next($event)"
+    [ariaDescribedBy]="'judge-label'"
+    [ariaLabel]="'Judge name'"
+    [inputWidth]="25"
+    [suggestions]="(source$ | async) || []"
+    suggestionKey="id"
+    [suggestionTitle]="'judicialMemberName'"
+    suggestionSubtitle="judicialMemberLocation"
+  >
+  </pdk-autosuggest-lite>
+</div>

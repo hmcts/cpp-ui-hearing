@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckInNoHearingsAvailableComponent should match the snapshot 1`] = `
+<check-in-no-hearings-available>
+  <pdk-warning-text
+    class="govuk-!-margin-top-9"
+    pdk-margin-top="9"
+  >
+    <div
+      class="govuk-warning-text"
+    >
+      <span
+        aria-hidden="true"
+        class="govuk-warning-text__icon"
+      >
+        !
+      </span>
+      <strong
+        class="govuk-warning-text__text"
+      >
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Warning
+        </span>
+         CHECK_IN.NO_HEARINGS_AVAILABLE 
+      </strong>
+    </div>
+  </pdk-warning-text>
+</check-in-no-hearings-available>
+`;

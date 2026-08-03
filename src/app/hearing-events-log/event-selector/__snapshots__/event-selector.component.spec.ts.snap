@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventSelectorComponent with a default event selected should have the expected template 1`] = `
+<ng-component
+  event={[Function Object]}
+  eventSelected={[Function EventEmitter_]}
+  hearingDefenceCounsels={[Function Array]}
+  hearingDefendants={[Function Array]}
+  selectEventDefinition={[Function Function]}
+>
+  <event-selector>
+    <pdk-form-field
+      label="Event definition"
+      labeltype="none"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-visually-hidden govuk-label"
+          for="pdk-autosuggest__input-GENERATED_ID"
+        >
+           Event definition 
+        </label>
+        <pdk-autosuggest
+          class="ng-untouched ng-pristine ng-invalid"
+          data-role="hearing-event-log-selector"
+          highlightcolor="blue"
+          name="hearing-event-log-selector"
+          required=""
+        >
+          <pdk-interaction-container>
+            <div>
+              <div
+                class="pdk-autosuggest"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                  aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-autosuggest__input-GENERATED_ID"
+                  name="stubbed-name"
+                  role="combobox"
+                  type="text"
+                />
+                <span
+                  class="govuk-visually-hidden"
+                  id="pdk-autosuggest__instructions-GENERATED_ID"
+                  pdk-visually-hidden=""
+                >
+                   When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                </span>
+                <span
+                  aria-live="polite"
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                  role="status"
+                >
+                </span>
+                <div
+                  class="pdk-autosuggest__suggestions-container"
+                  id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                >
+                </div>
+              </div>
+            </div>
+          </pdk-interaction-container>
+        </pdk-autosuggest>
+      </pdk-form-group>
+    </pdk-form-field>
+  </event-selector>
+</ng-component>
+`;
+
+exports[`EventSelectorComponent without a default event selected should have the expected template 1`] = `
+<ng-component
+  event="null"
+  eventSelected={[Function EventEmitter_]}
+  hearingDefenceCounsels={[Function Array]}
+  hearingDefendants={[Function Array]}
+  selectEventDefinition={[Function Function]}
+>
+  <event-selector>
+    <pdk-form-field
+      label="Event definition"
+      labeltype="none"
+    >
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <label
+          class="govuk-visually-hidden govuk-label"
+          for="pdk-autosuggest__input-GENERATED_ID"
+        >
+           Event definition 
+        </label>
+        <pdk-autosuggest
+          class="ng-untouched ng-pristine ng-invalid"
+          data-role="hearing-event-log-selector"
+          highlightcolor="blue"
+          name="hearing-event-log-selector"
+          required=""
+        >
+          <pdk-interaction-container>
+            <div>
+              <div
+                class="pdk-autosuggest"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                  aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-autosuggest__input-GENERATED_ID"
+                  name="stubbed-name"
+                  role="combobox"
+                  type="text"
+                />
+                <span
+                  class="govuk-visually-hidden"
+                  id="pdk-autosuggest__instructions-GENERATED_ID"
+                  pdk-visually-hidden=""
+                >
+                   When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                </span>
+                <span
+                  aria-live="polite"
+                  class="govuk-visually-hidden"
+                  pdk-visually-hidden=""
+                  role="status"
+                >
+                </span>
+                <div
+                  class="pdk-autosuggest__suggestions-container"
+                  id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                >
+                </div>
+              </div>
+            </div>
+          </pdk-interaction-container>
+        </pdk-autosuggest>
+      </pdk-form-group>
+    </pdk-form-field>
+  </event-selector>
+</ng-component>
+`;

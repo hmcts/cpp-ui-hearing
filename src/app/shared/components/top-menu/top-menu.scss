@@ -1,0 +1,287 @@
+@use 'sass:math';
+
+$module: 'global-nav';
+$max-child-elements: 10;
+
+@function em($px, $base: 19) {
+  @return calc($px / $base) + em;
+}
+
+ul {
+  width: 100%;
+  @for $var from 1 through $max-child-elements {
+    & > li.top-menu-#{$var} {
+      width: math.percentage(calc(1 / $var));
+      max-width: math.percentage(calc(1 / $var));
+      margin-right: 0;
+    }
+  }
+}
+
+$is-ie: false !default;
+$mobile-ie6: true !default;
+
+$tablet-breakpoint: 641px !default;
+$desktop-breakpoint: 769px !default;
+
+@mixin media($size: false, $max-width: false, $min-width: false, $ignore-for-ie: false) {
+  @if $is-ie and ($ignore-for-ie == false) {
+    @if $size != mobile {
+      @if ($ie-version == 6 and $mobile-ie6 == false) or $ie-version > 6 {
+        @content;
+      }
+    }
+  } @else {
+    @if $size == desktop {
+      @media (min-width: $desktop-breakpoint) {
+        @content;
+      }
+    } @else if $size == tablet {
+      @media (min-width: $tablet-breakpoint) {
+        @content;
+      }
+    } @else if $size == mobile {
+      @media (max-width: $tablet-breakpoint - 1px) {
+        @content;
+      }
+    } @else if $max-width != false {
+      @media (max-width: $max-width) {
+        @content;
+      }
+    } @else if $min-width != false {
+      @media (min-width: $min-width) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin ie-lte($version) {
+  @if $is-ie {
+    @if $ie-version <= $version {
+      @content;
+    }
+  }
+}
+
+@mixin ie($version) {
+  @if $is-ie {
+    @if $ie-version == $version {
+      @content;
+    }
+  }
+}
+
+// --------------------------end of mixins--------------
+
+.#{$module} {
+  &::before,
+  &::after {
+    content: ' ';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+
+  &-actions {
+    text-align: right;
+  }
+
+  &-toggle {
+    display: none;
+  }
+
+  &-menu {
+    &::before,
+    &::after {
+      content: ' ';
+      display: table;
+    }
+    &::after {
+      clear: both;
+    }
+    border-bottom: 1px solid #bfc1c3;
+  }
+
+  &-list {
+    &::before,
+    &::after {
+      content: ' ';
+      display: table;
+    }
+    &::after {
+      clear: both;
+    }
+    list-style: none;
+
+    li {
+      font-weight: 700;
+      a {
+        overflow: hidden;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // mobile
+  @include media(mobile) {
+    &-list {
+      a {
+        display: block;
+        padding: 10px 0;
+      }
+    }
+
+    &-list {
+      + ul {
+        // targets second ul for pre-charge review
+        border-top: 1px solid #bfc1c3;
+      }
+    }
+  }
+
+  // tablet
+  @include media(tablet) {
+    &-list {
+      li {
+        float: left;
+        margin-right: 20px;
+        padding: 10px 0;
+
+        &.is-active {
+          padding-bottom: 5px;
+
+          &::after {
+            background-color: #0b0c0c;
+            content: '';
+            height: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+          }
+        }
+      }
+
+      + ul {
+        // targets second ul for pre-charge review
+        border-top: 1px solid #bfc1c3;
+        clear: both;
+      }
+    }
+  }
+
+  // desktop
+  @include media(desktop) {
+    &-list {
+      float: left;
+      padding-left: 0;
+      li {
+        padding: 0;
+
+        &.is-active {
+          position: relative;
+          padding: 0;
+
+          &::after {
+            background-color: #0b0c0c;
+            content: '';
+            height: 5px;
+            position: absolute;
+            bottom: -15px;
+            width: 100%;
+          }
+        }
+      }
+
+      + ul {
+        border-top: 0;
+        border-left: 1px solid #bfc1c3;
+        clear: none;
+
+        li {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+// javascript enabled
+.js-enabled {
+  .#{$module} {
+    @include media(mobile) {
+      &-menu {
+        display: none;
+
+        &[aria-expanded='true'] {
+          display: block;
+        }
+      }
+
+      &-toggle {
+        border: 0;
+        cursor: pointer;
+        display: inline-block;
+        font-size: inherit;
+        padding: 10px 0;
+        text-decoration: none;
+
+        &::after {
+          font-size: 10px;
+          padding-left: em(5);
+          vertical-align: middle;
+        }
+
+        &[aria-expanded='false']::after {
+          content: '▼';
+        }
+
+        &[aria-expanded='true']::after {
+          content: '▲';
+        }
+      }
+    }
+  }
+}
+
+.tab-title {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/*
+
+HTML Usage
+
+<div class="global-navigation">
+
+  <a href="#" class="global-navigation-toggle" aria-expanded="false"
+    aria-controls="global-navigation">Menu</a>
+
+  <nav class="global-navigation-menu" id="global-navigation" role="navigation"
+    aria-label="Global Navigation">
+
+    <h3 class="visuallyhidden">Global navigation</h3>
+
+    <ul class="global-navigation-list">
+      <li><a href="#">Case at a glance</a></li>
+      <li class="is-active"><a href="#" tabindex="-1">Case material</a></li>
+    </ul>
+
+    <ul class="global-navigation-list">
+      <li><a href="#">Analysis and decisions</a></li>
+      <li><a href="#">Action plan</a></li>
+      <li><a href="#">Preview and send</a></li>
+    </ul>
+
+  </nav>
+
+</div>
+
+*/

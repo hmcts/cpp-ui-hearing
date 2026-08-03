@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckInErrorSummaryComponent should match the snapshot 1`] = `
+<check-in-error-summary>
+</check-in-error-summary>
+`;

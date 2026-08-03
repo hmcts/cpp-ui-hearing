@@ -1,0 +1,972 @@
+{
+  "hearingId": "f33f8d06-fcb6-4341-9ea1-527c33cc7e1d",
+  "relations": [
+    {
+      "ruleType": "standalone",
+      "resultLineId": "8550c06b-4d48-4b0f-8c68-a65d182c3398",
+      "childResultLineIds": [
+        "5fdfb1c2-8a93-43bd-ab29-2f8384024202",
+        "17b02b85-042b-4163-80d4-75fb6427c610",
+        "b14d29eb-d95e-4f44-9c2a-668703b76591",
+        "b5b0b8f9-c3f6-478c-99e2-d2abe080c133"
+      ]
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "5fdfb1c2-8a93-43bd-ab29-2f8384024202",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "17b02b85-042b-4163-80d4-75fb6427c610",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "b14d29eb-d95e-4f44-9c2a-668703b76591",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "oneOf",
+      "resultLineId": "b5b0b8f9-c3f6-478c-99e2-d2abe080c133",
+      "childResultLineIds": ["58d25701-b528-4014-8800-8d5ae33f8862"]
+    },
+    {
+      "ruleType": "oneOf",
+      "resultLineId": "58d25701-b528-4014-8800-8d5ae33f8862",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "e652cae2-c7a7-457b-8bfd-41351f1d3946",
+      "childResultLineIds": [
+        "7a5c31e8-b577-477e-9e01-f70a45f7959f",
+        "72d7c102-aaa7-491a-a9a6-f4a0adccd063",
+        "3f688473-45f5-4cfd-9f7c-3dd5c121d234",
+        "e698b28e-d999-4f19-9513-8a82f2ab5ef0"
+      ]
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "7a5c31e8-b577-477e-9e01-f70a45f7959f",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "72d7c102-aaa7-491a-a9a6-f4a0adccd063",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "3f688473-45f5-4cfd-9f7c-3dd5c121d234",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "oneOf",
+      "resultLineId": "e698b28e-d999-4f19-9513-8a82f2ab5ef0",
+      "childResultLineIds": ["214eca8c-4d4a-4b7e-af8c-f4a817996ede"]
+    },
+    {
+      "ruleType": "oneOf",
+      "resultLineId": "214eca8c-4d4a-4b7e-af8c-f4a817996ede",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "4b66dd7e-dd6a-42e1-a495-f8a8f5fa3f5b",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "16693f2f-e515-4e07-bfa1-764c9bf277f9",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "a085e359-6069-4694-8820-7810e7dfe762",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "da14abb8-0f4f-42b6-bd12-9edf72eab7ce",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "ea14abb8-0f4f-42b6-bd12-9edf72eab7ce",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "d5f0263a-a5f0-48b7-bdad-d72c4f25ebd1",
+      "childResultLineIds": [
+        "3a7194fb-3059-4914-9755-cbcfae6709a9",
+        "84d83847-dde5-4161-af7c-2e28e2ab16a0"
+      ]
+    },
+    {
+      "ruleType": "mandatory",
+      "resultLineId": "3a7194fb-3059-4914-9755-cbcfae6709a9",
+      "childResultLineIds": ["29a89aaf-eaf6-4b03-916e-7126251ec9b7"]
+    },
+    {
+      "ruleType": "optional",
+      "resultLineId": "84d83847-dde5-4161-af7c-2e28e2ab16a0",
+      "childResultLineIds": ["d77177c0-bc90-49e0-8f6c-b2d991480cd6"]
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "fdff0f20-9d0e-4fac-b8d2-6f4e90693d96",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "oneOf",
+      "resultLineId": "29a89aaf-eaf6-4b03-916e-7126251ec9b7",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "atleastOneOf",
+      "resultLineId": "d77177c0-bc90-49e0-8f6c-b2d991480cd6",
+      "childResultLineIds": []
+    },
+    {
+      "ruleType": "standalone",
+      "resultLineId": "3b45b7f1-538e-4520-8df4-3a85f4f60248",
+      "childResultLineIds": []
+    }
+  ],
+  "hearingDay": "2021-07-09",
+  "resultLines": {
+    "17b02b85-042b-4163-80d4-75fb6427c610": {
+      "label": "Account Consolidated",
+      "valid": false,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "fe3704be-46ce-4dc9-8674-96b379f9a56e",
+      "shortCode": "acon",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "acon",
+      "resultLineId": "17b02b85-042b-4163-80d4-75fb6427c610",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "resultDefinitionId": "923f8b82-d4b5-4c9b-8b54-6d1ec8e16dd6"
+    },
+    "214eca8c-4d4a-4b7e-af8c-f4a817996ede": {
+      "label": "Pay by date",
+      "valid": true,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "6844d634-a6fe-42a6-9b6c-1adce72af4fd",
+      "shortCode": "pdate",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "pdate",
+      "resultLineId": "214eca8c-4d4a-4b7e-af8c-f4a817996ede",
+      "resultPrompts": [
+        {
+          "type": "DATE",
+          "label": "Date to pay in full by",
+          "value": "2022-10-01",
+          "promptId": "ee7d253a-c629-11e8-a355-529269fb1459",
+          "promptRef": "PBD"
+        }
+      ],
+      "unresolvedParts": [],
+      "defendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "masterDefendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "resultDefinitionId": "bcb5a496-f7cf-11e8-8eb2-f2801f1b9fd1"
+    },
+    "3f688473-45f5-4cfd-9f7c-3dd5c121d234": {
+      "label": "Account Consolidated",
+      "valid": false,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "6844d634-a6fe-42a6-9b6c-1adce72af4fd",
+      "shortCode": "acon",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "acon",
+      "resultLineId": "3f688473-45f5-4cfd-9f7c-3dd5c121d234",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "masterDefendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "resultDefinitionId": "923f8b82-d4b5-4c9b-8b54-6d1ec8e16dd6"
+    },
+    "4b66dd7e-dd6a-42e1-a495-f8a8f5fa3f5b": {
+      "label": "No order for costs",
+      "valid": true,
+      "shortCode": "ncosts",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "C",
+      "originalText": "ncosts",
+      "resultLineId": "4b66dd7e-dd6a-42e1-a495-f8a8f5fa3f5b",
+      "applicationId": "4e8117e4-2113-463e-8bc9-adadfad3c285",
+      "resultPrompts": [
+        {
+          "type": "TXT",
+          "label": "Reason for no costs",
+          "value": "No reason provided.",
+          "promptId": "be2a46db-709d-4e0d-9b63-aeb831564c1d",
+          "promptRef": "reasonForNoCosts"
+        }
+      ],
+      "unresolvedParts": [],
+      "resultDefinitionId": "baf94928-04ae-4609-8e96-efc9f081b2be"
+    },
+    "58d25701-b528-4014-8800-8d5ae33f8862": {
+      "label": "Pay by date",
+      "valid": true,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "fe3704be-46ce-4dc9-8674-96b379f9a56e",
+      "shortCode": "pdate",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "pdate",
+      "resultLineId": "58d25701-b528-4014-8800-8d5ae33f8862",
+      "resultPrompts": [
+        {
+          "type": "DATE",
+          "label": "Date to pay in full by",
+          "value": "2021-10-01",
+          "promptId": "ee7d253a-c629-11e8-a355-529269fb1459",
+          "promptRef": "PBD"
+        }
+      ],
+      "unresolvedParts": [],
+      "defendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "resultDefinitionId": "bcb5a496-f7cf-11e8-8eb2-f2801f1b9fd1"
+    },
+    "5fdfb1c2-8a93-43bd-ab29-2f8384024202": {
+      "label": "Collection order",
+      "valid": false,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "fe3704be-46ce-4dc9-8674-96b379f9a56e",
+      "shortCode": "collo",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "collo",
+      "resultLineId": "5fdfb1c2-8a93-43bd-ab29-2f8384024202",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "resultDefinitionId": "9ea0d845-5096-44f6-9ce0-8ae801141eac"
+    },
+    "72d7c102-aaa7-491a-a9a6-f4a0adccd063": {
+      "label": "No collection order reason",
+      "valid": false,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "6844d634-a6fe-42a6-9b6c-1adce72af4fd",
+      "shortCode": "nocollo",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "nocollo",
+      "resultLineId": "72d7c102-aaa7-491a-a9a6-f4a0adccd063",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "masterDefendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "resultDefinitionId": "615313b5-0647-4d61-b7b8-6b36265d8929"
+    },
+    "7a5c31e8-b577-477e-9e01-f70a45f7959f": {
+      "label": "Collection order",
+      "valid": false,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "6844d634-a6fe-42a6-9b6c-1adce72af4fd",
+      "shortCode": "collo",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "collo",
+      "resultLineId": "7a5c31e8-b577-477e-9e01-f70a45f7959f",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "masterDefendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "resultDefinitionId": "9ea0d845-5096-44f6-9ce0-8ae801141eac"
+    },
+    "8550c06b-4d48-4b0f-8c68-a65d182c3398": {
+      "label": "Costs",
+      "valid": true,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "fe3704be-46ce-4dc9-8674-96b379f9a56e",
+      "shortCode": "fcost",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "C",
+      "originalText": "FCOST",
+      "resultLineId": "8550c06b-4d48-4b0f-8c68-a65d182c3398",
+      "resultPrompts": [
+        {
+          "type": "CURR",
+          "label": "Amount of costs",
+          "value": 1000,
+          "promptId": "db261fd9-c6bb-4e10-b93f-9fd98418f7b0",
+          "promptRef": "AOC"
+        },
+        {
+          "type": "ONEOF",
+          "label": "Major creditor",
+          "value": {
+            "type": "FIXL",
+            "label": "Major creditor",
+            "value": "Television Licensing Organisation",
+            "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+            "promptRef": "CREDNAME"
+          },
+          "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+          "promptRef": "CREDNAME"
+        }
+      ],
+      "unresolvedParts": [],
+      "defendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "resultDefinitionId": "76d43772-0660-4a33-b5c6-8f8ccaf6b4e3"
+    },
+    "b14d29eb-d95e-4f44-9c2a-668703b76591": {
+      "label": "No collection order reason",
+      "valid": false,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "fe3704be-46ce-4dc9-8674-96b379f9a56e",
+      "shortCode": "nocollo",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "nocollo",
+      "resultLineId": "b14d29eb-d95e-4f44-9c2a-668703b76591",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "resultDefinitionId": "615313b5-0647-4d61-b7b8-6b36265d8929"
+    },
+    "b5b0b8f9-c3f6-478c-99e2-d2abe080c133": {
+      "label": "Payment terms",
+      "valid": true,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "fe3704be-46ce-4dc9-8674-96b379f9a56e",
+      "shortCode": "payt",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "payt",
+      "resultLineId": "b5b0b8f9-c3f6-478c-99e2-d2abe080c133",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "d11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "resultDefinitionId": "4fdd9548-c521-48c9-baa3-1bd2f13a4fcc"
+    },
+    "e652cae2-c7a7-457b-8bfd-41351f1d3946": {
+      "label": "Fine",
+      "valid": true,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "6844d634-a6fe-42a6-9b6c-1adce72af4fd",
+      "shortCode": "fo",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "O",
+      "originalText": "FO £50",
+      "resultLineId": "e652cae2-c7a7-457b-8bfd-41351f1d3946",
+      "resultPrompts": [
+        {
+          "type": "CURR",
+          "label": "Amount of fine",
+          "value": "50",
+          "promptId": "7cd1472f-2379-4f5b-9e67-98a43d86e122",
+          "promptRef": "AOF"
+        }
+      ],
+      "unresolvedParts": [],
+      "defendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "masterDefendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "resultDefinitionId": "969f150c-cd05-46b0-9dd9-30891efcc766"
+    },
+    "e698b28e-d999-4f19-9513-8a82f2ab5ef0": {
+      "label": "Payment terms",
+      "valid": true,
+      "caseId": "17766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "6844d634-a6fe-42a6-9b6c-1adce72af4fd",
+      "shortCode": "payt",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "D",
+      "originalText": "payt",
+      "resultLineId": "e698b28e-d999-4f19-9513-8a82f2ab5ef0",
+      "resultPrompts": [],
+      "unresolvedParts": [],
+      "defendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "masterDefendantId": "5b1e54f9-1e7b-4a72-8bca-3ead21fb72dd",
+      "resultDefinitionId": "4fdd9548-c521-48c9-baa3-1bd2f13a4fcc",
+      "excludedFromResults": true
+    },
+    "16693f2f-e515-4e07-bfa1-764c9bf277f9": {
+      "label": "Costs",
+      "valid": true,
+      "applicationId": "b085e359-6069-4694-8820-7810e7dfe762",
+      "amendmentDate": "2021-07-21T13:10:57.707Z",
+      "amendmentReason": {
+        "id": "ca8b8285-5fc7-3b36-aa78-ecdf5ac6dad0",
+        "reasonDescription": "Admin error on shared result (a result recorded incorrectly)"
+      },
+      "shortCode": "fcost",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "C",
+      "originalText": "FCOST",
+      "resultLineId": "16693f2f-e515-4e07-bfa1-764c9bf277f9",
+      "resultPrompts": [
+        {
+          "type": "CURR",
+          "label": "Amount of costs",
+          "value": 1000,
+          "promptId": "db261fd9-c6bb-4e10-b93f-9fd98418f7b0",
+          "promptRef": "AOC"
+        },
+        {
+          "type": "ONEOF",
+          "label": "Major creditor",
+          "value": {
+            "type": "FIXL",
+            "label": "Major creditor",
+            "value": "Television Licensing Organisation",
+            "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+            "promptRef": "CREDNAME"
+          },
+          "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+          "promptRef": "CREDNAME"
+        }
+      ],
+      "sharedDate": "2021-07-21T13:10:57.707Z",
+      "unresolvedParts": [],
+      "resultDefinitionId": "76d43772-0660-4a33-b5c6-8f8ccaf6b4e3"
+    },
+    "a085e359-6069-4694-8820-7810e7dfe762": {
+      "label": "Costs",
+      "valid": true,
+      "applicationId": "c085e359-6069-4694-8820-7810e7dfe762",
+      "amendmentDate": "2021-07-21T13:10:57.707Z",
+      "amendmentReason": {
+        "id": "ca8b8285-5fc7-3b36-aa78-ecdf5ac6dad0",
+        "reasonDescription": "Admin error on shared result (a result recorded incorrectly)"
+      },
+      "shortCode": "fcost",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "C",
+      "originalText": "FCOST",
+      "resultLineId": "a085e359-6069-4694-8820-7810e7dfe762",
+      "resultPrompts": [
+        {
+          "type": "CURR",
+          "label": "Amount of costs",
+          "value": 1000,
+          "promptId": "db261fd9-c6bb-4e10-b93f-9fd98418f7b0",
+          "promptRef": "AOC"
+        },
+        {
+          "type": "ONEOF",
+          "label": "Major creditor",
+          "value": {
+            "type": "FIXL",
+            "label": "Major creditor",
+            "value": "Television Licensing Organisation",
+            "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+            "promptRef": "CREDNAME"
+          },
+          "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+          "promptRef": "CREDNAME"
+        }
+      ],
+      "sharedDate": "2021-07-21T00:00:00.000Z",
+      "unresolvedParts": [],
+      "resultDefinitionId": "76d43772-0660-4a33-b5c6-8f8ccaf6b4e3"
+    },
+    "da14abb8-0f4f-42b6-bd12-9edf72eab7ce": {
+      "label": "Costs",
+      "valid": true,
+      "deleted": true,
+      "applicationId": "d085e359-6069-4694-8820-7810e7dfe762",
+      "amendmentDate": "2021-07-21T13:10:57.707Z",
+      "amendmentReason": {
+        "id": "ca8b8285-5fc7-3b36-aa78-ecdf5ac6dad0",
+        "reasonDescription": "Admin error on shared result (a result recorded incorrectly)"
+      },
+      "shortCode": "fcost",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "C",
+      "originalText": "FCOST",
+      "resultLineId": "da14abb8-0f4f-42b6-bd12-9edf72eab7ce",
+      "resultPrompts": [
+        {
+          "type": "CURR",
+          "label": "Amount of costs",
+          "value": 1000,
+          "promptId": "db261fd9-c6bb-4e10-b93f-9fd98418f7b0",
+          "promptRef": "AOC"
+        },
+        {
+          "type": "ONEOF",
+          "label": "Major creditor",
+          "value": {
+            "type": "FIXL",
+            "label": "Major creditor",
+            "value": "Television Licensing Organisation",
+            "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+            "promptRef": "CREDNAME"
+          },
+          "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+          "promptRef": "CREDNAME"
+        }
+      ],
+      "sharedDate": "2021-07-21T00:00:00.000Z",
+      "unresolvedParts": [],
+      "resultDefinitionId": "76d43772-0660-4a33-b5c6-8f8ccaf6b4e3"
+    },
+    "ea14abb8-0f4f-42b6-bd12-9edf72eab7ce": {
+      "label": "Costs",
+      "valid": true,
+      "deleted": false,
+      "applicationId": "a085e359-6069-4694-8820-7810e7dfe762",
+      "caseId": "27766a10-db3f-4cc9-8745-6cad78edc642",
+      "offenceId": "ee3704be-46ce-4dc9-8674-96b379f9a56e",
+      "defendantId": "c11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "masterDefendantId": "e11b6c65-f9dd-4655-8eca-9af0e38bf942",
+      "shortCode": "fcost",
+      "orderedDate": "2021-07-09",
+      "resultLevel": "C",
+      "originalText": "FCOST",
+      "resultLineId": "ea14abb8-0f4f-42b6-bd12-9edf72eab7ce",
+      "resultPrompts": [
+        {
+          "type": "CURR",
+          "label": "Amount of costs",
+          "value": 25,
+          "promptId": "db261fd9-c6bb-4e10-b93f-9fd98418f7b0",
+          "promptRef": "AOC"
+        },
+        {
+          "type": "ONEOF",
+          "label": "Major creditor",
+          "value": {
+            "type": "FIXL",
+            "label": "Major creditor",
+            "value": "Television Licensing Organisation",
+            "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+            "promptRef": "CREDNAME"
+          },
+          "promptId": "af921cf4-06e7-4f6b-a4ea-dcb58aab0dbe",
+          "promptRef": "CREDNAME"
+        }
+      ],
+      "unresolvedParts": [],
+      "resultDefinitionId": "76d43772-0660-4a33-b5c6-8f8ccaf6b4e3"
+    },
+    "29a89aaf-eaf6-4b03-916e-7126251ec9b7": {
+      "label": "Next hearing in Crown Court",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "offenceId": "a89b2dc6-369e-453f-b58a-075f8a3f63df",
+      "shortCode": "nhccs",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "defendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "nhccs",
+      "resultLineId": "29a89aaf-eaf6-4b03-916e-7126251ec9b7",
+      "amendmentDate": "2021-10-09T10:01:53.743Z",
+      "resultPrompts": [
+        {
+          "type": "ONEOF",
+          "label": "Date and time to be fixed",
+          "value": {
+            "type": "DATE",
+            "label": "Fixed Date",
+            "value": "2021-10-20",
+            "promptId": "aea2ee79-47b4-4023-9a95-1b327e6e03d5",
+            "promptRef": "fixedDate"
+          },
+          "promptId": "46257d78-1cbf-42b0-a24b-206826fecfb9",
+          "promptRef": "dateToBeFixed"
+        },
+        {
+          "type": "NAMEADDRESS",
+          "label": "Courthouse",
+          "value": [
+            {
+              "type": "TXT",
+              "label": "Courthouse organisation name",
+              "value": "Lewes Crown Court",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEOrganisationName"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 1",
+              "value": "Lewes Combined Court Centre",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress1"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 2",
+              "value": "The Law Courts",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress2"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 3",
+              "value": "High Street",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress3"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 4",
+              "value": "Lewes",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress4"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 5",
+              "value": "E.Sussex",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress5"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse post code",
+              "value": "BN7 1YB",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEPostCode"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse email address 1",
+              "value": "SE.CrownCourt@cps.gov.uk",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEEmailAddress1"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse email address 2",
+              "value": "PECSLewesCrown@serco.com",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEEmailAddress2"
+            }
+          ],
+          "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+          "promptRef": "hCHOUSE"
+        },
+        {
+          "type": "FIXL",
+          "label": "Hearing type",
+          "value": "Sentence",
+          "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+          "promptRef": "HTYPE"
+        },
+        {
+          "type": "DURATION",
+          "label": "Estimated duration",
+          "value": [
+            {
+              "type": "INT",
+              "label": "Minutes",
+              "value": "30",
+              "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+              "promptRef": "Minutes"
+            }
+          ],
+          "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+          "promptRef": "HEST"
+        },
+        {
+          "type": "FIXL",
+          "label": "Remand Status",
+          "value": "Unconditional Bail",
+          "promptId": "9403f0d7-90b5-4377-84b4-f06a77811362",
+          "promptRef": "remandStatus"
+        }
+      ],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "fbed768b-ee95-4434-87c8-e81cbc8d24c8"
+    },
+    "3a7194fb-3059-4914-9755-cbcfae6709a9": {
+      "label": "Next hearing",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "offenceId": "a89b2dc6-369e-453f-b58a-075f8a3f63df",
+      "shortCode": "nexh",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "defendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "nexh",
+      "resultLineId": "3a7194fb-3059-4914-9755-cbcfae6709a9",
+      "amendmentDate": "2021-10-09T10:01:53.743Z",
+      "resultPrompts": [],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "f00359b5-7303-403b-b59e-0b1a1daa89bc"
+    },
+    "3b45b7f1-538e-4520-8df4-3a85f4f60248": {
+      "label": "Next hearing in Crown Court",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "offenceId": "a89b2dc6-369e-453f-b58a-075f8a3f63df",
+      "shortCode": "nhccs",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "defendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "next hearing",
+      "resultLineId": "3b45b7f1-538e-4520-8df4-3a85f4f60248",
+      "amendmentDate": "2021-10-09T10:02:07.438Z",
+      "resultPrompts": [
+        {
+          "type": "ONEOF",
+          "label": "Date and time to be fixed",
+          "value": {
+            "type": "DATE",
+            "label": "Fixed Date",
+            "value": "2021-10-11",
+            "promptId": "aea2ee79-47b4-4023-9a95-1b327e6e03d5",
+            "promptRef": "fixedDate"
+          },
+          "promptId": "46257d78-1cbf-42b0-a24b-206826fecfb9",
+          "promptRef": "dateToBeFixed"
+        },
+        {
+          "type": "NAMEADDRESS",
+          "label": "Courthouse",
+          "value": [
+            {
+              "type": "TXT",
+              "label": "Courthouse organisation name",
+              "value": "Lewes Crown Court",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEOrganisationName"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 1",
+              "value": "Lewes Combined Court Centre",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress1"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 2",
+              "value": "The Law Courts",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress2"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 3",
+              "value": "High Street",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress3"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 4",
+              "value": "Lewes",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress4"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse address line 5",
+              "value": "E.Sussex",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEAddress5"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse post code",
+              "value": "BN7 1YB",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEPostCode"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse email address 1",
+              "value": "SE.CrownCourt@cps.gov.uk",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEEmailAddress1"
+            },
+            {
+              "type": "TXT",
+              "label": "Courthouse email address 2",
+              "value": "PECSLewesCrown@serco.com",
+              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+              "promptRef": "hCHOUSEEmailAddress2"
+            }
+          ],
+          "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+          "promptRef": "hCHOUSE"
+        },
+        {
+          "type": "FIXL",
+          "label": "Hearing type",
+          "value": "Mention",
+          "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+          "promptRef": "HTYPE"
+        },
+        {
+          "type": "DURATION",
+          "label": "Estimated duration",
+          "value": [
+            {
+              "type": "INT",
+              "label": "Minutes",
+              "value": "5",
+              "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+              "promptRef": "Minutes"
+            }
+          ],
+          "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+          "promptRef": "HEST"
+        },
+        {
+          "type": "FIXL",
+          "label": "Remand Status",
+          "value": "Unconditional Bail",
+          "promptId": "9403f0d7-90b5-4377-84b4-f06a77811362",
+          "promptRef": "remandStatus"
+        }
+      ],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "fbed768b-ee95-4434-87c8-e81cbc8d24c8"
+    },
+    "84d83847-dde5-4161-af7c-2e28e2ab16a0": {
+      "label": "Adjournment reasons",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "offenceId": "a89b2dc6-369e-453f-b58a-075f8a3f63df",
+      "shortCode": "adjr",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "defendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "adjr",
+      "resultLineId": "84d83847-dde5-4161-af7c-2e28e2ab16a0",
+      "amendmentDate": "2021-10-09T10:01:53.743Z",
+      "resultPrompts": [],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "7fc17a01-2f5a-4433-aae9-28e0c959f73b"
+    },
+    "d5f0263a-a5f0-48b7-bdad-d72c4f25ebd1": {
+      "label": "Remand unconditional bail",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "offenceId": "a89b2dc6-369e-453f-b58a-075f8a3f63df",
+      "shortCode": "remub",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "defendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "remub",
+      "resultLineId": "d5f0263a-a5f0-48b7-bdad-d72c4f25ebd1",
+      "amendmentDate": "2021-10-09T10:01:53.743Z",
+      "resultPrompts": [
+        {
+          "type": "ONEOF",
+          "label": "Defendant to attend the next hearing",
+          "value": {
+            "type": "BOOLEAN",
+            "label": "Defendant to attend the next hearing",
+            "value": true,
+            "promptId": "61f951c3-f18d-4a44-ae4a-0cad4efb4133",
+            "promptRef": "defendantToAttendTheNextHearing"
+          },
+          "promptId": "61f951c3-f18d-4a44-ae4a-0cad4efb4133",
+          "promptRef": "defendantToAttendTheNextHearing"
+        }
+      ],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "d076bd4a-17d5-4720-899a-1c6f96e3b35f"
+    },
+    "d77177c0-bc90-49e0-8f6c-b2d991480cd6": {
+      "label": "For a pre-sentence report to be prepared",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "offenceId": "a89b2dc6-369e-453f-b58a-075f8a3f63df",
+      "shortCode": "psr",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "defendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "psr",
+      "resultLineId": "d77177c0-bc90-49e0-8f6c-b2d991480cd6",
+      "amendmentDate": "2021-10-09T10:01:53.743Z",
+      "resultPrompts": [],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "029d370b-90f5-4650-b985-a61e9ec8db99"
+    },
+    "fdff0f20-9d0e-4fac-b8d2-6f4e90693d96": {
+      "label": "Entered in error",
+      "valid": true,
+      "caseId": "5c148559-2140-48b9-b88f-ae840cea2288",
+      "shortCode": "err",
+      "sharedDate": "2021-10-09T09:58:52.714Z",
+      "orderedDate": "2021-10-09",
+      "resultLevel": "O",
+      "originalText": "err",
+      "resultLineId": "fdff0f20-9d0e-4fac-b8d2-6f4e90693d96",
+      "amendmentDate": "2021-10-09T10:02:16.321Z",
+      "applicationId": "0f2ce534-890e-4f49-8cf6-ed845979c2f9",
+      "resultPrompts": [
+        {
+          "type": "TXT",
+          "label": "Reason",
+          "value": "Court decided to adjourn for sentence.",
+          "promptId": "af38d17b-46de-4dbb-a5c7-14ac36905c89",
+          "promptRef": "reason"
+        }
+      ],
+      "amendmentReason": {
+        "id": "a02018a1-915c-3343-95ad-abc5f99b339a",
+        "seqNo": 20,
+        "reasonDescription": "Error or Omission in result announced in court (Amendment under the Slip rule)"
+      },
+      "unresolvedParts": [],
+      "masterDefendantId": "f80968c1-9969-4a29-8e6b-08db4c4edf60",
+      "resultDefinitionId": "c36fed37-b635-4303-b514-2273e9e2594d"
+    }
+  },
+  "__metadata__": { "version": 1 },
+  "shadowListedOffenceIds": []
+}

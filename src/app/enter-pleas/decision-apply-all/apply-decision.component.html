@@ -1,0 +1,88 @@
+<div class="enter-plea">
+  <pdk-grid container>
+    <pdk-grid one-third>
+      <h1 pdk-typography="heading-large" pdk-margin-top="4">
+        {{ 'ENTER_PLEAS.APPLY' | translate }}
+      </h1>
+    </pdk-grid>
+  </pdk-grid>
+
+  <div data-role="offence-pleas" class="plea mb-m">
+    <div class="plea-count">{{ currentOffence.count }}</div>
+    <div class="plea-content mb-l">
+      <div class="bold">{{ currentOffence.offenceTitle }}</div>
+      <div class="font-xsmall mt-xs">{{ currentOffence.offenceLegislation }}</div>
+      <div class="font-small mt-xs">{{ currentOffence.wording }}</div>
+      <div class="clearfix"></div>
+      <div data-role="offence-defendant">
+        <p class="bold" pdk-margin-top="4">
+          {{ defendant.personDefendant.personDetails | fullName : true }}
+        </p>
+
+        @if (currentOffence.plea.pleaValue) {
+        <div>
+          <p class="bold" pdk-margin-top="4">{{ 'ENTER_PLEAS.PLEA' | translate }}</p>
+          <p>{{ this.pleaOptions[currentOffence.plea.pleaValue] }}</p>
+        </div>
+        } @if (currentOffence.indicatedPlea.indicatedPleaValue) {
+        <div>
+          <p class="bold" pdk-margin-top="4">{{ 'ENTER_PLEAS.PLEA' | translate }}</p>
+          <p>{{ this.pleaOptions[currentOffence.indicatedPlea.indicatedPleaValue] }}</p>
+        </div>
+        } @if (currentOffence.allocationDecision.motReasonDescription) {
+        <div>
+          <p class="bold" pdk-margin-top="4">
+            {{ 'ENTER_PLEAS.ALLOCATION_DECISION' | translate }}
+          </p>
+          <p>{{ currentOffence.allocationDecision.motReasonDescription }}</p>
+        </div>
+        } @if (
+        currentOffence.allocationDecision.courtIndicatedSentence.courtIndicatedSentenceDescription )
+        {
+        <div>
+          <p class="bold" pdk-margin-top="4">
+            {{ 'ENTER_PLEAS.SENTENCING_DECISION' | translate }}
+          </p>
+          <p>
+            {{
+              currentOffence.allocationDecision.courtIndicatedSentence
+                .courtIndicatedSentenceDescription
+            }}
+          </p>
+        </div>
+        }
+
+        <form pdk-form (validSubmit)="onSubmit()">
+          <p class="bold" pdk-margin-top="4">Apply decision to</p>
+          <pdk-form-field labelHidden>
+            <pdk-checkbox-group inline name="offence-checkbox" [(ngModel)]="selectedOffences">
+              <pdk-checkbox (click)="addRemoveAllOffences($event)">
+                {{ 'All offences for ' }}
+                {{ defendant.personDefendant.personDetails | fullName : true }}
+              </pdk-checkbox>
+              @for (offence of defendantOffenceOptions; track offence) {
+              <pdk-checkbox [value]="offence.value" (click)="onSelection($event)">
+                {{ offence.label }}
+              </pdk-checkbox>
+              }
+            </pdk-checkbox-group>
+          </pdk-form-field>
+
+          @if (defendant.offences[0].plea?.pleaDate) {
+          <div class="text-secondary plea-date" pdk-text-colour="dark-grey">
+            Plea entered on {{ defendant.offences[0].plea.pleaDate | date : 'dd MMMM yyyy' }}
+          </div>
+          }
+
+          <button pdk-margin-top="4" data-role="submit-pleas" pdk-button type="submit">
+            {{ 'ENTER_PLEAS.SAVE_AND_RETURN' | translate }}
+          </button>
+        </form>
+        <div pdk-margin-top="4">
+          <a href="javascript:void(0)" (click)="cancel.emit()">{{ 'COMMON.CANCEL' | translate }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

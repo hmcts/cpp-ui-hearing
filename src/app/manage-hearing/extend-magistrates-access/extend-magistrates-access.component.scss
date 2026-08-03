@@ -1,0 +1,9 @@
+.extend-magistrate-access-block {
+  display: flex;
+  flex-direction: column;
+
+  .cancel-link {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

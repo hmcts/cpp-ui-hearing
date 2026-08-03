@@ -1,0 +1,133 @@
+<section class="trial-type">
+  <details
+    pdk-margin-bottom="4"
+    pdk-details
+    #detailsElement
+    *cppUserHasPermission="expectedPermissions.editCrackedIneffective"
+    [open]="isAccordionOpen || hasTrialEffectivenessError"
+  >
+    <summary
+      data-test-id="trialEffectiveness"
+      pdk-margin-bottom="1"
+      pdk-typography="body-small"
+      (click)="toggleActionDetails()"
+    >
+      {{ label | translate : initialTrialTypeJurisdiction() }}
+    </summary>
+
+    <pdk-details-text>
+      <form pdk-form novalidate pdk-margin-top="4">
+        <!-- Trial Type Radio Buttons -->
+
+        <pdk-form-field label="{{ 'TRIAL_OUTCOME.TRIAL_TYPE_TITLE' | translate }}">
+          <pdk-radio-group
+            name="trialTypeOptionId"
+            [(ngModel)]="trialTypeOptionId"
+            (change)="trialOptionSelected()"
+            required
+          >
+            @for (option of trialTypeOptions; track option.value) {
+            <pdk-radio-button [value]="option.value" data-role="trial-type-option">
+              {{ option.label }}
+            </pdk-radio-button>
+            }
+          </pdk-radio-group>
+        </pdk-form-field>
+
+        <!-- Reason Autosuggest -->
+        @if (trialTypeOptionId !== 'Effective' && showTypeahead) {
+        <div pdk-margin-top="4">
+          <pdk-form-field label="{{ 'TRIAL_OUTCOME.SELECT_REASON' | translate }}">
+            <pdk-autosuggest-lite
+              data-role="trial-type-reason"
+              name="trial-type-reason"
+              [ngModel]="selectedReason?.value"
+              (ngModelChange)="selectReason($event.value)"
+              (inputText)="onReasonInput($event)"
+              [suggestions]="typeaheadOptions.length ? typeaheadOptions : []"
+              [suggestionKey]="'value'"
+              [suggestionTitle]="'label'"
+            >
+            </pdk-autosuggest-lite>
+          </pdk-form-field>
+        </div>
+        }
+        <!-- Display selected reason -->
+        @if (trialTypeOptionId !== 'Effective' && showSelectedReason) {
+        <div pdk-margin-top="4">
+          <div class="form-label-bold">{{ 'TRIAL_OUTCOME.SELECT_REASON' | translate }}</div>
+
+          <div class="selected-reason-container" (click)="toggleTypeahead()" pdk-margin-bottom="3">
+            {{ selectedReason?.reasonShortDescription }}
+          </div>
+        </div>
+        }
+
+        <!-- Sub-Reason — only for Cracked/Ineffective once a reason is chosen -->
+        @if (showSubReasonInput) {
+        <div pdk-margin-top="4">
+          @if (!selectedSubReason) {
+          <pdk-form-field label="{{ 'TRIAL_OUTCOME.SELECT_SUB_REASON' | translate }}">
+            <pdk-autosuggest-lite
+              data-role="trial-type-sub-reason"
+              name="trial-type-sub-reason"
+              [(ngModel)]="selectedSubReason"
+              (inputText)="onSubReasonInput($event)"
+              [suggestions]="subReasonSuggestions.length ? subReasonSuggestions : []"
+              [suggestionKey]="'id'"
+              [suggestionTitle]="'subReasonDesc'"
+            >
+            </pdk-autosuggest-lite>
+          </pdk-form-field>
+          } @if (selectedSubReason) {
+          <div class="form-label-bold">{{ 'TRIAL_OUTCOME.SELECT_SUB_REASON' | translate }}</div>
+          <div class="selected-reason-container" (click)="clearSubReason()" pdk-margin-bottom="3">
+            {{ selectedSubReason.subReasonDesc }}
+          </div>
+          }
+        </div>
+        }
+
+        <!-- Save Button -->
+
+        <button
+          type="button"
+          pdk-button
+          data-role="save-trial-type-btn"
+          class="save-trial-type-btn"
+          pdk-margin-top="3"
+          (click)="saveTrialType()"
+          [disabled]="disableSaveButton"
+        >
+          {{ 'COMMON.SAVE' | translate }}
+        </button>
+      </form>
+    </pdk-details-text>
+  </details>
+
+  <!-- Read-only view -->
+
+  <ng-container *cppUserHasPermission="expectedPermissions.editCrackedIneffective; required: false">
+    @if (hearing.isEffectiveTrial || hearing.crackedIneffectiveTrial) {
+    <div pdk-grid container [pdk-margin-bottom]="hearing.crackedIneffectiveTrial ? 4 : 0">
+      <div pdk-grid full>
+        <h4 pdk-typography="heading-small" data-test-id="trialEffectiveness">
+          {{ label | translate : initialTrialTypeJurisdiction() }}
+        </h4>
+      </div>
+      @if (showSelectedReason) {
+      <div pdk-grid full>
+        <pdk-inset-text pdk-margin-vertical="0" data-test-id="trialEffectivenessReason">
+          {{ selectedReason?.reasonShortDescription }}
+        </pdk-inset-text>
+        @if (selectedSubReason) {
+        <pdk-inset-text pdk-margin-vertical="0" data-test-id="trialEffectivenessSubReason">
+          {{ selectedSubReason?.subReasonDesc }}
+        </pdk-inset-text>
+        }
+      </div>
+      }
+    </div>
+    }
+  </ng-container>
+</section>

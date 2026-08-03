@@ -1,0 +1,531 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvailableHearingsTableComponent should match the snapshot 1`] = `
+<available-hearings-table
+  capitalizeFirstLetter={[Function CapitalizePipe]}
+  courtCentres={[Function Array]}
+  errors={[Function EventEmitter_]}
+  futureHearingsById={[Function Object]}
+  hearings={[Function Array]}
+  isApplication="false"
+  onHearingSelection={[Function EventEmitter_]}
+  onViewHearingDetails={[Function EventEmitter_]}
+  route={[Function Object]}
+>
+  <div
+    class="hearing-headings govuk-!-margin-bottom-2 pdk-!-border-color-black govuk-!-padding-bottom-2"
+    pdk-border-colour="black"
+    pdk-margin-bottom="2"
+    pdk-padding-bottom="2"
+  >
+    <div
+      class="hearing-heading-radio-button-col"
+    />
+    <div
+      class="hearing-data-col"
+    >
+      <div
+        class="hearing-data-col-row"
+      >
+        <div
+          class="hearing-heading-date-col govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+           RELATED_HEARINGS.DATE 
+        </div>
+        <div
+          class="hearing-heading-court-details-col govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+           RELATED_HEARINGS.COURT_DETAILS 
+        </div>
+        <div
+          class="hearing-heading-hearing-type-col govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+           RELATED_HEARINGS.HEARING_TYPE 
+        </div>
+        <div
+          class="hearing-heading-start-time-col govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+           RELATED_HEARINGS.SESSION_START_TIME 
+        </div>
+      </div>
+    </div>
+    <div
+      class="hearing-heading-related-cases-col govuk-heading-s"
+      pdk-typography="heading-small"
+    >
+       RELATED_HEARINGS.RELATED_CASES 
+    </div>
+  </div><pdk-radio-group
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <div
+      class="govuk-radios"
+    >
+      <div
+        data-test-id="hearing"
+      >
+        <div
+          class="hearing-day-row pdk-!-border-color-mid-grey govuk-!-padding-top-2 govuk-!-padding-bottom-2"
+          data-test-id="hearingDay"
+          pdk-border-colour="mid-grey"
+          pdk-padding-bottom="2"
+          pdk-padding-top="2"
+        >
+          <div
+            class="hearing-radio-button-col"
+          >
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="[object Object]"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                />
+              </div>
+            </pdk-radio-button>
+          </div>
+          <div
+            class="hearing-data-col"
+          >
+            <div
+              class="hearing-data-col-row"
+            >
+              <div
+                class="hearing-start-date-col"
+                data-test-id="hearingStartDate"
+              >
+                 5 Oct 2018 
+              </div>
+              <div
+                class="hearing-court-details-col"
+              >
+                <span
+                  data-test-id="hearingCourtCentre"
+                >
+                  Liverpool Crown Court
+                </span>
+                <br />
+                <span
+                  data-test-id="hearingCourtroom"
+                >
+                  Courtroom 3-1 
+                </span>
+                <br />
+              </div>
+              <div
+                class="hearing-type-col"
+              >
+                <div
+                  class="hearing-type-text"
+                  data-test-id="hearingType"
+                >
+                   Further Plea & Trial Preparation 
+                </div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  data-test-id="listedCase"
+                  pdk-margin-bottom="3"
+                >
+                  <hearing-offences>
+                    <div>
+                      offences: []
+                    </div>
+                    <div>
+                      applications: []
+                    </div>
+                    <div>
+                      hearingType: Further Plea & Trial Preparation
+                    </div>
+                  </hearing-offences>
+                </div>
+                <div
+                  class="hearing-case-markers"
+                >
+                  <available-hearings-case-markers
+                    class="govuk-!-padding-top-1"
+                    pdk-padding-top="1"
+                  >
+                    <div>
+                      hearing: {
+    "id": "b1bfe644-15d3-46aa-bdeb-fe8d18c16a42",
+    "courtApplications": [],
+    "type": {
+      "id": "5591d709-4397-452c-8533-998165d58d9c",
+      "description": "Further Plea & Trial Preparation"
+    },
+    "endDate": "2018-10-10",
+    "allocated": true,
+    "startDate": "2018-10-05",
+    "courtRoomId": "e7721a38-546d-4b56-9992-ebdd772a561b",
+    "listedCases": [
+      {
+        "id": "926fc76b-7ec9-4bee-bb7d-b8e63d61fc33",
+        "defendants": [],
+        "markers": [],
+        "caseIdentifier": {
+          "authorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+          "authorityCode": "TFL",
+          "caseReference": "TFL12345"
+        }
+      }
+    ],
+    "hearingDays": [
+      {
+        "hearingDate": "2018-10-05",
+        "endTime": "2018-10-05 12:00:00",
+        "sequence": 1,
+        "startTime": "2018-10-05 10:00:00",
+        "durationMinutes": 120
+      },
+      {
+        "hearingDate": "2018-10-06",
+        "endTime": "2018-10-06 14:00:00",
+        "sequence": 2,
+        "startTime": "2018-10-06 11:00:00",
+        "durationMinutes": 180
+      }
+    ],
+    "courtCentreId": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+    "nonDefaultDays": [
+      {
+        "duration": 180,
+        "startTime": "2018-10-05T11:00:00.000Z"
+      }
+    ],
+    "nonSittingDays": [
+      "2018-10-06",
+      "2018-10-07"
+    ],
+    "hearingLanguage": "WELSH",
+    "estimatedMinutes": 300,
+    "jurisdictionType": "MAGISTRATES",
+    "listingDirections": "Wheelchair & special emergency arrangements required",
+    "prosecutorDatesToAvoid": [
+      "Monday"
+    ],
+    "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992"
+  }
+                    </div>
+                  </available-hearings-case-markers>
+                </div>
+              </div>
+              <div
+                class="hearing-start-time-col"
+                data-test-id="hearingStartTime"
+              >
+                 10:00 
+              </div>
+            </div>
+            <div
+              class="hearing-data-col-row govuk-!-padding-top-2 govuk-!-padding-bottom-2"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+            >
+              <listing-note-container
+                class="hearing-day-listing-note-col"
+                data-test-id="hearing-day-listing-note"
+              >
+                <div>
+                  <div>
+                    courtRoomId: e7721a38-546d-4b56-9992-ebdd772a561b
+                  </div>
+                  <div>
+                    listingNoteDate: 2018-10-05
+                  </div>
+                </div>
+              </listing-note-container>
+            </div>
+          </div>
+          <div
+            class="hearing-related-cases-col"
+          >
+            <div
+              class="govuk-!-margin-bottom-3"
+              data-test-id="listedCase"
+              pdk-margin-bottom="3"
+            >
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                Case reference: 
+              </span>
+              <h4
+                class="govuk-!-margin-bottom-0 govuk-heading-s"
+                data-test-id="caseReference"
+                pdk-margin-bottom="0"
+                pdk-typography="heading-small"
+              >
+                 TFL12345 
+              </h4>
+              <pdk-inset-text
+                class="govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-top="1"
+              >
+                <div
+                  class="govuk-inset-text"
+                >
+                </div>
+              </pdk-inset-text>
+            </div>
+            <a
+              class="govuk-link"
+              data-role="view-hearing-details"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              RELATED_HEARINGS.VIEW_HEARING_DETAILS
+            </a>
+          </div>
+        </div>
+        <div
+          class="hearing-day-row pdk-!-border-color-mid-grey govuk-!-padding-top-2 govuk-!-padding-bottom-2"
+          data-test-id="hearingDay"
+          pdk-border-colour="mid-grey"
+          pdk-padding-bottom="2"
+          pdk-padding-top="2"
+        >
+          <div
+            class="hearing-radio-button-col"
+          >
+            <pdk-radio-button>
+              <div
+                class="govuk-radios__item"
+              >
+                <input
+                  class="govuk-radios__input"
+                  id="pdk-radio-GENERATED_ID"
+                  name="pdk-radio-group-GENERATED_ID"
+                  type="radio"
+                  value="[object Object]"
+                />
+                <label
+                  class="govuk-radios__label govuk-label"
+                  for="pdk-radio-GENERATED_ID"
+                  pdk-label=""
+                />
+              </div>
+            </pdk-radio-button>
+          </div>
+          <div
+            class="hearing-data-col"
+          >
+            <div
+              class="hearing-data-col-row"
+            >
+              <div
+                class="hearing-start-date-col"
+                data-test-id="hearingStartDate"
+              >
+                 6 Oct 2018 
+              </div>
+              <div
+                class="hearing-court-details-col"
+              >
+                <span
+                  data-test-id="hearingCourtCentre"
+                >
+                  Liverpool Crown Court
+                </span>
+                <br />
+                <span
+                  data-test-id="hearingCourtroom"
+                >
+                  Courtroom 3-1 
+                </span>
+                <br />
+              </div>
+              <div
+                class="hearing-type-col"
+              >
+                <div
+                  class="hearing-type-text"
+                  data-test-id="hearingType"
+                >
+                   Further Plea & Trial Preparation 
+                </div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  data-test-id="listedCase"
+                  pdk-margin-bottom="3"
+                >
+                  <hearing-offences>
+                    <div>
+                      offences: []
+                    </div>
+                    <div>
+                      applications: []
+                    </div>
+                    <div>
+                      hearingType: Further Plea & Trial Preparation
+                    </div>
+                  </hearing-offences>
+                </div>
+                <div
+                  class="hearing-case-markers"
+                >
+                  <available-hearings-case-markers
+                    class="govuk-!-padding-top-1"
+                    pdk-padding-top="1"
+                  >
+                    <div>
+                      hearing: {
+    "id": "b1bfe644-15d3-46aa-bdeb-fe8d18c16a42",
+    "courtApplications": [],
+    "type": {
+      "id": "5591d709-4397-452c-8533-998165d58d9c",
+      "description": "Further Plea & Trial Preparation"
+    },
+    "endDate": "2018-10-10",
+    "allocated": true,
+    "startDate": "2018-10-05",
+    "courtRoomId": "e7721a38-546d-4b56-9992-ebdd772a561b",
+    "listedCases": [
+      {
+        "id": "926fc76b-7ec9-4bee-bb7d-b8e63d61fc33",
+        "defendants": [],
+        "markers": [],
+        "caseIdentifier": {
+          "authorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+          "authorityCode": "TFL",
+          "caseReference": "TFL12345"
+        }
+      }
+    ],
+    "hearingDays": [
+      {
+        "hearingDate": "2018-10-05",
+        "endTime": "2018-10-05 12:00:00",
+        "sequence": 1,
+        "startTime": "2018-10-05 10:00:00",
+        "durationMinutes": 120
+      },
+      {
+        "hearingDate": "2018-10-06",
+        "endTime": "2018-10-06 14:00:00",
+        "sequence": 2,
+        "startTime": "2018-10-06 11:00:00",
+        "durationMinutes": 180
+      }
+    ],
+    "courtCentreId": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+    "nonDefaultDays": [
+      {
+        "duration": 180,
+        "startTime": "2018-10-05T11:00:00.000Z"
+      }
+    ],
+    "nonSittingDays": [
+      "2018-10-06",
+      "2018-10-07"
+    ],
+    "hearingLanguage": "WELSH",
+    "estimatedMinutes": 300,
+    "jurisdictionType": "MAGISTRATES",
+    "listingDirections": "Wheelchair & special emergency arrangements required",
+    "prosecutorDatesToAvoid": [
+      "Monday"
+    ],
+    "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992"
+  }
+                    </div>
+                  </available-hearings-case-markers>
+                </div>
+              </div>
+              <div
+                class="hearing-start-time-col"
+                data-test-id="hearingStartTime"
+              >
+                 11:00 
+              </div>
+            </div>
+            <div
+              class="hearing-data-col-row govuk-!-padding-top-2 govuk-!-padding-bottom-2"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+            >
+              <listing-note-container
+                class="hearing-day-listing-note-col"
+                data-test-id="hearing-day-listing-note"
+              >
+                <div>
+                  <div>
+                    courtRoomId: e7721a38-546d-4b56-9992-ebdd772a561b
+                  </div>
+                  <div>
+                    listingNoteDate: 2018-10-06
+                  </div>
+                </div>
+              </listing-note-container>
+            </div>
+          </div>
+          <div
+            class="hearing-related-cases-col"
+          >
+            <div
+              class="govuk-!-margin-bottom-3"
+              data-test-id="listedCase"
+              pdk-margin-bottom="3"
+            >
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                Case reference: 
+              </span>
+              <h4
+                class="govuk-!-margin-bottom-0 govuk-heading-s"
+                data-test-id="caseReference"
+                pdk-margin-bottom="0"
+                pdk-typography="heading-small"
+              >
+                 TFL12345 
+              </h4>
+              <pdk-inset-text
+                class="govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+                pdk-margin-bottom="2"
+                pdk-margin-top="1"
+              >
+                <div
+                  class="govuk-inset-text"
+                >
+                </div>
+              </pdk-inset-text>
+            </div>
+            <a
+              class="govuk-link"
+              data-role="view-hearing-details"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              RELATED_HEARINGS.VIEW_HEARING_DETAILS
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </pdk-radio-group><button
+    class="govuk-!-margin-top-4 govuk-!-margin-bottom-3 govuk-button"
+    disabled="disabled"
+    pdk-button=""
+    pdk-margin-bottom="3"
+    pdk-margin-top="4"
+  >
+     RELATED_HEARINGS.CONTINUE
+  </button>
+</available-hearings-table>
+`;

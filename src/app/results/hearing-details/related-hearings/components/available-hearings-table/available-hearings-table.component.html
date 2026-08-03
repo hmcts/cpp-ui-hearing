@@ -1,0 +1,140 @@
+<div
+  class="hearing-headings"
+  pdk-margin-bottom="2"
+  pdk-border-colour="black"
+  pdk-padding-bottom="2"
+>
+  <div class="hearing-heading-radio-button-col"></div>
+  <div class="hearing-data-col">
+    <div class="hearing-data-col-row">
+      <div class="hearing-heading-date-col" pdk-typography="heading-small">
+        {{ 'RELATED_HEARINGS.DATE' | translate }}
+      </div>
+      <div class="hearing-heading-court-details-col" pdk-typography="heading-small">
+        {{ 'RELATED_HEARINGS.COURT_DETAILS' | translate }}
+      </div>
+      <div class="hearing-heading-hearing-type-col" pdk-typography="heading-small">
+        {{ 'RELATED_HEARINGS.HEARING_TYPE' | translate }}
+      </div>
+      <div class="hearing-heading-start-time-col" pdk-typography="heading-small">
+        {{ 'RELATED_HEARINGS.SESSION_START_TIME' | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="hearing-heading-related-cases-col" pdk-typography="heading-small">
+    {{ 'RELATED_HEARINGS.RELATED_CASES' | translate }}
+  </div>
+</div>
+
+<pdk-radio-group [(ngModel)]="selectedRelatedHearingSlot">
+  @for (hearing of hearings; track hearing.id) {
+  <div data-test-id="hearing">
+    @for (hearingDay of hearing.hearingDays; track hearingDay.hearingDate) {
+    <div
+      data-test-id="hearingDay"
+      [ngClass]="{
+            'over-jurisdiction': isApplication
+              ? jurisdictionType !== hearing.jurisdictionType
+              : futureHearingsById &&
+                futureHearingsById[hearing.id] &&
+                jurisdictionType !== hearing.jurisdictionType,
+          }"
+      class="hearing-day-row"
+      pdk-border-colour="mid-grey"
+      pdk-padding-top="2"
+      pdk-padding-bottom="2"
+    >
+      <div class="hearing-radio-button-col">
+        <pdk-radio-button [value]="getRelatedHearingSlot(hearing, hearingDay)"></pdk-radio-button>
+      </div>
+      <div class="hearing-data-col">
+        <div class="hearing-data-col-row">
+          <div data-test-id="hearingStartDate" class="hearing-start-date-col">
+            {{ hearingDay.startTime | cppDate : 'D MMM YYYY' }}
+          </div>
+          <div class="hearing-court-details-col">
+            <span data-test-id="hearingCourtCentre">{{
+              getCourtCentreName(hearing.courtCentreId)
+            }}</span>
+            <br />
+            <span data-test-id="hearingCourtroom"
+              >{{ getCourtRoomName(hearing.courtCentreId, hearing.courtRoomId) }}
+            </span>
+            <br />
+          </div>
+          <div class="hearing-type-col">
+            <div data-test-id="hearingType" class="hearing-type-text">
+              {{ formatHearingType(hearing.type) }}
+            </div>
+            @for (kase of hearing.listedCases; track kase.id) {
+            <div data-test-id="listedCase" pdk-margin-bottom="3">
+              <hearing-offences
+                [offences]="allOffencesFor(kase.defendants)"
+                [applications]="hearing.courtApplications"
+                [hearingType]="hearing.type.description"
+              >
+              </hearing-offences>
+            </div>
+            }
+            <div class="hearing-case-markers">
+              <available-hearings-case-markers
+                pdk-padding-top="1"
+                [hearing]="hearing"
+              ></available-hearings-case-markers>
+            </div>
+          </div>
+          <div data-test-id="hearingStartTime" class="hearing-start-time-col">
+            {{ hearingDay.startTime | cppDate : 'HH:mm' }}
+          </div>
+        </div>
+        <div class="hearing-data-col-row" pdk-padding-top="2" pdk-padding-bottom="2">
+          <listing-note-container
+            data-test-id="hearing-day-listing-note"
+            class="hearing-day-listing-note-col"
+            [courtRoomId]="hearing.courtRoomId"
+            [listingNoteDate]="hearingDay.hearingDate | cppDate : 'YYYY-MM-DD'"
+            (onErrors)="errors.emit($event)"
+          >
+          </listing-note-container>
+        </div>
+      </div>
+      <div class="hearing-related-cases-col">
+        @for (listedCase of hearing.listedCases; track listedCase.id) {
+        <div data-test-id="listedCase" pdk-margin-bottom="3">
+          <span pdk-visually-hidden>Case reference: </span>
+          <h4 data-test-id="caseReference" pdk-typography="heading-small" pdk-margin-bottom="0">
+            {{ listedCase.caseIdentifier.caseReference }}
+          </h4>
+          <pdk-inset-text pdk-margin-top="1" pdk-margin-bottom="2">
+            @for (defendant of listedCase.defendants; track defendant.id) {
+            <div class="defendant-name">
+              {{ defendant | fullName }}
+            </div>
+            }
+          </pdk-inset-text>
+        </div>
+        } @if (!!hearing.courtRoomId) {
+        <a
+          pdk-link
+          data-role="view-hearing-details"
+          href="javascript:void(0)"
+          (click)="viewHearingDetails(hearing)"
+          >{{ 'RELATED_HEARINGS.VIEW_HEARING_DETAILS' | translate }}</a
+        >
+        }
+      </div>
+    </div>
+    }
+  </div>
+  }
+</pdk-radio-group>
+
+<button
+  pdk-button
+  pdk-margin-top="4"
+  pdk-margin-bottom="3"
+  [disabled]="selectedRelatedHearingSlot === undefined"
+  (click)="selectRelatedHearingSlotHandler()"
+>
+  {{ 'RELATED_HEARINGS.CONTINUE' | translate }}
+</button>

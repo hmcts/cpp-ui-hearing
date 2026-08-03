@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingRowComponent should compile correctly 1`] = `
+<test-host-component>
+  <tr
+    hearing-row=""
+  >
+    <td
+      class="bold govuk-table__cell"
+      pdk-table-cell=""
+    >
+    </td>
+    <td
+      class="bold govuk-table__cell"
+      data-role="time"
+      data-test-id="hearingStartTime"
+      pdk-table-cell=""
+    >
+    </td>
+    <td
+      class="govuk-table__cell"
+      nowrap=""
+      pdk-table-cell=""
+    >
+      <div
+        data-role="case-urn"
+        data-test-id="hearingReference"
+      >
+      </div>
+    </td>
+    <td
+      class="govuk-table__cell"
+      pdk-table-cell=""
+    >
+      <div
+        data-role="prosecutor"
+        data-test-id="prosecutor"
+      >
+      </div>
+    </td>
+    <td
+      class="case-details-width govuk-table__cell"
+      pdk-table-cell=""
+    >
+      <div>
+        <case-details>
+           - 
+        </case-details>
+      </div>
+    </td>
+    <td
+      class="govuk-!-padding-left-9 govuk-table__cell"
+      pdk-padding-left="9"
+      pdk-table-cell=""
+    >
+      <div
+        data-role="hearing-type"
+        data-test-id="hearingType"
+      >
+      </div>
+    </td>
+    <td
+      class="next-position govuk-!-padding-top-6 govuk-table__cell"
+      pdk-padding-top="6"
+      pdk-table-cell=""
+    >
+      <div
+        class="next-img"
+      />
+      <a
+        class="action-link govuk-link"
+        href="javascript:void(0)"
+        pdk-link=""
+      >
+        <div
+          class="next-img"
+        >
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            View case materials for  , URN undefined. This link opens in a new tab.
+          </span>
+        </div>
+      </a>
+    </td>
+  </tr>
+</test-host-component>
+`;

@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoggedEventsComponent should have the expected template 1`] = `
+<logged-events
+  addDefenceWitness={[Function EventEmitter_]}
+  changeEvent={[Function EventEmitter_]}
+  downloadFullEventLog={[Function EventEmitter_]}
+  downloadTodayEventLog={[Function EventEmitter_]}
+  eventDefinitions={[Function Array]}
+  eventSelected={[Function EventEmitter_]}
+  events={[Function Array]}
+  hearingDefenceCounsels={[Function Array]}
+  hearingDefendants={[Function Array]}
+  hearingEventLogCount={[Function Object]}
+  hearingEventsLogService={[Function HearingEventsLogService]}
+  isHearingEventLogPaused="false"
+  jurisdictionType={[Function String]}
+  loggedEvents={[Function Array]}
+  selectedHearingDate={[Function String]}
+  time={[Function Date]}
+  witnessNames={[Function Array]}
+>
+  <div
+    class="event-log-heading-row govuk-!-margin-top-3 govuk-!-margin-bottom-2"
+    pdk-margin-bottom="2"
+    pdk-margin-top="3"
+  >
+    <h3
+      class="govuk-heading-s"
+      data-role="event-log-heading-text"
+      pdk-typography="heading-small"
+    >
+       HEARING_EVENTS_LOG.HEADING_TITLE 
+    </h3>
+    <div
+      class="event-log-heading-row__actions"
+    >
+      <button
+        class="link-button govuk-!-margin-bottom-1 govuk-body-s govuk-link"
+        data-role="add-witness-name"
+        pdk-link=""
+        pdk-margin-bottom="1"
+        pdk-typography="body-small"
+      >
+         HEARING_EVENTS_LOG.ADD_WITNESS_NAME 
+      </button>
+    </div>
+  </div><div
+    class="event-selector pdk-!-border-color-light-grey govuk-!-padding-top-2 govuk-!-padding-bottom-2"
+    pdk-border-colour="light-grey"
+    pdk-padding-bottom="2"
+    pdk-padding-top="2"
+  >
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <event-selector>
+         event:  
+        <br />
+         eventDefinitions: [
+    {
+      "id": "111111",
+      "actionLabel": "Start hearing",
+      "alterable": false,
+      "recordedLabel": "start",
+      "caseAttributes": [],
+      "actionSequence": 1,
+      "groupSequence": 1,
+      "groupLabel": "start"
+    },
+    {
+      "id": "2222222",
+      "actionLabel": "Arraign defendant",
+      "alterable": false,
+      "recordedLabel": "arraign",
+      "caseAttributes": [],
+      "actionSequence": 1,
+      "groupSequence": 1,
+      "groupLabel": "defendant"
+    }
+  ] 
+        <br />
+         hearingDefendants: [] 
+        <br />
+         hearingDefenceCounsels: [] 
+        <br />
+         witnessNames: [
+    "Tom Riddle"
+  ] 
+        <br />
+         resetAfterSelect: true 
+        <br />
+         isHearingEventLogPaused: false 
+        <br />
+      </event-selector>
+    </form>
+  </div><ul
+    class="govuk-!-margin-top-0"
+    pdk-margin-top="0"
+  >
+    <li
+      class="hearing-events-log-events-list-item pdk-!-border-color-light-grey govuk-!-padding-top-3 govuk-!-padding-bottom-3"
+      data-test-id="hearingEvent"
+      id="hearing-event-0"
+      pdk-border-colour="light-grey"
+      pdk-padding-bottom="3"
+      pdk-padding-top="3"
+    >
+      <div
+        class="hearing-events-log-events-list-item__wrapper govuk-!-margin-bottom-1"
+        pdk-margin-bottom="1"
+      >
+        <div
+          class="hearing-events-log-events-list-item__label govuk-!-margin-bottom-0 govuk-body-s"
+          data-role="event-label"
+          data-test-id="recordedLabel"
+          pdk-margin-bottom="0"
+          pdk-typography="body-small"
+        >
+           arraign 
+        </div>
+        <div
+          class="hearing-events-log-events-list-item__actions"
+        >
+          <div
+            class="govuk-!-margin-bottom-0 govuk-body-s"
+            data-role="event-time"
+            data-test-id="eventTime"
+            id="timestamp-0"
+            pdk-margin-bottom="0"
+            pdk-typography="body-small"
+          >
+             11:30 
+          </div>
+          <a
+            aria-label="HEARING_EVENTS_LOG.CHANGE_EVENT"
+            class="govuk-!-margin-bottom-0 govuk-body-s govuk-link"
+            data-role="change-logged-event-details"
+            href="javascript:void(0)"
+            pdk-link=""
+            pdk-margin-bottom="0"
+            pdk-typography="body-small"
+          >
+            <span>
+              COMMON.CHANGE
+            </span>
+          </a>
+        </div>
+      </div>
+      <pdk-foldable-text
+        class="pdk-!-text-color-dark-grey govuk-body-s"
+        pdk-text-colour="dark-grey"
+        pdk-typography="body-small"
+      >
+        <div
+          class="pdk-foldable"
+        >
+          <span
+            class="pdk-foldable__content pdk-foldable__content__single"
+            id="pdk-foldable-text-GENERATED_ID"
+          >
+          </span>
+        </div>
+      </pdk-foldable-text>
+    </li>
+    <li
+      class="hearing-events-log-events-list-item pdk-!-border-color-light-grey govuk-!-padding-top-3 govuk-!-padding-bottom-3"
+      data-test-id="hearingEvent"
+      id="hearing-event-1"
+      pdk-border-colour="light-grey"
+      pdk-padding-bottom="3"
+      pdk-padding-top="3"
+    >
+      <div
+        class="hearing-events-log-events-list-item__wrapper govuk-!-margin-bottom-1"
+        pdk-margin-bottom="1"
+      >
+        <div
+          class="hearing-events-log-events-list-item__label govuk-!-margin-bottom-0 govuk-body-s"
+          data-role="event-label"
+          data-test-id="recordedLabel"
+          pdk-margin-bottom="0"
+          pdk-typography="body-small"
+        >
+           start 
+        </div>
+        <div
+          class="hearing-events-log-events-list-item__actions"
+        >
+          <div
+            class="govuk-!-margin-bottom-0 govuk-body-s"
+            data-role="event-time"
+            data-test-id="eventTime"
+            id="timestamp-1"
+            pdk-margin-bottom="0"
+            pdk-typography="body-small"
+          >
+             11:00 
+          </div>
+          <a
+            aria-label="HEARING_EVENTS_LOG.CHANGE_EVENT"
+            class="govuk-!-margin-bottom-0 govuk-body-s govuk-link"
+            data-role="change-logged-event-details"
+            href="javascript:void(0)"
+            pdk-link=""
+            pdk-margin-bottom="0"
+            pdk-typography="body-small"
+          >
+            <span>
+              COMMON.CHANGE
+            </span>
+          </a>
+        </div>
+      </div>
+      <pdk-foldable-text
+        class="pdk-!-text-color-dark-grey govuk-body-s"
+        pdk-text-colour="dark-grey"
+        pdk-typography="body-small"
+      >
+        <div
+          class="pdk-foldable"
+        >
+          <span
+            class="pdk-foldable__content pdk-foldable__content__single"
+            id="pdk-foldable-text-GENERATED_ID"
+          >
+          </span>
+        </div>
+      </pdk-foldable-text>
+    </li>
+  </ul><div
+    class="top-border-solid pdk-!-border-color-mid-grey"
+    pdk-border-colour="mid-grey"
+  >
+    <br />
+  </div>
+</logged-events>
+`;

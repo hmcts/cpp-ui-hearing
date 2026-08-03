@@ -1,0 +1,14 @@
+{
+  "targets": [
+    {
+      "defendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "draftResult": "{\"targetId\":\"198cf550-f045-11eb-a895-7d779bee7724\",\"caseId\":\"966b0f51-cf1a-4cfc-8f01-5a00ea8498f9\",\"caseUrn\":\"12GD0104LAA\",\"defendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"masterDefendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"offenceId\":\"edeb266e-2463-4704-8dd4-fe76fd463533\",\"defendantFirstName\":\"Max\",\"defendantLastName\":\"Kshlerin\",\"addMoreResults\":false,\"requestApproval\":false,\"results\":[{\"resultLineId\":\"c7a18e9a-85b2-4ba8-8251-f23693fbab3b\",\"originalText\":\"RESTRAO\",\"resultCode\":\"2cda53d9-c8dd-4fa0-866c-a6a2cc16f461\",\"resultLevel\":\"O\",\"isCompleted\":true,\"ignoreResult\":false,\"parts\":[{\"value\":\"Restraining order\",\"type\":\"RESULT\",\"state\":\"RESOLVED\",\"resultChoices\":[]},{\"code\":\"3b0c95d5-9595-4ddd-88b8-1a2e3e70d01f\",\"originalText\":\"2022-01-01\",\"label\":\"This order lasts until\",\"value\":[{\"code\":\"3b0c95d5-9595-4ddd-88b8-1a2e3e70d01f\",\"originalText\":\"2022-02-01\",\"label\":\"This order lasts until\",\"value\":\"2022-02-01\",\"type\":\"DATE\",\"state\":\"RESOLVED\",\"promptRef\":\"thisOrderLastsUntil\",\"hidden\":false,\"resultChoices\":[]}],\"type\":\"ONEOF\",\"state\":\"RESOLVED\",\"promptRef\":\"thisOrderLastsUntil\",\"hidden\":false,\"resultChoices\":[]}],\"choices\":[{\"code\":\"3b0c95d5-9595-4ddd-88b8-1a2e3e70d01f\",\"value\":\"2022-01-01\",\"label\":\"This order lasts until\",\"type\":\"ONEOF\",\"required\":true,\"promptRef\":\"thisOrderLastsUntil\",\"hidden\":false,\"readOnly\":false,\"children\":[{\"code\":\"3b0c95d5-9595-4ddd-88b8-1a2e3e70d01f\",\"value\":\"2022-02-01\",\"label\":\"This order lasts until\",\"type\":\"DATE\",\"required\":true,\"promptRef\":\"thisOrderLastsUntil\",\"hidden\":false,\"readOnly\":false},{\"code\":\"11f6a6ca-985b-4aa9-a6f2-de4214fcbe0f\",\"label\":\"This order lasts until further order\",\"type\":\"BOOLEAN\",\"required\":true,\"promptRef\":\"thisOrderLastsUntilFurtherOrder\",\"hidden\":false,\"readOnly\":false}],\"selectedOption\":\"This order lasts until\"}],\"isEditing\":false,\"noResultFound\":false,\"dirty\":true,\"orderedDate\":\"2021-07-26\",\"parentResultLineIds\":[],\"childResultLineIds\":[],\"childResultLines\":[],\"hasBeenGrouped\":true,\"conditionalMandatory\":false}],\"lastUpdatedAt\":1627548145210}",
+      "hearingDay": "2021-07-26",
+      "hearingId": "48d0f669-1562-40d5-a371-3bc6a96d3371",
+      "masterDefendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "offenceId": "edeb266e-2463-4704-8dd4-fe76fd463533",
+      "resultLines": [],
+      "targetId": "198cf550-f045-11eb-a895-7d779bee7724"
+    }
+  ]
+}

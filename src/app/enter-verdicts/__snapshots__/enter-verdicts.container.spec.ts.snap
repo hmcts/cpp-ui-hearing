@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnterVerdictsContainer should have the expected template 1`] = `
+<enter-verdicts
+  activatedRoute={[Function Object]}
+  allVerdictTypes$={[Function _Store]}
+  currrentHearing$={[Function _Store]}
+  destroy$={[Function Subject]}
+  hasCivilCase$={[Function _Store]}
+  hearingId={[Function String]}
+  hearingType$={[Function _Store]}
+  isFormSubmitted="false"
+  pleas$={[Function _Store]}
+  router={[Function Object]}
+  selectedHearingDate={[Function String]}
+  store={[Function _MockStore]}
+  verdictTypesForHearingJurisdiction$={[Function Observable]}
+  window={[Function Object]}
+>
+  <h1
+    class="govuk-!-margin-top-8 govuk-heading-xl"
+    pdk-margin-top="8"
+    pdk-typography="heading-xlarge"
+  >
+     ENTER_VERDICTS.ENTER_VERDICTS 
+  </h1><verdict-form>
+    <div>
+      <div>
+        Hearing type: CROWN
+      </div>
+      <div>
+        Is verdicts page available: 
+      </div>
+      <div>
+        Pleas: [
+    {
+      "caseURN": "URN",
+      "withCount": [],
+      "withoutCount": [
+        {
+          "masterDefendantId": "defendant1",
+          "personDefendant": {
+            "personDetails": {
+              "firstName": "James",
+              "lastName": "Gray"
+            }
+          },
+          "offences": [
+            {
+              "id": ":id",
+              "offenceDefinitionId": "offenceDefinitionId",
+              "offenceCode": "OFF123",
+              "offenceTitle": "offenceTitle",
+              "offenceLegislation": "offenceLegislation",
+              "wording": "No Travel Card",
+              "plea": {
+                "pleaValue": "NOT_GUILTY"
+              },
+              "verdict": {
+                "offenceId": ":id",
+                "originatingHearingId": ":originatingHearingId",
+                "verdictType": {
+                  "id": ":verdictType",
+                  "category": ":category",
+                  "categoryType": ":categoryType",
+                  "description": "Found Not Guilty, Guilty of a lesser or alternative offernce"
+                },
+                "lesserOrAlternativeOffence": {
+                  "offenceDefinitionId": ":offenceDefinition",
+                  "offenceCode": ":offenceCode",
+                  "offenceTitle": ":offenceTitle",
+                  "offenceLegislation": ":offenceLegislation"
+                },
+                "isDeleted": false,
+                "jurors": {
+                  "numberOfJurors": 3,
+                  "numberOfSplitJurors": 1,
+                  "unanimous": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+      </div>
+      <div>
+        All verdict types: [
+    {
+      "jurisdiction": "CROWN",
+      "description": "Crown court verdict"
+    },
+    {
+      "jurisdiction": "MAGISTRATES",
+      "description": "Magistrates court verdict"
+    }
+  ]
+      </div>
+      <div>
+         Verdict types for hearing jurisdiction: [
+    {
+      "jurisdiction": "CROWN",
+      "description": "Crown court verdict"
+    }
+  ] 
+      </div>
+      <div>
+        Civil cases: true
+      </div>
+    </div>
+  </verdict-form>
+</enter-verdicts>
+`;

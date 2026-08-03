@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FindCourtComponent should create the right templates with actions 1`] = `
+<find-court
+  appUrl={[Function String]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  onAddCheckinErrors={[Function EventEmitter_]}
+  onSelect={[Function EventEmitter_]}
+  translateService={[Function Object]}
+>
+  <h1
+    pdk-typography="heading-large"
+  >
+  </h1><span
+    pdk-typography="heading-medium"
+  >
+  </span><pdk-inset-text
+    class="indent bold-small"
+    size="wide"
+  >
+    <div
+      class="govuk-inset-text"
+    >
+    </div>
+  </pdk-inset-text><form
+    novalidate=""
+    pdk-form=""
+  >
+    <pdk-form-field>
+      <pdk-form-group>
+      </pdk-form-group>
+    </pdk-form-field>
+    <pdk-form-group>
+      <button
+        data-role="show-hearings-btn"
+        pdk-button=""
+        type="submit"
+      >
+      </button>
+    </pdk-form-group>
+  </form><div>
+    <a
+      pdk-link=""
+    >
+    </a>
+  </div>
+</find-court>
+`;

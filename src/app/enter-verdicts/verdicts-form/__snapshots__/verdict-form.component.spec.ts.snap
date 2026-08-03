@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerdictFormComponent should render the template with the values expected 1`] = `
+<ng-component
+  mockPlea={[Function Array]}
+  verdictTypesForHearingJurisdiction={[Function Array]}
+>
+  <verdict-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <button
+        class="govuk-button"
+        data-role="submit-verdicts"
+        pdk-button=""
+        type="submit"
+      >
+         ENTER_VERDICTS.SAVE_AND_CONTINUE 
+      </button>
+      <div
+        class="govuk-!-margin-top-4"
+        pdk-margin-top="4"
+      >
+        <a
+          class="govuk-link"
+          href="javascript:void(0);"
+          pdk-link=""
+        >
+           COMMON.CANCEL 
+        </a>
+      </div>
+    </form>
+  </verdict-form>
+</ng-component>
+`;

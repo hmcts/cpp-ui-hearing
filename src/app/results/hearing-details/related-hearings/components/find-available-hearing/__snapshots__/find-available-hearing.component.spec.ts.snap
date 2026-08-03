@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FindAvailableHearingComponent should match the snapshot 1`] = `
+<find-available-hearing
+  caseUrns={[Function Array]}
+  fb={[Function _UntypedFormBuilder]}
+  hearing={[Function Object]}
+  onFindAvailableHearings={[Function EventEmitter_]}
+  relatedCaseTypes={[Function Object]}
+  relatedHearingsForm={[Function FormGroup]}
+>
+  <div
+    class="find-available-hearing"
+  >
+    <h2
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       RELATED_HEARINGS.FIND_AN_AVAILABLE_HEARING 
+    </h2>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      data-test-id="relatedHearingsFiltersForm"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-form-field
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--s"
+            >
+               RELATED_HEARINGS.RELATED_HEARINGS 
+            </legend>
+            <pdk-checkbox-group
+              class="ng-untouched ng-pristine ng-valid"
+              formcontrolname="caseTypes"
+            >
+              <div
+                class="govuk-checkboxes"
+              >
+                <pdk-checkbox
+                  class="govuk-checkboxes"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="pdk-checkbox-group-GENERATED_ID"
+                      type="checkbox"
+                      value="SAME_CASE"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                      <span>
+                        RELATED_HEARINGS.SAME_AS 8C720B32E45B
+                      </span>
+                    </label>
+                  </div>
+                </pdk-checkbox>
+                <pdk-checkbox
+                  class="govuk-checkboxes"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="pdk-checkbox-group-GENERATED_ID"
+                      type="checkbox"
+                      value="LINKED_CASE"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                      <span>
+                        RELATED_HEARINGS.MATCHED_DEFENDANTS_AND_LINKED_CASES
+                      </span>
+                    </label>
+                  </div>
+                </pdk-checkbox>
+                <pdk-checkbox
+                  class="govuk-checkboxes"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="pdk-checkbox-group-GENERATED_ID"
+                      type="checkbox"
+                      value="SPECIFIC_CASE"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                      <span>
+                        RELATED_HEARINGS.SPECIFIC_CASE
+                      </span>
+                    </label>
+                  </div>
+                </pdk-checkbox>
+              </div>
+            </pdk-checkbox-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <pdk-form-group
+        class="find-available-hearing-action-buttons govuk-!-margin-top-5 pdk-form-group"
+        pdk-margin-top="5"
+      >
+        <button
+          class="govuk-!-margin-0 govuk-button"
+          pdk-button=""
+          pdk-margin="0"
+          type="submit"
+        >
+           RELATED_HEARINGS.SEARCH 
+        </button>
+        <a
+          class="govuk-!-margin-left-3 govuk-!-margin-right-3 govuk-link"
+          data-role="reset-filters-button"
+          href="javascript:void(0)"
+          pdk-link=""
+          pdk-margin-horizontal="3"
+        >
+          RELATED_HEARINGS.RESET_FILTERS
+        </a>
+      </pdk-form-group>
+    </form>
+  </div>
+</find-available-hearing>
+`;
+
+exports[`FindAvailableHearingComponent should match the snapshot if specificCase is checked 1`] = `
+<find-available-hearing
+  caseUrns={[Function Array]}
+  fb={[Function _UntypedFormBuilder]}
+  hearing={[Function Object]}
+  onFindAvailableHearings={[Function EventEmitter_]}
+  relatedCaseTypes={[Function Object]}
+  relatedHearingsForm={[Function FormGroup]}
+>
+  <div
+    class="find-available-hearing"
+  >
+    <h2
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+    >
+       RELATED_HEARINGS.FIND_AN_AVAILABLE_HEARING 
+    </h2>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      data-test-id="relatedHearingsFiltersForm"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-form-field
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--s"
+            >
+               RELATED_HEARINGS.RELATED_HEARINGS 
+            </legend>
+            <pdk-checkbox-group
+              class="ng-untouched ng-pristine ng-valid"
+              formcontrolname="caseTypes"
+            >
+              <div
+                class="govuk-checkboxes"
+              >
+                <pdk-checkbox
+                  class="govuk-checkboxes"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="pdk-checkbox-group-GENERATED_ID"
+                      type="checkbox"
+                      value="SAME_CASE"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                      <span>
+                        RELATED_HEARINGS.SAME_AS 8C720B32E45B
+                      </span>
+                    </label>
+                  </div>
+                </pdk-checkbox>
+                <pdk-checkbox
+                  class="govuk-checkboxes"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="pdk-checkbox-group-GENERATED_ID"
+                      type="checkbox"
+                      value="LINKED_CASE"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                      <span>
+                        RELATED_HEARINGS.MATCHED_DEFENDANTS_AND_LINKED_CASES
+                      </span>
+                    </label>
+                  </div>
+                </pdk-checkbox>
+                <pdk-checkbox
+                  class="govuk-checkboxes"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="pdk-checkbox-group-GENERATED_ID"
+                      type="checkbox"
+                      value="SPECIFIC_CASE"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                      <span>
+                        RELATED_HEARINGS.SPECIFIC_CASE
+                      </span>
+                    </label>
+                  </div>
+                </pdk-checkbox>
+                <pdk-checkbox-conditional
+                  class="govuk-!-margin-top-2"
+                  pdk-margin-top="2"
+                >
+                  <div
+                    class="govuk-checkboxes__conditional"
+                  >
+                    <pdk-form-field
+                      class="govuk-!-margin-bottom-3"
+                      pdk-margin-bottom="3"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <label
+                          class="govuk-label"
+                          for="pdk-form-control-undefined-GENERATED_ID"
+                        >
+                           RELATED_HEARINGS.REFERENCE 
+                        </label>
+                        <input
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-10"
+                          id="pdk-form-control-undefined-GENERATED_ID"
+                          name="reference-specific-case"
+                          pdk-text-input=""
+                          type="text"
+                        />
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <a
+                      class="govuk-!-margin-bottom-4 govuk-link"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-margin-bottom="4"
+                    >
+                      RELATED_HEARINGS.ADD_ANOTHER_CASE
+                    </a>
+                  </div>
+                </pdk-checkbox-conditional>
+              </div>
+            </pdk-checkbox-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <pdk-form-group
+        class="find-available-hearing-action-buttons govuk-!-margin-top-5 pdk-form-group"
+        pdk-margin-top="5"
+      >
+        <button
+          class="govuk-!-margin-0 govuk-button"
+          pdk-button=""
+          pdk-margin="0"
+          type="submit"
+        >
+           RELATED_HEARINGS.SEARCH 
+        </button>
+        <a
+          class="govuk-!-margin-left-3 govuk-!-margin-right-3 govuk-link"
+          data-role="reset-filters-button"
+          href="javascript:void(0)"
+          pdk-link=""
+          pdk-margin-horizontal="3"
+        >
+          RELATED_HEARINGS.RESET_FILTERS
+        </a>
+      </pdk-form-group>
+    </form>
+  </div>
+</find-available-hearing>
+`;

@@ -1,0 +1,47 @@
+<div class="offence-search">
+  <pdk-autosuggest
+    #autosuggest="pdkAutosuggest"
+    name="id"
+    [id]="id"
+    [ariaDescribedBy]="ariaDescribedBy"
+    [hasError]="hasError"
+    highlightColor="blue"
+    [mapSuggestionToKey]="getKey"
+    [mapSuggestionToLabel]="getLabel"
+    (inputText)="input$.next($event)"
+    [suggestions]="(source$ | async) || []"
+    [suggestionTemplateRef]="suggestionTemplateRef"
+  >
+  </pdk-autosuggest>
+  @if (noResult) {
+  <div class="noResult">No results found</div>
+  }
+</div>
+@if (selected) {
+<offence [offence]="selected"></offence>
+}
+
+<ng-template #suggestionTemplateRef let-highlighted="highlighted" let-suggestion="suggestion">
+  <pdk-grid container data-role="offence">
+    <pdk-grid three-quarters>
+      <span
+        data-role="title"
+        [pdk-text-colour]="getTitleTextColour(highlighted)"
+        [innerHtml]="getMatchedTitle(suggestion.offence, 'title')"
+      >
+      </span>
+      <br />
+      <span pdk-text-colour="dark-grey" data-role="legislation">
+        {{ suggestion.offence.legislation }}
+      </span>
+    </pdk-grid>
+    <pdk-grid one-quarter>
+      <span
+        pdk-text-colour="dark-grey"
+        data-role="offence-code"
+        [innerHtml]="getMatchedTitle(suggestion.offence, 'cjsOffenceCode')"
+      >
+      </span>
+    </pdk-grid>
+  </pdk-grid>
+</ng-template>

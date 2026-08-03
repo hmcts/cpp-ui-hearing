@@ -1,0 +1,32 @@
+<div class="hearing-documents-notes">
+  <pdk-tabs data-test-id="referenceTabs">
+    <pdk-tab heading="{{ 'COMMON.TAB_CASE_LINKS' | translate }}">
+      <hearing-case-links
+        [prosecutionCases]="prosecutionCasesWithoutBulkCases"
+        [courtApplications]="hearing.courtApplications"
+        [isStandAloneApplication]="isStandAloneApplication"
+        [canAddChildApplication]="canAddChildApplication"
+        (onGoToCaseLink)="goToCaseLink($event)"
+        (onGoToCreateTask)="goToCreateTask($event)"
+      >
+      </hearing-case-links>
+    </pdk-tab>
+    <pdk-tab heading="{{ 'COMMON.TAB_NOTES' | translate }}">
+      <hearing-note-text
+        [notes]="hearingNotes"
+        [selectedHearingDate]="selectedHearingDate"
+        [multiHearing]="hearing?.hearingDays.length > 1"
+        [sharedHearing]="hearing?.hasSharedResults"
+        (onClickSave)="saveNote($event)"
+      ></hearing-note-text>
+      <hearing-note-list
+        [notes]="hearingNotes"
+        [selectedHearingDate]="selectedHearingDate"
+        [multiHearing]="hearing?.hearingDays.length > 1"
+        [sharedHearing]="hearing?.hasSharedResults"
+      >
+      </hearing-note-list>
+    </pdk-tab>
+  </pdk-tabs>
+  <pdk-divider></pdk-divider>
+</div>

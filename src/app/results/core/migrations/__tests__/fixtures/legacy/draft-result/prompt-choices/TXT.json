@@ -1,0 +1,14 @@
+{
+  "targets": [
+    {
+      "defendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "draftResult": "{\"targetId\":\"198cf550-f045-11eb-a895-7d779bee7724\",\"caseId\":\"966b0f51-cf1a-4cfc-8f01-5a00ea8498f9\",\"caseUrn\":\"12GD0104LAA\",\"defendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"masterDefendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"offenceId\":\"edeb266e-2463-4704-8dd4-fe76fd463533\",\"defendantFirstName\":\"Max\",\"defendantLastName\":\"Kshlerin\",\"addMoreResults\":false,\"requestApproval\":false,\"results\":[{\"resultLineId\":\"ae031909-9a74-4301-b6de-cefbb41898be\",\"originalText\":\"NCOSTS ok\",\"resultCode\":\"baf94928-04ae-4609-8e96-efc9f081b2be\",\"resultLevel\":\"C\",\"isCompleted\":true,\"ignoreResult\":false,\"parts\":[{\"value\":\"No order for costs\",\"type\":\"RESULT\",\"state\":\"RESOLVED\",\"resultChoices\":[]},{\"code\":\"be2a46db-709d-4e0d-9b63-aeb831564c1d\",\"originalText\":\"ok\",\"label\":\"Reason for no costs\",\"value\":\"ok\",\"type\":\"TXT\",\"state\":\"RESOLVED\",\"hidden\":false,\"resultChoices\":[]}],\"choices\":[{\"code\":\"be2a46db-709d-4e0d-9b63-aeb831564c1d\",\"value\":\"ok\",\"label\":\"Reason for no costs\",\"maxLength\":\"500\",\"minLength\":\"1\",\"type\":\"TXT\",\"required\":true,\"promptRef\":\"reasonForNoCosts\",\"hidden\":false,\"readOnly\":false}],\"isEditing\":false,\"noResultFound\":false,\"dirty\":true,\"orderedDate\":\"2021-07-26\",\"parentResultLineIds\":[],\"childResultLineIds\":[],\"childResultLines\":[],\"hasBeenGrouped\":true,\"conditionalMandatory\":false}],\"lastUpdatedAt\":1627577110879}",
+      "hearingDay": "2021-07-26",
+      "hearingId": "48d0f669-1562-40d5-a371-3bc6a96d3371",
+      "masterDefendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "offenceId": "edeb266e-2463-4704-8dd4-fe76fd463533",
+      "resultLines": [],
+      "targetId": "198cf550-f045-11eb-a895-7d779bee7724"
+    }
+  ]
+}

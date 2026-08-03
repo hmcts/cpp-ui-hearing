@@ -1,0 +1,25 @@
+@if (isHearingWithAvailableHearings) {
+<pdk-inset-text>
+  <strong>
+    {{ hearings.length }}
+    <span [ngPlural]="hearings.length">
+      <ng-template ngPluralCase="=1">result</ng-template>
+      <ng-template ngPluralCase="other">results</ng-template>
+    </span>
+    returned
+  </strong>
+</pdk-inset-text>
+<available-hearings-table
+  [hearings]="hearings"
+  [jurisdictionType]="jurisdictionType"
+  [futureHearingsById]="futureHearingsById"
+  [courtCentres]="courtCentres"
+  (onViewHearingDetails)="viewHearingDetails($event)"
+  (onHearingSelection)="hearingSelection($event)"
+  (errors)="errors.emit($event)"
+></available-hearings-table>
+} @if (isHearingWithoutAvailableHearings) {
+<pdk-inset-text>
+  <strong>{{ 'RELATED_HEARINGS.NO_RELATED_HEARINGS_FOUND' | translate }}</strong>
+</pdk-inset-text>
+}

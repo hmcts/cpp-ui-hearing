@@ -1,0 +1,427 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
+<magistrates-scheduling-container
+  courtId="undefined"
+  currentPage$={[Function _Store]}
+  defaultFilters$={[Function Observable]}
+  filters$={[Function _Store]}
+  hearing$={[Function _Store]}
+  hearingTypes$={[Function _Store]}
+  localJusticeAreas$={[Function _Store]}
+  organisationUnits$={[Function _Store]}
+  pageSize$={[Function _Store]}
+  provisionalBookingService={[Function Object]}
+  rotaBusinessTypes$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function Object]}
+  searchResult$={[Function _Store]}
+  store={[Function _MockStore]}
+  totalResults$={[Function _Store]}
+>
+  <magistrates-scheduling>
+     currentPage: 2
+    <br />
+     defaultFilters: 
+    <br />
+     filters: {
+    "oucodeL2Code": "1",
+    "oucodeL3Code": "OUCODEL32",
+    "ouCode": "OUCODEL32",
+    "courtSession": "AM",
+    "sessionStartDate": "2019-01-01",
+    "sessionEndDate": "2019-01-31",
+    "panel": "ADULT",
+    "businessType": "HEARINGTYPE002",
+    "hearingTypeId": "All",
+    "hearingType": {
+      "id": "All",
+      "hearingCode": "All",
+      "seqId": 0,
+      "defaultDurationMin": 0,
+      "welshHearingDescription": "",
+      "hearingDescription": "All hearing types",
+      "magistratesFlag": true,
+      "crownFlag": true
+    },
+    "organisationUnit": {
+      "id": "COURT002",
+      "oucode": "OUCODEL32",
+      "oucodeL2Code": "1",
+      "oucodeL2Name": "OUL2 X",
+      "oucodeL3Code": "OUCODEL32",
+      "oucodeL3Name": "Courthouse B"
+    }
+  }
+    <br />
+     hearingSlots: [
+    {
+      "courtScheduleId": "*"
+    }
+  ]
+    <br />
+     hearingTypes: [
+    {
+      "id": "HEARINGTYPEA",
+      "hearingDescription": "Hearing Type A",
+      "defaultDurationMin": 20
+    },
+    {
+      "id": "HEARINGTYPEB",
+      "hearingDescription": "Hearing Type B",
+      "defaultDurationMin": 30
+    }
+  ]
+    <br />
+     organisationUnits: [
+    {
+      "id": "COURT001",
+      "oucode": "OUCODEL31",
+      "oucodeL2Code": "3",
+      "oucodeL2Name": "OUL2 Z",
+      "oucodeL3Code": "OUCODEL31",
+      "oucodeL3Name": "Courthouse A"
+    },
+    {
+      "id": "COURT002",
+      "oucode": "OUCODEL32",
+      "oucodeL2Code": "1",
+      "oucodeL2Name": "OUL2 X",
+      "oucodeL3Code": "OUCODEL32",
+      "oucodeL3Name": "Courthouse B"
+    },
+    {
+      "id": "COURT003",
+      "oucode": "OUCODEL33",
+      "oucodeL2Code": "1",
+      "oucodeL2Name": "OUL2 X",
+      "oucodeL3Code": "OUCODEL33",
+      "oucodeL3Name": "CourthouseC"
+    },
+    {
+      "id": "COURT004",
+      "oucode": "OUCODEL34",
+      "oucodeL2Code": "2",
+      "oucodeL2Name": "ouL2 Y",
+      "oucodeL3Code": "OUCODEL34",
+      "oucodeL3Name": "Courthouse D"
+    }
+  ]
+    <br />
+     pageSize: 10
+    <br />
+     rotaBusinessTypes: []
+    <br />
+     hearingData: {
+    "id": "HEARINGID1",
+    "startDate": "2019-01-01",
+    "courtCentre": {
+      "id": "COURT004",
+      "roomId": "C1"
+    },
+    "hearingDays": [
+      {
+        "sittingDay": "2019-01-01T09:00:00.000Z"
+      }
+    ],
+    "prosecutionCases": []
+  }
+    <br />
+     totalResults: 25 
+  </magistrates-scheduling>
+</magistrates-scheduling-container>
+`;
+
+exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting a non-duration based slot: 
+         {
+            "redirectTo": [
+              "/manage",
+              "HEARINGID1",
+              "enter-results",
+            ],
+            "resultLineId": "UUID:1",
+            "resultPrompts": [
+              {
+                "label": "Date of hearing",
+                "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
+                "promptRef": "HDATE",
+                "type": "DATE",
+                "value": "2020-01-01"},
+              {
+                "label": "Time of hearing",
+                "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
+                "promptRef": "timeOfHearing",
+                "type": "TIME",
+                "value": "10:00"},
+              {
+                "label": "Courtroom",
+                "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
+                "promptRef": "HCROOM",
+                "type": "HCROOM",
+                "value": "Courtroom 01"},
+              {
+                "label": "Hearing type",
+                "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+                "promptRef": "HTYPE",
+                "type": "FIXL",
+                "value": "Hearing Type A"},
+              {
+                "label": "Estimated duration",
+                "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+                "promptRef": "HEST",
+                "type": "DURATION",
+                "value": [
+                  {
+                    "label": "MINUTES",
+                    "value": 20},
+                ]},
+              {
+                "label": "Booking reference",
+                "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
+                "promptRef": "bookingReference",
+                "type": "TXT",
+                "value": "test-booking-reference-id"},
+              {
+                "label": "Courthouse",
+                "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+                "promptRef": "hCHOUSE",
+                "type": "NAMEADDRESS",
+                "value": [
+                  {
+                    "label": "Courthouse organisation name",
+                    "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+                    "promptRef": "hCHOUSEOrganisationName",
+                    "type": "TXT",
+                    "value": "Courthouse A"},
+                ]},
+            ],
+            "type": "UPDATE_RESULT_PROMPTS"}
+       1`] = `
+{
+  "redirectTo": [
+    "/manage",
+    "HEARINGID1",
+    "enter-results",
+  ],
+  "resultLineId": "UUID:1",
+  "resultPrompts": [
+    {
+      "label": "Date of hearing",
+      "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
+      "promptRef": "HDATE",
+      "type": "DATE",
+      "value": "2020-01-01",
+    },
+    {
+      "label": "Time of hearing",
+      "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
+      "promptRef": "timeOfHearing",
+      "type": "TIME",
+      "value": "10:00",
+    },
+    {
+      "label": "Courtroom",
+      "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
+      "promptRef": "HCROOM",
+      "type": "HCROOM",
+      "value": "Courtroom 01",
+    },
+    {
+      "label": "Hearing type",
+      "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+      "promptRef": "HTYPE",
+      "type": "FIXL",
+      "value": "Hearing Type A",
+    },
+    {
+      "label": "Estimated duration",
+      "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+      "promptRef": "HEST",
+      "type": "DURATION",
+      "value": [
+        {
+          "label": "MINUTES",
+          "value": 20,
+        },
+      ],
+    },
+    {
+      "label": "Booking reference",
+      "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
+      "promptRef": "bookingReference",
+      "type": "TXT",
+      "value": "test-booking-reference-id",
+    },
+    {
+      "label": "Courthouse",
+      "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+      "promptRef": "hCHOUSE",
+      "type": "NAMEADDRESS",
+      "value": [
+        {
+          "label": "Courthouse organisation name",
+          "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+          "promptRef": "hCHOUSEOrganisationName",
+          "type": "TXT",
+          "value": "Courthouse B",
+        },
+      ],
+    },
+  ],
+  "type": "UPDATE_RESULT_PROMPTS",
+}
+`;
+
+exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting an afternoon duration-based slot of unknown duration 1`] = `
+{
+  "redirectTo": [
+    "/manage",
+    "HEARINGID1",
+    "enter-results",
+  ],
+  "resultLineId": "UUID:1",
+  "resultPrompts": [
+    {
+      "label": "Date of hearing",
+      "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
+      "promptRef": "HDATE",
+      "type": "DATE",
+      "value": "2020-01-01",
+    },
+    {
+      "label": "Time of hearing",
+      "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
+      "promptRef": "timeOfHearing",
+      "type": "TIME",
+      "value": "14:00",
+    },
+    {
+      "label": "Courtroom",
+      "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
+      "promptRef": "HCROOM",
+      "type": "HCROOM",
+      "value": "Courtroom 01",
+    },
+    {
+      "label": "Hearing type",
+      "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+      "promptRef": "HTYPE",
+      "type": "FIXL",
+      "value": "Hearing Type A",
+    },
+    {
+      "label": "Estimated duration",
+      "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+      "promptRef": "HEST",
+      "type": "DURATION",
+      "value": [
+        {
+          "label": "MINUTES",
+          "value": 20,
+        },
+      ],
+    },
+    {
+      "label": "Booking reference",
+      "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
+      "promptRef": "bookingReference",
+      "type": "TXT",
+      "value": "test-booking-reference-id",
+    },
+    {
+      "label": "Courthouse",
+      "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+      "promptRef": "hCHOUSE",
+      "type": "NAMEADDRESS",
+      "value": [
+        {
+          "label": "Courthouse organisation name",
+          "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+          "promptRef": "hCHOUSEOrganisationName",
+          "type": "TXT",
+          "value": "Courthouse B",
+        },
+      ],
+    },
+  ],
+  "type": "UPDATE_RESULT_PROMPTS",
+}
+`;
+
+exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting an all day duration-based slot of unknown duration 1`] = `undefined`;
+
+exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting an application 1`] = `
+{
+  "redirectTo": [
+    "/manage",
+    "HEARINGID1",
+    "enter-results",
+  ],
+  "resultLineId": "UUID:1",
+  "resultPrompts": [
+    {
+      "label": "Date of hearing",
+      "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
+      "promptRef": "HDATE",
+      "type": "DATE",
+      "value": "2020-01-01",
+    },
+    {
+      "label": "Time of hearing",
+      "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
+      "promptRef": "timeOfHearing",
+      "type": "TIME",
+      "value": "10:00",
+    },
+    {
+      "label": "Courtroom",
+      "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
+      "promptRef": "HCROOM",
+      "type": "HCROOM",
+      "value": "Courtroom 01",
+    },
+    {
+      "label": "Hearing type",
+      "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+      "promptRef": "HTYPE",
+      "type": "FIXL",
+      "value": "Hearing Type A",
+    },
+    {
+      "label": "Estimated duration",
+      "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+      "promptRef": "HEST",
+      "type": "DURATION",
+      "value": [
+        {
+          "label": "MINUTES",
+          "value": 20,
+        },
+      ],
+    },
+    {
+      "label": "Booking reference",
+      "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
+      "promptRef": "bookingReference",
+      "type": "TXT",
+      "value": "test-booking-reference-id",
+    },
+    {
+      "label": "Courthouse",
+      "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+      "promptRef": "hCHOUSE",
+      "type": "NAMEADDRESS",
+      "value": [
+        {
+          "label": "Courthouse organisation name",
+          "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+          "promptRef": "hCHOUSEOrganisationName",
+          "type": "TXT",
+          "value": "Courthouse B",
+        },
+      ],
+    },
+  ],
+  "type": "UPDATE_RESULT_PROMPTS",
+}
+`;

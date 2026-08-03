@@ -1,0 +1,2357 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraftResultLineContainer resolved result line "atLeastOneOf" child result definitions should render 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Credit for time
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Credit for time
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Credit for time
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-child-result-definitions-form
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+            style="display: block;"
+          >
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              novalidate=""
+              pdk-form=""
+            >
+              <pdk-form-field
+                label="Additional result(s) required, please select one OR more"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label govuk-label--s"
+                    for="pdk-form-control-undefined-GENERATED_ID"
+                  >
+                     Additional result(s) required, please select one OR more 
+                  </label>
+                  <pdk-autosuggest-lite
+                    class="ng-untouched ng-pristine ng-valid"
+                    name="atLeastOneOf"
+                    ngmodel=""
+                    required=""
+                    suggestionkey="code"
+                    suggestiontitle="label"
+                  >
+                    <pdk-autosuggest
+                      highlightcolor="blue"
+                    >
+                      <pdk-interaction-container>
+                        <div>
+                          <div
+                            class="pdk-autosuggest"
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                              aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                              aria-expanded="false"
+                              autocomplete="off"
+                              class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                              id="pdk-form-control-undefined-GENERATED_ID"
+                              role="combobox"
+                              type="text"
+                            />
+                            <span
+                              class="govuk-visually-hidden"
+                              id="pdk-autosuggest__instructions-GENERATED_ID"
+                              pdk-visually-hidden=""
+                            >
+                               When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                            </span>
+                            <span
+                              aria-live="polite"
+                              class="govuk-visually-hidden"
+                              pdk-visually-hidden=""
+                              role="status"
+                            >
+                            </span>
+                            <div
+                              class="pdk-autosuggest__suggestions-container"
+                              id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                            >
+                            </div>
+                          </div>
+                        </div>
+                      </pdk-interaction-container>
+                    </pdk-autosuggest>
+                  </pdk-autosuggest-lite>
+                </pdk-form-group>
+              </pdk-form-field>
+            </form>
+          </cpp-child-result-definitions-form>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line "conditionalMandatory" child result definition should render 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Is electronic monitoring required
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Is electronic monitoring required
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Is electronic monitoring required
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-conditional-mandatory-form>
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              novalidate=""
+              pdk-form=""
+            >
+              <pdk-form-field
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                    >
+                       Is electronic monitoring required? 
+                    </legend>
+                    <pdk-radio-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      inline=""
+                      name="conditionalMandatory"
+                      required=""
+                    >
+                      <div
+                        class="govuk-radios govuk-radios--inline"
+                      >
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              Yes
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="false"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                              No
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                      </div>
+                    </pdk-radio-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </form>
+          </cpp-conditional-mandatory-form>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line "oneOf" child result definitions should render 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Reserve Terms
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Reserve Terms
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Reserve Terms
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-child-result-definitions-form
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+            style="display: block;"
+          >
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              novalidate=""
+              pdk-form=""
+            >
+              <pdk-form-field>
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                      pdk-legend="small"
+                    >
+                       Select result 
+                      <span
+                        class="govuk-visually-hidden"
+                        pdk-visually-hidden=""
+                      >
+                        for Reserve Terms
+                      </span>
+                    </legend>
+                    <pdk-radio-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      name="oneOf"
+                      ngmodel=""
+                      required=""
+                    >
+                      <div
+                        class="govuk-radios"
+                      >
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="[object Object]"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               Reserve Terms Instalments only 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="[object Object]"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               Reserve Terms Lump sum plus instalments 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="[object Object]"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               Reserve Terms Lump sum 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                      </div>
+                    </pdk-radio-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+            </form>
+          </cpp-child-result-definitions-form>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line NHCCS definition should render 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Next hearing in Crown Court
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Next hearing in Crown Court
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Next hearing in Crown Court
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-draft-result-line-body>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-bottom-6"
+              pdk-margin-bottom="6"
+              pdk-margin-top="2"
+              style="max-width: 680px;"
+            >
+              <cpp-nhccs-result-line-body>
+                <details
+                  class="govuk-details"
+                  open=""
+                  pdk-details=""
+                >
+                  <summary
+                    class="govuk-details__summary"
+                    pdk-summary=""
+                  >
+                    <span
+                      class="govuk-details__summary-text"
+                    >
+                      Result details
+                    </span>
+                  </summary>
+                  <pdk-details-text
+                    class="govuk-details__text"
+                  >
+                    <cpp-result-prompts-form>
+                      <form
+                        class="ng-untouched ng-pristine ng-valid"
+                        errorformat="extended"
+                        novalidate=""
+                        pdk-form=""
+                      >
+                        <cpp-prompt-choice>
+                          <div
+                            data-test-id="dateToBeFixed"
+                          >
+                            <cpp-oneof-prompt-choice>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <fieldset
+                                    class="govuk-fieldset"
+                                    pdk-fieldset=""
+                                  >
+                                    <legend
+                                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                    >
+                                       Date and time to be fixed 
+                                    </legend>
+                                    <pdk-radio-group
+                                      class="ng-untouched ng-pristine ng-valid"
+                                      required=""
+                                    >
+                                      <div
+                                        class="govuk-radios"
+                                      >
+                                        <pdk-radio-button>
+                                          <div
+                                            class="govuk-radios__item"
+                                          >
+                                            <input
+                                              class="govuk-radios__input"
+                                              id="pdk-radio-GENERATED_ID"
+                                              name="pdk-radio-group-GENERATED_ID"
+                                              type="radio"
+                                              value="0"
+                                            />
+                                            <label
+                                              class="govuk-radios__label govuk-label"
+                                              for="pdk-radio-GENERATED_ID"
+                                              pdk-label=""
+                                            >
+                                              Date and time to be fixed
+                                            </label>
+                                          </div>
+                                        </pdk-radio-button>
+                                        <pdk-radio-button>
+                                          <div
+                                            class="govuk-radios__item"
+                                          >
+                                            <input
+                                              class="govuk-radios__input"
+                                              id="pdk-radio-GENERATED_ID"
+                                              name="pdk-radio-group-GENERATED_ID"
+                                              type="radio"
+                                              value="1"
+                                            />
+                                            <label
+                                              class="govuk-radios__label govuk-label"
+                                              for="pdk-radio-GENERATED_ID"
+                                              pdk-label=""
+                                            >
+                                              Fixed Date
+                                            </label>
+                                          </div>
+                                        </pdk-radio-button>
+                                        <pdk-radio-button>
+                                          <div
+                                            class="govuk-radios__item"
+                                          >
+                                            <input
+                                              class="govuk-radios__input"
+                                              id="pdk-radio-GENERATED_ID"
+                                              name="pdk-radio-group-GENERATED_ID"
+                                              type="radio"
+                                              value="2"
+                                            />
+                                            <label
+                                              class="govuk-radios__label govuk-label"
+                                              for="pdk-radio-GENERATED_ID"
+                                              pdk-label=""
+                                            >
+                                              Week Commencing
+                                            </label>
+                                          </div>
+                                        </pdk-radio-button>
+                                      </div>
+                                    </pdk-radio-group>
+                                  </fieldset>
+                                </pdk-form-group>
+                              </pdk-form-field>
+                            </cpp-oneof-prompt-choice>
+                          </div>
+                        </cpp-prompt-choice>
+                        <cpp-prompt-choice>
+                          <div
+                            data-test-id="hCHOUSE"
+                          >
+                            <cpp-nameaddress-prompt-choice>
+                              <pdk-form-field
+                                hinttext="Please start typing the name"
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Select Courthouse 
+                                  </label>
+                                  <pdk-hint
+                                    class="govuk-hint"
+                                  >
+                                    <div>
+                                       Please start typing the name 
+                                    </div>
+                                  </pdk-hint>
+                                  <pdk-autosuggest-lite
+                                    class="ng-untouched ng-pristine ng-valid"
+                                    suggestionkey="label"
+                                    suggestiontitle="label"
+                                  >
+                                    <pdk-autosuggest
+                                      highlightcolor="blue"
+                                    >
+                                      <pdk-interaction-container>
+                                        <div>
+                                          <div
+                                            class="pdk-autosuggest"
+                                          >
+                                            <input
+                                              aria-autocomplete="list"
+                                              aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                              aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                                              aria-expanded="false"
+                                              autocomplete="off"
+                                              class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                              id="pdk-form-control-undefined-GENERATED_ID"
+                                              role="combobox"
+                                              type="text"
+                                            />
+                                            <span
+                                              class="govuk-visually-hidden"
+                                              id="pdk-autosuggest__instructions-GENERATED_ID"
+                                              pdk-visually-hidden=""
+                                            >
+                                               When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                            </span>
+                                            <span
+                                              aria-live="polite"
+                                              class="govuk-visually-hidden"
+                                              pdk-visually-hidden=""
+                                              role="status"
+                                            >
+                                            </span>
+                                            <div
+                                              class="pdk-autosuggest__suggestions-container"
+                                              id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                            >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </pdk-interaction-container>
+                                    </pdk-autosuggest>
+                                  </pdk-autosuggest-lite>
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <input
+                                class="ng-untouched ng-pristine ng-valid govuk-input"
+                                pdk-text-input=""
+                                style="display: none;"
+                                type="hidden"
+                                value=""
+                              />
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse address line 1 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse address line 2 (optional) 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse address line 3 (optional) 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse address line 4 (optional) 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse address line 5 (optional) 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse post code 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse email address 1 (optional) 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <label
+                                    class="govuk-label govuk-label--s"
+                                    for="pdk-form-control-undefined-GENERATED_ID"
+                                  >
+                                     Courthouse email address 2 (optional) 
+                                  </label>
+                                  <input
+                                    class="ng-untouched ng-pristine ng-valid govuk-input"
+                                    id="pdk-form-control-undefined-GENERATED_ID"
+                                    pdk-input=""
+                                    type="text"
+                                  />
+                                </pdk-form-group>
+                              </pdk-form-field>
+                            </cpp-nameaddress-prompt-choice>
+                          </div>
+                        </cpp-prompt-choice>
+                        <cpp-prompt-choice>
+                          <div
+                            data-test-id="HTYPE"
+                          >
+                            <cpp-fixl-prompt-choice>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <fieldset
+                                    class="govuk-fieldset"
+                                    pdk-fieldset=""
+                                  >
+                                    <legend
+                                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                    >
+                                       Hearing type 
+                                    </legend>
+                                    <cpp-fixed-list-input
+                                      class="ng-untouched ng-pristine ng-valid"
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-3"
+                                        pdk-margin-top="3"
+                                      >
+                                        <a
+                                          class="govuk-link"
+                                          href="javascript:void(0)"
+                                          pdk-link=""
+                                          role="button"
+                                        >
+                                          Add another option
+                                        </a>
+                                      </div>
+                                    </cpp-fixed-list-input>
+                                  </fieldset>
+                                </pdk-form-group>
+                              </pdk-form-field>
+                            </cpp-fixl-prompt-choice>
+                          </div>
+                        </cpp-prompt-choice>
+                        <cpp-prompt-choice>
+                          <div
+                            data-test-id="HEST"
+                          >
+                            <cpp-duration-prompt-choice>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <fieldset
+                                    class="govuk-fieldset"
+                                    pdk-fieldset=""
+                                  >
+                                    <legend
+                                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                    >
+                                       Estimated duration 
+                                    </legend>
+                                    <pdk-hint
+                                      class="govuk-hint"
+                                    >
+                                      <div>
+                                         Only use one duration unit 
+                                      </div>
+                                    </pdk-hint>
+                                    <cpp-duration-input
+                                      class="ng-untouched ng-pristine ng-valid"
+                                    >
+                                      <div
+                                        style="display: inline-block;"
+                                      >
+                                        <label
+                                          class="govuk-label"
+                                          for="cpp-result-prompts-form-duration-input-GENERATED_IDWeeks"
+                                          pdk-label=""
+                                        >
+                                          Weeks
+                                        </label>
+                                        <input
+                                          autocomplete="off"
+                                          class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                          id="cpp-result-prompts-form-duration-input-GENERATED_IDWeeks"
+                                          maxlength="4"
+                                          pattern="^(?:[1-9][0-9]*)"
+                                          pdk-margin-right="2"
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div
+                                        style="display: inline-block;"
+                                      >
+                                        <label
+                                          class="govuk-label"
+                                          for="cpp-result-prompts-form-duration-input-GENERATED_IDDays"
+                                          pdk-label=""
+                                        >
+                                          Days
+                                        </label>
+                                        <input
+                                          autocomplete="off"
+                                          class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                          id="cpp-result-prompts-form-duration-input-GENERATED_IDDays"
+                                          maxlength="4"
+                                          pattern="^(?:[1-9][0-9]*)"
+                                          pdk-margin-right="2"
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div
+                                        style="display: inline-block;"
+                                      >
+                                        <label
+                                          class="govuk-label"
+                                          for="cpp-result-prompts-form-duration-input-GENERATED_IDHours"
+                                          pdk-label=""
+                                        >
+                                          Hours
+                                        </label>
+                                        <input
+                                          autocomplete="off"
+                                          class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                          id="cpp-result-prompts-form-duration-input-GENERATED_IDHours"
+                                          maxlength="4"
+                                          pattern="^(?:[1-9][0-9]*)"
+                                          pdk-margin-right="2"
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div
+                                        style="display: inline-block;"
+                                      >
+                                        <label
+                                          class="govuk-label"
+                                          for="cpp-result-prompts-form-duration-input-GENERATED_IDMinutes"
+                                          pdk-label=""
+                                        >
+                                          Minutes
+                                        </label>
+                                        <input
+                                          autocomplete="off"
+                                          class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                          id="cpp-result-prompts-form-duration-input-GENERATED_IDMinutes"
+                                          maxlength="4"
+                                          pattern="^(?:[1-9][0-9]*)"
+                                          pdk-margin-right="2"
+                                          type="text"
+                                        />
+                                      </div>
+                                    </cpp-duration-input>
+                                  </fieldset>
+                                </pdk-form-group>
+                              </pdk-form-field>
+                            </cpp-duration-prompt-choice>
+                          </div>
+                        </cpp-prompt-choice>
+                        <cpp-prompt-choice>
+                          <div
+                            data-test-id="remandStatus"
+                          >
+                            <cpp-fixl-prompt-choice>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <fieldset
+                                    class="govuk-fieldset"
+                                    pdk-fieldset=""
+                                  >
+                                    <legend
+                                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                    >
+                                       Remand Status 
+                                    </legend>
+                                    <cpp-fixed-list-input
+                                      class="ng-untouched ng-pristine ng-valid"
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-3"
+                                        pdk-margin-top="3"
+                                      >
+                                        <a
+                                          class="govuk-link"
+                                          href="javascript:void(0)"
+                                          pdk-link=""
+                                          role="button"
+                                        >
+                                          Add another option
+                                        </a>
+                                      </div>
+                                    </cpp-fixed-list-input>
+                                  </fieldset>
+                                </pdk-form-group>
+                              </pdk-form-field>
+                            </cpp-fixl-prompt-choice>
+                          </div>
+                        </cpp-prompt-choice>
+                        <details
+                          class="govuk-details"
+                          pdk-details=""
+                        >
+                          <summary
+                            class="govuk-details__summary"
+                          >
+                            <span
+                              class="govuk-details__summary-text"
+                            >
+                              Optional result details
+                            </span>
+                          </summary>
+                          <pdk-details-text
+                            class="govuk-!-padding-bottom-0 govuk-details__text"
+                            pdk-padding-bottom="0"
+                          >
+                            <cpp-prompt-choice>
+                              <div
+                                data-test-id="timeOfHearing"
+                              >
+                                <cpp-time-prompt-choice>
+                                  <pdk-form-field
+                                    labeltype="small"
+                                  >
+                                    <pdk-form-group
+                                      class="pdk-form-group"
+                                    >
+                                      <fieldset
+                                        class="govuk-fieldset"
+                                        pdk-fieldset=""
+                                      >
+                                        <legend
+                                          class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                        >
+                                           Time of hearing 
+                                        </legend>
+                                        <pdk-time-input
+                                          class="ng-untouched ng-pristine ng-valid"
+                                        >
+                                          <div
+                                            class="pdk-time-input ng-untouched ng-pristine ng-valid"
+                                          >
+                                            <div
+                                              class="pdk-time-input__item pdk-time-input__item--hour"
+                                            >
+                                              <label
+                                                class="govuk-label govuk-visually-hidden"
+                                                for="pdk-time-input-GENERATED_ID-hours"
+                                                pdk-label=""
+                                              >
+                                                 Hours 
+                                              </label>
+                                              <input
+                                                autocomplete="off"
+                                                class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                                                formcontrolname="hours"
+                                                id="pdk-time-input-GENERATED_ID-hours"
+                                                maxlength="2"
+                                                name="timeHours"
+                                                pattern="[0-9]*"
+                                                type="text"
+                                              />
+                                            </div>
+                                            <div
+                                              class="pdk-time-input__item"
+                                            >
+                                              <label
+                                                class="govuk-label govuk-visually-hidden"
+                                                for="pdk-time-input-GENERATED_ID-minutes"
+                                                pdk-label=""
+                                              >
+                                                 Minutes 
+                                              </label>
+                                              <input
+                                                autocomplete="off"
+                                                class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                                                formcontrolname="minutes"
+                                                id="pdk-time-input-GENERATED_ID-minutes"
+                                                maxlength="2"
+                                                minlength="2"
+                                                name="timeMinutes"
+                                                pattern="[0-9]*"
+                                                type="text"
+                                              />
+                                            </div>
+                                          </div>
+                                        </pdk-time-input>
+                                      </fieldset>
+                                    </pdk-form-group>
+                                  </pdk-form-field>
+                                </cpp-time-prompt-choice>
+                              </div>
+                            </cpp-prompt-choice>
+                            <cpp-prompt-choice>
+                              <div
+                                data-test-id="HCROOM"
+                              >
+                                <cpp-hcroom-prompt-choice>
+                                  <pdk-form-field
+                                    labeltype="small"
+                                  >
+                                    <pdk-form-group
+                                      class="pdk-form-group"
+                                    >
+                                      <label
+                                        class="govuk-label govuk-label--s"
+                                        for="pdk-select-GENERATED_ID"
+                                      >
+                                         Courtroom 
+                                      </label>
+                                      <pdk-select
+                                        class="ng-untouched ng-pristine ng-valid"
+                                        justified=""
+                                        placeholder="Select a courtroom"
+                                      >
+                                        <select
+                                          class="govuk-select pdk-select--justified"
+                                          id="pdk-select-GENERATED_ID"
+                                          name="HCROOM"
+                                        >
+                                          <option
+                                            value=""
+                                          >
+                                            Select a courtroom
+                                          </option>
+                                        </select>
+                                      </pdk-select>
+                                    </pdk-form-group>
+                                  </pdk-form-field>
+                                </cpp-hcroom-prompt-choice>
+                              </div>
+                            </cpp-prompt-choice>
+                            <cpp-prompt-choice>
+                              <div
+                                data-test-id="reservedJudiciary"
+                              >
+                                <cpp-boolean-prompt-choice>
+                                  <pdk-form-field
+                                    labeltype="small"
+                                  >
+                                    <pdk-form-group
+                                      class="pdk-form-group"
+                                    >
+                                      <fieldset
+                                        class="govuk-fieldset"
+                                        pdk-fieldset=""
+                                      >
+                                        <legend
+                                          class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                        >
+                                           Reserved Judiciary 
+                                        </legend>
+                                        <pdk-radio-group
+                                          class="ng-untouched ng-pristine ng-valid"
+                                          inline=""
+                                        >
+                                          <div
+                                            class="govuk-radios govuk-radios--inline"
+                                          >
+                                            <pdk-radio-button>
+                                              <div
+                                                class="govuk-radios__item"
+                                              >
+                                                <input
+                                                  class="govuk-radios__input"
+                                                  id="pdk-radio-GENERATED_ID"
+                                                  name="pdk-radio-group-GENERATED_ID"
+                                                  type="radio"
+                                                  value="true"
+                                                />
+                                                <label
+                                                  class="govuk-radios__label govuk-label"
+                                                  for="pdk-radio-GENERATED_ID"
+                                                  pdk-label=""
+                                                >
+                                                  Yes
+                                                </label>
+                                              </div>
+                                            </pdk-radio-button>
+                                            <pdk-radio-button>
+                                              <div
+                                                class="govuk-radios__item"
+                                              >
+                                                <input
+                                                  class="govuk-radios__input"
+                                                  id="pdk-radio-GENERATED_ID"
+                                                  name="pdk-radio-group-GENERATED_ID"
+                                                  type="radio"
+                                                  value="false"
+                                                />
+                                                <label
+                                                  class="govuk-radios__label govuk-label"
+                                                  for="pdk-radio-GENERATED_ID"
+                                                  pdk-label=""
+                                                >
+                                                  No
+                                                </label>
+                                              </div>
+                                            </pdk-radio-button>
+                                          </div>
+                                        </pdk-radio-group>
+                                      </fieldset>
+                                    </pdk-form-group>
+                                  </pdk-form-field>
+                                </cpp-boolean-prompt-choice>
+                              </div>
+                            </cpp-prompt-choice>
+                          </pdk-details-text>
+                        </details>
+                        <pdk-button-group>
+                          <div
+                            class="govuk-button-group"
+                          >
+                            <button
+                              class="govuk-button"
+                              pdk-button=""
+                              type="submit"
+                            >
+                              Save result details
+                            </button>
+                          </div>
+                        </pdk-button-group>
+                      </form>
+                    </cpp-result-prompts-form>
+                  </pdk-details-text>
+                </details>
+              </cpp-nhccs-result-line-body>
+            </div>
+          </cpp-draft-result-line-body>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line NHCCS definition should render the result prompts form for a related hearing 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Next hearing in Crown Court
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Next hearing in Crown Court
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Next hearing in Crown Court
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-result-prompts-summary
+            style="display: block;"
+          >
+            <dl
+              class="result-prompts-summary result-prompts-summary--inline"
+            >
+            </dl>
+          </cpp-result-prompts-summary>
+          <cpp-draft-result-line-body>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-bottom-6"
+              pdk-margin-bottom="6"
+              pdk-margin-top="2"
+              style="max-width: 680px;"
+            >
+              <cpp-nhccs-result-line-body>
+                <details
+                  class="govuk-details"
+                  open=""
+                  pdk-details=""
+                >
+                  <summary
+                    class="govuk-details__summary"
+                    pdk-summary=""
+                  >
+                    <span
+                      class="govuk-details__summary-text"
+                    >
+                      Result details
+                    </span>
+                  </summary>
+                  <pdk-details-text
+                    class="govuk-details__text"
+                  >
+                    <cpp-result-prompts-form>
+                      <form
+                        class="ng-untouched ng-dirty ng-invalid"
+                        errorformat="extended"
+                        novalidate=""
+                        pdk-form=""
+                      >
+                        <cpp-prompt-choice>
+                          <div
+                            data-test-id="remandStatus"
+                          >
+                            <cpp-fixl-prompt-choice>
+                              <pdk-form-field
+                                labeltype="small"
+                              >
+                                <pdk-form-group
+                                  class="pdk-form-group"
+                                >
+                                  <fieldset
+                                    class="govuk-fieldset"
+                                    pdk-fieldset=""
+                                  >
+                                    <legend
+                                      class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                    >
+                                       Remand Status 
+                                    </legend>
+                                    <cpp-fixed-list-input
+                                      class="ng-untouched ng-pristine ng-invalid"
+                                    >
+                                      <pdk-select
+                                        class="ng-untouched ng-pristine ng-valid"
+                                        justified=""
+                                      >
+                                        <select
+                                          aria-label="Remand Status"
+                                          class="govuk-select pdk-select--justified"
+                                          id="pdk-select-GENERATED_ID"
+                                        >
+                                          <option
+                                            value="0"
+                                          >
+                                            Conditional Bail
+                                          </option>
+                                          <option
+                                            value="1"
+                                          >
+                                            Defendant not Present
+                                          </option>
+                                          <option
+                                            value="2"
+                                          >
+                                            Remand in Custody
+                                          </option>
+                                          <option
+                                            value="3"
+                                          >
+                                            Unconditional Bail
+                                          </option>
+                                        </select>
+                                      </pdk-select>
+                                    </cpp-fixed-list-input>
+                                  </fieldset>
+                                </pdk-form-group>
+                              </pdk-form-field>
+                            </cpp-fixl-prompt-choice>
+                          </div>
+                        </cpp-prompt-choice>
+                        <pdk-button-group>
+                          <div
+                            class="govuk-button-group"
+                          >
+                            <button
+                              class="govuk-button"
+                              pdk-button=""
+                              type="submit"
+                            >
+                              Save result details
+                            </button>
+                          </div>
+                        </pdk-button-group>
+                      </form>
+                    </cpp-result-prompts-form>
+                  </pdk-details-text>
+                </details>
+              </cpp-nhccs-result-line-body>
+            </div>
+          </cpp-draft-result-line-body>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line NHMC definition should render 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Next hearing in magistrates' court
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Next hearing in magistrates' court
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Next hearing in magistrates' court
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-draft-result-line-body>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-bottom-6"
+              pdk-margin-bottom="6"
+              pdk-margin-top="2"
+              style="max-width: 680px;"
+            >
+              <cpp-nhmc-result-line-body>
+                <a
+                  class="govuk-link"
+                  href="/manage/hearingId/enter-results/result-lines/UUID:1/magistrates/hearing-details"
+                  pdk-link=""
+                >
+                  Find an available hearing
+                </a>
+              </cpp-nhmc-result-line-body>
+            </div>
+          </cpp-draft-result-line-body>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line optional result branch should not require child result definition when part of an optional branch 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Bail conditions
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-child-result-definitions-form
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+            style="display: block;"
+          >
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              novalidate=""
+              pdk-form=""
+            >
+              <pdk-form-field
+                label="Additional result(s) required, please select one OR more"
+                labeltype="small"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label govuk-label--s"
+                    for="pdk-form-control-undefined-GENERATED_ID"
+                  >
+                     Additional result(s) required, please select one OR more 
+                  </label>
+                  <pdk-autosuggest-lite
+                    class="ng-untouched ng-pristine ng-valid"
+                    name="atLeastOneOf"
+                    ngmodel=""
+                    suggestionkey="code"
+                    suggestiontitle="label"
+                  >
+                    <pdk-autosuggest
+                      highlightcolor="blue"
+                    >
+                      <pdk-interaction-container>
+                        <div>
+                          <div
+                            class="pdk-autosuggest"
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                              aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                              aria-expanded="false"
+                              autocomplete="off"
+                              class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                              id="pdk-form-control-undefined-GENERATED_ID"
+                              role="combobox"
+                              type="text"
+                            />
+                            <span
+                              class="govuk-visually-hidden"
+                              id="pdk-autosuggest__instructions-GENERATED_ID"
+                              pdk-visually-hidden=""
+                            >
+                               When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                            </span>
+                            <span
+                              aria-live="polite"
+                              class="govuk-visually-hidden"
+                              pdk-visually-hidden=""
+                              role="status"
+                            >
+                            </span>
+                            <div
+                              class="pdk-autosuggest__suggestions-container"
+                              id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                            >
+                            </div>
+                          </div>
+                        </div>
+                      </pdk-interaction-container>
+                    </pdk-autosuggest>
+                  </pdk-autosuggest-lite>
+                </pdk-form-group>
+              </pdk-form-field>
+            </form>
+          </cpp-child-result-definitions-form>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line result definition when a hearing is locked should restrict the editing privileges 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    No order for costs
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-result-prompts-summary
+            style="display: block;"
+          >
+            <dl
+              class="result-prompts-summary result-prompts-summary--inline"
+            >
+              <div
+                class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+              >
+                <dt
+                  class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                  pdk-margin-right="1"
+                  pdk-text-colour="black"
+                  tint="25"
+                >
+                   Reason for no costs 
+                </dt>
+                <dd>
+                  *
+                </dd>
+              </div>
+            </dl>
+          </cpp-result-prompts-summary>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line result definition when a hearing is unlocked should handle changing the chosen result definition 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    No order for costs
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     No order for costs
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     No order for costs
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-result-prompts-summary
+            style="display: block;"
+          >
+            <dl
+              class="result-prompts-summary result-prompts-summary--inline"
+            >
+              <div
+                class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+              >
+                <dt
+                  class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                  pdk-margin-right="1"
+                  pdk-text-colour="black"
+                  tint="25"
+                >
+                   Reason for no costs 
+                </dt>
+                <dd>
+                  *
+                </dd>
+              </div>
+            </dl>
+          </cpp-result-prompts-summary>
+          <cpp-draft-result-line-body>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-bottom-6"
+              pdk-margin-bottom="6"
+              pdk-margin-top="2"
+              style="max-width: 680px;"
+            >
+              <details
+                class="govuk-details"
+                pdk-details=""
+              >
+                <summary
+                  class="govuk-details__summary"
+                  pdk-summary=""
+                >
+                  <span
+                    class="govuk-details__summary-text"
+                  >
+                     Result details 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      for No order for costs
+                    </span>
+                  </span>
+                </summary>
+              </details>
+            </div>
+          </cpp-draft-result-line-body>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line result definition when a hearing is unlocked should render optional results 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    Driving endorsement to be removed
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-draft-result-line-body>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-bottom-6"
+              pdk-margin-bottom="6"
+              pdk-margin-top="2"
+              style="max-width: 680px;"
+            >
+              <details
+                class="govuk-details"
+                pdk-details=""
+              >
+                <summary
+                  class="govuk-details__summary"
+                  pdk-summary=""
+                >
+                  <span
+                    class="govuk-details__summary-text"
+                  >
+                     Optional results 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      for Driving endorsement to be removed
+                    </span>
+                  </span>
+                </summary>
+              </details>
+            </div>
+          </cpp-draft-result-line-body>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer resolved result line result definition when a hearing is unlocked should render the completed result prompts 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-resolved-draft-result-line>
+          <div
+            class="result-line-header"
+          >
+            <div
+              class="govuk-!-margin-right-1"
+              cpp-draft-result-line-tag=""
+              data-test-id="resultLineTitle"
+              pdk-margin-right="1"
+            >
+              <div
+                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                pdk-margin="0"
+                pdk-padding-horizontal="1"
+                pdk-typography="body-small"
+                style="display: inline-block; background-color: #d5d7ed;"
+              >
+                <h6
+                  class="govuk-!-margin-0 govuk-body-s"
+                  pdk-margin="0"
+                  pdk-typography="body-small"
+                >
+                  <b>
+                    No order for costs
+                  </b>
+                </h6>
+              </div>
+            </div>
+            <cpp-draft-result-line-options>
+              <pdk-link-group>
+                <a
+                  class="govuk-link"
+                  data-test-id="change-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     No order for costs
+                  </span>
+                </a>
+                <a
+                  class="govuk-link"
+                  data-test-id="delete-result-line"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                >
+                  Delete
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     No order for costs
+                  </span>
+                </a>
+              </pdk-link-group>
+            </cpp-draft-result-line-options>
+          </div>
+          <cpp-result-prompts-summary
+            style="display: block;"
+          >
+            <dl
+              class="result-prompts-summary result-prompts-summary--inline"
+            >
+              <div
+                class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+              >
+                <dt
+                  class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                  pdk-margin-right="1"
+                  pdk-text-colour="black"
+                  tint="25"
+                >
+                   Reason for no costs 
+                </dt>
+                <dd>
+                  *
+                </dd>
+              </div>
+            </dl>
+          </cpp-result-prompts-summary>
+          <cpp-draft-result-line-body>
+            <div
+              class="govuk-!-margin-top-2 govuk-!-margin-bottom-6"
+              pdk-margin-bottom="6"
+              pdk-margin-top="2"
+              style="max-width: 680px;"
+            >
+              <details
+                class="govuk-details"
+                pdk-details=""
+              >
+                <summary
+                  class="govuk-details__summary"
+                  pdk-summary=""
+                >
+                  <span
+                    class="govuk-details__summary-text"
+                  >
+                     Result details 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                      for No order for costs
+                    </span>
+                  </span>
+                </summary>
+              </details>
+            </div>
+          </cpp-draft-result-line-body>
+        </cpp-resolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer unresolved result line should handle changing the result line 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-unresolved-draft-result-line>
+          <cpp-parts-resolver-container>
+            <cpp-parts-resolver>
+              <pdk-interaction-container>
+                <div>
+                  <ul
+                    class="parts-resolver govuk-!-margin-0 govuk-list"
+                    pdk-list=""
+                    pdk-margin="0"
+                  >
+                    <li
+                      class="govuk-!-margin-right-2 pdk-!-border-color-red"
+                      pdk-border-colour="red"
+                      pdk-margin-right="2"
+                    >
+                      <a
+                        class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                        data-test-id="unresolvedPart"
+                        href="javascript:void(0)"
+                        pdk-border-colour="red"
+                        pdk-link=""
+                        role="button"
+                        text=""
+                      >
+                        UNKNOWN
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </pdk-interaction-container>
+            </cpp-parts-resolver>
+          </cpp-parts-resolver-container>
+          <pdk-link-group>
+            <a
+              class="govuk-link"
+              data-test-id="change-result-line"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              Change
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                 original text
+              </span>
+            </a>
+            <a
+              class="govuk-link"
+              data-test-id="delete-result-line"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              Delete
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                 result line
+              </span>
+            </a>
+          </pdk-link-group>
+        </cpp-unresolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;
+
+exports[`DraftResultLineContainer unresolved result line should render 1`] = `
+<ng-component
+  onErrors={[Function Function]}
+  resultLineId={[Function String]}
+  ruleType={[Function String]}
+>
+  <cpp-draft-result-line-container>
+    <cpp-draft-result-line>
+      <div>
+        <cpp-unresolved-draft-result-line>
+          <cpp-parts-resolver-container>
+            <cpp-parts-resolver>
+              <pdk-interaction-container>
+                <div>
+                  <ul
+                    class="parts-resolver govuk-!-margin-0 govuk-list"
+                    pdk-list=""
+                    pdk-margin="0"
+                  >
+                    <li
+                      class="govuk-!-margin-right-2 pdk-!-border-color-red"
+                      pdk-border-colour="red"
+                      pdk-margin-right="2"
+                    >
+                      <a
+                        class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                        data-test-id="unresolvedPart"
+                        href="javascript:void(0)"
+                        pdk-border-colour="red"
+                        pdk-link=""
+                        role="button"
+                        text=""
+                      >
+                        UNKNOWN
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </pdk-interaction-container>
+            </cpp-parts-resolver>
+          </cpp-parts-resolver-container>
+          <pdk-link-group>
+            <a
+              class="govuk-link"
+              data-test-id="change-result-line"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              Change
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                 original text
+              </span>
+            </a>
+            <a
+              class="govuk-link"
+              data-test-id="delete-result-line"
+              href="javascript:void(0)"
+              pdk-link=""
+            >
+              Delete
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                 result line
+              </span>
+            </a>
+          </pdk-link-group>
+        </cpp-unresolved-draft-result-line>
+      </div>
+    </cpp-draft-result-line>
+  </cpp-draft-result-line-container>
+</ng-component>
+`;

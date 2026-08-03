@@ -1,0 +1,145 @@
+<div class="hearing-list">
+  <h1 pdk-typography="heading-medium">
+    {{ 'MAGISTRATES_HEARING_LIST.TITLE' | translate }}
+  </h1>
+
+  @if (magistratesHearings?.length) {
+  <div data-test-id="magistrateHearings">
+    @for (hearing of magistratesHearings; track $index) {
+    <table pdk-table pdk-margin-bottom="0" [style.marginTop.px]="-1">
+      <ng-container>
+        <caption pdk-table-caption>
+          @if (hearing.courtCentreName) {
+          <div>
+            <div pdk-padding-bottom="6">
+              <court-location [courtName]="hearing.courtCentreName" [hearingDate]="hearingDate">
+              </court-location>
+            </div>
+          </div>
+          } @if (hearing.courtRoomName) {
+          <div
+            pdk-padding-top="2"
+            pdk-padding-bottom="2"
+            pdk-border-colour="mid-grey"
+            class="bold border-top border-bottom align-left"
+          >
+            {{ hearing.courtRoomName }}
+          </div>
+          }
+        </caption>
+        <tr pdk-table-row pdk-text-colour="dark-grey">
+          <th pdk-padding-top="2" pdk-padding-bottom="2" pdk-table-header>
+            {{ 'MAGISTRATES_HEARING_LIST.SEQUENCE' | translate }}
+          </th>
+          <th pdk-padding-top="2" pdk-padding-bottom="2" pdk-table-header>
+            {{ 'MAGISTRATES_HEARING_LIST.TIME' | translate }}
+          </th>
+          <th pdk-padding-top="2" pdk-padding-bottom="2" pdk-table-header>
+            {{ 'MAGISTRATES_HEARING_LIST.REFERENCE' | translate }}
+          </th>
+          <th pdk-padding-top="2" pdk-padding-bottom="2" pdk-table-header>
+            {{ 'MAGISTRATES_HEARING_LIST.PROSECUTOR' | translate }}
+          </th>
+          <th pdk-padding-top="2" pdk-padding-bottom="2" pdk-table-header>
+            {{ 'MAGISTRATES_HEARING_LIST.CASE_DETAILS' | translate }}
+          </th>
+          <th
+            pdk-padding-top="2"
+            pdk-padding-bottom="2"
+            pdk-table-header
+            pdk-padding-left="9"
+            colspan="2"
+          >
+            {{ 'MAGISTRATES_HEARING_LIST.HEARING_TYPE' | translate }}
+          </th>
+          <th pdk-table-header>
+            <span pdk-visually-hidden>
+              {{ 'MAGISTRATES_HEARING_LIST.ACTION' | translate }}
+            </span>
+          </th>
+        </tr>
+        @for (summary of hearing.summaries; track summary.id) {
+        <ng-container
+          *cppUserHasPermission="
+            [viewHearingListPermission, changeUserHearingAccessPermission(summary.id)];
+            operation: 'or'
+          "
+        >
+          @if (!summary.application) {
+          <tr
+            data-test-id="magistrateHearing"
+            pdk-table-row
+            class="summaries"
+            (select)="navigateToCaseMaterials(summary)"
+            hearing-row
+            [sequence]="summary.sequence"
+            [sittingDay]="summary.sittingDay"
+            [caseURN]="summary.prosecutionCase?.caseURN"
+            [prosecutionAuthorityReference]="summary.prosecutionCase?.prosecutionAuthorityReference"
+            [prosecutionAuthorityCode]="summary.prosecutionCase?.prosecutionAuthorityCode"
+            [firstName]="summary.defendant?.firstName"
+            [lastName]="summary.defendant?.lastName"
+            [dateOfBirth]="summary.defendant?.dateOfBirth"
+            [offences]="summary.defendant?.offences"
+            [description]="summary.typeDescription"
+          ></tr>
+          @if (summary.totalCases > 1) {
+          <tr
+            pdk-table-row
+            class="summaries"
+            (click)="navigateToCaseMaterials(summary)"
+            hearing-row
+            [sequence]="summary.sequence"
+            [sittingDay]="summary.sittingDay"
+            [prosecutionAuthorityCode]="summary.prosecutionCase?.prosecutionAuthorityCode"
+            [offences]="summary.defendant?.offences"
+            [description]="summary.typeDescription"
+            [showBulkDefendant]="true"
+            [showNextImage]="false"
+            [showOffenceParticulars]="false"
+            [showOffenceBulkDefendant]="true"
+          ></tr>
+          <tr
+            pdk-table-row
+            class="summaries"
+            (click)="navigateToCaseMaterials(summary)"
+            hearing-row
+            [caseURN]="summary.prosecutionCase?.caseURN"
+            [prosecutionAuthorityReference]="summary.prosecutionCase?.prosecutionAuthorityReference"
+            [firstName]="summary.defendant?.firstName"
+            [lastName]="summary.defendant?.lastName"
+            [dateOfBirth]="summary.defendant?.dateOfBirth"
+            [offences]="summary.defendant?.offences"
+            [showOffenceBulkDefendant]="true"
+          ></tr>
+          } } @if (summary.application) {
+          <tr
+            pdk-table-row
+            class="summaries"
+            (select)="navigateToApplicationMaterials(summary)"
+            application-row
+            [sequence]="summary.application.sequence"
+            [sittingDay]="summary.application.sittingDay"
+            [reference]="summary.application.applicationReference"
+            [prosecutor]="summary.application.prosecutor"
+            [firstName]="summary.application.firstName"
+            [lastName]="summary.application.lastName"
+            [respondentName]="summary.application.respondentName"
+            [organisationName]="summary.application.organisationName"
+            [applicationLegislation]="summary.application.type?.legislation"
+            [applicationType]="summary.application.type?.type"
+            [description]="summary.application.typeDescription"
+            [isChildApplication]="summary.application.isChildApplication"
+            [isParentApplication]="summary.application.isParentApplication"
+          ></tr>
+          }
+        </ng-container>
+        }
+      </ng-container>
+    </table>
+    }
+  </div>
+  } @else {
+  <span data-role="no-hearings"> You have no hearings today </span>
+  }
+</div>

@@ -1,0 +1,25 @@
+<pdk-alert type="warning">
+  {{ 'HEARING_EVENTS_LOG.COURT_ROOM_ACTIVE' | translate }}
+</pdk-alert>
+
+<div pdk-margin-top="4">
+  <a
+    pdk-typography="body-xsmall"
+    data-role="confirm-start-event"
+    href="javascript:void(0);"
+    (click)="confirm()"
+  >
+    {{ 'HEARING_EVENTS_LOG.PAUSE_HEARING_CONTINUE' | translate }}
+  </a>
+</div>
+
+<div pdk-margin-top="4" pdk-margin-bottom="4">
+  <a
+    pdk-typography="body-xsmall"
+    data-role="cancel-start-event"
+    href="javascript:void(0);"
+    (click)="cancel()"
+  >
+    {{ 'COMMON.CANCEL' | translate }}
+  </a>
+</div>

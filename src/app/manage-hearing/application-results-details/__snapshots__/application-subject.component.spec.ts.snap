@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationSubjectComponent should render the component 1`] = `
+<application-subject
+  subject={[Function Object]}
+>
+  <h4
+    class="govuk-heading-xl"
+    data-test-id="subjectName"
+    pdk-typography="heading-xlarge"
+  >
+     Catharine Hudson 
+  </h4>
+</application-subject>
+`;

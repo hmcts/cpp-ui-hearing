@@ -1,0 +1,225 @@
+<pdk-grid container>
+  <pdk-grid full>
+    <div class="hearing-results-header">
+      <div style="flex: 1">
+        <h4 data-test-id="defendantName" pdk-typography="heading-xlarge" class="defendant-name">
+          @if (!defendant.legalEntityDefendant) { @if (!hasBulkCase) {
+          {{ defendant.personDefendant.personDetails.firstName }}
+          {{ defendant.personDefendant.personDetails.lastName | uppercase }}
+          } @else {
+          {{ 'Bulk defendant' }}
+          } } @else {
+          {{ defendant.legalEntityDefendant.organisation.name }}
+          }
+        </h4>
+
+        @if (!hasBulkCase) {
+        <pdk-badge
+          data-test-id="defendantAttendance"
+          class="presence-badger"
+          [pdk-border-colour]="
+            getDefendantAttendanceType(defendant.id) === 'NOT_PRESENT' ? 'red' : 'green'
+          "
+          [pdk-text-colour]="
+            getDefendantAttendanceType(defendant.id) === 'NOT_PRESENT' ? 'red' : 'green'
+          "
+          [attr.data-role]="getDefendantAttendanceType(defendant.id)"
+        >
+          {{ getDefendantPresenceLabel(defendant.id) | translate }}
+        </pdk-badge>
+        }
+      </div>
+      <div>
+        @if (!hasBulkCase) {
+        <div pdk-margin-bottom="3">
+          @if (!defendant.legalEntityDefendant) {
+          <button
+            pdk-margin-bottom="3"
+            pdk-button="secondary"
+            data-role="driver-record"
+            (click)="getDrivingRecord(defendant)"
+          >
+            {{ 'MANAGE_HEARING.DRIVER_RECORD' | translate }}
+          </button>
+          }
+          <button
+            pdk-margin-bottom="3"
+            pdk-button="secondary"
+            data-role="outstanding-fine"
+            (click)="outstandingFine(defendant)"
+          >
+            {{ 'COMMON.OUTSTANDING_FINE' | translate }}
+          </button>
+        </div>
+        }
+        <pdk-checkbox
+          class="youth-selector"
+          checkboxType="small"
+          name="youthCourtCheckbox"
+          [ngModel]="(hearing.youthCourtDefendantIds || []).includes(defendant.id)"
+          (change)="onYouthCourtToggle.emit(defendant.id)"
+        >
+          {{ 'MANAGE_HEARING.SITTING_YOUTH_COURT' | translate }}
+        </pdk-checkbox>
+      </div>
+    </div>
+    <div pdk-padding-top="2">
+      <details
+        pdk-details
+        data-role="change-attendance"
+        [open]="isAccordionOpen || attendanceErrors?.length > 0"
+        (toggle)="handleAccordionToggle($event)"
+      >
+        <summary>
+          {{
+            getDefendantAttendance(defendant.id)
+              ? ('MANAGE_HEARING.VIEW_CHANGE' | translate)
+              : ('MANAGE_HEARING.ENTER' | translate)
+          }}
+          <span pdk-visually-hidden>&nbsp;defendant presence</span>
+        </summary>
+        <pdk-details-text>
+          <div pdk-padding-top="2">
+            <dl class="defendant-details">
+              <div class="defendantAddress" data-role="defendantAddress">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.ADDRESS' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="defendant-address">
+                  @if (defendant.legalEntityDefendant) {
+                  <one-line-address
+                    [address]="defendant.legalEntityDefendant.organisation.address"
+                  ></one-line-address>
+                  } @else {
+                  <one-line-address
+                    [address]="defendant.personDefendant.personDetails.address"
+                  ></one-line-address>
+                  }
+                </dd>
+              </div>
+
+              @if (!!defendant.personDefendant) {
+              <div data-role="custodyEstablishment">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.CUSTODY_ESTABLISHMENT' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="custody-establishment">
+                  @if (defendant.personDefendant.custodialEstablishment?.name) {
+                  <span>{{ defendant.personDefendant.custodialEstablishment?.name }}</span>
+                  } @else {
+                  <span>{{ 'MANAGE_HEARING.NONE_SELECTED' | translate }}</span>
+                  }
+                </dd>
+              </div>
+              }
+
+              <div data-role="dateOfBirth">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.DATE_OF_BIRTH' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="date-of-birth">
+                  @if ( !defendant.legalEntityDefendant &&
+                  (defendant.personDefendant.personDetails.dateOfBirth ||
+                  defendant.personDefendant.personDetails.lastName) ) {
+                  <span>{{
+                    defendant.personDefendant.personDetails.dateOfBirth | date : 'd MMMM yyyy'
+                  }}</span>
+                  } @else {
+                  <span>{{ 'MANAGE_HEARING.NONE_AVAILABLE' | translate }}</span>
+                  }
+                </dd>
+              </div>
+
+              <div data-role="age">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.AGE' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="defendant-age">
+                  @if ( !defendant.legalEntityDefendant &&
+                  (defendant.personDefendant.personDetails.dateOfBirth ||
+                  defendant.personDefendant.personDetails.lastName) ) {
+                  <span>
+                    {{ defendant.personDefendant.personDetails.dateOfBirth | age }}
+                    {{ 'COMMON.YEARS_OLD' | translate }}
+                    @if (defendant.isYouth) {
+                    <div class="youth-marker">Youth</div>
+                    }
+                  </span>
+                  } @else {
+                  <span>{{ 'MANAGE_HEARING.NONE_AVAILABLE' | translate }}</span>
+                  }
+                </dd>
+              </div>
+
+              <div class="nationality" data-role="nationality">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.NATIONALITY' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="defendant-nationality">
+                  @if ( !defendant.legalEntityDefendant &&
+                  defendant.personDefendant.personDetails.nationalityDescription ) {
+                  <span>{{ defendant.personDefendant.personDetails.nationalityDescription }}</span>
+                  } @else {
+                  <span>{{ 'MANAGE_HEARING.NO_NATIONALITY_ADDED' | translate }}</span>
+                  }
+                </dd>
+              </div>
+
+              @if (defendant.associatedPersons) { @for (associatedPerson of
+              defendant.associatedPersons; track $index) {
+              <div class="defendant-guardian-title" data-role="guardianTitle">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.GUARDIAN_TITLE' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="guardian-name">
+                  @if (associatedPerson.person.firstName && associatedPerson.person.lastName) {
+                  <span>
+                    {{ associatedPerson.person.firstName }}
+                    {{ associatedPerson.person.lastName | uppercase }}
+                  </span>
+                  } @else {
+                  <span>{{ 'MANAGE_HEARING.GUARDIAN_ADDRESS_DETAILS_MISSING' | translate }}</span>
+                  }
+                </dd>
+              </div>
+              <div class="defendant-guardian-address" data-role="guardianAddress">
+                <dt pdk-text-colour="dark-grey" class="defendant-details-label">
+                  {{ 'MANAGE_HEARING.GUARDIAN_ADDRESS' | translate }}
+                </dt>
+                <dd pdk-margin="0" class="guardian-address">
+                  @if (associatedPerson.person?.address) {
+                  <span [innerHtml]="associatedPerson.person?.address | address : false"></span>
+                  } @else {
+                  <span>{{ 'MANAGE_HEARING.GUARDIAN_ADDRESS_DETAILS_MISSING' | translate }}</span>
+                  }
+                </dd>
+              </div>
+              } }
+            </dl>
+
+            <span>
+              <a
+                pdk-link
+                unvisited
+                class="edit-link"
+                [attr.href]="editDefendantUrl"
+                target="_blank"
+              >
+                {{ editDefendantType }}
+                {{ 'MANAGE_HEARING.OPENS_NEW_WINDOW' | translate }}
+              </a>
+            </span>
+
+            <defendant-presence
+              (onSave)="onPresenceSave($event)"
+              [participantPresent]="participantPresent"
+              [defendant]="defendant"
+              [todayDefendantAttendance]="getDefendantAttendance(defendant.id)"
+            >
+            </defendant-presence>
+          </div>
+        </pdk-details-text>
+      </details>
+    </div>
+  </pdk-grid>
+</pdk-grid>

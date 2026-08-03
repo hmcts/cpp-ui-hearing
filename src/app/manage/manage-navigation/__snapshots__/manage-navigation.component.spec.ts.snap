@@ -1,0 +1,510 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageNavigationComponent should disable manage hearing tab if flag is false 1`] = `
+<manage-navigation
+  activatedRoute={[Function Object]}
+  cdRef={[Function ViewRef]}
+  destroy$={[Function Subject]}
+  hearingId={[Function String]}
+  isManageHearingPageApplicableFlag="false"
+  router={[Function _Router]}
+  store={[Function _Store]}
+>
+  <nav
+    aria-label="Menu"
+    class="govuk-!-margin-bottom-6 govuk-template--rebranded"
+    clear=""
+    pdk-margin-bottom="6"
+    pdk-service-nav=""
+  >
+    <div
+      class="govuk-service-navigation pdk-service-nav-clear"
+    >
+      <div
+        class="govuk-service-navigation__container"
+      >
+        <div
+          class="govuk-service-navigation__wrapper"
+        >
+          <ul
+            class="govuk-service-navigation__list"
+            pdk-service-nav-list=""
+            role="tablist"
+          >
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="back-to-hearing-list"
+                role="tab"
+                routerlink="/"
+              >
+                <svg
+                  height="13"
+                  style="vertical-align: middle; margin-right: 0.5rem;"
+                  viewBox="0 0 17 13"
+                  width="17"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+                 MANAGE_HEARING.BACK_TO_HEARING_LIST 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                class="pdk-!-text-color-mid-grey"
+                id="manage-hearing-link"
+                pdk-text-colour="mid-grey"
+                role="tab"
+              >
+                 MANAGE_HEARING.MANAGE_HEARING 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-plea-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_PLEAS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-verdict-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_VERDICTS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="enter-results-link"
+                routerlink="./enter-results"
+              >
+                 MANAGE_HEARING.ENTER_HEARING_RESULTS 
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</manage-navigation>
+`;
+
+exports[`ManageNavigationComponent should have the expected template 1`] = `
+<manage-navigation
+  activatedRoute={[Function Object]}
+  cdRef={[Function ViewRef]}
+  destroy$={[Function Subject]}
+  hearingId={[Function String]}
+  isManageHearingPageApplicableFlag={[Function Boolean]}
+  router={[Function _Router]}
+  store={[Function _Store]}
+>
+  <nav
+    aria-label="Menu"
+    class="govuk-!-margin-bottom-6 govuk-template--rebranded"
+    clear=""
+    pdk-margin-bottom="6"
+    pdk-service-nav=""
+  >
+    <div
+      class="govuk-service-navigation pdk-service-nav-clear"
+    >
+      <div
+        class="govuk-service-navigation__container"
+      >
+        <div
+          class="govuk-service-navigation__wrapper"
+        >
+          <ul
+            class="govuk-service-navigation__list"
+            pdk-service-nav-list=""
+            role="tablist"
+          >
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="back-to-hearing-list"
+                role="tab"
+                routerlink="/"
+              >
+                <svg
+                  height="13"
+                  style="vertical-align: middle; margin-right: 0.5rem;"
+                  viewBox="0 0 17 13"
+                  width="17"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+                 MANAGE_HEARING.BACK_TO_HEARING_LIST 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="manage-hearing-link"
+                role="tab"
+                routerlink="./"
+              >
+                 MANAGE_HEARING.MANAGE_HEARING 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-plea-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_PLEAS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-verdict-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_VERDICTS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="enter-results-link"
+                routerlink="./enter-results"
+              >
+                 MANAGE_HEARING.ENTER_HEARING_RESULTS 
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</manage-navigation>
+`;
+
+exports[`ManageNavigationComponent should have the expected template for Applications 1`] = `
+<manage-navigation
+  activatedRoute={[Function Object]}
+  cdRef={[Function ViewRef]}
+  currentTab={[Function String]}
+  destroy$={[Function Subject]}
+  hearingId={[Function String]}
+  isManageHearingPageApplicableFlag={[Function Boolean]}
+  router={[Function _Router]}
+  store={[Function _Store]}
+>
+  <nav
+    aria-label="Menu"
+    class="govuk-!-margin-bottom-6 govuk-template--rebranded"
+    clear=""
+    pdk-margin-bottom="6"
+    pdk-service-nav=""
+  >
+    <div
+      class="govuk-service-navigation pdk-service-nav-clear"
+    >
+      <div
+        class="govuk-service-navigation__container"
+      >
+        <div
+          class="govuk-service-navigation__wrapper"
+        >
+          <ul
+            class="govuk-service-navigation__list"
+            pdk-service-nav-list=""
+            role="tablist"
+          >
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="back-to-hearing-list"
+                role="tab"
+                routerlink="/"
+              >
+                <svg
+                  height="13"
+                  style="vertical-align: middle; margin-right: 0.5rem;"
+                  viewBox="0 0 17 13"
+                  width="17"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+                 MANAGE_HEARING.BACK_TO_HEARING_LIST 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="manage-hearing-link"
+                role="tab"
+                routerlink="./"
+              >
+                 MANAGE_HEARING.MANAGE_HEARING 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-plea-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_PLEAS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-verdict-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_VERDICTS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="enter-results-link"
+                routerlink="./enter-results"
+              >
+                 MANAGE_HEARING.ENTER_HEARING_RESULTS 
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</manage-navigation>
+`;
+
+exports[`ManageNavigationComponent should have the expected template for offences 1`] = `
+<manage-navigation
+  activatedRoute={[Function Object]}
+  cdRef={[Function ViewRef]}
+  currentTab={[Function String]}
+  destroy$={[Function Subject]}
+  hearingId={[Function String]}
+  isManageHearingPageApplicableFlag={[Function Boolean]}
+  router={[Function _Router]}
+  store={[Function _Store]}
+>
+  <nav
+    aria-label="Menu"
+    class="govuk-!-margin-bottom-6 govuk-template--rebranded"
+    clear=""
+    pdk-margin-bottom="6"
+    pdk-service-nav=""
+  >
+    <div
+      class="govuk-service-navigation pdk-service-nav-clear"
+    >
+      <div
+        class="govuk-service-navigation__container"
+      >
+        <div
+          class="govuk-service-navigation__wrapper"
+        >
+          <ul
+            class="govuk-service-navigation__list"
+            pdk-service-nav-list=""
+            role="tablist"
+          >
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="back-to-hearing-list"
+                role="tab"
+                routerlink="/"
+              >
+                <svg
+                  height="13"
+                  style="vertical-align: middle; margin-right: 0.5rem;"
+                  viewBox="0 0 17 13"
+                  width="17"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+                 MANAGE_HEARING.BACK_TO_HEARING_LIST 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="manage-hearing-link"
+                role="tab"
+                routerlink="./"
+              >
+                 MANAGE_HEARING.MANAGE_HEARING 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-plea-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_PLEAS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+            >
+              <span
+                aria-disabled="true"
+                class="pdk-!-text-color-black-tint-50"
+                id="enter-verdict-link"
+                pdk-text-colour="black"
+                role="tab"
+                tint="50"
+              >
+                 MANAGE_HEARING.ENTER_VERDICTS 
+              </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="enter-results-link"
+                routerlink="./enter-results"
+              >
+                 MANAGE_HEARING.ENTER_HEARING_RESULTS 
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</manage-navigation>
+`;
