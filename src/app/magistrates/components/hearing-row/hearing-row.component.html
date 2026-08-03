@@ -1,0 +1,45 @@
+<td pdk-table-cell class="bold">{{ sequence }}</td>
+
+<td data-test-id="hearingStartTime" pdk-table-cell class="bold" data-role="time">
+  {{ sittingDay | date : 'H:mm' }}
+</td>
+
+<td pdk-table-cell nowrap>
+  <div data-test-id="hearingReference" data-role="case-urn">
+    {{ caseURN || prosecutionAuthorityReference }}
+  </div>
+</td>
+<td pdk-table-cell>
+  <div data-test-id="prosecutor" data-role="prosecutor">
+    {{ prosecutionAuthorityCode }}
+  </div>
+</td>
+<td pdk-table-cell class="case-details-width">
+  <div>
+    <case-details
+      [firstname]="firstName"
+      [lastname]="lastName"
+      [dateOfBirth]="dateOfBirth"
+      [offences]="offences"
+      [showBulkDefendant]="showBulkDefendant"
+      [showOffenceParticulars]="showOffenceParticulars"
+      [showOffenceBulkDefendant]="showOffenceBulkDefendant"
+    >
+    </case-details>
+  </div>
+</td>
+<td pdk-table-cell pdk-padding-left="9">
+  <div data-test-id="hearingType" data-role="hearing-type">
+    {{ description }}
+  </div>
+</td>
+<td pdk-table-cell pdk-padding-top="6" class="next-position">
+  @if (showNextImage) {
+  <div class="next-img"></div>
+  }
+  <a pdk-link href="javascript:void(0)" (click)="select.emit()" class="action-link">
+    <div class="next-img">
+      <span pdk-visually-hidden>{{ caseMaterialLinkDetails }}</span>
+    </div>
+  </a>
+</td>

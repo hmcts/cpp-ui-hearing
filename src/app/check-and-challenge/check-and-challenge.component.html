@@ -1,0 +1,85 @@
+<div pdk-margin-bottom="6" pdk-fill-colour="light-grey" pdk-padding="3" tint="50">
+  <pdk-grid container>
+    <pdk-grid full>
+      <h1 pdk-typography="heading-large">
+        {{ 'CHECK_AND_CHALLENGE.TITLE' | translate }}
+      </h1>
+    </pdk-grid>
+  </pdk-grid>
+
+  <div pdk-grid container pdk-margin-bottom="3">
+    <div pdk-grid one-third>
+      <b>{{ 'CHECK_AND_CHALLENGE.DEFENDANTS' | translate }}</b>
+      @for (defendant of defendants; track defendant) {
+      <p>
+        @if (defendant.personDefendant) {
+        {{ defendant.personDefendant.personDetails.firstName }}
+        {{ defendant.personDefendant.personDetails.lastName }}
+        } @if (defendant.legalEntityDefendant) {
+        {{ defendant.legalEntityDefendant.organisation.name }}
+        }
+      </p>
+      }
+    </div>
+    <div pdk-grid two-thirds>
+      <b>{{ 'CHECK_AND_CHALLENGE.DOB' | translate }}</b>
+      @for (defendant of defendants; track defendant) {
+      <p>
+        @if (defendant.personDefendant) {
+        {{ defendant.personDefendant.personDetails.dateOfBirth | date : 'd LLLL yyyy' }}
+        } @if (defendant.legalEntityDefendant) {
+        {{ 'CHECK_AND_CHALLENGE.NOT_APPLICABLE' | translate }}
+        }
+      </p>
+      }
+    </div>
+  </div>
+</div>
+<div>
+  <h2 pdk-typography="heading-medium">{{ 'CHECK_AND_CHALLENGE.SUBHEADING' | translate }}</h2>
+  <p>{{ 'CHECK_AND_CHALLENGE.CONTENT' | translate }}</p>
+  <form
+    data-test-id="checkAndChallengeForm"
+    #form="ngForm"
+    pdk-form
+    (validSubmit)="onSubmit()"
+    novalidate
+  >
+    <pdk-form-field
+      label="Reason"
+      labelType="none"
+      [errorMessages]="[
+        {
+          rule: 'required',
+          message: 'CHECK_AND_CHALLENGE.JUSTIFICATION_REQUIRED_ERROR' | translate,
+        },
+        {
+          rule: 'maxCount',
+          message: 'CHECK_AND_CHALLENGE.JUSTIFICATION_MAXCOUNT_ERROR' | translate,
+        },
+      ]"
+    >
+      <textarea
+        name="reason"
+        pdk-input
+        [(ngModel)]="reason"
+        #textarea="ngModel"
+        pdk-text-input
+        pdk-resize
+        required
+        maxCount="250"
+      >
+      </textarea>
+      <pdk-character-count [value]="textarea.value" limit="250"></pdk-character-count>
+    </pdk-form-field>
+    <button pdk-button type="submit" data-role="save-reason-button">
+      {{ 'CHECK_AND_CHALLENGE.PROCEED_TO_CASE' | translate }}
+    </button>
+
+    <div>
+      <a href="javascript:void(0)" pdk-link unvisited (click)="goBack()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </a>
+    </div>
+  </form>
+</div>

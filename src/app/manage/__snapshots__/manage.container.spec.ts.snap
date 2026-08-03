@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageContainer should have the expected template 1`] = `
+<hearing
+  activatedRoute={[Function Object]}
+  amendmentMessage={[Function Object]}
+  breadcrumbs={[Function Array]}
+  canAddChildApplications$={[Function Observable]}
+  caseIds={[Function Array]}
+  cdRef={[Function ViewRef]}
+  configService={[Function Object]}
+  defendantNamesPipe={[Function DefendantNamesPipe]}
+  defendantsNames$={[Function Observable]}
+  destroy$={[Function Subject]}
+  displayUnlockHearingLink="false"
+  handleUnlockHearing={[Function AsyncFunction]}
+  hasFutureHearing$={[Function Observable]}
+  hearing$={[Function Observable]}
+  hearingDays$={[Function Observable]}
+  hearingHasBulkCaseOnly="false"
+  hearingId={[Function String]}
+  hearingNotes$={[Function Observable]}
+  inWorkingArea$={[Function Observable]}
+  isBoxwork$={[Function Observable]}
+  isCurrentUserAuthorisedToSeeThisHearing$={[Function Observable]}
+  isPleaApplicableFlag$={[Function Observable]}
+  isVerdictsPageAvailable$={[Function Observable]}
+  modalService={[Function _ModalService]}
+  offences$={[Function Observable]}
+  router={[Function Object]}
+  selectedHearingDate$={[Function Observable]}
+  showFutureHearingsRemoved$={[Function Observable]}
+  sidebarHidden="false"
+  store={[Function Object]}
+  today={[Function Date]}
+  topMenu={[Function Array]}
+  translate={[Function _TranslateService]}
+  translations={[Function Object]}
+  urns$={[Function Observable]}
+  wofdWarningService={[Function Object]}
+>
+</hearing>
+`;

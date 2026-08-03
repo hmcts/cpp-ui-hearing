@@ -1,0 +1,32 @@
+<div class="outstanding-fines-top-level">
+  <div class="outstanding-fines-data">
+    <span class="outstanding-fines-label courthouse-label">{{
+      'OUTSTANDING_FINES.COURT_HOUSE' | translate
+    }}</span>
+    <span>{{ outstandingFinesDetails.courtHouse }}</span>
+  </div>
+  <div class="outstanding-fines-data">
+    <span class="outstanding-fines-label courtrooms-label">{{
+      'OUTSTANDING_FINES.COURT_ROOMS' | translate
+    }}</span>
+    <span>{{ outstandingFinesDetails.courtRooms }}</span>
+  </div>
+  <div class="outstanding-fines-data">
+    <span class="outstanding-fines-label hearingdate-label">{{
+      'OUTSTANDING_FINES.HEARING_DATE' | translate
+    }}</span>
+    <span>{{ outstandingFinesDetails.hearingDate | date : 'd MMMM yyyy' }}</span>
+  </div>
+  <div class="outstanding-fines-data">
+    <span class="outstanding-fines-label reportcreated-label">{{
+      'OUTSTANDING_FINES.REPORT_CREATED' | translate
+    }}</span>
+    <span>{{ outstandingFinesDetails.reportCreatedDate | date : 'd MMMM yyyy' }}</span>
+  </div>
+  <div class="outstanding-fines-data">
+    <span class="outstanding-fines-label createdby-label">{{
+      'OUTSTANDING_FINES.CREATED_BY' | translate
+    }}</span>
+    <span>{{ outstandingFinesDetails.createdBy }}</span>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmStartEventComponent should render the template with the values expected 1`] = `
+<test-host-component
+  showStartEventLogConfirmation={[Function Boolean]}
+>
+  <confirm-start-event>
+    <pdk-alert
+      type="warning"
+    >
+      <div
+        class="pdk-alert pdk-alert--warning"
+        role="alert"
+      >
+        <div
+          class="pdk-alert__container"
+        >
+          <div
+            class="pdk-alert__message"
+          >
+            <div>
+               HEARING_EVENTS_LOG.COURT_ROOM_ACTIVE
+            </div>
+          </div>
+        </div>
+      </div>
+    </pdk-alert>
+    <div
+      class="govuk-!-margin-top-4"
+      pdk-margin-top="4"
+    >
+      <a
+        class="govuk-body-xs"
+        data-role="confirm-start-event"
+        href="javascript:void(0);"
+        pdk-typography="body-xsmall"
+      >
+         HEARING_EVENTS_LOG.PAUSE_HEARING_CONTINUE 
+      </a>
+    </div>
+    <div
+      class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+      pdk-margin-bottom="4"
+      pdk-margin-top="4"
+    >
+      <a
+        class="govuk-body-xs"
+        data-role="cancel-start-event"
+        href="javascript:void(0);"
+        pdk-typography="body-xsmall"
+      >
+         COMMON.CANCEL 
+      </a>
+    </div>
+  </confirm-start-event>
+</test-host-component>
+`;

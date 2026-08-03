@@ -1,0 +1,3695 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultPromptsForm ADDRESS prompt should render the address inputs 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="protectedpersonsaddress"
+        >
+          <cpp-address-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address address line 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address post code 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address email address 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Protected person's address email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-address-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm BOOLEAN prompt should render a boolean input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="concurrent"
+        >
+          <cpp-boolean-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Concurrent 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    inline=""
+                  >
+                    <div
+                      class="govuk-radios govuk-radios--inline"
+                    >
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Yes
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="false"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            No
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-boolean-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm CURR prompt should render a currency input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="IAMT"
+        >
+          <cpp-curr-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-currency-input-GENERATED_ID"
+                >
+                   Instalment amount 
+                </label>
+                <pdk-currency-input
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <div
+                    class="pdk-currency-input"
+                  >
+                    <input
+                      autocomplete="off"
+                      class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-10"
+                      id="pdk-currency-input-GENERATED_ID"
+                      name="IAMT"
+                      pattern="/^$|(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{2})?$/"
+                      type="text"
+                    />
+                  </div>
+                </pdk-currency-input>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-curr-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm DATE prompt should render a date input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="consecutiveToSentenceImposedOn"
+        >
+          <cpp-date-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Consecutive to sentence imposed on 
+                  </legend>
+                  <pdk-date-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-date-input"
+                        >
+                          <div
+                            class="govuk-date-input ng-untouched ng-pristine ng-invalid"
+                          >
+                            <div
+                              class="govuk-date-input__item"
+                            >
+                              <label
+                                class="govuk-date-input__label govuk-label"
+                                for="pdk-date-input-GENERATED_ID-day"
+                                pdk-label=""
+                              >
+                                 Day 
+                              </label>
+                              <input
+                                autocomplete="off"
+                                class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                                formcontrolname="day"
+                                id="pdk-date-input-GENERATED_ID-day"
+                                name="dateDay"
+                                required=""
+                                type="number"
+                              />
+                            </div>
+                            <div
+                              class="govuk-date-input__item"
+                            >
+                              <label
+                                class="govuk-date-input__label govuk-label"
+                                for="pdk-date-input-GENERATED_ID-month"
+                                pdk-label=""
+                              >
+                                 Month 
+                              </label>
+                              <input
+                                autocomplete="off"
+                                class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-2"
+                                formcontrolname="month"
+                                id="pdk-date-input-GENERATED_ID-month"
+                                name="dateMonth"
+                                required=""
+                                type="number"
+                              />
+                            </div>
+                            <div
+                              class="govuk-date-input__item"
+                            >
+                              <label
+                                class="govuk-date-input__label govuk-label"
+                                for="pdk-date-input-GENERATED_ID-year"
+                                pdk-label=""
+                              >
+                                 Year 
+                              </label>
+                              <input
+                                autocomplete="off"
+                                class="govuk-date-input__input ng-untouched ng-pristine ng-invalid govuk-input govuk-input--width-4"
+                                formcontrolname="year"
+                                id="pdk-date-input-GENERATED_ID-year"
+                                name="dateYear"
+                                required=""
+                                type="number"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-date-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-date-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm DURATION prompt should render a duration input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="imprisonmentPeriod"
+        >
+          <cpp-duration-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Imprisonment Period 
+                  </legend>
+                  <pdk-hint
+                    class="govuk-hint"
+                  >
+                    <div>
+                       Only use one duration unit 
+                    </div>
+                  </pdk-hint>
+                  <cpp-duration-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <div
+                      style="display: inline-block;"
+                    >
+                      <label
+                        class="govuk-label"
+                        for="cpp-result-prompts-form-duration-input-GENERATED_IDYears"
+                        pdk-label=""
+                      >
+                        Years
+                      </label>
+                      <input
+                        autocomplete="off"
+                        class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                        id="cpp-result-prompts-form-duration-input-GENERATED_IDYears"
+                        maxlength="4"
+                        pattern="^(?:[1-9][0-9]*)"
+                        pdk-margin-right="2"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      style="display: inline-block;"
+                    >
+                      <label
+                        class="govuk-label"
+                        for="cpp-result-prompts-form-duration-input-GENERATED_IDMonths"
+                        pdk-label=""
+                      >
+                        Months
+                      </label>
+                      <input
+                        autocomplete="off"
+                        class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                        id="cpp-result-prompts-form-duration-input-GENERATED_IDMonths"
+                        maxlength="4"
+                        pattern="^(?:[1-9][0-9]*)"
+                        pdk-margin-right="2"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      style="display: inline-block;"
+                    >
+                      <label
+                        class="govuk-label"
+                        for="cpp-result-prompts-form-duration-input-GENERATED_IDWeeks"
+                        pdk-label=""
+                      >
+                        Weeks
+                      </label>
+                      <input
+                        autocomplete="off"
+                        class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                        id="cpp-result-prompts-form-duration-input-GENERATED_IDWeeks"
+                        maxlength="4"
+                        pattern="^(?:[1-9][0-9]*)"
+                        pdk-margin-right="2"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      style="display: inline-block;"
+                    >
+                      <label
+                        class="govuk-label"
+                        for="cpp-result-prompts-form-duration-input-GENERATED_IDDays"
+                        pdk-label=""
+                      >
+                        Days
+                      </label>
+                      <input
+                        autocomplete="off"
+                        class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                        id="cpp-result-prompts-form-duration-input-GENERATED_IDDays"
+                        maxlength="4"
+                        pattern="^(?:[1-9][0-9]*)"
+                        pdk-margin-right="2"
+                        type="text"
+                      />
+                    </div>
+                  </cpp-duration-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-duration-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm FIXL prompt should render a fixed list input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="imprisonmentReasons"
+        >
+          <cpp-fixl-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Imprisonment reasons 
+                  </legend>
+                  <cpp-fixed-list-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <div
+                      class="govuk-!-margin-top-3"
+                      pdk-margin-top="3"
+                    >
+                      <a
+                        class="govuk-link"
+                        href="javascript:void(0)"
+                        pdk-link=""
+                        role="button"
+                      >
+                        Add another option
+                      </a>
+                    </div>
+                  </cpp-fixed-list-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-fixl-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm FIXLM prompt should render a fixed list input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="days"
+        >
+          <cpp-fixlm-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Days 
+                  </legend>
+                  <cpp-fixed-list-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="0"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Daily
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="1"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Fridays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="2"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Mondays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="3"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Saturdays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="4"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Sundays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="5"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Thursdays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="6"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Tuesdays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="7"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Wednesdays
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </cpp-fixed-list-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-fixlm-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm FIXLOM prompt should render a fixed list input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="theReasonsForThis"
+        >
+          <cpp-fixlom-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Reason for custody 
+                  </legend>
+                  <cpp-fixed-list-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="0"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              an unprovoked attack of a serious nature
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="1"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the defendant has a flagrant disregard for court orders
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="2"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the defendant has a flagrant disregard for people and their property
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="3"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the number and nature of the offences shows that the defendant is operating as a professional criminal
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="4"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the offence was aggravated by being committed whilst on bail
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="5"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the offence was committed during the operational period of a suspended sentence
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="6"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Other
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </cpp-fixed-list-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-fixlom-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm FIXLOM prompt should render custom text not part of the fixed list 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+  resultPrompts={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="theReasonsForThis"
+        >
+          <cpp-fixlom-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Reason for custody 
+                  </legend>
+                  <cpp-fixed-list-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="0"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              an unprovoked attack of a serious nature
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="1"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the defendant has a flagrant disregard for court orders
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="2"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the defendant has a flagrant disregard for people and their property
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="3"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the number and nature of the offences shows that the defendant is operating as a professional criminal
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="4"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the offence was aggravated by being committed whilst on bail
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="5"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              the offence was committed during the operational period of a suspended sentence
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="6"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              Other
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox-conditional>
+                          <div
+                            class="govuk-checkboxes__conditional"
+                          >
+                            <pdk-form-field
+                              label="Other"
+                              labeltype="none"
+                            >
+                              <pdk-form-group
+                                class="pdk-form-group"
+                              >
+                                <label
+                                  class="govuk-visually-hidden govuk-label"
+                                  for="pdk-form-control-undefined-GENERATED_ID"
+                                >
+                                   Other 
+                                </label>
+                                <input
+                                  class="ng-untouched ng-pristine ng-invalid govuk-input"
+                                  id="pdk-form-control-undefined-GENERATED_ID"
+                                  pdk-input=""
+                                  pdk-text-input=""
+                                  required=""
+                                  type="text"
+                                />
+                              </pdk-form-group>
+                            </pdk-form-field>
+                          </div>
+                        </pdk-checkbox-conditional>
+                      </div>
+                    </pdk-checkbox-group>
+                  </cpp-fixed-list-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-fixlom-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm INT prompt should render an integer input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="numberOfDaysInCustodyInForeignJurisdictionToCount"
+        >
+          <cpp-int-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Number of days in custody in foreign jurisdiction to count 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-10"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-text-input="number"
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-int-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm INTC prompt should render an integer input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="originalCourtCode"
+        >
+          <cpp-int-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Original court code 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-10"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-text-input="number"
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-int-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm NAMEADDRESS prompt Both / Person should render the name/address inputs 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="minorcreditornameandaddress"
+        >
+          <cpp-nameaddress-prompt-choice>
+            <pdk-form-field
+              class="govuk-!-margin-bottom-3"
+              label="Is this an individual or an organisation?"
+              labeltype="small"
+              pdk-margin-bottom="3"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Is this an individual or an organisation? 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    inline=""
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios govuk-radios--inline"
+                    >
+                      <pdk-radio-button
+                        value="Organisation"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Organisation"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Organisation
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        value="Person"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Person"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Person
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor address line 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor post code 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor email address 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Minor creditor email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-nameaddress-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm NAMEADDRESS prompt Organisation as Prosecution to be notified should prepopulate the input using an organisation results prompt over prosecutor to be notified 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  hasHmctsOrganisation={[Function Boolean]}
+  promptChoices={[Function Array]}
+  prosecutorToBeNotified={[Function Array]}
+  resultPrompts={[Function Array]}
+  shortCode={[Function String]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="prosecutortobenotified"
+        >
+          <cpp-nameaddress-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified organisation name 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified post code 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified email address 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-nameaddress-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm NAMEADDRESS prompt Organisation as Prosecution to be notified should prepopulate the input using an organisation reusable prompt 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  hasHmctsOrganisation={[Function Boolean]}
+  promptChoices={[Function Array]}
+  prosecutorToBeNotified={[Function Array]}
+  shortCode={[Function String]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="prosecutortobenotified"
+        >
+          <cpp-nameaddress-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified organisation name 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified post code 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified email address 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-nameaddress-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm NAMEADDRESS prompt Organisation as Prosecution to be notified should render the prosecution to be notified name/address inputs 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="prosecutortobenotified"
+        >
+          <cpp-nameaddress-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified organisation name 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified post code 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified email address 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prosecutor to be notified email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-nameaddress-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm NAMEADDRESS prompt Organisation should prepopulate the input using an organisation result prompt 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+  resultPrompts={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="prison"
+        >
+          <cpp-nameaddress-prompt-choice>
+            <pdk-form-field
+              hinttext="Please start typing the name"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Select Prison 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     Please start typing the name 
+                  </div>
+                </pdk-hint>
+                <pdk-autosuggest-lite
+                  class="ng-untouched ng-pristine ng-valid"
+                  suggestionkey="label"
+                  suggestiontitle="label"
+                >
+                  <pdk-autosuggest
+                    highlightcolor="blue"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-autosuggest"
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                            aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                            aria-expanded="false"
+                            autocomplete="off"
+                            class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                            id="pdk-form-control-undefined-GENERATED_ID"
+                            role="combobox"
+                            type="text"
+                          />
+                          <span
+                            class="govuk-visually-hidden"
+                            id="pdk-autosuggest__instructions-GENERATED_ID"
+                            pdk-visually-hidden=""
+                          >
+                             When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                          </span>
+                          <span
+                            aria-live="polite"
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                            role="status"
+                          >
+                          </span>
+                          <div
+                            class="pdk-autosuggest__suggestions-container"
+                            id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-autosuggest>
+                </pdk-autosuggest-lite>
+              </pdk-form-group>
+            </pdk-form-field>
+            <input
+              class="ng-untouched ng-pristine ng-valid govuk-input"
+              pdk-text-input=""
+              style="display: none;"
+              type="hidden"
+              value="*"
+            />
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison post code (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison email address 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-nameaddress-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm NAMEADDRESS prompt Organisation should render the name/address inputs 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="prison"
+        >
+          <cpp-nameaddress-prompt-choice>
+            <pdk-form-field
+              hinttext="Please start typing the name"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Select Prison 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     Please start typing the name 
+                  </div>
+                </pdk-hint>
+                <pdk-autosuggest-lite
+                  class="ng-untouched ng-pristine ng-valid"
+                  suggestionkey="label"
+                  suggestiontitle="label"
+                >
+                  <pdk-autosuggest
+                    highlightcolor="blue"
+                  >
+                    <pdk-interaction-container>
+                      <div>
+                        <div
+                          class="pdk-autosuggest"
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                            aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                            aria-expanded="false"
+                            autocomplete="off"
+                            class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                            id="pdk-form-control-undefined-GENERATED_ID"
+                            role="combobox"
+                            type="text"
+                          />
+                          <span
+                            class="govuk-visually-hidden"
+                            id="pdk-autosuggest__instructions-GENERATED_ID"
+                            pdk-visually-hidden=""
+                          >
+                             When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                          </span>
+                          <span
+                            aria-live="polite"
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                            role="status"
+                          >
+                          </span>
+                          <div
+                            class="pdk-autosuggest__suggestions-container"
+                            id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                          >
+                          </div>
+                        </div>
+                      </div>
+                    </pdk-interaction-container>
+                  </pdk-autosuggest>
+                </pdk-autosuggest-lite>
+              </pdk-form-group>
+            </pdk-form-field>
+            <input
+              class="ng-untouched ng-pristine ng-valid govuk-input"
+              pdk-text-input=""
+              style="display: none;"
+              type="hidden"
+              value=""
+            />
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 1 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 3 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 4 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison address line 5 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison post code (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-5"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison email address 1 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Prison email address 2 (optional) 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-nameaddress-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm ONEOF prompt should prepopulate the input using a result prompt with a boolean choice 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+  resultPrompts={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="totalCustodialPeriod"
+        >
+          <cpp-oneof-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Total custodial period 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <input
+                        class="ng-untouched ng-pristine ng-valid"
+                        type="hidden"
+                        value="true"
+                      />
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="0"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Total custodial period is life
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="1"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Total custodial period
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-oneof-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm ONEOF prompt should prepopulate the input using a result prompt with a non-boolean choice 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+  resultPrompts={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="totalCustodialPeriod"
+        >
+          <cpp-oneof-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Total custodial period 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="0"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Total custodial period is life
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="1"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Total custodial period
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-conditional>
+                        <div
+                          class="govuk-radios__conditional"
+                        >
+                          <cpp-prompt-choice>
+                            <div
+                              data-test-id="totalCustodialPeriod"
+                            >
+                              <cpp-duration-prompt-choice>
+                                <pdk-form-field
+                                  labeltype="small"
+                                >
+                                  <pdk-form-group
+                                    class="pdk-form-group"
+                                  >
+                                    <fieldset
+                                      class="govuk-fieldset"
+                                      pdk-fieldset=""
+                                    >
+                                      <legend
+                                        class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                      >
+                                         Total custodial period 
+                                      </legend>
+                                      <pdk-hint
+                                        class="govuk-hint"
+                                      >
+                                        <div>
+                                           Only use one duration unit 
+                                        </div>
+                                      </pdk-hint>
+                                      <cpp-duration-input
+                                        class="ng-untouched ng-pristine ng-valid"
+                                      >
+                                        <div
+                                          style="display: inline-block;"
+                                        >
+                                          <label
+                                            class="govuk-label"
+                                            for="cpp-result-prompts-form-duration-input-GENERATED_IDYears"
+                                            pdk-label=""
+                                          >
+                                            Years
+                                          </label>
+                                          <input
+                                            autocomplete="off"
+                                            class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                            id="cpp-result-prompts-form-duration-input-GENERATED_IDYears"
+                                            maxlength="4"
+                                            pattern="^(?:[1-9][0-9]*)"
+                                            pdk-margin-right="2"
+                                            type="text"
+                                          />
+                                        </div>
+                                        <div
+                                          style="display: inline-block;"
+                                        >
+                                          <label
+                                            class="govuk-label"
+                                            for="cpp-result-prompts-form-duration-input-GENERATED_IDMonths"
+                                            pdk-label=""
+                                          >
+                                            Months
+                                          </label>
+                                          <input
+                                            autocomplete="off"
+                                            class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                            id="cpp-result-prompts-form-duration-input-GENERATED_IDMonths"
+                                            maxlength="4"
+                                            pattern="^(?:[1-9][0-9]*)"
+                                            pdk-margin-right="2"
+                                            type="text"
+                                          />
+                                        </div>
+                                        <div
+                                          style="display: inline-block;"
+                                        >
+                                          <label
+                                            class="govuk-label"
+                                            for="cpp-result-prompts-form-duration-input-GENERATED_IDWeeks"
+                                            pdk-label=""
+                                          >
+                                            Weeks
+                                          </label>
+                                          <input
+                                            autocomplete="off"
+                                            class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                            id="cpp-result-prompts-form-duration-input-GENERATED_IDWeeks"
+                                            maxlength="4"
+                                            pattern="^(?:[1-9][0-9]*)"
+                                            pdk-margin-right="2"
+                                            type="text"
+                                          />
+                                        </div>
+                                        <div
+                                          style="display: inline-block;"
+                                        >
+                                          <label
+                                            class="govuk-label"
+                                            for="cpp-result-prompts-form-duration-input-GENERATED_IDDays"
+                                            pdk-label=""
+                                          >
+                                            Days
+                                          </label>
+                                          <input
+                                            autocomplete="off"
+                                            class="govuk-!-margin-right-2 ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-3"
+                                            id="cpp-result-prompts-form-duration-input-GENERATED_IDDays"
+                                            maxlength="4"
+                                            pattern="^(?:[1-9][0-9]*)"
+                                            pdk-margin-right="2"
+                                            type="text"
+                                          />
+                                        </div>
+                                      </cpp-duration-input>
+                                    </fieldset>
+                                  </pdk-form-group>
+                                </pdk-form-field>
+                              </cpp-duration-prompt-choice>
+                            </div>
+                          </cpp-prompt-choice>
+                        </div>
+                      </pdk-radio-conditional>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-oneof-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm ONEOF prompt should render a oneOf input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="totalCustodialPeriod"
+        >
+          <cpp-oneof-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Total custodial period 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="0"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Total custodial period is life
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button>
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="1"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                            Total custodial period
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-oneof-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm TIME prompt should render a time input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="timeDefendantMustAttendAtThePoliceStation"
+        >
+          <cpp-time-prompt-choice>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                  >
+                     Time defendant must attend at the police station 
+                  </legend>
+                  <pdk-time-input
+                    class="ng-untouched ng-pristine ng-valid"
+                  >
+                    <div
+                      class="pdk-time-input ng-untouched ng-pristine ng-valid"
+                    >
+                      <div
+                        class="pdk-time-input__item pdk-time-input__item--hour"
+                      >
+                        <label
+                          class="govuk-label govuk-visually-hidden"
+                          for="pdk-time-input-GENERATED_ID-hours"
+                          pdk-label=""
+                        >
+                           Hours 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="hours"
+                          id="pdk-time-input-GENERATED_ID-hours"
+                          maxlength="2"
+                          name="timeHours"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                      <div
+                        class="pdk-time-input__item"
+                      >
+                        <label
+                          class="govuk-label govuk-visually-hidden"
+                          for="pdk-time-input-GENERATED_ID-minutes"
+                          pdk-label=""
+                        >
+                           Minutes 
+                        </label>
+                        <input
+                          autocomplete="off"
+                          class="ng-untouched ng-pristine ng-valid govuk-input govuk-input--width-2"
+                          formcontrolname="minutes"
+                          id="pdk-time-input-GENERATED_ID-minutes"
+                          maxlength="2"
+                          minlength="2"
+                          name="timeMinutes"
+                          pattern="[0-9]*"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </pdk-time-input>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-time-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm TXT prompt should render a text input 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="consecutiveToOffenceNumber"
+        >
+          <cpp-txt-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Consecutive to offence 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  pdk-input=""
+                  pdk-text-input=""
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-txt-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;
+
+exports[`ResultPromptsForm TXT prompt should render a textarea input for longer inputs 1`] = `
+<ng-component
+  handleErrors={[Function Function]}
+  handleFormSubmit={[Function Function]}
+  promptChoices={[Function Array]}
+>
+  <cpp-result-prompts-form>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      errorformat="extended"
+      novalidate=""
+      pdk-form=""
+    >
+      <cpp-prompt-choice>
+        <div
+          data-test-id="consecutiveToOffenceNumber"
+        >
+          <cpp-txt-prompt-choice>
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Consecutive to offence 
+                </label>
+                <textarea
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  pdk-resize=""
+                  pdk-text-input=""
+                  style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </cpp-txt-prompt-choice>
+        </div>
+      </cpp-prompt-choice>
+      <pdk-button-group>
+        <div
+          class="govuk-button-group"
+        >
+          <button
+            class="govuk-button"
+            pdk-button=""
+            type="submit"
+          >
+            Save result details
+          </button>
+        </div>
+      </pdk-button-group>
+    </form>
+  </cpp-result-prompts-form>
+</ng-component>
+`;

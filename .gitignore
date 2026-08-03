@@ -1,0 +1,107 @@
+# Java
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.rar
+*.puml
+
+# Thumbnails
+Thumbs.db
+
+# Object files (no binaries in git repos!)
+*.obj
+*.exe
+*.so
+*.zip
+*.tar
+*.gz
+
+# Mac
+.fseventsd/
+.Spotlight-V100/
+.Trashes/
+._.Trashes
+
+# Eclipse
+.classpath
+.compatibility
+.project
+.pydevproject
+.factorypath
+.checkstyle
+.metadata/
+.settings/
+.pmd
+.springBeans
+.tern-project
+
+# IntelliJ
+.idea/
+*.iml
+
+src/app/config/app.override.config.json
+src/app/config/app.override.config.sample
+src/app/config/app.override.config.bak.json
+
+# IDE - VSCode
+.agent/*
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Maven
+target/
+
+# Subversion
+.svn/
+
+# Misc
+*~
+*.log
+*.orig
+*.sonar
+deployWars.sh
+buildContexts.sh
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/documentation
+/libpeerconnection.log
+testem.log
+/typings
+/build
+.history/
+
+
+lightning-jenkins.properties
+**/.DS_Store
+.angular/
+coverage/
+dist/
+src/app/config/app.override.config.json
+
+# IDE - VSCode
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Node Specifics
+node_modules/
+npm-debug.*
+.npmrc
+.npm-cache/
+
+#Ignoring claude for now until fined tuned:
+.claude
+.specify
+# Note: .claude/settings.local.json is intentionally tracked per team decision.

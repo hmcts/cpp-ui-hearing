@@ -1,0 +1,3049 @@
+{
+  "hearingList": [
+    {
+      "hearingId": "123",
+      "hearingType": "PTP",
+      "caseUrn": ["8C720B32E45B"],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 1,
+          "sittingDay": "2018-12-06T12:23:25.866Z"
+        }
+      ],
+      "defendants": [
+        {
+          "firstName": "Isaac",
+          "lastName": "Sanya"
+        }
+      ]
+    },
+    {
+      "hearingId": "456",
+      "hearingType": "Sentence",
+      "caseUrn": ["A4820B32E45B"],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 2,
+          "sittingDay": "2018-12-06T12:23:25.866Z"
+        }
+      ],
+      "defendants": [
+        {
+          "firstName": "Tomasz",
+          "lastName": "Kolecki"
+        }
+      ]
+    },
+    {
+      "hearingId": "789",
+      "hearingType": "PTP",
+      "caseUrn": ["13A0B32E45B", "K9920B32E45B"],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 3,
+          "sittingDay": "2018-12-06T12:23:25.866Z"
+        }
+      ],
+      "defendants": [
+        {
+          "firstName": "Fabio",
+          "lastName": "Tisci"
+        },
+        {
+          "firstName": "Isaac",
+          "lastName": "Sanya"
+        }
+      ]
+    }
+  ],
+  "hearing": {
+    "id": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+    "type": {
+      "id": "6e1bef55-7e13-4615-b3ba-8663f4438e16",
+      "description": "Trial"
+    },
+    "hearingState": "INITIALISED",
+    "isBoxHearing": false,
+    "jurisdictionType": "MAGISTRATES",
+    "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992",
+    "hearingLanguage": "WELSH",
+    "youthCourtDefendantIds": ["id1", "id2"],
+    "hearingDays": [
+      {
+        "sittingDay": "2018-08-01 10:30:00",
+        "listingSequence": 1,
+        "listedDurationMinutes": 240
+      },
+      {
+        "sittingDay": "2018-08-02 14:30:00",
+        "listingSequence": 2,
+        "listedDurationMinutes": 360
+      }
+    ],
+    "courtCentre": {
+      "id": "75eb4a5f-556f-4020-bada-ceeba8c73086",
+      "name": "Carmarthen Magistrates' Court",
+      "welshName": "Llys Ynadon Caernarfon",
+      "roomId": "ad5f9d57-075c-4d40-8d32-75209bd2cbd9",
+      "roomName": "Room 1",
+      "welshRoomName": "Ystafell 1"
+    },
+    "judiciary": [
+      {
+        "judicialId": "8ebc222c-9b33-402b-bfb1-4ca973058a57",
+        "judicialRoleType": "MAGISTRATE",
+        "isDeputy": false,
+        "isBenchChairman": true
+      },
+      {
+        "judicialId": "0fdc14b3-ec5b-486d-ad82-a7be9e359e3a",
+        "judicialRoleType": "MAGISTRATE",
+        "isDeputy": false,
+        "isBenchChairman": false
+      },
+      {
+        "judicialId": "5df0e71e-a9cc-43ab-9522-5783aa3723eb",
+        "judicialRoleType": "MAGISTRATE",
+        "isDeputy": false,
+        "isBenchChairman": false
+      }
+    ],
+    "courtApplications": [
+      {
+        "applicant": {
+          "masterDefendant": {
+            "masterDefendantId": "1"
+          },
+          "id": "1",
+          "organisation": {},
+          "organisationPersons": [],
+          "personDetails": {
+            "firstName": "Frodo",
+            "lastName": "Baggins"
+          },
+          "prosecutingAuthority": {},
+          "representationOrganisation": {},
+          "synonym": ""
+        },
+        "applicationDecisionSoughtByDate": "",
+        "applicationOutcome": null,
+        "applicationParticulars": "",
+        "applicationReceivedDate": "",
+        "applicationReference": "",
+        "applicationStatus": "",
+        "courtApplicationPayment": null,
+        "id": "12",
+        "judicialResults": [],
+        "linkedApplicationId": "",
+        "linkedCaseId": "3",
+        "outOfTimeReasons": "",
+        "respondents": [
+          {
+            "personDetails": {
+              "firstName": "Sméagol",
+              "lastName": "Gollum"
+            }
+          }
+        ],
+        "subject": {
+          "id": "01e550d0-d27f-48c9-9e44-783aaa0e62c7"
+        },
+        "respondentsNA": false,
+        "type": {
+          "categoryCode": "",
+          "jurisdiction": "",
+          "legislation": "Legal text and other mumbo jumbo",
+          "type": "Bad character applications",
+          "id": "4"
+        }
+      }
+    ],
+    "prosecutionCases": [
+      {
+        "id": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+        "prosecutionCaseIdentifier": {
+          "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+          "prosecutionAuthorityCode": "TFL",
+          "prosecutionAuthorityReference": "TFL12345",
+          "caseURN": "8C720B32E45B"
+        },
+        "originatingOrganisation": "G01FT01AB",
+        "initiationCode": "J",
+        "caseStatus": "SJP Referral",
+        "statementOfFacts": "You did it",
+        "statementOfFactsWelsh": "You did it in Welsh",
+        "defendants": [
+          {
+            "id": "e1d32d9d-29ec-4934-a932-22a50f223966",
+            "prosecutionCaseId": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+            "numberOfPreviousConvictionsCited": 5,
+            "prosecutionAuthorityReference": "TFL12345-ABC",
+            "witnessStatement": "he did not do it",
+            "witnessStatementWelsh": "he did not do it in Welsh",
+            "mitigation": "I was not there",
+            "mitigationWelsh": "I was not there in Welsh",
+            "aliases": [
+              {
+                "firstName": "johnny robber"
+              },
+              {
+                "firstName": "jack the knife"
+              }
+            ],
+            "offences": [
+              {
+                "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+                "offenceCode": "AAA",
+                "offenceTitle": "a title",
+                "offenceTitleWelsh": "a title in Welsh",
+                "offenceLegislation": "legislation",
+                "offenceLegislationWelsh": "legislation in Welsh",
+                "wording": "No Travel Card",
+                "wordingWelsh": "No Travel Card In Welsh",
+                "startDate": "2018-01-01",
+                "endDate": "2018-01-01",
+                "arrestDate": "2018-01-01",
+                "chargeDate": "2018-01-01",
+                "orderIndex": 1,
+                "convictionDate": "2018-05-01",
+                "index": 0,
+                "count": 0,
+                "notifiedPlea": {
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "notifiedPleaDate": "2018-04-01",
+                  "notifiedPleaValue": "NOTIFIED_GUILTY"
+                },
+                "allocationDecision": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "motReasonCode": "02",
+                  "motReasonDescription": ":motReasonDescription",
+                  "motReasonId": ":motReasonId",
+                  "courtIndicatedSentence": {}
+                },
+                "plea": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "pleaDate": "2018-05-01",
+                  "pleaValue": "NOT_GUILTY"
+                },
+                "indicatedPlea": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "indicatedPleaDate": "2018-05-01",
+                  "indicatedPleaValue": "INDICATED_GUILTY"
+                },
+                "verdict": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "verdictDate": "2018-05-01",
+                  "verdictType": {
+                    "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+                    "sequence": 1,
+                    "code": "",
+                    "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+                    "jurisdiction": "",
+                    "category": "Guilty",
+                    "categoryType": "GUILTY"
+                  },
+                  "jurors": {
+                    "numberOfJurors": 12,
+                    "numberOfSplitJurors": 0,
+                    "unanimous": true
+                  },
+                  "lesserOrAlternativeOffence": {
+                    "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+                    "offenceCode": "FDSE",
+                    "offenceTitle": "A lesser offence",
+                    "offenceTitleWelsh": "A lesser offence in Welsh",
+                    "offenceLegislation": "Legislation for this offence",
+                    "offenceLegislationWelsh": "Legislation for this offence in Welsh"
+                  }
+                },
+                "offenceFacts": {
+                  "vehicleRegistration": "AA12345",
+                  "alcoholReadingAmount": "111",
+                  "alcoholReadingMethod": "2222"
+                }
+              }
+            ],
+            "associatedPersons": [
+              {
+                "person": {
+                  "title": "MR",
+                  "firstName": "Harry",
+                  "middleName": "Jack",
+                  "lastName": "Kane",
+                  "dateOfBirth": "1995-01-01",
+                  "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+                  "nationalityCode": "GBR",
+                  "nationalityDescription": "United Kingdom",
+                  "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+                  "additionalNationalityCode": "USA",
+                  "additionalNationalityDescription": "United States of America",
+                  "disabilityStatus": "a",
+                  "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+                  "ethnicityCode": "IC1",
+                  "ethnicityDescription": "IC1 Description",
+                  "gender": "MALE",
+                  "interpreterLanguageNeeds": "Hindi",
+                  "documentationLanguageNeeds": "WELSH",
+                  "nationalInsuranceNumber": "NH222222B",
+                  "occupation": "Footballer",
+                  "occupationCode": "F",
+                  "address": {
+                    "address1": "22",
+                    "address2": "Acacia Avenue",
+                    "address3": "Acacia Town",
+                    "address4": "Acacia City",
+                    "address5": "Acacia Country",
+                    "postcode": "GIR 0AA"
+                  },
+                  "contact": {
+                    "home": "123456",
+                    "work": "7891011",
+                    "mobile": "45678910",
+                    "primaryEmail": "harry.kane@spurs.co.uk",
+                    "secondaryEmail": "harry.kane@hotmail.com",
+                    "fax": "3425678"
+                  }
+                },
+                "role": "parent"
+              }
+            ],
+            "personDefendant": {
+              "personDetails": {
+                "title": "MR",
+                "firstName": "Harry",
+                "middleName": "Jack",
+                "lastName": "Kane Junior",
+                "dateOfBirth": "2010-01-01",
+                "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+                "nationalityCode": "GBR",
+                "nationalityDescription": "United Kingdom",
+                "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+                "additionalNationalityCode": "USA",
+                "additionalNationalityDescription": "United States of America",
+                "disabilityStatus": "a",
+                "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+                "ethnicityCode": "IC1",
+                "ethnicityDescription": "IC1 Description",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "Welsh",
+                "documentationLanguageNeeds": "WELSH",
+                "nationalInsuranceNumber": "NH323232B",
+                "occupation": "Kid",
+                "occupationCode": "F",
+                "specificRequirements": "Screen",
+                "address": {
+                  "address1": "22",
+                  "address2": "Acacia Avenue",
+                  "address3": "Acacia Town",
+                  "address4": "Acacia City",
+                  "address5": "Acacia Country",
+                  "postcode": "GIR 0AA"
+                },
+                "contact": {
+                  "home": "123456",
+                  "work": "7891011",
+                  "mobile": "45678910",
+                  "primaryEmail": "harry.kanejunior@spurs.co.uk",
+                  "secondaryEmail": "harry.kanejunior@hotmail.com",
+                  "fax": "3425678"
+                }
+              },
+              "bailStatus": "inCustody",
+              "custodyTimeLimit": "2018-01-01",
+              "perceivedBirthYear": 2015,
+              "observedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+              "observedEthnicityCode": "IC1",
+              "selfDefinedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+              "selfDefinedEthnicityCode": "IC1",
+              "driverNumber": "AACC12345",
+              "pncId": "1234567",
+              "arrestSummonsNumber": "arrest123",
+              "employerOrganisation": {
+                "id": "8625b50c-afc4-4d63-add2-68b9bf01b1fd",
+                "name": "Disneyland Paris",
+                "incorporationNumber": "Mickeymouse1",
+                "address": {
+                  "address1": "Disney Road",
+                  "address2": "Disney Town",
+                  "address3": "Disney District",
+                  "address4": "Paris",
+                  "address5": "France",
+                  "postcode": "DI5 9EY"
+                },
+                "contact": {
+                  "work": "0207 654 3246 extn 1234",
+                  "primaryEmail": "person@hotmail.com",
+                  "secondaryEmail": "associate@hotmail.com",
+                  "fax": "a"
+                }
+              },
+              "employerPayrollReference": "payyou1234"
+            }
+          }
+        ]
+      }
+    ],
+    "hasSharedResults": false,
+    "defendantReferralReasons": [
+      {
+        "id": "01e550d0-d27f-48c9-9e44-783aaa0e62c9",
+        "description": "referred fo trial under section 12 magistrates court act",
+        "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966"
+      }
+    ],
+    "prosecutionCounsels": [
+      {
+        "id": "ea90d649-de68-470d-935c-46cb1027882b",
+        "title": "Mr",
+        "firstName": "Thomas",
+        "middleName": "Albert",
+        "lastName": "Blood",
+        "status": "QC",
+        "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"],
+        "attendanceDays": ["2018-08-01", "2018-08-02"]
+      }
+    ],
+    "defenceCounsels": [
+      {
+        "id": "d9188ab0-cf61-4e19-a323-0173054e031e",
+        "title": "Mrs",
+        "firstName": "Margaret",
+        "middleName": "Janet",
+        "lastName": "Cell",
+        "status": "Leading QC",
+        "defendants": ["e1d32d9d-29ec-4934-a932-22a50f223966"],
+        "attendanceDays": ["2018-08-01", "2018-08-02"]
+      }
+    ],
+    "defendantAttendance": [
+      {
+        "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966",
+        "attendanceDays": [
+          {
+            "day": "2018-08-01",
+            "attendanceType": "IN_PERSON"
+          },
+          {
+            "day": "2018-08-03",
+            "attendanceType": "NOT_PRESENT"
+          }
+        ]
+      }
+    ],
+    "hearingCaseNotes": [
+      {
+        "courtClerk": {
+          "id": "b37a9a88-bc2a-44bc-a474-97c341729a8e",
+          "firstName": "Charles",
+          "lastName": "Manson"
+        },
+        "note": "Difficult defendant, make sure a policeman is available",
+        "noteDateTime": "2018-08-02 10:53",
+        "noteType": "HMCTS",
+        "originatingHearingId": "ded4660f-443f-467a-863b-966b7cd8a6f0",
+        "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"]
+      },
+      {
+        "courtClerk": {
+          "id": "b37a9a88-bc2a-44bc-a474-97c341729a8e",
+          "firstName": "Charles",
+          "lastName": "Manson"
+        },
+        "note": "A legal note for the extract",
+        "noteDateTime": "2018-08-02 11:53",
+        "noteType": "LEGAL",
+        "originatingHearingId": "ded4660f-443f-467a-863b-966b7cd8a6f0",
+        "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"]
+      }
+    ],
+    "electronicMonitoring": [
+      {
+        "defendantId": "1d32d9d-29ec-4934-a932-22a50f223966",
+        "trackingStatus": [
+          {
+            "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+            "emStatus": true,
+            "emLastModifiedTime": "2019-05-01T14:39:04.942Z",
+            "woaLastModifiedTime": "2019-05-01T14:39:04.942Z",
+            "woaStatus": true
+          }
+        ]
+      }
+    ]
+  },
+  "groupedPleas": [
+    {
+      "caseURN": "wR231",
+      "withCount": [
+        {
+          "count": 1,
+          "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order",
+          "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+          "wording": "On or in 16 February 2022 at qweqwe aided, abetted, counselled or procured qweqwe to, without reasonable excuse, remain on premises, namely tasdasd in contravention of a closure order issued by asdasd on 12313s under section 80 of the Anti-social Behaviour, Crime and Policing Act 2014",
+          "defendants": [
+            {
+              "associatedPersons": [],
+              "courtProceedingsInitiated": "2022-02-16T17:02:48.095Z",
+              "id": "36273b86-ca5d-497b-a265-e8cb85c5881e",
+              "masterDefendantId": "36273b86-ca5d-497b-a265-e8cb85c5881e",
+              "personDefendant": {
+                "personDetails": {
+                  "address": {
+                    "address1": "address",
+                    "postcode": "e14 9ut"
+                  },
+                  "documentationLanguageNeeds": "ENGLISH",
+                  "firstName": "qweqwewqw",
+                  "gender": "MALE",
+                  "lastName": "wqeqweqw",
+                  "nationalityCode": "GBR",
+                  "nationalityDescription": "British",
+                  "nationalityId": "49433158-3542-49c8-a9af-581a0e746152",
+                  "title": "EQE"
+                }
+              },
+              "proceedingsConcluded": false,
+              "prosecutionCaseId": "1b12c7f7-eaef-40ce-acb3-04f2b4aec8c6",
+              "offences": [
+                {
+                  "allocationDecision": {
+                    "motReasonCode": "01",
+                    "motReasonDescription": "Summary-only offence",
+                    "motReasonId": "b8c37e33-defd-351c-b91e-1e03e51657da",
+                    "offenceId": "49078fb0-c8dd-473f-9a5c-b4e7243074ab",
+                    "sequenceNumber": 90,
+                    "courtIndicatedSentence": {
+                      "courtIndicatedSentenceTypeId": null,
+                      "courtIndicatedSentenceDescription": null
+                    }
+                  },
+                  "convictionDate": "2022-02-16",
+                  "count": 1,
+                  "endorsableFlag": false,
+                  "id": "49078fb0-c8dd-473f-9a5c-b4e7243074ab",
+                  "introducedAfterInitialProceedings": false,
+                  "isDiscontinued": false,
+                  "listingNumber": 1,
+                  "modeOfTrial": "Summary",
+                  "offenceCode": "AS14008B",
+                  "offenceDefinitionId": "0049541d-dca3-46b5-afe2-e0d6edbb431e",
+                  "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+                  "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order",
+                  "orderIndex": 4,
+                  "plea": {
+                    "offenceId": "49078fb0-c8dd-473f-9a5c-b4e7243074ab",
+                    "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                    "pleaDate": "2022-02-16",
+                    "pleaValue": "AUTREFOIS_CONVICT"
+                  },
+                  "proceedingsConcluded": false,
+                  "reportingRestrictions": [],
+                  "startDate": "2022-02-16",
+                  "verdict": {
+                    "offenceId": "49078fb0-c8dd-473f-9a5c-b4e7243074ab",
+                    "verdictDate": "2022-02-16",
+                    "verdictType": {
+                      "id": "8f14e45f-ceea-367a-9a36-dedd4bea2543",
+                      "code": "",
+                      "description": "",
+                      "category": "Guilty but of lesser offence",
+                      "categoryType": "GUILTY_BUT_OF_LESSER_OFFENCE_BY_JURY_CONVICTED",
+                      "jurisdiction": ""
+                    },
+                    "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                    "lesserOrAlternativeOffence": {
+                      "offenceCode": "AC02020",
+                      "offenceDefinitionId": "0049541d-dca3-46b5-afe2-e0d6edbb431e",
+                      "offenceLegislation": "Contrary to section 124 of the Adoption and Children Act 2002.",
+                      "offenceTitle": "Breach a section 123 restriction on the publication / distribution of an advert / information relating to child adoption"
+                    },
+                    "jurors": {
+                      "numberOfJurors": 10,
+                      "numberOfSplitJurors": 0,
+                      "unanimous": true
+                    }
+                  },
+                  "wording": "On or in 16 February 2022 at qweqwe aided, abetted, counselled or procured qweqwe to, without reasonable excuse, remain on premises, namely tasdasd in contravention of a closure order issued by asdasd on 12313s under section 80 of the Anti-social Behaviour, Crime and Policing Act 2014"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "count": 2,
+          "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order",
+          "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+          "wording": "On or in 16 February 2022 at qweqwe aided, abetted, counselled or procured qweqwe to, without reasonable excuse, remain on premises, namely tasdasd in contravention of a closure order issued by asdasd on 12313s under section 80 of the Anti-social Behaviour, Crime and Policing Act 2014",
+          "defendants": [
+            {
+              "associatedPersons": [],
+              "courtProceedingsInitiated": "2022-02-16T17:02:47.924Z",
+              "id": "f6592eac-414d-4304-bf36-59be4e26999a",
+              "masterDefendantId": "f6592eac-414d-4304-bf36-59be4e26999a",
+              "personDefendant": {
+                "personDetails": {
+                  "address": {
+                    "address1": "add",
+                    "postcode": "e14 9ut"
+                  },
+                  "documentationLanguageNeeds": "ENGLISH",
+                  "firstName": "Test98",
+                  "gender": "MALE",
+                  "lastName": "qweqweq",
+                  "nationalityCode": "GBR",
+                  "nationalityDescription": "British",
+                  "nationalityId": "49433158-3542-49c8-a9af-581a0e746152",
+                  "title": "Mr"
+                }
+              },
+              "proceedingsConcluded": false,
+              "prosecutionCaseId": "1b12c7f7-eaef-40ce-acb3-04f2b4aec8c6",
+              "offences": [
+                {
+                  "allocationDecision": {
+                    "motReasonCode": "01",
+                    "motReasonDescription": "Summary-only offence",
+                    "motReasonId": "b8c37e33-defd-351c-b91e-1e03e51657da",
+                    "offenceId": "17842339-a0d9-4b90-804a-b98be4df1406",
+                    "sequenceNumber": 90,
+                    "courtIndicatedSentence": {
+                      "courtIndicatedSentenceTypeId": null,
+                      "courtIndicatedSentenceDescription": null
+                    }
+                  },
+                  "count": 2,
+                  "endorsableFlag": false,
+                  "id": "17842339-a0d9-4b90-804a-b98be4df1406",
+                  "introducedAfterInitialProceedings": false,
+                  "isDiscontinued": false,
+                  "listingNumber": 1,
+                  "modeOfTrial": "Summary",
+                  "offenceCode": "AS14008B",
+                  "offenceDefinitionId": "0049541d-dca3-46b5-afe2-e0d6edbb431e",
+                  "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+                  "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order",
+                  "orderIndex": 4,
+                  "proceedingsConcluded": false,
+                  "reportingRestrictions": [],
+                  "startDate": "2022-02-16",
+                  "verdict": {
+                    "offenceId": "17842339-a0d9-4b90-804a-b98be4df1406",
+                    "verdictDate": "2022-02-16",
+                    "verdictType": {
+                      "id": "c3d85040-c090-3150-898c-0532b926282f",
+                      "code": "",
+                      "description": "",
+                      "category": "Not Guilty",
+                      "categoryType": "NOT_GUILTY",
+                      "jurisdiction": ""
+                    },
+                    "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                    "lesserOrAlternativeOffence": {
+                      "offenceCode": "AS14008B",
+                      "offenceDefinitionId": "0049541d-dca3-46b5-afe2-e0d6edbb431e",
+                      "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+                      "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order"
+                    },
+                    "jurors": {
+                      "numberOfJurors": 12,
+                      "numberOfSplitJurors": 0,
+                      "unanimous": true
+                    }
+                  },
+                  "wording": "On or in 16 February 2022 at qweqwe aided, abetted, counselled or procured qweqwe to, without reasonable excuse, remain on premises, namely tasdasd in contravention of a closure order issued by asdasd on 12313s under section 80 of the Anti-social Behaviour, Crime and Policing Act 2014",
+                  "plea": {
+                    "offenceId": "17842339-a0d9-4b90-804a-b98be4df1406",
+                    "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                    "pleaDate": null,
+                    "pleaValue": null
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration",
+          "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+          "wording": "Before 16 February 2022 at qweqweqw being the pilot in command of a flight for the purpose of the public transport of passengers by an aircraft registered in the United Kingdom in and for which a certificate of airworthiness was first issued before 1st January 1989, failed to take all reasonable steps to ensure that an action described in column 1 of the table in Article 107(2) of the Air Navigation Order 2016, namely qweqweqwe was carried out",
+          "defendants": [
+            {
+              "associatedPersons": [],
+              "courtProceedingsInitiated": "2022-02-16T17:02:48.184Z",
+              "id": "1df5d6f7-4b71-4f76-8294-f863744632cb",
+              "legalEntityDefendant": {
+                "organisation": {
+                  "address": {
+                    "address1": "addresss",
+                    "postcode": "e14 9ut"
+                  },
+                  "name": "Organisation 11111"
+                }
+              },
+              "masterDefendantId": "1df5d6f7-4b71-4f76-8294-f863744632cb",
+              "proceedingsConcluded": false,
+              "prosecutionCaseId": "1b12c7f7-eaef-40ce-acb3-04f2b4aec8c6",
+              "offences": [
+                {
+                  "allocationDecision": {
+                    "motReasonCode": "01",
+                    "motReasonDescription": "Summary-only offence",
+                    "motReasonId": "b8c37e33-defd-351c-b91e-1e03e51657da",
+                    "offenceId": "e7077f78-c572-4f42-8ffc-af7287a5ee7c",
+                    "sequenceNumber": 90,
+                    "courtIndicatedSentence": {
+                      "courtIndicatedSentenceTypeId": null,
+                      "courtIndicatedSentenceDescription": null
+                    }
+                  },
+                  "convictionDate": "2022-02-16",
+                  "count": 3,
+                  "endorsableFlag": false,
+                  "id": "e7077f78-c572-4f42-8ffc-af7287a5ee7c",
+                  "introducedAfterInitialProceedings": false,
+                  "isDiscontinued": false,
+                  "listingNumber": 1,
+                  "modeOfTrial": "Summary",
+                  "offenceCode": "AN16304",
+                  "offenceDefinitionId": "95cc7736-7e32-44c3-bdad-0b871016c9b4",
+                  "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+                  "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration",
+                  "orderIndex": 1,
+                  "proceedingsConcluded": false,
+                  "reportingRestrictions": [],
+                  "startDate": "2022-02-16",
+                  "verdict": {
+                    "offenceId": "e7077f78-c572-4f42-8ffc-af7287a5ee7c",
+                    "verdictDate": "2022-02-16",
+                    "verdictType": {
+                      "id": "dfd71ee7-039d-3d93-ae37-98ef38aec6e4",
+                      "code": "",
+                      "description": "",
+                      "category": "Guilty",
+                      "categoryType": "GUILTY_BY_JURY_CONVICTED",
+                      "jurisdiction": ""
+                    },
+                    "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                    "lesserOrAlternativeOffence": {
+                      "offenceCode": "AN16304",
+                      "offenceDefinitionId": "95cc7736-7e32-44c3-bdad-0b871016c9b4",
+                      "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+                      "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration"
+                    },
+                    "jurors": {
+                      "numberOfJurors": 12,
+                      "numberOfSplitJurors": 0,
+                      "unanimous": true
+                    }
+                  },
+                  "wording": "Before 16 February 2022 at qweqweqw being the pilot in command of a flight for the purpose of the public transport of passengers by an aircraft registered in the United Kingdom in and for which a certificate of airworthiness was first issued before 1st January 1989, failed to take all reasonable steps to ensure that an action described in column 1 of the table in Article 107(2) of the Air Navigation Order 2016, namely qweqweqwe was carried out",
+                  "plea": {
+                    "offenceId": "e7077f78-c572-4f42-8ffc-af7287a5ee7c",
+                    "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                    "pleaDate": null,
+                    "pleaValue": null
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "withoutCount": [
+        {
+          "associatedPersons": [],
+          "courtProceedingsInitiated": "2022-02-16T17:02:47.924Z",
+          "id": "f6592eac-414d-4304-bf36-59be4e26999a",
+          "masterDefendantId": "f6592eac-414d-4304-bf36-59be4e26999a",
+          "offences": [
+            {
+              "allocationDecision": {
+                "allocationDecisionDate": "2022-02-16",
+                "motReasonCode": "01",
+                "motReasonDescription": "Summary-only offence",
+                "motReasonId": "b8c37e33-defd-351c-b91e-1e03e51657da",
+                "offenceId": "bf57f1f5-9ca8-4e21-a902-cb53c106f13d",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "sequenceNumber": 90,
+                "courtIndicatedSentence": {
+                  "courtIndicatedSentenceTypeId": null,
+                  "courtIndicatedSentenceDescription": null
+                }
+              },
+              "convictionDate": "2022-02-16",
+              "count": 0,
+              "endorsableFlag": false,
+              "id": "bf57f1f5-9ca8-4e21-a902-cb53c106f13d",
+              "introducedAfterInitialProceedings": false,
+              "isDiscontinued": false,
+              "listingNumber": 1,
+              "modeOfTrial": "Summary",
+              "offenceCode": "AN16304",
+              "offenceDefinitionId": "95cc7736-7e32-44c3-bdad-0b871016c9b4",
+              "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+              "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration",
+              "orderIndex": 1,
+              "indicatedPlea": {},
+              "plea": {
+                "offenceId": "bf57f1f5-9ca8-4e21-a902-cb53c106f13d",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "pleaDate": "2022-02-16",
+                "pleaValue": "NOT_GUILTY"
+              },
+              "proceedingsConcluded": false,
+              "reportingRestrictions": [],
+              "startDate": "2022-02-16",
+              "verdict": {
+                "offenceId": "bf57f1f5-9ca8-4e21-a902-cb53c106f13d",
+                "verdictDate": "2022-02-16",
+                "verdictType": {
+                  "id": "7e2f843e-d639-40b3-8611-8015f3a18951",
+                  "code": "",
+                  "description": "",
+                  "category": "Guilty",
+                  "categoryType": "GUILTY_BY_JURY_CONVICTED",
+                  "jurisdiction": ""
+                },
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "lesserOrAlternativeOffence": {
+                  "offenceCode": "AN16304",
+                  "offenceDefinitionId": "95cc7736-7e32-44c3-bdad-0b871016c9b4",
+                  "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+                  "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration"
+                },
+                "jurors": {
+                  "numberOfJurors": 12,
+                  "numberOfSplitJurors": 0,
+                  "unanimous": true
+                }
+              },
+              "wording": "Before 16 February 2022 at qweqweqw being the pilot in command of a flight for the purpose of the public transport of passengers by an aircraft registered in the United Kingdom in and for which a certificate of airworthiness was first issued before 1st January 1989, failed to take all reasonable steps to ensure that an action described in column 1 of the table in Article 107(2) of the Air Navigation Order 2016, namely qweqweqwe was carried out"
+            },
+            {
+              "count": 0,
+              "endorsableFlag": false,
+              "id": "b8c6a785-00fb-4ffe-86a7-fcb173dc29b6",
+              "introducedAfterInitialProceedings": false,
+              "isDiscontinued": false,
+              "listingNumber": 1,
+              "modeOfTrial": "Summary",
+              "offenceCode": "AS14004",
+              "offenceDefinitionId": "b94cb5c8-292a-46ed-a17c-75982bc43a06",
+              "offenceLegislation": "Contrary to section 48(1), (2)(a) and 52 of the Anti-social Behaviour, Crime and Policing Act 2014.",
+              "offenceLegislationWelsh": "Yn groes i adran 48(1), (2)(a) a 52 Deddf Ymddygiad Gwrthgymdeithasol, Troseddu a Phlismona 2014.",
+              "offenceTitle": "Individual fail to comply with a community protection notice",
+              "offenceTitleWelsh": "Unigolyn yn methu â chydymffurfio â hysbysiad gwarchod y gymuned",
+              "orderIndex": 7,
+              "proceedingsConcluded": false,
+              "reportingRestrictions": [],
+              "startDate": "2022-02-16",
+              "verdict": {
+                "offenceId": "b8c6a785-00fb-4ffe-86a7-fcb173dc29b6",
+                "verdictDate": "2022-02-16",
+                "verdictType": {
+                  "id": "c3d85040-c090-3150-898c-0532b926282f",
+                  "code": "",
+                  "description": "",
+                  "category": "Not Guilty",
+                  "categoryType": "NOT_GUILTY",
+                  "jurisdiction": ""
+                },
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "lesserOrAlternativeOffence": {
+                  "offenceCode": "AS14004",
+                  "offenceDefinitionId": "b94cb5c8-292a-46ed-a17c-75982bc43a06",
+                  "offenceLegislation": "Contrary to section 48(1), (2)(a) and 52 of the Anti-social Behaviour, Crime and Policing Act 2014.",
+                  "offenceTitle": "Individual fail to comply with a community protection notice"
+                },
+                "jurors": {
+                  "numberOfJurors": 12,
+                  "numberOfSplitJurors": 0,
+                  "unanimous": true
+                }
+              },
+              "wording": "On or in 16 February 2022 at qwe being an individual to whom a community protection notice had been issued, failed to comply with the notice in that wesdsdzc",
+              "plea": {
+                "offenceId": "b8c6a785-00fb-4ffe-86a7-fcb173dc29b6",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "pleaDate": null,
+                "pleaValue": null
+              },
+              "allocationDecision": {
+                "offenceId": "b8c6a785-00fb-4ffe-86a7-fcb173dc29b6",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "motReasonCode": null,
+                "motReasonDescription": null,
+                "motReasonId": null,
+                "courtIndicatedSentence": {}
+              }
+            }
+          ],
+          "personDefendant": {
+            "personDetails": {
+              "address": {
+                "address1": "add",
+                "postcode": "e14 9ut"
+              },
+              "documentationLanguageNeeds": "ENGLISH",
+              "firstName": "Test98",
+              "gender": "MALE",
+              "lastName": "qweqweq",
+              "nationalityCode": "GBR",
+              "nationalityDescription": "British",
+              "nationalityId": "49433158-3542-49c8-a9af-581a0e746152",
+              "title": "Mr"
+            }
+          },
+          "proceedingsConcluded": false,
+          "prosecutionCaseId": "1b12c7f7-eaef-40ce-acb3-04f2b4aec8c6"
+        },
+        {
+          "associatedPersons": [],
+          "courtProceedingsInitiated": "2022-02-16T17:02:48.095Z",
+          "id": "36273b86-ca5d-497b-a265-e8cb85c5881e",
+          "masterDefendantId": "36273b86-ca5d-497b-a265-e8cb85c5881e",
+          "offences": [
+            {
+              "allocationDecision": {
+                "allocationDecisionDate": "2022-02-16",
+                "motReasonCode": "01",
+                "motReasonDescription": "Summary-only offence",
+                "motReasonId": "b8c37e33-defd-351c-b91e-1e03e51657da",
+                "offenceId": "9d7d1daf-ec9b-4a76-967d-2c4813494f4f",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "sequenceNumber": 90,
+                "courtIndicatedSentence": {
+                  "courtIndicatedSentenceTypeId": null,
+                  "courtIndicatedSentenceDescription": null
+                }
+              },
+              "convictionDate": "2022-02-16",
+              "count": 0,
+              "endorsableFlag": false,
+              "id": "9d7d1daf-ec9b-4a76-967d-2c4813494f4f",
+              "introducedAfterInitialProceedings": false,
+              "isDiscontinued": false,
+              "listingNumber": 1,
+              "modeOfTrial": "Summary",
+              "offenceCode": "AN16304",
+              "offenceDefinitionId": "95cc7736-7e32-44c3-bdad-0b871016c9b4",
+              "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+              "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration",
+              "orderIndex": 1,
+              "plea": {
+                "offenceId": "9d7d1daf-ec9b-4a76-967d-2c4813494f4f",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "pleaDate": "2022-02-16",
+                "pleaValue": "GUILTY"
+              },
+              "proceedingsConcluded": false,
+              "reportingRestrictions": [],
+              "startDate": "2022-02-16",
+              "verdict": {
+                "offenceId": "9d7d1daf-ec9b-4a76-967d-2c4813494f4f",
+                "verdictDate": "2022-02-16",
+                "verdictType": {
+                  "id": "dfd71ee7-039d-3d93-ae37-98ef38aec6e4",
+                  "code": "",
+                  "description": "",
+                  "category": "Guilty",
+                  "categoryType": "GUILTY_BY_JURY_CONVICTED",
+                  "jurisdiction": ""
+                },
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "lesserOrAlternativeOffence": {
+                  "offenceCode": "AN16304",
+                  "offenceDefinitionId": "95cc7736-7e32-44c3-bdad-0b871016c9b4",
+                  "offenceLegislation": "Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016",
+                  "offenceTitle": "Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration"
+                },
+                "jurors": {
+                  "numberOfJurors": 10,
+                  "numberOfSplitJurors": 0,
+                  "unanimous": true
+                }
+              },
+              "wording": "Before 16 February 2022 at qweqweqw being the pilot in command of a flight for the purpose of the public transport of passengers by an aircraft registered in the United Kingdom in and for which a certificate of airworthiness was first issued before 1st January 1989, failed to take all reasonable steps to ensure that an action described in column 1 of the table in Article 107(2) of the Air Navigation Order 2016, namely qweqweqwe was carried out"
+            }
+          ],
+          "personDefendant": {
+            "personDetails": {
+              "address": {
+                "address1": "address",
+                "postcode": "e14 9ut"
+              },
+              "documentationLanguageNeeds": "ENGLISH",
+              "firstName": "qweqwewqw",
+              "gender": "MALE",
+              "lastName": "wqeqweqw",
+              "nationalityCode": "GBR",
+              "nationalityDescription": "British",
+              "nationalityId": "49433158-3542-49c8-a9af-581a0e746152",
+              "title": "EQE"
+            }
+          },
+          "proceedingsConcluded": false,
+          "prosecutionCaseId": "1b12c7f7-eaef-40ce-acb3-04f2b4aec8c6"
+        },
+        {
+          "associatedPersons": [],
+          "courtProceedingsInitiated": "2022-02-16T17:02:48.184Z",
+          "id": "1df5d6f7-4b71-4f76-8294-f863744632cb",
+          "legalEntityDefendant": {
+            "organisation": {
+              "address": {
+                "address1": "addresss",
+                "postcode": "e14 9ut"
+              },
+              "name": "Organisation 11111"
+            }
+          },
+          "masterDefendantId": "1df5d6f7-4b71-4f76-8294-f863744632cb",
+          "offences": [
+            {
+              "convictionDate": "2022-02-16",
+              "count": 0,
+              "endorsableFlag": false,
+              "id": "554db4e8-ca61-4f6c-96ad-b22356520b53",
+              "introducedAfterInitialProceedings": false,
+              "isDiscontinued": false,
+              "listingNumber": 1,
+              "modeOfTrial": "Summary",
+              "offenceCode": "AS14008B",
+              "offenceDefinitionId": "0049541d-dca3-46b5-afe2-e0d6edbb431e",
+              "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+              "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order",
+              "orderIndex": 4,
+              "proceedingsConcluded": false,
+              "reportingRestrictions": [],
+              "startDate": "2022-02-16",
+              "verdict": {
+                "offenceId": "554db4e8-ca61-4f6c-96ad-b22356520b53",
+                "verdictDate": "2022-02-16",
+                "verdictType": {
+                  "id": "eccbc87e-4b5c-32fe-a830-8fd9f2a7baf3",
+                  "code": "",
+                  "description": "",
+                  "category": "Guilty",
+                  "categoryType": "GUILTY_CONVICTED",
+                  "jurisdiction": ""
+                },
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "lesserOrAlternativeOffence": {
+                  "offenceCode": "AS14008B",
+                  "offenceDefinitionId": "0049541d-dca3-46b5-afe2-e0d6edbb431e",
+                  "offenceLegislation": "Contrary to sections 86(2) and (5) of the Anti-social Behaviour, Crime and Policing Act 2014 and section 44 of the Magistrates Court Act 1980.",
+                  "offenceTitle": "Aid and abet, remain on / enter premises in contravention of a closure order"
+                },
+                "jurors": {
+                  "numberOfJurors": 12,
+                  "numberOfSplitJurors": 0,
+                  "unanimous": true
+                }
+              },
+              "wording": "On or in 16 February 2022 at qweqwe aided, abetted, counselled or procured qweqwe to, without reasonable excuse, remain on premises, namely tasdasd in contravention of a closure order issued by asdasd on 12313s under section 80 of the Anti-social Behaviour, Crime and Policing Act 2014",
+              "plea": {
+                "offenceId": "554db4e8-ca61-4f6c-96ad-b22356520b53",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "pleaDate": null,
+                "pleaValue": null
+              },
+              "allocationDecision": {
+                "offenceId": "554db4e8-ca61-4f6c-96ad-b22356520b53",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "motReasonCode": null,
+                "motReasonDescription": null,
+                "motReasonId": null,
+                "courtIndicatedSentence": {}
+              }
+            },
+            {
+              "convictionDate": "2022-02-16",
+              "count": 0,
+              "endorsableFlag": false,
+              "id": "2a93c2f9-0764-4569-aa35-48b8758f50f4",
+              "introducedAfterInitialProceedings": false,
+              "isDiscontinued": false,
+              "listingNumber": 1,
+              "modeOfTrial": "Summary",
+              "offenceCode": "AS14004",
+              "offenceDefinitionId": "b94cb5c8-292a-46ed-a17c-75982bc43a06",
+              "offenceLegislation": "Contrary to section 48(1), (2)(a) and 52 of the Anti-social Behaviour, Crime and Policing Act 2014.",
+              "offenceLegislationWelsh": "Yn groes i adran 48(1), (2)(a) a 52 Deddf Ymddygiad Gwrthgymdeithasol, Troseddu a Phlismona 2014.",
+              "offenceTitle": "Individual fail to comply with a community protection notice",
+              "offenceTitleWelsh": "Unigolyn yn methu â chydymffurfio â hysbysiad gwarchod y gymuned",
+              "orderIndex": 7,
+              "proceedingsConcluded": false,
+              "reportingRestrictions": [],
+              "startDate": "2022-02-16",
+              "verdict": {
+                "offenceId": "2a93c2f9-0764-4569-aa35-48b8758f50f4",
+                "verdictDate": "2022-02-16",
+                "verdictType": {
+                  "id": "dfd71ee7-039d-3d93-ae37-98ef38aec6e4",
+                  "code": "",
+                  "description": "",
+                  "category": "Guilty",
+                  "categoryType": "GUILTY_BY_JURY_CONVICTED",
+                  "jurisdiction": ""
+                },
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "lesserOrAlternativeOffence": {
+                  "offenceCode": "AS14004",
+                  "offenceDefinitionId": "b94cb5c8-292a-46ed-a17c-75982bc43a06",
+                  "offenceLegislation": "Contrary to section 48(1), (2)(a) and 52 of the Anti-social Behaviour, Crime and Policing Act 2014.",
+                  "offenceTitle": "Individual fail to comply with a community protection notice"
+                },
+                "jurors": {
+                  "numberOfJurors": 10,
+                  "numberOfSplitJurors": 1,
+                  "unanimous": false
+                }
+              },
+              "wording": "On or in 16 February 2022 at qwe being an individual to whom a community protection notice had been issued, failed to comply with the notice in that wesdsdzc",
+              "plea": {
+                "offenceId": "2a93c2f9-0764-4569-aa35-48b8758f50f4",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "pleaDate": null,
+                "pleaValue": null
+              },
+              "allocationDecision": {
+                "offenceId": "2a93c2f9-0764-4569-aa35-48b8758f50f4",
+                "originatingHearingId": "72b64fc6-a1de-40f3-8751-dee9606ba05a",
+                "motReasonCode": null,
+                "motReasonDescription": null,
+                "motReasonId": null,
+                "courtIndicatedSentence": {}
+              }
+            }
+          ],
+          "proceedingsConcluded": false,
+          "prosecutionCaseId": "1b12c7f7-eaef-40ce-acb3-04f2b4aec8c6"
+        }
+      ]
+    }
+  ],
+  "resultsByTarget": [
+    {
+      "targetId": "e0a828f3-70b1-11e9-8b17-63ed99479b67",
+      "applicationId": "8c4a692b-d7d0-460a-b5c7-40a47233d7bf",
+      "applicantFirstName": "Reanna",
+      "applicantLastName": "Graham",
+      "applicationOutcome": null,
+      "typeId": "f27ab920-dc81-4281-a295-51a344c6e752",
+      "addMoreResults": false,
+      "results": [
+        {
+          "resultLineId": "0a25a0c2-1e4a-4994-bbd2-8a89901aaa6c",
+          "originalText": "fo £20",
+          "resultCode": "969f150c-cd05-46b0-9dd9-30891efcc766",
+          "resultLevel": "O",
+          "isCompleted": true,
+          "parts": [
+            {
+              "value": "Fine",
+              "type": "RESULT",
+              "state": "RESOLVED",
+              "resultChoices": []
+            },
+            {
+              "code": "7cd1472f-2379-4f5b-9e67-98a43d86e122",
+              "label": "Amount of fine",
+              "value": "20",
+              "type": "CURR",
+              "state": "RESOLVED",
+              "resultChoices": []
+            }
+          ],
+          "choices": [
+            {
+              "code": "7cd1472f-2379-4f5b-9e67-98a43d86e122",
+              "value": "20",
+              "label": "Amount of fine",
+              "type": "CURR",
+              "required": true
+            }
+          ],
+          "isEditing": false,
+          "noResultFound": false,
+          "dirty": true,
+          "orderedDate": "2019-05-07"
+        }
+      ]
+    }
+  ],
+  "eventDefinitions": [
+    {
+      "groupLabel": "Recording",
+      "actionSequence": 1,
+      "groupSequence": 1,
+      "id": "b71e7d2a-d3b3-4a55-a393-6d451767fc05",
+      "actionLabel": "Start",
+      "recordedLabel": "Hearing started",
+      "alterable": false
+    },
+    {
+      "groupLabel": "Recording",
+      "actionSequence": 2,
+      "groupSequence": 1,
+      "id": "0df93f18-0a21-40f5-9fb3-da4749cd70fe",
+      "actionLabel": "End",
+      "recordedLabel": "Hearing ended",
+      "alterable": false
+    },
+    {
+      "groupLabel": "Recording",
+      "actionSequence": 3,
+      "groupSequence": 1,
+      "id": "160ecb51-29ee-4954-bbbf-daab18a24fbb",
+      "actionLabel": "Pause",
+      "recordedLabel": "Hearing paused",
+      "alterable": false
+    },
+    {
+      "groupLabel": "Recording",
+      "actionSequence": 4,
+      "groupSequence": 1,
+      "id": "64476e43-2138-46d5-b58b-848582cf9b07",
+      "actionLabel": "Resume",
+      "recordedLabel": "Hearing resumed",
+      "alterable": false
+    },
+    {
+      "groupLabel": "Recording",
+      "actionSequence": 5,
+      "groupSequence": 1,
+      "id": "ffd6bb0d-8702-428c-a7bd-570570fa8d0a",
+      "actionLabel": "In chambers",
+      "recordedLabel": "Proceedings in chambers",
+      "alterable": true
+    },
+    {
+      "groupLabel": "Recording",
+      "actionSequence": 6,
+      "groupSequence": 1,
+      "id": "c0b15e38-52ce-4d9d-9ffa-d76c7793cff6",
+      "actionLabel": "Open court",
+      "recordedLabel": "Open court",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 1,
+      "groupSequence": 2,
+      "id": "c3edf650-13c4-4ecb-9f85-6100ad8e4ffc",
+      "actionLabel": "Arraign defendant.name",
+      "recordedLabel": "Defendant defendant.name arraigned",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 2,
+      "groupSequence": 2,
+      "id": "75c8c5eb-c661-40be-a5bf-07b7b8c0463a",
+      "actionLabel": "Rearraign defendant.name",
+      "recordedLabel": "Defendant defendant.name rearraigned",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 3,
+      "groupSequence": 2,
+      "id": "6f189d63-f431-4c7f-a0f8-0479e142d468",
+      "actionLabel": "Put offences defendant.name",
+      "recordedLabel": "Offences put to defendant defendant.name",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 4,
+      "groupSequence": 2,
+      "id": "504e16fc-6dfa-4276-9721-2b50a9646f4d",
+      "actionLabel": "Sworn-in defendant.name",
+      "recordedLabel": "Defendant defendant.name sworn-in",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 5,
+      "groupSequence": 2,
+      "id": "34f8c553-49a2-45b6-aaad-096559d87f5f",
+      "actionLabel": "Examination in chief defendant.name",
+      "recordedLabel": "Defendant defendant.name examination in-chief",
+      "alterable": true
+    },
+    {
+      "groupLabel": "Defendant",
+      "actionSequence": 6,
+      "groupSequence": 2,
+      "id": "03c0762d-9a9f-4f47-94f1-cdf4b40856dc",
+      "actionLabel": "Defendant defendant.name continues",
+      "recordedLabel": "Defendant defendant.name continued",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 7,
+      "groupSequence": 2,
+      "id": "6b0c98a3-9b1f-4a85-8c00-5c3484566285",
+      "actionLabel": "Cross-examination on behalf of defendant.name",
+      "recordedLabel": "Defendant defendant.name cross-examined by Defence counsel.name",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 8,
+      "groupSequence": 2,
+      "id": "b51e0beb-7af5-40a6-9c37-e0c245250a89",
+      "actionLabel": "Cross-examination prosecution",
+      "recordedLabel": "Defendant defendant.name cross-examined by Prosecution",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 9,
+      "groupSequence": 2,
+      "id": "a9e45c0d-77cf-4a2b-8a51-e1b63b4272e4",
+      "actionLabel": "Defendant defendant.name re-examination",
+      "recordedLabel": "Defendant defendant.name re-examined",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 10,
+      "groupSequence": 2,
+      "id": "31c47709-e0d9-4de5-87cb-e41aa3863763",
+      "actionLabel": "Released defendant.name",
+      "recordedLabel": "Defendant defendant.name released",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["defendant.name"],
+      "groupLabel": "Defendant",
+      "actionSequence": 11,
+      "groupSequence": 2,
+      "id": "1d098080-c422-4cff-85d1-bb1efc9a1c1c",
+      "actionLabel": "Recalled defendant.name",
+      "recordedLabel": "Defendant defendant.name recalled",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 1,
+      "groupSequence": 3,
+      "id": "0b9d26d8-54d7-4e04-b3bc-be6158a06ef8",
+      "actionLabel": "Sworn-in witness.name",
+      "recordedLabel": "Witness witness.name sworn-in",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 2,
+      "groupSequence": 3,
+      "id": "a7dd8f8a-1673-44e5-93fc-e740317243b0",
+      "actionLabel": "Witness witness.name continues",
+      "recordedLabel": "Witness witness.name continued",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name", "counsel.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 3,
+      "groupSequence": 3,
+      "id": "a2fe7589-9682-46a0-a406-60a1d548e9cf",
+      "actionLabel": "Witness witness.name cross-examination by Defence counsel.name",
+      "recordedLabel": "Witness witness.name cross-examined by Defence counsel.name",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 4,
+      "groupSequence": 3,
+      "id": "f95b1322-f0e0-4413-b1b1-11e12e78990f",
+      "actionLabel": "Witness witness.name cross-examination by Prosecution",
+      "recordedLabel": "Witness witness.name cross-examined by Prosecution",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 5,
+      "groupSequence": 3,
+      "id": "8eb6f6f4-3d26-4780-873f-020f314a43dc",
+      "actionLabel": "Examination in chief witness.name",
+      "recordedLabel": "Witness witness.name examination in-chief",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 6,
+      "groupSequence": 3,
+      "id": "48ed54bd-0732-47f8-a165-2f4f0f866ec0",
+      "actionLabel": "Witness witness.name re-examination",
+      "recordedLabel": "Witness witness.name re-examined",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 7,
+      "groupSequence": 3,
+      "id": "f9104401-8e05-4aa6-81f2-bb56f9a6d65b",
+      "actionLabel": "Released witness.name",
+      "recordedLabel": "Witness witness.name released",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 8,
+      "groupSequence": 3,
+      "id": "17484b08-04ba-45e1-b06f-8f90735de3e4",
+      "actionLabel": "Recalled witness.name",
+      "recordedLabel": "Witness witness.name recalled",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 9,
+      "groupSequence": 3,
+      "id": "0d395883-7fc5-4085-8130-8ab7a57bfab7",
+      "actionLabel": "Pre-recorded evidence witness.name",
+      "recordedLabel": "Witness witness.name gave pre-recorded evidence",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 10,
+      "groupSequence": 3,
+      "id": "ac36572a-755b-45bb-89b6-e65c138028cb",
+      "actionLabel": "Read witness.name",
+      "recordedLabel": "Witness witness.name read",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["witness.name"],
+      "groupLabel": "Witness",
+      "actionSequence": 11,
+      "groupSequence": 3,
+      "id": "0dff8fb0-c739-47d0-b38e-13b912e851b6",
+      "actionLabel": "Hostile witness witness.name",
+      "recordedLabel": "Hostile witness witness.name",
+      "alterable": true
+    },
+    {
+      "groupLabel": "Representative",
+      "actionSequence": 1,
+      "groupSequence": 4,
+      "id": "e9060336-4821-4f46-969c-e08b33b48071",
+      "actionLabel": "Open case prosecution",
+      "recordedLabel": "Prosecution opened case",
+      "alterable": true
+    },
+    {
+      "caseAttributes": ["counsel.name", "defendant.name"],
+      "groupLabel": "Representative",
+      "actionSequence": 2,
+      "groupSequence": 4,
+      "id": "a3a9fe0c-a9a7-4e17-b0cd-42606722bbb0",
+      "actionLabel": "Defence counsel.name opens case regarding defendant defendant.name",
+      "recordedLabel": "Defence counsel.name opened case regarding defendant defendant.name",
+      "alterable": true
+    },
+    {
+      "groupLabel": "Representative",
+      "actionSequence": 3,
+      "groupSequence": 4,
+      "id": "0af37a58-10b6-4577-81ab-474c80f7ed3a",
+      "actionLabel": "Voir dire start",
+      "recordedLabel": "Prosecution provided evidence on a voir dire",
+      "alterable": true
+    },
+    {
+      "groupLabel": "Representative",
+      "actionSequence": 4,
+      "groupSequence": 4,
+      "id": "ede4e798-3fb0-4588-a0d9-9394743cac5f",
+      "actionLabel": "Voir dire end",
+      "recordedLabel": "Voir dire ended",
+      "alterable": true
+    },
+    {
+      "groupLabel": "Representative",
+      "actionSequence": 5,
+      "groupSequence": 4,
+      "id": "60e58491-22ad-40ce-b7ff-4662d34a5be9",
+      "actionLabel": "Close case prosecution",
+      "recordedLabel": "Prosecution closed case",
+      "alterable": true
+    }
+  ],
+  "loggedEvents": [
+    {
+      "hearingEventId": "98d00593-db75-45c2-9b92-cf6cd887fe57",
+      "hearingEventDefinitionId": "b71e7d2a-d3b3-4a55-a393-6d451767fc05",
+      "recordedLabel": "Hearing started",
+      "eventTime": "2019-08-08T14:39:04.942Z",
+      "lastModifiedTime": "2019-08-08T14:39:05.051Z",
+      "alterable": false
+    },
+    {
+      "hearingEventId": "e3219d24-ea39-4751-84cc-0f60903a52f7",
+      "hearingEventDefinitionId": "c3edf650-13c4-4ecb-9f85-6100ad8e4ffc",
+      "recordedLabel": "Defendant Dominic Osinski arraigned",
+      "eventTime": "2019-08-08T14:42:00.068Z",
+      "lastModifiedTime": "2019-08-08T14:52:37.376Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "04674f7c-dd83-44ee-a750-d6d3658f71ae",
+      "hearingEventDefinitionId": "6b0c98a3-9b1f-4a85-8c00-5c3484566285",
+      "recordedLabel": "Defendant Sage Rodriguez cross-examined by Defence counsel.name",
+      "eventTime": "2019-08-08T14:42:09.076Z",
+      "lastModifiedTime": "2019-08-08T14:42:09.119Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "44c7604b-c5d8-4c74-bd72-caf82ae089ef",
+      "hearingEventDefinitionId": "6b0c98a3-9b1f-4a85-8c00-5c3484566285",
+      "recordedLabel": "Defendant Sage Rodriguez cross-examined by Defence counsel.name",
+      "eventTime": "2019-08-08T14:42:12.080Z",
+      "lastModifiedTime": "2019-08-08T14:42:13.053Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "f0d5e0b9-6c9b-4735-95d8-23e922560c59",
+      "hearingEventDefinitionId": "ffd6bb0d-8702-428c-a7bd-570570fa8d0a",
+      "recordedLabel": "Proceedings in chambers",
+      "eventTime": "2019-08-08T14:59:28.444Z",
+      "lastModifiedTime": "2019-08-08T14:59:28.987Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "3f634021-2203-4bb2-9327-e6c671b050b3",
+      "hearingEventDefinitionId": "c0b15e38-52ce-4d9d-9ffa-d76c7793cff6",
+      "recordedLabel": "Open court",
+      "eventTime": "2019-08-08T14:59:33.450Z",
+      "lastModifiedTime": "2019-08-08T14:59:34.375Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "68d7479d-a287-4fbd-a2a4-a91bbf6f0e09",
+      "hearingEventDefinitionId": "c0b15e38-52ce-4d9d-9ffa-d76c7793cff6",
+      "recordedLabel": "Open court",
+      "eventTime": "2019-08-08T14:59:39.459Z",
+      "lastModifiedTime": "2019-08-08T14:59:39.812Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "e38eb677-3926-482b-90a2-1ed8be12015b",
+      "hearingEventDefinitionId": "c0b15e38-52ce-4d9d-9ffa-d76c7793cff6",
+      "recordedLabel": "Open court",
+      "eventTime": "2019-08-08T14:59:45.526Z",
+      "lastModifiedTime": "2019-08-08T14:59:46.037Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "a3c4b176-2972-4f3b-a2ad-524d26b3f8ef",
+      "hearingEventDefinitionId": "c0b15e38-52ce-4d9d-9ffa-d76c7793cff6",
+      "recordedLabel": "Open court",
+      "eventTime": "2019-08-08T15:00:03.563Z",
+      "lastModifiedTime": "2019-08-08T19:20:48.893Z",
+      "alterable": true
+    },
+    {
+      "hearingEventId": "9ccae1fd-05e1-4e63-b79b-e1a1b881c64e",
+      "hearingEventDefinitionId": "160ecb51-29ee-4954-bbbf-daab18a24fbb",
+      "recordedLabel": "Hearing paused",
+      "eventTime": "2019-08-08T19:10:41.761Z",
+      "lastModifiedTime": "2019-08-08T19:10:42.508Z",
+      "alterable": false
+    },
+    {
+      "hearingEventId": "a8522b75-3fb4-4b80-a91b-23519712c03c",
+      "hearingEventDefinitionId": "64476e43-2138-46d5-b58b-848582cf9b07",
+      "recordedLabel": "Hearing resumed",
+      "eventTime": "2019-08-08T19:10:49.777Z",
+      "lastModifiedTime": "2019-08-08T19:10:50.145Z",
+      "alterable": false
+    },
+    {
+      "hearingEventId": "0cb74ec2-bcb8-4c68-b1eb-a82517a1e6c4",
+      "hearingEventDefinitionId": "160ecb51-29ee-4954-bbbf-daab18a24fbb",
+      "recordedLabel": "Hearing paused",
+      "eventTime": "2019-08-08T19:10:55.788Z",
+      "lastModifiedTime": "2019-08-08T19:10:56.611Z",
+      "alterable": false
+    },
+    {
+      "hearingEventId": "24c8ba93-6092-40dd-a845-53e9b4610040",
+      "hearingEventDefinitionId": "64476e43-2138-46d5-b58b-848582cf9b07",
+      "recordedLabel": "Hearing resumed",
+      "eventTime": "2019-08-08T19:11:10.808Z",
+      "lastModifiedTime": "2019-08-08T19:11:11.197Z",
+      "alterable": false
+    },
+    {
+      "hearingEventId": "3c866de5-13dd-4f88-a52f-310f98318c76",
+      "hearingEventDefinitionId": "160ecb51-29ee-4954-bbbf-daab18a24fbb",
+      "recordedLabel": "Hearing paused",
+      "eventTime": "2019-08-08T19:11:26.833Z",
+      "lastModifiedTime": "2019-08-08T19:11:27.792Z",
+      "alterable": false
+    },
+    {
+      "hearingEventId": "0cf9b971-47c6-4eb7-9a0f-c9ccafa7202d",
+      "hearingEventDefinitionId": "64476e43-2138-46d5-b58b-848582cf9b07",
+      "recordedLabel": "Hearing resumed",
+      "eventTime": "2019-08-08T19:19:38.706Z",
+      "lastModifiedTime": "2019-08-08T19:19:39.575Z",
+      "alterable": false
+    }
+  ],
+  "defendantCasesApplications": [
+    {
+      "aliases": [
+        {
+          "firstName": "johnny robber"
+        },
+        {
+          "firstName": "jack the knife"
+        }
+      ],
+      "associatedPersons": [
+        {
+          "person": {
+            "additionalNationalityCode": "USA",
+            "additionalNationalityDescription": "United States of America",
+            "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+            "address": {
+              "address1": "22",
+              "address2": "Acacia Avenue",
+              "address3": "Acacia Town",
+              "address4": "Acacia City",
+              "address5": "Acacia Country",
+              "postcode": "GIR 0AA"
+            },
+            "contact": {
+              "fax": "3425678",
+              "home": "123456",
+              "mobile": "45678910",
+              "primaryEmail": "harry.kane@spurs.co.uk",
+              "secondaryEmail": "harry.kane@hotmail.com",
+              "work": "7891011"
+            },
+            "dateOfBirth": "1995-01-01",
+            "disabilityStatus": "a",
+            "documentationLanguageNeeds": "WELSH",
+            "ethnicityCode": "IC1",
+            "ethnicityDescription": "IC1 Description",
+            "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+            "firstName": "Harry",
+            "gender": "MALE",
+            "interpreterLanguageNeeds": "Hindi",
+            "lastName": "Kane",
+            "middleName": "Jack",
+            "nationalInsuranceNumber": "NH222222B",
+            "nationalityCode": "GBR",
+            "nationalityDescription": "United Kingdom",
+            "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+            "occupation": "Footballer",
+            "occupationCode": "F",
+            "title": "MR"
+          },
+          "role": "parent"
+        }
+      ],
+      "courtApplications": [],
+      "id": "e1d32d9d-29ec-4934-a932-22a50f223966",
+      "mitigation": "I was not there",
+      "mitigationWelsh": "I was not there in Welsh",
+      "numberOfPreviousConvictionsCited": 5,
+      "personDefendant": {
+        "arrestSummonsNumber": "arrest123",
+        "bailStatus": "inCustody",
+        "custodyTimeLimit": "2018-01-01",
+        "driverNumber": "AACC12345",
+        "employerOrganisation": {
+          "address": {
+            "address1": "Disney Road",
+            "address2": "Disney Town",
+            "address3": "Disney District",
+            "address4": "Paris",
+            "address5": "France",
+            "postcode": "DI5 9EY"
+          },
+          "contact": {
+            "fax": "a",
+            "primaryEmail": "person@hotmail.com",
+            "secondaryEmail": "associate@hotmail.com",
+            "work": "0207 654 3246 extn 1234"
+          },
+          "id": "8625b50c-afc4-4d63-add2-68b9bf01b1fd",
+          "incorporationNumber": "Mickeymouse1",
+          "name": "Disneyland Paris"
+        },
+        "employerPayrollReference": "payyou1234",
+        "observedEthnicityCode": "IC1",
+        "observedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+        "perceivedBirthYear": 2015,
+        "personDetails": {
+          "additionalNationalityCode": "USA",
+          "additionalNationalityDescription": "United States of America",
+          "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+          "address": {
+            "address1": "22",
+            "address2": "Acacia Avenue",
+            "address3": "Acacia Town",
+            "address4": "Acacia City",
+            "address5": "Acacia Country",
+            "postcode": "GIR 0AA"
+          },
+          "contact": {
+            "fax": "3425678",
+            "home": "123456",
+            "mobile": "45678910",
+            "primaryEmail": "harry.kanejunior@spurs.co.uk",
+            "secondaryEmail": "harry.kanejunior@hotmail.com",
+            "work": "7891011"
+          },
+          "dateOfBirth": "2010-01-01",
+          "disabilityStatus": "a",
+          "documentationLanguageNeeds": "WELSH",
+          "ethnicityCode": "IC1",
+          "ethnicityDescription": "IC1 Description",
+          "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+          "firstName": "Harry",
+          "gender": "MALE",
+          "interpreterLanguageNeeds": "Welsh",
+          "lastName": "Kane Junior",
+          "middleName": "Jack",
+          "nationalInsuranceNumber": "NH323232B",
+          "nationalityCode": "GBR",
+          "nationalityDescription": "United Kingdom",
+          "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+          "occupation": "Kid",
+          "occupationCode": "F",
+          "specificRequirements": "Screen",
+          "title": "MR"
+        },
+        "pncId": "1234567",
+        "selfDefinedEthnicityCode": "IC1",
+        "selfDefinedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c"
+      },
+      "prosecutionAuthorityReference": "TFL12345-ABC",
+      "prosecutionCaseId": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+      "prosecutionCases": [
+        {
+          "caseStatus": "SJP Referral",
+          "id": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+          "initiationCode": "J",
+          "offences": [
+            {
+              "allocationDecision": {
+                "courtIndicatedSentence": {},
+                "motReasonCode": "02",
+                "motReasonDescription": ":motReasonDescription",
+                "motReasonId": ":motReasonId",
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8"
+              },
+              "arrestDate": "2018-01-01",
+              "chargeDate": "2018-01-01",
+              "convictionDate": "2018-05-01",
+              "count": 0,
+              "index": 0,
+              "endDate": "2018-01-01",
+              "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+              "indicatedPlea": {
+                "indicatedPleaDate": "2018-05-01",
+                "indicatedPleaValue": "INDICATED_GUILTY",
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8"
+              },
+              "notifiedPlea": {
+                "notifiedPleaDate": "2018-04-01",
+                "notifiedPleaValue": "NOTIFIED_GUILTY",
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1"
+              },
+              "offenceCode": "AAA",
+              "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+              "offenceFacts": {
+                "alcoholReadingAmount": "111",
+                "alcoholReadingMethod": "2222",
+                "vehicleRegistration": "AA12345"
+              },
+              "offenceLegislation": "legislation",
+              "offenceLegislationWelsh": "legislation in Welsh",
+              "offenceTitle": "a title",
+              "offenceTitleWelsh": "a title in Welsh",
+              "orderIndex": 1,
+              "plea": {
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                "pleaDate": "2018-05-01",
+                "pleaValue": "NOT_GUILTY"
+              },
+              "startDate": "2018-01-01",
+              "verdict": {
+                "jurors": {
+                  "numberOfJurors": 12,
+                  "numberOfSplitJurors": 0,
+                  "unanimous": true
+                },
+                "lesserOrAlternativeOffence": {
+                  "offenceCode": "FDSE",
+                  "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+                  "offenceLegislation": "Legislation for this offence",
+                  "offenceLegislationWelsh": "Legislation for this offence in Welsh",
+                  "offenceTitle": "A lesser offence",
+                  "offenceTitleWelsh": "A lesser offence in Welsh"
+                },
+                "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                "verdictDate": "2018-05-01",
+                "verdictType": {
+                  "category": "Guilty",
+                  "categoryType": "GUILTY",
+                  "code": "",
+                  "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+                  "jurisdiction": "",
+                  "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+                  "sequence": 1
+                }
+              },
+              "wording": "No Travel Card",
+              "wordingWelsh": "No Travel Card In Welsh"
+            }
+          ],
+          "originatingOrganisation": "G01FT01AB",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "8C720B32E45B",
+            "prosecutionAuthorityCode": "TFL",
+            "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+            "prosecutionAuthorityReference": "TFL12345"
+          },
+          "statementOfFacts": "You did it",
+          "statementOfFactsWelsh": "You did it in Welsh"
+        }
+      ],
+      "witnessStatement": "he did not do it",
+      "witnessStatementWelsh": "he did not do it in Welsh"
+    }
+  ],
+  "hearingWithDefendantSameOffenceDefinitionIds": {
+    "id": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+    "type": {
+      "id": "6e1bef55-7e13-4615-b3ba-8663f4438e16",
+      "description": "Trial"
+    },
+    "isBoxHearing": false,
+    "jurisdictionType": "MAGISTRATES",
+    "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992",
+    "hearingLanguage": "WELSH",
+    "hearingDays": [
+      {
+        "sittingDay": "2018-08-01 10:30:00",
+        "listingSequence": 1,
+        "listedDurationMinutes": 240
+      },
+      {
+        "sittingDay": "2018-08-02 14:30:00",
+        "listingSequence": 2,
+        "listedDurationMinutes": 360
+      }
+    ],
+    "courtCentre": {
+      "id": "75eb4a5f-556f-4020-bada-ceeba8c73086",
+      "name": "Carmarthen Magistrates' Court",
+      "welshName": "Llys Ynadon Caernarfon",
+      "roomId": "ad5f9d57-075c-4d40-8d32-75209bd2cbd9",
+      "roomName": "Room 1",
+      "welshRoomName": "Ystafell 1"
+    },
+    "judiciary": [
+      {
+        "judicialId": "8ebc222c-9b33-402b-bfb1-4ca973058a57",
+        "judicialRoleType": "MAGISTRATE",
+        "isDeputy": false,
+        "isBenchChairman": true
+      },
+      {
+        "judicialId": "0fdc14b3-ec5b-486d-ad82-a7be9e359e3a",
+        "judicialRoleType": "MAGISTRATE",
+        "isDeputy": false,
+        "isBenchChairman": false
+      },
+      {
+        "judicialId": "5df0e71e-a9cc-43ab-9522-5783aa3723eb",
+        "judicialRoleType": "MAGISTRATE",
+        "isDeputy": false,
+        "isBenchChairman": false
+      }
+    ],
+    "courtApplications": [
+      {
+        "applicant": {
+          "defendant": {
+            "id": "1"
+          },
+          "id": "1",
+          "organisation": {},
+          "organisationPersons": [],
+          "personDetails": {
+            "firstName": "Frodo",
+            "lastName": "Baggins"
+          },
+          "prosecutingAuthority": {},
+          "representationOrganisation": {},
+          "synonym": ""
+        },
+        "applicationDecisionSoughtByDate": "",
+        "applicationOutcome": null,
+        "applicationParticulars": "",
+        "applicationReceivedDate": "",
+        "applicationReference": "",
+        "applicationStatus": "",
+        "courtApplicationPayment": null,
+        "id": "12",
+        "judicialResults": [],
+        "linkedApplicationId": "",
+        "linkedCaseId": "3",
+        "outOfTimeReasons": "",
+        "respondents": [
+          {
+            "partyDetails": {
+              "personDetails": {
+                "firstName": "Sméagol",
+                "lastName": "Gollum"
+              }
+            }
+          }
+        ],
+        "respondentsNA": false,
+        "type": {
+          "applicantSynonym": "",
+          "applicationCategory": "",
+          "applicationCode": "",
+          "applicationJurisdictionType": "",
+          "applicationLegislation": "Legal text and other mumbo jumbo",
+          "applicationType": "Bad character applications",
+          "applicationTypeWelsh": "",
+          "id": "4"
+        }
+      }
+    ],
+    "prosecutionCases": [
+      {
+        "id": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+        "prosecutionCaseIdentifier": {
+          "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+          "prosecutionAuthorityCode": "TFL",
+          "prosecutionAuthorityReference": "TFL12345",
+          "caseURN": "8C720B32E45B"
+        },
+        "originatingOrganisation": "G01FT01AB",
+        "initiationCode": "J",
+        "caseStatus": "SJP Referral",
+        "statementOfFacts": "You did it",
+        "statementOfFactsWelsh": "You did it in Welsh",
+        "defendants": [
+          {
+            "id": "e1d32d9d-29ec-4934-a932-22a50f223966",
+            "prosecutionCaseId": "2279b2c3-b0d3-4889-ae8e-1ecc20c39e27",
+            "numberOfPreviousConvictionsCited": 5,
+            "prosecutionAuthorityReference": "TFL12345-ABC",
+            "witnessStatement": "he did not do it",
+            "witnessStatementWelsh": "he did not do it in Welsh",
+            "mitigation": "I was not there",
+            "mitigationWelsh": "I was not there in Welsh",
+            "offences": [
+              {
+                "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+                "offenceCode": "AAA",
+                "offenceTitle": "a title",
+                "offenceTitleWelsh": "a title in Welsh",
+                "offenceLegislation": "legislation",
+                "offenceLegislationWelsh": "legislation in Welsh",
+                "wording": "Same offence wording between the defendants offences",
+                "wordingWelsh": "Same offence wording between the defendants offences in Welsh",
+                "startDate": "2018-01-01",
+                "endDate": "2018-01-01",
+                "arrestDate": "2018-01-01",
+                "chargeDate": "2018-01-01",
+                "orderIndex": 1,
+                "convictionDate": "2018-05-01",
+                "count": 0,
+                "index": 0,
+                "notifiedPlea": {
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "notifiedPleaDate": "2018-04-01",
+                  "notifiedPleaValue": "NOTIFIED_GUILTY"
+                },
+                "allocationDecision": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "motReasonCode": "02",
+                  "motReasonDescription": ":motReasonDescription",
+                  "motReasonId": ":motReasonId",
+                  "courtIndicatedSentence": {}
+                },
+                "plea": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "pleaDate": "2018-05-01",
+                  "pleaValue": "NOT_GUILTY"
+                },
+                "indicatedPlea": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "indicatedPleaDate": "2018-05-01",
+                  "indicatedPleaValue": "INDICATED_GUILTY"
+                },
+                "verdict": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "verdictDate": "2018-05-01",
+                  "verdictType": {
+                    "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+                    "sequence": 1,
+                    "code": "",
+                    "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+                    "jurisdiction": "",
+                    "category": "Guilty",
+                    "categoryType": "GUILTY"
+                  },
+                  "lesserOrAlternativeOffence": {
+                    "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+                    "offenceCode": "FDSE",
+                    "offenceTitle": "A lesser offence",
+                    "offenceTitleWelsh": "A lesser offence in Welsh",
+                    "offenceLegislation": "Legislation for this offence",
+                    "offenceLegislationWelsh": "Legislation for this offence in Welsh"
+                  }
+                },
+                "offenceFacts": {
+                  "vehicleRegistration": "AA12345",
+                  "alcoholReadingAmount": "111",
+                  "alcoholReadingMethod": "2222"
+                }
+              },
+              {
+                "id": "b820ea81-90d2-4ae3-94bd-6cba7b23d8e2",
+                "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+                "offenceCode": "AAA",
+                "offenceTitle": "a title",
+                "offenceTitleWelsh": "a title in Welsh",
+                "offenceLegislation": "legislation",
+                "offenceLegislationWelsh": "legislation in Welsh",
+                "wording": "Same offence wording between the defendants offences",
+                "wordingWelsh": "Same offence wording between the defendants offences in Welsh",
+                "startDate": "2018-01-01",
+                "endDate": "2018-01-01",
+                "arrestDate": "2018-01-01",
+                "chargeDate": "2018-01-01",
+                "orderIndex": 1,
+                "convictionDate": "2018-05-01",
+                "count": 0,
+                "index": 0,
+                "notifiedPlea": {
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "notifiedPleaDate": "2018-04-01",
+                  "notifiedPleaValue": "NOTIFIED_GUILTY"
+                },
+                "allocationDecision": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "motReasonCode": "02",
+                  "motReasonDescription": ":motReasonDescription",
+                  "motReasonId": ":motReasonId",
+                  "courtIndicatedSentence": {}
+                },
+                "plea": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "pleaDate": "2018-05-01",
+                  "pleaValue": "NOT_GUILTY"
+                },
+                "indicatedPlea": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "indicatedPleaDate": "2018-05-01",
+                  "indicatedPleaValue": "INDICATED_GUILTY"
+                },
+                "verdict": {
+                  "originatingHearingId": "bed2d8e5-9fe2-4003-a40b-cee8d1f235d8",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                  "verdictDate": "2018-05-01",
+                  "verdictType": {
+                    "id": "a7431310-cfb9-4970-8051-fa878cf2047d",
+                    "sequence": 1,
+                    "description": "Found Not Guilty, Guilty of a lesser or alternative offernce",
+                    "category": "Guilty",
+                    "categoryType": "GUILTY"
+                  },
+                  "lesserOrAlternativeOffence": {
+                    "offenceDefinitionId": "b4d7921a-3ebc-432e-a20f-7f265b4554e8",
+                    "offenceCode": "FDSE",
+                    "offenceTitle": "A lesser offence",
+                    "offenceTitleWelsh": "A lesser offence in Welsh",
+                    "offenceLegislation": "Legislation for this offence",
+                    "offenceLegislationWelsh": "Legislation for this offence in Welsh"
+                  }
+                },
+                "offenceFacts": {
+                  "vehicleRegistration": "AA12345",
+                  "alcoholReadingAmount": "111",
+                  "alcoholReadingMethod": "2222"
+                }
+              }
+            ],
+            "personDefendant": {
+              "personDetails": {
+                "title": "MR",
+                "firstName": "Harry",
+                "middleName": "Jack",
+                "lastName": "Kane Junior",
+                "dateOfBirth": "2010-01-01",
+                "nationalityId": "0f36a570-46ef-41d1-b290-9037a64fa1a4",
+                "nationalityCode": "GBR",
+                "nationalityDescription": "United Kingdom",
+                "additionalNationalityId": "9aa0ffba-67a4-4137-b392-3c01951eb9c2",
+                "additionalNationalityCode": "USA",
+                "additionalNationalityDescription": "United States of America",
+                "disabilityStatus": "a",
+                "ethnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+                "ethnicityCode": "IC1",
+                "ethnicityDescription": "IC1 Description",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "Welsh",
+                "documentationLanguageNeeds": "WELSH",
+                "nationalInsuranceNumber": "NH323232B",
+                "occupation": "Kid",
+                "occupationCode": "F",
+                "specificRequirements": "Screen",
+                "address": {
+                  "address1": "22",
+                  "address2": "Acacia Avenue",
+                  "address3": "Acacia Town",
+                  "address4": "Acacia City",
+                  "address5": "Acacia Country",
+                  "postcode": "GIR 0AA"
+                },
+                "contact": {
+                  "home": "123456",
+                  "work": "7891011",
+                  "mobile": "45678910",
+                  "primaryEmail": "harry.kanejunior@spurs.co.uk",
+                  "secondaryEmail": "harry.kanejunior@hotmail.com",
+                  "fax": "3425678"
+                }
+              },
+              "bailStatus": "inCustody",
+              "custodyTimeLimit": "2018-01-01",
+              "perceivedBirthYear": 2015,
+              "observedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+              "observedEthnicityCode": "IC1",
+              "selfDefinedEthnicityId": "d36d2ba2-6862-4114-b9f9-0c620e1e903c",
+              "selfDefinedEthnicityCode": "IC1",
+              "driverNumber": "AACC12345",
+              "pncId": "1234567",
+              "arrestSummonsNumber": "arrest123",
+              "employerOrganisation": {
+                "id": "8625b50c-afc4-4d63-add2-68b9bf01b1fd",
+                "name": "Disneyland Paris",
+                "incorporationNumber": "Mickeymouse1",
+                "address": {
+                  "address1": "Disney Road",
+                  "address2": "Disney Town",
+                  "address3": "Disney District",
+                  "address4": "Paris",
+                  "address5": "France",
+                  "postcode": "DI5 9EY"
+                },
+                "contact": {
+                  "work": "0207 654 3246 extn 1234",
+                  "primaryEmail": "person@hotmail.com",
+                  "secondaryEmail": "associate@hotmail.com",
+                  "fax": "a"
+                }
+              },
+              "employerPayrollReference": "payyou1234"
+            }
+          }
+        ]
+      }
+    ],
+    "hasSharedResults": false,
+    "defendantReferralReasons": [
+      {
+        "id": "01e550d0-d27f-48c9-9e44-783aaa0e62c9",
+        "description": "referred fo trial under section 12 magistrates court act",
+        "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966"
+      }
+    ],
+    "prosecutionCounsels": [
+      {
+        "id": "ea90d649-de68-470d-935c-46cb1027882b",
+        "title": "Mr",
+        "firstName": "Thomas",
+        "middleName": "Albert",
+        "lastName": "Blood",
+        "status": "QC",
+        "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"],
+        "attendanceDays": ["2018-08-01", "2018-08-02"]
+      }
+    ],
+    "defenceCounsels": [
+      {
+        "id": "d9188ab0-cf61-4e19-a323-0173054e031e",
+        "title": "Mrs",
+        "firstName": "Margaret",
+        "middleName": "Janet",
+        "lastName": "Cell",
+        "status": "Leading QC",
+        "defendants": ["e1d32d9d-29ec-4934-a932-22a50f223966"],
+        "attendanceDays": ["2018-08-01", "2018-08-02"]
+      }
+    ],
+    "defendantAttendance": [
+      {
+        "defendantId": "e1d32d9d-29ec-4934-a932-22a50f223966",
+        "attendanceDays": [
+          {
+            "day": "2018-08-01",
+            "attendanceType": "IN_PERSON"
+          },
+          {
+            "day": "2018-08-03",
+            "attendanceType": "NOT_PRESENT"
+          }
+        ]
+      }
+    ],
+    "hearingCaseNotes": [
+      {
+        "courtClerk": {
+          "id": "b37a9a88-bc2a-44bc-a474-97c341729a8e",
+          "firstName": "Charles",
+          "lastName": "Manson"
+        },
+        "note": "Difficult defendant, make sure a policeman is available",
+        "noteDateTime": "2018-08-02 10:53",
+        "noteType": "HMCTS",
+        "originatingHearingId": "ded4660f-443f-467a-863b-966b7cd8a6f0",
+        "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"]
+      },
+      {
+        "courtClerk": {
+          "id": "b37a9a88-bc2a-44bc-a474-97c341729a8e",
+          "firstName": "Charles",
+          "lastName": "Manson"
+        },
+        "note": "A legal note for the extract",
+        "noteDateTime": "2018-08-02 11:53",
+        "noteType": "LEGAL",
+        "originatingHearingId": "ded4660f-443f-467a-863b-966b7cd8a6f0",
+        "prosecutionCases": ["2279b2c3-b0d3-4889-ae8e-1ecc20c39e27"]
+      }
+    ]
+  },
+  "pleaTypes": [
+    {
+      "id": "f9b05f75-643a-3bcf-8a87-ba4a2f24c3b3",
+      "sequence": 30,
+      "pleaTypeCode": "GMCA",
+      "pleaTypeDescription": "MCA Guilty",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "6",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "MCA_GUILTY",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "4d154325-7d7d-3a22-809d-f2920da81e2f",
+      "sequence": 110,
+      "pleaTypeCode": "ADM",
+      "pleaTypeDescription": "Admits",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "Yes",
+      "pleaStatusCode": "7",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "ADMITS_MAGISTRATES",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "02bd2198-96f4-3aa1-a3a0-9c49fc6b65fc",
+      "sequence": 50,
+      "pleaTypeCode": "IG",
+      "pleaTypeDescription": "Indicated plea of Guilty",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "INDICATED_GUILTY",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "17f1b38b-6737-3dd4-9d88-84bb93543079",
+      "sequence": 40,
+      "pleaTypeCode": "GSJP",
+      "pleaTypeDescription": "Guilty Single Justice Procedure",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "6",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "GUILTY_SINGLE_JUSTICE_PROCEDURE",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "d0f459ec-b8be-3a84-8f45-ac62cb52a534",
+      "sequence": 60,
+      "pleaTypeCode": "ADB",
+      "pleaTypeDescription": "Admits Breach",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": false,
+      "pleaValue": "ADMITS_BREACH",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "a5fcbc48-1e7b-3cbf-89aa-fbad0febeff2",
+      "sequence": 80,
+      "pleaTypeCode": "UNFIT",
+      "pleaTypeDescription": "Unfit to Plead",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "3",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "UNFIT_TO_PLEAD",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "609e1f2a-b211-33a8-a0a6-6444ea276507",
+      "sequence": 100,
+      "pleaTypeCode": "GNGW",
+      "pleaTypeDescription": "Change of Plea: Not Guilty to Guilty (Magistrates' Court)",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "CHANGE_TO_GUILTY_MAGISTRATES_COURT",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "3929986c-8794-3322-831a-c6690c3875c8",
+      "sequence": 140,
+      "pleaTypeCode": "OPP",
+      "pleaTypeDescription": "Opposed",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "Yes",
+      "pleaStatusCode": "8",
+      "pleaTypeUIFlag": false,
+      "pleaValue": "OPPOSES",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "d2cf2e78-5025-364c-b23f-4b5bcc105071",
+      "sequence": 130,
+      "pleaTypeCode": "CON",
+      "pleaTypeDescription": "Consents",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "Yes",
+      "pleaStatusCode": "7",
+      "pleaTypeUIFlag": false,
+      "pleaValue": "CONSENTS",
+      "jurisdiction": "MAGISTRATES"
+    },
+    {
+      "id": "4d154325-7d7d-3a22-809d-f2920da81e2f",
+      "sequence": 110,
+      "pleaTypeCode": "ADM",
+      "pleaTypeDescription": "Admits",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "Yes",
+      "pleaStatusCode": "7",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "ADMITS",
+      "jurisdiction": "EITHER"
+    },
+    {
+      "id": "d534fc0a-91eb-3d02-a828-0156f0f353c7",
+      "sequence": 90,
+      "pleaTypeCode": "NGGW",
+      "pleaTypeDescription": "Guilty plea withdrawn, plea now Not Guilty",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "2",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "CHANGE_TO_NOT_GUILTY",
+      "jurisdiction": "EITHER"
+    },
+    {
+      "id": "b1f365c5-39a5-3c61-9097-2b19e309eb4b",
+      "sequence": 20,
+      "pleaTypeCode": "G",
+      "pleaTypeDescription": "Guilty",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "GUILTY",
+      "jurisdiction": "EITHER"
+    },
+    {
+      "id": "299a7c7d-464a-3fdd-8d47-4813b7f48a03",
+      "sequence": 70,
+      "pleaTypeCode": "NG",
+      "pleaTypeDescription": "Not Guilty",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "2",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "NOT_GUILTY",
+      "jurisdiction": "EITHER"
+    },
+    {
+      "id": "ad3378c6-cc7a-3c53-8c32-e8a22fd56da1",
+      "sequence": 10,
+      "pleaTypeCode": "NONE",
+      "pleaTypeDescription": "No plea",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "3",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "NO_PLEA",
+      "jurisdiction": "EITHER"
+    },
+    {
+      "id": "cc384a41-00d0-4239-8f6f-7d385cabb190",
+      "sequence": 210,
+      "pleaTypeCode": "P",
+      "pleaTypeDescription": "Pardon",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "Yes",
+      "pleaStatusCode": "3",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "PARDON",
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "b8180431-9d6e-467e-85b3-7b5246cd2f28",
+      "sequence": 200,
+      "pleaTypeCode": "AC",
+      "pleaTypeDescription": "Autrefois convict",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "3",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "AUTREFOIS_CONVICT",
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "96dbf226-1be5-4868-a257-279ee28b2a43",
+      "sequence": 190,
+      "pleaTypeCode": "AA",
+      "pleaTypeDescription": "Autrefois acquit",
+      "pleaTypeGuiltyFlag": "No",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "3",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "AUTREFOIS_ACQUIT",
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "efd366e3-624f-4802-861b-e46fe2e7cca5",
+      "sequence": 180,
+      "pleaTypeCode": "NGGN",
+      "pleaTypeDescription": "Change of Plea: Not Guilty to Guilty (No Jury)",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "CHANGE_TO_GUILTY_NO_JURY",
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "9e22efa4-968c-4c66-a99e-209d1e22fdc0",
+      "sequence": 170,
+      "pleaTypeCode": "NGGA",
+      "pleaTypeDescription": "Change of Plea: Not Guilty to Guilty (After Jury Sworn)",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "CHANGE_TO_GUILTY_AFTER_SWORN",
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "60c7c6f7-c2c1-4fb4-bf75-dd9e2cd4d8ab",
+      "sequence": 160,
+      "pleaTypeCode": "GAO",
+      "pleaTypeDescription": "Guilty to alternative offence not charged namely",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "GUILTY_TO_ALTERNATIVE_OFFENCE_NOT_CHARGED",
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "0f29b93d-8bf9-4254-b34e-856a21e42dd9",
+      "sequence": 150,
+      "pleaTypeCode": "GLO",
+      "pleaTypeDescription": "Guilty to lesser offence namely",
+      "pleaTypeGuiltyFlag": "Yes",
+      "pleaTypeCivilFlag": "No",
+      "pleaStatusCode": "1",
+      "pleaTypeUIFlag": true,
+      "pleaValue": "GUILTY_TO_LESSER_OFFENCE_NAMELY",
+      "jurisdiction": "CROWN"
+    }
+  ],
+  "hearingSummaries": [
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": false,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "isCancelled": false,
+          "listedDurationMinutes": 180,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T10:00:00.000Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-13T13:16:49.796Z",
+              "firstName": "Test124",
+              "id": "2cd10cbe-504a-497a-8241-4ae96845512e",
+              "lastName": "Def12",
+              "masterDefendantId": "2cd10cbe-504a-497a-8241-4ae96845512e",
+              "offences": [
+                {
+                  "id": "bf4f4e9e-5a3a-42be-a231-2ae2671e7b06",
+                  "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                  "reportingRestrictions": [],
+                  "wording": "Theft of pedal cycle."
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "c95339e1-2de5-4ade-9650-6c0666e87eeb",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "31DS4578527"
+          }
+        },
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-13T13:14:53.854Z",
+              "firstName": "Test34",
+              "id": "bb12a255-74ba-4a85-bebe-f37fa4d41909",
+              "lastName": "Def3",
+              "masterDefendantId": "bb12a255-74ba-4a85-bebe-f37fa4d41909",
+              "offences": [
+                {
+                  "id": "75d382cd-a6a2-4951-bf88-befada08066f",
+                  "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                  "reportingRestrictions": [],
+                  "wording": "Theft of pedal cycle."
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            },
+            {
+              "courtProceedingsInitiated": "2025-03-13T13:14:53.854Z",
+              "firstName": "Test23",
+              "id": "dc4b6901-1d0b-497b-a09c-6b9654f78a9f",
+              "lastName": "Def2",
+              "masterDefendantId": "dc4b6901-1d0b-497b-a09c-6b9654f78a9f",
+              "offences": [
+                {
+                  "id": "c120306a-e05c-4ac1-be61-99f7b22ca758",
+                  "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                  "reportingRestrictions": [],
+                  "wording": "Theft of pedal cycle."
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            },
+            {
+              "courtProceedingsInitiated": "2025-03-13T13:14:53.853Z",
+              "firstName": "Test12",
+              "id": "018a1270-e65c-4c24-acd7-a3f183f278d0",
+              "lastName": "Def1",
+              "masterDefendantId": "018a1270-e65c-4c24-acd7-a3f183f278d0",
+              "offences": [
+                {
+                  "id": "9ebdd039-ad4f-438f-a523-eeadbb604c0c",
+                  "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                  "reportingRestrictions": [],
+                  "wording": "Theft of pedal cycle."
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "0d4aeb8a-37aa-46dd-8f76-d4c8d4e3be1b",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "31DS9378527"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "b4562684-9209-3ec4-a544-7f80dabd94d8",
+        "roomName": "Courtroom 02"
+      },
+      "hasSharedResults": true,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "b4562684-9209-3ec4-a544-7f80dabd94d8",
+          "hasSharedResults": true,
+          "isCancelled": false,
+          "listedDurationMinutes": 180,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T10:00:00.000Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "b50d8216-7130-4f3a-89b4-b082c1cec931",
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-13T13:16:49.796Z",
+              "firstName": "Test124",
+              "id": "2cd10cbe-504a-497a-8241-4ae96845512e",
+              "lastName": "Def12",
+              "masterDefendantId": "2cd10cbe-504a-497a-8241-4ae96845512e",
+              "offences": [
+                {
+                  "id": "bf4f4e9e-5a3a-42be-a231-2ae2671e7b06",
+                  "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                  "reportingRestrictions": [],
+                  "wording": "Theft of pedal cycle."
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "c95339e1-2de5-4ade-9650-6c0666e87eeb",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "31DS4578527"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": true,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "hasSharedResults": true,
+          "isCancelled": false,
+          "listedDurationMinutes": 20,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T17:01:01.001Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "952772be-1c54-4e6c-a72b-5d3cf4ebb267",
+      "isGroupProceedings": false,
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-12T18:32:51.225Z",
+              "firstName": "Creola",
+              "id": "d0689f1e-5fdc-446e-8b1f-c2a2b307d189",
+              "lastName": "Sanford61",
+              "masterDefendantId": "0d522e56-56ce-4b8b-9aff-674abce15f40",
+              "offences": [
+                {
+                  "id": "d63f54df-674d-40b9-b76c-71444ca0440b",
+                  "offenceTitle": "Provide money / property for use in acts of    terrorism",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "1a56f502-88d2-4117-aab1-90cc277f0dfd",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "12MarVTC143"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": false,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "isCancelled": false,
+          "listedDurationMinutes": 20,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T17:01:01.001Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "c4be3132-e703-44ad-b176-e497551d1691",
+      "isGroupProceedings": false,
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-12T18:41:34.728Z",
+              "firstName": "Creola",
+              "id": "989b4d1c-37e6-4cf7-b950-40f9ac7098ce",
+              "lastName": "Sanford61",
+              "masterDefendantId": "0d522e56-56ce-4b8b-9aff-674abce15f40",
+              "offences": [
+                {
+                  "id": "7cfba091-37ff-4bad-b81e-194e4ec5229b",
+                  "offenceTitle": "Provide money / property for use in acts of    terrorism",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "8533cae2-9fdb-4878-ba64-22943f0159bb",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "12MarVTC342"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": true,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "hasSharedResults": true,
+          "isCancelled": false,
+          "listedDurationMinutes": 20,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T17:01:01.001Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "615917ae-988e-4721-9c96-4fe7a7a594dd",
+      "isGroupProceedings": false,
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-12T19:41:16.516Z",
+              "firstName": "Cordie",
+              "id": "64aa4331-e141-4a1f-aaa8-759f133f9a8d",
+              "lastName": "Kuhlman36",
+              "masterDefendantId": "09925ce4-d5e1-4b01-87a7-36c09ace4491",
+              "offences": [
+                {
+                  "id": "ed598772-d17d-496f-8e4d-3d9513fb4734",
+                  "offenceTitle": "Provide money / property for use in acts of    terrorism",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "d7fd987d-28d5-47f8-85df-dc44ddf56af1",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "12MarVTC386"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": true,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "hasSharedResults": true,
+          "isCancelled": false,
+          "listedDurationMinutes": 20,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T17:01:01.001Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "c3afbd62-39ce-4a14-88a7-fe8f0ba2289e",
+      "isGroupProceedings": false,
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-12T18:42:44.219Z",
+              "firstName": "Philip",
+              "id": "c5c80c3e-8c4c-4cfd-a715-c1d94dbd1ca9",
+              "lastName": "Weimann63",
+              "masterDefendantId": "aa6b24c8-2801-4339-8d9c-e16b5302f4d1",
+              "offences": [
+                {
+                  "id": "e854822a-a3ff-46b0-94c2-76726c838953",
+                  "offenceTitle": "Provide money / property for use in acts of    terrorism",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "b8dc5796-165e-4a72-a708-2426ea8eb337",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "12MarVTC899"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": true,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "hasSharedResults": true,
+          "isCancelled": false,
+          "listedDurationMinutes": 20,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T17:01:01.001Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "ffcc03b7-b504-461d-abff-42a121b197af",
+      "isGroupProceedings": false,
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-13T12:16:49.796Z",
+              "firstName": "Bethel",
+              "id": "f8e81ea6-40cc-4921-8da9-45d61882468c",
+              "lastName": "Pfannerstill26",
+              "masterDefendantId": "f8e81ea6-40cc-4921-8da9-45d61882468c",
+              "offences": [
+                {
+                  "id": "d20a16c6-63d3-4599-8de9-468ec57d4849",
+                  "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                },
+                {
+                  "id": "2aaf134a-c432-4210-b740-b0584abb058f",
+                  "offenceTitle": "Attempt robbery",
+                  "offenceTitleWelsh": "Ymgais i ysbeilio (robbery)",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "96e43d86-15df-4cfd-959c-843b417079e4",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "SURRPF",
+            "prosecutionAuthorityId": "764bff92-a135-34cb-b858-8bb6b4b66301",
+            "caseURN": "13MarVTC297"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    },
+    {
+      "courtApplicationSummaries": [],
+      "courtCentre": {
+        "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+        "name": "Lavender Hill Magistrates' Court",
+        "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "roomName": "Courtroom 01"
+      },
+      "hasSharedResults": true,
+      "hearingDays": [
+        {
+          "courtCentreId": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+          "courtRoomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+          "hasSharedResults": true,
+          "isCancelled": false,
+          "listedDurationMinutes": 20,
+          "listingSequence": 0,
+          "sittingDay": "2025-03-13T17:01:01.001Z"
+        }
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "b38178ca-1cd6-4857-b178-6ff0e90e5dde",
+      "isGroupProceedings": false,
+      "jurisdictionType": "MAGISTRATES",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "courtProceedingsInitiated": "2025-03-13T12:08:43.348Z",
+              "firstName": "Maxine",
+              "id": "b45ddef0-bf35-4eb7-acf2-28434cfa9ea7",
+              "lastName": "Huels97",
+              "masterDefendantId": "b45ddef0-bf35-4eb7-acf2-28434cfa9ea7",
+              "offences": [
+                {
+                  "id": "3b98b692-434d-41f8-af28-786e825127b1",
+                  "offenceTitle": "Attempt sexual assault on a female - SOA 2003",
+                  "reportingRestrictions": [],
+                  "wording": "Has a violent past and fear that he will commit further offences and interfere with witnesse"
+                }
+              ],
+              "synonym": "is this from aliases ?"
+            }
+          ],
+          "id": "a47a8bb2-a2ed-414f-94c3-ed0c04a3ee48",
+          "prosecutionCaseIdentifier": {
+            "prosecutionAuthorityCode": "DERPF",
+            "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "caseURN": "13MarVTC670"
+          }
+        }
+      ],
+      "type": {
+        "description": "First hearing",
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776"
+      }
+    }
+  ]
+}

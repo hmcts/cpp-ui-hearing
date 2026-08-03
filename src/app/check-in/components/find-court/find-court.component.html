@@ -1,0 +1,40 @@
+<h1 pdk-typography="heading-large">{{ 'CHECK_IN.TITLE' | translate }}</h1>
+<span pdk-typography="heading-medium">
+  {{ currentDate | date : 'd MMMM yyyy' }}
+</span>
+
+<pdk-inset-text class="indent bold-small" size="wide">{{
+  'CHECK_IN.NOTICE' | translate
+}}</pdk-inset-text>
+
+<form
+  pdk-form
+  novalidate
+  (validSubmit)="selectCourt(form.value)"
+  (errors)="formErrorMessage($event)"
+>
+  <pdk-form-field
+    label="{{ 'CHECK_IN.COURT' | translate }}"
+    [errorMessages]="[{ rule: 'required', message: 'CHECK_IN.COURT_ERROR' | translate }]"
+  >
+    <cpp-organisation-unit-autosuggest
+      data-role="court-centre-filter"
+      name="courtCentre"
+      ngModel
+      [ariaDescribedBy]="'aria-describedby-organisation-autosuggest'"
+      required
+    >
+    </cpp-organisation-unit-autosuggest>
+  </pdk-form-field>
+  <pdk-form-group>
+    <button pdk-button type="submit" data-role="show-hearings-btn">
+      {{ 'CHECK_IN.SHOW_HEARING' | translate }}
+    </button>
+  </pdk-form-group>
+</form>
+
+<div>
+  <a pdk-link href="{{ appUrl }}">
+    {{ 'CHECK_IN.CANCEL' | translate }}
+  </a>
+</div>

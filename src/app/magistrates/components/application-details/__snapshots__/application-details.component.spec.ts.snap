@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationComponent should create 1`] = `
+<test-host-component>
+  <application-details>
+    <span
+      class="bold"
+    >
+    </span>
+    <div
+      class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+      pdk-margin-bottom="4"
+      pdk-margin-top="4"
+      pdk-text-colour="dark-grey"
+    >
+    </div>
+  </application-details>
+</test-host-component>
+`;

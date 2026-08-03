@@ -1,0 +1,194 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cpp-ui-hearing": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "file-saver",
+              "uuid",
+              "lodash",
+              "@cpp/testing/resources",
+              "moment",
+              "clean-deep",
+              "lz-string"
+            ],
+            "outputPath": {
+              "base": "dist",
+              "browser": ""
+            },
+            "baseHref": "/hearing/",
+            "crossOrigin": "use-credentials",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": ["src/polyfills.ts"],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/govuk_frontend_toolkit/stylesheets",
+                "node_modules/govuk-elements-sass/public/sass"
+              ],
+              "sass": {
+                "silenceDeprecations": ["import"]
+              }
+            },
+            "assets": [
+              "src/assets",
+              "src/i18n",
+              "src/favicon.ico",
+              {
+                "glob": "*.json",
+                "input": "src/app/config",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@govuk/platform-template/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/govuk_frontend_toolkit/images",
+                "output": "/assets/images"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/govuk_template_mustache/assets/images",
+                "output": "/assets/images"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/govuk_template_mustache/assets/stylesheets/images",
+                "output": "/assets/images"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/govuk_template_mustache/assets/stylesheets/images",
+                "output": "/images"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/govuk_template_mustache/assets/stylesheets/external-links",
+                "output": "/external-links"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@cpp/pdk/govuk-assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "src/styles/styles.scss",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.scss"
+            ],
+            "scripts": [],
+            "extractLicenses": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "baseHref": "/hearing/",
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4600,
+            "buildTarget": "cpp-ui-hearing:build",
+            "proxyConfig": "src/app/config/proxy.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "cpp-ui-hearing:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "cpp-ui-hearing:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "configPath": "jest.config.js",
+            "tsConfig": "src/tsconfig.spec.json",
+            "coverage": true,
+            "watch": true
+          }
+        },
+        "ci-test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "src/tsconfig.spec.json",
+            "configPath": "jest.config.js",
+            "coverage": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        },
+        "ci-lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"],
+            "fix": false,
+            "force": true,
+            "format": "checkstyle"
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": ""
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  },
+  "cli": {
+    "schematicCollections": ["@angular-eslint/schematics"],
+    "analytics": false
+  }
+}

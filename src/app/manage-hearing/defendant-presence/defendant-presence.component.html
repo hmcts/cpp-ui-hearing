@@ -1,0 +1,33 @@
+<div class="defendant-presence">
+  <form class="presence-form" #form="ngForm" pdk-form (validSubmit)="onSavePresence()">
+    <pdk-form-field
+      class="presence-form-field"
+      id="presence-form-{{ defendant?.id }}"
+      label="{{
+        participantPresent
+          ? participantPresent
+          : ('MANAGE_HEARING.IS_DEFENDANT_PRESENT' | translate)
+      }}"
+      labelType="small"
+    >
+      <pdk-radio-group
+        data-role="defendant-presence"
+        name="presence-radios"
+        [(ngModel)]="selectedOption"
+        [options]="options"
+        required
+      >
+      </pdk-radio-group>
+    </pdk-form-field>
+
+    <button
+      pdk-margin-bottom="1"
+      pdk-button
+      class="save-presence-btn"
+      type="submit"
+      [disabled]="selectedOption === undefined"
+    >
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </form>
+</div>

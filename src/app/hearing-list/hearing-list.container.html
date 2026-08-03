@@ -1,0 +1,261 @@
+<div pdk-padding-top="6">
+  @if (isCurrentUserAuthorisedToSeeThisHearing$ | async) { @if ((hearings$ | async).length &&
+  selectedHearing && (inWorkingArea$ | async) === false) {
+  <pdk-alert type="secure" icon="true" data-test-id="notInWorkingAreaBanner">
+    <span> {{ 'PAGE_HEADER.SECURE_ALERT_TEXT' | translate }} </span>
+  </pdk-alert>
+  }
+  <div pdk-margin-bottom="2"></div>
+  } @if (errors?.length) {
+  <pdk-error-summary [errors]="errors"></pdk-error-summary>
+  }
+  <idpc-ingestion-status
+    *cppUserHasPermission="expectedPermissions.viewIntelligence"
+    [phase]="idpcIngestionPhase$ | async"
+  ></idpc-ingestion-status>
+
+  <div class="flex-header">
+    <h1 pdk-typography="heading-large">
+      {{ showAttendeesPanel ? ('ENTER_COUNSELS.ADD_EDIT_ATTENDEE_DETAILS' | translate) :
+      ('HEARING_SEARCH.MY_HEARING_LIST' | translate) }}
+    </h1>
+    @if (hasHearingResults$ | async) {
+    <button
+      *cppUserHasPermission="expectedPermissions.viewIntelligence"
+      pdk-padding-horizontal="7"
+      pdk-button="secondary"
+      type="button"
+      (click)="ingestIdpcs()"
+    >
+      {{'HEARING_LIST.IDPC_INGESTION.PROCESS_IDPCS' | translate}}
+    </button>
+    }
+  </div>
+
+  <div class="hearing-list">
+    <div pdk-margin-bottom="9">
+      <div class="collapsible-container">
+        <pdk-collapsable
+          [collapsed]="!showFilters"
+          [collapsedLabel]="'HEARING_LIST.FILTER.SHOW_FILTERS' | translate"
+          [expandedLabel]="'HEARING_LIST.FILTER.HIDE_FILTERS' | translate"
+          (collapseChange)="showFilters = !$event"
+          pdk-margin-bottom="0"
+        >
+          <div pdk-collapse>
+            @if ((courtCentres$ | async).length) {
+            <hearing-list-filter
+              [selectedOptions]="selectedOptions"
+              [courtCentres]="courtCentres$ | async"
+              (onChange)="controlsChanged($event)"
+              (onApplySearch)="loadHearings()"
+              (errors)="errors = $event"
+            >
+            </hearing-list-filter>
+            }
+          </div>
+        </pdk-collapsable>
+        @if (!showFilters) {
+        <div pdk-margin-top="-4" pdk-margin-bottom="7">
+          <hearing-list-filter-summary
+            [hasResults]="(hearings$|async).length !== 0"
+            [options]="this.searchedOptions"
+            [showSummary]="!showFilters"
+            [displayAttendeesLink]="showAttendeesPanel"
+            (showFilters)="onShowFilters($event)"
+            (backToHearingList)="showHideAttendeesPanel(false)"
+          >
+          </hearing-list-filter-summary>
+        </div>
+        }
+        <hr pdk-border-colour="black" />
+      </div>
+      @if (searchedOptions && !showFilters && (hearings$|async).length === 0 && (hasApiActivity$ |
+      async) === false) {
+      <pdk-warning-text> No hearings found </pdk-warning-text>
+      }
+      <div pdk-margin-top="4">
+        @if (hasHearingResults$ | async) {
+        <pdk-grid container>
+          @if (selectedHearing) {
+          <case-access-alert
+            [urns]="urns"
+            [hearingIds]="todayHearingListIds"
+            [selectedHearingId]="selectedHearing.id"
+            [userId]="loggedInUser.userId"
+          >
+          </case-access-alert>
+          }
+          <pdk-grid one-quarter class="scrollable no-padding-right">
+            <hearing-list-panel
+              [hearingList]="hearings$ | async"
+              [activeHearing]="selectedHearing"
+              [selectedHearingDate]="selectedhearingDate"
+              (onSelectHearing)="hearingSelected($event)"
+            >
+            </hearing-list-panel>
+          </pdk-grid>
+          @if (selectedHearing && selectedHearing.id) { @if
+          ((isCurrentUserAuthorisedToSeeThisHearing$ | async) === false) {
+          <pdk-grid three-quarters>
+            <pdk-grid container pdk-margin-left="1">
+              <pdk-alert type="secure" icon="true" data-test-id="accessRestrictedBanner">
+                <span> {{ 'COMMON.ACCESS_RESTRICTED' | translate }} </span>
+              </pdk-alert>
+            </pdk-grid>
+          </pdk-grid>
+          } @if (isCurrentUserAuthorisedToSeeThisHearing$ | async) {
+          <pdk-grid
+            data-test-id="hearingDetails"
+            one-half
+            class="scrollable"
+            #scrollablePanel
+            id="hearing-details-panel"
+          >
+            @if (!showAttendeesPanel) {
+            <pdk-grid container>
+              <pdk-grid one-third class="no-padding-right" data-role="attendees-panel">
+                <hearing-details-panel
+                  [applicationSubjects]="applicationSubjects$ | async"
+                  [activeSubjectId]="selectedSubject?.id"
+                  [hearing]="selectedHearing"
+                  [hearingCasesCount]="totalCasesForHearing$ | async"
+                  [casesAndApplicationsGroupedByDefendant]="casesAndApplicationsGroupedByDefendant"
+                  [isStandAloneApplication]="usesApplicationAttendeeFlow"
+                  [prosecutionCounsels]="prosecutionCounsels$ | async"
+                  [defenceCounsels]="defenceCounsels$ | async"
+                  [companyRepresentatives]="companyRepresentatives$ | async"
+                  [intermediariesCounsel]="intermediariesCounsel$ | async"
+                  [activeDefendant]="selectedDefendant"
+                  [changeJudiciaryLink]="changeJudiciaryLink"
+                  (onSubjectSelected)="selectSubject($event)"
+                  (onDefendantSelected)="defendantSelected($event)"
+                  (onGoToHearing)="goToHearing()"
+                  (onGoToCaseDetails)="goToCaseDetails($event)"
+                  (onGoToHearingResults)="goToHearingResults()"
+                  (onGoToAddCounsels)="showHideAttendeesPanel(true)"
+                >
+                </hearing-details-panel>
+              </pdk-grid>
+
+              <pdk-grid two-thirds>
+                @if (selectedDefendant) {
+                <defendant-details-panel
+                  [applicationsCourt]="selectedHearing?.courtApplications"
+                  [defendant]="selectedDefendant"
+                  [isStandAloneApplication]="usesApplicationAttendeeFlow"
+                  [reportingRestrictionReason]="selectedHearing?.reportingRestrictionReason"
+                  [reason]="getReferralReasonForDefendant(selectedDefendant)"
+                  [hearing]="selectedHearing"
+                  (onViewApplication)="viewApplication($event)"
+                  (onGoToCaseMarkers)="goToCaseMarkers($event)"
+                >
+                </defendant-details-panel>
+                } @if (selectedSubject) {
+                <application-overview
+                  [applicationCourt]="(courtApplicationsMap$ | async)[selectedSubject.applicationId]"
+                  (onViewApplication)="viewApplication($event)"
+                >
+                </application-overview>
+                }
+              </pdk-grid>
+            </pdk-grid>
+            } @if (showAttendeesPanel) {
+            <div>
+              <attendees-panel
+                [urns]="urns"
+                [attendanceDay]="selectedhearingDate"
+                [courtApplications]="selectedHearing?.courtApplications"
+                [isStandAloneApplication]="usesApplicationAttendeeFlow"
+                [proceedingsConcluded]="proceedingsConcluded"
+                [prosecutionCounsels]="prosecutionCounsels"
+                [counselsCacheOptions]="counselsCacheOptions$ | async"
+                [prosecutionCasesSummary]="prosecutionCasesSummary"
+                [hearingHasBulkCaseOnly]="hearingHasBulkCaseOnly"
+                [defendantsCurrentHearing]="defendantsCurrentHearing"
+                (onUpdateProsecutionCounsel)="updateProsecutionCounsel($event)"
+                (onUpdateDefenceCounsel)="updateDefenceCounsel($event)"
+                (onUpdateCompanyRepresentative)="updateCompanyRepresentative($event)"
+                (onChangeSelectedMenuItem)="changeSelectedAttendeeMenuItem($event)"
+                [defenceCounsels]="defenceCounsels"
+                [companyRepresentatives]="companyRepresentatives"
+                [applicantCounsels]="applicantCounsels"
+                [respondentCounsels]="respondentCounsels"
+                (applicantCounselsFormState)="applicantCounselsFormState = $event"
+                (destroyApplicantCounsel)="handleDestroyApplicantCounsel($event)"
+                (respondentCounselsFormState)="respondentCounselsFormState = $event"
+                (destroyRespondentCounsel)="handleDestroyRespondentCounsel($event)"
+                [intermediariesCounsel]="intermediariesCounsel"
+                [isHearingEventLogEnded]="hearingEventLogEnded"
+                (onUpdateIntermediaryCounsel)="updateIntermediaryCounsel($event)"
+                (onCounselValid)="counselValid = $event"
+              >
+              </attendees-panel>
+
+              <pdk-grid container>
+                <pdk-grid offset-one-third pdk-padding="3">
+                  <button
+                    pdk-button
+                    [disabled]="!isSaveButtonEnabled()"
+                    data-role="save-attendees-btn"
+                    class="button"
+                    (click)="saveCounsels()"
+                  >
+                    {{ 'ENTER_COUNSELS.SAVE_AND_CONTINUE' | translate }}
+                  </button>
+                </pdk-grid>
+              </pdk-grid>
+            </div>
+            }
+          </pdk-grid>
+          } @if (isCurrentUserAuthorisedToSeeThisHearing$ | async) {
+          <pdk-grid one-quarter data-role="right-side-panel">
+            @if (!showAttendeesPanel) {
+            <div>
+              <trial-outcome [hearing]="selectedHearing"></trial-outcome>
+              @if (topMenuDetails.length > 0 && topMenuDetails[0]?.length) {
+              <div>
+                <top-menu
+                  [topMenu]="topMenuDetails"
+                  (onMenuItemClick)="onMenuItemClick($event)"
+                ></top-menu>
+
+                <hearing-events-log
+                  [hidden]="!topMenuDetails[0][0]?.active"
+                  [jurisdictionType]="selectedHearing.jurisdictionType"
+                  [hearingId]="selectedHearing.id"
+                >
+                </hearing-events-log>
+
+                <hearing-case-links-notes
+                  [hidden]="!topMenuDetails[0][1]?.active"
+                  [hearing]="selectedHearing"
+                  [isStandAloneApplication]="usesApplicationAttendeeFlow"
+                  [canAddChildApplication]="canAddChildApplications$ | async"
+                  [selectedHearingDate]="selectedhearingDate"
+                  [hearingNotes]="hearingNotes$ | async"
+                  (onGoToCaseLink)="goToCaseLink($event)"
+                  (onGoToCreateTask)="goToCreateTask($event)"
+                >
+                </hearing-case-links-notes>
+
+                <hearing-list-feedback-panel
+                  [configFeedbackUrl]="feedbackUrl"
+                  [configGuidanceUrl]="guidanceUrl"
+                  title="{{ 'HEARING_LIST.FEEDBACK_GUAIDANCE' | translate }}"
+                  feedbackText="{{ 'HEARING_LIST.PROVIDE_FEEDBACK' | translate }}"
+                  guidanceText="{{ 'HEARING_LIST.GUIDANCE_FOR_STAFF' | translate }}"
+                >
+                </hearing-list-feedback-panel>
+              </div>
+              }
+            </div>
+            }
+          </pdk-grid>
+          } }
+        </pdk-grid>
+        }
+      </div>
+    </div>
+  </div>
+</div>

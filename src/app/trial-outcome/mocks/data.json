@@ -1,0 +1,148 @@
+{
+  "currentHearing": {
+    "crackedIneffectiveTrial": {
+      "id": "c81e728d-9d4c-3f63-af06-7f89cc14862c",
+      "seqNo": 2,
+      "reasonCode": "B",
+      "trialType": "Cracked",
+      "jurisdiction": "CCM",
+      "reasonShortDescription": "Acceptable guilty plea(s) entered late to some or all charges / counts on the charge sheet, previously rejected by the prosecution",
+      "reasonFullDescription": "On the date of trial the prosecution accepts a conditional plea having previously rejected the offer from the defence."
+    },
+    "applicantCounsels": [],
+    "courtApplications": [
+      {
+        "applicant": {
+          "id": "158b4670-59d5-4ee7-baef-e79efa0c2168",
+          "organisation": {
+            "name": "Testing Organisation Name"
+          },
+          "personDetails": {
+            "firstName": "Vivianne",
+            "gender": "MALE",
+            "lastName": "King",
+            "middleName": "Test"
+          },
+          "synonym": "Application"
+        },
+        "applicationReceivedDate": "2019-06-05",
+        "applicationReference": "16AG258380",
+        "applicationStatus": "DRAFT",
+        "id": "b13a4615-6c6b-4c1a-8769-4f9b17853876",
+        "respondents": [
+          {
+            "partyDetails": {
+              "id": "28a1ea63-206b-4cf4-8bde-86fb42122c16",
+              "organisation": {
+                "name": "Responding Organisation Name"
+              },
+              "personDetails": {
+                "firstName": "Jordon",
+                "gender": "MALE",
+                "lastName": "Legros"
+              },
+              "synonym": "Respondent"
+            }
+          },
+          {
+            "partyDetails": {
+              "id": "bf0fae81-e8c2-483b-85c8-bfd0d0e4e533",
+              "organisation": {
+                "name": "Second Responding Organisation Name"
+              },
+              "personDetails": {
+                "firstName": "Khalil",
+                "gender": "MALE",
+                "lastName": "Schulist"
+              },
+              "synonym": "Respondent"
+            }
+          }
+        ],
+        "type": {
+          "applicantSynonym": "Attendees",
+          "applicationCategory": "CO",
+          "applicationCode": "MC80528",
+          "applicationJurisdictionType": "EITHER",
+          "applicationLegislation": "In accordance with paragraph 5 of Schedule 3A to the Environmental Protection Act 1990.",
+          "applicationType": "Appeal relating to the distribution of free printed matter",
+          "id": "bc21afa7-418b-4fcc-b9ba-46cc36fc4dee",
+          "linkType": "EITHER",
+          "respondentSynonym": "Respondent"
+        }
+      }
+    ],
+    "courtCentre": {
+      "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+      "name": "Lavender Hill Magistrates' Court",
+      "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+      "roomName": "Courtroom 01",
+      "welshName": "Llys Ynadon Lavender Hill",
+      "welshRoomName": "Ystafell 01"
+    },
+    "defenceCounsels": [],
+    "defendantAttendance": [],
+    "defendantReferralReasons": [
+      {
+        "defendantId": "bcb1bee0-ca5f-11e9-98fa-5346c7ff35e2",
+        "description": "For trial",
+        "id": "bcb1bee2-ca5f-11e9-98fa-5346c7ff35e2"
+      }
+    ],
+    "hasSharedResults": true,
+    "hearingCaseNotes": [],
+    "hearingDays": [
+      {
+        "listedDurationMinutes": 40,
+        "listingSequence": 1,
+        "sittingDay": "2019-08-29T13:20:14.798Z"
+      }
+    ],
+    "hearingLanguage": "ENGLISH",
+    "id": "bcb1bee1-ca5f-11e9-98fa-5346c7ff35e2",
+    "judiciary": [
+      {
+        "firstName": "Sadie",
+        "isBenchChairman": true,
+        "isDeputy": false,
+        "judicialId": "bcb1bee3-ca5f-11e9-98fa-5346c7ff35e2",
+        "judicialRoleType": {
+          "judiciaryType": "MAGISTRATE"
+        },
+        "lastName": "Burke",
+        "middleName": "Mabelle",
+        "title": "Mrs"
+      },
+      {
+        "firstName": "Sadie",
+        "isBenchChairman": true,
+        "isDeputy": false,
+        "judicialId": "bcb1bee4-ca5f-11e9-98fa-5346c7ff35e2",
+        "judicialRoleType": {
+          "judiciaryType": "MAGISTRATE"
+        },
+        "lastName": "Coles",
+        "middleName": "Caroline",
+        "title": "Mrs"
+      }
+    ],
+    "jurisdictionType": "CROWN",
+    "prosecutionCases": [],
+    "prosecutionCounsels": [],
+    "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992",
+    "respondentCounsels": [],
+    "type": {
+      "description": "17RX954907",
+      "id": "bf8155e1-90b9-4080-b133-bfbad895d6e4"
+    }
+  },
+  "selectedReason": {
+    "id": "c81e728d-9d4c-3f63-af06-7f89cc14862c",
+    "seqNo": 2,
+    "reasonCode": "B",
+    "trialType": "Cracked",
+    "jurisdiction": "CCM",
+    "reasonShortDescription": "Acceptable guilty plea(s) entered late to some or all charges / counts on the charge sheet, previously rejected by the prosecution",
+    "reasonFullDescription": "On the date of trial the prosecution accepts a conditional plea having previously rejected the offer from the defence."
+  }
+}

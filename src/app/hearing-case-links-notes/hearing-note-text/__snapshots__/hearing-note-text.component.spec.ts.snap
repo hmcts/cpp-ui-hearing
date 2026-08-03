@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingNoteTextComponent should display emit event when user click the button 1`] = `
+<ng-component
+  clickOnSave={[Function Function]}
+  multiHearing={[Function Boolean]}
+  notes={[Function Array]}
+  selectedHearingDate={[Function String]}
+  sharedHearing="false"
+>
+  <hearing-note-text>
+    <div
+      data-test-id="hearingNoteForm"
+    >
+      <form
+        class="ng-untouched ng-valid ng-dirty"
+        novalidate=""
+        pdk-form=""
+      >
+        <pdk-form-field
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="caseNote"
+            >
+               COMMON.NEW_NOTE 
+            </label>
+            <textarea
+              class="note-textarea ng-untouched ng-valid govuk-input ng-dirty"
+              id="caseNote"
+              name="newNote"
+              pdk-input=""
+              pdk-resize=""
+              pdk-text-input=""
+              placeholder="COMMON.START_TYPING"
+              style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+            />
+          </pdk-form-group>
+        </pdk-form-field>
+        <button
+          class="button govuk-button"
+          data-role="save-note"
+          pdk-button=""
+          type="submit"
+        >
+           COMMON.SAVE_NOTE 
+        </button>
+      </form>
+    </div>
+  </hearing-note-text>
+</ng-component>
+`;
+
+exports[`HearingNoteTextComponent should have the expected template 1`] = `
+<ng-component
+  clickOnSave={[Function Function]}
+  multiHearing={[Function Boolean]}
+  notes={[Function Array]}
+  selectedHearingDate={[Function String]}
+  sharedHearing="false"
+>
+  <hearing-note-text>
+    <div
+      data-test-id="hearingNoteForm"
+    >
+      <form
+        class="ng-untouched ng-pristine ng-valid"
+        novalidate=""
+        pdk-form=""
+      >
+        <pdk-form-field
+          labeltype="small"
+        >
+          <pdk-form-group
+            class="pdk-form-group"
+          >
+            <label
+              class="govuk-label govuk-label--s"
+              for="caseNote"
+            >
+               COMMON.NEW_NOTE 
+            </label>
+            <textarea
+              class="note-textarea ng-untouched ng-pristine ng-valid govuk-input"
+              id="caseNote"
+              name="newNote"
+              pdk-input=""
+              pdk-resize=""
+              pdk-text-input=""
+              placeholder="COMMON.START_TYPING"
+              style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+            />
+          </pdk-form-group>
+        </pdk-form-field>
+        <button
+          class="button govuk-button"
+          data-role="save-note"
+          disabled="disabled"
+          pdk-button=""
+          type="submit"
+        >
+           COMMON.SAVE_NOTE 
+        </button>
+      </form>
+    </div>
+  </hearing-note-text>
+</ng-component>
+`;

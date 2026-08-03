@@ -1,0 +1,34 @@
+.attendee-details {
+  margin-right: 15px;
+}
+
+.name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#change-counsel-details-link,
+#change-judiciary-details-link,
+#change-attendees-details-link {
+  text-decoration: underline;
+}
+
+.hearing-counsels {
+  margin-bottom: 15px;
+}
+
+.list-contents {
+  padding: 0;
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+dd,
+dl,
+dt {
+  margin: 0;
+}

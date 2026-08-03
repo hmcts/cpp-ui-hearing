@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Future hearings selectors getFutureHearings should return 1 hearing 1`] = `
+[
+  {
+    "courtApplicationSummaries": [],
+    "hasSharedResults": false,
+    "hearingDays": [
+      {
+        "listedDurationMinutes": 30,
+        "listingSequence": 100,
+        "sittingDay": "2018-12-03T12:10:20.044Z",
+      },
+    ],
+    "hearingLanguage": "ENGLISH",
+    "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+    "jurisdictionType": "CROWN",
+    "prosecutionCaseSummaries": [
+      {
+        "defendants": [
+          {
+            "firstName": "test",
+            "id": "1",
+            "lastName": "test",
+          },
+        ],
+        "id": "string",
+        "prosecutionCaseIdentifier": {
+          "caseURN": "90EU623841",
+          "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+          "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+          "prosecutionAuthorityReference": "string",
+        },
+      },
+    ],
+    "reportingRestrictionReason": "reportingRestrictionReason",
+    "type": {
+      "description": "First hearing",
+      "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+    },
+  },
+]
+`;
+
+exports[`Future hearings selectors getFutureHearings should return no hearings 1`] = `[]`;
+
+exports[`Future hearings selectors getHasFutureHearings should return false 1`] = `false`;
+
+exports[`Future hearings selectors getHasFutureHearings should return true 1`] = `true`;
+
+exports[`Future hearings selectors getShowFutureHearingsRemovedAlert should return false 1`] = `false`;
+
+exports[`Future hearings selectors getShowFutureHearingsRemovedAlert should return true 1`] = `false`;

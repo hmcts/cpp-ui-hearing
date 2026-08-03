@@ -1,0 +1,128 @@
+<div pdk-margin-top="3" pdk-margin-bottom="2" class="event-log-heading-row">
+  <h3 pdk-typography="heading-small" data-role="event-log-heading-text">
+    {{ 'HEARING_EVENTS_LOG.HEADING_TITLE' | translate }}
+  </h3>
+
+  <div class="event-log-heading-row__actions">
+    @if (isCrownCourt) {
+    <button
+      pdk-link
+      pdk-typography="body-small"
+      pdk-margin-bottom="1"
+      class="link-button"
+      (click)="onAddDefenceWitness()"
+      data-role="add-witness-name"
+    >
+      {{ 'HEARING_EVENTS_LOG.ADD_WITNESS_NAME' | translate }}
+    </button>
+    } @if (isCrownCourt && isAnyNotesExpandable()) {
+    <a
+      pdk-link
+      pdk-typography="body-small"
+      href="javascript:void(0)"
+      (click)="toggleExpandNotes()"
+      data-role="expand-collapse-all-notes"
+    >
+      {{
+        isAnyNoteCollapsed()
+          ? ('HEARING_EVENTS_LOG.EXPAND_ALL_NOTES' | translate)
+          : ('HEARING_EVENTS_LOG.COLLAPSE_ALL_NOTES' | translate)
+      }}
+    </a>
+    }
+  </div>
+</div>
+
+@if (isCrownCourt) {
+<div
+  class="event-selector"
+  pdk-border-colour="light-grey"
+  pdk-padding-top="2"
+  pdk-padding-bottom="2"
+>
+  <form pdk-form novalidate>
+    <event-selector
+      [eventDefinitions]="eventDefinitions"
+      [hearingDefendants]="hearingDefendants"
+      [isHearingEventLogPaused]="isHearingEventLogPaused"
+      [resetAfterSelect]="true"
+      [hearingDefenceCounsels]="hearingDefenceCounsels"
+      [witnessNames]="witnessNames"
+      (eventSelected)="selectEvent($event)"
+    ></event-selector>
+  </form>
+</div>
+}
+
+<ul pdk-margin-top="0">
+  @for (event of events | sortLoggedEvents; track event.hearingEventId; let i = $index) {
+  <li
+    class="hearing-events-log-events-list-item"
+    data-test-id="hearingEvent"
+    pdk-border-colour="light-grey"
+    pdk-padding-top="3"
+    pdk-padding-bottom="3"
+    id="hearing-event-{{ i }}"
+  >
+    <div class="hearing-events-log-events-list-item__wrapper" pdk-margin-bottom="1">
+      <div
+        data-test-id="recordedLabel"
+        pdk-typography="body-small"
+        pdk-margin-bottom="0"
+        class="hearing-events-log-events-list-item__label"
+        data-role="event-label"
+      >
+        {{ event.recordedLabel }}
+      </div>
+
+      <div class="hearing-events-log-events-list-item__actions">
+        <div
+          data-test-id="eventTime"
+          id="timestamp-{{ i }}"
+          pdk-typography="body-small"
+          pdk-margin-bottom="0"
+          data-role="event-time"
+        >
+          {{ event.eventTime | date : 'HH:mm' }}
+        </div>
+
+        <a
+          pdk-link
+          pdk-typography="body-small"
+          pdk-margin-bottom="0"
+          href="javascript:void(0)"
+          (click)="onChangeEvent(event)"
+          data-role="change-logged-event-details"
+          [attr.aria-label]="'HEARING_EVENTS_LOG.CHANGE_EVENT' | translate"
+        >
+          <span>{{ 'COMMON.CHANGE' | translate }}</span>
+        </a>
+      </div>
+    </div>
+
+    <pdk-foldable-text
+      pdk-typography="body-small"
+      pdk-text-colour="dark-grey"
+      [(expanded)]="event.expanded"
+      (overflow)="event.overflow = $event"
+      >{{ event.note }}
+    </pdk-foldable-text>
+  </li>
+  }
+</ul>
+
+@if (isCrownCourt) {
+<div pdk-border-colour="mid-grey" class="top-border-solid">
+  @if (hearingEventLogCount && hearingEventLogCount.eventLogCountByHearingIdAndDate > 0) {
+  <button pdk-button="secondary" (click)="onDownloadTodayEventLog()">
+    {{ 'COMMON.DOWNLOAD_TODAYS_EVENT_LOG' | translate }}
+  </button>
+  }
+  <br />
+  @if (hearingEventLogCount && hearingEventLogCount.eventLogCountByHearingId > 0) {
+  <button pdk-button="secondary" (click)="onDownloadFullEventLog()">
+    {{ 'COMMON.DOWNLOAD_FULL_EVENT_LOG' | translate }}
+  </button>
+  }
+</div>
+}

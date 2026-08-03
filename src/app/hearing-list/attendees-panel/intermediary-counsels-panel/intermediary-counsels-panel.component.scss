@@ -1,0 +1,32 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.delete-counsel-link {
+  text-align: right;
+
+  & .disabledLink {
+    color: govuk.govuk-colour('dark-grey');
+  }
+}
+
+.defendant-group-container ::ng-deep .form-group {
+  margin-bottom: 0 !important;
+}
+
+.radio-button-container {
+  margin-bottom: 10px;
+}
+.witness-container {
+  .witness-radio {
+    float: left;
+    min-height: 68px;
+
+    .lbl-witness {
+      font-weight: bold;
+      cursor: pointer;
+
+      pdk-radio-button {
+        float: none !important;
+      }
+    }
+  }
+}

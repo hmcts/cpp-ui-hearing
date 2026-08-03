@@ -1,0 +1,24 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.offences-list {
+  border-top: 1px solid govuk.govuk-colour('dark-grey');
+
+  &:not(:first-child) {
+    border-top: 3px solid govuk.govuk-colour('black') !important;
+  }
+}
+
+.offence-list-item {
+  &:not(:last-child) {
+    border-bottom: 1px solid govuk.govuk-colour('dark-grey');
+  }
+}
+
+.border-bottom-solid {
+  border-bottom: 1px solid govuk-colour('dark-grey');
+}

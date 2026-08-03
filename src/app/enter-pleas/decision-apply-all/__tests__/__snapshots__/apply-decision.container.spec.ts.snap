@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplyDecisionContainer should have the expected template 1`] = `
+<apply-all
+  cancel={[Function EventEmitter_]}
+  currentOffence={[Function Object]}
+  defendant={[Function Object]}
+  submitUpdatePlea={[Function EventEmitter_]}
+>
+  <apply-decision>
+    <div
+      class="enter-plea"
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-one-third"
+          one-third=""
+        >
+          <h1
+            class="govuk-!-margin-top-4 govuk-heading-l"
+            pdk-margin-top="4"
+            pdk-typography="heading-large"
+          >
+             ENTER_PLEAS.APPLY 
+          </h1>
+        </pdk-grid>
+      </pdk-grid>
+      <div
+        class="plea mb-m"
+        data-role="offence-pleas"
+      >
+        <div
+          class="plea-count"
+        >
+          0
+        </div>
+        <div
+          class="plea-content mb-l"
+        >
+          <div
+            class="bold"
+          >
+            Pilot in command of pre 1989 aircraft fail to ensure oxygen demonstration
+          </div>
+          <div
+            class="font-xsmall mt-xs"
+          >
+            Contrary to Articles 107(3) and 265(6) of the Air Navigation Order 2016
+          </div>
+          <div
+            class="font-small mt-xs"
+          >
+            Before 16 February 2022 at qweqweqw being the pilot in command of a flight for the purpose of the public transport of passengers by an aircraft registered in the United Kingdom in and for which a certificate of airworthiness was first issued before 1st January 1989, failed to take all reasonable steps to ensure that an action described in column 1 of the table in Article 107(2) of the Air Navigation Order 2016, namely qweqweqwe was carried out
+          </div>
+          <div
+            class="clearfix"
+          />
+          <div
+            data-role="offence-defendant"
+          >
+            <p
+              class="bold govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+               Test98 QWEQWEQ 
+            </p>
+            <div>
+              <p
+                class="bold govuk-!-margin-top-4"
+                pdk-margin-top="4"
+              >
+                ENTER_PLEAS.PLEA
+              </p>
+              <p>
+                Not guilty
+              </p>
+            </div>
+            <div>
+              <p
+                class="bold govuk-!-margin-top-4"
+                pdk-margin-top="4"
+              >
+                 ENTER_PLEAS.ALLOCATION_DECISION 
+              </p>
+              <p>
+                Summary-only offence
+              </p>
+            </div>
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              novalidate=""
+              pdk-form=""
+            >
+              <p
+                class="bold govuk-!-margin-top-4"
+                pdk-margin-top="4"
+              >
+                Apply decision to
+              </p>
+              <pdk-form-field
+                labelhidden=""
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      inline=""
+                      name="offence-checkbox"
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               All offences for  Test98 QWEQWEQ 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+              <div
+                class="text-secondary plea-date pdk-!-text-color-dark-grey"
+                pdk-text-colour="dark-grey"
+              >
+                 Plea entered on 16 February 2022 
+              </div>
+              <button
+                class="govuk-!-margin-top-4 govuk-button"
+                data-role="submit-pleas"
+                pdk-button=""
+                pdk-margin-top="4"
+                type="submit"
+              >
+                 ENTER_PLEAS.SAVE_AND_RETURN 
+              </button>
+            </form>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <a
+                href="javascript:void(0)"
+              >
+                COMMON.CANCEL
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="clearfix"
+        />
+      </div>
+    </div>
+  </apply-decision>
+</apply-all>
+`;

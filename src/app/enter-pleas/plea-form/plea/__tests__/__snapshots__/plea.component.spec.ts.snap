@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PleaComponent should render the template with the values expected 1`] = `
+<ng-component
+  defendant={[Function Object]}
+  mockHearingType={[Function String]}
+  mockMotOptions={[Function Array]}
+  mockSentencingDecisionOptions={[Function Array]}
+  offence={[Function Object]}
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+    pdk-form=""
+  >
+    <plea>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <plea-options
+            type="chargeType"
+          />
+        </pdk-grid>
+      </pdk-grid>
+      <div
+        class="plea-date pdk-!-text-color-dark-grey"
+        pdk-text-colour="dark-grey"
+      >
+         Plea entered on 16 February 2022
+      </div>
+    </plea>
+    <button
+      class="govuk-button"
+      pdk-button=""
+      type="submit"
+    >
+      Save and continue
+    </button>
+  </form>
+</ng-component>
+`;

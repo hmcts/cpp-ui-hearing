@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PleaOptionComponent should render the template with the values expected 1`] = `
+<test-host-component
+  crownPleaOnlyOptions={[Function Array]}
+  defaultPleaValue={[Function String]}
+  defendant={[Function Object]}
+  hasCivilCase="false"
+  hearingType=""
+  label={[Function String]}
+  magsPleaOnlyOptions={[Function Array]}
+  offence={[Function Object]}
+  pleaOptions={[Function Array]}
+>
+  <plea-options>
+    <div>
+      <pdk-form-field
+        id="e1d32d9d-29ec-4934-a932-22a50f223966"
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--s"
+            >
+               Enter plea 
+            </legend>
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+               The following plea options are related to Ken THOMPSON for Test Offence 
+            </span>
+            <pdk-radio-group
+              class="ng-untouched ng-pristine ng-valid"
+              data-role="defendant-pleas"
+            >
+              <div
+                class="govuk-radios"
+              >
+                <div
+                  class="govuk-!-margin-bottom-6"
+                  pdk-margin-bottom="6"
+                >
+                  <pdk-radio-button>
+                    <div
+                      class="govuk-radios__item"
+                    >
+                      <input
+                        class="govuk-radios__input"
+                        id="pdk-radio-GENERATED_ID"
+                        name="pdk-radio-group-GENERATED_ID"
+                        type="radio"
+                        value="GUILTY"
+                      />
+                      <label
+                        class="govuk-radios__label govuk-label"
+                        for="pdk-radio-GENERATED_ID"
+                        pdk-label=""
+                      >
+                         Guilty 
+                      </label>
+                    </div>
+                  </pdk-radio-button>
+                  <pdk-radio-button>
+                    <div
+                      class="govuk-radios__item"
+                    >
+                      <input
+                        class="govuk-radios__input"
+                        id="pdk-radio-GENERATED_ID"
+                        name="pdk-radio-group-GENERATED_ID"
+                        type="radio"
+                        value="INDICATED_GUILTY"
+                      />
+                      <label
+                        class="govuk-radios__label govuk-label"
+                        for="pdk-radio-GENERATED_ID"
+                        pdk-label=""
+                      >
+                         Indicated plea of Guilty 
+                      </label>
+                    </div>
+                  </pdk-radio-button>
+                  <pdk-radio-button>
+                    <div
+                      class="govuk-radios__item"
+                    >
+                      <input
+                        class="govuk-radios__input"
+                        id="pdk-radio-GENERATED_ID"
+                        name="pdk-radio-group-GENERATED_ID"
+                        type="radio"
+                        value="NOT_GUILTY"
+                      />
+                      <label
+                        class="govuk-radios__label govuk-label"
+                        for="pdk-radio-GENERATED_ID"
+                        pdk-label=""
+                      >
+                         Not Guilty 
+                      </label>
+                    </div>
+                  </pdk-radio-button>
+                </div>
+              </div>
+            </pdk-radio-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <a
+        class="govuk-link govuk-link--no-visited-state"
+        data-role="clear-plea"
+        href="javascript:void(0);"
+        pdk-link=""
+        unvisited=""
+      >
+         Clear selection 
+      </a>
+    </div>
+  </plea-options>
+</test-host-component>
+`;

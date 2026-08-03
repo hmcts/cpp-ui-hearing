@@ -1,0 +1,53 @@
+<form pdk-form #createOutstandingReportForm (validSubmit)="onSubmit()">
+  <pdk-grid twhree-quarters>
+    <pdk-form-field label="{{ 'OUTSTANDING_FINES.COURT_HOUSE' | translate }}">
+      <cpp-organisation-unit-autosuggest
+        data-role="court-centre-filter"
+        name="court-centre-filter-outstanding-report"
+        ngModel
+        #courtHouse="ngModel"
+        required
+        ngDefaultControl
+      >
+      </cpp-organisation-unit-autosuggest>
+    </pdk-form-field>
+
+    <button
+      data-role="select-court-house"
+      pdk-button
+      type="button"
+      (click)="courtCentreSelected(courtHouse.value)"
+      [disabled]="!courtHouse.value"
+    >
+      {{ 'OUTSTANDING_FINES.SELECT_COURTHOUSE' | translate }}
+    </button>
+  </pdk-grid>
+
+  @if (selectedCourtCentre) {
+  <pdk-form-field label="{{ 'OUTSTANDING_FINES.COURT_ROOM' | translate }}">
+    <pdk-checkbox-group
+      name="court-rooms-outstanding-report"
+      (change)="courtroomSelected($event)"
+      [(ngModel)]="selectedOptions.courtRoomsFilter"
+      [options]="courtRoomOptions"
+      required
+    >
+    </pdk-checkbox-group>
+  </pdk-form-field>
+  <pdk-form-field label="{{ 'COMMON.DATE' | translate }}">
+    <pdk-date-picker-input
+      name="date-outstanding-report"
+      [id]="'date-picker-outstanding-report'"
+      [(ngModel)]="selectedOptions.dateFilter"
+    ></pdk-date-picker-input>
+  </pdk-form-field>
+  <button
+    data-role="create-report-outstanding-report"
+    pdk-button
+    type="submit"
+    [disabled]="disableSubmitButton"
+  >
+    {{ 'OUTSTANDING_FINES.CREATE_REPORT_SUBMIT' | translate }}
+  </button>
+  }
+</form>

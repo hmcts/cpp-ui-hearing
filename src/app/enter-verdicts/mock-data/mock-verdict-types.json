@@ -1,0 +1,16 @@
+[
+  {
+    "id": "7e2f843e-d639-40b3-8611-8015f3a18951",
+    "description": "Found guilty",
+    "category": "Guilty",
+    "categoryType": "GUILTY",
+    "sequence": 1
+  },
+  {
+    "id": "c81e728d-9d4c-3f63-af06-7f89cc14862c",
+    "description": "Autrefois acquit",
+    "category": "No verdict",
+    "categoryType": "NO_VERDICT",
+    "sequence": 2
+  }
+]

@@ -1,0 +1,107 @@
+<div pdk-margin-bottom="4" class="attendees-header" pdk-border-colour="yellow">
+  <div pdk-typography="body-medium" class="bold">
+    <div class="inline-panel">{{ 'ENTER_COUNSELS.HEADER' | translate }}</div>
+  </div>
+  <div pdk-margin-top="4">
+    <div class="inline-panel">{{ 'ENTER_COUNSELS.SUB_HEADER' | translate }}</div>
+  </div>
+</div>
+
+<pdk-grid container class="panel-items">
+  <pdk-grid one-third>
+    @for (attendeesItem of attendeesMenuItems; track attendeesItem) {
+    <panel-item
+      attr.data-role="attendees-panel-{{ attendeesItem }}"
+      class="attendees-menu"
+      [active]="attendeesItem === selectedAttendeeItem"
+      (select)="selectAttendeeMenuItem(attendeesItem)"
+    >
+      {{ getAttendeeMenuItemLabel(attendeesItem) }}
+    </panel-item>
+    }
+  </pdk-grid>
+  <pdk-grid two-thirds>
+    <!-- Defence -->
+
+    @if (selectedAttendeeItem === 'DEFENCE') {
+    <defence-counsels-panel
+      [defenceCounsels]="defenceCounsels"
+      [counselsCacheOptions]="counselsCacheOptions"
+      [defendantsCurrentHearing]="defendantsCurrentHearing"
+      (onUpdateDefenceCounsel)="updateDefenceCounsel($event)"
+      (validState)="onCounselValid.emit($event)"
+      [isHearingEventLogEnded]="isHearingEventLogEnded"
+    >
+    </defence-counsels-panel>
+    }
+
+    <!-- Company Representative -->
+
+    @if (selectedAttendeeItem === 'COMPANY REPRESENTATIVE') {
+    <company-representatives-panel
+      [companyRepresentatives]="companyRepresentatives"
+      [counselsCacheOptions]="counselsCacheOptions"
+      [defendantsCurrentHearing]="defendantsCurrentHearing"
+      (onUpdateCompanyRepresentative)="updateCompanyRepresentative($event)"
+      (validState)="onCounselValid.emit($event)"
+    >
+    </company-representatives-panel>
+    }
+
+    <!-- Prosecution -->
+
+    @if (selectedAttendeeItem === 'PROSECUTION') {
+    <prosecution-counsels-panel
+      [prosecutionCounsels]="prosecutionCounsels"
+      [counselsCacheOptions]="counselsCacheOptions"
+      [prosecutionCasesSummary]="prosecutionCasesSummary"
+      [isHearingEventLogEnded]="isHearingEventLogEnded"
+      (onUpdateProsecutionCounsel)="updateProsecutionCounsel($event)"
+      (validState)="onCounselValid.emit($event)"
+    >
+    </prosecution-counsels-panel>
+    }
+
+    <!-- Applicants -->
+
+    @if (selectedAttendeeItem === APPLICANT) {
+    <application-counsels-panel
+      counselType="applicant"
+      [applicantAppellantTitle]="applicantAppellantTitle"
+      [applications]="courtApplications"
+      [attendanceDay]="attendanceDay"
+      [counsels]="applicantCounsels"
+      (destroyCounsel)="destroyApplicantCounsel.emit($event)"
+      (formState)="applicantCounselsFormState.emit($event)"
+    >
+    </application-counsels-panel>
+    }
+
+    <!-- Respondents -->
+
+    @if (selectedAttendeeItem === RESPONDENT) {
+    <application-counsels-panel
+      counselType="respondent"
+      [applications]="courtApplications"
+      [attendanceDay]="attendanceDay"
+      [counsels]="respondentCounsels"
+      (destroyCounsel)="destroyRespondentCounsel.emit($event)"
+      (formState)="respondentCounselsFormState.emit($event)"
+    >
+    </application-counsels-panel>
+    }
+
+    <!-- Intermediary Interpreter -->
+    @if (selectedAttendeeItem === INTERPRETER_INTERMEDIARY) {
+    <intermediary-counsels-panel
+      [intermediariesCounsel]="intermediariesCounsel"
+      (onUpdateIntermediary)="updateIntermediaryCounsel($event)"
+      [counselsCacheOptions]="counselsCacheOptions"
+      [defendants]="defendantsCurrentHearing"
+      [attendanceDay]="attendanceDay"
+      (validState)="onCounselValid.emit($event)"
+    >
+    </intermediary-counsels-panel>
+    }
+  </pdk-grid>
+</pdk-grid>

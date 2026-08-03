@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check and challenge container should render the container 1`] = `
+<check-and-challenge-container
+  route={[Function Object]}
+  store={[Function _Store]}
+>
+  <check-and-challenge-component>
+    <div
+      class="govuk-!-margin-bottom-6 pdk-!-fill-color-light-grey-tint-50 govuk-!-padding-3"
+      pdk-fill-colour="light-grey"
+      pdk-margin-bottom="6"
+      pdk-padding="3"
+      tint="50"
+    >
+      <pdk-grid
+        container=""
+      >
+        <pdk-grid
+          full=""
+        >
+          <h1
+            pdk-typography="heading-large"
+          >
+          </h1>
+        </pdk-grid>
+      </pdk-grid>
+      <div
+        class="govuk-!-margin-bottom-3"
+        container=""
+        pdk-grid=""
+        pdk-margin-bottom="3"
+      >
+        <div
+          one-third=""
+          pdk-grid=""
+        >
+          <b>
+          </b>
+        </div>
+        <div
+          pdk-grid=""
+          two-thirds=""
+        >
+          <b>
+          </b>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2
+        pdk-typography="heading-medium"
+      >
+      </h2>
+      <p>
+      </p>
+      <form
+        data-test-id="checkAndChallengeForm"
+        novalidate=""
+        pdk-form=""
+      >
+        <pdk-form-field
+          label="Reason"
+          labeltype="none"
+        >
+          <pdk-form-group>
+          </pdk-form-group>
+        </pdk-form-field>
+        <button
+          data-role="save-reason-button"
+          pdk-button=""
+          type="submit"
+        >
+        </button>
+        <div>
+          <a
+            href="javascript:void(0)"
+            pdk-link=""
+            unvisited=""
+          >
+          </a>
+        </div>
+      </form>
+    </div>
+  </check-and-challenge-component>
+</check-and-challenge-container>
+`;

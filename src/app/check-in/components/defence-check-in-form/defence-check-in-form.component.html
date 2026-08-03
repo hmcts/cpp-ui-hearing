@@ -1,0 +1,113 @@
+<div class="courtrooms" id="prosecution-check-in-form" pdk-margin-top="9">
+  <form pdk-form (submit)="onSubmit()">
+    <div [class.form-has-errors]="errors && errors.length > 0">
+      <pdk-accordion>
+        @for ( defendantGroup of hearingSummariesGroupedByCaseId; track defendantGroup.courtroomName
+        ) {
+        <pdk-accordion-item [title]="defendantGroup.courtroomName">
+          <pdk-form-field label="Select cases and applications" labelType="none">
+            <pdk-checkbox-group
+              name="selectedCases_{{ defendantGroup.courtroomName }}"
+              [(ngModel)]="formSelector[defendantGroup.courtroomName].selectedCases"
+            >
+              <table pdk-table>
+                <thead pdk-table-head>
+                  <tr pdk-table-row>
+                    <th pdk-table-header="column" style="width: 100px">
+                      Check in as prosecution
+                      <select-all
+                        selectText="Select all hearings"
+                        unSelectText="Unselect all hearings"
+                        [hasSelected]="hasAllCasesSelected(defendantGroup.courtroomName)"
+                        (onToggle)="selectCases(defendantGroup.courtroomName, $event)"
+                      >
+                      </select-all>
+                    </th>
+                    <th pdk-table-header="column">URN</th>
+                    <th pdk-table-header="column">Defendant</th>
+                    <th pdk-table-header="column" style="width: 100px">
+                      Check in as defence
+                      <select-all
+                        selectText="Select all defendants"
+                        unSelectText="Unselect all defendants"
+                        [hasSelected]="hasAllDefendantsSelected(defendantGroup.courtroomName)"
+                        (onToggle)="selectDefendants(defendantGroup.courtroomName, $event)"
+                      >
+                      </select-all>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody pdk-table-body>
+                  @for (case of defendantGroup.cases; track case.caseId) {
+                  <tr pdk-table-row>
+                    <td pdk-table-cell style="width: 100px">
+                      <pdk-checkbox
+                        [value]="case.caseId"
+                        [disabled]="shouldDisableCase(case.caseId)"
+                        pdk-margin-top="1"
+                      >
+                        <span pdk-visually-hidden>
+                          {{ case.caseReference }}
+                        </span>
+                      </pdk-checkbox>
+                    </td>
+                    <td pdk-table-cell>
+                      <div pdk-margin-top="2">
+                        {{ case.caseReference }}
+                      </div>
+                    </td>
+                    <td pdk-table-cell colspan="2">
+                      <pdk-form-field
+                        label="Select defendants for {{ case.caseReference }}"
+                        labelType="none"
+                      >
+                        <pdk-checkbox-group
+                          name="selectedDefendants_{{ case.caseId }}"
+                          [(ngModel)]="
+                            formSelector[defendantGroup.courtroomName].cases[case.caseId].defendants
+                          "
+                        >
+                          @for (defendant of case.defendants; track defendant.id) {
+                          <div
+                            style="display: flex; width: 100%; align-items: center"
+                            pdk-margin-top="1"
+                            pdk-margin-bottom="2"
+                          >
+                            <div style="flex-grow: 1">
+                              <b>{{ defendant.name }}</b>
+                            </div>
+                            <pdk-checkbox
+                              [value]="defendant.id"
+                              [disabled]="
+                                shouldDisableDefendant(defendantGroup.courtroomName, case.caseId)
+                              "
+                            >
+                              <span pdk-visually-hidden>
+                                {{ defendant.name }}
+                              </span>
+                            </pdk-checkbox>
+                          </div>
+                          }
+                        </pdk-checkbox-group>
+                      </pdk-form-field>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </pdk-checkbox-group>
+          </pdk-form-field>
+        </pdk-accordion-item>
+        }
+      </pdk-accordion>
+    </div>
+    <button pdk-button data-role="checkin-btn" type="submit">
+      {{ 'CHECK_IN.SUBMIT_BUTTON' | translate }}
+    </button>
+  </form>
+</div>
+<div class="mt-l">
+  <a pdk-link href="{{ appUrl }}">
+    {{ 'CHECK_IN.CANCEL' | translate }}
+  </a>
+</div>

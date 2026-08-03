@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingListContainer should render the template with the values expected 1`] = `
+<hearing-list
+  IdpcIngestionStore={[Function MockIdpcIngestionStore]}
+  activatedRoute={[Function Object]}
+  applicantCounsels={[Function Array]}
+  applicationSubjects$="undefined"
+  attendeesMenuItems={[Function Array]}
+  breadcrumbs={[Function Array]}
+  canAddChildApplications$="undefined"
+  caseAlertService={[Function Object]}
+  caseIds={[Function Array]}
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  cd={[Function ViewRef]}
+  companyRepresentativeIds={[Function Array]}
+  companyRepresentatives={[Function Array]}
+  companyRepresentatives$={[Function Observable]}
+  configService={[Function Object]}
+  counselValid="false"
+  counselsCacheOptions$={[Function Observable]}
+  courtApplicationsMap$={[Function Observable]}
+  courtCentres$={[Function Observable]}
+  dateUtil={[Function CPPDate]}
+  defenceCounselIds={[Function Array]}
+  defenceCounsels={[Function Array]}
+  defenceCounsels$={[Function Observable]}
+  destroy$={[Function Subject]}
+  document={[Function Document]}
+  editedCompanyRepresentative="false"
+  editedDefence="false"
+  editedIntemediaries="false"
+  editedProsecution="false"
+  errors={[Function Array]}
+  expectedPermissions={[Function Object]}
+  feedbackUrl={[Function String]}
+  guidanceUrl={[Function String]}
+  hasApiActivity$={[Function Observable]}
+  hasHearingResults$={[Function Observable]}
+  hearingEventLogEnded="null"
+  hearingHasBulkCaseOnly="false"
+  hearingNotes$={[Function Observable]}
+  hearings$={[Function Observable]}
+  idpcIngestionPhase$={[Function BehaviorSubject]}
+  inWorkingArea$={[Function Observable]}
+  intermediariesCounsel={[Function Array]}
+  intermediariesCounsel$={[Function Observable]}
+  intermediariesCounselIds={[Function Array]}
+  isCurrentUserAuthorisedToSeeThisHearing$={[Function Observable]}
+  isStandAloneApplication="false"
+  location={[Function Observable]}
+  loggedInUser={[Function Object]}
+  pageScrollService={[Function Object]}
+  proceedingsConcluded="false"
+  prosecutionCounsels={[Function Array]}
+  prosecutionCounsels$={[Function Observable]}
+  prosecutionCounselsIds={[Function Array]}
+  respondentCounsels={[Function Array]}
+  router={[Function Object]}
+  selectedDefendant={[Function Object]}
+  selectedHearing={[Function Object]}
+  selectedOptions={[Function Object]}
+  selectedSubject="null"
+  selectedhearingDate={[Function String]}
+  showAttendeesPanel="false"
+  showFilters={[Function Boolean]}
+  store={[Function Object]}
+  todayHearingListIds={[Function Array]}
+  topMenu={[Function Array]}
+  totalCasesForHearing$={[Function Observable]}
+  translate={[Function _TranslateService]}
+  urns={[Function Array]}
+  userHasHearingPermission$={[Function Observable]}
+  usesApplicationAttendeeFlow="false"
+  window={[Function Window]}
+  wofdWarningService={[Function Object]}
+>
+  <div
+    class="govuk-!-padding-top-6"
+    pdk-padding-top="6"
+  >
+    <div
+      class="flex-header"
+    >
+      <h1
+        pdk-typography="heading-large"
+      >
+      </h1>
+    </div>
+    <div
+      class="hearing-list"
+    >
+      <div
+        class="govuk-!-margin-bottom-9"
+        pdk-margin-bottom="9"
+      >
+        <div
+          class="collapsible-container"
+        >
+          <pdk-collapsable
+            class="govuk-!-margin-bottom-0"
+            pdk-margin-bottom="0"
+          >
+            <div
+              class="pdk-collapsable"
+            >
+              <div
+                class="pdk-collapsable__header"
+              >
+                <button
+                  class="pdk-collapsable__button"
+                  type="button"
+                >
+                  <div
+                    class="pdk-collapsable__toggle"
+                  >
+                  </div>
+                  <span
+                    class="pdk-collapsable__button-text"
+                  >
+                  </span>
+                </button>
+              </div>
+              <div
+                pdk-collapse=""
+              >
+              </div>
+            </div>
+          </pdk-collapsable>
+          <hr
+            class="pdk-!-border-color-black"
+            pdk-border-colour="black"
+          />
+        </div>
+        <div
+          class="govuk-!-margin-top-4"
+          pdk-margin-top="4"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</hearing-list>
+`;

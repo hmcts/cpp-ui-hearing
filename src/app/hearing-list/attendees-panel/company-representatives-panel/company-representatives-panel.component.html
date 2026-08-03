@@ -1,0 +1,124 @@
+<form pdk-form novalidate>
+  <h1 pdk-margin-bottom="6" pdk-typography="heading-medium">
+    {{ 'ENTER_COUNSELS.REPRESENTATIVE' | translate }}
+  </h1>
+
+  @for ( companyRepresentative of companyRepresentatives; track companyRepresentative.id; let i =
+  $index ) {
+  <div>
+    @if (companyRepresentative.caseUrn) {
+    <h3 pdk-typography="heading-medium">
+      {{ companyRepresentative.caseUrn }}
+    </h3>
+    }
+    <div
+      pdk-margin-bottom="4"
+      pdk-margin-top="2"
+      [id]="companyRepresentative.id"
+      data-test-id="companyRepresentative"
+      data-role="company-representative"
+      [ngModelGroup]="modelGroup[companyRepresentative.id]"
+    >
+      <div pdk-margin-bottom="2" class="form-group">
+        <div class="delete-counsel-link">
+          @if (disableDelete()) {
+          <a pdk-link href="javascript:void(0);" class="disabledLink">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          } @if (!disableDelete()) {
+          <a pdk-link href="javascript:void(0);" (click)="removeCompanyRepresentative(i)">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          }
+        </div>
+        <pdk-form-field
+          id="firstName"
+          label="{{ 'ENTER_COUNSELS.FIRST_NAME' | translate }}"
+          labelType="small"
+        >
+          <pdk-autosuggest-lite
+            data-role="representative-firstname"
+            name="{{ 'firstName-' + companyRepresentative?.id }}"
+            (ngModelChange)="updateModelProp($event, companyRepresentative)"
+            (inputText)="onInputTextChanged($event, companyRepresentative, 'firstName')"
+            [ngModel]="
+              modelGroup[companyRepresentative.id]['firstName-' + companyRepresentative?.id]
+            "
+            [ariaDescribedBy]="'aria-describedby-autosuggest'"
+            [suggestions]="modelGroup[companyRepresentative.id]?.firstNameSuggestions"
+            [suggestionKey]="'value'"
+            [suggestionTitle]="'label'"
+          >
+          </pdk-autosuggest-lite>
+        </pdk-form-field>
+      </div>
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field
+          id="lastName"
+          label="{{ 'ENTER_COUNSELS.LAST_NAME' | translate }}"
+          labelType="small"
+        >
+          <pdk-autosuggest-lite
+            data-role="representative-lastname"
+            name="{{ 'lastName-' + companyRepresentative?.id }}"
+            (ngModelChange)="updateModelProp($event, companyRepresentative)"
+            (inputText)="onInputTextChanged($event, companyRepresentative, 'lastName')"
+            [ngModel]="
+              modelGroup[companyRepresentative.id]['lastName-' + companyRepresentative?.id]
+            "
+            [ariaDescribedBy]="'aria-describedby-autosuggest'"
+            [suggestions]="modelGroup[companyRepresentative.id]?.lastNameSuggestions"
+            [suggestionKey]="'value'"
+            [suggestionTitle]="'label'"
+          >
+          </pdk-autosuggest-lite>
+        </pdk-form-field>
+      </div>
+      <div data-role="representative-position">
+        <pdk-form-field label="{{ 'ENTER_COUNSELS.POSITION' | translate }}" labelType="small">
+          <pdk-radio-group
+            name="representative-position"
+            [(ngModel)]="companyRepresentative.position"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="checkIsValid(companyRepresentatives)"
+            required
+          >
+            <pdk-radio-button value="DIRECTOR">{{
+              'ENTER_COUNSELS.DIRECTOR' | translate
+            }}</pdk-radio-button>
+            <pdk-radio-button value="SECRETARY">{{
+              'ENTER_COUNSELS.SECRETARY' | translate
+            }}</pdk-radio-button>
+          </pdk-radio-group>
+        </pdk-form-field>
+      </div>
+      <div data-role="representative-representing">
+        <pdk-form-field label="{{ 'ENTER_COUNSELS.REPRESENTING' | translate }}" labelType="small">
+          <pdk-radio-group
+            name="{{ 'defendantId-' + companyRepresentative?.id }}"
+            [ngModel]="
+              modelGroup[companyRepresentative.id]['defendantId-' + companyRepresentative?.id]
+            "
+            (change)="updateDefendant(companyRepresentative, $event)"
+            required
+          >
+            @for (item of options; track item.value) {
+            <div>
+              <pdk-radio-button [value]="item.value" data-role="representative-representing-option">
+                {{ item.label }}
+              </pdk-radio-button>
+            </div>
+            }
+          </pdk-radio-group>
+        </pdk-form-field>
+      </div>
+    </div>
+    <hr />
+  </div>
+  }
+
+  <a pdk-link href="javascript:void(0);" (click)="addCompanyRepresentative()">
+    {{ 'ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE' | translate }}
+  </a>
+  <hr />
+</form>

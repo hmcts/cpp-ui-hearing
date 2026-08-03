@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectAllComponent Snapshot Tests should match snapshot when hasSelected is false 1`] = `
+<select-all
+  hasSelected="false"
+  onToggle={[Function EventEmitter_]}
+  selectText={[Function String]}
+  unSelectText={[Function String]}
+>
+  <div
+    class="select-unselect-all"
+  >
+    <a
+      alt="Select All"
+      class="govuk-link"
+      href="javascript:void(0);"
+      pdk-link=""
+      style="font-weight: normal;"
+    >
+       Select All 
+    </a>
+  </div>
+</select-all>
+`;
+
+exports[`SelectAllComponent Snapshot Tests should match snapshot when hasSelected is true 1`] = `
+<select-all
+  hasSelected={[Function Boolean]}
+  onToggle={[Function EventEmitter_]}
+  selectText={[Function String]}
+  unSelectText={[Function String]}
+>
+  <div
+    class="select-unselect-all"
+  >
+    <a
+      alt="Unselect All"
+      class="govuk-link"
+      href="javascript:void(0);"
+      pdk-link=""
+      style="font-weight: normal;"
+    >
+       Unselect All 
+    </a>
+  </div>
+</select-all>
+`;

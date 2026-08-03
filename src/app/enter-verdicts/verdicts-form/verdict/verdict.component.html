@@ -1,0 +1,81 @@
+@if (hasJury(clonedOffence.verdict.verdictType?.id) && hearingType === 'CROWN') {
+<jurors-selector [offence]="clonedOffence" (changed)="onJurorsSelect($event)"> </jurors-selector>
+}
+
+<pdk-grid container>
+  <pdk-grid two-thirds>
+    <pdk-form-field label="Verdict for {{ defendant | fullName : true }}" labelType="none">
+      <pdk-radio-group
+        name="chargeType"
+        [ngModel]="currentVerdictType"
+        (ngModelChange)="onUpdateVerdict($event)"
+      >
+        @for ( item of filterOptions( clonedOffence.verdict.verdictType.id,
+        clonedOffence.verdict.isDeleted, open[clonedOffence.id] ); track item ) {
+        <pdk-radio-button
+          attr.data-role="{{ createStringFromDescription(item.label) }}"
+          [value]="item.value"
+        >
+          {{ item.label }}
+        </pdk-radio-button>
+        <div class="clearfix"></div>
+        @if ( isGuiltyButLesserOrAlternativeOffence(item.value) &&
+        clonedOffence.verdict.verdictType.id === item.value && !clonedOffence.verdict.isDeleted ) {
+        <pdk-form-field label="Lesser offence" id="{{ clonedOffence.id }}" labelType="none">
+          <div pdk-margin-left="8">
+            <offence-search
+              [selectedOffenceCode]="clonedOffence.verdict?.lesserOrAlternativeOffence?.offenceCode"
+              [ngModel]="clonedOffence.verdict.value?.lesserOffence"
+              [isVerdictDeleted]="clonedOffence.verdict.isDeleted"
+              (ngModelChange)="updateOffence($event)"
+              name="lesserOffence"
+            >
+            </offence-search>
+            @if (clonedOffence.verdict.value?.lesserOffence && !valueUpdated) {
+            <pdk-inset-text>
+              {{ clonedOffence.verdict.value?.lesserOffence }}
+            </pdk-inset-text>
+            }
+          </div>
+        </pdk-form-field>
+        } }
+      </pdk-radio-group>
+      <div pdk-margin-top="8">
+        @if (canChangeVerdict(offence)) {
+        <a
+          pdk-link
+          data-role="clear-verdict"
+          href="javascript:void(0);"
+          (click)="clear(offence, defendant)"
+        >
+          Clear selection
+        </a>
+        }
+      </div>
+    </pdk-form-field>
+    @if (clonedOffence.verdict?.verdictDate && !clonedOffence.verdict?.isDeleted) {
+    <div pdk-text-colour="dark-grey" class="plea-date">
+      {{ 'ENTER_VERDICTS.VERDICT_ENTERED_ON' | translate }}
+      {{ clonedOffence.verdict.verdictDate | date : 'dd MMMM yyyy' }}
+    </div>
+    }
+  </pdk-grid>
+
+  <pdk-grid one-third class="other-verdicts-types">
+    @if (canChangeVerdict(offence)) {
+    <a
+      pdk-link
+      data-role="toggle-verdict-types"
+      data-test-id="show-other-verdict-types"
+      href="javascript:void(0)"
+      (click)="toggleOtherVerdicts(clonedOffence.id)"
+    >
+      {{
+        open[clonedOffence.id]
+          ? ('ENTER_VERDICTS.HIDE_OTHER_VERDICTS_TYPES' | translate)
+          : ('ENTER_VERDICTS.SHOW_OTHER_VERDICTS_TYPES' | translate)
+      }}
+    </a>
+    }
+  </pdk-grid>
+</pdk-grid>

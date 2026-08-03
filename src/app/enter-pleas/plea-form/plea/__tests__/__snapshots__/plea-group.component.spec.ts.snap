@@ -1,0 +1,302 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PleaGroupComponent should render the template with the values expected 1`] = `
+<ng-component
+  plea={[Function Object]}
+>
+  <plea-group>
+    <div
+      data-role="offence-pleas"
+    >
+      <hr
+        class="pdk-!-border-color-light-grey"
+        pdk-border-colour="light-grey"
+      />
+      <h2
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Case reference: 
+        </span>
+         28DI8217799 
+      </h2>
+      <section
+        data-test-id="offencePlea"
+      >
+        <h4
+          class="govuk-!-margin-bottom-3 govuk-heading-s"
+          data-test-id="defendantName"
+          pdk-margin-bottom="3"
+          pdk-typography="heading-small"
+        >
+           ab MIKNSIEJ 
+        </h4>
+        <div>
+          <h5
+            class="govuk-!-margin-bottom-3 govuk-heading-s"
+            data-test-id="offenceTitle"
+            pdk-margin-bottom="3"
+            pdk-typography="heading-small"
+          >
+             Offence 2 - Aid / abet driving of a motor vehicle on a road / public place when alcohol level above the prescribed limit 
+          </h5>
+          <div
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+             Contrary to section 5(1)(a) of the Road Traffic Act 1988, Schedule 2 to the Road Traffic Offenders Act 1988 and section 44 of the Magistrates Courts Act 1980. 
+          </div>
+          <div
+            class="govuk-body-s"
+            data-test-id="offenceWording"
+            pdk-typography="body-small"
+          >
+             Before 01 Dec 2023 at sv aided, abetted, counselled and procured, df, to drive a motor vehicle, namely wsef on a road, namely qawdf, after consuming so much alcohol that the proportion of it in their breath, namely 12  microgrammes of alcohol in 100 millilitres of breath, exceeded the prescribed limit.. 
+          </div>
+          <div
+            class="govuk-!-margin-bottom-6"
+            pdk-margin-bottom="6"
+          >
+            <div
+              class="govuk-body-s"
+              pdk-typography="body-small"
+            >
+              <span
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Alcohol or drug level amount
+              </span>
+               13 
+            </div>
+            <div
+              class="govuk-body-s"
+              pdk-typography="body-small"
+            >
+              <span
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Alcohol method (blood/breath/urine) or Drug type
+              </span>
+            </div>
+            <a
+              aria-label="Amend Aid / abet driving of a motor vehicle on a road / public place when alcohol level above the prescribed limit"
+              class="govuk-link govuk-link--no-visited-state"
+              data-role="amend-offence"
+              pdk-link=""
+              unvisited=""
+            >
+              Edit values
+            </a>
+          </div>
+          <plea>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                two-thirds=""
+              >
+                <plea-options
+                  type="chargeType"
+                >
+                  <div>
+                    <pdk-form-field
+                      id="50e4c309-33b7-4e04-aeb8-0e35c8f1f062"
+                      labeltype="small"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <fieldset
+                          class="govuk-fieldset"
+                          pdk-fieldset=""
+                        >
+                          <legend
+                            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                          >
+                             ENTER_PLEAS.PLEA 
+                          </legend>
+                          <span
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                          >
+                             The following plea options are related to ab MIKNSIEJ for Aid / abet driving of a motor vehicle on a road / public place when alcohol level above the prescribed limit 
+                          </span>
+                          <pdk-radio-group
+                            class="ng-untouched ng-pristine ng-valid"
+                            data-role="defendant-pleas"
+                          >
+                            <div
+                              class="govuk-radios"
+                            >
+                              <div
+                                class="govuk-!-margin-bottom-6"
+                                pdk-margin-bottom="6"
+                              >
+                              </div>
+                            </div>
+                          </pdk-radio-group>
+                        </fieldset>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <a
+                      class="govuk-link govuk-link--no-visited-state"
+                      data-role="clear-plea"
+                      href="javascript:void(0);"
+                      pdk-link=""
+                      unvisited=""
+                    >
+                       Clear selection 
+                    </a>
+                  </div>
+                </plea-options>
+              </pdk-grid>
+            </pdk-grid>
+          </plea>
+          <hr
+            class="pdk-!-border-color-light-grey"
+            pdk-border-colour="light-grey"
+          />
+        </div>
+        <div>
+          <h5
+            class="govuk-!-margin-bottom-3 govuk-heading-s"
+            data-test-id="offenceTitle"
+            pdk-margin-bottom="3"
+            pdk-typography="heading-small"
+          >
+             Offence 3 - Drive motor vehicle with a proportion of a specified controlled drug above the specified limit 
+          </h5>
+          <div
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+             Contrary to section 5A(1)(a) and (2) of the Road Traffic Act 1988 and Schedule 2 to the Road Traffic Offenders Act 1988. 
+          </div>
+          <div
+            class="govuk-body-s"
+            data-test-id="offenceWording"
+            pdk-typography="body-small"
+          >
+             Before 16 Dec 2023 at sd drove a motor vehicle, namely hgy, on a road, namely rftgy, when the proportion of a controlled drug, namely test, in your blood, namely 12, exceeded the specified limit. 
+          </div>
+          <div
+            class="govuk-!-margin-bottom-6"
+            pdk-margin-bottom="6"
+          >
+            <div
+              class="govuk-body-s"
+              pdk-typography="body-small"
+            >
+              <span
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Alcohol or drug level amount
+              </span>
+               13 
+            </div>
+            <div
+              class="govuk-body-s"
+              pdk-typography="body-small"
+            >
+              <span
+                class="govuk-heading-s"
+                pdk-typography="heading-small"
+              >
+                Alcohol method (blood/breath/urine) or Drug type
+              </span>
+            </div>
+            <a
+              aria-label="Amend Drive motor vehicle with a proportion of a specified controlled drug above the specified limit"
+              class="govuk-link govuk-link--no-visited-state"
+              data-role="amend-offence"
+              pdk-link=""
+              unvisited=""
+            >
+              Edit values
+            </a>
+          </div>
+          <plea>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                two-thirds=""
+              >
+                <plea-options
+                  type="chargeType"
+                >
+                  <div>
+                    <pdk-form-field
+                      id="8230ab77-72b7-434a-8b40-369a7f91957e"
+                      labeltype="small"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <fieldset
+                          class="govuk-fieldset"
+                          pdk-fieldset=""
+                        >
+                          <legend
+                            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                          >
+                             ENTER_PLEAS.PLEA 
+                          </legend>
+                          <span
+                            class="govuk-visually-hidden"
+                            pdk-visually-hidden=""
+                          >
+                             The following plea options are related to ab MIKNSIEJ for Drive motor vehicle with a proportion of a specified controlled drug above the specified limit 
+                          </span>
+                          <pdk-radio-group
+                            class="ng-untouched ng-pristine ng-valid"
+                            data-role="defendant-pleas"
+                          >
+                            <div
+                              class="govuk-radios"
+                            >
+                              <div
+                                class="govuk-!-margin-bottom-6"
+                                pdk-margin-bottom="6"
+                              >
+                              </div>
+                            </div>
+                          </pdk-radio-group>
+                        </fieldset>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <a
+                      class="govuk-link govuk-link--no-visited-state"
+                      data-role="clear-plea"
+                      href="javascript:void(0);"
+                      pdk-link=""
+                      unvisited=""
+                    >
+                       Clear selection 
+                    </a>
+                  </div>
+                </plea-options>
+              </pdk-grid>
+            </pdk-grid>
+          </plea>
+          <hr
+            class="pdk-!-border-color-light-grey"
+            pdk-border-colour="light-grey"
+          />
+        </div>
+      </section>
+    </div>
+  </plea-group>
+</ng-component>
+`;

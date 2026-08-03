@@ -1,0 +1,328 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeadlineSummaryComponent should not display if no case, defendant, offence or application 1`] = `
+<test-host-component
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  hearing={[Function Object]}
+  hearingCasesCount="0"
+>
+  <headline-summary>
+    <div
+      class="headline-summary"
+    >
+    </div>
+  </headline-summary>
+</test-host-component>
+`;
+
+exports[`HeadlineSummaryComponent should pluralise if more than 1 case, defendant, offence or application 1`] = `
+<test-host-component
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  hearing={[Function Object]}
+  hearingCasesCount="0"
+>
+  <headline-summary>
+    <div
+      class="headline-summary"
+    >
+      <pdk-summary-item
+        class="govuk-!-margin-top-4 govuk-heading-s"
+        data-role="defendants-summary-label"
+        inline=""
+        pdk-margin-top="4"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             2 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.DEFENDANTS
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-heading-s"
+        data-role="cases-summary-label"
+        inline=""
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             2 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.CASES
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-heading-s"
+        data-role="offences-summary-label"
+        inline=""
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             2 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.OFFENCES
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-!-margin-bottom-4 govuk-heading-s"
+        data-role="applications-summary-label"
+        inline=""
+        pdk-margin-bottom="4"
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             2 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.APPLICATIONS
+          </dd>
+        </dl>
+      </pdk-summary-item>
+    </div>
+  </headline-summary>
+</test-host-component>
+`;
+
+exports[`HeadlineSummaryComponent should render the template with the values expected 1`] = `
+<test-host-component
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  hearing={[Function Object]}
+  hearingCasesCount="0"
+>
+  <headline-summary>
+    <div
+      class="headline-summary"
+    >
+      <pdk-summary-item
+        class="govuk-!-margin-top-4 govuk-heading-s"
+        data-role="defendants-summary-label"
+        inline=""
+        pdk-margin-top="4"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.DEFENDANT
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-heading-s"
+        data-role="cases-summary-label"
+        inline=""
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.CASE
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-heading-s"
+        data-role="offences-summary-label"
+        inline=""
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.OFFENCE
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-!-margin-bottom-4 govuk-heading-s"
+        data-role="applications-summary-label"
+        inline=""
+        pdk-margin-bottom="4"
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.APPLICATION
+          </dd>
+        </dl>
+      </pdk-summary-item>
+    </div>
+  </headline-summary>
+</test-host-component>
+`;
+
+exports[`HeadlineSummaryComponent should render the template with the values expected for bulk hearing 1`] = `
+<test-host-component
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  hearing={[Function Object]}
+  hearingCasesCount={[Function Number]}
+>
+  <headline-summary>
+    <div
+      class="headline-summary"
+    >
+      <pdk-summary-item
+        class="govuk-!-margin-top-4 govuk-heading-s"
+        data-role="defendants-summary-label"
+        inline=""
+        pdk-margin-top="4"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1000 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.DEFENDANTS
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-heading-s"
+        data-role="cases-summary-label"
+        inline=""
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1000 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.CASES
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-heading-s"
+        data-role="offences-summary-label"
+        inline=""
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1000 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.OFFENCES
+          </dd>
+        </dl>
+      </pdk-summary-item>
+      <pdk-summary-item
+        class="govuk-!-margin-top-2 govuk-!-margin-bottom-4 govuk-heading-s"
+        data-role="applications-summary-label"
+        inline=""
+        pdk-margin-bottom="4"
+        pdk-margin-top="2"
+        pdk-typography="heading-small"
+      >
+        <dl
+          class="pdk-summary-item pdk-summary-item--inline"
+        >
+          <dt
+            class="pdk-summary-item__number"
+          >
+             1 
+          </dt>
+          <dd
+            class="pdk-summary-item__label"
+          >
+            HEARING_LIST.APPLICATION
+          </dd>
+        </dl>
+      </pdk-summary-item>
+    </div>
+  </headline-summary>
+</test-host-component>
+`;

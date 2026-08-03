@@ -1,0 +1,1648 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingReducer should add the hearing details of the selected summary to the store 1`] = `
+{
+  "hearing": {
+    "applicantCounsels": [
+      {
+        "applicants": [
+          "applicantId",
+        ],
+        "attendanceDays": [
+          "2019-05-01",
+        ],
+        "firstName": "James",
+        "id": "applicantCounselId",
+        "lastName": "Gray",
+        "status": "",
+        "title": "",
+      },
+    ],
+    "approvalsRequested": [],
+    "companyRepresentatives": [
+      {
+        "attendanceDays": [],
+        "defendants": [
+          "test-1",
+        ],
+        "firstName": "co-fn-1",
+        "id": "1",
+        "lastName": "co-ln-1",
+        "position": "DIRECTOR",
+        "title": "co-title-1",
+      },
+      {
+        "attendanceDays": [],
+        "defendants": [
+          "test-2",
+        ],
+        "firstName": "co-fn-2",
+        "id": "2",
+        "lastName": "co-ln-2",
+        "position": "SECRETARY",
+        "title": "co-title-2",
+      },
+    ],
+    "courtApplications": [
+      {
+        "applicant": {
+          "id": "1",
+          "masterDefendant": {
+            "masterDefendantId": "1",
+          },
+          "organisation": {},
+          "organisationPersons": [],
+          "personDetails": {
+            "firstName": "Frodo",
+            "lastName": "Baggins",
+          },
+          "prosecutingAuthority": {},
+          "representationOrganisation": {},
+          "synonym": "Applicant",
+        },
+        "applicationDecisionSoughtByDate": "",
+        "applicationOutcome": null,
+        "applicationParticulars": "",
+        "applicationReceivedDate": "",
+        "applicationReference": "",
+        "applicationStatus": "",
+        "courtApplicationPayment": null,
+        "id": "12",
+        "judicialResults": [],
+        "linkedApplicationId": "",
+        "linkedCaseId": "3",
+        "outOfTimeReasons": "",
+        "respondents": [
+          {
+            "personDetails": {
+              "firstName": "Sméagol",
+              "lastName": "Gollum",
+            },
+            "synonym": "Respondent",
+          },
+        ],
+        "respondentsNA": false,
+        "subject": {
+          "id": "1",
+          "masterDefendant": {
+            "masterDefendantId": "1",
+          },
+          "organisation": {},
+          "organisationPersons": [],
+          "personDetails": {
+            "firstName": "Frodo",
+            "lastName": "Baggins",
+          },
+          "prosecutingAuthority": {},
+          "representationOrganisation": {},
+          "synonym": "Applicant",
+        },
+        "type": {
+          "applicantAppellantFlag": false,
+          "categoryCode": "",
+          "id": "4",
+          "jurisdiction": "",
+          "legislation": "Legal text and other mumbo jumbo",
+          "type": "Bad character applications",
+        },
+      },
+    ],
+    "courtCentre": {
+      "id": "d9bff7d8-6168-4163-ad77-3b98d61de174",
+      "name": "Wimbledon Magistrates Court",
+      "roomId": "1414ea28-8b0e-3ba7-8f97-f2bb6d5dd38c",
+      "roomName": "Courtroom 05",
+      "welshName": "Sion",
+      "welshRoomName": "restroom",
+    },
+    "crackedIneffectiveTrial": {
+      "code": "mock-code",
+      "description": "mock-description",
+      "id": "mock-trial-id",
+      "seqNo": 1,
+      "trialType": "Vacated",
+      "type": "Vacated",
+    },
+    "defenceCounsels": [
+      {
+        "attendanceDays": [],
+        "defendants": [
+          "test-1",
+        ],
+        "firstName": "pc-1",
+        "id": "1",
+        "lastName": "pc-1",
+        "middleName": "test",
+        "status": "test",
+        "title": "test",
+      },
+      {
+        "attendanceDays": [],
+        "defendants": [
+          "test-2",
+        ],
+        "firstName": "pc-2",
+        "id": "2",
+        "lastName": "pc-2",
+        "middleName": "test",
+        "status": "test",
+        "title": "test",
+      },
+    ],
+    "defendantAttendance": [
+      {
+        "attendanceDays": [
+          {
+            "attendanceType": "IN_PERSON",
+            "day": "2010-10-10",
+          },
+        ],
+        "defendantId": "def-1",
+      },
+    ],
+    "defendantReferralReasons": [
+      {
+        "defendantId": "674e2db0-f6f4-11e8-9a22-4569d614b7b5",
+        "description": "defendantReferralReasons",
+        "id": "674e2db2-f6f4-11e8-9a22-4569d614b7b5",
+      },
+    ],
+    "hasSharedResults": false,
+    "hearingCaseNotes": [
+      {
+        "courtClerk": {
+          "firstName": "",
+          "lastName": "",
+          "userId": "",
+        },
+        "id": "5d5b9cbd-b391-4845-8c62-a08b358d5432",
+        "note": "test note hearing on navihgation out yo this is another editsfdsffsdfdsfdsfsdfsdfdsf",
+        "noteDateTime": "",
+        "noteType": "HMCTS",
+        "originatingHearingId": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+        "prosecutionCases": [
+          "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+        ],
+      },
+    ],
+    "hearingDays": [
+      {
+        "listedDurationMinutes": 30,
+        "listingSequence": 100,
+        "sittingDay": "2018-12-03T12:10:20.044Z",
+      },
+    ],
+    "hearingLanguage": "ENGLISH",
+    "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+    "judiciary": [
+      {
+        "firstName": "Albert",
+        "isBenchChairman": false,
+        "isDeputy": false,
+        "judicialId": "674e54c0-f6f4-11e8-9a22-4569d614b7b5",
+        "judicialRoleType": "CIRCUIT_JUDGE",
+        "lastName": "Gabbrielli",
+        "middleName": "Cameron",
+        "title": "Mr",
+      },
+    ],
+    "jurisdictionType": "CROWN",
+    "prosecutionCases": [
+      {
+        "caseStatus": "string",
+        "defendants": [
+          {
+            "address": {
+              "address1": "222 Furze Road Exeter",
+              "address2": "Lorem Ipsum",
+              "address3": "Solor",
+              "address4": "Porro Quisquam",
+              "formatedAddress": "222 Furze Road Exeter Lorem Ipsum Solor Porro Quisquam CR0 1XG",
+              "postCode": "CR0 1XG",
+            },
+            "defendantId": "841164f6-13bc-46ff-8634-63cf9ae85d36",
+            "email": "ken.thompson@acme.me",
+            "fax": "021111111",
+            "firstName": "Ken",
+            "homeTelephone": "02070101010",
+            "lastName": "Thompson",
+            "mobile": "07422263910",
+            "offences": [
+              {
+                "allocationDecision": {
+                  "courtIndicatedSentence": {
+                    "courtIndicatedSentenceDescription": null,
+                    "courtIndicatedSentenceTypeId": null,
+                  },
+                },
+                "id": ":offenceId",
+                "indicatedPlea": {},
+                "plea": {},
+                "verdict": {
+                  "applicationId": undefined,
+                  "jurors": {
+                    "numberOfJurors": 12,
+                    "numberOfSplitJurors": 0,
+                    "unanimous": true,
+                  },
+                  "lesserOrAlternativeOffence": null,
+                  "offenceId": ":offenceId",
+                  "originatingHearingId": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+                  "verdictDate": null,
+                  "verdictType": {
+                    "category": "",
+                    "categoryType": "",
+                    "code": "",
+                    "description": "",
+                    "id": null,
+                    "jurisdiction": "",
+                  },
+                },
+              },
+            ],
+            "personDefendant": {
+              "bailStatus": "IN_CUSTODY",
+              "custodyTimeLimit": "2018-01-01",
+              "personDetails": {
+                "dateOfBirth": "1945-02-18",
+                "firstName": "Ken",
+                "lastName": "Thompson",
+              },
+            },
+            "personId": "5a6e2001-91ed-4af2-99af-f30ddc9ef5af",
+          },
+        ],
+        "id": "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+        "initiationCode": "string",
+        "isGroupMaster": false,
+        "originatingOrganisation": "string",
+        "prosecutionCaseIdentifier": {
+          "caseURN": "90EU623841",
+          "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+          "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+          "prosecutionAuthorityReference": "string",
+        },
+        "statementOfFacts": "string",
+        "statementOfFactsWelsh": "string",
+      },
+    ],
+    "prosecutionCounsels": [],
+    "reportingRestrictionReason": "reportingRestrictionReason",
+    "respondentCounsels": [
+      {
+        "attendanceDays": [
+          "2019-05-01",
+        ],
+        "firstName": "Gordon",
+        "id": "respondentCounselId",
+        "lastName": "Cumming",
+        "respondents": [
+          "respondentId",
+        ],
+        "status": "",
+        "title": "",
+      },
+    ],
+    "type": {
+      "description": "90EU623841",
+      "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+    },
+  },
+  "hearingState": "INITIALISED",
+}
+`;
+
+exports[`HearingReducer should reset the draft hearings 1`] = `
+{
+  "amendmentReason": {
+    "id": "id",
+  },
+  "available": null,
+  "counselsCache": {
+    "firstNameOpts": [],
+    "lastNameOpts": [],
+  },
+  "courtDocuments": null,
+  "current": {
+    "draftHearing": undefined,
+    "hearing": {
+      "applicantCounsels": [
+        {
+          "applicants": [
+            "applicantId",
+          ],
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "James",
+          "id": "applicantCounselId",
+          "lastName": "Gray",
+          "status": "",
+          "title": "",
+        },
+      ],
+      "approvalsRequested": [],
+      "companyRepresentatives": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "co-fn-1",
+          "id": "1",
+          "lastName": "co-ln-1",
+          "position": "DIRECTOR",
+          "title": "co-title-1",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "co-fn-2",
+          "id": "2",
+          "lastName": "co-ln-2",
+          "position": "SECRETARY",
+          "title": "co-title-2",
+        },
+      ],
+      "courtApplications": [
+        {
+          "applicant": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "applicationDecisionSoughtByDate": "",
+          "applicationOutcome": null,
+          "applicationParticulars": "",
+          "applicationReceivedDate": "",
+          "applicationReference": "",
+          "applicationStatus": "",
+          "courtApplicationPayment": null,
+          "id": "12",
+          "judicialResults": [],
+          "linkedApplicationId": "",
+          "linkedCaseId": "3",
+          "outOfTimeReasons": "",
+          "respondents": [
+            {
+              "personDetails": {
+                "firstName": "Sméagol",
+                "lastName": "Gollum",
+              },
+              "synonym": "Respondent",
+            },
+          ],
+          "respondentsNA": false,
+          "subject": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "type": {
+            "applicantAppellantFlag": false,
+            "categoryCode": "",
+            "id": "4",
+            "jurisdiction": "",
+            "legislation": "Legal text and other mumbo jumbo",
+            "type": "Bad character applications",
+          },
+        },
+      ],
+      "courtCentre": {
+        "id": "d9bff7d8-6168-4163-ad77-3b98d61de174",
+        "name": "Wimbledon Magistrates Court",
+        "roomId": "1414ea28-8b0e-3ba7-8f97-f2bb6d5dd38c",
+        "roomName": "Courtroom 05",
+        "welshName": "Sion",
+        "welshRoomName": "restroom",
+      },
+      "crackedIneffectiveTrial": {
+        "code": "mock-code",
+        "description": "mock-description",
+        "id": "mock-trial-id",
+        "seqNo": 1,
+        "trialType": "Vacated",
+        "type": "Vacated",
+      },
+      "defenceCounsels": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "pc-1",
+          "id": "1",
+          "lastName": "pc-1",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "pc-2",
+          "id": "2",
+          "lastName": "pc-2",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+      ],
+      "defendantAttendance": [
+        {
+          "attendanceDays": [
+            {
+              "attendanceType": "IN_PERSON",
+              "day": "2010-10-10",
+            },
+          ],
+          "defendantId": "def-1",
+        },
+      ],
+      "defendantReferralReasons": [
+        {
+          "defendantId": "674e2db0-f6f4-11e8-9a22-4569d614b7b5",
+          "description": "defendantReferralReasons",
+          "id": "674e2db2-f6f4-11e8-9a22-4569d614b7b5",
+        },
+      ],
+      "hasSharedResults": false,
+      "hearingCaseNotes": [
+        {
+          "courtClerk": {
+            "firstName": "",
+            "lastName": "",
+            "userId": "",
+          },
+          "id": "5d5b9cbd-b391-4845-8c62-a08b358d5432",
+          "note": "test note hearing on navihgation out yo this is another editsfdsffsdfdsfdsfsdfsdfdsf",
+          "noteDateTime": "",
+          "noteType": "HMCTS",
+          "originatingHearingId": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+          "prosecutionCases": [
+            "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          ],
+        },
+      ],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "judiciary": [
+        {
+          "firstName": "Albert",
+          "isBenchChairman": false,
+          "isDeputy": false,
+          "judicialId": "674e54c0-f6f4-11e8-9a22-4569d614b7b5",
+          "judicialRoleType": "CIRCUIT_JUDGE",
+          "lastName": "Gabbrielli",
+          "middleName": "Cameron",
+          "title": "Mr",
+        },
+      ],
+      "jurisdictionType": "CROWN",
+      "prosecutionCases": [
+        {
+          "caseStatus": "string",
+          "defendants": [
+            {
+              "address": {
+                "address1": "222 Furze Road Exeter",
+                "address2": "Lorem Ipsum",
+                "address3": "Solor",
+                "address4": "Porro Quisquam",
+                "formatedAddress": "222 Furze Road Exeter Lorem Ipsum Solor Porro Quisquam CR0 1XG",
+                "postCode": "CR0 1XG",
+              },
+              "defendantId": "841164f6-13bc-46ff-8634-63cf9ae85d36",
+              "email": "ken.thompson@acme.me",
+              "fax": "021111111",
+              "firstName": "Ken",
+              "homeTelephone": "02070101010",
+              "lastName": "Thompson",
+              "mobile": "07422263910",
+              "offences": [
+                {
+                  "allocationDecision": {},
+                  "id": ":offenceId",
+                  "indicatedPlea": {},
+                  "plea": {},
+                },
+              ],
+              "personDefendant": {
+                "bailStatus": "IN_CUSTODY",
+                "custodyTimeLimit": "2018-01-01",
+                "personDetails": {
+                  "dateOfBirth": "1945-02-18",
+                  "firstName": "Ken",
+                  "lastName": "Thompson",
+                },
+              },
+              "personId": "5a6e2001-91ed-4af2-99af-f30ddc9ef5af",
+            },
+          ],
+          "id": "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          "initiationCode": "string",
+          "isGroupMaster": false,
+          "originatingOrganisation": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+          "statementOfFacts": "string",
+          "statementOfFactsWelsh": "string",
+        },
+      ],
+      "prosecutionCounsels": [],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "respondentCounsels": [
+        {
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "Gordon",
+          "id": "respondentCounselId",
+          "lastName": "Cumming",
+          "respondents": [
+            "respondentId",
+          ],
+          "status": "",
+          "title": "",
+        },
+      ],
+      "type": {
+        "description": "90EU623841",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+    "hearingState": "INITIALISED",
+  },
+  "isRestricted": true,
+  "isSelectedCaseBulk": false,
+  "listingNotes": [],
+  "selectedHearingDate": null,
+  "selectedOptions": {
+    "courtCentreFilter": null,
+    "courtRoomFilter": null,
+    "dateFilter": null,
+    "endTimeFilter": null,
+    "startTimeFilter": null,
+  },
+  "summaries": [
+    {
+      "courtApplicationSummaries": [],
+      "hasSharedResults": false,
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "jurisdictionType": "CROWN",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "firstName": "test",
+              "id": "1",
+              "lastName": "test",
+            },
+          ],
+          "id": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+        },
+      ],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "type": {
+        "description": "First hearing",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+  ],
+}
+`;
+
+exports[`HearingReducer should reset the draft hearings when we click cancel on verdict page 1`] = `
+{
+  "amendmentReason": {
+    "id": "id",
+  },
+  "available": [],
+  "counselsCache": {
+    "firstNameOpts": [],
+    "lastNameOpts": [],
+  },
+  "courtDocuments": null,
+  "current": {
+    "hearing": {
+      "applicantCounsels": [
+        {
+          "applicants": [
+            "applicantId",
+          ],
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "James",
+          "id": "applicantCounselId",
+          "lastName": "Gray",
+          "status": "",
+          "title": "",
+        },
+      ],
+      "approvalsRequested": [],
+      "companyRepresentatives": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "co-fn-1",
+          "id": "1",
+          "lastName": "co-ln-1",
+          "position": "DIRECTOR",
+          "title": "co-title-1",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "co-fn-2",
+          "id": "2",
+          "lastName": "co-ln-2",
+          "position": "SECRETARY",
+          "title": "co-title-2",
+        },
+      ],
+      "courtApplications": [
+        {
+          "applicant": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "applicationDecisionSoughtByDate": "",
+          "applicationOutcome": null,
+          "applicationParticulars": "",
+          "applicationReceivedDate": "",
+          "applicationReference": "",
+          "applicationStatus": "",
+          "courtApplicationPayment": null,
+          "id": "12",
+          "judicialResults": [],
+          "linkedApplicationId": "",
+          "linkedCaseId": "3",
+          "outOfTimeReasons": "",
+          "respondents": [
+            {
+              "personDetails": {
+                "firstName": "Sméagol",
+                "lastName": "Gollum",
+              },
+              "synonym": "Respondent",
+            },
+          ],
+          "respondentsNA": false,
+          "subject": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "type": {
+            "applicantAppellantFlag": false,
+            "categoryCode": "",
+            "id": "4",
+            "jurisdiction": "",
+            "legislation": "Legal text and other mumbo jumbo",
+            "type": "Bad character applications",
+          },
+        },
+      ],
+      "courtCentre": {
+        "id": "d9bff7d8-6168-4163-ad77-3b98d61de174",
+        "name": "Wimbledon Magistrates Court",
+        "roomId": "1414ea28-8b0e-3ba7-8f97-f2bb6d5dd38c",
+        "roomName": "Courtroom 05",
+        "welshName": "Sion",
+        "welshRoomName": "restroom",
+      },
+      "crackedIneffectiveTrial": {
+        "code": "mock-code",
+        "description": "mock-description",
+        "id": "mock-trial-id",
+        "seqNo": 1,
+        "trialType": "Vacated",
+        "type": "Vacated",
+      },
+      "defenceCounsels": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "pc-1",
+          "id": "1",
+          "lastName": "pc-1",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "pc-2",
+          "id": "2",
+          "lastName": "pc-2",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+      ],
+      "defendantAttendance": [
+        {
+          "attendanceDays": [
+            {
+              "attendanceType": "IN_PERSON",
+              "day": "2010-10-10",
+            },
+          ],
+          "defendantId": "def-1",
+        },
+      ],
+      "defendantReferralReasons": [
+        {
+          "defendantId": "674e2db0-f6f4-11e8-9a22-4569d614b7b5",
+          "description": "defendantReferralReasons",
+          "id": "674e2db2-f6f4-11e8-9a22-4569d614b7b5",
+        },
+      ],
+      "hasSharedResults": false,
+      "hearingCaseNotes": [
+        {
+          "courtClerk": {
+            "firstName": "",
+            "lastName": "",
+            "userId": "",
+          },
+          "id": "5d5b9cbd-b391-4845-8c62-a08b358d5432",
+          "note": "test note hearing on navihgation out yo this is another editsfdsffsdfdsfdsfsdfsdfdsf",
+          "noteDateTime": "",
+          "noteType": "HMCTS",
+          "originatingHearingId": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+          "prosecutionCases": [
+            "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          ],
+        },
+      ],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "judiciary": [
+        {
+          "firstName": "Albert",
+          "isBenchChairman": false,
+          "isDeputy": false,
+          "judicialId": "674e54c0-f6f4-11e8-9a22-4569d614b7b5",
+          "judicialRoleType": "CIRCUIT_JUDGE",
+          "lastName": "Gabbrielli",
+          "middleName": "Cameron",
+          "title": "Mr",
+        },
+      ],
+      "jurisdictionType": "CROWN",
+      "prosecutionCases": [
+        {
+          "caseStatus": "string",
+          "defendants": [
+            {
+              "address": {
+                "address1": "222 Furze Road Exeter",
+                "address2": "Lorem Ipsum",
+                "address3": "Solor",
+                "address4": "Porro Quisquam",
+                "formatedAddress": "222 Furze Road Exeter Lorem Ipsum Solor Porro Quisquam CR0 1XG",
+                "postCode": "CR0 1XG",
+              },
+              "defendantId": "841164f6-13bc-46ff-8634-63cf9ae85d36",
+              "email": "ken.thompson@acme.me",
+              "fax": "021111111",
+              "firstName": "Ken",
+              "homeTelephone": "02070101010",
+              "lastName": "Thompson",
+              "mobile": "07422263910",
+              "offences": [
+                {
+                  "allocationDecision": {},
+                  "id": ":offenceId",
+                  "indicatedPlea": {},
+                  "plea": {
+                    "offenceId": ":offenceId",
+                    "originatingHearingId": "9ea85de7-a8ad-4060-8971-8f14b822af6b",
+                    "pleaDate": "2020-09-15",
+                    "pleaValue": "NOT_GUILTY",
+                  },
+                },
+              ],
+              "personDefendant": {
+                "bailStatus": "IN_CUSTODY",
+                "custodyTimeLimit": "2018-01-01",
+                "personDetails": {
+                  "dateOfBirth": "1945-02-18",
+                  "firstName": "Ken",
+                  "lastName": "Thompson",
+                },
+              },
+              "personId": "5a6e2001-91ed-4af2-99af-f30ddc9ef5af",
+            },
+          ],
+          "id": "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          "initiationCode": "string",
+          "isGroupMaster": false,
+          "originatingOrganisation": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+          "statementOfFacts": "string",
+          "statementOfFactsWelsh": "string",
+        },
+      ],
+      "prosecutionCounsels": [],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "respondentCounsels": [
+        {
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "Gordon",
+          "id": "respondentCounselId",
+          "lastName": "Cumming",
+          "respondents": [
+            "respondentId",
+          ],
+          "status": "",
+          "title": "",
+        },
+      ],
+      "type": {
+        "description": "90EU623841",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+    "hearingState": "INITIALISED",
+  },
+  "isRestricted": true,
+  "isSelectedCaseBulk": false,
+  "listingNotes": [],
+  "selectedHearingDate": null,
+  "selectedOptions": {
+    "courtCentreFilter": null,
+    "courtRoomFilter": null,
+    "dateFilter": null,
+    "endTimeFilter": null,
+    "startTimeFilter": null,
+  },
+  "summaries": [
+    {
+      "courtApplicationSummaries": [],
+      "hasSharedResults": false,
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "jurisdictionType": "CROWN",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "firstName": "test",
+              "id": "1",
+              "lastName": "test",
+            },
+          ],
+          "id": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+        },
+      ],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "type": {
+        "description": "First hearing",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+  ],
+}
+`;
+
+exports[`HearingReducer should update the stored pleas 1`] = `
+{
+  "amendmentReason": {
+    "id": "id",
+  },
+  "available": null,
+  "counselsCache": {
+    "firstNameOpts": [],
+    "lastNameOpts": [],
+  },
+  "courtDocuments": null,
+  "current": {
+    "draftHearing": {
+      "applicantCounsels": [
+        {
+          "applicants": [
+            "applicantId",
+          ],
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "James",
+          "id": "applicantCounselId",
+          "lastName": "Gray",
+          "status": "",
+          "title": "",
+        },
+      ],
+      "approvalsRequested": [],
+      "companyRepresentatives": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "co-fn-1",
+          "id": "1",
+          "lastName": "co-ln-1",
+          "position": "DIRECTOR",
+          "title": "co-title-1",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "co-fn-2",
+          "id": "2",
+          "lastName": "co-ln-2",
+          "position": "SECRETARY",
+          "title": "co-title-2",
+        },
+      ],
+      "courtApplications": [
+        {
+          "applicant": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "applicationDecisionSoughtByDate": "",
+          "applicationOutcome": null,
+          "applicationParticulars": "",
+          "applicationReceivedDate": "",
+          "applicationReference": "",
+          "applicationStatus": "",
+          "courtApplicationPayment": null,
+          "id": "12",
+          "judicialResults": [],
+          "linkedApplicationId": "",
+          "linkedCaseId": "3",
+          "outOfTimeReasons": "",
+          "respondents": [
+            {
+              "personDetails": {
+                "firstName": "Sméagol",
+                "lastName": "Gollum",
+              },
+              "synonym": "Respondent",
+            },
+          ],
+          "respondentsNA": false,
+          "subject": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "type": {
+            "applicantAppellantFlag": false,
+            "categoryCode": "",
+            "id": "4",
+            "jurisdiction": "",
+            "legislation": "Legal text and other mumbo jumbo",
+            "type": "Bad character applications",
+          },
+        },
+      ],
+      "courtCentre": {
+        "id": "d9bff7d8-6168-4163-ad77-3b98d61de174",
+        "name": "Wimbledon Magistrates Court",
+        "roomId": "1414ea28-8b0e-3ba7-8f97-f2bb6d5dd38c",
+        "roomName": "Courtroom 05",
+        "welshName": "Sion",
+        "welshRoomName": "restroom",
+      },
+      "crackedIneffectiveTrial": {
+        "code": "mock-code",
+        "description": "mock-description",
+        "id": "mock-trial-id",
+        "seqNo": 1,
+        "trialType": "Vacated",
+        "type": "Vacated",
+      },
+      "defenceCounsels": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "pc-1",
+          "id": "1",
+          "lastName": "pc-1",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "pc-2",
+          "id": "2",
+          "lastName": "pc-2",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+      ],
+      "defendantAttendance": [
+        {
+          "attendanceDays": [
+            {
+              "attendanceType": "IN_PERSON",
+              "day": "2010-10-10",
+            },
+          ],
+          "defendantId": "def-1",
+        },
+      ],
+      "defendantReferralReasons": [
+        {
+          "defendantId": "674e2db0-f6f4-11e8-9a22-4569d614b7b5",
+          "description": "defendantReferralReasons",
+          "id": "674e2db2-f6f4-11e8-9a22-4569d614b7b5",
+        },
+      ],
+      "hasSharedResults": false,
+      "hearingCaseNotes": [
+        {
+          "courtClerk": {
+            "firstName": "",
+            "lastName": "",
+            "userId": "",
+          },
+          "id": "5d5b9cbd-b391-4845-8c62-a08b358d5432",
+          "note": "test note hearing on navihgation out yo this is another editsfdsffsdfdsfdsfsdfsdfdsf",
+          "noteDateTime": "",
+          "noteType": "HMCTS",
+          "originatingHearingId": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+          "prosecutionCases": [
+            "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          ],
+        },
+      ],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "judiciary": [
+        {
+          "firstName": "Albert",
+          "isBenchChairman": false,
+          "isDeputy": false,
+          "judicialId": "674e54c0-f6f4-11e8-9a22-4569d614b7b5",
+          "judicialRoleType": "CIRCUIT_JUDGE",
+          "lastName": "Gabbrielli",
+          "middleName": "Cameron",
+          "title": "Mr",
+        },
+      ],
+      "jurisdictionType": "CROWN",
+      "prosecutionCases": [
+        {
+          "caseStatus": "string",
+          "defendants": [
+            {
+              "address": {
+                "address1": "222 Furze Road Exeter",
+                "address2": "Lorem Ipsum",
+                "address3": "Solor",
+                "address4": "Porro Quisquam",
+                "formatedAddress": "222 Furze Road Exeter Lorem Ipsum Solor Porro Quisquam CR0 1XG",
+                "postCode": "CR0 1XG",
+              },
+              "defendantId": "841164f6-13bc-46ff-8634-63cf9ae85d36",
+              "email": "ken.thompson@acme.me",
+              "fax": "021111111",
+              "firstName": "Ken",
+              "homeTelephone": "02070101010",
+              "lastName": "Thompson",
+              "mobile": "07422263910",
+              "offences": [
+                {
+                  "allocationDecision": {},
+                  "id": ":offenceId",
+                  "indicatedPlea": {},
+                  "plea": {},
+                },
+              ],
+              "personDefendant": {
+                "bailStatus": "IN_CUSTODY",
+                "custodyTimeLimit": "2018-01-01",
+                "personDetails": {
+                  "dateOfBirth": "1945-02-18",
+                  "firstName": "Ken",
+                  "lastName": "Thompson",
+                },
+              },
+              "personId": "5a6e2001-91ed-4af2-99af-f30ddc9ef5af",
+            },
+          ],
+          "id": "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          "initiationCode": "string",
+          "isGroupMaster": false,
+          "originatingOrganisation": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+          "statementOfFacts": "string",
+          "statementOfFactsWelsh": "string",
+        },
+      ],
+      "prosecutionCounsels": [],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "respondentCounsels": [
+        {
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "Gordon",
+          "id": "respondentCounselId",
+          "lastName": "Cumming",
+          "respondents": [
+            "respondentId",
+          ],
+          "status": "",
+          "title": "",
+        },
+      ],
+      "type": {
+        "description": "90EU623841",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+    "hearing": {
+      "applicantCounsels": [
+        {
+          "applicants": [
+            "applicantId",
+          ],
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "James",
+          "id": "applicantCounselId",
+          "lastName": "Gray",
+          "status": "",
+          "title": "",
+        },
+      ],
+      "approvalsRequested": [],
+      "companyRepresentatives": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "co-fn-1",
+          "id": "1",
+          "lastName": "co-ln-1",
+          "position": "DIRECTOR",
+          "title": "co-title-1",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "co-fn-2",
+          "id": "2",
+          "lastName": "co-ln-2",
+          "position": "SECRETARY",
+          "title": "co-title-2",
+        },
+      ],
+      "courtApplications": [
+        {
+          "applicant": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "applicationDecisionSoughtByDate": "",
+          "applicationOutcome": null,
+          "applicationParticulars": "",
+          "applicationReceivedDate": "",
+          "applicationReference": "",
+          "applicationStatus": "",
+          "courtApplicationPayment": null,
+          "id": "12",
+          "judicialResults": [],
+          "linkedApplicationId": "",
+          "linkedCaseId": "3",
+          "outOfTimeReasons": "",
+          "respondents": [
+            {
+              "personDetails": {
+                "firstName": "Sméagol",
+                "lastName": "Gollum",
+              },
+              "synonym": "Respondent",
+            },
+          ],
+          "respondentsNA": false,
+          "subject": {
+            "id": "1",
+            "masterDefendant": {
+              "masterDefendantId": "1",
+            },
+            "organisation": {},
+            "organisationPersons": [],
+            "personDetails": {
+              "firstName": "Frodo",
+              "lastName": "Baggins",
+            },
+            "prosecutingAuthority": {},
+            "representationOrganisation": {},
+            "synonym": "Applicant",
+          },
+          "type": {
+            "applicantAppellantFlag": false,
+            "categoryCode": "",
+            "id": "4",
+            "jurisdiction": "",
+            "legislation": "Legal text and other mumbo jumbo",
+            "type": "Bad character applications",
+          },
+        },
+      ],
+      "courtCentre": {
+        "id": "d9bff7d8-6168-4163-ad77-3b98d61de174",
+        "name": "Wimbledon Magistrates Court",
+        "roomId": "1414ea28-8b0e-3ba7-8f97-f2bb6d5dd38c",
+        "roomName": "Courtroom 05",
+        "welshName": "Sion",
+        "welshRoomName": "restroom",
+      },
+      "crackedIneffectiveTrial": {
+        "code": "mock-code",
+        "description": "mock-description",
+        "id": "mock-trial-id",
+        "seqNo": 1,
+        "trialType": "Vacated",
+        "type": "Vacated",
+      },
+      "defenceCounsels": [
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-1",
+          ],
+          "firstName": "pc-1",
+          "id": "1",
+          "lastName": "pc-1",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+        {
+          "attendanceDays": [],
+          "defendants": [
+            "test-2",
+          ],
+          "firstName": "pc-2",
+          "id": "2",
+          "lastName": "pc-2",
+          "middleName": "test",
+          "status": "test",
+          "title": "test",
+        },
+      ],
+      "defendantAttendance": [
+        {
+          "attendanceDays": [
+            {
+              "attendanceType": "IN_PERSON",
+              "day": "2010-10-10",
+            },
+          ],
+          "defendantId": "def-1",
+        },
+      ],
+      "defendantReferralReasons": [
+        {
+          "defendantId": "674e2db0-f6f4-11e8-9a22-4569d614b7b5",
+          "description": "defendantReferralReasons",
+          "id": "674e2db2-f6f4-11e8-9a22-4569d614b7b5",
+        },
+      ],
+      "hasSharedResults": false,
+      "hearingCaseNotes": [
+        {
+          "courtClerk": {
+            "firstName": "",
+            "lastName": "",
+            "userId": "",
+          },
+          "id": "5d5b9cbd-b391-4845-8c62-a08b358d5432",
+          "note": "test note hearing on navihgation out yo this is another editsfdsffsdfdsfdsfsdfsdfdsf",
+          "noteDateTime": "",
+          "noteType": "HMCTS",
+          "originatingHearingId": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+          "prosecutionCases": [
+            "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          ],
+        },
+      ],
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "judiciary": [
+        {
+          "firstName": "Albert",
+          "isBenchChairman": false,
+          "isDeputy": false,
+          "judicialId": "674e54c0-f6f4-11e8-9a22-4569d614b7b5",
+          "judicialRoleType": "CIRCUIT_JUDGE",
+          "lastName": "Gabbrielli",
+          "middleName": "Cameron",
+          "title": "Mr",
+        },
+      ],
+      "jurisdictionType": "CROWN",
+      "prosecutionCases": [
+        {
+          "caseStatus": "string",
+          "defendants": [
+            {
+              "address": {
+                "address1": "222 Furze Road Exeter",
+                "address2": "Lorem Ipsum",
+                "address3": "Solor",
+                "address4": "Porro Quisquam",
+                "formatedAddress": "222 Furze Road Exeter Lorem Ipsum Solor Porro Quisquam CR0 1XG",
+                "postCode": "CR0 1XG",
+              },
+              "defendantId": "841164f6-13bc-46ff-8634-63cf9ae85d36",
+              "email": "ken.thompson@acme.me",
+              "fax": "021111111",
+              "firstName": "Ken",
+              "homeTelephone": "02070101010",
+              "lastName": "Thompson",
+              "mobile": "07422263910",
+              "offences": [
+                {
+                  "allocationDecision": {
+                    "motReasonCode": "02",
+                    "motReasonDescription": ":motReasonDescription",
+                    "motReasonId": ":motReasonId",
+                  },
+                  "id": ":offenceId",
+                  "indicatedPlea": {},
+                  "plea": {},
+                },
+              ],
+              "personDefendant": {
+                "bailStatus": "IN_CUSTODY",
+                "custodyTimeLimit": "2018-01-01",
+                "personDetails": {
+                  "dateOfBirth": "1945-02-18",
+                  "firstName": "Ken",
+                  "lastName": "Thompson",
+                },
+              },
+              "personId": "5a6e2001-91ed-4af2-99af-f30ddc9ef5af",
+            },
+          ],
+          "id": "674e7bd0-f6f4-11e8-9a22-4569d614b7b5",
+          "initiationCode": "string",
+          "isGroupMaster": false,
+          "originatingOrganisation": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+          "statementOfFacts": "string",
+          "statementOfFactsWelsh": "string",
+        },
+      ],
+      "prosecutionCounsels": [],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "respondentCounsels": [
+        {
+          "attendanceDays": [
+            "2019-05-01",
+          ],
+          "firstName": "Gordon",
+          "id": "respondentCounselId",
+          "lastName": "Cumming",
+          "respondents": [
+            "respondentId",
+          ],
+          "status": "",
+          "title": "",
+        },
+      ],
+      "type": {
+        "description": "90EU623841",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+    "hearingState": "INITIALISED",
+  },
+  "isRestricted": true,
+  "isSelectedCaseBulk": false,
+  "listingNotes": [],
+  "selectedHearingDate": null,
+  "selectedOptions": {
+    "courtCentreFilter": null,
+    "courtRoomFilter": null,
+    "dateFilter": null,
+    "endTimeFilter": null,
+    "startTimeFilter": null,
+  },
+  "summaries": [
+    {
+      "courtApplicationSummaries": [],
+      "hasSharedResults": false,
+      "hearingDays": [
+        {
+          "listedDurationMinutes": 30,
+          "listingSequence": 100,
+          "sittingDay": "2018-12-03T12:10:20.044Z",
+        },
+      ],
+      "hearingLanguage": "ENGLISH",
+      "id": "674e2db1-f6f4-11e8-9a22-4569d614b7b5",
+      "jurisdictionType": "CROWN",
+      "prosecutionCaseSummaries": [
+        {
+          "defendants": [
+            {
+              "firstName": "test",
+              "id": "1",
+              "lastName": "test",
+            },
+          ],
+          "id": "string",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "90EU623841",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode",
+            "prosecutionAuthorityId": "674e7bd2-f6f4-11e8-9a22-4569d614b7b5",
+            "prosecutionAuthorityReference": "string",
+          },
+        },
+      ],
+      "reportingRestrictionReason": "reportingRestrictionReason",
+      "type": {
+        "description": "First hearing",
+        "id": "41fec9c5-fab0-4b22-97a8-6e6c693ff179",
+      },
+    },
+  ],
+}
+`;

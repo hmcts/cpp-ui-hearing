@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckInOutcomeComponent with failed cases should match the snapshot 1`] = `
+<check-in-outcome
+  appUrl={[Function String]}
+  config={[Function Object]}
+  courtHouse={[Function String]}
+  failedCases={[Function Array]}
+  location={[Function _Location]}
+  numberOfSuccessfulHearings={[Function Number]}
+  role={[Function String]}
+  route={[Function Object]}
+>
+  <check-in-breadcrumbs>
+    <ol
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-breadcrumbs govuk-breadcrumbs__list"
+      pdk-breadcrumb-list=""
+      pdk-margin-bottom="2"
+      pdk-margin-top="2"
+    >
+      <li
+        class="govuk-breadcrumbs__list-item"
+        pdk-breadcrumb-list-item=""
+      >
+        <a
+          href="http://base-url"
+        >
+          HEADER.HOME
+        </a>
+      </li>
+      <li
+        class="govuk-breadcrumbs__list-item"
+        pdk-breadcrumb-list-item=""
+      >
+         CHECK_IN.TITLE 
+      </li>
+    </ol>
+  </check-in-breadcrumbs><pdk-alert
+    icon="true"
+    type="success"
+  >
+    <div
+      class="pdk-alert pdk-alert--success"
+      role="alert"
+    >
+      <div
+        class="pdk-alert__container"
+      >
+        <i
+          aria-hidden="true"
+          class="pdk-alert__icon pdk-alert__icon--tick"
+          role="presentation"
+        />
+        <div
+          class="pdk-alert__message"
+        >
+          <div>
+             CHECK_IN.SUCCESSFUL_CHECK_IN_PLURAL 
+          </div>
+        </div>
+      </div>
+    </div>
+  </pdk-alert><pdk-warning-text
+    class="govuk-!-margin-top-6"
+    pdk-margin-top="6"
+  >
+    <div
+      class="govuk-warning-text"
+    >
+      <span
+        aria-hidden="true"
+        class="govuk-warning-text__icon"
+      >
+        !
+      </span>
+      <strong
+        class="govuk-warning-text__text"
+      >
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Warning
+        </span>
+         CHECK_IN.FAIL_CHECK_IN62GD9725420, 88GD9063320 
+      </strong>
+    </div>
+  </pdk-warning-text>
+</check-in-outcome>
+`;

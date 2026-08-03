@@ -1,0 +1,400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PartsResolverContainerComponent result choices should display the available options for resolution 1`] = `
+<ng-component
+  parts={[Function Array]}
+  resultLineId={[Function String]}
+>
+  <cpp-parts-resolver-container>
+    <cpp-parts-resolver>
+      <pdk-interaction-container>
+        <div>
+          <ul
+            class="parts-resolver govuk-!-margin-0 govuk-list"
+            pdk-list=""
+            pdk-margin="0"
+          >
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                I
+              </a>
+              <cpp-parts-resolver-options>
+                <ul
+                  pdk-list=""
+                  pdk-margin-vertical="1"
+                >
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="choice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Imprisonment 
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="choice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Total custodial period 
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="deleteChoice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Delete 
+                    </a>
+                  </li>
+                </ul>
+              </cpp-parts-resolver-options>
+            </li>
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                X
+              </a>
+            </li>
+          </ul>
+        </div>
+      </pdk-interaction-container>
+    </cpp-parts-resolver>
+  </cpp-parts-resolver-container>
+</ng-component>
+`;
+
+exports[`PartsResolverContainerComponent result choices should render 1`] = `
+<ng-component
+  parts={[Function Array]}
+  resultLineId={[Function String]}
+>
+  <cpp-parts-resolver-container>
+    <cpp-parts-resolver>
+      <pdk-interaction-container>
+        <div>
+          <ul
+            class="parts-resolver govuk-!-margin-0 govuk-list"
+            pdk-list=""
+            pdk-margin="0"
+          >
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                I
+              </a>
+            </li>
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                X
+              </a>
+            </li>
+          </ul>
+        </div>
+      </pdk-interaction-container>
+    </cpp-parts-resolver>
+  </cpp-parts-resolver-container>
+</ng-component>
+`;
+
+exports[`PartsResolverContainerComponent result prompts should display a placeholder when no resolution exists 1`] = `
+<ng-component
+  parts={[Function Array]}
+  resultLineId={[Function String]}
+>
+  <cpp-parts-resolver-container>
+    <cpp-parts-resolver>
+      <pdk-interaction-container>
+        <div>
+          <ul
+            class="parts-resolver govuk-!-margin-0 govuk-list"
+            pdk-list=""
+            pdk-margin="0"
+          >
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                original_text
+              </a>
+            </li>
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                value_text
+              </a>
+              <cpp-parts-resolver-options>
+                <ul
+                  pdk-list=""
+                  pdk-margin-vertical="1"
+                >
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="deleteChoice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Delete 
+                    </a>
+                  </li>
+                </ul>
+              </cpp-parts-resolver-options>
+            </li>
+          </ul>
+        </div>
+      </pdk-interaction-container>
+    </cpp-parts-resolver>
+  </cpp-parts-resolver-container>
+</ng-component>
+`;
+
+exports[`PartsResolverContainerComponent result prompts should display the available options for resolution 1`] = `
+<ng-component
+  parts={[Function Array]}
+  resultLineId={[Function String]}
+>
+  <cpp-parts-resolver-container>
+    <cpp-parts-resolver>
+      <pdk-interaction-container>
+        <div>
+          <ul
+            class="parts-resolver govuk-!-margin-0 govuk-list"
+            pdk-list=""
+            pdk-margin="0"
+          >
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                original_text
+              </a>
+              <cpp-parts-resolver-options>
+                <ul
+                  pdk-list=""
+                  pdk-margin-vertical="1"
+                >
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="choice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Prompt Label 1 
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="choice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Prompt Label 2 
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="govuk-!-padding-top-1 govuk-!-padding-bottom-1 govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-link govuk-link--text-colour"
+                      data-test-id="deleteChoice"
+                      href="javascript:void(0)"
+                      pdk-link=""
+                      pdk-padding-horizontal="3"
+                      pdk-padding-vertical="1"
+                      role="button"
+                      text=""
+                    >
+                       Delete 
+                    </a>
+                  </li>
+                </ul>
+              </cpp-parts-resolver-options>
+            </li>
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                value_text
+              </a>
+            </li>
+          </ul>
+        </div>
+      </pdk-interaction-container>
+    </cpp-parts-resolver>
+  </cpp-parts-resolver-container>
+</ng-component>
+`;
+
+exports[`PartsResolverContainerComponent result prompts should render 1`] = `
+<ng-component
+  parts={[Function Array]}
+  resultLineId={[Function String]}
+>
+  <cpp-parts-resolver-container>
+    <cpp-parts-resolver>
+      <pdk-interaction-container>
+        <div>
+          <ul
+            class="parts-resolver govuk-!-margin-0 govuk-list"
+            pdk-list=""
+            pdk-margin="0"
+          >
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                original_text
+              </a>
+            </li>
+            <li
+              class="govuk-!-margin-right-2 pdk-!-border-color-red"
+              pdk-border-colour="red"
+              pdk-margin-right="2"
+            >
+              <a
+                class="pdk-!-border-color-red govuk-link govuk-link--text-colour"
+                data-test-id="unresolvedPart"
+                href="javascript:void(0)"
+                pdk-border-colour="red"
+                pdk-link=""
+                role="button"
+                text=""
+              >
+                value_text
+              </a>
+            </li>
+          </ul>
+        </div>
+      </pdk-interaction-container>
+    </cpp-parts-resolver>
+  </cpp-parts-resolver-container>
+</ng-component>
+`;

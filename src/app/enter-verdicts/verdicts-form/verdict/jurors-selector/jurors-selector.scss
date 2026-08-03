@@ -1,0 +1,14 @@
+.jurors-selector {
+  margin-bottom: 20px;
+  &-value {
+    padding: 0 4px;
+  }
+
+  &-selected {
+    font-weight: 700;
+  }
+
+  &-spaced {
+    padding-left: 4px;
+  }
+}

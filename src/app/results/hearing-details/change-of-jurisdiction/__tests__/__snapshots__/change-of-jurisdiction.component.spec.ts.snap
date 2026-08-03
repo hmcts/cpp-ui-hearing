@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChangeOfJurisdictionComponent should render the component 1`] = `
+<cpp-change-of-jurisdiction
+  hasSameJurisdiction={[Function Boolean]}
+  hearings={[Function Array]}
+  mapOrganisationUnits={[Function Object]}
+>
+  <pdk-notification-banner
+    aria-labelledby="pdk-notification-banner-title-GENERATED_ID"
+    role="region"
+  >
+    <div
+      class="govuk-notification-banner__header"
+    >
+      <h2
+        class="govuk-notification-banner__title"
+        id="pdk-notification-banner-title-GENERATED_ID"
+      >
+        RELATED_HEARINGS.CHANGE_OF_JURISDICTION
+      </h2>
+    </div>
+    <div
+      class="govuk-notification-banner__content"
+    >
+      <div
+        class="govuk-notification-banner__heading"
+      >
+        <div>
+          <p
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+             RELATED_HEARINGS.OFFENCE_INFO 
+          </p>
+          <p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </pdk-notification-banner>
+</cpp-change-of-jurisdiction>
+`;

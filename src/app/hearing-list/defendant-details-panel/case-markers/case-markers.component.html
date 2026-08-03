@@ -1,0 +1,90 @@
+@if (markers && markers.length && !isStandAloneApplication) {
+<div container pdk-margin-bottom="4" class="case-markers-list" pdk-margin-left="0">
+  @if (!isStandAloneApplication) {
+  <pdk-grid pdk-margin-right="4">
+    <span pdk-visually-hidden>Case reference: </span>
+    <h4 pdk-typography="heading-small" pdk-margin-bottom="0">{{ caseReference }}</h4>
+    <reporting-restrictions
+      isWarning="true"
+      [caseId]="prosecutionCaseDetails?.id"
+      [offences]="prosecutionCaseDetails?.offences"
+    >
+    </reporting-restrictions>
+  </pdk-grid>
+  }
+  <pdk-grid>
+    <div class="markers-list">
+      @if (showFirst) {
+      <span>
+        @for (marker of markers | slice: 0 : 3; track marker; let i = $index) {
+        <span pdk-typography="body-small" pdk-text-colour="red" class="case-marker">
+          {{ this.adjustCase(marker) }}
+          @if (i === 2 && markers.length > 3) {
+          <span pdk-text-colour="blue" class="show-others" (click)="showAllMarkers()">
+            + {{ markers.length - 3 }} others
+          </span>
+          }
+          <br />
+        </span>
+        }
+      </span>
+      } @else { @for (marker of markers; track marker) {
+      <span pdk-typography="body-small" pdk-text-colour="red" class="case-marker">
+        {{ this.adjustCase(marker) }}
+        <br />
+      </span>
+      } }
+    </div>
+    <a
+      pdk-link
+      pdk-typography="body-small"
+      pdk-margin-top="2"
+      pdk-text-colour="blue"
+      class="edit-marker"
+      (click)="goToCaseMarker()"
+      href="JavaScript:void(0);"
+      >Edit case markers</a
+    >
+  </pdk-grid>
+</div>
+} @else {
+<pdk-grid container pdk-margin-bottom="4">
+  @if (!isStandAloneApplication) {
+  <pdk-grid one-third>
+    <h4 pdk-typography="heading-small" pdk-margin-bottom="0">{{ caseReference }}</h4>
+    <reporting-restrictions
+      isWarning="true"
+      [caseId]="prosecutionCaseDetails?.id"
+      [offences]="prosecutionCaseDetails?.offences"
+    >
+    </reporting-restrictions>
+  </pdk-grid>
+  <pdk-grid two-thirds>
+    <a
+      pdk-link
+      pdk-typography="body-small"
+      pdk-margin-top="4"
+      pdk-margin-left="3"
+      pdk-text-colour="blue"
+      class="add-marker"
+      (click)="goToCaseMarker()"
+      href="JavaScript:void(0);"
+      >Add case markers</a
+    >
+  </pdk-grid>
+  } @if (isStandAloneApplication) {
+  <pdk-grid two-thirds>
+    <a
+      pdk-link
+      pdk-typography="body-small"
+      pdk-margin-top="4"
+      pdk-text-colour="blue"
+      class="add-marker"
+      (click)="goToCaseMarker()"
+      href="JavaScript:void(0);"
+      >Add case markers</a
+    >
+  </pdk-grid>
+  }
+</pdk-grid>
+}

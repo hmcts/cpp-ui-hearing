@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChangeHearingTypeComponent should render correctly 1`] = `
+<change-hearing-type
+  cancel={[Function EventEmitter_]}
+  eventNote=""
+  eventNoteCharacterLimit={[Function Number]}
+  hearingTypes={[Function Array]}
+  onChangeHearingType={[Function EventEmitter_]}
+>
+  <div
+    class="change-hearing-type-heading-row"
+  >
+    <h3
+      class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-heading-s"
+      pdk-margin-bottom="2"
+      pdk-margin-top="2"
+      pdk-typography="heading-small"
+    >
+       HEARING_EVENTS_LOG.CHANGE_HEARING_TYPE 
+    </h3>
+    <a
+      class="govuk-!-margin-top-3 govuk-body-s govuk-link"
+      data-role="change-hearing-type-cancel"
+      href="javascript:void(0)"
+      pdk-link=""
+      pdk-margin-top="3"
+      pdk-typography="body-small"
+    >
+      COMMON.CANCEL
+    </a>
+  </div><hr /><form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+    pdk-form=""
+  >
+    <hearing-type-selector>
+      <pdk-form-field
+        label="Hearing type"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="pdk-form-control-undefined-GENERATED_ID"
+          >
+             Hearing type 
+          </label>
+          <pdk-autosuggest-lite
+            auto-focus=""
+            class="ng-untouched ng-pristine ng-invalid"
+            data-role="change-hearing-type-selector"
+            name="hearingType"
+            required=""
+            suggestionkey="id"
+            suggestiontitle="hearingDescription"
+          >
+            <pdk-autosuggest
+              highlightcolor="blue"
+            >
+              <pdk-interaction-container>
+                <div>
+                  <div
+                    class="pdk-autosuggest"
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                      aria-expanded="false"
+                      autocomplete="off"
+                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                      id="pdk-form-control-undefined-GENERATED_ID"
+                      role="combobox"
+                      type="text"
+                    />
+                    <span
+                      class="govuk-visually-hidden"
+                      id="pdk-autosuggest__instructions-GENERATED_ID"
+                      pdk-visually-hidden=""
+                    >
+                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                    </span>
+                    <span
+                      aria-live="polite"
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                      role="status"
+                    >
+                    </span>
+                    <div
+                      class="pdk-autosuggest__suggestions-container"
+                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                    >
+                    </div>
+                  </div>
+                </div>
+              </pdk-interaction-container>
+            </pdk-autosuggest>
+          </pdk-autosuggest-lite>
+        </pdk-form-group>
+      </pdk-form-field>
+    </hearing-type-selector>
+    <event-note>
+      <pdk-form-field
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <label
+            class="govuk-label govuk-label--s"
+            for="pdk-form-control-undefined-GENERATED_ID"
+          >
+             HEARING_EVENTS_LOG.EDIT_EVENT_NOTE 
+          </label>
+          <textarea
+            auto-focus=""
+            class="ng-untouched ng-pristine ng-valid govuk-input"
+            data-test-id="event-note"
+            id="pdk-form-control-undefined-GENERATED_ID"
+            name="event-note"
+            pdk-input=""
+            pdk-resize=""
+            pdk-text-input=""
+            style="resize: none; min-height: NaNpx; max-height: NaNpx;"
+          >
+          </textarea>
+          <pdk-character-count>
+            <span
+              aria-live="polite"
+              class="govuk-hint govuk-character-count__message"
+            >
+               You have 3000 characters remaining 
+            </span>
+          </pdk-character-count>
+        </pdk-form-group>
+      </pdk-form-field>
+    </event-note>
+    <pdk-form-group
+      class="pdk-form-group"
+    >
+      <button
+        class="govuk-button"
+        data-role="save-hearing-type-btn"
+        pdk-button=""
+        type="submit"
+      >
+         COMMON.SAVE_CHANGES 
+      </button>
+    </pdk-form-group>
+  </form>
+</change-hearing-type>
+`;

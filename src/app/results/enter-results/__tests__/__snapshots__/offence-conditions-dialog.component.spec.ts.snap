@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OffenceConditionsDialogComponent should render the component 1`] = `
+<ng-component
+  offences={[Function Array]}
+>
+  <offence-conditions-dialog>
+    <pdk-grid
+      class="govuk-!-padding-3 govuk-body-m"
+      pdk-padding="3"
+      pdk-typography="body"
+    >
+      <div
+        class="warning"
+      >
+        <p
+          class="bold"
+        >
+          Check offences for conditions applied in a previous hearing
+        </p>
+        <div>
+          <p
+            class="bold pdk-!-text-color-blue"
+            data-test-id="conditional-offence"
+            pdk-text-colour="blue"
+          >
+            <a
+              class="pdk-!-text-color-blue govuk-link govuk-link--no-visited-state"
+              href="/"
+              pagescroll=""
+              pdk-link=""
+              pdk-text-colour="blue"
+              role="link"
+              routerlink="./"
+              unvisited=""
+            >
+               Offence title 
+            </a>
+          </p>
+        </div>
+      </div>
+    </pdk-grid>
+  </offence-conditions-dialog>
+</ng-component>
+`;

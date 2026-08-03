@@ -1,0 +1,114 @@
+<form pdk-form novalidate>
+  <h1 pdk-margin-bottom="6" pdk-typography="heading-medium">
+    {{ 'ENTER_COUNSELS.DEFENCE' | translate }}
+  </h1>
+  @for (defenceCounsel of defenceCounsels; track defenceCounsel.id; let i = $index) {
+  <div>
+    <span pdk-visually-hidden>Case reference: </span>
+    @if (defenceCounsel.caseUrn) {
+    <h3 data-test-id="caseReference" pdk-typography="heading-medium">
+      {{ defenceCounsel.caseUrn }}
+    </h3>
+    }
+    <div
+      pdk-margin-bottom="4"
+      pdk-margin-top="2"
+      [id]="defenceCounsel.id"
+      data-role="defence-counsel"
+      data-test-id="defenceCounsel"
+      [ngModelGroup]="modelGroup[defenceCounsel.id]"
+    >
+      <div pdk-margin-bottom="2" class="form-group">
+        <div class="delete-counsel-link">
+          @if (disableDelete()) {
+          <a pdk-link href="javascript:void(0);" class="disabledLink">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          } @if (!disableDelete()) {
+          <a pdk-link href="javascript:void(0);" (click)="removeDefenceCounsel(i)">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          }
+        </div>
+        <pdk-form-field
+          id="firstName"
+          label="{{ 'ENTER_COUNSELS.FIRST_NAME' | translate }}"
+          labelType="small"
+        >
+          <pdk-autosuggest-lite
+            data-role="defence-firstname"
+            name="{{ 'firstName-' + defenceCounsel?.id }}"
+            (ngModelChange)="updateModelProp($event, defenceCounsel)"
+            (inputText)="onInputTextChanged($event, defenceCounsel, 'firstName')"
+            [ngModel]="modelGroup[defenceCounsel.id]['firstName-' + defenceCounsel?.id]"
+            [suggestions]="modelGroup[defenceCounsel.id]?.firstNameSuggestions"
+            [suggestionKey]="'value'"
+            [suggestionTitle]="'label'"
+          >
+          </pdk-autosuggest-lite>
+        </pdk-form-field>
+      </div>
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field
+          id="lastName"
+          label="{{ 'ENTER_COUNSELS.LAST_NAME' | translate }}"
+          labelType="small"
+        >
+          <pdk-autosuggest-lite
+            data-role="defence-lastname"
+            name="{{ 'lastName-' + defenceCounsel?.id }}"
+            (ngModelChange)="updateModelProp($event, defenceCounsel)"
+            (inputText)="onInputTextChanged($event, defenceCounsel, 'lastName')"
+            [ngModel]="modelGroup[defenceCounsel.id]['lastName-' + defenceCounsel?.id]"
+            [suggestions]="modelGroup[defenceCounsel.id]?.lastNameSuggestions"
+            [suggestionKey]="'value'"
+            [suggestionTitle]="'label'"
+          >
+          </pdk-autosuggest-lite>
+        </pdk-form-field>
+      </div>
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field
+          id="status"
+          label="{{ 'ENTER_COUNSELS.STATUS_ON_CASE' | translate }}"
+          hintText="{{ 'ENTER_COUNSELS.STATUS_SUBTEXT' | translate }}"
+          labelType="small"
+        >
+          <input
+            pdk-text-input
+            data-role="defence-status"
+            type="text"
+            name="defence-status"
+            [(ngModel)]="defenceCounsel.status"
+            (change)="updateDefenceCounsel(defenceCounsel)"
+            (input)="checkIsValid(defenceCounsels)"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </pdk-form-field>
+      </div>
+      <div data-role="defence-representing">
+        <pdk-form-field label="{{ 'ENTER_COUNSELS.REPRESENTING' | translate }}" labelType="small">
+          <pdk-checkbox-group
+            name="{{ 'defendantId-' + defenceCounsel?.id }}"
+            [ngModel]="defenceCounsel.defendants"
+            (ngModelChange)="updateDefendant(defenceCounsel, $event)"
+            required
+          >
+            @for (item of options; track item.value) {
+            <pdk-checkbox pdk-margin-bottom="2" [value]="item.value">
+              {{ item.label }}
+            </pdk-checkbox>
+            }
+          </pdk-checkbox-group>
+        </pdk-form-field>
+      </div>
+    </div>
+    <hr />
+  </div>
+  } @if (!isHearingEventLogEnded) {
+  <a pdk-link href="javascript:void(0);" (click)="addDefenceCounsel()">
+    {{ 'ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE' | translate }}
+  </a>
+  <hr />
+  }
+</form>

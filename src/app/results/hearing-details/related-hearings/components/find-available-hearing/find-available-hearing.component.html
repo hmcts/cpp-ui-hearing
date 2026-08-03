@@ -1,0 +1,66 @@
+<div class="find-available-hearing">
+  <h2 pdk-typography="heading-medium">
+    {{ 'RELATED_HEARINGS.FIND_AN_AVAILABLE_HEARING' | translate }}
+  </h2>
+
+  <form
+    data-test-id="relatedHearingsFiltersForm"
+    pdk-form
+    [formGroup]="relatedHearingsForm"
+    (validSubmit)="onSubmit()"
+  >
+    <pdk-form-field [label]="'RELATED_HEARINGS.RELATED_HEARINGS' | translate" labelType="small">
+      <pdk-checkbox-group
+        formControlName="caseTypes"
+        (change)="checkSpecificCases($event, specificOption)"
+      >
+        <pdk-checkbox [value]="relatedCaseTypes.sameCase">
+          <span>{{ 'RELATED_HEARINGS.SAME_AS' | translate }} {{ formattedCaseUrns }}</span>
+        </pdk-checkbox>
+
+        <pdk-checkbox [value]="relatedCaseTypes.linkedCase">
+          <span>{{ 'RELATED_HEARINGS.MATCHED_DEFENDANTS_AND_LINKED_CASES' | translate }}</span>
+        </pdk-checkbox>
+
+        <pdk-checkbox [value]="relatedCaseTypes.specific" #specificOption="pdkCheckbox">
+          <span>{{ 'RELATED_HEARINGS.SPECIFIC_CASE' | translate }}</span>
+        </pdk-checkbox>
+        @if (caseTypesValue?.includes(relatedCaseTypes.specific)) {
+        <pdk-checkbox-conditional pdk-margin-top="2">
+          @for (specificUrnControl of specificCaseUrns.controls; track $index) {
+          <pdk-form-field [label]="'RELATED_HEARINGS.REFERENCE' | translate" pdk-margin-bottom="3">
+            <input
+              type="text"
+              [formControl]="specificUrnControl"
+              name="reference-specific-case"
+              pdk-text-input
+              [pdk-input]="10"
+            />
+          </pdk-form-field>
+          }
+          <a
+            pdk-link
+            pdk-margin-bottom="4"
+            href="javascript:void(0)"
+            (click)="addAnotherSpecificCase()"
+            >{{ 'RELATED_HEARINGS.ADD_ANOTHER_CASE' | translate }}</a
+          >
+        </pdk-checkbox-conditional>
+        }
+      </pdk-checkbox-group>
+    </pdk-form-field>
+    <pdk-form-group class="find-available-hearing-action-buttons" pdk-margin-top="5">
+      <button type="submit" pdk-button pdk-margin="0" [disabled]="isSearchButtonDisabled">
+        {{ 'RELATED_HEARINGS.SEARCH' | translate }}
+      </button>
+      <a
+        pdk-link
+        pdk-margin-horizontal="3"
+        href="javascript:void(0)"
+        data-role="reset-filters-button"
+        (click)="handleResetFilters()"
+        >{{ 'RELATED_HEARINGS.RESET_FILTERS' | translate }}</a
+      >
+    </pdk-form-group>
+  </form>
+</div>

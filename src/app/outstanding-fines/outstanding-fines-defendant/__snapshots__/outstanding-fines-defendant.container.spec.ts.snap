@@ -1,0 +1,232 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OutstandingFinesDefendantContainer should render the template with the values expected 1`] = `
+<test-host-component>
+  <outstanding-fines-defendant>
+    <h1
+      class="heading-large page-header"
+      data-role="outstanding-fines-header"
+    >
+       OUTSTANDING_FINES.OUTSTANDING_REPORT_FORtest-defendant-firstname test-defendant-lastname
+    </h1>
+    <outstanding-fines-table>
+      <div
+        class="outstanding-fines-table"
+      >
+        <div
+          class="header"
+        >
+          <div
+            class="header-defendant-details"
+          >
+            <div
+              class="defendant-col"
+            >
+              <span
+                class="bold"
+              >
+                OUTSTANDING_FINES.DEFENDANT
+              </span>
+              <span>
+                OUTSTANDING_FINES.ADDRESS
+              </span>
+              <span>
+                OUTSTANDING_FINES.DATE_OF_BIRTH
+              </span>
+            </div>
+            <div
+              class="account-col"
+            >
+              <span
+                class="bold"
+              >
+                OUTSTANDING_FINES.ACCOUNT_NUMBER
+              </span>
+              <span>
+                OUTSTANDING_FINES.ACCOUNT_LOCATION
+              </span>
+            </div>
+            <div
+              class="last-enf-col bold"
+            >
+              OUTSTANDING_FINES.LAST_ENF_ACTION
+            </div>
+            <div
+              class="payment-rate-col bold"
+            >
+              OUTSTANDING_FINES.PAYMENT_RATE
+            </div>
+          </div>
+          <div
+            class="header-defendant-amount"
+          >
+            <div
+              class="amount-imposed-col bold"
+            >
+               OUTSTANDING_FINES.AMOUNT_IMPOSED 
+            </div>
+            <div
+              class="amount-paid-col bold"
+            >
+              OUTSTANDING_FINES.AMOUNT_PAID
+            </div>
+            <div
+              class="balance-col bold"
+            >
+              OUTSTANDING_FINES.BALANCE
+            </div>
+            <div
+              class="days-in-default-col bold"
+            >
+               OUTSTANDING_FINES.DAYS_IN_DEFAULT 
+            </div>
+          </div>
+        </div>
+        <div
+          class="defendants"
+        >
+          <div
+            class="defendant"
+          >
+            <div
+              class="defendant-top-row"
+            >
+              <div
+                class="defendant-details-top"
+              >
+                <span
+                  class="defendant-name bold"
+                >
+                   Abbie ARMSTRONG 
+                </span>
+                <span
+                  class="account-number bold"
+                >
+                   09001080W 
+                </span>
+                <span
+                  class="last-enf-action"
+                >
+                   NBWT 
+                </span>
+                <span
+                  class="payment-rate"
+                >
+                   £20 per fortnight 
+                </span>
+              </div>
+              <div
+                class="defendant-amount-top"
+              >
+                <span
+                  class="amount-imposed"
+                >
+                   £200.00 
+                </span>
+                <span
+                  class="amount-paid"
+                >
+                  <span>
+                    –
+                  </span>
+                </span>
+                <span
+                  class="balance"
+                >
+                   £200.00 
+                </span>
+                <span
+                  class="days-in-default"
+                >
+                  <span>
+                    –
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div
+              class="defendant-bottom-row"
+            >
+              <div
+                class="defendant-details-bottom"
+              >
+                <div
+                  class="defendant-details-bottom-row"
+                >
+                  <div
+                    class="defendant-address"
+                  >
+                    <span>
+                      777 Oxford Pl
+  Shire Hall
+  Ipswich
+  IP2 7QQ
+                    </span>
+                  </div>
+                  <div
+                    class="defendant-dob"
+                  >
+                    <span>
+                      6 Nov 1980
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="defendant-account-location"
+                >
+                  <span>
+                    LCC 123
+  London Road
+  London
+  NW1 7EL
+                  </span>
+                </div>
+              </div>
+              <div
+                class="defendant-other-details-bottom"
+              >
+                <div
+                  class="defendant-collection-order"
+                >
+                  <span
+                    class="bold"
+                  >
+                    OUTSTANDING_FINES.COLLECTION_ORDER
+                  </span>
+                  <span>
+                    Yes
+                  </span>
+                </div>
+                <div
+                  class="defendant-consolidated"
+                >
+                  <span
+                    class="bold"
+                  >
+                    OUTSTANDING_FINES.CONSOLIDATED
+                  </span>
+                  <span>
+                    Yes
+                  </span>
+                </div>
+                <div
+                  class="defendant-guardian-pay"
+                >
+                  <span
+                    class="bold"
+                  >
+                    OUTSTANDING_FINES.GUARDIAN_TO_PAY
+                  </span>
+                  <span>
+                    No
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </outstanding-fines-table>
+  </outstanding-fines-defendant>
+</test-host-component>
+`;

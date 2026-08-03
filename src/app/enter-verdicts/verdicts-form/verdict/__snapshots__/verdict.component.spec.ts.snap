@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerdictComponent should render the template with the values expected 1`] = `
+<ng-component
+  allVerdictTypes={[Function Array]}
+  currentHearingDetail={[Function Object]}
+  defendant={[Function Object]}
+  offence={[Function Object]}
+  offencesCodes={[Function Array]}
+  verdictTypesForHearingJurisdiction={[Function Array]}
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+    pdk-form=""
+  >
+    <verdict>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <pdk-form-field
+            labeltype="none"
+          >
+            <pdk-form-group
+              class="pdk-form-group"
+            >
+              <fieldset
+                class="govuk-fieldset"
+                pdk-fieldset=""
+              >
+                <legend
+                  class="govuk-fieldset__legend govuk-visually-hidden"
+                >
+                   Verdict for Isabella MAGNANI 
+                </legend>
+                <pdk-radio-group
+                  class="ng-untouched ng-pristine ng-valid"
+                  name="chargeType"
+                >
+                  <div
+                    class="govuk-radios"
+                  >
+                    <pdk-radio-button
+                      data-role="Autrefoisacquit"
+                    >
+                      <div
+                        class="govuk-radios__item"
+                      >
+                        <input
+                          class="govuk-radios__input"
+                          id="pdk-radio-GENERATED_ID"
+                          name="pdk-radio-group-GENERATED_ID"
+                          type="radio"
+                          value="c81e728d-9d4c-3f63-af06-7f89cc14862c"
+                        />
+                        <label
+                          class="govuk-radios__label govuk-label"
+                          for="pdk-radio-GENERATED_ID"
+                          pdk-label=""
+                        >
+                           Autrefois acquit 
+                        </label>
+                      </div>
+                    </pdk-radio-button>
+                    <div
+                      class="clearfix"
+                    />
+                  </div>
+                </pdk-radio-group>
+                <div
+                  class="govuk-!-margin-top-8"
+                  pdk-margin-top="8"
+                >
+                </div>
+              </fieldset>
+            </pdk-form-group>
+          </pdk-form-field>
+          <div
+            class="plea-date pdk-!-text-color-dark-grey"
+            pdk-text-colour="dark-grey"
+          >
+             ENTER_VERDICTS.VERDICT_ENTERED_ON 17 October 2018 
+          </div>
+        </pdk-grid>
+        <pdk-grid
+          class="other-verdicts-types govuk-grid-column-one-third"
+          one-third=""
+        >
+        </pdk-grid>
+      </pdk-grid>
+    </verdict>
+    <button
+      pdk-button=""
+      type="submit"
+    >
+      Save and continue
+    </button>
+  </form>
+</ng-component>
+`;

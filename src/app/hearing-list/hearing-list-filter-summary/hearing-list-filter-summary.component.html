@@ -1,0 +1,24 @@
+<div class="filter-summary">
+  @if (displayAttendeesLink) {
+  <a pdk-link href="javascript:void(0);" (click)="onBackToHearingList()">
+    <span class="arrowLeft"></span>
+    <span data-role="back-to-hearing-list">{{
+      'ENTER_COUNSELS.BACK_TO_CASE_LIST' | translate
+    }}</span>
+  </a>
+  } @if (showSummary && !displayAttendeesLink) {
+  <div pdk-typography="body-medium">
+    @if (options) {
+    {{ hasResults ? 'Showing hearings at' : 'No hearings found for' }}
+    {{ options.courtCentreFilter.name }}, {{ options.courtRoomFilter.name }} on
+    {{ options.dateFilter | date : 'd MMMM yyyy' }}.
+    <a pdk-link href="javascript:void(0);" (click)="onShowFilters()">Change filter</a>
+    } @else {
+    <span pdk-typography="body-medium">
+      You haven't applied all filters yet.
+      <a pdk-link href="javascript:void(0);" (click)="onShowFilters()"> Show filters </a>
+    </span>
+    }
+  </div>
+  }
+</div>

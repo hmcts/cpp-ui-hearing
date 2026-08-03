@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeletedResultLinesComponent should render the component 1`] = `
+<test-host-component
+  deletedResultLines={[Function Array]}
+>
+  <cpp-deleted-result-lines>
+    <details
+      class="govuk-!-margin-top-4 govuk-details"
+      pdk-details=""
+      pdk-margin-top="4"
+    >
+      <summary
+        class="govuk-details__summary"
+      >
+        <span
+          class="govuk-details__summary-text"
+        >
+          <span
+            class="summary"
+            data-test-id="deletedResults"
+          >
+             Deleted result 
+          </span>
+        </span>
+      </summary>
+      <pdk-details-text
+        class="govuk-details__text"
+      >
+        <div
+          class="govuk-!-margin-bottom-3"
+          pdk-margin-bottom="3"
+        >
+          <div>
+            <span
+              class="govuk-body-m"
+              data-test-id="deletedResultsLabel"
+              pdk-typography="body"
+            >
+              <b>
+                Costs
+              </b>
+            </span>
+          </div>
+          <cpp-result-prompts-summary
+            class="cpp-shareable-result-line--deleted"
+            style="display: block;"
+          >
+            <dl
+              class="result-prompts-summary"
+            >
+              <div
+                class="govuk-!-padding-left-null govuk-!-padding-right-2"
+              >
+                <dt
+                  class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                  pdk-margin-right="1"
+                  pdk-text-colour="black"
+                  tint="25"
+                >
+                   Amount of costs 
+                </dt>
+                <dd>
+                  £1000.00
+                </dd>
+              </div>
+              <div
+                class="govuk-!-padding-left-null govuk-!-padding-right-2"
+              >
+                <dt
+                  class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                  pdk-margin-right="1"
+                  pdk-text-colour="black"
+                  tint="25"
+                >
+                   Major creditor 
+                </dt>
+                <dd>
+                  Television Licensing Organisation
+                </dd>
+              </div>
+            </dl>
+          </cpp-result-prompts-summary>
+          <div>
+            <span
+              class="govuk-body-s"
+              data-test-id="deletedResultsAmendedBy"
+              pdk-typography="body-small"
+            >
+              Amended by Mr AmendedBy, 21 Jul 2021
+            </span>
+          </div>
+          <div>
+            <span
+              class="govuk-body-s"
+              data-test-id="deletedResultsValidatedBy"
+              pdk-typography="body-small"
+            >
+              Validated by Mr ValidatedBy, 21 Jul 2021
+            </span>
+          </div>
+        </div>
+      </pdk-details-text>
+    </details>
+  </cpp-deleted-result-lines>
+</test-host-component>
+`;

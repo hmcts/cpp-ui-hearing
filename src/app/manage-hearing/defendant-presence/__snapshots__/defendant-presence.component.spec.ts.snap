@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefendantPresenceComponent should render the template with the values expected 1`] = `
+<defendant-presence
+  onSave={[Function EventEmitter_]}
+  options={[Function Array]}
+  participantPresent=""
+  translate={[Function _TranslateService]}
+  translateSubscription={[Function SafeSubscriber]}
+>
+  <div
+    class="defendant-presence"
+  >
+    <form
+      class="presence-form ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <pdk-form-field
+        class="presence-form-field"
+        id="presence-form-"
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--s"
+            >
+               MANAGE_HEARING.IS_DEFENDANT_PRESENT 
+            </legend>
+            <pdk-radio-group
+              class="ng-untouched ng-pristine ng-valid"
+              data-role="defendant-presence"
+              name="presence-radios"
+              required=""
+            >
+              <div
+                class="govuk-radios"
+              >
+                <pdk-radio-button>
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="IN_PERSON"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                       COMMON.IN_PERSON 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+                <pdk-radio-button>
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="BY_VIDEO"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                       COMMON.BY_VIDEO 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+                <pdk-radio-button>
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="NOT_PRESENT"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                       COMMON.NOT_PRESENT 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+              </div>
+            </pdk-radio-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <button
+        class="save-presence-btn govuk-!-margin-bottom-1 govuk-button"
+        disabled="disabled"
+        pdk-button=""
+        pdk-margin-bottom="1"
+        type="submit"
+      >
+         COMMON.SAVE 
+      </button>
+    </form>
+  </div>
+</defendant-presence>
+`;

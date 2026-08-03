@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OffencesListItemComponent should bold title 1`] = `
+<test-host-component
+  boldTitle={[Function Boolean]}
+  hideLegislation="false"
+  offence={[Function Object]}
+>
+  <offences-list-item>
+    <div
+      class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+      pdk-margin-left="2"
+      pdk-margin-top="2"
+      pdk-padding-top="2"
+    >
+      <div
+        class="offence-num govuk-body-s bold"
+        pdk-typography="body-small"
+      >
+         1. 
+      </div>
+      <div
+        class="offence-info-container"
+      >
+        <h4
+          class="govuk-!-margin-bottom-0 govuk-heading-s"
+          data-test-id="offenceTitle"
+          pdk-margin-bottom="0"
+          pdk-typography="heading-small"
+        >
+           Wound / inflict grievous bodily harm without intent 
+        </h4>
+        <div
+          data-test-id="offenceLegislation"
+        >
+           Contrary to section 20 of the Offences Against the Person Act 1861. 
+        </div>
+        <div
+          data-test-id="offenceWording"
+        >
+           on 01/08/2009 at the County public house, unlawfully and maliciously wounded, John Smith 
+        </div>
+        <div>
+          CTL: 10 Aug 2019
+        </div>
+      </div>
+    </div>
+  </offences-list-item>
+</test-host-component>
+`;
+
+exports[`OffencesListItemComponent should hide legislation 1`] = `
+<test-host-component
+  boldTitle="false"
+  hideLegislation={[Function Boolean]}
+  offence={[Function Object]}
+>
+  <offences-list-item>
+    <div
+      class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+      pdk-margin-left="2"
+      pdk-margin-top="2"
+      pdk-padding-top="2"
+    >
+      <div
+        class="offence-num govuk-body-s"
+        pdk-typography="body-small"
+      >
+         1. 
+      </div>
+      <div
+        class="offence-info-container"
+      >
+        <h4
+          class="govuk-!-margin-bottom-0 govuk-heading-s"
+          data-test-id="offenceTitle"
+          pdk-margin-bottom="0"
+          pdk-typography="heading-small"
+        >
+           Wound / inflict grievous bodily harm without intent 
+        </h4>
+        <div
+          data-test-id="offenceWording"
+        >
+           on 01/08/2009 at the County public house, unlawfully and maliciously wounded, John Smith 
+        </div>
+        <div>
+          CTL: 10 Aug 2019
+        </div>
+      </div>
+    </div>
+  </offences-list-item>
+</test-host-component>
+`;
+
+exports[`OffencesListItemComponent should render the template with the values expected 1`] = `
+<test-host-component
+  boldTitle="false"
+  hideLegislation="false"
+  offence={[Function Object]}
+>
+  <offences-list-item>
+    <div
+      class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+      pdk-margin-left="2"
+      pdk-margin-top="2"
+      pdk-padding-top="2"
+    >
+      <div
+        class="offence-num govuk-body-s"
+        pdk-typography="body-small"
+      >
+         1. 
+      </div>
+      <div
+        class="offence-info-container"
+      >
+        <h4
+          class="govuk-!-margin-bottom-0 govuk-heading-s"
+          data-test-id="offenceTitle"
+          pdk-margin-bottom="0"
+          pdk-typography="heading-small"
+        >
+           Wound / inflict grievous bodily harm without intent 
+        </h4>
+        <div
+          data-test-id="offenceLegislation"
+        >
+           Contrary to section 20 of the Offences Against the Person Act 1861. 
+        </div>
+        <div
+          data-test-id="offenceWording"
+        >
+           on 01/08/2009 at the County public house, unlawfully and maliciously wounded, John Smith 
+        </div>
+        <div>
+          CTL: 10 Aug 2019
+        </div>
+      </div>
+    </div>
+  </offences-list-item>
+</test-host-component>
+`;
+
+exports[`OffencesListItemComponent should show offence count for Crown court 1`] = `
+<test-host-component
+  boldTitle={[Function Boolean]}
+  hideLegislation="false"
+  jurisdictionType={[Function String]}
+  offence={[Function Object]}
+>
+  <offences-list-item>
+    <div
+      class="govuk-!-margin-top-2 govuk-!-margin-left-2 govuk-!-padding-top-2"
+      pdk-margin-left="2"
+      pdk-margin-top="2"
+      pdk-padding-top="2"
+    >
+      <div
+        class="bold govuk-!-margin-bottom-1 govuk-body-s"
+        pdk-margin-bottom="1"
+        pdk-typography="body-small"
+      >
+         Count:1 
+      </div>
+      <div
+        class="offence-num govuk-body-s bold"
+        pdk-typography="body-small"
+      >
+         1. 
+      </div>
+      <div
+        class="offence-info-container"
+      >
+        <h4
+          class="govuk-!-margin-bottom-0 govuk-heading-s"
+          data-test-id="offenceTitle"
+          pdk-margin-bottom="0"
+          pdk-typography="heading-small"
+        >
+           Wound / inflict grievous bodily harm without intent 
+        </h4>
+        <div
+          data-test-id="offenceLegislation"
+        >
+           Contrary to section 20 of the Offences Against the Person Act 1861. 
+        </div>
+        <div
+          data-test-id="offenceWording"
+        >
+           on 01/08/2009 at the County public house, unlawfully and maliciously wounded, John Smith 
+        </div>
+        <div>
+          CTL: 10 Aug 2019
+        </div>
+      </div>
+    </div>
+  </offences-list-item>
+</test-host-component>
+`;

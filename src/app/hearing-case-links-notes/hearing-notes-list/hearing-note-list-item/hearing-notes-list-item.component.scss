@@ -1,0 +1,16 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.note-row {
+  &:first-child {
+    border-top: 1px solid govuk.govuk-colour('light-grey');
+  }
+  padding: 10px 5px;
+  font-size: 14px;
+  border-bottom: 1px solid govuk.govuk-colour('light-grey');
+  &-more {
+    text-decoration: underline;
+  }
+  &-content {
+    padding: 1.5em 0;
+  }
+}

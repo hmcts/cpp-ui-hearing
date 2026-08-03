@@ -1,0 +1,57 @@
+<section class="intermediry-counsels">
+  <dl data-test-id="interpreters" class="attendee" pdk-margin-bottom="2">
+    <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+      {{ 'HEARING_LIST.INTERPRETER' | translate }}
+    </dt>
+    <dd>
+      <ul>
+        @for (interpreter of interpreterAttendees; track interpreter.id) {
+        <li
+          data-role="attendee-name"
+          pdk-typography="body-small"
+          pdk-margin-bottom="1"
+          class="name"
+          data-test-id="attendee"
+          id="interpreter-name"
+        >
+          <div data-test-id="name">{{ interpreter | fullName : true }}</div>
+        </li>
+        }
+      </ul>
+      @if (!showInterpreters) {
+      <span>
+        <span pdk-visually-hidden>No {{ 'HEARING_LIST.INTERPRETER' | translate }}</span
+        >–
+      </span>
+      }
+    </dd>
+  </dl>
+
+  <dl data-test-id="intermediaries" class="attendee" pdk-margin-bottom="2">
+    <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+      {{ 'HEARING_LIST.INTERMEDIARIES' | translate }}
+    </dt>
+    <dd>
+      <ul>
+        @for (intermediary of intermediaryAttendees; track intermediary.id) {
+        <li
+          data-role="attendee-name"
+          pdk-typography="body-small"
+          pdk-margin-bottom="1"
+          class="name"
+          data-test-id="attendee"
+          id="intermediary-name"
+        >
+          <div data-test-id="name">{{ intermediary | fullName : true }}</div>
+        </li>
+        }
+      </ul>
+      @if (!showIntermediaries) {
+      <span>
+        <span pdk-visually-hidden>No {{ 'HEARING_LIST.INTERMEDIARIES' | translate }}</span
+        >–
+      </span>
+      }
+    </dd>
+  </dl>
+</section>

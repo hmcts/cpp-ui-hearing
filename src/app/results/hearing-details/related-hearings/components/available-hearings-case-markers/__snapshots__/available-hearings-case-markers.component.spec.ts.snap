@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvailableHearingsCaseMarkersComponent should match snapshot 1`] = `
+<available-hearings-case-markers
+  casemarkers={[Function Array]}
+>
+  <div
+    class="case-markers"
+  >
+    <div
+      class="case-marker-title pdk-!-fill-color-red"
+      pdk-fill-colour="red"
+    >
+    </div>
+  </div>
+</available-hearings-case-markers>
+`;

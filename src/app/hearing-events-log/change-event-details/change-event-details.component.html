@@ -1,0 +1,116 @@
+<div pdk-margin-top="3" pdk-padding-bottom="2" class="event-log-heading-row">
+  <h3 pdk-typography="heading-small">
+    {{ 'HEARING_EVENTS_LOG.CHANGE_EVENT_DETAILS' | translate }}
+  </h3>
+
+  <a
+    pdk-link
+    pdk-typography="body-small"
+    href="javascript:void(0)"
+    data-role="change-event-details-cancel"
+    (click)="onCancel()"
+    >{{ 'COMMON.CANCEL' | translate }}</a
+  >
+</div>
+
+<form pdk-form data-test-id="changeEventForm" (validSubmit)="onSave()">
+  <div class="event-log-form-row">
+    <pdk-form-field
+      label="{{ 'HEARING_EVENTS_LOG.CHANGE_LOGGED_TIME' | translate }}"
+      labelType="small"
+      [errorMessages]="[
+        {
+          rule: 'required',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.REQUIRED' | translate,
+        },
+        {
+          rule: 'timeExists',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.TIME_INVALID' | translate,
+        },
+        {
+          rule: 'timeInFuture',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.TIME_IN_FUTURE' | translate,
+        },
+        {
+          rule: 'timeBeforeStart',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.TIME_BEFORE_START' | translate,
+        },
+        {
+          rule: 'endEventLastEvent',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.EVENT_HEARING_END_LAST_EVENT' | translate,
+        },
+        {
+          rule: 'startEventFirstEvent',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.EVENT_HEARING_START_FIRST_EVENT' | translate,
+        },
+        {
+          rule: 'pauseNotResume',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.EVENT_HEARING_PAUSE_NOT_RESUME' | translate,
+        },
+        {
+          rule: 'afterEnd',
+          message: 'HEARING_EVENTS_LOG.INVALID_TIME.EVENT_HEARING_END' | translate,
+        },
+      ]"
+    >
+      <pdk-time-input
+        name="eventTime"
+        [autoShift]="eventTimeAutoShift"
+        required
+        [ngModel]="formattedTime"
+        (focus)="eventTimeFocused()"
+        (ngModelChange)="updateEventTime($event)"
+        [validateHearingEventLogTime]="{
+          eventLog: event,
+          loggedEvents: loggedEvents,
+        }"
+      >
+      </pdk-time-input>
+    </pdk-form-field>
+  </div>
+
+  @if (event.alterable && isCrownCourt) {
+  <div class="event-log-form-row">
+    <fieldset pdk-fieldset>
+      <legend pdk-legend="small">
+        {{ 'HEARING_EVENTS_LOG.CHANGE_LOGGED_EVENT' | translate }}
+      </legend>
+      <event-selector
+        [event]="event"
+        [eventDefinitions]="eventDefinitions"
+        #eventSelector
+        [hearingDefendants]="hearingDefendants"
+        [hearingDefenceCounsels]="hearingDefenceCounsels"
+        [witnessNames]="witnessNames"
+        (eventSelected)="selectEvent($event)"
+      ></event-selector>
+    </fieldset>
+  </div>
+  }
+
+  <div class="event-log-form-row">
+    <event-note
+      [eventNoteCharacterLimit]="eventNoteCharacterLimit"
+      [(eventNote)]="eventNote"
+    ></event-note>
+  </div>
+
+  @if (showChangeHearingType) {
+  <hearing-type-selector
+    [hearingTypes]="hearingTypes"
+    [preselectedHearingType]="selectedHearingType"
+    (hearingTypeSelected)="selectHearingType($event)"
+  >
+  </hearing-type-selector>
+  }
+
+  <button
+    pdk-button
+    pdk-margin-top="2"
+    class="button"
+    data-role="change-event-details-save-button"
+    type="submit"
+  >
+    {{ 'COMMON.SAVE_CHANGES' | translate }}
+  </button>
+</form>

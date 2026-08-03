@@ -1,0 +1,19 @@
+<h1 class="heading-large page-header">{{ 'OUTSTANDING_FINES.OUTSTANDING_REPORT' | translate }}</h1>
+
+@if (outstandingFinesDetails$ | async; as outstandingFinesDetails) {
+<div>
+  <outstanding-fines-report-details
+    [outstandingFinesDetails]="outstandingFinesDetails"
+  ></outstanding-fines-report-details>
+
+  @for (courtRoom of outstandingFinesDetails.outstandingFinesByCourtRooms; track
+  courtRoom.courtRoomName) {
+  <div>
+    <h3 class="bold-medium mt-l">{{ courtRoom.courtRoomName }}</h3>
+    <outstanding-fines-table
+      [outstandingFines]="courtRoom.outstandingFines"
+    ></outstanding-fines-table>
+  </div>
+  }
+</div>
+}

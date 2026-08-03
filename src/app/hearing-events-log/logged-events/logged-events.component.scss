@@ -1,0 +1,48 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.event-log-heading-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .event-log-heading-row__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    button {
+      margin: 0;
+      padding: 0;
+      text-decoration: underline;
+    }
+  }
+}
+
+.event-selector {
+  border-top: 0.10526em solid;
+  border-bottom: 0.10526em solid;
+}
+
+.hearing-events-log-events-list-item {
+  border-bottom: 0.10526em solid;
+
+  .hearing-events-log-events-list-item__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .hearing-events-log-events-list-item__label {
+    flex-basis: 60%;
+  }
+
+  .hearing-events-log-events-list-item__actions {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 35%;
+  }
+}
+
+.hearing-events-log-container {
+  border-top: 0.10526em solid govuk.govuk-colour('blue');
+  padding-top: 0.47em;
+}

@@ -1,0 +1,34 @@
+@if (errors) {
+<pdk-error-summary focusOnChange="true" [errors]="errors"> </pdk-error-summary>
+}
+<div
+  pdk-padding="6"
+  pdk-margin-bottom="6"
+  pdk-border-colour="mid-grey"
+  style="border: 1px solid; border-top: 0"
+>
+  <find-available-hearing
+    [hearing]="hearing$ | async"
+    [caseUrns]="currentResultLineCaseUrns$ | async"
+    (onFindAvailableHearings)="findAvailableHearings($event)"
+  ></find-available-hearing>
+
+  @if ((hasApiActivity$ | async) === false && (availableHearings$ | async)) {
+  <available-hearings
+    [hearings]="availableHearings$ | async"
+    [futureHearingsById]="futureHearingsById$ | async"
+    [jurisdictionType]="jurisdictionType"
+    [courtCentres]="courtCentres"
+    [isCivil]="isCivil$ | async"
+    (onViewHearingDetails)="viewHearingDetails($event)"
+    (onHearingSelection)="hearingSelection($event)"
+    (errors)="showValidationError($event)"
+  ></available-hearings>
+  }
+
+  <div pdk-margin-top="6">
+    <a pdk-link href="javascript:void(0)" (click)="handleCancel()" pdk-margin-top="1"
+      >{{ 'RELATED_HEARINGS.CANCEL_AND_RETURN_TO_ENTER_RESULTS' | translate }}</a
+    >
+  </div>
+</div>

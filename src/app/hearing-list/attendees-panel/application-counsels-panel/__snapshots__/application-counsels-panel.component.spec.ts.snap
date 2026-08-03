@@ -1,0 +1,493 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationCounselsPanelComponent when there are existing counsels should handle the only counsel being removed 1`] = `
+<application-counsels-panel-test
+  applications={[Function Array]}
+  attendanceDay={[Function String]}
+  counselType={[Function String]}
+  counsels={[Function Array]}
+  destroy={[Function Function]}
+  formState={[Function Function]}
+>
+  <application-counsels-panel>
+    <h1
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+      style="margin-top: 0;"
+    >
+    </h1>
+    <application-counsels-form>
+      <form
+        autocomplete="off"
+        class="ng-untouched ng-pristine ng-valid"
+        novalidate=""
+        pdk-form=""
+      >
+        <div
+          class="item-container"
+          data-test-id="applicationCounsel"
+          id="counselId2"
+        >
+          <section
+            class="ng-untouched ng-pristine ng-valid"
+            data-test-id="counselId2"
+          >
+            <div
+              class="item-destroy"
+            >
+              <a
+                class="item-destroy govuk-link"
+                data-test-id="remove-application-counsel"
+                href="javascript:void(0);"
+                pdk-link=""
+              >
+                 COMMON.DELETE 
+              </a>
+            </div>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.FIRST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="firstName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.LAST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="lastName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.STATUS_ON_CASE 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     ENTER_COUNSELS.STATUS_SUBTEXT 
+                  </div>
+                </pdk-hint>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="status"
+                  pdk-text-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <hr />
+          </section>
+        </div>
+        <a
+          class="govuk-link"
+          data-test-id="add-counsel"
+          href="javascript:void(0)"
+          pdk-link=""
+        >
+           ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE 
+        </a>
+        <hr />
+      </form>
+    </application-counsels-form>
+  </application-counsels-panel>
+</application-counsels-panel-test>
+`;
+
+exports[`ApplicationCounselsPanelComponent when there are existing counsels should render correctly 1`] = `
+<application-counsels-panel-test
+  applications={[Function Array]}
+  attendanceDay={[Function String]}
+  counselType={[Function String]}
+  counsels={[Function Array]}
+  destroy={[Function Function]}
+  formState={[Function Function]}
+>
+  <application-counsels-panel>
+    <h1
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+      style="margin-top: 0;"
+    >
+    </h1>
+    <application-counsels-form>
+      <form
+        autocomplete="off"
+        class="ng-untouched ng-pristine ng-valid"
+        novalidate=""
+        pdk-form=""
+      >
+        <div
+          class="item-container"
+          data-test-id="applicationCounsel"
+          id="counselId1"
+        >
+          <section
+            data-test-id="counselId1"
+          >
+            <div
+              class="item-destroy"
+            >
+              <a
+                class="item-destroy govuk-link"
+                data-test-id="remove-application-counsel"
+                href="javascript:void(0);"
+                pdk-link=""
+              >
+                 COMMON.DELETE 
+              </a>
+            </div>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.FIRST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="firstName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.LAST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="lastName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.STATUS_ON_CASE 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     ENTER_COUNSELS.STATUS_SUBTEXT 
+                  </div>
+                </pdk-hint>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="status"
+                  pdk-text-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <hr />
+          </section>
+        </div>
+        <div
+          class="item-container"
+          data-test-id="applicationCounsel"
+          id="counselId2"
+        >
+          <section
+            data-test-id="counselId2"
+          >
+            <div
+              class="item-destroy"
+            >
+              <a
+                class="item-destroy govuk-link"
+                data-test-id="remove-application-counsel"
+                href="javascript:void(0);"
+                pdk-link=""
+              >
+                 COMMON.DELETE 
+              </a>
+            </div>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.FIRST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="firstName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.LAST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="lastName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.STATUS_ON_CASE 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     ENTER_COUNSELS.STATUS_SUBTEXT 
+                  </div>
+                </pdk-hint>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="status"
+                  pdk-text-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <hr />
+          </section>
+        </div>
+        <a
+          class="govuk-link"
+          data-test-id="add-counsel"
+          href="javascript:void(0)"
+          pdk-link=""
+        >
+           ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE 
+        </a>
+        <hr />
+      </form>
+    </application-counsels-form>
+  </application-counsels-panel>
+</application-counsels-panel-test>
+`;
+
+exports[`ApplicationCounselsPanelComponent when there are no existing applicants should render correctly 1`] = `
+<application-counsels-panel-test
+  applications={[Function Array]}
+  attendanceDay={[Function String]}
+  counselType={[Function String]}
+  counsels={[Function Array]}
+  destroy={[Function Function]}
+  formState={[Function Function]}
+>
+  <application-counsels-panel>
+    <h1
+      class="govuk-heading-m"
+      pdk-typography="heading-medium"
+      style="margin-top: 0;"
+    >
+    </h1>
+    <application-counsels-form>
+      <form
+        autocomplete="off"
+        class="ng-untouched ng-pristine ng-valid"
+        novalidate=""
+        pdk-form=""
+      >
+        <div
+          class="item-container"
+          data-test-id="applicationCounsel"
+          id="UUID"
+        >
+          <section
+            data-test-id="UUID"
+          >
+            <div
+              class="item-destroy"
+            >
+              <span
+                secondary=""
+              >
+                 COMMON.DELETE 
+              </span>
+            </div>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.FIRST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="firstName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.LAST_NAME 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="lastName"
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <pdk-form-field
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   ENTER_COUNSELS.STATUS_ON_CASE 
+                </label>
+                <pdk-hint
+                  class="govuk-hint"
+                >
+                  <div>
+                     ENTER_COUNSELS.STATUS_SUBTEXT 
+                  </div>
+                </pdk-hint>
+                <input
+                  class="ng-untouched ng-pristine ng-valid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  name="status"
+                  pdk-text-input=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+            <hr />
+          </section>
+        </div>
+        <a
+          class="govuk-link"
+          data-test-id="add-counsel"
+          href="javascript:void(0)"
+          pdk-link=""
+        >
+           ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE 
+        </a>
+        <hr />
+      </form>
+    </application-counsels-form>
+  </application-counsels-panel>
+</application-counsels-panel-test>
+`;

@@ -1,0 +1,13 @@
+{
+  "targets": [
+    {
+      "defendantId": "8205aff0-164d-4e76-a865-3f302a9a78b4",
+      "draftResult": "{\"targetId\":\"3568cc00-b1a6-11eb-ad2e-dbccab2f255c\",\"caseId\":\"4cb0fa01-ccbe-4b03-816d-0f77af4f26ec\",\"caseUrn\":\"66GD2180221\",\"defendantId\":\"8205aff0-164d-4e76-a865-3f302a9a78b4\",\"masterDefendantId\":\"8205aff0-164d-4e76-a865-3f302a9a78b4\",\"offenceId\":\"5b786b6a-402e-47d2-b943-b9ebeb1cdf7d\",\"defendantFirstName\":\"Patrick1\",\"defendantLastName\":\"Moore1\",\"addMoreResults\":false,\"requestApproval\":false,\"results\":[{\"resultLineId\":\"e4e090ae-cd66-467f-80c6-ba56a729df7c\",\"originalText\":\"NHCCS\",\"resultCode\":\"fbed768b-ee95-4434-87c8-e81cbc8d24c8\",\"resultLevel\":\"O\",\"isCompleted\":true,\"ignoreResult\":false,\"parts\":[{\"value\":\"Next hearing in Crown Court\",\"type\":\"RESULT\",\"state\":\"RESOLVED\",\"resultChoices\":[]}],\"choices\":[],\"isEditing\":false,\"noResultFound\":false,\"dirty\":true,\"orderedDate\":\"2021-05-18\",\"parentResultLineIds\":[],\"childResultLineIds\":[],\"childResultLines\":[],\"hasBeenGrouped\":true,\"conditionalMandatory\":false}],\"lastUpdatedAt\":1620661348718}",
+      "hearingId": "8a39b36e-7d3d-4709-b7e4-b9fc2a160127",
+      "masterDefendantId": "8205aff0-164d-4e76-a865-3f302a9a78b4",
+      "offenceId": "5b786b6a-402e-47d2-b943-b9ebeb1cdf7d",
+      "resultLines": [],
+      "targetId": "3568cc00-b1a6-11eb-ad2e-dbccab2f255c"
+    }
+  ]
+}

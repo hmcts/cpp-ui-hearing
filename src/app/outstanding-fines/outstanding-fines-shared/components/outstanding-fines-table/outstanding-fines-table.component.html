@@ -1,0 +1,141 @@
+@if (outstandingFines && outstandingFines.length) {
+<div class="outstanding-fines-table">
+  <div class="header">
+    <div class="header-defendant-details">
+      <div class="defendant-col">
+        <span class="bold">{{ 'OUTSTANDING_FINES.DEFENDANT' | translate }}</span>
+        <span>{{ 'OUTSTANDING_FINES.ADDRESS' | translate }}</span>
+        <span>{{ 'OUTSTANDING_FINES.DATE_OF_BIRTH' | translate }}</span>
+      </div>
+      <div class="account-col">
+        <span class="bold">{{ 'OUTSTANDING_FINES.ACCOUNT_NUMBER' | translate }}</span>
+        <span>{{ 'OUTSTANDING_FINES.ACCOUNT_LOCATION' | translate }}</span>
+      </div>
+      <div class="last-enf-col bold">{{ 'OUTSTANDING_FINES.LAST_ENF_ACTION' | translate }}</div>
+      <div class="payment-rate-col bold">{{ 'OUTSTANDING_FINES.PAYMENT_RATE' | translate }}</div>
+    </div>
+    <div class="header-defendant-amount">
+      <div class="amount-imposed-col bold">
+        {{ 'OUTSTANDING_FINES.AMOUNT_IMPOSED' | translate }}
+      </div>
+      <div class="amount-paid-col bold">{{ 'OUTSTANDING_FINES.AMOUNT_PAID' | translate }}</div>
+      <div class="balance-col bold">{{ 'OUTSTANDING_FINES.BALANCE' | translate }}</div>
+      <div class="days-in-default-col bold">
+        {{ 'OUTSTANDING_FINES.DAYS_IN_DEFAULT' | translate }}
+      </div>
+    </div>
+  </div>
+
+  <div class="defendants">
+    @for (outstandingFine of outstandingFines; track $index) {
+    <div class="defendant">
+      <div class="defendant-top-row">
+        <div class="defendant-details-top">
+          <span class="defendant-name bold">
+            @if (outstandingFine.defendantName) {
+            {{ outstandingFine.defendantName }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+          <span class="account-number bold">
+            @if (outstandingFine.accountNumber) {
+            {{ outstandingFine.accountNumber }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+          <span class="last-enf-action">
+            @if (outstandingFine.lastEnforcementAction) {
+            {{ outstandingFine.lastEnforcementAction }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+          <span class="payment-rate">
+            @if (outstandingFine.paymentRate) {
+            {{ outstandingFine.paymentRate }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+        </div>
+        <div class="defendant-amount-top">
+          <span class="amount-imposed">
+            @if (outstandingFine.amountImposed) {
+            {{ outstandingFine.amountImposed | currency : 'GBP' }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+          <span class="amount-paid">
+            @if (outstandingFine.amountPaid) {
+            {{ outstandingFine.amountPaid | currency : 'GBP' }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+          <span class="balance">
+            @if (outstandingFine.outstandingBalance) {
+            {{ outstandingFine.outstandingBalance | currency : 'GBP' }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+          <span class="days-in-default">
+            @if (outstandingFine.defaultDays) {
+            {{ outstandingFine.defaultDays }}
+            } @else {
+            <span>–</span>
+            }
+          </span>
+        </div>
+      </div>
+      <div class="defendant-bottom-row">
+        <div class="defendant-details-bottom">
+          <div class="defendant-details-bottom-row">
+            <div class="defendant-address">
+              @if (outstandingFine.address) {
+              <span [innerHTML]="outstandingFine.address"></span>
+              } @else {
+              <span>–</span>
+              }
+            </div>
+            <div class="defendant-dob">
+              @if (outstandingFine.dateOfBirth) {
+              <span>{{ outstandingFine.dateOfBirth | date : 'd MMM yyyy' }}</span>
+              } @else {
+              <span>–</span>
+              }
+            </div>
+          </div>
+          <div class="defendant-account-location">
+            @if (outstandingFine.accountLocation) {
+            <span [innerHtml]="outstandingFine.accountLocation"></span>
+            } @else {
+            <span>–</span>
+            }
+          </div>
+        </div>
+        <div class="defendant-other-details-bottom">
+          <div class="defendant-collection-order">
+            <span class="bold">{{ 'OUTSTANDING_FINES.COLLECTION_ORDER' | translate }}</span>
+            <span>{{ outstandingFine.isCollectionOrderMade | defendantAnswer }}</span>
+          </div>
+          <div class="defendant-consolidated">
+            <span class="bold">{{ 'OUTSTANDING_FINES.CONSOLIDATED' | translate }}</span>
+            <span>{{ outstandingFine.isConsolidated | defendantAnswer }}</span>
+          </div>
+          <div class="defendant-guardian-pay">
+            <span class="bold">{{ 'OUTSTANDING_FINES.GUARDIAN_TO_PAY' | translate }}</span>
+            <span>{{ outstandingFine.parentGuardianToPay | defendantAnswer }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+} @else {
+<p>{{ 'OUTSTANDING_FINES.NO_RECORDS_FOUND' | translate }}</p>
+}

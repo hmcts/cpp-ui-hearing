@@ -1,0 +1,1455 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Remove future hearing form component Rendering when there are hearings should render 1`] = `
+<test-remove-future-hearing-container
+  hearingSummaries={[Function Array]}
+  isReadOnly="false"
+  readOnlyMode={[Function Function]}
+  remove={[Function Function]}
+>
+  <remove-future-hearing-form>
+    <h1
+      class="govuk-heading-l"
+      pdk-typography="heading-large"
+    >
+      <span>
+        REMOVE_FUTURE_HEARING.TITLE
+      </span>
+    </h1>
+    <hr
+      class="pdk-!-border-color-black"
+      pdk-border-colour="black"
+      style="border-width: 2px;"
+    />
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              <pdk-form-field
+                class="govuk-!-margin-0 govuk-!-padding-0"
+                labeltype="none"
+                pdk-margin="0"
+                pdk-padding="0"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-visually-hidden govuk-label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     REMOVE_FUTURE_HEARING.REMOVE_ALL 
+                  </label>
+                  <pdk-checkbox
+                    class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                    formcontrolname="selected"
+                  >
+                    <div
+                      class="govuk-checkboxes__item"
+                    >
+                      <input
+                        class="govuk-checkboxes__input"
+                        id="pdk-checkbox-GENERATED_ID"
+                        type="checkbox"
+                        value="true"
+                      />
+                      <label
+                        class="govuk-label govuk-checkboxes__label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      />
+                    </div>
+                  </pdk-checkbox>
+                </pdk-form-group>
+              </pdk-form-field>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.DATE
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.TIME
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.DEFENDANT_NAME
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.COURT_DETAILS
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.HEARING_TYPE
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.SESSION
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.OFFENCE_DETAILS
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+          <tr
+            class="main-row govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0 govuk-!-padding-top-4"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    pdk-padding-top="4"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_HEARING 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span>
+                 3 December 2018 
+              </span>
+            </td>
+            <td>
+              <span>
+                 12:10pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                </div>
+                <div>
+                  Single def
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+               First hearing 
+            </td>
+            <td>
+              <span>
+                 Pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="main-row govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0 govuk-!-padding-top-4"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    pdk-padding-top="4"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_HEARING 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span>
+                 3 December 2018 
+              </span>
+            </td>
+            <td>
+              <span>
+                 12:10pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+                <div>
+                  Def one
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+               First hearing 
+            </td>
+            <td>
+              <span>
+                 Pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                </div>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+                <div>
+                  Def two
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                </div>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+                <div>
+                  Def three
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="main-row govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0 govuk-!-padding-top-4"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    pdk-padding-top="4"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_HEARING 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span>
+                 3 December 2018 
+              </span>
+            </td>
+            <td>
+              <span>
+                 12:10pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+                <div>
+                  Def one
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+               First hearing 
+            </td>
+            <td>
+              <span>
+                 Pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                </div>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+                <div>
+                  Def two
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_OFFENCE 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                </div>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_OFFENCE 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                </div>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+                <div>
+                  Def three
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="main-row govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0 govuk-!-padding-top-4"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    pdk-padding-top="4"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_HEARING 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span>
+                 3 December 2018 
+              </span>
+            </td>
+            <td>
+              <span>
+                 12:10pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                </div>
+                <div>
+                  Multi offence
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+               First hearing 
+            </td>
+            <td>
+              <span>
+                 Pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_OFFENCE 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                </div>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    style="float: right;"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_OFFENCE 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="main-row govuk-table__row"
+            pdk-table-row=""
+          >
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                  <pdk-form-field
+                    class="govuk-!-margin-bottom-0 govuk-!-padding-top-4"
+                    labeltype="none"
+                    pdk-margin-bottom="0"
+                    pdk-padding-top="4"
+                  >
+                    <pdk-form-group
+                      class="pdk-form-group"
+                    >
+                      <label
+                        class="govuk-visually-hidden govuk-label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                         REMOVE_FUTURE_HEARING.REMOVE_HEARING 
+                      </label>
+                      <pdk-checkbox
+                        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                        formcontrolname="selected"
+                      >
+                        <div
+                          class="govuk-checkboxes__item"
+                        >
+                          <input
+                            class="govuk-checkboxes__input"
+                            id="pdk-checkbox-GENERATED_ID"
+                            type="checkbox"
+                            value="true"
+                          />
+                          <label
+                            class="govuk-label govuk-checkboxes__label"
+                            for="pdk-checkbox-GENERATED_ID"
+                          />
+                        </div>
+                      </pdk-checkbox>
+                    </pdk-form-group>
+                  </pdk-form-field>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span>
+                 3 December 2018 
+              </span>
+            </td>
+            <td>
+              <span>
+                 12:10pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="govuk-!-padding-top-2 ng-untouched ng-pristine ng-valid"
+                pdk-padding-top="2"
+              >
+                <div>
+                </div>
+                <div>
+                  Multi offence
+                </div>
+                <a
+                  class="govuk-link"
+                  href="appUrl//prosecution-casefile/case-at-a-glance/string"
+                  pdk-link=""
+                  target="_blank"
+                >
+                   90EU623841 
+                </a>
+              </div>
+            </td>
+            <td>
+            </td>
+            <td>
+               Trial 
+            </td>
+            <td>
+              <span>
+                 Pm 
+              </span>
+            </td>
+            <td>
+              <div
+                class="ng-untouched ng-pristine ng-valid"
+              >
+                <div>
+                   Offence title 
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button
+        class="govuk-!-margin-right-4 govuk-button"
+        pdk-button=""
+        pdk-margin-right="4"
+        type="submit"
+      >
+         REMOVE_FUTURE_HEARING.REMOVE 
+      </button>
+      <a
+        class="govuk-!-padding-top-2 govuk-link"
+        href="javascript:void(0)"
+        pdk-link=""
+        pdk-padding-top="2"
+        style="display: inline-block;"
+      >
+         REMOVE_FUTURE_HEARING.CANCEL 
+      </a>
+    </form>
+  </remove-future-hearing-form>
+</test-remove-future-hearing-container>
+`;
+
+exports[`Remove future hearing form component Rendering when there are no hearings should render 1`] = `
+<test-remove-future-hearing-container
+  hearingSummaries={[Function Array]}
+  isReadOnly="false"
+  readOnlyMode={[Function Function]}
+  remove={[Function Function]}
+>
+  <remove-future-hearing-form>
+    <h1
+      class="govuk-heading-l"
+      pdk-typography="heading-large"
+    >
+      <span>
+        REMOVE_FUTURE_HEARING.TITLE
+      </span>
+    </h1>
+    <hr
+      class="pdk-!-border-color-black"
+      pdk-border-colour="black"
+      style="border-width: 2px;"
+    />
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+      pdk-form=""
+    >
+      <table
+        class="govuk-table"
+        pdk-table=""
+      >
+        <thead
+          class="govuk-table__head"
+          pdk-table-head=""
+        >
+          <tr
+            class="govuk-table__row"
+            pdk-table-row=""
+          >
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              <pdk-form-field
+                class="govuk-!-margin-0 govuk-!-padding-0"
+                labeltype="none"
+                pdk-margin="0"
+                pdk-padding="0"
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-visually-hidden govuk-label"
+                    for="pdk-checkbox-GENERATED_ID"
+                  >
+                     REMOVE_FUTURE_HEARING.REMOVE_ALL 
+                  </label>
+                  <pdk-checkbox
+                    class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+                    formcontrolname="selected"
+                  >
+                    <div
+                      class="govuk-checkboxes__item"
+                    >
+                      <input
+                        class="govuk-checkboxes__input"
+                        id="pdk-checkbox-GENERATED_ID"
+                        type="checkbox"
+                        value="true"
+                      />
+                      <label
+                        class="govuk-label govuk-checkboxes__label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      />
+                    </div>
+                  </pdk-checkbox>
+                </pdk-form-group>
+              </pdk-form-field>
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.DATE
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.TIME
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.DEFENDANT_NAME
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.COURT_DETAILS
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.HEARING_TYPE
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.SESSION
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              REMOVE_FUTURE_HEARING.OFFENCE_DETAILS
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="govuk-table__body"
+          pdk-table-body=""
+        >
+        </tbody>
+      </table>
+      <button
+        class="govuk-!-margin-right-4 govuk-button"
+        pdk-button=""
+        pdk-margin-right="4"
+        type="submit"
+      >
+         REMOVE_FUTURE_HEARING.REMOVE 
+      </button>
+      <a
+        class="govuk-!-padding-top-2 govuk-link"
+        href="javascript:void(0)"
+        pdk-link=""
+        pdk-padding-top="2"
+        style="display: inline-block;"
+      >
+         REMOVE_FUTURE_HEARING.CANCEL 
+      </a>
+    </form>
+  </remove-future-hearing-form>
+</test-remove-future-hearing-container>
+`;

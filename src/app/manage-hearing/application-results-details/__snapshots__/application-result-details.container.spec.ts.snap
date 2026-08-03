@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Applications result details container should have the expected template 1`] = `
+<application-result-details-container
+  applicationCaseStatus$={[Function _Store]}
+  applicationResults={[Function Array]}
+  courtApplications={[Function Array]}
+  guiltyPleasValues={[Function Array]}
+  hearingType={[Function String]}
+  isAmendApplicationPermission$={[Function _Store]}
+  onGoToEnterResult={[Function EventEmitter_]}
+  onOutstandingFine={[Function EventEmitter_]}
+  onPresenceChanged={[Function EventEmitter_]}
+  onSelectedParticipant={[Function EventEmitter_]}
+  onYouthCourtToggle={[Function EventEmitter_]}
+  pleasMapping={[Function Object]}
+  showSubject="false"
+  store={[Function _MockStore]}
+>
+  <application-result-details>
+    <div>
+      Mock Application Result Details
+    </div>
+    <div>
+      hearing: 
+    </div>
+    <div>
+      hearingId: 
+    </div>
+    <div>
+      courtApplications: []
+    </div>
+    <div>
+      applicationResults: [
+    {
+      "applicationReceivedDate": "2021-01-05",
+      "applicationReference": "SHRUQK2SME",
+      "applicationStatus": "LISTED",
+      "id": "7db9bc70-41b5-4586-aa48-ad0894473fd9"
+    }
+  ]
+    </div>
+    <div>
+      isGroupCaseApplicationText: 
+    </div>
+    <div>
+      showSubject: false
+    </div>
+    <div>
+      pleasMapping: {}
+    </div>
+    <div>
+      guiltyPleasValues: []
+    </div>
+    <div>
+      verdictTypes: 
+    </div>
+    <div>
+      attendanceErrors: 
+    </div>
+    <div>
+      caseStatus: 
+    </div>
+    <div>
+      isPleaApplicableFlag: 
+    </div>
+    <div>
+      isVerdictsPageAvailable: 
+    </div>
+    <div>
+      todayDefendantsAttendance: 
+    </div>
+    <div>
+      selectedHearingDate: 
+    </div>
+    <div>
+      amendApplicationPermission: 
+    </div>
+    <div>
+      applicationCaseStatus: 
+    </div>
+  </application-result-details>
+</application-result-details-container>
+`;

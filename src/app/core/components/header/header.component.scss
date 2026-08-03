@@ -1,0 +1,63 @@
+app-phase-banner {
+  z-index: 10000;
+}
+pdk-header-nav > a[role='listitem']:nth-child(2) p > strong.phase-tag {
+  color: white !important;
+}
+
+::ng-deep {
+  .pdk-header {
+    padding: 0 !important;
+  }
+  .pdk-header-wrapper {
+    max-width: 1410px !important;
+    padding: 0 30px;
+  }
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 50px;
+
+  ::ng-deep .pdk-header-name {
+    margin: 8px 0;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 6px 0;
+
+    ::ng-deep {
+      .pdk-header-menu {
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  &__search {
+    display: block;
+    margin: 0 15px 0 0;
+    width: 275px;
+
+    ::ng-deep {
+      .form-control {
+        border: 0;
+        font-size: 14px;
+        height: 38px;
+        @media screen and (min-width: 640px) {
+          font-size: 16px;
+        }
+      }
+      .search-button {
+        height: 38px;
+        width: 38px;
+        border: 0;
+      }
+    }
+  }
+}

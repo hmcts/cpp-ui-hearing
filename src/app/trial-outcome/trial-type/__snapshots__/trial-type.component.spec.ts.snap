@@ -1,0 +1,866 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrialTypeComponent cpp user role permission access should display editable template if cpp user has permissions to edit it 1`] = `
+<ng-component
+  hearing={[Function Object]}
+  subReasons={[Function Array]}
+  trialEffectivenessError="null"
+  trialTypes={[Function Array]}
+>
+  <trial-type>
+    <section
+      class="trial-type"
+    >
+      <details
+        class="govuk-!-margin-bottom-4 govuk-details"
+        pdk-details=""
+        pdk-margin-bottom="4"
+      >
+        <summary
+          class="govuk-!-margin-bottom-1 govuk-details__summary govuk-body-s"
+          data-test-id="trialEffectiveness"
+          pdk-margin-bottom="1"
+          pdk-typography="body-small"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             TRIAL_OUTCOME.TRIAL_IS_TITLE 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <form
+            class="govuk-!-margin-top-4 ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+            pdk-margin-top="4"
+          >
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend"
+                  >
+                     TRIAL_OUTCOME.TRIAL_TYPE_TITLE 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    name="trialTypeOptionId"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Effective"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Effective 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Ineffective"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Ineffective 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Cracked"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Cracked 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Vacated"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Vacated 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <div
+                class="form-label-bold"
+              >
+                TRIAL_OUTCOME.SELECT_REASON
+              </div>
+              <div
+                class="selected-reason-container govuk-!-margin-bottom-3"
+                pdk-margin-bottom="3"
+              >
+                 Test description 
+              </div>
+            </div>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <pdk-form-field>
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label"
+                    for="pdk-form-control-undefined-GENERATED_ID"
+                  >
+                     TRIAL_OUTCOME.SELECT_SUB_REASON 
+                  </label>
+                  <pdk-autosuggest-lite
+                    class="ng-untouched ng-pristine ng-valid"
+                    data-role="trial-type-sub-reason"
+                    name="trial-type-sub-reason"
+                  >
+                    <pdk-autosuggest
+                      highlightcolor="blue"
+                    >
+                      <pdk-interaction-container>
+                        <div>
+                          <div
+                            class="pdk-autosuggest"
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                              aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                              aria-expanded="false"
+                              autocomplete="off"
+                              class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                              id="pdk-form-control-undefined-GENERATED_ID"
+                              role="combobox"
+                              type="text"
+                            />
+                            <span
+                              class="govuk-visually-hidden"
+                              id="pdk-autosuggest__instructions-GENERATED_ID"
+                              pdk-visually-hidden=""
+                            >
+                               When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                            </span>
+                            <span
+                              aria-live="polite"
+                              class="govuk-visually-hidden"
+                              pdk-visually-hidden=""
+                              role="status"
+                            >
+                            </span>
+                            <div
+                              class="pdk-autosuggest__suggestions-container"
+                              id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                            >
+                            </div>
+                          </div>
+                        </div>
+                      </pdk-interaction-container>
+                    </pdk-autosuggest>
+                  </pdk-autosuggest-lite>
+                </pdk-form-group>
+              </pdk-form-field>
+            </div>
+            <button
+              class="save-trial-type-btn govuk-!-margin-top-3 govuk-button"
+              data-role="save-trial-type-btn"
+              disabled="disabled"
+              pdk-button=""
+              pdk-margin-top="3"
+              type="button"
+            >
+               COMMON.SAVE 
+            </button>
+          </form>
+        </pdk-details-text>
+      </details>
+    </section>
+  </trial-type>
+</ng-component>
+`;
+
+exports[`TrialTypeComponent cpp user role permission access should display readonly template with sub reason if cpp user does not have permissions to edit it 1`] = `
+<ng-component
+  hearing={[Function Object]}
+  subReasons={[Function Array]}
+  trialEffectivenessError="null"
+  trialTypes={[Function Array]}
+>
+  <trial-type>
+    <section
+      class="trial-type"
+    >
+      <div
+        class="govuk-!-margin-bottom-4 govuk-grid-row"
+        container=""
+        pdk-grid=""
+      >
+        <div
+          class="govuk-grid-column-full"
+          full=""
+          pdk-grid=""
+        >
+          <h4
+            class="govuk-heading-s"
+            data-test-id="trialEffectiveness"
+            pdk-typography="heading-small"
+          >
+             TRIAL_OUTCOME.TRIAL_IS_TITLE 
+          </h4>
+        </div>
+        <div
+          class="govuk-grid-column-full"
+          full=""
+          pdk-grid=""
+        >
+          <pdk-inset-text
+            class="govuk-!-margin-top-0 govuk-!-margin-bottom-0"
+            data-test-id="trialEffectivenessReason"
+            pdk-margin-vertical="0"
+          >
+            <div
+              class="govuk-inset-text"
+            >
+               Test description 
+            </div>
+          </pdk-inset-text>
+          <pdk-inset-text
+            class="govuk-!-margin-top-0 govuk-!-margin-bottom-0"
+            data-test-id="trialEffectivenessSubReason"
+            pdk-margin-vertical="0"
+          >
+            <div
+              class="govuk-inset-text"
+            >
+               Sub Reason 2 
+            </div>
+          </pdk-inset-text>
+        </div>
+      </div>
+    </section>
+  </trial-type>
+</ng-component>
+`;
+
+exports[`TrialTypeComponent cpp user role permission access should display readonly template without sub reason if cpp user does not have permissions to edit it 1`] = `
+<ng-component
+  hearing={[Function Object]}
+  subReasons={[Function Array]}
+  trialEffectivenessError="null"
+  trialTypes={[Function Array]}
+>
+  <trial-type>
+    <section
+      class="trial-type"
+    >
+      <div
+        class="govuk-!-margin-bottom-4 govuk-grid-row"
+        container=""
+        pdk-grid=""
+      >
+        <div
+          class="govuk-grid-column-full"
+          full=""
+          pdk-grid=""
+        >
+          <h4
+            class="govuk-heading-s"
+            data-test-id="trialEffectiveness"
+            pdk-typography="heading-small"
+          >
+             TRIAL_OUTCOME.TRIAL_IS_TITLE 
+          </h4>
+        </div>
+        <div
+          class="govuk-grid-column-full"
+          full=""
+          pdk-grid=""
+        >
+          <pdk-inset-text
+            class="govuk-!-margin-top-0 govuk-!-margin-bottom-0"
+            data-test-id="trialEffectivenessReason"
+            pdk-margin-vertical="0"
+          >
+            <div
+              class="govuk-inset-text"
+            >
+               Test description 
+            </div>
+          </pdk-inset-text>
+        </div>
+      </div>
+    </section>
+  </trial-type>
+</ng-component>
+`;
+
+exports[`TrialTypeComponent should have the expected template when action details is closed 1`] = `
+<ng-component
+  hearing={[Function Object]}
+  subReasons={[Function Array]}
+  trialEffectivenessError="null"
+  trialTypes={[Function Array]}
+>
+  <trial-type>
+    <section
+      class="trial-type"
+    >
+      <details
+        class="govuk-!-margin-bottom-4 govuk-details"
+        pdk-details=""
+        pdk-margin-bottom="4"
+      >
+        <summary
+          class="govuk-!-margin-bottom-1 govuk-details__summary govuk-body-s"
+          data-test-id="trialEffectiveness"
+          pdk-margin-bottom="1"
+          pdk-typography="body-small"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             TRIAL_OUTCOME.TRIAL_IS_TITLE 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <form
+            class="govuk-!-margin-top-4 ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+            pdk-margin-top="4"
+          >
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend"
+                  >
+                     TRIAL_OUTCOME.TRIAL_TYPE_TITLE 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    name="trialTypeOptionId"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Effective"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Effective 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Ineffective"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Ineffective 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Cracked"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Cracked 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Vacated"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Vacated 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <div
+                class="form-label-bold"
+              >
+                TRIAL_OUTCOME.SELECT_REASON
+              </div>
+              <div
+                class="selected-reason-container govuk-!-margin-bottom-3"
+                pdk-margin-bottom="3"
+              >
+                 Acceptable guilty plea(s) entered late to some or all charges / counts on the charge sheet, previously rejected by the prosecution 
+              </div>
+            </div>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <pdk-form-field>
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label"
+                    for="pdk-form-control-undefined-GENERATED_ID"
+                  >
+                     TRIAL_OUTCOME.SELECT_SUB_REASON 
+                  </label>
+                  <pdk-autosuggest-lite
+                    class="ng-untouched ng-pristine ng-valid"
+                    data-role="trial-type-sub-reason"
+                    name="trial-type-sub-reason"
+                  >
+                    <pdk-autosuggest
+                      highlightcolor="blue"
+                    >
+                      <pdk-interaction-container>
+                        <div>
+                          <div
+                            class="pdk-autosuggest"
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                              aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                              aria-expanded="false"
+                              autocomplete="off"
+                              class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                              id="pdk-form-control-undefined-GENERATED_ID"
+                              role="combobox"
+                              type="text"
+                            />
+                            <span
+                              class="govuk-visually-hidden"
+                              id="pdk-autosuggest__instructions-GENERATED_ID"
+                              pdk-visually-hidden=""
+                            >
+                               When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                            </span>
+                            <span
+                              aria-live="polite"
+                              class="govuk-visually-hidden"
+                              pdk-visually-hidden=""
+                              role="status"
+                            >
+                            </span>
+                            <div
+                              class="pdk-autosuggest__suggestions-container"
+                              id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                            >
+                            </div>
+                          </div>
+                        </div>
+                      </pdk-interaction-container>
+                    </pdk-autosuggest>
+                  </pdk-autosuggest-lite>
+                </pdk-form-group>
+              </pdk-form-field>
+            </div>
+            <button
+              class="save-trial-type-btn govuk-!-margin-top-3 govuk-button"
+              data-role="save-trial-type-btn"
+              disabled="disabled"
+              pdk-button=""
+              pdk-margin-top="3"
+              type="button"
+            >
+               COMMON.SAVE 
+            </button>
+          </form>
+        </pdk-details-text>
+      </details>
+    </section>
+  </trial-type>
+</ng-component>
+`;
+
+exports[`TrialTypeComponent should have the expected template when the action details is open 1`] = `
+<ng-component
+  hearing={[Function Object]}
+  subReasons={[Function Array]}
+  trialEffectivenessError="null"
+  trialTypes={[Function Array]}
+>
+  <trial-type>
+    <section
+      class="trial-type"
+    >
+      <details
+        class="govuk-!-margin-bottom-4 govuk-details"
+        pdk-details=""
+        pdk-margin-bottom="4"
+      >
+        <summary
+          class="govuk-!-margin-bottom-1 govuk-details__summary govuk-body-s"
+          data-test-id="trialEffectiveness"
+          pdk-margin-bottom="1"
+          pdk-typography="body-small"
+        >
+          <span
+            class="govuk-details__summary-text"
+          >
+             TRIAL_OUTCOME.TRIAL_IS_TITLE 
+          </span>
+        </summary>
+        <pdk-details-text
+          class="govuk-details__text"
+        >
+          <form
+            class="govuk-!-margin-top-4 ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+            pdk-margin-top="4"
+          >
+            <pdk-form-field>
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <fieldset
+                  class="govuk-fieldset"
+                  pdk-fieldset=""
+                >
+                  <legend
+                    class="govuk-fieldset__legend"
+                  >
+                     TRIAL_OUTCOME.TRIAL_TYPE_TITLE 
+                  </legend>
+                  <pdk-radio-group
+                    class="ng-untouched ng-pristine ng-valid"
+                    name="trialTypeOptionId"
+                    required=""
+                  >
+                    <div
+                      class="govuk-radios"
+                    >
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Effective"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Effective 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Ineffective"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Ineffective 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Cracked"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Cracked 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                      <pdk-radio-button
+                        data-role="trial-type-option"
+                      >
+                        <div
+                          class="govuk-radios__item"
+                        >
+                          <input
+                            class="govuk-radios__input"
+                            id="pdk-radio-GENERATED_ID"
+                            name="pdk-radio-group-GENERATED_ID"
+                            type="radio"
+                            value="Vacated"
+                          />
+                          <label
+                            class="govuk-radios__label govuk-label"
+                            for="pdk-radio-GENERATED_ID"
+                            pdk-label=""
+                          >
+                             Vacated 
+                          </label>
+                        </div>
+                      </pdk-radio-button>
+                    </div>
+                  </pdk-radio-group>
+                </fieldset>
+              </pdk-form-group>
+            </pdk-form-field>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <div
+                class="form-label-bold"
+              >
+                TRIAL_OUTCOME.SELECT_REASON
+              </div>
+              <div
+                class="selected-reason-container govuk-!-margin-bottom-3"
+                pdk-margin-bottom="3"
+              >
+                 Acceptable guilty plea(s) entered late to some or all charges / counts on the charge sheet, previously rejected by the prosecution 
+              </div>
+            </div>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <pdk-form-field>
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <label
+                    class="govuk-label"
+                    for="pdk-form-control-undefined-GENERATED_ID"
+                  >
+                     TRIAL_OUTCOME.SELECT_SUB_REASON 
+                  </label>
+                  <pdk-autosuggest-lite
+                    class="ng-untouched ng-pristine ng-valid"
+                    data-role="trial-type-sub-reason"
+                    name="trial-type-sub-reason"
+                  >
+                    <pdk-autosuggest
+                      highlightcolor="blue"
+                    >
+                      <pdk-interaction-container>
+                        <div>
+                          <div
+                            class="pdk-autosuggest"
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                              aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
+                              aria-expanded="false"
+                              autocomplete="off"
+                              class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                              id="pdk-form-control-undefined-GENERATED_ID"
+                              role="combobox"
+                              type="text"
+                            />
+                            <span
+                              class="govuk-visually-hidden"
+                              id="pdk-autosuggest__instructions-GENERATED_ID"
+                              pdk-visually-hidden=""
+                            >
+                               When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                            </span>
+                            <span
+                              aria-live="polite"
+                              class="govuk-visually-hidden"
+                              pdk-visually-hidden=""
+                              role="status"
+                            >
+                            </span>
+                            <div
+                              class="pdk-autosuggest__suggestions-container"
+                              id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                            >
+                            </div>
+                          </div>
+                        </div>
+                      </pdk-interaction-container>
+                    </pdk-autosuggest>
+                  </pdk-autosuggest-lite>
+                </pdk-form-group>
+              </pdk-form-field>
+            </div>
+            <button
+              class="save-trial-type-btn govuk-!-margin-top-3 govuk-button"
+              data-role="save-trial-type-btn"
+              disabled="disabled"
+              pdk-button=""
+              pdk-margin-top="3"
+              type="button"
+            >
+               COMMON.SAVE 
+            </button>
+          </form>
+        </pdk-details-text>
+      </details>
+    </section>
+  </trial-type>
+</ng-component>
+`;

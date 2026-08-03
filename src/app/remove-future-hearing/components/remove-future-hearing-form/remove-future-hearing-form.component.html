@@ -1,0 +1,202 @@
+<h1 pdk-typography="heading-large">
+  @if (!isReadOnly) {
+  <span>{{ 'REMOVE_FUTURE_HEARING.TITLE' | translate }}</span>
+  } @if (isReadOnly) {
+  <span>{{ 'REMOVE_FUTURE_HEARING.TITLE_CONFIRM' | translate }}</span>
+  }
+</h1>
+
+<hr pdk-border-colour="black" [style.borderWidth.px]="2" />
+
+@if (isReadOnly) {
+<div pdk-typography="heading-medium" pdk-margin-vertical="4">
+  {{ 'REMOVE_FUTURE_HEARING.YOU_ARE_REMOVING' | translate }}
+</div>
+} @if (form) {
+<form [formGroup]="form" pdk-form (validSubmit)="confirm()">
+  <table pdk-table>
+    <thead pdk-table-head>
+      <tr pdk-table-row>
+        <th pdk-table-header>
+          @if (!isReadOnly || form.value.selected) {
+          <pdk-form-field
+            pdk-padding="0"
+            pdk-margin="0"
+            label="{{ 'REMOVE_FUTURE_HEARING.REMOVE_ALL' | translate }}"
+            labelType="none"
+          >
+            <pdk-checkbox
+              formControlName="selected"
+              [disableControl]="isReadOnly"
+              [value]="true"
+            ></pdk-checkbox>
+          </pdk-form-field>
+          }
+        </th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.DATE' | translate }}</th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.TIME' | translate }}</th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.DEFENDANT_NAME' | translate }}</th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.COURT_DETAILS' | translate }}</th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.HEARING_TYPE' | translate }}</th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.SESSION' | translate }}</th>
+        <th pdk-table-header>{{ 'REMOVE_FUTURE_HEARING.OFFENCE_DETAILS' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody pdk-table-body>
+      @for (hearingSummary of hearingSummaries; track hearingSummary.id; let h = $index) { @for (
+      caseSummary of hearingSummary.prosecutionCaseSummaries; track caseSummary.id; let c = $index )
+      { @for (defendant of caseSummary.defendants; track defendant.id; let d = $index) { @for
+      (offence of defendant.offences; track offence.id; let o = $index) { @if ( !isReadOnly ||
+      (hearingHasSomethingSelected(h) && getOffenceCtrlByIndex(h, c, d, o).value.selected) ) {
+      <tr pdk-table-row [ngClass]="{ 'main-row': isFirstRowForHearing(c, d, o) }">
+        <td>
+          <div [formGroup]="getHearingCtrlByIndex(h)">
+            @if (!isReadOnly || getHearingCtrlByIndex(h).value.selected) {
+            <div>
+              @if (isFirstRowForHearing(c, d, o)) {
+              <pdk-form-field
+                pdk-margin-bottom="0"
+                pdk-padding-top="4"
+                label="{{ 'REMOVE_FUTURE_HEARING.REMOVE_HEARING' | translate }}"
+                labelType="none"
+              >
+                <pdk-checkbox
+                  formControlName="selected"
+                  [disableControl]="isReadOnly"
+                  [value]="true"
+                ></pdk-checkbox>
+              </pdk-form-field>
+              }
+            </div>
+            }
+          </div>
+        </td>
+        <td>
+          @if ( (!isReadOnly && isFirstRowForHearing(c, d, o)) || (isReadOnly && hasRowDisplayed(c,
+          d, o, 'date', h)) ) { @for ( hearingDay of hearingSummary.hearingDays; track hearingDay;
+          let firstDay = $first; let lastDay = $last ) { @if (firstDay) {
+          <span>
+            {{ hearingDay.sittingDay | date : 'd MMMM yyyy' }}
+          </span>
+          } @if (lastDay && hearingSummary.hearingDays.length > 1) {
+          <span> - {{ hearingDay.sittingDay | date : 'd MMMM yyyy' }} </span>
+          } } }
+        </td>
+        <td>
+          @if ( (!isReadOnly && isFirstRowForHearing(c, d, o)) || (isReadOnly && hasRowDisplayed(c,
+          d, o, 'time', h)) ) { @for ( hearingDay of hearingSummary.hearingDays; track hearingDay;
+          let firstDay = $first ) { @if (firstDay) {
+          <span>
+            {{ hearingDay.sittingDay | date : 'H:mma' | lowercase }}
+          </span>
+          } } }
+        </td>
+        <td>
+          <div [formGroup]="getDefendantCtrlByIndex(h, c, d)" pdk-padding-top="2">
+            @if ( isFirstRowForOffence(o) || (isReadOnly && hasOffenceDisplayed(c, d, o, h)) ) { @if
+            (!isReadOnly || getDefendantCtrlByIndex(h, c, d).value.selected) {
+            <div>
+              @if (hearingHasMultipleDefendants(hearingSummary)) {
+              <pdk-form-field
+                pdk-margin-bottom="0"
+                [style.float]="'right'"
+                label="{{ 'REMOVE_FUTURE_HEARING.REMOVE_DEFENDANT' | translate }}"
+                labelType="none"
+              >
+                <pdk-checkbox
+                  formControlName="selected"
+                  [disableControl]="isReadOnly"
+                  [value]="true"
+                >
+                </pdk-checkbox>
+              </pdk-form-field>
+              }
+            </div>
+            } @if (defendant.firstName && defendant.lastName) {
+            <div>{{ defendant | fullName : false }}</div>
+            } @if (defendant.organisationName) {
+            <div>{{ defendant.organisationName }}</div>
+            }
+            <a
+              pdk-link
+              target="_blank"
+              href="{{ basePath() }}/prosecution-casefile/case-at-a-glance/{{ caseSummary.id }}"
+            >
+              {{ caseSummary.prosecutionCaseIdentifier.caseURN }}
+            </a>
+            }
+          </div>
+        </td>
+        <td>
+          @if ( (!isReadOnly && isFirstRowForHearing(c, d, o)) || (isReadOnly && hasRowDisplayed(c,
+          d, o, 'description', h)) ) { @if (hearingSummary.courtCentre) {
+          <div>{{ hearingSummary.courtCentre.name }},</div>
+          <div>{{ hearingSummary.courtCentre.roomName }}</div>
+          } }
+        </td>
+        <td>
+          @if ( (!isReadOnly && isFirstRowForHearing(c, d, o)) || (isReadOnly && hasRowDisplayed(c,
+          d, o, 'hearingType', h)) ) {
+          {{ hearingSummary.type.description }}
+          }
+        </td>
+        <td>
+          @if ( (!isReadOnly && isFirstRowForHearing(c, d, o)) || (isReadOnly && hasRowDisplayed(c,
+          d, o, 'session', h)) ) { @for ( hearingDay of hearingSummary.hearingDays; track
+          hearingDay; let firstDay = $first ) { @if (firstDay) {
+          <span>
+            {{ hearingDay.sittingDay | date : 'a' | titlecase }}
+          </span>
+          } } }
+        </td>
+        <td>
+          <div [formGroup]="getOffenceCtrlByIndex(h, c, d, o)">
+            @if (!isReadOnly || getOffenceCtrlByIndex(h, c, d, o).value.selected) {
+            <div>
+              @if (defendantHasMultipleOffences(defendant)) {
+              <pdk-form-field
+                [style.float]="'right'"
+                pdk-margin-bottom="0"
+                label="{{ 'REMOVE_FUTURE_HEARING.REMOVE_OFFENCE' | translate }}"
+                labelType="none"
+              >
+                <pdk-checkbox
+                  formControlName="selected"
+                  [disableControl]="isReadOnly"
+                  [value]="true"
+                >
+                </pdk-checkbox>
+              </pdk-form-field>
+              } @if (!isReadOnly) {
+              {{ offence.offenceTitle }}
+              }
+            </div>
+            } @if (isReadOnly && getOffenceCtrlByIndex(h, c, d, o).value.selected) {
+            {{ offence.offenceTitle }}
+            }
+          </div>
+        </td>
+      </tr>
+      } } } } }
+    </tbody>
+  </table>
+  @if (!isReadOnly) {
+  <button type="submit" pdk-button pdk-margin-right="4">
+    {{ 'REMOVE_FUTURE_HEARING.REMOVE' | translate }}
+  </button>
+  } @if (isReadOnly) {
+  <button pdk-button pdk-margin-right="4" (click)="submitForm()">
+    {{ 'REMOVE_FUTURE_HEARING.CONFIRM_REMOVE' | translate }}
+  </button>
+  }
+  <a
+    [style.display]="'inline-block'"
+    pdk-padding-top="2"
+    href="javascript:void(0)"
+    (click)="cancelClicked()"
+    pdk-link
+  >
+    {{ 'REMOVE_FUTURE_HEARING.CANCEL' | translate }}
+  </a>
+</form>
+}

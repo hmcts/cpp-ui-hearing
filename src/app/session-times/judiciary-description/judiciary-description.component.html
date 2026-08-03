@@ -1,0 +1,76 @@
+<h3>{{ sessionType | uppercase }}</h3>
+
+<dl aria-label="Juduciary description">
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.JUDICIARY' | translate }}
+    </dt>
+    <dd pdk-grid one-third>
+      @if (courtSession) {
+      <ul pdk-margin="0">
+        @for (judiciary of courtSession.judiciaries; track judiciary.judiciaryId) {
+        <li>
+          {{ getJudiciaryName(judiciary) }}
+        </li>
+        }
+      </ul>
+      }
+    </dd>
+  </div>
+
+  @if (benchChairmanJudiciary) {
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.CHAIRPERSON' | translate }}
+    </dt>
+    <dd pdk-grid one-third data-role="Juduciary-chair-person-full-name">
+      {{ getJudiciaryName(benchChairmanJudiciary) }}
+    </dd>
+  </div>
+  }
+
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.START_TIME' | translate }}
+    </dt>
+    <dd pdk-grid one-third data-role="court-session-start-time">
+      {{ courtSession ? courtSession.startTime : '' }}
+    </dd>
+  </div>
+
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.END_TIME' | translate }}
+    </dt>
+    <dd pdk-grid one-third data-role="court-session-end-time">
+      {{ courtSession ? courtSession.endTime : '' }}
+    </dd>
+  </div>
+
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.COURT_CLERK' | translate }}
+    </dt>
+    <dd pdk-grid one-third data-role="court-clerk-full-name">
+      {{ courtClerk }}
+    </dd>
+  </div>
+
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.COURT_ASSOCIATE' | translate }}
+    </dt>
+    <dd pdk-grid one-third data-role="court-associate-full-name">
+      {{ courtAssociate }}
+    </dd>
+  </div>
+
+  <div pdk-grid container pdk-margin-bottom="3">
+    <dt pdk-grid one-third pdk-text-colour="dark-grey">
+      {{ 'SESSION_TIMES.LEGAL_ADVISOR' | translate }}
+    </dt>
+    <dd pdk-grid one-third data-role="court-legal-adviser-full-name">
+      {{ legalAdviser }}
+    </dd>
+  </div>
+</dl>

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Court order selectors should select the active court orders that do not match the current hearing 1`] = `
+{
+  "123": [],
+  "321": [
+    {
+      "courtOrderOffences": [
+        {
+          "offence": {},
+          "prosecutionCaseId": "prosecutionCaseId 2",
+          "prosecutionCaseIdentifier": {
+            "caseURN": "caseURN 2",
+            "prosecutionAuthorityCode": "prosecutionAuthorityCode 2",
+            "prosecutionAuthorityId": "prosecutionAuthorityId 2",
+            "prosecutionAuthorityReference": "prosecutionAuthorityReference 2",
+          },
+        },
+      ],
+      "id": "id 2",
+      "label": "label 2",
+      "orderingCourt": {
+        "courtHearingLocation": "",
+        "id": "courtId 2",
+        "name": "court name 2",
+        "psaCode": 1234,
+        "roomId": "roomId",
+        "roomName": "roomName",
+        "welshName": "welsh court name 2",
+        "welshRoomName": "welshRoomName",
+      },
+      "orderingHearingId": "orderingHearingId",
+      "startDate": "2021-01-01",
+    },
+  ],
+}
+`;

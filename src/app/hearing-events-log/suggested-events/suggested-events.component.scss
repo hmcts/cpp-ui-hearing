@@ -1,0 +1,31 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.suggested-events-row {
+  .suggested-event {
+    &:not(:last-child):after {
+      content: ' | ';
+      color: govuk.govuk-colour('black');
+    }
+  }
+
+  button {
+    margin: 0;
+    padding: 0;
+  }
+
+  .event-log-heading-row {
+    display: flex;
+    justify-content: space-between;
+    color: govuk.govuk-colour('light-grey');
+    border-bottom: 0.10526em solid govuk.govuk-colour('light-grey');
+
+    .add-witness-name {
+      text-decoration: underline;
+    }
+  }
+}
+
+.hearing-events-log-container {
+  border-top: 0.10526em solid govuk.govuk-colour('blue');
+  padding-top: 0.47em;
+}

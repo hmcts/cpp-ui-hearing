@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttendeesPanelComponent should have the expected template 1`] = `
+<attendees-panel
+  APPELLANT={[Function String]}
+  APPLICANT={[Function String]}
+  COMPANY_REPRESENTATIVE={[Function String]}
+  DEFENCE={[Function String]}
+  INTERPRETER_INTERMEDIARY={[Function String]}
+  PROSECUTION={[Function String]}
+  RESPONDENT={[Function String]}
+  applicantAppellantSynonym="undefined"
+  applicantAppellantTitle="undefined"
+  applicantCounsels={[Function Array]}
+  applicantCounselsFormState={[Function EventEmitter_]}
+  attendeesMenuItems={[Function Array]}
+  companyRepresentatives={[Function Array]}
+  counselsCacheOptions={[Function Object]}
+  courtApplications={[Function Array]}
+  defenceCounsels={[Function Array]}
+  defendantsCurrentHearing={[Function Array]}
+  destroyApplicantCounsel={[Function EventEmitter_]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  destroyRespondentCounsel={[Function EventEmitter_]}
+  intermediariesCounsel={[Function Array]}
+  onChangeSelectedMenuItem={[Function EventEmitter_]}
+  onCounselValid={[Function EventEmitter_]}
+  onUpdateCompanyRepresentative={[Function EventEmitter_]}
+  onUpdateDefenceCounsel={[Function EventEmitter_]}
+  onUpdateIntermediaryCounsel={[Function EventEmitter_]}
+  onUpdateProsecutionCounsel={[Function EventEmitter_]}
+  prosecutionCasesSummary={[Function Array]}
+  prosecutionCounsels={[Function Array]}
+  respondentCounsels={[Function Array]}
+  respondentCounselsFormState={[Function EventEmitter_]}
+  selectedAttendeeItem={[Function String]}
+  showMoreUrns="false"
+  translate={[Function _TranslateService]}
+  urns={[Function Array]}
+>
+  <div
+    class="attendees-header govuk-!-margin-bottom-4 pdk-!-border-color-yellow"
+    pdk-border-colour="yellow"
+    pdk-margin-bottom="4"
+  >
+    <div
+      class="bold govuk-body-m"
+      pdk-typography="body-medium"
+    >
+      <div
+        class="inline-panel"
+      >
+        Hearing list
+      </div>
+    </div>
+    <div
+      class="govuk-!-margin-top-4"
+      pdk-margin-top="4"
+    >
+      <div
+        class="inline-panel"
+      >
+        Hearing list
+      </div>
+    </div>
+  </div><pdk-grid
+    class="panel-items govuk-grid-row"
+    container=""
+  >
+    <pdk-grid
+      class="govuk-grid-column-one-third"
+      one-third=""
+    >
+      <panel-item
+        class="attendees-menu"
+        data-role="attendees-panel-PROSECUTION"
+      >
+        <button
+          aria-expanded="true"
+          class="side-menu-item right-arrow active pdk-!-fill-color-blue pdk-!-text-color-white govuk-button"
+          pdk-button="default"
+        >
+           PROSECUTION 
+        </button>
+      </panel-item>
+      <panel-item
+        class="attendees-menu"
+        data-role="attendees-panel-DEFENCE"
+      >
+        <button
+          aria-expanded="false"
+          class="side-menu-item right-arrow govuk-button"
+          pdk-button="default"
+        >
+           DEFENCE 
+        </button>
+      </panel-item>
+      <panel-item
+        class="attendees-menu"
+        data-role="attendees-panel-COMPANY REPRESENTATIVE"
+      >
+        <button
+          aria-expanded="false"
+          class="side-menu-item right-arrow govuk-button"
+          pdk-button="default"
+        >
+           COMPANY REPRESENTATIVE 
+        </button>
+      </panel-item>
+      <panel-item
+        class="attendees-menu"
+        data-role="attendees-panel-INTERPRETER / INTERMEDIARY"
+      >
+        <button
+          aria-expanded="false"
+          class="side-menu-item right-arrow govuk-button"
+          pdk-button="default"
+        >
+           INTERPRETER / INTERMEDIARY 
+        </button>
+      </panel-item>
+    </pdk-grid>
+    <pdk-grid
+      class="govuk-grid-column-two-thirds"
+      two-thirds=""
+    >
+      <prosecution-counsels-panel>
+        <form
+          autocomplete="off"
+          class="ng-untouched ng-pristine ng-valid"
+          novalidate=""
+          pdk-form=""
+        >
+          <h1
+            class="govuk-!-margin-bottom-6 govuk-heading-m"
+            pdk-margin-bottom="6"
+            pdk-typography="heading-medium"
+          >
+             Hearing list 
+          </h1>
+          <a
+            class="govuk-link"
+            href="javascript:void(0);"
+            pdk-link=""
+          >
+             Hearing list 
+          </a>
+          <hr />
+        </form>
+      </prosecution-counsels-panel>
+    </pdk-grid>
+  </pdk-grid>
+</attendees-panel>
+`;

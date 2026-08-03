@@ -1,0 +1,877 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefenceCheckInFormComponent it should submit the cases 1`] = `
+[
+  [
+    {
+      "defence": [],
+      "prosecution": [
+        {
+          "hearingId": "b3351a71-386b-4649-aaa4-e6e204a3c6b7",
+          "prosecutionCounsel": {
+            "attendanceDays": [
+              "2024-01-15",
+            ],
+            "firstName": "Mark",
+            "id": "id",
+            "lastName": "Brown",
+            "middleName": "",
+            "prosecutionCases": [
+              "7f56aa3f-9533-4759-ae9e-8f13c7375d35",
+            ],
+            "status": "Prosecution",
+            "title": "",
+          },
+        },
+      ],
+    },
+  ],
+]
+`;
+
+exports[`DefenceCheckInFormComponent it should submit the defendants 1`] = `
+[
+  [
+    {
+      "defence": [
+        {
+          "defenceCounsel": {
+            "attendanceDays": [
+              "2024-01-15",
+            ],
+            "defendants": [
+              "93f4bc3a-9dd2-429f-b1e0-6070cd1974fd",
+            ],
+            "firstName": "Mark",
+            "id": "id",
+            "lastName": "Brown",
+            "middleName": "",
+            "status": "Defence",
+            "title": "",
+          },
+          "hearingId": "b3351a71-386b-4649-aaa4-e6e204a3c6b7",
+        },
+      ],
+      "prosecution": [],
+    },
+  ],
+]
+`;
+
+exports[`DefenceCheckInFormComponent should render the component 1`] = `
+<test-defence-check-in-component
+  addCheckinErrors={[Function Function]}
+  hearingSummaries={[Function Array]}
+  onCheckInHearing={[Function Function]}
+  user={[Function Object]}
+>
+  <defence-check-in-form
+    appurl="http://appUrl"
+  >
+    <div
+      class="courtrooms govuk-!-margin-top-9"
+      id="prosecution-check-in-form"
+      pdk-margin-top="9"
+    >
+      <form
+        class="ng-untouched ng-pristine ng-valid"
+        novalidate=""
+        pdk-form=""
+      >
+        <div>
+          <pdk-accordion>
+            <div
+              class="govuk-accordion"
+            >
+              <div
+                class="govuk-accordion__controls"
+              >
+                <button
+                  aria-expanded="false"
+                  class="govuk-accordion__show-all"
+                  type="button"
+                >
+                  <span
+                    class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"
+                  />
+                  <span
+                    class="govuk-accordion__show-all-text"
+                  >
+                     Open all
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                       sections
+                    </span>
+                  </span>
+                </button>
+              </div>
+              <pdk-accordion-item>
+                <div
+                  class="govuk-accordion__section"
+                >
+                  <div
+                    class="govuk-accordion__section-header"
+                  >
+                    <h2
+                      class="govuk-accordion__section-heading"
+                    >
+                      <button
+                        aria-controls="govuk-accordion-GENERATED_ID-content"
+                        aria-expanded="false"
+                        class="govuk-accordion__section-button"
+                        id="govuk-accordion-GENERATED_ID-heading"
+                        type="button"
+                      >
+                        <span
+                          class="govuk-accordion__section-heading-text"
+                        >
+                          <span
+                            class="govuk-accordion__section-heading-text-focus"
+                          >
+                             Courtroom 04 
+                          </span>
+                        </span>
+                        <span
+                          class="govuk-accordion__section-toggle"
+                          data-nosnippet=""
+                        >
+                          <span
+                            class="govuk-accordion__section-toggle-focus"
+                          >
+                            <span
+                              aria-hidden="true"
+                              class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"
+                            />
+                            <span
+                              class="govuk-accordion__section-toggle-text"
+                            >
+                               Show 
+                            </span>
+                          </span>
+                        </span>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    aria-labelledby="govuk-accordion-GENERATED_ID-heading"
+                    class="govuk-accordion__section-content"
+                    hidden="until-found"
+                    id="govuk-accordion-GENERATED_ID-content"
+                  >
+                    <pdk-form-field
+                      label="Select cases and applications"
+                      labeltype="none"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <fieldset
+                          class="govuk-fieldset"
+                          pdk-fieldset=""
+                        >
+                          <legend
+                            class="govuk-fieldset__legend govuk-visually-hidden"
+                          >
+                             Select cases and applications 
+                          </legend>
+                          <pdk-checkbox-group
+                            class="ng-untouched ng-pristine ng-valid"
+                          >
+                            <div
+                              class="govuk-checkboxes"
+                            >
+                              <table
+                                class="govuk-table"
+                                pdk-table=""
+                              >
+                                <thead
+                                  class="govuk-table__head"
+                                  pdk-table-head=""
+                                >
+                                  <tr
+                                    class="govuk-table__row"
+                                    pdk-table-row=""
+                                  >
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                      style="width: 100px;"
+                                    >
+                                       Check in as prosecution 
+                                      <select-all
+                                        selecttext="Select all hearings"
+                                        unselecttext="Unselect all hearings"
+                                      >
+                                        <div
+                                          class="select-unselect-all"
+                                        >
+                                          <a
+                                            alt="Select all hearings"
+                                            class="govuk-link"
+                                            href="javascript:void(0);"
+                                            pdk-link=""
+                                            style="font-weight: normal;"
+                                          >
+                                             Select all hearings 
+                                          </a>
+                                        </div>
+                                      </select-all>
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                    >
+                                      URN
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                    >
+                                      Defendant
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                      style="width: 100px;"
+                                    >
+                                       Check in as defence 
+                                      <select-all
+                                        selecttext="Select all defendants"
+                                        unselecttext="Unselect all defendants"
+                                      >
+                                        <div
+                                          class="select-unselect-all"
+                                        >
+                                          <a
+                                            alt="Select all defendants"
+                                            class="govuk-link"
+                                            href="javascript:void(0);"
+                                            pdk-link=""
+                                            style="font-weight: normal;"
+                                          >
+                                             Select all defendants 
+                                          </a>
+                                        </div>
+                                      </select-all>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody
+                                  class="govuk-table__body"
+                                  pdk-table-body=""
+                                >
+                                  <tr
+                                    class="govuk-table__row"
+                                    pdk-table-row=""
+                                  >
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                      style="width: 100px;"
+                                    >
+                                      <pdk-checkbox
+                                        class="govuk-!-margin-top-1 govuk-checkboxes"
+                                        pdk-margin-top="1"
+                                      >
+                                        <div
+                                          class="govuk-checkboxes__item"
+                                        >
+                                          <input
+                                            class="govuk-checkboxes__input"
+                                            id="pdk-checkbox-GENERATED_ID"
+                                            name="pdk-checkbox-group-GENERATED_ID"
+                                            type="checkbox"
+                                            value="7f56aa3f-9533-4759-ae9e-8f13c7375d35"
+                                          />
+                                          <label
+                                            class="govuk-label govuk-checkboxes__label"
+                                            for="pdk-checkbox-GENERATED_ID"
+                                          >
+                                            <span
+                                              class="govuk-visually-hidden"
+                                              pdk-visually-hidden=""
+                                            >
+                                               TFL9171265 
+                                            </span>
+                                          </label>
+                                        </div>
+                                      </pdk-checkbox>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-2"
+                                        pdk-margin-top="2"
+                                      >
+                                         TFL9171265 
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      colspan="2"
+                                      pdk-table-cell=""
+                                    >
+                                      <pdk-form-field
+                                        labeltype="none"
+                                      >
+                                        <pdk-form-group
+                                          class="pdk-form-group"
+                                        >
+                                          <fieldset
+                                            class="govuk-fieldset"
+                                            pdk-fieldset=""
+                                          >
+                                            <legend
+                                              class="govuk-fieldset__legend govuk-visually-hidden"
+                                            >
+                                               Select defendants for TFL9171265 
+                                            </legend>
+                                            <pdk-checkbox-group
+                                              class="ng-untouched ng-pristine ng-valid"
+                                            >
+                                              <div
+                                                class="govuk-checkboxes"
+                                              >
+                                                <div
+                                                  class="govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+                                                  pdk-margin-bottom="2"
+                                                  pdk-margin-top="1"
+                                                  style="display: flex; width: 100%; align-items: center;"
+                                                >
+                                                  <div
+                                                    style="flex-grow: 1;"
+                                                  >
+                                                    <b>
+                                                      Fred SMITH
+                                                    </b>
+                                                  </div>
+                                                  <pdk-checkbox
+                                                    class="govuk-checkboxes"
+                                                  >
+                                                    <div
+                                                      class="govuk-checkboxes__item"
+                                                    >
+                                                      <input
+                                                        class="govuk-checkboxes__input"
+                                                        id="pdk-checkbox-GENERATED_ID"
+                                                        name="pdk-checkbox-group-GENERATED_ID"
+                                                        type="checkbox"
+                                                        value="93f4bc3a-9dd2-429f-b1e0-6070cd1974fd"
+                                                      />
+                                                      <label
+                                                        class="govuk-label govuk-checkboxes__label"
+                                                        for="pdk-checkbox-GENERATED_ID"
+                                                      >
+                                                        <span
+                                                          class="govuk-visually-hidden"
+                                                          pdk-visually-hidden=""
+                                                        >
+                                                           Fred SMITH 
+                                                        </span>
+                                                      </label>
+                                                    </div>
+                                                  </pdk-checkbox>
+                                                </div>
+                                              </div>
+                                            </pdk-checkbox-group>
+                                          </fieldset>
+                                        </pdk-form-group>
+                                      </pdk-form-field>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </pdk-checkbox-group>
+                        </fieldset>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                  </div>
+                </div>
+              </pdk-accordion-item>
+              <pdk-accordion-item>
+                <div
+                  class="govuk-accordion__section"
+                >
+                  <div
+                    class="govuk-accordion__section-header"
+                  >
+                    <h2
+                      class="govuk-accordion__section-heading"
+                    >
+                      <button
+                        aria-controls="govuk-accordion-GENERATED_ID-content"
+                        aria-expanded="false"
+                        class="govuk-accordion__section-button"
+                        id="govuk-accordion-GENERATED_ID-heading"
+                        type="button"
+                      >
+                        <span
+                          class="govuk-accordion__section-heading-text"
+                        >
+                          <span
+                            class="govuk-accordion__section-heading-text-focus"
+                          >
+                             Courtroom 05 
+                          </span>
+                        </span>
+                        <span
+                          class="govuk-accordion__section-toggle"
+                          data-nosnippet=""
+                        >
+                          <span
+                            class="govuk-accordion__section-toggle-focus"
+                          >
+                            <span
+                              aria-hidden="true"
+                              class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"
+                            />
+                            <span
+                              class="govuk-accordion__section-toggle-text"
+                            >
+                               Show 
+                            </span>
+                          </span>
+                        </span>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    aria-labelledby="govuk-accordion-GENERATED_ID-heading"
+                    class="govuk-accordion__section-content"
+                    hidden="until-found"
+                    id="govuk-accordion-GENERATED_ID-content"
+                  >
+                    <pdk-form-field
+                      label="Select cases and applications"
+                      labeltype="none"
+                    >
+                      <pdk-form-group
+                        class="pdk-form-group"
+                      >
+                        <fieldset
+                          class="govuk-fieldset"
+                          pdk-fieldset=""
+                        >
+                          <legend
+                            class="govuk-fieldset__legend govuk-visually-hidden"
+                          >
+                             Select cases and applications 
+                          </legend>
+                          <pdk-checkbox-group
+                            class="ng-untouched ng-pristine ng-valid"
+                          >
+                            <div
+                              class="govuk-checkboxes"
+                            >
+                              <table
+                                class="govuk-table"
+                                pdk-table=""
+                              >
+                                <thead
+                                  class="govuk-table__head"
+                                  pdk-table-head=""
+                                >
+                                  <tr
+                                    class="govuk-table__row"
+                                    pdk-table-row=""
+                                  >
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                      style="width: 100px;"
+                                    >
+                                       Check in as prosecution 
+                                      <select-all
+                                        selecttext="Select all hearings"
+                                        unselecttext="Unselect all hearings"
+                                      >
+                                        <div
+                                          class="select-unselect-all"
+                                        >
+                                          <a
+                                            alt="Select all hearings"
+                                            class="govuk-link"
+                                            href="javascript:void(0);"
+                                            pdk-link=""
+                                            style="font-weight: normal;"
+                                          >
+                                             Select all hearings 
+                                          </a>
+                                        </div>
+                                      </select-all>
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                    >
+                                      URN
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                    >
+                                      Defendant
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                      style="width: 100px;"
+                                    >
+                                       Check in as defence 
+                                      <select-all
+                                        selecttext="Select all defendants"
+                                        unselecttext="Unselect all defendants"
+                                      >
+                                        <div
+                                          class="select-unselect-all"
+                                        >
+                                          <a
+                                            alt="Select all defendants"
+                                            class="govuk-link"
+                                            href="javascript:void(0);"
+                                            pdk-link=""
+                                            style="font-weight: normal;"
+                                          >
+                                             Select all defendants 
+                                          </a>
+                                        </div>
+                                      </select-all>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody
+                                  class="govuk-table__body"
+                                  pdk-table-body=""
+                                >
+                                  <tr
+                                    class="govuk-table__row"
+                                    pdk-table-row=""
+                                  >
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                      style="width: 100px;"
+                                    >
+                                      <pdk-checkbox
+                                        class="govuk-!-margin-top-1 govuk-checkboxes"
+                                        pdk-margin-top="1"
+                                      >
+                                        <div
+                                          class="govuk-checkboxes__item"
+                                        >
+                                          <input
+                                            class="govuk-checkboxes__input"
+                                            id="pdk-checkbox-GENERATED_ID"
+                                            name="pdk-checkbox-group-GENERATED_ID"
+                                            type="checkbox"
+                                            value="0305e414-bbfb-4785-8962-f8d5fbe06528"
+                                          />
+                                          <label
+                                            class="govuk-label govuk-checkboxes__label"
+                                            for="pdk-checkbox-GENERATED_ID"
+                                          >
+                                            <span
+                                              class="govuk-visually-hidden"
+                                              pdk-visually-hidden=""
+                                            >
+                                               40GD2744720 
+                                            </span>
+                                          </label>
+                                        </div>
+                                      </pdk-checkbox>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-2"
+                                        pdk-margin-top="2"
+                                      >
+                                         40GD2744720 
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      colspan="2"
+                                      pdk-table-cell=""
+                                    >
+                                      <pdk-form-field
+                                        labeltype="none"
+                                      >
+                                        <pdk-form-group
+                                          class="pdk-form-group"
+                                        >
+                                          <fieldset
+                                            class="govuk-fieldset"
+                                            pdk-fieldset=""
+                                          >
+                                            <legend
+                                              class="govuk-fieldset__legend govuk-visually-hidden"
+                                            >
+                                               Select defendants for 40GD2744720 
+                                            </legend>
+                                            <pdk-checkbox-group
+                                              class="ng-untouched ng-pristine ng-valid"
+                                            >
+                                              <div
+                                                class="govuk-checkboxes"
+                                              >
+                                                <div
+                                                  class="govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+                                                  pdk-margin-bottom="2"
+                                                  pdk-margin-top="1"
+                                                  style="display: flex; width: 100%; align-items: center;"
+                                                >
+                                                  <div
+                                                    style="flex-grow: 1;"
+                                                  >
+                                                    <b>
+                                                      Jackie Keaton CONN
+                                                    </b>
+                                                  </div>
+                                                  <pdk-checkbox
+                                                    class="govuk-checkboxes"
+                                                  >
+                                                    <div
+                                                      class="govuk-checkboxes__item"
+                                                    >
+                                                      <input
+                                                        class="govuk-checkboxes__input"
+                                                        id="pdk-checkbox-GENERATED_ID"
+                                                        name="pdk-checkbox-group-GENERATED_ID"
+                                                        type="checkbox"
+                                                        value="7ea12a20-f998-447a-98e2-bda7031b6c5c"
+                                                      />
+                                                      <label
+                                                        class="govuk-label govuk-checkboxes__label"
+                                                        for="pdk-checkbox-GENERATED_ID"
+                                                      >
+                                                        <span
+                                                          class="govuk-visually-hidden"
+                                                          pdk-visually-hidden=""
+                                                        >
+                                                           Jackie Keaton CONN 
+                                                        </span>
+                                                      </label>
+                                                    </div>
+                                                  </pdk-checkbox>
+                                                </div>
+                                                <div
+                                                  class="govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+                                                  pdk-margin-bottom="2"
+                                                  pdk-margin-top="1"
+                                                  style="display: flex; width: 100%; align-items: center;"
+                                                >
+                                                  <div
+                                                    style="flex-grow: 1;"
+                                                  >
+                                                    <b>
+                                                      Sean Kamryn HINTZ
+                                                    </b>
+                                                  </div>
+                                                  <pdk-checkbox
+                                                    class="govuk-checkboxes"
+                                                  >
+                                                    <div
+                                                      class="govuk-checkboxes__item"
+                                                    >
+                                                      <input
+                                                        class="govuk-checkboxes__input"
+                                                        id="pdk-checkbox-GENERATED_ID"
+                                                        name="pdk-checkbox-group-GENERATED_ID"
+                                                        type="checkbox"
+                                                        value="0338e354-f7af-4534-8026-fee38d937ef3"
+                                                      />
+                                                      <label
+                                                        class="govuk-label govuk-checkboxes__label"
+                                                        for="pdk-checkbox-GENERATED_ID"
+                                                      >
+                                                        <span
+                                                          class="govuk-visually-hidden"
+                                                          pdk-visually-hidden=""
+                                                        >
+                                                           Sean Kamryn HINTZ 
+                                                        </span>
+                                                      </label>
+                                                    </div>
+                                                  </pdk-checkbox>
+                                                </div>
+                                              </div>
+                                            </pdk-checkbox-group>
+                                          </fieldset>
+                                        </pdk-form-group>
+                                      </pdk-form-field>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    class="govuk-table__row"
+                                    pdk-table-row=""
+                                  >
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                      style="width: 100px;"
+                                    >
+                                      <pdk-checkbox
+                                        class="govuk-!-margin-top-1 govuk-checkboxes"
+                                        pdk-margin-top="1"
+                                      >
+                                        <div
+                                          class="govuk-checkboxes__item"
+                                        >
+                                          <input
+                                            class="govuk-checkboxes__input"
+                                            id="pdk-checkbox-GENERATED_ID"
+                                            name="pdk-checkbox-group-GENERATED_ID"
+                                            type="checkbox"
+                                            value="5abcb7dd-a7c8-4562-b5b8-0172797e517d"
+                                          />
+                                          <label
+                                            class="govuk-label govuk-checkboxes__label"
+                                            for="pdk-checkbox-GENERATED_ID"
+                                          >
+                                            <span
+                                              class="govuk-visually-hidden"
+                                              pdk-visually-hidden=""
+                                            >
+                                               TFL0370072 
+                                            </span>
+                                          </label>
+                                        </div>
+                                      </pdk-checkbox>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-2"
+                                        pdk-margin-top="2"
+                                      >
+                                         TFL0370072 
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      colspan="2"
+                                      pdk-table-cell=""
+                                    >
+                                      <pdk-form-field
+                                        labeltype="none"
+                                      >
+                                        <pdk-form-group
+                                          class="pdk-form-group"
+                                        >
+                                          <fieldset
+                                            class="govuk-fieldset"
+                                            pdk-fieldset=""
+                                          >
+                                            <legend
+                                              class="govuk-fieldset__legend govuk-visually-hidden"
+                                            >
+                                               Select defendants for TFL0370072 
+                                            </legend>
+                                            <pdk-checkbox-group
+                                              class="ng-untouched ng-pristine ng-valid"
+                                            >
+                                              <div
+                                                class="govuk-checkboxes"
+                                              >
+                                                <div
+                                                  class="govuk-!-margin-top-1 govuk-!-margin-bottom-2"
+                                                  pdk-margin-bottom="2"
+                                                  pdk-margin-top="1"
+                                                  style="display: flex; width: 100%; align-items: center;"
+                                                >
+                                                  <div
+                                                    style="flex-grow: 1;"
+                                                  >
+                                                    <b>
+                                                      Fred SMITH
+                                                    </b>
+                                                  </div>
+                                                  <pdk-checkbox
+                                                    class="govuk-checkboxes"
+                                                  >
+                                                    <div
+                                                      class="govuk-checkboxes__item"
+                                                    >
+                                                      <input
+                                                        class="govuk-checkboxes__input"
+                                                        id="pdk-checkbox-GENERATED_ID"
+                                                        name="pdk-checkbox-group-GENERATED_ID"
+                                                        type="checkbox"
+                                                        value="bcfbb10d-5ee9-44ee-9c10-ab13403c6834"
+                                                      />
+                                                      <label
+                                                        class="govuk-label govuk-checkboxes__label"
+                                                        for="pdk-checkbox-GENERATED_ID"
+                                                      >
+                                                        <span
+                                                          class="govuk-visually-hidden"
+                                                          pdk-visually-hidden=""
+                                                        >
+                                                           Fred SMITH 
+                                                        </span>
+                                                      </label>
+                                                    </div>
+                                                  </pdk-checkbox>
+                                                </div>
+                                              </div>
+                                            </pdk-checkbox-group>
+                                          </fieldset>
+                                        </pdk-form-group>
+                                      </pdk-form-field>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </pdk-checkbox-group>
+                        </fieldset>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                  </div>
+                </div>
+              </pdk-accordion-item>
+            </div>
+          </pdk-accordion>
+        </div>
+        <button
+          class="govuk-button"
+          data-role="checkin-btn"
+          pdk-button=""
+          type="submit"
+        >
+           CHECK_IN.SUBMIT_BUTTON 
+        </button>
+      </form>
+    </div>
+    <div
+      class="mt-l"
+    >
+      <a
+        class="govuk-link"
+        href="http://appUrl"
+        pdk-link=""
+      >
+         CHECK_IN.CANCEL 
+      </a>
+    </div>
+  </defence-check-in-form>
+</test-defence-check-in-component>
+`;

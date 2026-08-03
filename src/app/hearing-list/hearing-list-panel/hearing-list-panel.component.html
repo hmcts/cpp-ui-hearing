@@ -1,0 +1,14 @@
+<div pdk-margin-bottom="6" class="menu">
+  @for (hearing of hearingList; track hearing.id) {
+  <div [class.shared]="hearing.hasSharedResults">
+    <panel-item [active]="hearing.id === activeHearing?.id" (select)="select(hearing)">
+      <hearing-summary-item
+        [hearing]="hearing"
+        [isActive]="hearing.id === activeHearing?.id"
+        [selectedHearingDate]="selectedHearingDate"
+      >
+      </hearing-summary-item>
+    </panel-item>
+  </div>
+  }
+</div>

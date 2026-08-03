@@ -1,0 +1,19 @@
+.case-marker-title {
+  font-size: 19px;
+  word-wrap: break-word;
+  width: 145px;
+}
+
+.case-marker-list-title {
+  details {
+    & summary,
+    & .case-marker {
+      font-size: 19px;
+      width: 145px;
+    }
+  }
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}

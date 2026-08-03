@@ -1,0 +1,35 @@
+<div class="global-nav" pdk-typography="body-medium">
+  <div class="global-nav-actions">
+    <a
+      href="javascript:void(0);"
+      class="global-nav-toggle"
+      [attr.aria-controls]="'global-nav'"
+      [attr.aria-expanded]="open"
+      [innerHtml]="menuTitle"
+      (click)="toggle()"
+    >
+    </a>
+  </div>
+  <nav
+    pdk-service-nav
+    id="global-nav"
+    clear
+    [attr.aria-label]="globalNavigation"
+    [attr.aria-expanded]="open"
+    pdk-margin="0"
+  >
+    <h3 pdk-visually-hidden [innerHtml]="globalNavigation"></h3>
+
+    <ul pdk-service-nav-list role="tablist">
+      @for (subMenu of topMenu; track $index) { @for (item of subMenu; track $index) {
+      <li role="presentation" pdk-service-nav-list-item [selected]="item.active">
+        <button class="tab-title" role="tab" (click)="menuItemClick(item)">
+          <span pdk-text-colour="blue" pdk-typography="heading-small" pdk-margin-bottom="0"
+            >{{ item.text }}</span
+          >
+        </button>
+      </li>
+      } }
+    </ul>
+  </nav>
+</div>

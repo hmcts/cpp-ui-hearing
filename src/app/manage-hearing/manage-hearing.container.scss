@@ -1,0 +1,39 @@
+::ng-deep pdk-action-details .pdk-action-details__action {
+  font-size: 19px !important;
+}
+
+.extend-magistrate-access {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.youth-selector {
+  border: 1px solid #1d70b8;
+  padding: 0 0 0 15px;
+  float: right;
+  white-space: nowrap;
+
+  &::after {
+    clear: both;
+  }
+}
+
+.notification-banner {
+  border: 4px solid #1d70b8;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 30px;
+
+  &__title {
+    background-color: #1d70b8;
+    color: white;
+    padding-left: 10px;
+    line-height: 30px;
+  }
+
+  &__msg {
+    font-weight: 700;
+    padding-left: 10px;
+    line-height: 70px;
+  }
+}

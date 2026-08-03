@@ -1,0 +1,419 @@
+@for (defendant of casesAndApplicationsGroupedByDefendant; track defendant.id) {
+<div
+  attr.data-role="hearing-defendant-{{ defendant.id }}"
+  data-test-id="defendant"
+  class="hearing-results-list"
+  pdk-margin-top="6"
+>
+  <!-- defendant level details -->
+  <defendant-level-detail
+    [hearing]="hearing"
+    [hearingId]="hearingId"
+    [defendant]="defendant"
+    [attendanceErrors]="attendanceErrors"
+    [hasBulkCase]="hasBulkCase(defendant)"
+    [todayDefendantsAttendance]="todayDefendantsAttendance"
+    [selectedHearingDate]="selectedHearingDate"
+    (onOutstandingFine)="onOutstandingFine.emit($event)"
+    (onPresenceChanged)="onPresenceChanged.emit($event)"
+    (onYouthCourtToggle)="onYouthBoxSelected(defendant)"
+    (selectedParticipant)="onSelectedParticipant.emit($event)"
+  ></defendant-level-detail>
+  <pdk-grid container>
+    <pdk-grid full>
+      <cpp-shareable-results-container
+        [masterDefendantId]="defendant.masterDefendantId"
+      ></cpp-shareable-results-container>
+    </pdk-grid>
+  </pdk-grid>
+
+  <pdk-divider pdk-margin-top="4" pdk-margin-bottom="2"></pdk-divider>
+
+  <!-- defendant-case level details -->
+  @for (case of defendant.prosecutionCases; track case.id) {
+  <div>
+    <pdk-grid container>
+      <pdk-grid one-third>
+        <span pdk-visually-hidden>Case reference: </span>
+        @if (!hasBulkCase(defendant)) {
+        <h4 data-test-id="caseReference" pdk-typography="heading-small" class="case">
+          {{ case.prosecutionCaseIdentifier.caseURN }}
+        </h4>
+        } &nbsp;
+        <reporting-restrictions isWarning="true" [caseId]="case.id" [offences]="case.offences">
+        </reporting-restrictions>
+      </pdk-grid>
+
+      <pdk-grid data-test-id="defendantResults" two-thirds>
+        <cpp-shareable-results-container
+          [caseId]="case.id"
+          [masterDefendantId]="defendant.masterDefendantId"
+        ></cpp-shareable-results-container>
+      </pdk-grid>
+    </pdk-grid>
+
+    <div data-test-id="offences">
+      @for (offence of case.offences; track offence.id; let first = $first) {
+      <pdk-divider></pdk-divider>
+      @if (first) { @for (entry of defendantLevelWarningMessages?.get(defendant.masterDefendantId)
+      || []; track entry) {
+      <pdk-warning-text
+        [attr.data-test-id]="
+          'defendantLevelWarning-' + defendant.masterDefendantId + '-' + entry.ruleId
+        "
+      >
+        {{ entry.message }}
+      </pdk-warning-text>
+      } }
+      <pdk-grid container class="offence" data-test-id="offence" data-test-id="offence">
+        <pdk-grid one-third>
+          @if (hearingType === 'CROWN' && offence.count > 0) {
+          <div class="offence-count-section">
+            Count:
+            <span>{{ offence.count }}</span>
+          </div>
+          }
+          <div class="offence-index">
+            <span>{{ offence.orderIndex }}.</span>
+          </div>
+          <div class="offence-title">
+            <span data-test-id="offenceTitle">{{ offence.offenceTitle }}</span>
+            @if (offence.custodyTimeLimit) {
+            <div data-role="offence-custody-time-limit">
+              CTL: {{ offence.custodyTimeLimit?.timeLimit | date : 'd LLL yyyy' }}
+            </div>
+            }
+          </div>
+          <!-- Notified Plea -->
+          @if (hasNotifiedPlea(offence)) {
+          <div pdk-margin-top="6">
+            <pdk-grid container>
+              <pdk-grid full class="bold">
+                {{ 'MANAGE_HEARING.NOTIFIED_PLEA' | translate }}
+              </pdk-grid>
+            </pdk-grid>
+            <div pdk-margin-bottom="4">
+              <pdk-grid container>
+                <pdk-grid two-thirds data-role="offence-notified-plea">
+                  @if (offence.notifiedPlea?.notifiedPleaValue) {
+                  {{ getNotifiedPleaValue(offence.notifiedPlea.notifiedPleaValue) }}
+                  }
+                </pdk-grid>
+              </pdk-grid>
+              @if (offence.notifiedPlea.notifiedPleaDate) {
+              <pdk-grid container>
+                <pdk-grid two-thirds>
+                  <span class="date-message" pdk-text-colour="dark-grey">
+                    {{ 'MANAGE_HEARING.PLEA_ENTERED_ON' | translate }}
+                    {{ offence.notifiedPlea.notifiedPleaDate | date : 'dd MMMM yyyy' }}
+                  </span>
+                </pdk-grid>
+              </pdk-grid>
+              } @if ( hasNotifiedPleaGuilty(offence) && offence.convictionDate &&
+              !hasGuiltyPlea(offence) ) {
+              <pdk-grid container>
+                <pdk-grid two-thirds>
+                  <span class="date-message" pdk-text-colour="dark-grey">
+                    {{ 'MANAGE_HEARING.CONVICTED_ON' | translate }}
+                    {{ convictionDate(offence) | date : 'dd MMMM yyyy' }}
+                  </span>
+                </pdk-grid>
+              </pdk-grid>
+              }
+            </div>
+          </div>
+          }
+          <!-- Pleas -->
+          @if (!hasBulkCase(defendant)) {
+          <div pdk-margin-bottom="6" pdk-margin-top="6">
+            <pdk-grid container>
+              <pdk-grid full class="bold">
+                {{ 'MANAGE_HEARING.PLEA' | translate }}
+              </pdk-grid>
+            </pdk-grid>
+            @if (hasPlea(offence)) {
+            <div>
+              <pdk-grid container>
+                <pdk-grid two-thirds [attr.data-role]="'offence-plea'">
+                  <span data-test-id="indicatedPlea">{{
+                    pleasMapping[offence.plea.pleaValue] ||
+                      pleasMapping[offence.indicatedPlea.indicatedPleaValue]
+                  }}</span>
+                </pdk-grid>
+                <pdk-grid one-third class="action-bar-column">
+                  @if (isPleaApplicableFlag) {
+                  <a
+                    [attr.aria-label]="'Change plea for ' + offence.offenceTitle"
+                    pdk-link
+                    unvisited
+                    pdk-text-colour="blue"
+                    pageScroll
+                    [pageScrollOffset]="50"
+                    routerLink="./enter-pleas"
+                    href="#{{ offence.id }}"
+                  >
+                    {{ 'COMMON.CHANGE' | translate }}
+                  </a>
+                  }
+                </pdk-grid>
+              </pdk-grid>
+              @if (isGuiltyToLesserOffenceNamely(offence.plea?.pleaValue)) {
+              <pdk-grid container>
+                <pdk-grid full>
+                  {{ offence.plea?.lesserOrAlternativeOffence?.offenceTitle }}
+                </pdk-grid>
+              </pdk-grid>
+              }
+              <pdk-grid container>
+                <pdk-grid two-thirds>
+                  <span
+                    class="date-message"
+                    pdk-text-colour="dark-grey"
+                    pdk-text-colour="dark-grey"
+                  >
+                    {{ 'MANAGE_HEARING.PLEA_ENTERED_ON' | translate }}
+                    {{
+                      offence.plea.pleaDate || offence.indicatedPlea.indicatedPleaDate
+                        | date : 'dd MMMM yyyy'
+                    }}
+                  </span>
+                </pdk-grid>
+                <pdk-grid one-third></pdk-grid>
+              </pdk-grid>
+              @if (hasConvictionDatePlea(offence)) {
+              <span class="date-message" pdk-text-colour="dark-grey">
+                {{ 'MANAGE_HEARING.CONVICTED_ON' | translate }}
+                {{ convictionDate(offence) | date : 'dd MMMM yyyy' }}
+              </span>
+              }
+            </div>
+            } @if (!hasPlea(offence)) {
+            <pdk-grid container>
+              <pdk-grid two-thirds>
+                <span data-test-id="pleaNotYetEntered">
+                  {{ 'MANAGE_HEARING.NO_PLEA_ENTERED' | translate }}
+                </span>
+              </pdk-grid>
+              <pdk-grid one-third class="action-bar-column">
+                @if (isPleaApplicableFlag) {
+                <a
+                  [attr.aria-label]="'Enter plea for ' + offence.offenceTitle"
+                  pdk-link
+                  unvisited
+                  class="link"
+                  routerLink="./enter-pleas"
+                  >{{ 'COMMON.ENTER' | translate }}</a
+                >
+                }
+              </pdk-grid>
+            </pdk-grid>
+            }
+          </div>
+          }
+          <!-- Allocation decision -->
+          @if (!hasBulkCase(defendant) && offence.allocationDecision) {
+          <div>
+            @if (offence.allocationDecision.motReasonDescription) {
+            <div pdk-margin-bottom="4">
+              <pdk-grid container>
+                <pdk-grid full class="bold">
+                  {{ 'MANAGE_HEARING.ALLOCATION_DECISION' | translate }}
+                </pdk-grid>
+              </pdk-grid>
+
+              <div>
+                <pdk-grid container>
+                  <pdk-grid
+                    two-thirds
+                    data-role="offence-allocation-decision"
+                    class="allocation-decision"
+                  >
+                    {{ offence.allocationDecision.motReasonDescription }}
+                  </pdk-grid>
+                </pdk-grid>
+                <pdk-grid container>
+                  <pdk-grid two-thirds>
+                    @if (offence?.allocationDecision?.allocationDecisionDate) {
+                    <span class="date-message" pdk-text-colour="dark-grey">
+                      {{ 'MANAGE_HEARING.ALLOCATION_DECISION_RECORDED_ON' | translate }}
+                      {{
+                        offence.allocationDecision.allocationDecisionDate | date : 'dd MMMM yyyy'
+                      }}
+                    </span>
+                    }
+                  </pdk-grid>
+                </pdk-grid>
+              </div>
+            </div>
+            }
+            <!-- Sentencing decision -->
+            @if (offence.allocationDecision.courtIndicatedSentence) {
+            <div>
+              @if ( offence.allocationDecision.courtIndicatedSentence
+              .courtIndicatedSentenceDescription ) {
+              <div pdk-margin-bottom="4">
+                <pdk-grid container>
+                  <pdk-grid full class="bold">
+                    {{ 'MANAGE_HEARING.SENTENCING_INDICATION' | translate }}
+                  </pdk-grid>
+                </pdk-grid>
+
+                <div>
+                  <pdk-grid container>
+                    <pdk-grid
+                      two-thirds
+                      data-role="offence-sentencing-decision"
+                      class="sentencing-decision"
+                    >
+                      {{
+                        offence.allocationDecision.courtIndicatedSentence
+                          .courtIndicatedSentenceDescription
+                      }}
+                    </pdk-grid>
+                  </pdk-grid>
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </div>
+          }
+          <!-- Verdicts -->
+          @if (!hasBulkCase(defendant) && !hasGuiltyPlea(offence)) {
+          <div pdk-margin-bottom="6">
+            <pdk-grid container>
+              <pdk-grid one-third class="bold">
+                {{ 'MANAGE_HEARING.VERDICT' | translate }}
+              </pdk-grid>
+
+              @if (isVerdictTypeByJury(offence)) {
+              <pdk-grid two-thirds class="jurors-column">
+                @if (hasUnanimousVerdict(offence) && hearingType === 'CROWN') {
+                <span class="bold"> {{ 'MANAGE_HEARING.UNANIMOUS' | translate }}. </span>
+                } @if (hasMajorityVerdict(offence)) {
+                <span>
+                  <span>{{ 'MANAGE_HEARING.MAJORITY_VERDICT' | translate }}</span>
+                  <span>{{ numberOfJurors(offence) - numberOfSplitJurors(offence) }}:</span>
+                  <span>{{ numberOfSplitJurors(offence) }}.</span>
+                </span>
+                } @if (hearingType === 'CROWN' && isVerdictDeleted(offence)) {
+                <span class="jurors-numbers" pdk-text-colour="dark-grey"
+                  >({{ numberOfJurors(offence) }})</span
+                >
+                }
+              </pdk-grid>
+              }
+            </pdk-grid>
+            <pdk-grid container>
+              @if (hasVerdict(offence)) {
+              <pdk-grid two-thirds data-test-id="verdict" data-role="offence-verdict">
+                {{ offence.verdict.verdictType | verdictTypeDescription : verdictTypes }}
+              </pdk-grid>
+
+              <pdk-grid one-third class="text-right">
+                @if (isVerdictsPageAvailable && canChangeVerdict(offence)) {
+                <a
+                  [attr.aria-label]="'Change verdict for ' + offence.offenceTitle"
+                  pdk-link
+                  unvisited
+                  pdk-text-colour="blue"
+                  role="link"
+                  pageScroll
+                  [pageScrollOffset]="50"
+                  routerLink="./enter-verdicts"
+                  href="#{{ offence.id }}"
+                >
+                  {{ 'COMMON.CHANGE' | translate }}
+                </a>
+                }
+              </pdk-grid>
+              } @if ( isVerdictLesserOrAlternativeOffence(offence.verdict?.verdictType?.id) &&
+              isVerdictDeleted(offence) ) {
+              <pdk-grid full>
+                {{ offence.verdict?.lesserOrAlternativeOffence?.offenceTitle }}
+              </pdk-grid>
+              } @if (hasVerdictDate(offence)) {
+              <pdk-grid two-thirds>
+                <span class="date-message" pdk-text-colour="dark-grey">
+                  {{ 'MANAGE_HEARING.VERDICT_ENTERED_ON' | translate }}
+                  {{ verdictDate(offence) | date : 'dd MMMM yyyy' }}
+                </span>
+              </pdk-grid>
+              }
+            </pdk-grid>
+            @if (hasConvictionDateVerdict(offence)) {
+            <span class="date-message" pdk-text-colour="dark-grey">
+              {{ 'MANAGE_HEARING.CONVICTED_ON' | translate }}
+              {{ convictionDate(offence) | date : 'dd MMMM yyyy' }}
+            </span>
+            } @if (!hasVerdict(offence)) {
+            <pdk-grid container>
+              <pdk-grid two-thirds>
+                {{ 'MANAGE_HEARING.NO_VERDICT_ENTERED' | translate }}
+              </pdk-grid>
+              <pdk-grid one-third class="action-bar-column">
+                @if (isVerdictsPageAvailable) {
+                <a
+                  [attr.aria-label]="'Enter verdict for ' + offence.offenceTitle"
+                  pdk-link
+                  unvisited
+                  pdk-text-colour="blue"
+                  role="link"
+                  pageScroll
+                  [pageScrollOffset]="50"
+                  routerLink="./enter-verdicts"
+                  href="#{{ offence.id }}"
+                >
+                  {{ 'COMMON.ENTER' | translate }}
+                </a>
+                }
+              </pdk-grid>
+            </pdk-grid>
+            }
+          </div>
+          }
+        </pdk-grid>
+        <pdk-grid two-thirds>
+          @for (entry of offenceLevelWarningMessages?.get(offence.id) || []; track entry) {
+          <pdk-warning-text
+            [attr.data-test-id]="'offenceLevelWarning-' + offence.id + '-' + entry.ruleId"
+          >
+            {{ entry.message }}
+          </pdk-warning-text>
+          }
+          <!-- Results -->
+          <div pdk-margin-bottom="6">
+            <cpp-shareable-results-container
+              [offenceId]="offence.id"
+              [showResultsPlaceholder]="true"
+            ></cpp-shareable-results-container>
+          </div>
+        </pdk-grid>
+      </pdk-grid>
+      }
+    </div>
+  </div>
+  } @if (defendant.courtApplications?.length) {
+  <application-result-details-container
+    [applicationResults]="defendant.courtApplications"
+    [pleasMapping]="pleasMapping"
+    [hearingType]="hearingType"
+    [showSubject]="false"
+    (onGoToEnterResult)="onGoToEnterResult.emit()"
+  >
+  </application-result-details-container>
+  } @if ( activeCourtOrders && activeCourtOrders[defendant.masterDefendantId]?.length > 0 &&
+  hasAnyGuiltyPleasOrConvictionDates(defendant) ) {
+  <pdk-grid container>
+    <pdk-grid one-third>&nbsp;</pdk-grid>
+    <pdk-grid two-thirds>
+      <breach-form
+        [courtOrders]="activeCourtOrders[defendant.masterDefendantId]"
+        [breachTypes]="breachTypes"
+        (onSubmit)="onBreachFormSubmit($event, defendant.masterDefendantId)"
+      ></breach-form>
+    </pdk-grid>
+  </pdk-grid>
+  }
+</div>
+}

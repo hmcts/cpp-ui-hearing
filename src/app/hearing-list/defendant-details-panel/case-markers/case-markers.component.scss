@@ -1,0 +1,28 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.case-marker {
+  font-weight: bold;
+}
+
+.case-markers-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.add-marker {
+  text-decoration: underline;
+
+  &:focus {
+    color: govuk.govuk-colour('dark-blue') !important;
+  }
+}
+.edit-marker {
+  text-decoration: underline;
+}
+.show-others {
+  font-weight: bold;
+  cursor: pointer;
+}
+.markers-list {
+  padding-bottom: 0px;
+}

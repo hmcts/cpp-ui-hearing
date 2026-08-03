@@ -1,0 +1,160 @@
+<pdk-grid container pdk-margin-bottom="3">
+  <pdk-grid full pdk-margin-top="6">
+    @if (errors) {
+    <pdk-error-summary [errors]="errors"></pdk-error-summary>
+    }
+    <h1 pdk-typography="heading-medium" pdk-margin-bottom="3">Enter hearing details</h1>
+  </pdk-grid>
+  <form #form="ngForm" pdk-form (errors)="errors = $event" (validSubmit)="onSubmit(form.value)">
+    <pdk-grid full>
+      <pdk-grid one-third>
+        <pdk-form-field label="Court">
+          <cpp-organisation-unit-autosuggest
+            #organisationUnit="ngModel"
+            name="courtCentre"
+            [ngModel]="formValues.courtCentre"
+            jurisdictionCode="C"
+            required
+          >
+          </cpp-organisation-unit-autosuggest>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid one-third>
+        <pdk-form-field label="Courtroom (optional)">
+          <pdk-select
+            [ngModel]="formValues.courtRoomId"
+            name="courtRoomId"
+            justified
+            placeholder="Any"
+            [options]="getCourtroomOptions(organisationUnit.value)"
+          >
+          </pdk-select>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid one-third>
+        <pdk-form-field label="Hearing type">
+          <cpp-hearing-type-autosuggest
+            jurisdictionType="CROWN"
+            name="hearingType"
+            [ngModel]="formValues.hearingType"
+            justified
+            required
+            placeholder="All hearing types"
+          >
+          </cpp-hearing-type-autosuggest>
+        </pdk-form-field>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid full>
+      <pdk-grid one-third>
+        @if (!isWeekCommencing) {
+        <pdk-form-field label="Start date">
+          <pdk-date-input name="startDate" ngModel picker [minDate]="minDate" required>
+          </pdk-date-input>
+        </pdk-form-field>
+        }
+      </pdk-grid>
+
+      <pdk-grid one-third>
+        @if (isWeekCommencing) {
+        <pdk-form-field label="Start date" pdk-margin-top="6">
+          @if (isWeekCommencing) {
+          <pdk-date-picker-input
+            name="startDate"
+            ngModel
+            #date="ngModel"
+            [minDate]="weekCommencingMinDate"
+            [ariaDescribedBy]="'weekCommencingDate'"
+            [isDateHighlighted]="isWeekCommencingDateHighlighted()"
+            [isDateSelected]="isWeekCommencingDateSelected()"
+            [formatDisplayText]="weekCommencingDisplayText"
+            required
+          >
+          </pdk-date-picker-input>
+          }
+        </pdk-form-field>
+        }
+      </pdk-grid>
+
+      <pdk-grid one-third>
+        <pdk-form-field label="Hearing duration">
+          <duration-input name="hearingDuration" required ngModel></duration-input>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid one-third>
+        <pdk-form-field label="Start time (optional)">
+          <pdk-time-input
+            name="startTime"
+            ngModel
+            data-role="hearing-earliest-start-input"
+            labelHidden="false"
+          >
+          </pdk-time-input>
+        </pdk-form-field>
+      </pdk-grid>
+    </pdk-grid>
+    <pdk-grid full>
+      <pdk-grid one-third>
+        <pdk-form-field label="Reserve judge (optional)">
+          <judiciary-typeahead name="judiciary" [ngModel]="formValues.judiciary">
+          </judiciary-typeahead>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid one-third>
+        <pdk-form-field label="Booking type (i.e, video link) (optional)">
+          <booking-types-select
+            name="bookingType"
+            [ngModel]="bookingType"
+            justified
+            placeholder="No booking type"
+          >
+          </booking-types-select>
+        </pdk-form-field>
+      </pdk-grid>
+      <pdk-grid one-third>
+        <pdk-form-field label="Assign priority (optional)">
+          <assign-priority-select
+            name="priority"
+            [ngModel]="priority"
+            justified
+            placeholder="No priority"
+          >
+          </assign-priority-select>
+        </pdk-form-field>
+      </pdk-grid>
+    </pdk-grid>
+
+    <pdk-grid one-third pdk-margin-top="6" pdk-margin-left="2">
+      <pdk-form-field label="Special requirements (optional)">
+        <special-requirements-chekbox
+          name="specialRequirements"
+          [ngModel]="specialRequirement"
+        ></special-requirements-chekbox>
+      </pdk-form-field>
+    </pdk-grid>
+
+    <pdk-grid full>
+      <div pdk-margin-left="3">
+        <button pdk-button type="submit">Continue</button>
+        <a
+          pdk-margin-left="4"
+          class="horizontal-center"
+          pdk-link
+          (click)="onClearForm()"
+          href="javascript:void(0);"
+          >Clear</a
+        >
+      </div>
+
+      <div>
+        <a
+          data-test-id="returnToEnterResults"
+          href="javascript:void(0)"
+          (click)="cancel.emit($event)"
+          pdk-link
+          >Cancel and return to enter results</a
+        >
+      </div>
+    </pdk-grid>
+  </form>
+</pdk-grid>

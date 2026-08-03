@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CaseAccessAlertService should add more hearing ids 1`] = `"{"userId":"userId","hearingIds":["h1","h2","h3"],"expires":1581119999999}"`;
+
+exports[`CaseAccessAlertService should save the decision 1`] = `
+[
+  [
+    "accessAlert",
+    "{"userId":"userId","hearingIds":["h1","h2"],"expires":1581119999999}",
+  ],
+]
+`;
+
+exports[`CaseAccessAlertService should show modal 1`] = `[]`;

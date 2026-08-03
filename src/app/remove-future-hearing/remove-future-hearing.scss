@@ -1,0 +1,21 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+th {
+  border-bottom: 1px solid govuk.govuk-colour('black');
+}
+
+tbody {
+  td {
+    padding: 10px 0;
+    padding-right: 11px;
+  }
+  .main-row {
+    td {
+      border-top: 1px solid govuk.govuk-colour('mid-grey');
+    }
+  }
+
+  tr:last-child {
+    border-bottom: 1px solid govuk.govuk-colour('mid-grey');
+  }
+}

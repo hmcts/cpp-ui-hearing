@@ -1,0 +1,49 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.hearing-summary-item {
+  & .sequence-number {
+    min-width: 50px;
+    margin-right: 10px;
+  }
+
+  & .hearing-summary-details {
+    margin: 0;
+    color: inherit;
+    display: inline-block;
+    width: 90%;
+  }
+
+  & .type {
+    color: govuk.govuk-colour('dark-grey');
+  }
+
+  & .urn {
+    color: govuk.govuk-colour('dark-grey');
+    width: 25%;
+    margin-right: 10px;
+  }
+
+  & .urn-content {
+    float: left;
+  }
+
+  & .hearing-tags {
+    color: inherit;
+    font-weight: 700;
+    position: absolute;
+    bottom: 19px;
+    right: 10px;
+  }
+
+  & .hearing-shared {
+    font-weight: 700;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    color: govuk.govuk-colour('purple');
+  }
+
+  .smallerFont {
+    font-size: 14px;
+  }
+}

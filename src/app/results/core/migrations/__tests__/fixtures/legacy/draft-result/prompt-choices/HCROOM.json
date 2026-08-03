@@ -1,0 +1,14 @@
+{
+  "targets": [
+    {
+      "defendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "draftResult": "{\"targetId\":\"198cf550-f045-11eb-a895-7d779bee7724\",\"caseId\":\"966b0f51-cf1a-4cfc-8f01-5a00ea8498f9\",\"caseUrn\":\"12GD0104LAA\",\"defendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"masterDefendantId\":\"5c926057-39c5-4993-9207-d6e9c79b3355\",\"offenceId\":\"edeb266e-2463-4704-8dd4-fe76fd463533\",\"defendantFirstName\":\"Max\",\"defendantLastName\":\"Kshlerin\",\"addMoreResults\":false,\"requestApproval\":false,\"results\":[{\"resultLineId\":\"b13d4084-5b25-40ed-8b4f-924db3db47a8\",\"originalText\":\"NHCCS\",\"resultCode\":\"fbed768b-ee95-4434-87c8-e81cbc8d24c8\",\"resultLevel\":\"O\",\"isCompleted\":true,\"ignoreResult\":false,\"parts\":[{\"value\":\"Next hearing in Crown Court\",\"type\":\"RESULT\",\"state\":\"RESOLVED\",\"resultChoices\":[]},{\"code\":\"49ec9b26-dd63-4637-b2e9-55ba9948a90f\",\"label\":\"Courtroom\",\"value\":\"{\\\"value\\\":\\\"Courtroom 03\\\"}\",\"type\":\"HCROOM\",\"state\":\"RESOLVED\",\"promptRef\":\"HCROOM\",\"hidden\":false,\"resultChoices\":[]},{\"value\":\"Next hearing in magistrates' court\",\"type\":\"RESULT\",\"state\":\"RESOLVED\",\"resultChoices\":[]},{\"code\":\"49ec9b26-dd63-4637-b2e9-55ba9948a90f\",\"label\":\"Courtroom\",\"value\":\"{\\\"value\\\":\\\"Courtroom 01\\\"}\",\"type\":\"HCROOM\",\"state\":\"RESOLVED\",\"promptRef\":\"HCROOM2\",\"hidden\":false,\"resultChoices\":[]}],\"choices\":[{\"code\":\"49ec9b26-dd63-4637-b2e9-55ba9948a90f\",\"value\":\"{\\\"value\\\":\\\"Courtroom 03\\\"}\",\"label\":\"Courtroom\",\"maxLength\":\"99\",\"minLength\":\"1\",\"type\":\"HCROOM\",\"required\":false,\"promptRef\":\"HCROOM\",\"hidden\":false,\"readOnly\":false},{\"code\":\"49ec9b26-dd63-4637-b2e9-55ba9948a90f\",\"label\":\"Courtroom\",\"maxLength\":\"99\",\"minLength\":\"1\",\"type\":\"HCROOM\",\"required\":false,\"promptRef\":\"HCROOM2\",\"hidden\":false,\"readOnly\":false}],\"isEditing\":false,\"noResultFound\":false,\"dirty\":true,\"orderedDate\":\"2021-07-26\",\"parentResultLineIds\":[],\"childResultLineIds\":[],\"childResultLines\":[],\"hasBeenGrouped\":true,\"conditionalMandatory\":false}],\"lastUpdatedAt\":1627574076928}",
+      "hearingDay": "2021-07-26",
+      "hearingId": "48d0f669-1562-40d5-a371-3bc6a96d3371",
+      "masterDefendantId": "5c926057-39c5-4993-9207-d6e9c79b3355",
+      "offenceId": "edeb266e-2463-4704-8dd4-fe76fd463533",
+      "resultLines": [],
+      "targetId": "198cf550-f045-11eb-a895-7d779bee7724"
+    }
+  ]
+}

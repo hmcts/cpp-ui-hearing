@@ -1,0 +1,12 @@
+.breadcrumbs li {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAALBAMAAACufOGlAAAAElBMVEWytbe0t7m+wcO+wcMAAAC+wcPAbOgBAAAABXRSTlPu26BgABhfd1AAAAApSURBVAgdYxB2cWFQNXFhcAp2YXBRNWFwcQpmcHFhhdBAPkgcJA9UBwCnGweczi1blAAAAABJRU5ErkJggg==');
+
+  @include device-pixel-ratio() {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAWCAMAAADD5o0oAAAAIVBMVEW+wcO+wcO+wcO+wcO+wcO+wcO+wcO+wcO+wcMAAAC+wcM+0VMmAAAACnRSTlPfj4CfzxBgMO8AaBhGbgAAAE1JREFUeNplz1EOgDAIA1CmTlbuf+CJrOkHfPESAsV8OVi2QrI3JMMvonRQmgSuiGcSuFMJKSF9kBo01hcMrq4IxqMMp6D9Bfb9bVePDc6+CJmAJ7aqAAAAAElFTkSuQmCC');
+    background-size: 6px 11px;
+  }
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+}

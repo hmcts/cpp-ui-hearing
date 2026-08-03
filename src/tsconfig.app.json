@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "module": "esnext",
+    "skipLibCheck": true
+  },
+
+  "exclude": [
+    "**/*.spec.ts",
+    "**/testing",
+    "../.legacy",
+    "**/mocks",
+    "**/mock",
+    "**/mock-data",
+    "**/hearing-mock.ts"
+  ]
+}

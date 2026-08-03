@@ -1,0 +1,12 @@
+.judiciary-typeahead {
+  ::ng-deep pdk-autosuggest-lite {
+    font-size: 0.875rem;
+
+    @media (min-width: 40.0625em) {
+      input {
+        font-size: 1.3875em;
+        max-width: 32ex;
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvailableHearingsComponent should match the snapshot 1`] = `
+<available-hearings
+  courtCentres={[Function Array]}
+  errors={[Function EventEmitter_]}
+  futureHearingsById={[Function Object]}
+  hearings={[Function Array]}
+  isCivil="false"
+  onHearingSelection={[Function EventEmitter_]}
+  onViewHearingDetails={[Function EventEmitter_]}
+>
+  <pdk-inset-text>
+    <div
+      class="govuk-inset-text"
+    >
+      <strong>
+         1 
+        <span>
+          result
+        </span>
+         returned 
+      </strong>
+    </div>
+  </pdk-inset-text><available-hearings-table>
+    <div>
+      <div>
+        hearings: [
+    {
+      "id": "b1bfe644-15d3-46aa-bdeb-fe8d18c16a42",
+      "courtApplications": [],
+      "type": {
+        "id": "5591d709-4397-452c-8533-998165d58d9c",
+        "description": "Further Plea & Trial Preparation"
+      },
+      "endDate": "2018-10-10",
+      "allocated": true,
+      "startDate": "2018-10-05",
+      "courtRoomId": "e7721a38-546d-4b56-9992-ebdd772a561b",
+      "listedCases": [
+        {
+          "id": "926fc76b-7ec9-4bee-bb7d-b8e63d61fc33",
+          "defendants": [],
+          "markers": [],
+          "caseIdentifier": {
+            "authorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+            "authorityCode": "TFL",
+            "caseReference": "TFL12345"
+          }
+        }
+      ],
+      "hearingDays": [
+        {
+          "hearingDate": "2018-10-05",
+          "endTime": "2018-10-05 12:00:00",
+          "sequence": 1,
+          "startTime": "2018-10-05 10:00:00",
+          "durationMinutes": 120
+        },
+        {
+          "hearingDate": "2018-10-06",
+          "endTime": "2018-10-06 14:00:00",
+          "sequence": 2,
+          "startTime": "2018-10-06 11:00:00",
+          "durationMinutes": 180
+        }
+      ],
+      "courtCentreId": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+      "nonDefaultDays": [
+        {
+          "duration": 180,
+          "startTime": "2018-10-05T11:00:00.000Z"
+        }
+      ],
+      "nonSittingDays": [
+        "2018-10-06",
+        "2018-10-07"
+      ],
+      "hearingLanguage": "WELSH",
+      "estimatedMinutes": 300,
+      "jurisdictionType": "MAGISTRATES",
+      "listingDirections": "Wheelchair & special emergency arrangements required",
+      "prosecutorDatesToAvoid": [
+        "Monday"
+      ],
+      "reportingRestrictionReason": "Automatic anonymity under the Sexual Offences (Amendment) Act 1992"
+    }
+  ]
+      </div>
+      <div>
+        courtCentres: [
+    {
+      "id": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+      "name": "Liverpool Crown Court",
+      "courtrooms": [
+        {
+          "id": "e7721a38-546d-4b56-9992-ebdd772a561b",
+          "name": "Courtroom 3-1",
+          "welshCourtroomName": "Welsh Courtroom 3-1"
+        },
+        {
+          "id": "63c20849-89f7-4140-8bf3-96a13f57c446",
+          "name": "Courtroom 3-2",
+          "welshCourtroomName": "Welsh Courtroom 3-2"
+        }
+      ]
+    }
+  ]
+      </div>
+      <div>
+        jurisdictionType: 
+      </div>
+      <div>
+        futureHearingsById: {}
+      </div>
+    </div>
+  </available-hearings-table>
+</available-hearings>
+`;

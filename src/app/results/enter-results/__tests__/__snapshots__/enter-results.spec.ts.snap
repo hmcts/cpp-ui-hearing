@@ -1,0 +1,1422 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnterResultsContainerComponent draft result validity should render the validity based on required result prompts 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                disabled="disabled"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent draft result validity should render the validity based on required result prompts 2`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent draft result validity should render valid for an optional child with no result prompts 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent draft result validity should render valid for conditional mandatory 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render a draft result with a hierarchy of result lines 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                disabled="disabled"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render a draft result with shadow listed offence ids 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render a draft result with shared targets 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render an empty draft result 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render the delegated powers of the draft result 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid powers-on"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render the error status of the draft result 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;
+
+exports[`EnterResultsContainerComponent should render the saving status of the draft result 1`] = `
+<ng-component
+  _cppDateUtil={[Function CPPDate]}
+  canAllocateRelatedHearing$={[Function _Store]}
+  caseStatus$={[Function _Store]}
+  delegatedPowers$={[Function _Store]}
+  draftResultError$={[Function _Store]}
+  draftResultPromptsValid$={[Function _Store]}
+  draftResultRelations$={[Function _Store]}
+  draftResultSaving$={[Function _Store]}
+  electronicMonitoringOffences$={[Function _Store]}
+  hearing$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  isExParteCase$={[Function _Store]}
+  isHmctsOrganisation$={[Function Observable]}
+  isSelectedHearingInFuture$={[Function _Store]}
+  prosecutorToBeNotified$={[Function _Store]}
+  readonly$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function _Router]}
+  shadowListedOffenceIds$={[Function _Store]}
+  sharedTargetIds$={[Function _Store]}
+  store={[Function _Store]}
+  uniquElectronicMonitoringAndWarrantOfArrestOffences$={[Function _Store]}
+  validationErrorMessagesByOffenceId$={[Function _Store]}
+  validationSummaryErrors$={[Function _Store]}
+  warrantOfArrestOffences$={[Function _Store]}
+>
+  <cpp-enter-results>
+    <offence-conditions-dialog>
+    </offence-conditions-dialog>
+    <header>
+      <h1
+        class="govuk-!-margin-top-3 govuk-heading-xl"
+        pdk-margin-top="3"
+        pdk-typography="heading-xlarge"
+      >
+        Enter results
+      </h1>
+      <delegated-powers>
+        <div
+          class="delegated-powers"
+        >
+          <form
+            class="ng-untouched ng-pristine ng-valid"
+            novalidate=""
+            pdk-form=""
+          >
+            <pdk-form-field
+              id="delegatedPowers"
+              labeltype="small"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-label govuk-label--s"
+                  for="pdk-select-GENERATED_ID"
+                >
+                   COMMON.DELEGATED_POWERS 
+                </label>
+                <pdk-select
+                  class="ng-untouched ng-pristine ng-valid"
+                >
+                  <select
+                    class="govuk-select"
+                    id="pdk-select-GENERATED_ID"
+                    name="delegatedPowers"
+                  >
+                    <option
+                      value="POWERS_OFF"
+                    >
+                       COMMON.DELEGATED_POWERS_OFF 
+                    </option>
+                    <option
+                      value="POWERS_ON"
+                    >
+                       COMMON.DELEGATED_POWERS_ON 
+                    </option>
+                  </select>
+                </pdk-select>
+              </pdk-form-group>
+            </pdk-form-field>
+          </form>
+        </div>
+      </delegated-powers>
+    </header>
+    <cpp-draft-result>
+      <cpp-draft-result-action-bar>
+        <div
+          class="draft-result-action-bar draft-result-action-bar--sticky pdk-!-border-color-mid-grey pdk-!-fill-color-light-grey govuk-!-padding-left-3 govuk-!-padding-right-3"
+          pdk-border-colour="mid-grey"
+          pdk-fill-colour="light-grey"
+          pdk-padding-horizontal="3"
+        >
+          <div>
+          </div>
+          <pdk-button-group
+            class="govuk-!-margin-top-3"
+            pdk-margin-top="3"
+          >
+            <div
+              class="govuk-button-group"
+            >
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button"
+                pdk-button=""
+                pdk-margin-bottom="0"
+              >
+                 Create draft results 
+              </button>
+              <button
+                class="govuk-!-margin-bottom-0 govuk-button govuk-button--secondary"
+                pdk-button="secondary"
+                pdk-margin-bottom="0"
+              >
+                 Save and continue 
+              </button>
+            </div>
+          </pdk-button-group>
+        </div>
+      </cpp-draft-result-action-bar>
+      <cpp-draft-result-body>
+      </cpp-draft-result-body>
+    </cpp-draft-result>
+  </cpp-enter-results>
+</ng-component>
+`;

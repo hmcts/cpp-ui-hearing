@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CaseAccessModalComponent should render the component 1`] = `
+<case-access-modal
+  modal={[Function _ModalDirective]}
+  modalConfig={[Function Object]}
+  onCancel={[Function EventEmitter_]}
+  onSubmit={[Function EventEmitter_]}
+  show={[Function Boolean]}
+  urns={[Function Array]}
+>
+  <div
+    bsmodal=""
+    class="block modal fade in"
+    pdk-focus-trap=""
+    role="alertdialog"
+  >
+    <div
+      aria-hidden="true"
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+      tabindex="0"
+    />
+    <div
+      cdktrapfocus=""
+      cdktrapfocusautocapture=""
+    >
+      <div
+        class="modal-dialog"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="govuk-!-padding-4"
+            pdk-padding="4"
+          >
+            <h2
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+              CASE_ALERT.CASES_TODAY
+            </h2>
+            <pdk-alert
+              class="govuk-body-m"
+              icon="true"
+              pdk-typography="body-medium"
+              type="warning"
+            >
+              <div
+                class="pdk-alert pdk-alert--warning"
+                role="alert"
+              >
+                <div
+                  class="pdk-alert__container"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="pdk-alert__icon pdk-alert__icon--alert"
+                    role="presentation"
+                  />
+                  <div
+                    class="pdk-alert__message"
+                  >
+                    <div>
+                      <span
+                        class="govuk-visually-hidden"
+                        pdk-visually-hidden=""
+                      >
+                        Warning: 
+                      </span>
+                       CASE_ALERT.ALERT_TITLE 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </pdk-alert>
+            <p
+              class="govuk-!-margin-top-4 govuk-body-m"
+              pdk-margin-top="4"
+              pdk-typography="body-medium"
+            >
+               CASE_ALERT.DESCRIPTION 
+            </p>
+            <ul
+              class="urn-list govuk-list govuk-list--bullet"
+              data-test-id="alertUrnList"
+              pdk-list="bullet"
+            >
+              <li
+                class="bold"
+              >
+                 URN1 
+              </li>
+              <li
+                class="bold"
+              >
+                 URN2 
+              </li>
+            </ul>
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              data-test-id="caseAlertForm"
+              novalidate=""
+              pdk-form=""
+            >
+              <pdk-form-field>
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <legend
+                      class="govuk-fieldset__legend"
+                    >
+                       CASE_ALERT.SELECTION_TITLE 
+                    </legend>
+                    <pdk-radio-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      data-role="access-decision"
+                      name="hasTodayHearing"
+                      ngmodel=""
+                    >
+                      <div
+                        class="govuk-radios"
+                      >
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               CASE_ALERT.RUNNING_HEARING_TODAY 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                        <pdk-radio-button>
+                          <div
+                            class="govuk-radios__item"
+                          >
+                            <input
+                              class="govuk-radios__input"
+                              id="pdk-radio-GENERATED_ID"
+                              name="pdk-radio-group-GENERATED_ID"
+                              type="radio"
+                              value="false"
+                            />
+                            <label
+                              class="govuk-radios__label govuk-label"
+                              for="pdk-radio-GENERATED_ID"
+                              pdk-label=""
+                            >
+                               CASE_ALERT.NOT_RUNNING_HEARING_TODAY 
+                            </label>
+                          </div>
+                        </pdk-radio-button>
+                      </div>
+                    </pdk-radio-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+              <div
+                class="button-holder"
+              >
+                <button
+                  class="govuk-!-margin-bottom-0 govuk-button"
+                  disabled="disabled"
+                  pdk-button=""
+                  pdk-margin-bottom="0"
+                  type="submit"
+                >
+                   COMMON.CONTINUE 
+                </button>
+                <a
+                  class="govuk-!-margin-left-4 govuk-link"
+                  href="javascript:void(0);"
+                  pdk-link=""
+                  pdk-margin-left="4"
+                >
+                   COMMON.CANCEL 
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+      tabindex="0"
+    />
+  </div>
+</case-access-modal>
+`;

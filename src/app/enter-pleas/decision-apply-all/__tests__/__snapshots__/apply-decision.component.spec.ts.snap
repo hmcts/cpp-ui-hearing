@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PleaComponent should render the template with the values expected 1`] = `
+<ng-component
+  currentOffence={[Function Object]}
+  defendant={[Function Object]}
+  hearingId={[Function String]}
+>
+  <apply-decision>
+    <div
+      class="enter-plea"
+    >
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-one-third"
+          one-third=""
+        >
+          <h1
+            class="govuk-!-margin-top-4 govuk-heading-l"
+            pdk-margin-top="4"
+            pdk-typography="heading-large"
+          >
+             ENTER_PLEAS.APPLY 
+          </h1>
+        </pdk-grid>
+      </pdk-grid>
+      <div
+        class="plea mb-m"
+        data-role="offence-pleas"
+      >
+        <div
+          class="plea-count"
+        >
+        </div>
+        <div
+          class="plea-content mb-l"
+        >
+          <div
+            class="bold"
+          >
+            a title
+          </div>
+          <div
+            class="font-xsmall mt-xs"
+          >
+          </div>
+          <div
+            class="font-small mt-xs"
+          >
+            wording
+          </div>
+          <div
+            class="clearfix"
+          />
+          <div
+            data-role="offence-defendant"
+          >
+            <p
+              class="bold govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+               :firstName :LASTNAME 
+            </p>
+            <div>
+              <p
+                class="bold govuk-!-margin-top-4"
+                pdk-margin-top="4"
+              >
+                 ENTER_PLEAS.ALLOCATION_DECISION 
+              </p>
+              <p>
+                :motReasonDescription
+              </p>
+            </div>
+            <div>
+              <p
+                class="bold govuk-!-margin-top-4"
+                pdk-margin-top="4"
+              >
+                 ENTER_PLEAS.SENTENCING_DECISION 
+              </p>
+              <p>
+                 Sentencing indication requested 
+              </p>
+            </div>
+            <form
+              class="ng-untouched ng-pristine ng-valid"
+              novalidate=""
+              pdk-form=""
+            >
+              <p
+                class="bold govuk-!-margin-top-4"
+                pdk-margin-top="4"
+              >
+                Apply decision to
+              </p>
+              <pdk-form-field
+                labelhidden=""
+              >
+                <pdk-form-group
+                  class="pdk-form-group"
+                >
+                  <fieldset
+                    class="govuk-fieldset"
+                    pdk-fieldset=""
+                  >
+                    <pdk-checkbox-group
+                      class="ng-untouched ng-pristine ng-valid"
+                      inline=""
+                      name="offence-checkbox"
+                    >
+                      <div
+                        class="govuk-checkboxes"
+                      >
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="true"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               All offences for  :firstName :LASTNAME 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                        <pdk-checkbox
+                          class="govuk-checkboxes"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value=":id1"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               Offence B 
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </div>
+                    </pdk-checkbox-group>
+                  </fieldset>
+                </pdk-form-group>
+              </pdk-form-field>
+              <button
+                class="govuk-!-margin-top-4 govuk-button"
+                data-role="submit-pleas"
+                pdk-button=""
+                pdk-margin-top="4"
+                type="submit"
+              >
+                 ENTER_PLEAS.SAVE_AND_RETURN 
+              </button>
+            </form>
+            <div
+              class="govuk-!-margin-top-4"
+              pdk-margin-top="4"
+            >
+              <a
+                href="javascript:void(0)"
+              >
+                COMMON.CANCEL
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="clearfix"
+        />
+      </div>
+    </div>
+  </apply-decision>
+</ng-component>
+`;

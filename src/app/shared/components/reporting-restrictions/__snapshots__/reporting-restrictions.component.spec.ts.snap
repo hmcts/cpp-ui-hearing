@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reporting Restrictions Component should render when no reporting restrictions are present 1`] = `
+<test-reporting-restrictions
+  offences="null"
+>
+  <reporting-restrictions>
+  </reporting-restrictions>
+</test-reporting-restrictions>
+`;
+
+exports[`Reporting Restrictions Component should render when no reporting restrictions are present 2`] = `
+<test-reporting-restrictions
+  offences={[Function Array]}
+>
+  <reporting-restrictions>
+  </reporting-restrictions>
+</test-reporting-restrictions>
+`;
+
+exports[`Reporting Restrictions Component when reporting restrictions are present should render correctly in active mode 1`] = `
+<test-reporting-restrictions
+  isActive={[Function Boolean]}
+  offences={[Function Array]}
+>
+  <reporting-restrictions>
+    <span
+      class="reporting-restrictions-component"
+    >
+      <abbr
+        class="pdk-!-border-color-white pdk-!-text-color-white"
+        title="COMMON.REPORTING_RESTRICTIONS"
+      >
+         COMMON.RR 
+      </abbr>
+    </span>
+  </reporting-restrictions>
+</test-reporting-restrictions>
+`;
+
+exports[`Reporting Restrictions Component when reporting restrictions are present should render correctly in warning mode 1`] = `
+<test-reporting-restrictions
+  isWarning={[Function Boolean]}
+  offences={[Function Array]}
+>
+  <reporting-restrictions>
+    <span
+      class="reporting-restrictions-component"
+    >
+      <abbr
+        class="pdk-!-border-color-red pdk-!-text-color-red"
+        title="COMMON.REPORTING_RESTRICTIONS"
+      >
+         COMMON.RR 
+      </abbr>
+    </span>
+  </reporting-restrictions>
+</test-reporting-restrictions>
+`;
+
+exports[`Reporting Restrictions Component when reporting restrictions are present should render correctly when case id is provided 1`] = `
+<test-reporting-restrictions
+  caseId={[Function String]}
+  offences={[Function Array]}
+>
+  <reporting-restrictions>
+    <span
+      class="reporting-restrictions-component"
+    >
+      <a
+        class="govuk-link"
+        href="http://app/url/prosecution-casefile/edit-case/case123#hearings-and-decisions"
+        pdk-link=""
+        target="_blank"
+      >
+        <abbr
+          class="pdk-!-border-color-black pdk-!-text-color-black"
+          title="COMMON.REPORTING_RESTRICTIONS"
+        >
+           COMMON.RR 
+        </abbr>
+      </a>
+    </span>
+  </reporting-restrictions>
+</test-reporting-restrictions>
+`;
+
+exports[`Reporting Restrictions Component when reporting restrictions are present should render correctly when no case id is provided 1`] = `
+<test-reporting-restrictions
+  offences={[Function Array]}
+>
+  <reporting-restrictions>
+    <span
+      class="reporting-restrictions-component"
+    >
+      <abbr
+        class="pdk-!-border-color-black pdk-!-text-color-black"
+        title="COMMON.REPORTING_RESTRICTIONS"
+      >
+         COMMON.RR 
+      </abbr>
+    </span>
+  </reporting-restrictions>
+</test-reporting-restrictions>
+`;

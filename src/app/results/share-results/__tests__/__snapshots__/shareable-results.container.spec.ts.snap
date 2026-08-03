@@ -1,0 +1,2270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShareableResultsContainerComponent amending user should render a deleted result line 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b
+                class="cpp-shareable-result-line--deleted"
+              >
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Deleted
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              class="cpp-shareable-result-line--deleted"
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+                <a
+                  class="govuk-link"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                  role="button"
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     reason
+                  </span>
+                </a>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent amending user should render a result line awaiting validation 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent amending user should render a result line with a pending amendment 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Amend
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Costs
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+                <a
+                  class="govuk-link"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                  role="button"
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     reason
+                  </span>
+                </a>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent amending user should render a result line with a shared amendment 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Shared
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Amend
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Costs
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-mid-grey govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+                <a
+                  class="govuk-link"
+                  href="javascript:void(0)"
+                  pdk-link=""
+                  role="button"
+                >
+                  Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     reason
+                  </span>
+                </a>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent application targets should not render offences with an applicationId 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent application targets should render application results 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 No order for costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     No order for costs
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Reason for no costs 
+                  </dt>
+                  <dd>
+                    No reason provided.
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+            </ul>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent application targets should render application results regardless of the result level 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 No order for costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     No order for costs
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Reason for no costs 
+                  </dt>
+                  <dd>
+                    No reason provided.
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+            </ul>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent non-amending user should render a deleted result line 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b
+                class="cpp-shareable-result-line--deleted"
+              >
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Deleted
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              class="cpp-shareable-result-line--deleted"
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent non-amending user should render a result line after validation 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent non-amending user should render a result line awaiting validation 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent non-amending user should render a result line with a pending amendment 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  applicationId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Amended on 21 Jul 2021 
+              </li>
+              <li
+                class="govuk-body-s"
+                pdk-typography="body-small"
+              >
+                 Shared on 21 Jul 2021 
+              </li>
+            </ul>
+            <cpp-shareable-result-line-amendment-legacy>
+              <a
+                aria-controls="undefined-GENERATED_ID_reason"
+                aria-expanded="false"
+                class="govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+                role="button"
+              >
+                View reason for change
+              </a>
+              <div
+                class="govuk-!-margin-top-2 govuk-!-margin-bottom-2 govuk-!-padding-3 pdk-!-fill-color-red govuk-visually-hidden"
+                id="undefined-GENERATED_ID_reason"
+                pdk-margin-vertical="2"
+                pdk-padding="3"
+              >
+                <h5
+                  class="govuk-heading-s"
+                  pdk-typography="heading-small"
+                >
+                  Reason for change
+                </h5>
+                <p>
+                  Admin error on shared result (a result recorded incorrectly)
+                </p>
+              </div>
+            </cpp-shareable-result-line-amendment-legacy>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent offence targets should not render application targets at case level 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  caseId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  masterDefendantId={[Function String]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent offence targets should not render application targets at defendant level 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  masterDefendantId={[Function String]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent offence targets should render case level results 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  caseId={[Function String]}
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  masterDefendantId={[Function String]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Costs  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Costs
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of costs 
+                  </dt>
+                  <dd>
+                    £1000.00
+                  </dd>
+                </div>
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Major creditor 
+                  </dt>
+                  <dd>
+                    Television Licensing Organisation
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+            </ul>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent offence targets should render defendant level results 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  masterDefendantId={[Function String]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Payment terms  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Payment terms
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+            </ul>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line><cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Pay by date  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Pay by date
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Date to pay in full by 
+                  </dt>
+                  <dd>
+                    01 Oct 2021
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+            </ul>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;
+
+exports[`ShareableResultsContainerComponent offence targets should render offence results 1`] = `
+<cpp-shareable-results-container
+  activeResultLines={[Function Array]}
+  amendApplicationPermission="false"
+  cdr={[Function ViewRef]}
+  deletedResultLines={[Function Array]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  hasAmendApplication="false"
+  hearingAmendedByCurrentUser$={[Function _Store]}
+  hearingId$={[Function _Store]}
+  hearingLockState$={[Function _Store]}
+  isAmendmentAllowed="false"
+  isCourtApplicationFinalised="false"
+  isHearingLockedBySomeoneElse$={[Function _Store]}
+  offenceId={[Function String]}
+  resultLines={[Function Array]}
+  resultLinesForResultLevel={[Function Array]}
+  showCaseLevelOffences="false"
+  showResultsPlaceholder="false"
+  store={[Function _Store]}
+>
+  <cpp-shareable-result-line>
+    <pdk-action-details
+      class="govuk-!-margin-top-1 govuk-!-margin-bottom-1 pdk-!-negative-margin-left-2 pdk-!-negative-margin-right-4"
+      pdk-margin-left="-2"
+      pdk-margin-right="-4"
+      pdk-margin-vertical="1"
+    >
+      <div
+        class="pdk-action-details pdk-action-details--completed"
+      >
+        <div
+          class="pdk-action-details__header"
+        >
+          <span
+            class="pdk-action-details__title"
+          >
+            <pdk-action-title
+              class="govuk-body-m"
+              data-test-id="resultLineTitle"
+              pdk-typography="body"
+            >
+              <b>
+                 Fine  
+              </b>
+            </pdk-action-title>
+          </span>
+          <span
+            class="pdk-action-details__options"
+          >
+            <span
+              class="pdk-action-details__status pdk-action-details__status--highlighted"
+            >
+              <span>
+                Saved
+              </span>
+            </span>
+            <span
+              class="pdk-action-details__action"
+            >
+              <pdk-action-options>
+                <a
+                  class="govuk-link govuk-link--no-visited-state"
+                  href="/manage/hearingId/enter-results"
+                  pdk-link=""
+                  unvisited=""
+                >
+                   Change
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                     Fine
+                  </span>
+                </a>
+              </pdk-action-options>
+            </span>
+          </span>
+        </div>
+        <div
+          class="pdk-action-details__content"
+        >
+          <pdk-action-body
+            class="govuk-body-m"
+            pdk-typography="body"
+          >
+            <cpp-result-prompts-summary
+              style="display: block;"
+            >
+              <dl
+                class="result-prompts-summary"
+              >
+                <div
+                  class="govuk-!-padding-left-null govuk-!-padding-right-2"
+                >
+                  <dt
+                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                    pdk-margin-right="1"
+                    pdk-text-colour="black"
+                    tint="25"
+                  >
+                     Amount of fine 
+                  </dt>
+                  <dd>
+                    £50.00
+                  </dd>
+                </div>
+              </dl>
+            </cpp-result-prompts-summary>
+            <ul
+              class="govuk-!-margin-top-1 govuk-list"
+              pdk-list=""
+              pdk-margin-top="1"
+            >
+              <li
+                class="pdk-!-text-color-dark-grey govuk-body-s"
+                pdk-text-colour="dark-grey"
+                pdk-typography="body-small"
+              >
+                 Result/order made on 09 Jul 2021 
+              </li>
+            </ul>
+          </pdk-action-body>
+        </div>
+      </div>
+    </pdk-action-details>
+  </cpp-shareable-result-line>
+</cpp-shareable-results-container>
+`;

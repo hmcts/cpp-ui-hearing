@@ -1,0 +1,17 @@
+<find-court
+  [appUrl]="appUrl"
+  [isDefenceUser]="isDefenceUser()"
+  (onSelect)="onSelectCourtCentre.emit($event)"
+  (onAddCheckinErrors)="addCheckinErrors($event)"
+>
+</find-court>
+@if (!hasApiActivity && hearingSummariesGroupedByCaseId.length > 0) {
+<defence-check-in-form
+  [appUrl]="appUrl"
+  [loggedInUser]="loggedInUser"
+  (onAddCheckinErrors)="addCheckinErrors($event)"
+  [hearingSummariesGroupedByCaseId]="hearingSummariesGroupedByCaseId"
+  (onCheckInHearing)="onCheckInHearing.emit($event)"
+>
+</defence-check-in-form>
+}

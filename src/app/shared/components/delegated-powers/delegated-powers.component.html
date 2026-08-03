@@ -1,0 +1,18 @@
+<div class="delegated-powers">
+  <form pdk-form novalidate>
+    <pdk-form-field
+      id="delegatedPowers"
+      label="{{ 'COMMON.DELEGATED_POWERS' | translate }}"
+      labelType="small"
+    >
+      <pdk-select
+        [name]="'delegatedPowers'"
+        [ngClass]="{ 'powers-on': selectedOption === 'POWERS_ON' }"
+        [options]="options"
+        [ngModel]="selectedOption"
+        (ngModelChange)="onChanges($event)"
+      >
+      </pdk-select>
+    </pdk-form-field>
+  </form>
+</div>

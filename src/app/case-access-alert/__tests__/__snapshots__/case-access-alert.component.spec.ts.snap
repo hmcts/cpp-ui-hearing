@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CaseAccessAlertComponent should render the component 1`] = `
+[
+  [
+    [
+      "hearing1",
+      "hearing2",
+    ],
+    "userId",
+    "selectedId",
+    true,
+  ],
+]
+`;
+
+exports[`CaseAccessAlertComponent should render the component 2`] = `
+<test-case-access-alert
+  checkOneTime={[Function Boolean]}
+  hearingIds={[Function Array]}
+  selectedHearingId={[Function String]}
+  urns={[Function Array]}
+  userId={[Function String]}
+>
+  <case-access-alert>
+    <case-access-modal>
+       Urns: URN1,URN2 Show: true 
+    </case-access-modal>
+  </case-access-alert>
+</test-case-access-alert>
+`;

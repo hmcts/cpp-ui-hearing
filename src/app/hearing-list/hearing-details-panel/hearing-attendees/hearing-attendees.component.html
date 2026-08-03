@@ -1,0 +1,289 @@
+@if (!isStandAloneApplication) {
+<div>
+  @for (defendant of casesAndApplicationsGroupedByDefendant; track defendant.id) {
+  <panel-item (select)="selectDefendant(defendant)" [active]="defendant.id === activeDefendant?.id">
+    @if (!hasBulkCase(defendant)) {
+    <attendee
+      attr.data-role="defendant-{{ defendant.id }}"
+      type="{{ 'HEARING_LIST.DEFENDANT' | translate }}"
+      name="{{ getDefendantName(defendant) }}"
+    >
+    </attendee>
+    } @if (hasBulkCase(defendant)) {
+    <attendee
+      attr.data-role="bulkDefendant"
+      type="{{ 'HEARING_LIST.DEFENDANT' | translate }}"
+      name="{{ 'COMMON.BULK_DEFENDANT' | translate }}"
+    >
+    </attendee>
+    }
+  </panel-item>
+  }
+</div>
+} @for (subject of applicationSubjects; track subject.id) {
+<panel-item (select)="onSubjectSelected.emit(subject)" [active]="subject.id === activeSubjectId">
+  <attendee name="{{ subject | applicationPartyName }}"></attendee>
+</panel-item>
+}
+
+<div class="attendee-details">
+  <pdk-divider></pdk-divider>
+  <h3 pdk-typography="heading-medium" pdk-margin-bottom="4">
+    {{ 'HEARING_LIST.JUDICIARY' | translate }}
+  </h3>
+  <ul data-test-id="judiciaries" class="attendee">
+    @for (judge of judges; track judge.id) {
+    <li
+      data-test-id="judiciary"
+      data-role="judge"
+      pdk-typography="body-small"
+      pdk-margin-bottom="1"
+      class="name"
+    >
+      @if (judge?.forenames) {
+      <div>{{ judge | judicialMemberName }}</div>
+      }
+    </li>
+    }
+  </ul>
+  <div pdk-margin-bottom="2">
+    <a
+      pdk-link
+      pdk-typography="body-small"
+      pdk-margin-bottom="1"
+      [href]="changeJudiciaryLink"
+      id="change-judiciary-details-link"
+      data-role="change-judiciary-details-link"
+    >
+      {{ 'HEARING_LIST.CHANGE_JUDICIARY_DETAILS' | translate }}
+    </a>
+  </div>
+
+  <pdk-divider></pdk-divider>
+  <h3 pdk-typography="heading-medium" pdk-margin-bottom="4">
+    {{ 'HEARING_LIST.ATTENDEES' | translate }}
+  </h3>
+
+  <!-- Standalone application counsels -->
+  @if (isStandAloneApplication) {
+  <dl data-test-id="applicantCounsels" class="hearing-counsels">
+    <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+      {{ 'HEARING_LIST.' + applicantSynonym | translate }} attendees
+    </dt>
+    <dd>
+      <ul>
+        @for (applicantCounsel of hearing.applicantCounsels ?? []; track applicantCounsel.id) {
+        <li data-role="attendee-name" data-test-id="attendee" pdk-typography="body-small">
+          <div data-test-id="name">{{ applicantCounsel | fullName }}</div>
+          @if (applicantCounsel.status) {
+          <div data-test-id="description">
+            {{ applicantCounsel.status }}
+          </div>
+          }
+        </li>
+        }
+      </ul>
+      @if ((hearing.applicantCounsels ?? []).length === 0) {
+      <span>
+        <span pdk-visually-hidden
+          >No {{ 'HEARING_LIST.' + applicantSynonym | translate }} attendees</span
+        >–
+      </span>
+      }
+    </dd>
+  </dl>
+  <dl data-test-id="respondentCounsels" class="hearing-counsels">
+    <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+      Respondent attendees
+    </dt>
+    <dd>
+      @if ((hearing.respondentCounsels ?? []).length > 0) {
+      <ul>
+        @for (respondentCounsel of hearing.respondentCounsels ?? []; track respondentCounsel.id) {
+        <li data-role="attendee-name" data-test-id="attendee" pdk-typography="body-small">
+          <div data-test-id="name">{{ respondentCounsel | fullName }}</div>
+          @if (respondentCounsel.status) {
+          <div data-test-id="description">
+            {{ respondentCounsel.status }}
+          </div>
+          }
+        </li>
+        }
+      </ul>
+      } @if ((hearing.respondentCounsels ?? []).length === 0) {
+      <span>-</span>
+      }
+    </dd>
+  </dl>
+  <intermediary-attendees [intermediariesCounsel]="intermediariesCounsel"> </intermediary-attendees>
+  <a
+    pdk-link
+    pdk-typography="body-xsmall"
+    pdk-margin-bottom="1"
+    href="javascript:void(0)"
+    id="change-attendees-details-link"
+    data-role="change-attendees-details-link"
+    (click)="onGoToAddCounsels.emit()"
+  >
+    {{ 'HEARING_LIST.CHANGE_ATTENDEE_DETAILS' | translate }}
+  </a>
+  } @if (!isStandAloneApplication) {
+  <div pdk-margin-bottom="2" class="attendee">
+    <!-- Prosecution counsels -->
+
+    <dl data-test-id="prosecutionCounsels">
+      <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+        {{ 'HEARING_LIST.PROSECUTION' | translate }}
+      </dt>
+      <dd>
+        @if (showProsecutionCounsels) {
+        <ul>
+          @for (prosecutionCounsel of prosecutionCounsels; track prosecutionCounsel.id) {
+          <li
+            pdk-typography="body-small"
+            pdk-margin-bottom="2"
+            data-test-id="attendee"
+            data-role="attendee-name"
+            class="name"
+          >
+            <dl>
+              <dt data-test-id="name">
+                {{ prosecutionCounsel.title }} {{ prosecutionCounsel | fullName : true }}
+              </dt>
+              <dd data-test-id="description">{{ prosecutionCounsel.status }}</dd>
+            </dl>
+          </li>
+          }
+        </ul>
+        } @if (!showProsecutionCounsels) {
+        <span>
+          <span pdk-visually-hidden>No {{ 'HEARING_LIST.PROSECUTION' | translate }}</span
+          >–
+        </span>
+        }
+      </dd>
+    </dl>
+
+    @if (!isStandAloneApplication) {
+    <dl data-test-id="defenceCounsels" pdk-margin-bottom="2" class="attendee">
+      <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+        {{ 'HEARING_LIST.DEFENCE' | translate }}
+      </dt>
+      <dd>
+        @if (showDefenceCounsels) {
+        <ul>
+          @for (defenceCounsel of defenceCounsels; track defenceCounsel.id) {
+          <li
+            pdk-typography="body-small"
+            pdk-margin-bottom="1"
+            data-test-id="attendee"
+            data-role="attendee-name"
+            class="name"
+          >
+            <dl>
+              <dt data-test-id="name">
+                {{ defenceCounsel.title }} {{ defenceCounsel | fullName : true }}
+              </dt>
+              <dd data-test-id="description">{{ defenceCounsel.status }}</dd>
+            </dl>
+          </li>
+          }
+        </ul>
+        } @if (!showDefenceCounsels) {
+        <span>
+          <span pdk-visually-hidden>No {{ 'HEARING_LIST.DEFENCE' | translate }}</span
+          >–
+        </span>
+        }
+      </dd>
+    </dl>
+    } @if (!isStandAloneApplication) {
+    <dl data-test-id="companyRepresentatives" pdk-margin-bottom="2" class="attendee">
+      <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+        {{ 'HEARING_LIST.REPRESENTATIVE' | translate }}
+      </dt>
+      <dd>
+        @if (showCompanyRepresentatives) {
+        <ul>
+          @for ( companyRepresentative of companyRepresentatives; track companyRepresentative.id ) {
+          <li
+            pdk-typography="body-small"
+            pdk-margin-bottom="1"
+            data-test-id="attendee"
+            data-role="attendee-name"
+            class="name"
+          >
+            <dl>
+              <dt>
+                <span data-test-id="name"
+                  >{{ companyRepresentative.title }}
+                  {{ companyRepresentative | fullName : true }}</span
+                >
+                –
+              </dt>
+              <dd>
+                @if (companyRepresentative.position === 'DIRECTOR') {
+                <span data-test-id="description">
+                  {{ 'ENTER_COUNSELS.DIRECTOR' | translate }}
+                </span>
+                } @if (companyRepresentative.position === 'SECRETARY') {
+                <span data-test-id="description">
+                  {{ 'ENTER_COUNSELS.SECRETARY' | translate }}
+                </span>
+                }
+              </dd>
+            </dl>
+          </li>
+          }
+        </ul>
+        } @if (!showCompanyRepresentatives) {
+        <span>
+          <span pdk-visually-hidden>No {{ 'HEARING_LIST.REPRESENTATIVE' | translate }}</span
+          >–
+        </span>
+        }
+      </dd>
+    </dl>
+    }
+    <intermediary-attendees [intermediariesCounsel]="intermediariesCounsel">
+    </intermediary-attendees>
+
+    <div pdk-margin-bottom="2">
+      <a
+        pdk-link
+        pdk-typography="body-xsmall"
+        pdk-margin-bottom="1"
+        href="javascript:void(0);"
+        id="change-counsel-details-link"
+        data-role="change-counsel-details-link"
+        (click)="onGoToAddCounsels.emit()"
+      >
+        {{ 'HEARING_LIST.CHANGE_ATTENDEE_DETAILS' | translate }}
+      </a>
+    </div>
+  </div>
+  } @if (displayCaseDetails()) {
+  <div>
+    <pdk-divider></pdk-divider>
+    <h3 pdk-typography="heading-medium" pdk-margin-bottom="4">
+      {{ 'HEARING_LIST.CHANGE_CASE_DETAILS' | translate }}
+    </h3>
+    <ul pdk-margin-top="1" pdk-padding-bottom="4" class="list-contents">
+      @for (case of nonBulkCases; track case.id) {
+      <li>
+        <!-- SJP cases have only 1 defendant -->
+        @if (case.prosecutionCaseIdentifier?.prosecutionAuthorityReference) {
+        <a pdk-link href="javascript:void(0);" (click)="onGoToCaseDetails.emit(case.id)">{{
+          case.prosecutionCaseIdentifier?.prosecutionAuthorityReference
+        }}</a>
+        } @if (case.prosecutionCaseIdentifier?.caseURN) {
+        <a pdk-link href="javascript:void(0);" (click)="onGoToCaseDetails.emit(case.id)">{{
+          case.prosecutionCaseIdentifier?.caseURN
+        }}</a>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</div>

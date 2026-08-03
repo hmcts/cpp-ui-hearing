@@ -1,0 +1,914 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixedListInputComponent FIXL prompt choice should render 1`] = `
+<ng-component
+  limit={[Function Number]}
+  onChange={[Function Function]}
+  promptChoice={[Function Object]}
+>
+  <cpp-fixed-list-input
+    class="ng-untouched ng-pristine ng-invalid"
+  >
+    <pdk-select
+      class="ng-untouched ng-pristine ng-valid"
+      justified=""
+    >
+      <select
+        class="govuk-select pdk-select--justified"
+        id="pdk-select-GENERATED_ID"
+      >
+        <option
+          value="0"
+        >
+          Before conviction
+        </option>
+        <option
+          value="1"
+        >
+          Charged with a violent or sexual offence
+        </option>
+        <option
+          value="2"
+        >
+          Charged with an offence punishable in the case of an adult with 14 years imprisonment or more
+        </option>
+        <option
+          value="3"
+        >
+          Committed to a prison establishment in substitution for local authority 
+  accommodation
+        </option>
+        <option
+          value="4"
+        >
+          Consents to further remands being heard in absence
+        </option>
+        <option
+          value="5"
+        >
+          For a notice relating to deportation to be served
+        </option>
+        <option
+          value="6"
+        >
+          For seven days to elapse from service of a notice relating to deportation
+        </option>
+        <option
+          value="7"
+        >
+          Further remanded in absence due to illness or accident
+        </option>
+        <option
+          value="8"
+        >
+          Has a recent history of absconding while remanded to local authority accommodation and is charged with an imprisonable offence alleged to have been committed while he/she was so remanded
+        </option>
+        <option
+          value="9"
+        >
+          In breach of a condition of bail
+        </option>
+        <option
+          value="10"
+        >
+          Not stated
+        </option>
+        <option
+          value="11"
+        >
+          Previously remanded and a date has been fixed for the next stage in the proceedings
+        </option>
+        <option
+          value="12"
+        >
+          Proceedings under the Extradition Act 2003
+        </option>
+        <option
+          value="13"
+        >
+          Remand after conviction for the purpose of enabling inquiries to be made or of determining the most suitable method of determining the case
+        </option>
+        <option
+          value="14"
+        >
+          Remanded for a medical report by a single medical practitioner
+        </option>
+        <option
+          value="15"
+        >
+          Remanded for medical and psychiatric reports by one medical practitioner
+        </option>
+        <option
+          value="16"
+        >
+          Remanded for medical and psychiatric reports by two medical practitioners
+        </option>
+        <option
+          value="17"
+        >
+          Remanded for psychiatric report by one medical practitioner
+        </option>
+        <option
+          value="18"
+        >
+          Remanded for psychiatric reports by two medical practitioners
+        </option>
+        <option
+          value="19"
+        >
+          Schedule 1 Bail Act 1976
+        </option>
+        <option
+          value="20"
+        >
+          Section 1(9) Bail (Amendment) Act 1993
+        </option>
+        <option
+          value="21"
+        >
+          Section 25 Criminal Justice & Public Order Act 1994
+        </option>
+        <option
+          value="22"
+        >
+          Section 91 Legal Aid, Sentencing & Punishment of Offenders Act 2012
+        </option>
+        <option
+          value="23"
+        >
+          Sent to the Crown Court for trial
+        </option>
+        <option
+          value="24"
+        >
+          To help the court get information to deal with an application that the defendant 
+  failed to comply with a reparation order
+        </option>
+        <option
+          value="25"
+        >
+          To help the court get information to deal with an application that the defendant failed to comply with an action plan order
+        </option>
+        <option
+          value="26"
+        >
+          To help the court get information to deal with an application to change or end a 
+  reparation order
+        </option>
+        <option
+          value="27"
+        >
+          To help the court get information to deal with an application to change or end an action plan order
+        </option>
+        <option
+          value="28"
+        >
+          Transfer of remand hearings to alternate court
+        </option>
+        <option
+          value="29"
+        >
+          Transfer of remand hearings to original court
+        </option>
+      </select>
+    </pdk-select>
+  </cpp-fixed-list-input>
+</ng-component>
+`;
+
+exports[`FixedListInputComponent FIXLO prompt choice should populate an "Other" entry 1`] = `
+<ng-component
+  limit={[Function Number]}
+  onChange={[Function Function]}
+  promptChoice={[Function Object]}
+  value={[Function String]}
+>
+  <cpp-fixed-list-input
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <pdk-select
+      class="ng-untouched ng-pristine ng-valid"
+      justified=""
+    >
+      <select
+        class="govuk-select pdk-select--justified"
+        id="pdk-select-GENERATED_ID"
+      >
+        <option
+          value="0"
+        >
+          This is for a case management hearing. You must attend this hearing
+        </option>
+        <option
+          value="1"
+        >
+          This is for a case management hearing. You need not attend this hearing and a new trial date will be sent to you. If you do not get a new date sent to you within 5 days of this hearing, you must contact the court
+        </option>
+        <option
+          value="2"
+        >
+          This is for the trial to take place, where the court will hear the evidence in the case. You must attend this hearing
+        </option>
+        <option
+          value="3"
+        >
+          Other
+        </option>
+      </select>
+    </pdk-select>
+    <div
+      class="govuk-!-margin-top-2 pdk-!-border-color-mid-grey govuk-!-padding-left-3 govuk-!-padding-top-3"
+      pdk-border-colour="mid-grey"
+      pdk-margin-top="2"
+      pdk-padding-left="3"
+      pdk-padding-top="3"
+      style="border-left: 4px solid;"
+    >
+      <pdk-form-field
+        label="Enter description"
+        labeltype="small"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <label
+            class="govuk-label govuk-label--s"
+            for="pdk-form-control-undefined-GENERATED_ID"
+          >
+             Enter description 
+          </label>
+          <input
+            class="ng-untouched ng-pristine ng-invalid govuk-input"
+            id="pdk-form-control-undefined-GENERATED_ID"
+            pdk-input=""
+            pdk-text-input=""
+            required=""
+            type="text"
+          />
+        </pdk-form-group>
+      </pdk-form-field>
+    </div>
+  </cpp-fixed-list-input>
+</ng-component>
+`;
+
+exports[`FixedListInputComponent FIXLO prompt choice should render 1`] = `
+<ng-component
+  limit={[Function Number]}
+  onChange={[Function Function]}
+  promptChoice={[Function Object]}
+>
+  <cpp-fixed-list-input
+    class="ng-untouched ng-pristine ng-invalid"
+  >
+    <pdk-select
+      class="ng-untouched ng-pristine ng-valid"
+      justified=""
+    >
+      <select
+        class="govuk-select pdk-select--justified"
+        id="pdk-select-GENERATED_ID"
+      >
+        <option
+          value="0"
+        >
+          This is for a case management hearing. You must attend this hearing
+        </option>
+        <option
+          value="1"
+        >
+          This is for a case management hearing. You need not attend this hearing and a new trial date will be sent to you. If you do not get a new date sent to you within 5 days of this hearing, you must contact the court
+        </option>
+        <option
+          value="2"
+        >
+          This is for the trial to take place, where the court will hear the evidence in the case. You must attend this hearing
+        </option>
+        <option
+          value="3"
+        >
+          Other
+        </option>
+      </select>
+    </pdk-select>
+  </cpp-fixed-list-input>
+</ng-component>
+`;
+
+exports[`FixedListInputComponent FIXLOM prompt choice should populate an "Other" entry 1`] = `
+<ng-component
+  limit={[Function Number]}
+  onChange={[Function Function]}
+  promptChoice={[Function Object]}
+  value={[Function Array]}
+>
+  <cpp-fixed-list-input
+    class="ng-untouched ng-pristine ng-valid"
+  >
+    <pdk-checkbox-group
+      class="ng-untouched ng-pristine ng-valid"
+    >
+      <div
+        class="govuk-checkboxes"
+      >
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="0"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Attempted suicide
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="1"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Broken bail conditions
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="2"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Failed to surrender
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="3"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Insufficient time
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="4"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Lack of community ties
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="5"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Made threats
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="6"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Magistrates' court has no power to grant bail on a charge of murder
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="7"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Nature and seriousness of offence
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="8"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Offended on bail
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="9"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Previous record and character
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="10"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Strength of case
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="11"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Unlikely to cooperate
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="12"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Other
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox-conditional>
+          <div
+            class="govuk-checkboxes__conditional"
+          >
+            <pdk-form-field
+              label="Other"
+              labeltype="none"
+            >
+              <pdk-form-group
+                class="pdk-form-group"
+              >
+                <label
+                  class="govuk-visually-hidden govuk-label"
+                  for="pdk-form-control-undefined-GENERATED_ID"
+                >
+                   Other 
+                </label>
+                <input
+                  class="ng-untouched ng-pristine ng-invalid govuk-input"
+                  id="pdk-form-control-undefined-GENERATED_ID"
+                  pdk-input=""
+                  pdk-text-input=""
+                  required=""
+                  type="text"
+                />
+              </pdk-form-group>
+            </pdk-form-field>
+          </div>
+        </pdk-checkbox-conditional>
+      </div>
+    </pdk-checkbox-group>
+  </cpp-fixed-list-input>
+</ng-component>
+`;
+
+exports[`FixedListInputComponent FIXLOM prompt choice should render 1`] = `
+<ng-component
+  limit={[Function Number]}
+  onChange={[Function Function]}
+  promptChoice={[Function Object]}
+>
+  <cpp-fixed-list-input
+    class="ng-untouched ng-pristine ng-invalid"
+  >
+    <pdk-checkbox-group
+      class="ng-untouched ng-pristine ng-valid"
+    >
+      <div
+        class="govuk-checkboxes"
+      >
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="0"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Attempted suicide
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="1"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Broken bail conditions
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="2"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Failed to surrender
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="3"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Insufficient time
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="4"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Lack of community ties
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="5"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Made threats
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="6"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Magistrates' court has no power to grant bail on a charge of murder
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="7"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Nature and seriousness of offence
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="8"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Offended on bail
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="9"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Previous record and character
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="10"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Strength of case
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="11"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Unlikely to cooperate
+            </label>
+          </div>
+        </pdk-checkbox>
+        <pdk-checkbox
+          class="govuk-checkboxes"
+        >
+          <div
+            class="govuk-checkboxes__item"
+          >
+            <input
+              class="govuk-checkboxes__input"
+              id="pdk-checkbox-GENERATED_ID"
+              name="pdk-checkbox-group-GENERATED_ID"
+              type="checkbox"
+              value="12"
+            />
+            <label
+              class="govuk-label govuk-checkboxes__label"
+              for="pdk-checkbox-GENERATED_ID"
+            >
+              Other
+            </label>
+          </div>
+        </pdk-checkbox>
+      </div>
+    </pdk-checkbox-group>
+  </cpp-fixed-list-input>
+</ng-component>
+`;

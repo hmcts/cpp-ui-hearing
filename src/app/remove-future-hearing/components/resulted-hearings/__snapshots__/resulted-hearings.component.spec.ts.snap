@@ -1,0 +1,485 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resulted hearings component should not render with empty hearings  1`] = `
+<resulted-hearings
+  configService={[Function Object]}
+  displayedRecordList={[Function Array]}
+  hearingSummaries={[Function Array]}
+>
+</resulted-hearings>
+`;
+
+exports[`Resulted hearings component should render with resulted hearings 1`] = `
+<resulted-hearings
+  configService={[Function Object]}
+  displayedRecordList={[Function Array]}
+  hearingSummaries={[Function Array]}
+>
+  <h2
+    class="govuk-!-margin-top-6 govuk-heading-m"
+    pdk-margin-top="6"
+    pdk-typography="heading-medium"
+  >
+    Resulted hearings
+  </h2><table
+    class="govuk-table"
+    pdk-table=""
+  >
+    <thead
+      class="govuk-table__head"
+      pdk-table-head=""
+    >
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.DATE
+        </th>
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.TIME
+        </th>
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.DEFENDANT_NAME
+        </th>
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.COURT_DETAILS
+        </th>
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.HEARING_TYPE
+        </th>
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.SESSION
+        </th>
+        <th
+          class="govuk-table__cell"
+          pdk-table-header=""
+          scope="col"
+        >
+          REMOVE_FUTURE_HEARING.OFFENCE_DETAILS
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="govuk-table__body"
+      pdk-table-body=""
+    >
+      <tr
+        class="main-row govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+          <span>
+             3 December 2018 
+          </span>
+        </td>
+        <td>
+          <span>
+             12:10pm 
+          </span>
+        </td>
+        <td>
+          <div>
+            Single def
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+           First hearing 
+        </td>
+        <td>
+          <div>
+             Pm 
+          </div>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="main-row govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+          <span>
+             3 December 2018 
+          </span>
+        </td>
+        <td>
+          <span>
+             12:10pm 
+          </span>
+        </td>
+        <td>
+          <div>
+            Def one
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+           First hearing 
+        </td>
+        <td>
+          <div>
+             Pm 
+          </div>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Def two
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Def three
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="main-row govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+          <span>
+             3 December 2018 
+          </span>
+        </td>
+        <td>
+          <span>
+             12:10pm 
+          </span>
+        </td>
+        <td>
+          <div>
+            Def one
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+           First hearing 
+        </td>
+        <td>
+          <div>
+             Pm 
+          </div>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Def two
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Def three
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="main-row govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+          <span>
+             3 December 2018 
+          </span>
+        </td>
+        <td>
+          <span>
+             12:10pm 
+          </span>
+        </td>
+        <td>
+          <div>
+            Multi offence
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+           First hearing 
+        </td>
+        <td>
+          <div>
+             Pm 
+          </div>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="main-row govuk-table__row"
+        pdk-table-row=""
+      >
+        <td>
+          <span>
+             3 December 2018 
+          </span>
+        </td>
+        <td>
+          <span>
+             12:10pm 
+          </span>
+        </td>
+        <td>
+          <div>
+            Multi offence
+          </div>
+          <a
+            class="govuk-link"
+            href="appUrl//prosecution-casefile/case-at-a-glance/string"
+            pdk-link=""
+            target="_blank"
+          >
+             90EU623841 
+          </a>
+        </td>
+        <td>
+        </td>
+        <td>
+           Trial 
+        </td>
+        <td>
+          <div>
+             Pm 
+          </div>
+        </td>
+        <td>
+          <div>
+            Offence title
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</resulted-hearings>
+`;

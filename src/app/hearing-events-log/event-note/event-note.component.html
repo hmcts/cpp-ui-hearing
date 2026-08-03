@@ -1,0 +1,15 @@
+<pdk-form-field labelType="small" label="{{ 'HEARING_EVENTS_LOG.EDIT_EVENT_NOTE' | translate }}">
+  <textarea
+    name="event-note"
+    data-test-id="event-note"
+    pdk-input
+    [(ngModel)]="eventNote"
+    (ngModelChange)="eventNoteChange.emit(eventNote)"
+    pdk-text-input
+    pdk-resize
+    auto-focus
+    [maxCount]="eventNoteCharacterLimit"
+  >
+  </textarea>
+  <pdk-character-count [value]="eventNote" [limit]="eventNoteCharacterLimit"></pdk-character-count>
+</pdk-form-field>

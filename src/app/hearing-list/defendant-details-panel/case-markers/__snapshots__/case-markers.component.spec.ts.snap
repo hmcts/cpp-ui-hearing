@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CaseMarkersComponent if case markers exists should create 1`] = `
+<case-markers
+  markers={[Function Array]}
+  onGoToCaseMarkers={[Function EventEmitter_]}
+  prosecutionCaseDetails={[Function Object]}
+  showFirst={[Function Boolean]}
+>
+  <div
+    class="case-markers-list govuk-!-margin-bottom-4 govuk-!-margin-left-0"
+    container=""
+    pdk-margin-bottom="4"
+    pdk-margin-left="0"
+  >
+    <pdk-grid
+      class="govuk-!-margin-right-4"
+      pdk-margin-right="4"
+    >
+      <span
+        class="govuk-visually-hidden"
+        pdk-visually-hidden=""
+      >
+        Case reference: 
+      </span>
+      <h4
+        class="govuk-!-margin-bottom-0 govuk-heading-s"
+        pdk-margin-bottom="0"
+        pdk-typography="heading-small"
+      >
+        15GD6528020
+      </h4>
+      <reporting-restrictions
+        iswarning="true"
+      >
+        <div>
+          caseId: testCaseId
+        </div>
+        <div>
+          offences: [
+    {
+      "id": "testOffenceId"
+    }
+  ]
+        </div>
+      </reporting-restrictions>
+    </pdk-grid>
+    <pdk-grid>
+      <div
+        class="markers-list"
+      >
+        <span>
+          <span
+            class="case-marker pdk-!-text-color-red govuk-body-s"
+            pdk-text-colour="red"
+            pdk-typography="body-small"
+          >
+             Asset recovery 
+            <br />
+          </span>
+          <span
+            class="case-marker pdk-!-text-color-red govuk-body-s"
+            pdk-text-colour="red"
+            pdk-typography="body-small"
+          >
+             Crime against an older person 
+            <br />
+          </span>
+          <span
+            class="case-marker pdk-!-text-color-red govuk-body-s"
+            pdk-text-colour="red"
+            pdk-typography="body-small"
+          >
+             Police complaints 
+            <span
+              class="show-others pdk-!-text-color-blue"
+              pdk-text-colour="blue"
+            >
+               + 1 others 
+            </span>
+            <br />
+          </span>
+        </span>
+      </div>
+      <a
+        class="edit-marker govuk-!-margin-top-2 pdk-!-text-color-blue govuk-body-s govuk-link"
+        href="JavaScript:void(0);"
+        pdk-link=""
+        pdk-margin-top="2"
+        pdk-text-colour="blue"
+        pdk-typography="body-small"
+      >
+        Edit case markers
+      </a>
+    </pdk-grid>
+  </div>
+</case-markers>
+`;

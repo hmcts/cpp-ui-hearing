@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiDayDropDownComponent should render the template with the values expected 1`] = `
+<ng-component
+  days={[Function Array]}
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+    pdk-form=""
+  >
+    <multiday-dropdown>
+      <div
+        class="multiday-dropdown"
+      >
+        <form
+          class="ng-untouched ng-pristine ng-valid"
+          novalidate=""
+        >
+          <pdk-form-field
+            id="dateFilter"
+          >
+            <pdk-form-group
+              class="pdk-form-group"
+            >
+              <label
+                class="govuk-label"
+                for="pdk-select-GENERATED_ID"
+              >
+                 MANAGE.DATE_IN_VIEW  
+              </label>
+              <pdk-select
+                class="date-select ng-untouched ng-pristine ng-valid"
+                data-role="multiday-hearing-selectbox"
+                placeholder="Select another date"
+              >
+                <select
+                  class="govuk-select"
+                  id="pdk-select-GENERATED_ID"
+                  name="selectedDay"
+                >
+                  <option
+                    value=""
+                  >
+                    Select another date
+                  </option>
+                  <option
+                    value="2018-01-01"
+                  >
+                     01 January 2018 - Day 1 
+                  </option>
+                  <option
+                    value="2018-01-02"
+                  >
+                     02 January 2018 - Day 2 
+                  </option>
+                  <option
+                    value="2018-01-03"
+                  >
+                     03 January 2018 - Day 3 
+                  </option>
+                </select>
+              </pdk-select>
+            </pdk-form-group>
+          </pdk-form-field>
+        </form>
+      </div>
+    </multiday-dropdown>
+  </form>
+</ng-component>
+`;

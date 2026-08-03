@@ -1,0 +1,338 @@
+{
+  "hearing": {
+    "applicantCounsels": [],
+    "approvalsRequested": [],
+    "companyRepresentatives": [],
+    "courtApplications": [
+      {
+        "applicant": {
+          "id": "2a530101-9c8f-4601-91ef-88963276e90c",
+          "masterDefendant": {
+            "defendantCase": [
+              {
+                "caseId": "a7d1f446-81e0-4885-a835-cf8dc7411ddb",
+                "caseReference": "96GD2989621",
+                "defendantId": "a59791ee-88c1-4d0b-b4ba-0f301703a6ef"
+              }
+            ],
+            "masterDefendantId": "a59791ee-88c1-4d0b-b4ba-0f301703a6ef",
+            "personDefendant": {
+              "arrestSummonsNumber": "TFL",
+              "bailStatus": {
+                "code": "A",
+                "description": "Not applicable",
+                "id": "86009c70-759d-3308-8de4-194886ff9a77"
+              },
+              "personDetails": {
+                "address": {
+                  "address1": "1234",
+                  "address2": "StreetDescription",
+                  "address3": "Locality2O",
+                  "postcode": "DA6 7ND"
+                },
+                "dateOfBirth": "1967-06-29",
+                "documentationLanguageNeeds": "ENGLISH",
+                "firstName": "Camilla",
+                "gender": "MALE",
+                "hearingLanguageNeeds": "ENGLISH",
+                "lastName": "Hills",
+                "title": "Mr"
+              },
+              "policeBailStatus": {
+                "code": "C",
+                "description": "Custody",
+                "id": "12e69486-4d01-3403-a50a-7419ca040635"
+              }
+            }
+          },
+          "notificationRequired": true,
+          "summonsRequired": false
+        },
+        "applicationParticulars": "Testing R2122",
+        "applicationReceivedDate": "2021-11-18",
+        "applicationReference": "96GD2989621",
+        "applicationStatus": "IN_PROGRESS",
+        "commissionerOfOath": false,
+        "courtApplicationCases": [
+          {
+            "caseStatus": "INACTIVE",
+            "isSJP": false,
+            "offences": [
+              {
+                "arrestDate": "2020-02-09",
+                "chargeDate": "2020-02-09",
+                "convictionDate": "2021-11-18",
+                "count": 0,
+                "endDate": "2021-05-05",
+                "endorsableFlag": false,
+                "id": "e6dd2e54-bdae-46e7-9238-6a9a03b2e244",
+                "isDisposed": true,
+                "listingNumber": 1,
+                "modeOfTrial": "Indictable",
+                "offenceCode": "OF61018",
+                "offenceDateCode": 1,
+                "offenceDefinitionId": "dd8caee6-6e8f-4d01-943e-fdb8042628aa",
+                "offenceLegislation": "Contrary to section 18of the Offences Against the Person Act 1861.",
+                "offenceLegislationWelsh": "Yn groes i adran 18 Deddf Troseddau Corfforol 1861.",
+                "offenceTitle": "Section 18 - wounding with intent to resist / prevent arrest",
+                "offenceTitleWelsh": "Adran 18 – clwyfo gyda'r bwriad o wrthsefyll/atal arest",
+                "orderIndex": 1,
+                "plea": {
+                  "offenceId": "e6dd2e54-bdae-46e7-9238-6a9a03b2e244",
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "pleaDate": "2021-11-18",
+                  "pleaValue": "CHANGE_TO_GUILTY_MAGISTRATES_COURT"
+                },
+                "proceedingsConcluded": true,
+                "startDate": "2020-02-09",
+                "verdict": {
+                  "offenceId": "e6dd2e54-bdae-46e7-9238-6a9a03b2e244",
+                  "verdictDate": "2021-11-18",
+                  "verdictType": {
+                    "id": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                    "code": "",
+                    "description": "",
+                    "category": "Guilty",
+                    "categoryType": "GUILTY",
+                    "jurisdiction": ""
+                  },
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "lesserOrAlternativeOffence": {
+                    "offenceCode": "OF61018",
+                    "offenceDefinitionId": "dd8caee6-6e8f-4d01-943e-fdb8042628aa",
+                    "offenceLegislation": "Contrary to section 18of the Offences Against the Person Act 1861.",
+                    "offenceTitle": "Section 18 - wounding with intent to resist / prevent arrest"
+                  },
+                  "jurors": {
+                    "numberOfJurors": 12,
+                    "numberOfSplitJurors": 0,
+                    "unanimous": true
+                  }
+                },
+                "wording": "Has a violent past and fear that he will commit further offences and\n                interfere with witnesse",
+                "allocationDecision": {
+                  "offenceId": "e6dd2e54-bdae-46e7-9238-6a9a03b2e244",
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "motReasonCode": null,
+                  "motReasonDescription": null,
+                  "motReasonId": null,
+                  "courtIndicatedSentence": {}
+                }
+              },
+              {
+                "arrestDate": "2020-02-09",
+                "chargeDate": "2020-02-09",
+                "convictionDate": "2021-11-18",
+                "count": 0,
+                "endDate": "2021-05-05",
+                "endorsableFlag": false,
+                "id": "6bb23ccc-13b7-47f0-92e7-e3b2e0495ff0",
+                "isDisposed": true,
+                "listingNumber": 1,
+                "modeOfTrial": "Either Way",
+                "offenceCode": "TH68010",
+                "offenceDateCode": 1,
+                "offenceDefinitionId": "e0b08ff0-1eba-489f-923b-1982a63f3ecb",
+                "offenceLegislation": "Contrary to section 1(1) and 7 of the Theft    Act 1968.",
+                "offenceLegislationWelsh": "Yn groes i adran 1(1) a 7 Deddf Dwyn 1968.",
+                "offenceTitle": "Theft from a shop",
+                "offenceTitleWelsh": "Dwyn o siop - siop-ladrad",
+                "orderIndex": 2,
+                "plea": {
+                  "offenceId": "6bb23ccc-13b7-47f0-92e7-e3b2e0495ff0",
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "pleaDate": "2021-11-18",
+                  "pleaValue": "NOT_GUILTY"
+                },
+                "proceedingsConcluded": true,
+                "startDate": "2020-02-09",
+                "verdict": {
+                  "offenceId": "6bb23ccc-13b7-47f0-92e7-e3b2e0495ff0",
+                  "verdictDate": "2021-11-18",
+                  "verdictType": {
+                    "id": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                    "code": "",
+                    "description": "",
+                    "category": "Guilty",
+                    "categoryType": "GUILTY",
+                    "jurisdiction": ""
+                  },
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "lesserOrAlternativeOffence": {
+                    "offenceCode": "TH68010",
+                    "offenceDefinitionId": "e0b08ff0-1eba-489f-923b-1982a63f3ecb",
+                    "offenceLegislation": "Contrary to section 1(1) and 7 of the Theft    Act 1968.",
+                    "offenceTitle": "Theft from a shop"
+                  },
+                  "jurors": {
+                    "numberOfJurors": 12,
+                    "numberOfSplitJurors": 0,
+                    "unanimous": true
+                  }
+                },
+                "wording": "Has a violent past and fear that he will commit further offences and\n                interfere with witnesse",
+                "indicatedPlea": {
+                  "offenceId": "6bb23ccc-13b7-47f0-92e7-e3b2e0495ff0",
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "indicatedPleaDate": null,
+                  "indicatedPleaValue": null
+                },
+                "allocationDecision": {
+                  "offenceId": "6bb23ccc-13b7-47f0-92e7-e3b2e0495ff0",
+                  "originatingHearingId": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+                  "motReasonCode": null,
+                  "motReasonDescription": null,
+                  "motReasonId": null,
+                  "courtIndicatedSentence": {}
+                }
+              }
+            ],
+            "prosecutionCaseId": "a7d1f446-81e0-4885-a835-cf8dc7411ddb",
+            "prosecutionCaseIdentifier": {
+              "address": {
+                "address1": "Criminal Justice Department",
+                "address2": "Derbyshire Constabulary",
+                "address3": "Butterley Hall",
+                "address4": "Ripley",
+                "address5": "Derby",
+                "postcode": "DE5 3RS"
+              },
+              "contact": {
+                "primaryEmail": "CCSU@derbyshire.pnn.police.uk"
+              },
+              "majorCreditorCode": "PO30",
+              "prosecutionAuthorityCode": "DERPF",
+              "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+              "prosecutionAuthorityName": "Derbyshire Police",
+              "prosecutionAuthorityOUCode": "0300000",
+              "caseURN": "96GD2989621"
+            }
+          }
+        ],
+        "id": "ede8f458-d1bd-4016-8a25-8f630dbd5937",
+        "respondents": [
+          {
+            "id": "a84f28a9-bfe4-468e-8779-e2e2ebc9dcb1",
+            "notificationRequired": true,
+            "prosecutingAuthority": {
+              "address": {
+                "address1": "Criminal Justice Department",
+                "address2": "Derbyshire Constabulary",
+                "address3": "Butterley Hall",
+                "address4": "Ripley",
+                "address5": "Derby",
+                "postcode": "DE5 3RS"
+              },
+              "contact": {
+                "primaryEmail": "CCSU@derbyshire.pnn.police.uk"
+              },
+              "majorCreditorCode": "PO30",
+              "name": "Derbyshire Police",
+              "prosecutionAuthorityCode": "DERPF",
+              "prosecutionAuthorityId": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+              "prosecutionAuthorityOUCode": "0300000",
+              "welshName": "Heddlu Derbyshire"
+            },
+            "summonsRequired": false
+          }
+        ],
+        "subject": {
+          "id": "2a530101-9c8f-4601-91ef-88963276e90c",
+          "masterDefendant": {
+            "defendantCase": [
+              {
+                "caseId": "a7d1f446-81e0-4885-a835-cf8dc7411ddb",
+                "caseReference": "96GD2989621",
+                "defendantId": "a59791ee-88c1-4d0b-b4ba-0f301703a6ef"
+              }
+            ],
+            "masterDefendantId": "a59791ee-88c1-4d0b-b4ba-0f301703a6ef",
+            "personDefendant": {
+              "arrestSummonsNumber": "TFL",
+              "bailStatus": {
+                "code": "A",
+                "description": "Not applicable",
+                "id": "86009c70-759d-3308-8de4-194886ff9a77"
+              },
+              "personDetails": {
+                "address": {
+                  "address1": "1234",
+                  "address2": "StreetDescription",
+                  "address3": "Locality2O",
+                  "postcode": "DA6 7ND"
+                },
+                "dateOfBirth": "1967-06-29",
+                "documentationLanguageNeeds": "ENGLISH",
+                "firstName": "Camilla",
+                "gender": "MALE",
+                "hearingLanguageNeeds": "ENGLISH",
+                "lastName": "Hills",
+                "title": "Mr"
+              },
+              "policeBailStatus": {
+                "code": "C",
+                "description": "Custody",
+                "id": "12e69486-4d01-3403-a50a-7419ca040635"
+              }
+            }
+          },
+          "notificationRequired": true,
+          "summonsRequired": false
+        },
+        "type": {
+          "appealFlag": false,
+          "applicantAppellantFlag": false,
+          "boxworkNotifTemplate": "NOT_APPLICABLE",
+          "breachType": "NOT_APPLICABLE",
+          "categoryCode": "CO",
+          "code": "MC80527",
+          "commrOfOathFlag": true,
+          "courtExtractAvlFlag": true,
+          "courtOfAppealFlag": false,
+          "hearingCode": "APN",
+          "id": "f3a6e917-7cc8-3c66-83dd-d958abd6a6e4",
+          "jurisdiction": "MAGISTRATES",
+          "legislation": "In accordance with section 14 of the Magistrates' Courts Act 1980.",
+          "linkType": "LINKED",
+          "listingNotifTemplate": "POSTAL_NOTIFICATION",
+          "offenceActiveOrder": "OFFENCE",
+          "pleaApplicableFlag": false,
+          "prosecutorThirdPartyFlag": true,
+          "spiOutApplicableFlag": true,
+          "summonsTemplateType": "NOT_APPLICABLE",
+          "type": "Appearance to make statutory declaration"
+        }
+      }
+    ],
+    "courtCentre": {
+      "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+      "name": "Lavender Hill Magistrates' Court"
+    },
+    "defenceCounsels": [],
+    "defendantAttendance": [],
+    "defendantReferralReasons": [],
+    "hasSharedResults": false,
+    "hearingCaseNotes": [],
+    "hearingDays": [
+      {
+        "listedDurationMinutes": 10,
+        "sittingDay": "2021-11-18T00:00:00.000Z"
+      }
+    ],
+    "hearingLanguage": "ENGLISH",
+    "id": "21f92bca-7a14-4441-bf0e-60022eb81f47",
+    "intermediaries": [],
+    "isBoxHearing": true,
+    "isVacatedTrial": false,
+    "judiciary": [],
+    "jurisdictionType": "MAGISTRATES",
+    "prosecutionCases": [],
+    "prosecutionCounsels": [],
+    "respondentCounsels": [],
+    "type": {
+      "description": "Application",
+      "id": "3449743b-95d6-4836-8941-57f588b52068"
+    },
+    "youthCourtDefendantIds": []
+  }
+}

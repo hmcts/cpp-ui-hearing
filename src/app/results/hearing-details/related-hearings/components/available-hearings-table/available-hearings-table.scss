@@ -1,0 +1,72 @@
+.hearing-headings {
+  display: flex;
+  border-bottom: 2px solid;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.hearing-day-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1.5px solid;
+}
+
+.hearing-heading-radio-button-col,
+.hearing-radio-button-col {
+  flex-basis: 6%;
+  box-sizing: border-box;
+}
+
+.hearing-data-col {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 74%;
+  min-width: 0;
+
+  .hearing-data-col-row {
+    display: flex;
+    flex-direction: row;
+
+    .hearing-day-listing-note-col {
+      flex-basis: 90%;
+      min-width: 0;
+      margin-right: 10%;
+    }
+
+    .hearing-heading-date-col,
+    .hearing-start-date-col {
+      flex-basis: 15%;
+      box-sizing: border-box;
+    }
+
+    .hearing-heading-court-details-col,
+    .hearing-court-details-col {
+      flex-basis: 35%;
+      box-sizing: border-box;
+    }
+
+    .hearing-heading-hearing-type-col,
+    .hearing-type-col {
+      flex-basis: 20%;
+      box-sizing: border-box;
+    }
+
+    .hearing-heading-start-time-col,
+    .hearing-start-time-col {
+      flex-basis: 30%;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.hearing-heading-related-cases-col,
+.hearing-related-cases-col {
+  flex-basis: 20%;
+  box-sizing: border-box;
+}
+
+.over-jurisdiction {
+  border-left: 4px solid #005ea5 !important;
+}

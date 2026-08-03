@@ -1,0 +1,18 @@
+Hearing note for {{ hearingCaseNote?.noteDateTime | date : 'dd/MM/yyyy' }}
+<a
+  data-role="toggle-note"
+  class="float-right note-row-more"
+  pdk-typography="body-small"
+  (click)="isCollapsed = !isCollapsed"
+  >{{ !isCollapsed ? 'Hide' : 'View' }}</a
+>
+@if (!isCollapsed) {
+<div>
+  <p data-test-id="caseNoteContent" data-role="text-note" class="note-row-content">
+    {{ hearingCaseNote?.note }}
+  </p>
+  <button data-role="print-note" type="button" class="button mt-m" (click)="printNote()">
+    {{ 'COMMON.EXPORT_NOTE' | translate }}
+  </button>
+</div>
+}

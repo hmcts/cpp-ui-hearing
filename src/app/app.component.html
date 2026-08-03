@@ -1,0 +1,17 @@
+<cpp-application-layout
+  accessibilityLink="{{ baseUrl }}/accessibility"
+  [activity]="loading$ | async"
+  [headerNavItems]="headerNavItems$ | async"
+  [offline]="(online$ | async) === false"
+  [searchEnabled]="hasSearchEnabled$ | async"
+  [serviceLink]="this.yourServicesUrl"
+  [wide]="true"
+  serviceName="Common Platform"
+  searchPlaceholder="Search by reference"
+  searchLabel="Search by case or application reference"
+  (search)="handleSearch($event)"
+>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</cpp-application-layout>

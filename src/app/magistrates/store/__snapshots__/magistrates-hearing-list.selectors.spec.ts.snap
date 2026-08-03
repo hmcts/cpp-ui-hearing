@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Magistrates hearing list selector it should get the application 1`] = `
+[
+  {
+    "courtCentreName": "Test Magistrates Court",
+    "courtRoomName": "Courtroom 01",
+    "summaries": [
+      {
+        "application": {
+          "applicationId": "application-id-test",
+          "applicationReference": "application-reference-test",
+          "firstName": "first-name-test",
+          "hearingId": "hearing-id-test",
+          "isChildApplication": false,
+          "isParentApplication": false,
+          "lastName": "last-name-test",
+          "organisationName": undefined,
+          "prosecutor": "first-name-test last-name-test",
+          "respondentName": "",
+          "sequence": 1,
+          "sittingDay": "2019-12-03T18:32:00.000Z",
+          "type": {
+            "legislation": "application-legislation-test",
+            "type": "application-type-test",
+          },
+          "typeDescription": "First Hearing",
+        },
+      },
+    ],
+  },
+]
+`;
+
+exports[`Magistrates hearing list selector it should get the application having two respondents 1`] = `
+[
+  {
+    "courtCentreName": "Test Magistrates Court",
+    "courtRoomName": "Courtroom 01",
+    "summaries": [
+      {
+        "application": {
+          "applicationId": "application-id-test",
+          "applicationReference": "application-reference-test",
+          "firstName": "first-name-test",
+          "hearingId": "hearing-id-test",
+          "isChildApplication": false,
+          "isParentApplication": false,
+          "lastName": "last-name-test",
+          "organisationName": undefined,
+          "prosecutor": "first-name-test last-name-test",
+          "respondentName": "James Bond,Tom Cruise",
+          "sequence": 1,
+          "sittingDay": "2019-12-03T18:32:00.000Z",
+          "type": {
+            "legislation": "application-legislation-test",
+            "type": "application-type-test",
+          },
+          "typeDescription": "First Hearing",
+        },
+      },
+    ],
+  },
+]
+`;
+
+exports[`Magistrates hearing list selector it should get the court centre 1`] = `
+{
+  "courtrooms": [
+    {
+      "id": "room1-id-test",
+      "name": "Courtroom 01",
+      "welshCourtroomName": undefined,
+    },
+    {
+      "id": "room2-id-test",
+      "name": "Courtroom 02",
+      "welshCourtroomName": undefined,
+    },
+  ],
+  "id": "court-centre-id-test",
+  "name": "Test Magistrates Court",
+  "oucode": "B01LY00",
+  "oucodeL1Code": "B",
+}
+`;
+
+exports[`Magistrates hearing list selector it should get the magistrates hearings 1`] = `
+[
+  {
+    "courtCentreName": "Test Magistrates Court",
+    "courtRoomName": "Courtroom 01",
+    "summaries": [
+      {
+        "courtCentreId": "court-centre-id-test",
+        "defendant": {
+          "dateOfBirth": "1994-12-02",
+          "firstName": "Wilson",
+          "id": "defendant1-id-test",
+          "lastName": "Prohaska",
+          "middleName": "Vernon",
+          "offences": [
+            {
+              "id": "offence1-id-test",
+              "offenceTitle": "Section 18 - attempt    wounding with intent",
+              "wording": "Wound / inflict grievous bodily harm without intent",
+              "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+            },
+            {
+              "id": "offence2-id-test",
+              "offenceTitle": "Section 18 - attempt    wounding with intent",
+              "wording": "Wound / inflict grievous bodily harm without intent",
+              "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+            },
+          ],
+        },
+        "id": "hearing-id-test",
+        "prosecutionCase": {
+          "caseURN": "57GD1981019",
+          "id": "prosecution-case1-id-test",
+          "prosecutionAuthorityCode": "B01BH",
+          "prosecutionAuthorityId": "prosecution-authority1-id-test",
+          "prosecutionAuthorityReference": "test reference",
+        },
+        "roomId": "room1-id-test",
+        "sequence": 1,
+        "sittingDay": "2019-12-03T18:32:00.000Z",
+        "totalCases": 1,
+        "typeDescription": "First Hearing",
+      },
+      {
+        "courtCentreId": "court-centre-id-test",
+        "defendant": {
+          "dateOfBirth": "1991-12-02",
+          "firstName": "Kenna",
+          "id": "defendant2-id-test",
+          "lastName": "McKenzie",
+          "middleName": "Lillie",
+          "offences": [
+            {
+              "id": "offence3-id-test",
+              "offenceTitle": "Section 18 - attempt    wounding with intent",
+              "wording": "Wound / inflict grievous bodily harm without intent",
+              "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+            },
+            {
+              "id": "offence4-id-test",
+              "offenceTitle": "Section 18 - attempt    wounding with intent",
+              "wording": "Wound / inflict grievous bodily harm without intent",
+              "wordingWelsh": "Wound / inflict grievous bodily harm without intent_WELSH",
+            },
+          ],
+        },
+        "id": "hearing-id-test",
+        "prosecutionCase": {
+          "id": "prosecution-case1-id-test",
+        },
+        "roomId": "room1-id-test",
+        "sequence": 1,
+        "sittingDay": "2019-12-03T18:32:00.000Z",
+        "totalCases": 1,
+        "typeDescription": "First Hearing",
+      },
+    ],
+  },
+]
+`;
+
+exports[`Magistrates hearing list selector it should get the parent and child applications 1`] = `
+[
+  {
+    "courtCentreName": "Test Magistrates Court",
+    "courtRoomName": "Courtroom 01",
+    "summaries": [
+      {
+        "application": {
+          "applicationId": "application-id-test",
+          "applicationReference": "application-reference-test",
+          "firstName": "first-name-test",
+          "hearingId": "hearing-id-test",
+          "isChildApplication": false,
+          "isParentApplication": true,
+          "lastName": "last-name-test",
+          "organisationName": undefined,
+          "prosecutor": "first-name-test last-name-test",
+          "respondentName": "",
+          "sequence": 1,
+          "sittingDay": "2019-12-03T18:32:00.000Z",
+          "type": {
+            "legislation": "application-legislation-test",
+            "type": "application-type-test",
+          },
+          "typeDescription": "First Hearing",
+        },
+      },
+      {
+        "application": {
+          "applicationId": "application-id2-test",
+          "applicationReference": "application-reference2-test",
+          "firstName": "first-name2-test",
+          "hearingId": "hearing-id-test",
+          "isChildApplication": true,
+          "isParentApplication": false,
+          "lastName": "last-name2-test",
+          "organisationName": undefined,
+          "prosecutor": "first-name2-test last-name2-test",
+          "respondentName": "",
+          "sequence": 1,
+          "sittingDay": "2019-12-03T18:32:00.000Z",
+          "type": {
+            "legislation": "application-legislation2-test",
+            "type": "application-type2-test",
+          },
+          "typeDescription": "First Hearing",
+        },
+      },
+    ],
+  },
+]
+`;

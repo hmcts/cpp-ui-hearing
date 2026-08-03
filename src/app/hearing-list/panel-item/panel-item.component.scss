@@ -1,0 +1,39 @@
+.side-menu-item {
+  display: block;
+  position: relative;
+  padding: 1em;
+  background: none;
+  width: 100%;
+  text-align: inherit;
+  color: inherit;
+  margin: inherit;
+  box-shadow: none;
+
+  &.right-arrow {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAFlJREFUOMtjLGUgDTCOaoCARob/DA3Ea9BlOM/ADNTUQLwNEQxLcGvB7odIhsW4tODydBTDIuxacIdSNMNCbFqopgGHclwacCrHrgGPcipFXAMUj2YgsjUAAD0OIhFJ4PyZAAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+
+  &.active {
+    ::ng-deep hearing-summary-item,
+    ::ng-deep attendee {
+      color: inherit !important;
+      background-color: inherit !important;
+      & .type,
+      .urn,
+      .name,
+      .hearing-shared {
+        color: inherit !important;
+      }
+    }
+
+    &.right-arrow {
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAOElEQVQ4y2NgGAVkgf+N/xtIUa77/8///6RpiSBdSyTpWqJI1xJNohYSNQwu5WREXANJykcBFgAAq5NJ0HtMSkcAAAAASUVORK5CYII=');
+    }
+  }
+
+  &:hover {
+    background-color: #dee0e2;
+  }
+}

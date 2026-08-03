@@ -1,0 +1,9 @@
+@if (sharedHearing || multiHearing) {
+<div data-test-id="hearingNoteList" class="wrapper-notes">
+  @for (note of displayNotes; track $index) {
+  <div class="note-row">
+    <hearing-note-list-item [hearingCaseNote]="note"></hearing-note-list-item>
+  </div>
+  }
+</div>
+}

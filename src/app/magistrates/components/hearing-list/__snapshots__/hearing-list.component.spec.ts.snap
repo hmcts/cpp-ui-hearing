@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingListComponent should render the template with the values expected 1`] = `
+<ng-component
+  magistratesHearings={[Function Array]}
+  userHearingAccessPermission={[Function Object]}
+  viewHearingListPermission={[Function Object]}
+>
+  <hearing-list>
+    <div
+      class="hearing-list"
+    >
+      <h1
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+         MAGISTRATES_HEARING_LIST.TITLE 
+      </h1>
+      <div
+        data-test-id="magistrateHearings"
+      >
+        <table
+          class="govuk-!-margin-bottom-0 govuk-table"
+          pdk-margin-bottom="0"
+          pdk-table=""
+          style="margin-top: -1px;"
+        >
+          <caption
+            class="govuk-table__caption"
+            pdk-table-caption=""
+          >
+            <div>
+              <div
+                class="govuk-!-padding-bottom-6"
+                pdk-padding-bottom="6"
+              >
+                <court-location>
+                  <div
+                    class="govuk-!-margin-bottom-0 govuk-body-m"
+                    data-role="court-name"
+                    pdk-margin-bottom="0"
+                    pdk-typography="body"
+                  >
+                    court-centre-name-test
+                  </div>
+                  <div
+                    class="govuk-!-margin-bottom-0 govuk-body-m"
+                    data-role="hearing-date"
+                    pdk-margin-bottom="0"
+                    pdk-typography="body"
+                  >
+                     03 December 2019
+                  </div>
+                </court-location>
+              </div>
+            </div>
+            <div
+              class="bold border-top border-bottom align-left govuk-!-padding-top-2 govuk-!-padding-bottom-2 pdk-!-border-color-mid-grey"
+              pdk-border-colour="mid-grey"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+            >
+               court-room-name-test 
+            </div>
+          </caption>
+          <tr
+            class="pdk-!-text-color-dark-grey govuk-table__row"
+            pdk-table-row=""
+            pdk-text-colour="dark-grey"
+          >
+            <th
+              class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-table__cell"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+              pdk-table-header=""
+              scope="col"
+            >
+               MAGISTRATES_HEARING_LIST.SEQUENCE 
+            </th>
+            <th
+              class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-table__cell"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+              pdk-table-header=""
+              scope="col"
+            >
+               MAGISTRATES_HEARING_LIST.TIME 
+            </th>
+            <th
+              class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-table__cell"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+              pdk-table-header=""
+              scope="col"
+            >
+               MAGISTRATES_HEARING_LIST.REFERENCE 
+            </th>
+            <th
+              class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-table__cell"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+              pdk-table-header=""
+              scope="col"
+            >
+               MAGISTRATES_HEARING_LIST.PROSECUTOR 
+            </th>
+            <th
+              class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-table__cell"
+              pdk-padding-bottom="2"
+              pdk-padding-top="2"
+              pdk-table-header=""
+              scope="col"
+            >
+               MAGISTRATES_HEARING_LIST.CASE_DETAILS 
+            </th>
+            <th
+              class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-!-padding-left-9 govuk-table__cell"
+              colspan="2"
+              pdk-padding-bottom="2"
+              pdk-padding-left="9"
+              pdk-padding-top="2"
+              pdk-table-header=""
+              scope="col"
+            >
+               MAGISTRATES_HEARING_LIST.HEARING_TYPE 
+            </th>
+            <th
+              class="govuk-table__cell"
+              pdk-table-header=""
+              scope="col"
+            >
+              <span
+                class="govuk-visually-hidden"
+                pdk-visually-hidden=""
+              >
+                 MAGISTRATES_HEARING_LIST.ACTION 
+              </span>
+            </th>
+          </tr>
+          <tr
+            class="summaries govuk-table__row"
+            data-test-id="magistrateHearing"
+            hearing-row=""
+            pdk-table-row=""
+          >
+            <td
+              class="bold govuk-table__cell"
+              pdk-table-cell=""
+            >
+              1
+            </td>
+            <td
+              class="bold govuk-table__cell"
+              data-role="time"
+              data-test-id="hearingStartTime"
+              pdk-table-cell=""
+            >
+               4:53
+            </td>
+            <td
+              class="govuk-table__cell"
+              nowrap=""
+              pdk-table-cell=""
+            >
+              <div
+                data-role="case-urn"
+                data-test-id="hearingReference"
+              >
+                 57GD1981019 
+              </div>
+            </td>
+            <td
+              class="govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <div
+                data-role="prosecutor"
+                data-test-id="prosecutor"
+              >
+                 B01BH 
+              </div>
+            </td>
+            <td
+              class="case-details-width govuk-table__cell"
+              pdk-table-cell=""
+            >
+              <div>
+                <case-details>
+                  <div>
+                    <span
+                      class="bold"
+                      data-test-id="partyName"
+                    >
+                      <span
+                        data-role="firstname"
+                      >
+                        Wilson 
+                      </span>
+                      <span
+                        data-role="lastname"
+                      >
+                        Prohaska 
+                      </span>
+                    </span>
+                    <span>
+                      <span
+                        data-role="date-of-birth"
+                      >
+                        (2 Dec 1994,
+                      </span>
+                      <span>
+                        26)
+                      </span>
+                    </span>
+                  </div>
+                  <div
+                    data-test-id="offence"
+                  >
+                    <offence-details>
+                      <div>
+                        <div
+                          class="bold govuk-!-margin-top-4 govuk-!-margin-bottom-4 pdk-!-text-color-dark-grey"
+                          data-role="offence-title"
+                          data-test-id="offenceTitle"
+                          pdk-margin-bottom="4"
+                          pdk-margin-top="4"
+                          pdk-text-colour="dark-grey"
+                        >
+                           Section 18 - attempt    wounding with intent 
+                        </div>
+                        <div
+                          class="govuk-!-margin-bottom-4"
+                          pdk-margin-bottom="4"
+                        >
+                          <details
+                            class="govuk-details"
+                            pdk-details=""
+                          >
+                            <summary
+                              class="govuk-details__summary"
+                            >
+                              <span
+                                class="govuk-details__summary-text"
+                              >
+                                <span>
+                                  Show particulars
+                                </span>
+                                <span
+                                  class="govuk-visually-hidden"
+                                  pdk-visually-hidden=""
+                                >
+                                  for Wilson Prohaska Section 18 - attempt    wounding with intent
+                                </span>
+                              </span>
+                            </summary>
+                            <pdk-details-text
+                              class="govuk-details__text govuk-body-s"
+                              data-test-id="offenceWording"
+                              pdk-typography="body-small"
+                            >
+                               Wound / inflict grievous bodily harm without intent 
+                            </pdk-details-text>
+                          </details>
+                        </div>
+                      </div>
+                    </offence-details>
+                  </div>
+                </case-details>
+              </div>
+            </td>
+            <td
+              class="govuk-!-padding-left-9 govuk-table__cell"
+              pdk-padding-left="9"
+              pdk-table-cell=""
+            >
+              <div
+                data-role="hearing-type"
+                data-test-id="hearingType"
+              >
+                 First Hearing 
+              </div>
+            </td>
+            <td
+              class="next-position govuk-!-padding-top-6 govuk-table__cell"
+              pdk-padding-top="6"
+              pdk-table-cell=""
+            >
+              <div
+                class="next-img"
+              />
+              <a
+                class="action-link govuk-link"
+                href="javascript:void(0)"
+                pdk-link=""
+              >
+                <div
+                  class="next-img"
+                >
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    View case materials for Wilson Prohaska, URN 57GD1981019. This link opens in a new tab.
+                  </span>
+                </div>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </hearing-list>
+</ng-component>
+`;

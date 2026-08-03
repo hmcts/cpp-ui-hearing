@@ -1,0 +1,16 @@
+@if (deliberationTimerInMinutes > 0) {
+<div class="total-jury-deliberation-row">
+  <p pdk-typography="body-small" pdk-margin="0">
+    {{ 'HEARING_EVENTS_LOG.TOTAL_JURY_DELIBERATION' | translate }}
+  </p>
+
+  <p
+    data-test-id="juryDeliberationTime"
+    pdk-typography="heading-large"
+    pdk-margin="0"
+    pdk-padding="0"
+  >
+    {{ formatDeliberationTimer() }}
+  </p>
+</div>
+}

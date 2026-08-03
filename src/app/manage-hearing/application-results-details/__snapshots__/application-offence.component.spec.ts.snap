@@ -1,0 +1,502 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationOffenceComponent should render the component for CROWN jurisdiction with a count 1`] = `
+<test-host-component
+  guiltyPleasValues={[Function Array]}
+  hearingType={[Function String]}
+  offence={[Function Object]}
+  pleasMapping={[Function Object]}
+  prosecutionCaseIdentifier={[Function Object]}
+  verdictTypes={[Function Array]}
+>
+  <application-offence>
+    <pdk-grid
+      class="govuk-!-padding-bottom-4 govuk-grid-row"
+      container=""
+      pdk-padding-bottom="4"
+    >
+      <pdk-grid
+        class="govuk-!-margin-bottom-4 govuk-grid-column-full"
+        full=""
+        pdk-margin-bottom="4"
+      >
+        <b>
+           54GD8000038 
+        </b>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <div
+          class="offence-index govuk-!-margin-right-2"
+          pdk-margin-right="2"
+        >
+           Count 2 - 
+        </div>
+        <span
+          data-test-id="offenceTitle"
+        >
+          Use / install a television set without a licence
+        </span>
+        <div
+          class="govuk-!-margin-top-2 pdk-!-text-color-dark-grey govuk-body-s"
+          pdk-margin-top="2"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-small"
+        >
+          <div>
+            On 
+          </div>
+        </div>
+        <div
+          class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+          pdk-margin-top="6"
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="bold govuk-grid-column-full"
+              full=""
+            >
+               MANAGE_HEARING.PLEA 
+            </pdk-grid>
+          </pdk-grid>
+          <div>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                data-role="offence-plea"
+                two-thirds=""
+              >
+                <span
+                  data-test-id="indicatedPlea"
+                >
+                  Not Guilty
+                </span>
+              </pdk-grid>
+              <pdk-grid
+                class="action-bar-column govuk-grid-column-one-third"
+                one-third=""
+              >
+              </pdk-grid>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                two-thirds=""
+              >
+                <span
+                  class="date-message pdk-!-text-color-dark-grey"
+                  pdk-text-colour="dark-grey"
+                >
+                   MANAGE_HEARING.PLEA_ENTERED_ON 17 October 2018 
+                </span>
+              </pdk-grid>
+              <pdk-grid
+                class="govuk-grid-column-one-third"
+                one-third=""
+              />
+            </pdk-grid>
+          </div>
+        </div>
+        <div
+          class="govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="bold govuk-grid-column-one-third"
+              one-third=""
+            >
+               MANAGE_HEARING.VERDICT 
+            </pdk-grid>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="govuk-grid-column-two-thirds"
+              data-role="offence-verdict"
+              data-test-id="verdict"
+              two-thirds=""
+            >
+            </pdk-grid>
+            <pdk-grid
+              class="text-right govuk-grid-column-one-third"
+              one-third=""
+            >
+            </pdk-grid>
+          </pdk-grid>
+        </div>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <div>
+          <cpp-shareable-results-container>
+             applicationId: 
+            <br />
+             caseId: 
+            <br />
+             masterDefendantId: 
+            <br />
+             offenceId: 7b5c859b-7b07-4c8b-acaa-50af22b0847f
+            <br />
+             showResultsPlaceholder: true
+            <br />
+          </cpp-shareable-results-container>
+        </div>
+      </pdk-grid>
+    </pdk-grid>
+  </application-offence>
+</test-host-component>
+`;
+
+exports[`ApplicationOffenceComponent should render the component for CROWN jurisdiction without a count (fallback to orderIndex) 1`] = `
+<test-host-component
+  guiltyPleasValues={[Function Array]}
+  hearingType={[Function String]}
+  offence={[Function Object]}
+  pleasMapping={[Function Object]}
+  prosecutionCaseIdentifier={[Function Object]}
+  verdictTypes={[Function Array]}
+>
+  <application-offence>
+    <pdk-grid
+      class="govuk-!-padding-bottom-4 govuk-grid-row"
+      container=""
+      pdk-padding-bottom="4"
+    >
+      <pdk-grid
+        class="govuk-!-margin-bottom-4 govuk-grid-column-full"
+        full=""
+        pdk-margin-bottom="4"
+      >
+        <b>
+           54GD8000038 
+        </b>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <div
+          class="offence-index govuk-!-margin-right-2"
+          pdk-margin-right="2"
+        >
+           1. 
+        </div>
+        <span
+          data-test-id="offenceTitle"
+        >
+          Use / install a television set without a licence
+        </span>
+        <div
+          class="govuk-!-margin-top-2 pdk-!-text-color-dark-grey govuk-body-s"
+          pdk-margin-top="2"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-small"
+        >
+          <div>
+            On 
+          </div>
+        </div>
+        <div
+          class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+          pdk-margin-top="6"
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="bold govuk-grid-column-full"
+              full=""
+            >
+               MANAGE_HEARING.PLEA 
+            </pdk-grid>
+          </pdk-grid>
+          <div>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                data-role="offence-plea"
+                two-thirds=""
+              >
+                <span
+                  data-test-id="indicatedPlea"
+                >
+                  Not Guilty
+                </span>
+              </pdk-grid>
+              <pdk-grid
+                class="action-bar-column govuk-grid-column-one-third"
+                one-third=""
+              >
+              </pdk-grid>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                two-thirds=""
+              >
+                <span
+                  class="date-message pdk-!-text-color-dark-grey"
+                  pdk-text-colour="dark-grey"
+                >
+                   MANAGE_HEARING.PLEA_ENTERED_ON 17 October 2018 
+                </span>
+              </pdk-grid>
+              <pdk-grid
+                class="govuk-grid-column-one-third"
+                one-third=""
+              />
+            </pdk-grid>
+          </div>
+        </div>
+        <div
+          class="govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="bold govuk-grid-column-one-third"
+              one-third=""
+            >
+               MANAGE_HEARING.VERDICT 
+            </pdk-grid>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="govuk-grid-column-two-thirds"
+              data-role="offence-verdict"
+              data-test-id="verdict"
+              two-thirds=""
+            >
+            </pdk-grid>
+            <pdk-grid
+              class="text-right govuk-grid-column-one-third"
+              one-third=""
+            >
+            </pdk-grid>
+          </pdk-grid>
+        </div>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <div>
+          <cpp-shareable-results-container>
+             applicationId: 
+            <br />
+             caseId: 
+            <br />
+             masterDefendantId: 
+            <br />
+             offenceId: 7b5c859b-7b07-4c8b-acaa-50af22b0847f
+            <br />
+             showResultsPlaceholder: true
+            <br />
+          </cpp-shareable-results-container>
+        </div>
+      </pdk-grid>
+    </pdk-grid>
+  </application-offence>
+</test-host-component>
+`;
+
+exports[`ApplicationOffenceComponent should render the component for MAGISTRATES jurisdiction 1`] = `
+<test-host-component
+  guiltyPleasValues={[Function Array]}
+  hearingType={[Function String]}
+  offence={[Function Object]}
+  pleasMapping={[Function Object]}
+  prosecutionCaseIdentifier={[Function Object]}
+  verdictTypes={[Function Array]}
+>
+  <application-offence>
+    <pdk-grid
+      class="govuk-!-padding-bottom-4 govuk-grid-row"
+      container=""
+      pdk-padding-bottom="4"
+    >
+      <pdk-grid
+        class="govuk-!-margin-bottom-4 govuk-grid-column-full"
+        full=""
+        pdk-margin-bottom="4"
+      >
+        <b>
+           54GD8000038 
+        </b>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-one-third"
+        one-third=""
+      >
+        <div
+          class="offence-index govuk-!-margin-right-2"
+          pdk-margin-right="2"
+        >
+           1. 
+        </div>
+        <span
+          data-test-id="offenceTitle"
+        >
+          Use / install a television set without a licence
+        </span>
+        <div
+          class="govuk-!-margin-top-2 pdk-!-text-color-dark-grey govuk-body-s"
+          pdk-margin-top="2"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-small"
+        >
+          <div>
+            On 
+          </div>
+        </div>
+        <div
+          class="govuk-!-margin-top-6 govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+          pdk-margin-top="6"
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="bold govuk-grid-column-full"
+              full=""
+            >
+               MANAGE_HEARING.PLEA 
+            </pdk-grid>
+          </pdk-grid>
+          <div>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                data-role="offence-plea"
+                two-thirds=""
+              >
+                <span
+                  data-test-id="indicatedPlea"
+                >
+                  Not Guilty
+                </span>
+              </pdk-grid>
+              <pdk-grid
+                class="action-bar-column govuk-grid-column-one-third"
+                one-third=""
+              >
+              </pdk-grid>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-row"
+              container=""
+            >
+              <pdk-grid
+                class="govuk-grid-column-two-thirds"
+                two-thirds=""
+              >
+                <span
+                  class="date-message pdk-!-text-color-dark-grey"
+                  pdk-text-colour="dark-grey"
+                >
+                   MANAGE_HEARING.PLEA_ENTERED_ON 17 October 2018 
+                </span>
+              </pdk-grid>
+              <pdk-grid
+                class="govuk-grid-column-one-third"
+                one-third=""
+              />
+            </pdk-grid>
+          </div>
+        </div>
+        <div
+          class="govuk-!-margin-bottom-6"
+          pdk-margin-bottom="6"
+        >
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="bold govuk-grid-column-one-third"
+              one-third=""
+            >
+               MANAGE_HEARING.VERDICT 
+            </pdk-grid>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-row"
+            container=""
+          >
+            <pdk-grid
+              class="govuk-grid-column-two-thirds"
+              data-role="offence-verdict"
+              data-test-id="verdict"
+              two-thirds=""
+            >
+            </pdk-grid>
+            <pdk-grid
+              class="text-right govuk-grid-column-one-third"
+              one-third=""
+            >
+            </pdk-grid>
+          </pdk-grid>
+        </div>
+      </pdk-grid>
+      <pdk-grid
+        class="govuk-grid-column-two-thirds"
+        two-thirds=""
+      >
+        <div>
+          <cpp-shareable-results-container>
+             applicationId: 
+            <br />
+             caseId: 
+            <br />
+             masterDefendantId: 
+            <br />
+             offenceId: 7b5c859b-7b07-4c8b-acaa-50af22b0847f
+            <br />
+             showResultsPlaceholder: true
+            <br />
+          </cpp-shareable-results-container>
+        </div>
+      </pdk-grid>
+    </pdk-grid>
+  </application-offence>
+</test-host-component>
+`;

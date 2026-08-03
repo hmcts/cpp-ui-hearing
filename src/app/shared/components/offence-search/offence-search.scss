@@ -1,0 +1,11 @@
+@use 'govuk-frontend/govuk/base' as govuk;
+
+.offence-search {
+  margin-bottom: 10px;
+}
+
+.noResult {
+  padding: 4px;
+  border: 2px solid govuk.govuk-colour('black');
+  color: govuk.govuk-colour('mid-grey');
+}

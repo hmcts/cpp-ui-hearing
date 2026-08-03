@@ -1,0 +1,25 @@
+<pdk-form-field
+  label="Hearing type"
+  [errorMessages]="[
+    {
+      rule: 'required',
+      message: 'HEARING_EVENTS_LOG.INVALID_EVENT.INVALID_HEARING_TYPE' | translate
+    }
+  ]"
+>
+  <pdk-autosuggest-lite
+    name="hearingType"
+    data-role="change-hearing-type-selector"
+    (inputText)="handleSearchSuggestions($event)"
+    [suggestions]="filteredSuggestions"
+    suggestionKey="id"
+    suggestionTitle="hearingDescription"
+    [ngModel]="preselectedHearingType"
+    [highlightFirstSuggestion]="true"
+    [highlightMatchedText]="true"
+    required
+    auto-focus
+    (ngModelChange)="selectHearingType($event)"
+  >
+  </pdk-autosuggest-lite>
+</pdk-form-field>

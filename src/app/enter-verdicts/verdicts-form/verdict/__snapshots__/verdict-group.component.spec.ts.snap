@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerdictGroupComponent should render the template with the values expected 1`] = `
+<ng-component
+  allVerdictTypes={[Function Array]}
+  hearingType={[Function String]}
+  plea={[Function Object]}
+  verdictTypesForHearingJurisdiction={[Function Array]}
+>
+  <verdict-group>
+    <div
+      data-role="offence-pleas"
+    >
+      <hr
+        class="pdk-!-border-color-light-grey"
+        pdk-border-colour="light-grey"
+      />
+      <h2
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Case reference: 
+        </span>
+         abcd 
+      </h2>
+    </div>
+  </verdict-group>
+</ng-component>
+`;

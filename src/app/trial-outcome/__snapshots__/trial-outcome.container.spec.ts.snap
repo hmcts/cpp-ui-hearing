@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrialOutcomeContainer should have the expected template 1`] = `
+<trial-outcome
+  citSubreasonEnabled={[Function Boolean]}
+  store={[Function Object]}
+  subReasons$={[Function Observable]}
+  trialEffectivenessError$={[Function Observable]}
+  trialTypeSelected={[Function EventEmitter_]}
+  trialTypes$={[Function Observable]}
+>
+  <trial-type>
+    <div>
+      Trial Type Component
+    </div>
+    <div>
+      Hearing: 
+    </div>
+    <div>
+      Trial Types: [
+    {
+      "id": "test",
+      "description": "test"
+    }
+  ]
+    </div>
+  </trial-type>
+</trial-outcome>
+`;

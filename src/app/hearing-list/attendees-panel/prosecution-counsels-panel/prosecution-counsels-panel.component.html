@@ -1,0 +1,106 @@
+<form pdk-form autocomplete="off" novalidate>
+  <h1 pdk-margin-bottom="6" pdk-typography="heading-medium">
+    {{ 'ENTER_COUNSELS.PROSECUTION' | translate }}
+  </h1>
+  @for (prosecutionCounsel of prosecutionCounsels; track prosecutionCounsel; let i = $index) {
+  <div>
+    <div
+      pdk-margin-bottom="4"
+      pdk-margin-top="2"
+      [id]="prosecutionCounsel.id"
+      data-test-id="prosecutionCounsel"
+      data-role="prosecution-counsel"
+      [ngModelGroup]="modelGroup[prosecutionCounsel.id]"
+    >
+      <div pdk-margin-bottom="2" class="form-group">
+        <div class="delete-counsel-link">
+          @if (disableDelete()) {
+          <a pdk-link href="javascript:void(0);" class="disabledLink">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          } @if (!disableDelete()) {
+          <a pdk-link href="javascript:void(0);" (click)="removeProsecutionCounsel(i)">
+            {{ 'COMMON.DELETE' | translate }}
+          </a>
+          }
+        </div>
+        <pdk-form-field
+          id="firstName"
+          label="{{ 'ENTER_COUNSELS.FIRST_NAME' | translate }}"
+          labelType="small"
+        >
+          <pdk-autosuggest-lite
+            data-role="prosecution-firstname"
+            name="{{ 'firstName-' + prosecutionCounsel?.id }}"
+            (ngModelChange)="updateModelProp($event, prosecutionCounsel)"
+            (inputText)="onInputTextChanged($event, prosecutionCounsel, 'firstName')"
+            [ngModel]="modelGroup[prosecutionCounsel.id]['firstName-' + prosecutionCounsel?.id]"
+            [suggestions]="modelGroup[prosecutionCounsel.id]?.firstNameSuggestions"
+            [suggestionKey]="'value'"
+            [suggestionTitle]="'label'"
+          >
+          </pdk-autosuggest-lite>
+        </pdk-form-field>
+      </div>
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field
+          id="lastName"
+          label="{{ 'ENTER_COUNSELS.LAST_NAME' | translate }}"
+          labelType="small"
+        >
+          <pdk-autosuggest-lite
+            data-role="prosecution-lastname"
+            name="{{ 'lastName-' + prosecutionCounsel?.id }}"
+            (ngModelChange)="updateModelProp($event, prosecutionCounsel)"
+            (inputText)="onInputTextChanged($event, prosecutionCounsel, 'lastName')"
+            [ngModel]="modelGroup[prosecutionCounsel.id]['lastName-' + prosecutionCounsel?.id]"
+            [suggestions]="modelGroup[prosecutionCounsel.id]?.lastNameSuggestions"
+            [suggestionKey]="'value'"
+            [suggestionTitle]="'label'"
+          >
+          </pdk-autosuggest-lite>
+        </pdk-form-field>
+      </div>
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field
+          id="status"
+          label="{{ 'ENTER_COUNSELS.STATUS_ON_CASE' | translate }}"
+          hintText="{{ 'ENTER_COUNSELS.STATUS_SUBTEXT' | translate }}"
+          labelType="small"
+        >
+          <input
+            data-role="prosecution-status"
+            type="text"
+            name="prosecution-status"
+            [(ngModel)]="prosecutionCounsel.status"
+            (change)="updateProsecutionCounsel(prosecutionCounsel)"
+            (input)="checkIsValid(prosecutionCounsels)"
+            [ngModelOptions]="{ standalone: true }"
+            pdk-text-input
+            fullWidth
+          />
+        </pdk-form-field>
+      </div>
+
+      <div pdk-margin-bottom="2" class="form-group">
+        <pdk-form-field label="{{ 'ENTER_COUNSELS.PROSECUTING' | translate }}" labelType="small">
+          <pdk-checkbox-group
+            name="prosecutionCases_{{ i }}"
+            [(ngModel)]="prosecutionCounsel.prosecutionCases"
+            [options]="prosecutionCaseOptions"
+            (ngModelChange)="updateProsecutionCounsel(prosecutionCounsel)"
+            required
+          >
+          </pdk-checkbox-group>
+        </pdk-form-field>
+      </div>
+    </div>
+    <hr />
+  </div>
+  } @if (!isHearingEventLogEnded) {
+  <a pdk-link href="javascript:void(0);" (click)="addProsecutionCounsel()">
+    {{ 'ENTER_COUNSELS.ADD_ANOTHER_ATTENDEE' | translate }}
+  </a>
+  <hr />
+  }
+</form>

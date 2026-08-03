@@ -1,0 +1,116 @@
+<div class="suggested-events-row">
+  @if (loggedEvents.length !== 0) {
+  <div>
+    <div>
+      <span pdk-margin-bottom="1" class="suggested-event">
+        <button
+          pdk-link
+          pdk-typography="body-small"
+          class="link-button bold"
+          [disabled]="isHearingEventLogPaused && !isHearingEventLogEnded"
+          data-role="suggested-event-pause"
+          aria-label="Pause Hearing"
+          (click)="onPauseHearing()"
+        >
+          {{'HEARING_EVENTS_LOG.PAUSE' | translate}}
+        </button>
+      </span>
+      @if (!showResumeLogBtn) {
+      <span pdk-margin-bottom="1" class="suggested-event">
+        <button
+          pdk-link
+          pdk-typography="body-small"
+          class="link-button bold"
+          [disabled]="!isHearingEventLogPaused && !isHearingEventLogEnded"
+          data-role="suggested-event-resume"
+          aria-label="Resume Hearing"
+          (click)="onResumeHearing()"
+        >
+          {{'HEARING_EVENTS_LOG.RESUME' | translate}}
+        </button>
+      </span>
+      }
+      <span pdk-margin-bottom="1" class="suggested-event">
+        <button
+          pdk-link
+          pdk-typography="body-small"
+          class="link-button bold"
+          [disabled]="isHearingEventLogEnded"
+          data-role="suggested-event-end"
+          aria-label="End Hearing"
+          (click)="onEndHearing()"
+        >
+          {{'HEARING_EVENTS_LOG.END_HEARING' | translate}}
+        </button>
+      </span>
+    </div>
+    <span>
+      @if (jurisdictionType === 'MAGISTRATES' && showChangeTypeLink) {
+      <button
+        pdk-link
+        pdk-typography="body-small"
+        class="link-button bold"
+        [disabled]="isHearingEventLogPaused || isHearingEventLogEnded"
+        data-role="suggested-event-change-type"
+        (click)="onChangeType()"
+      >
+        {{ 'HEARING_EVENTS_LOG.CHANGE_HEARING_TYPE' | translate }}
+      </button>
+      }
+    </span>
+  </div>
+
+  } @else { @if (!this.showStartLogBtn) {
+  <span pdk-margin-bottom="1">
+    <button
+      pdk-link
+      pdk-typography="body-medium"
+      class="link-button bold"
+      [pdk-text-colour]="'blue'"
+      data-role="suggested-event-start"
+      [disabled]="isBoxwork"
+      (click)="onStartHearing()"
+    >
+      {{'HEARING_EVENTS_LOG.START_HEARING' | translate}}
+    </button>
+  </span>
+  }
+  <div pdk-margin-top="2" class="event-log-heading-row">
+    <h3
+      pdk-margin-bottom="2"
+      pdk-typography="body-small"
+      class="bold"
+      data-role="event-log-heading-text"
+    >
+      {{'HEARING_EVENTS_LOG.HEADING_TITLE' | translate}}
+    </h3>
+    @if (jurisdictionType === 'CROWN') {
+    <div>
+      <span class="font-xsmall add-witness-name" data-role="add-witness-name"
+        >{{'HEARING_EVENTS_LOG.ADD_WITNESS_NAME' | translate}}</span
+      >
+    </div>
+    }
+  </div>
+  }
+</div>
+
+@if (loggedEvents.length === 0) {
+<div>
+  @if (isCrownCourt) {
+  <div
+    pdk-border-colour="light-grey"
+    pdk-padding-top="3"
+    pdk-padding-bottom="1"
+    class="top-border-solid"
+  >
+    @if (hearingEventLogCount && hearingEventLogCount.eventLogCountByHearingId > 0 &&
+    loggedEvents.length === 0) {
+    <button pdk-button="secondary" (click)="onDownloadFullEventLog()">
+      {{ 'COMMON.DOWNLOAD_FULL_EVENT_LOG' | translate }}
+    </button>
+    }
+  </div>
+  }
+</div>
+}

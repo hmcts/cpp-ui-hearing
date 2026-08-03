@@ -1,0 +1,30 @@
+@if (hasReportingRestrictions) {
+<span class="reporting-restrictions-component">
+  @if (caseId) {
+  <a
+    pdk-link
+    href="{{ appUrl }}/prosecution-casefile/edit-case/{{ caseId }}#hearings-and-decisions"
+    target="_blank"
+  >
+    <ng-container *ngTemplateOutlet="abbr"></ng-container>
+  </a>
+  } @else {
+  <abbr
+    title="{{ 'COMMON.REPORTING_RESTRICTIONS' | translate }}"
+    [pdk-border-colour]="colour"
+    [pdk-text-colour]="colour"
+  >
+    {{ 'COMMON.RR' | translate }}
+  </abbr>
+  }
+</span>
+}
+<ng-template #abbr>
+  <abbr
+    title="{{ 'COMMON.REPORTING_RESTRICTIONS' | translate }}"
+    [pdk-border-colour]="colour"
+    [pdk-text-colour]="colour"
+  >
+    {{ 'COMMON.RR' | translate }}
+  </abbr>
+</ng-template>

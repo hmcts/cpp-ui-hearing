@@ -1,0 +1,16 @@
+<div class="multiday-dropdown">
+  <form #form="ngForm" novalidate>
+    <pdk-form-field id="dateFilter" label="{{'MANAGE.DATE_IN_VIEW' | translate}} ">
+      <pdk-select
+        data-role="multiday-hearing-selectbox"
+        class="date-select"
+        [name]="'selectedDay'"
+        [options]="options"
+        [ngModel]="selectedDay"
+        placeholder="Select another date"
+        (change)="onSelectDay.emit($event.value)"
+      >
+      </pdk-select>
+    </pdk-form-field>
+  </form>
+</div>

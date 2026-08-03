@@ -1,0 +1,66 @@
+<div class="jurors-selector" data-role="jurors-selector">
+  @if (!offenceCopy.verdict.isDeleted) {
+  <span>
+    <span>{{'ENTER_VERDICTS.JURORS' | translate}}:</span>
+    @if (!isEditMode && offenceCopy.verdict.jurors.numberOfJurors) {
+    <span class="jurors-selector-value">
+      {{offenceCopy.verdict.jurors.numberOfJurors}}
+      <span class="jurors-selector jurors-selector-value">|</span>
+      {{getNumberOfSplitJurorsLabel()}}
+    </span>
+    }
+  </span>
+  } @if (isEditMode) {
+  <span>
+    @for (item of options; track item; let last = $last) {
+    <span>
+      @if (item !== offenceCopy.verdict.jurors.numberOfJurors) {
+      <a
+        pdk-link
+        href="javascript:;"
+        data-role="jurors-selector-number-btn"
+        (click)="selectNumberOfJurors(item)"
+        class="jurors-selector-value"
+      >
+        {{item}}
+      </a>
+      } @if (item === offenceCopy.verdict.jurors.numberOfJurors) {
+      <span class="jurors-selector-selected jurors-selector-value"> {{item}} </span>
+      } @if (!last) {
+      <span class="jurors-selector">|</span>
+      }
+    </span>
+    }
+    <span class="jurors-selector">|</span>
+    <span class="jurors-selector-spaced">{{'ENTER_VERDICTS.SPLIT' | translate}}: </span>
+    @for (splitJurorsItem of optionsSplit[offenceCopy.verdict.jurors.numberOfJurors]; track
+    splitJurorsItem) {
+    <span>
+      @if (splitJurorsItem.value !== offenceCopy.verdict.jurors.numberOfSplitJurors) {
+      <a
+        pdk-link
+        href="javascript:;"
+        (click)="selectSplit(splitJurorsItem.value)"
+        class="jurors-selector-value"
+      >
+        {{splitJurorsItem.label}}
+      </a>
+      } @if (splitJurorsItem.value === offenceCopy.verdict.jurors.numberOfSplitJurors) {
+      <span class="jurors-selector-selected jurors-selector-value">
+        {{splitJurorsItem.label}}
+      </span>
+      }
+    </span>
+    }
+  </span>
+  } @if (hasVerdictCleared) {
+  <a
+    pdk-link
+    href="javascript:;"
+    data-role="jurors-selector-edit-apply-btn"
+    (click)="toggleEditMode()"
+  >
+    {{ isEditMode ? ('ENTER_VERDICTS.APPLY' | translate) : ('ENTER_VERDICTS.EDIT' | translate) }}
+  </a>
+  }
+</div>

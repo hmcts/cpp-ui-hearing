@@ -1,0 +1,48 @@
+<form
+  #recordSessionTimesForm="ngForm"
+  pdk-form
+  novalidate
+  pdk-margin-top="1"
+  (validSubmit)="onSubmit()"
+  data-role="record-session-times-form"
+>
+  @if (sessionTimesCourt) {
+  <pdk-grid container>
+    <judiciary-search-filter-summary
+      [selectedCourtCentre]="selectedCourtCentre"
+      [selectedCourtRoom]="selectedCourtRoom"
+      [sessionDate]="sessionDate"
+    ></judiciary-search-filter-summary>
+
+    <judiciary-form
+      data-test-id="morningSession"
+      [attr.data-role]="'judiciary-form-' + sessionType.AM"
+      [courtSession]="sessionTimesCourt?.amCourtSession"
+      [sessionType]="sessionType.AM"
+      [courtOfficerOptions]="courtOfficerOptions"
+      (onEnableSave)="isSaveBtnEnabled = true"
+    ></judiciary-form>
+    <judiciary-form
+      data-test-id="afternoonSession"
+      [attr.data-role]="'judiciary-form-' + sessionType.PM"
+      [courtSession]="sessionTimesCourt?.pmCourtSession"
+      [sessionType]="sessionType.PM"
+      [courtOfficerOptions]="courtOfficerOptions"
+      (onEnableSave)="isSaveBtnEnabled = true"
+    ></judiciary-form>
+    <pdk-grid full>
+      <pdk-grid one-quarter>
+        <button
+          pdk-button
+          data-role="save-sittings-btn"
+          [disabled]="!isSaveBtnEnabled"
+          type="submit"
+          pdk-margin-top="6"
+        >
+          {{ 'SESSION_TIMES.SAVE_SITTINGS' | translate }}
+        </button>
+      </pdk-grid>
+    </pdk-grid>
+  </pdk-grid>
+  }
+</form>

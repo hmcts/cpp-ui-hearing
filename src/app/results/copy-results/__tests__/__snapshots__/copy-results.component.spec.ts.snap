@@ -1,0 +1,842 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CopyResultsComponent copy from an application target should render 1`] = `
+<ng-component
+  caseStatus$={[Function _Store]}
+  copyFromTargetId={[Function String]}
+  draftResult$={[Function _Store]}
+  hearing$={[Function _Store]}
+  invalidResultLines$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  route={[Function ActivatedRoute]}
+  store={[Function _Store]}
+>
+  <copy-results>
+    <h1
+      class="govuk-!-margin-bottom-4 govuk-heading-xl"
+      pdk-margin-bottom="4"
+      pdk-typography="heading-xlarge"
+    >
+      Apply results to other offences
+    </h1>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+    >
+      <h2
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+        Select results you want to apply
+      </h2>
+      <div
+        class="govuk-!-margin-bottom-6 govuk-!-padding-4 pdk-!-fill-color-light-grey"
+        pdk-fill-colour="light-grey"
+        pdk-margin-bottom="6"
+        pdk-padding="4"
+      >
+        <fieldset
+          class="govuk-fieldset"
+          pdk-fieldset=""
+        >
+          <legend
+            class="govuk-fieldset__legend govuk-visually-hidden"
+            pdk-legend=""
+            pdk-visually-hidden=""
+          >
+            Select results you want to apply
+          </legend>
+          <pdk-checkbox-group
+            class="ng-untouched ng-pristine ng-valid"
+            name="selectedResultLineIds"
+          >
+            <div
+              class="govuk-checkboxes"
+            >
+              <div>
+                <div
+                  class="govuk-!-margin-bottom-4"
+                  pdk-margin-bottom="4"
+                >
+                  <pdk-checkbox
+                    class="copy-results__parent-result-checkbox govuk-checkboxes"
+                    data-test-id="copyFromTarget"
+                  >
+                    <div
+                      class="govuk-checkboxes__item"
+                    >
+                      <input
+                        class="govuk-checkboxes__input"
+                        id="pdk-checkbox-GENERATED_ID"
+                        name="pdk-checkbox-group-GENERATED_ID"
+                        type="checkbox"
+                        value="resultLineId1"
+                      />
+                      <label
+                        class="govuk-label govuk-checkboxes__label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                        <ul
+                          class="pdk-!-negative-margin-top-2 govuk-list"
+                          pdk-list=""
+                          pdk-margin-top="-2"
+                        >
+                          <li
+                            class="pdk-!-negative-margin-bottom-3"
+                          >
+                            <div
+                              class="govuk-!-margin-right-1"
+                              cpp-draft-result-line-tag=""
+                              pdk-margin-right="1"
+                            >
+                              <div
+                                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                                pdk-margin="0"
+                                pdk-padding-horizontal="1"
+                                pdk-typography="body-small"
+                                style="display: inline-block; background-color: #d5d7ed;"
+                              >
+                                <b
+                                  data-test-id="resultLineTitle"
+                                >
+                                  Unpaid work
+                                </b>
+                              </div>
+                            </div>
+                            <cpp-result-prompts-summary
+                              style="display: block;"
+                            >
+                              <dl
+                                class="result-prompts-summary result-prompts-summary--inline"
+                              >
+                                <div
+                                  class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+                                >
+                                  <dt
+                                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                                    pdk-margin-right="1"
+                                    pdk-text-colour="black"
+                                    tint="25"
+                                  >
+                                     Number of hours 
+                                  </dt>
+                                  <dd>
+                                    60 minutes
+                                  </dd>
+                                </div>
+                                <div
+                                  class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+                                >
+                                  <dt
+                                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                                    pdk-margin-right="1"
+                                    pdk-text-colour="black"
+                                    tint="25"
+                                  >
+                                     Additional  / concurrent to what 
+                                  </dt>
+                                  <dd>
+                                    *
+                                  </dd>
+                                </div>
+                                <div
+                                  class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+                                >
+                                  <dt
+                                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                                    pdk-margin-right="1"
+                                    pdk-text-colour="black"
+                                    tint="25"
+                                  >
+                                     Additional information 
+                                  </dt>
+                                  <dd>
+                                    *
+                                  </dd>
+                                </div>
+                              </dl>
+                            </cpp-result-prompts-summary>
+                          </li>
+                        </ul>
+                      </label>
+                    </div>
+                  </pdk-checkbox>
+                </div>
+              </div>
+            </div>
+          </pdk-checkbox-group>
+        </fieldset>
+      </div>
+      <h2
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+        Select offences to apply to
+      </h2>
+      <pdk-checkbox
+        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+        data-test-id="copyToAllTargetGroups"
+      >
+        <div
+          class="govuk-checkboxes__item"
+        >
+          <input
+            class="govuk-checkboxes__input"
+            id="pdk-checkbox-GENERATED_ID"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="govuk-label govuk-checkboxes__label"
+            for="pdk-checkbox-GENERATED_ID"
+          >
+             Apply to all 
+          </label>
+        </div>
+      </pdk-checkbox>
+      <hr
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+        pdk-margin-vertical="4"
+      />
+      <pdk-form-field
+        class="govuk-!-margin-0"
+        label="Select targets to apply to"
+        labeltype="none"
+        pdk-margin="0"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-visually-hidden"
+            >
+               Select targets to apply to 
+            </legend>
+            <pdk-checkbox-group
+              class="ng-untouched ng-pristine ng-valid"
+              name="selectedTargetIds"
+            >
+              <div
+                class="govuk-checkboxes"
+              >
+                <div
+                  data-test-id="targetGroupsBySubject"
+                >
+                  <h3
+                    class="govuk-heading-m"
+                    data-test-id="subjectName"
+                    pdk-typography="heading-medium"
+                  >
+                     HMCTS 
+                  </h3>
+                  <div>
+                    <h4
+                      class="govuk-heading-s"
+                      data-test-id="caseReference"
+                      pdk-typography="heading-small"
+                    >
+                       CASE_URN 
+                    </h4>
+                    <ol
+                      class="govuk-list"
+                      pdk-list=""
+                    >
+                      <li>
+                        <pdk-checkbox
+                          class="govuk-!-margin-bottom-2 govuk-checkboxes"
+                          data-test-id="copyToTarget"
+                          pdk-margin-bottom="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="offenceId1"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               1. 
+                              <span
+                                data-test-id="offenceTitle"
+                              >
+                                 Robbery 
+                              </span>
+                              <div
+                                class="govuk-!-margin-bottom-4"
+                                pdk-margin-bottom="4"
+                              >
+                                <pdk-foldable-text
+                                  class="pdk-!-text-color-dark-grey"
+                                  pdk-text-colour="dark-grey"
+                                >
+                                  <div
+                                    class="pdk-foldable"
+                                  >
+                                    <span
+                                      class="pdk-foldable__content pdk-foldable__content__single"
+                                      id="pdk-foldable-text-GENERATED_ID"
+                                    >
+                                       Stolen diamonds 
+                                    </span>
+                                  </div>
+                                </pdk-foldable-text>
+                              </div>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </li>
+                      <li>
+                        <pdk-checkbox
+                          class="govuk-!-margin-bottom-2 govuk-checkboxes"
+                          data-test-id="copyToTarget"
+                          pdk-margin-bottom="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="offenceId2"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               2. 
+                              <span
+                                data-test-id="offenceTitle"
+                              >
+                                 Attempted Robbery 
+                              </span>
+                              <div
+                                class="govuk-!-margin-bottom-4"
+                                pdk-margin-bottom="4"
+                              >
+                                <pdk-foldable-text
+                                  class="pdk-!-text-color-dark-grey"
+                                  pdk-text-colour="dark-grey"
+                                >
+                                  <div
+                                    class="pdk-foldable"
+                                  >
+                                    <span
+                                      class="pdk-foldable__content pdk-foldable__content__single"
+                                      id="pdk-foldable-text-GENERATED_ID"
+                                    >
+                                       Attempted to steal emeralds 
+                                    </span>
+                                  </div>
+                                </pdk-foldable-text>
+                              </div>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </li>
+                    </ol>
+                    <ul>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </pdk-checkbox-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <hr
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+        pdk-margin-vertical="4"
+      />
+      <pdk-checkbox
+        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+        data-test-id="copyToAllTargetGroups"
+      >
+        <div
+          class="govuk-checkboxes__item"
+        >
+          <input
+            class="govuk-checkboxes__input"
+            id="pdk-checkbox-GENERATED_ID"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="govuk-label govuk-checkboxes__label"
+            for="pdk-checkbox-GENERATED_ID"
+          >
+             Apply to all 
+          </label>
+        </div>
+      </pdk-checkbox>
+      <div
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+        pdk-margin-vertical="4"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+          type="submit"
+        >
+          Apply results
+        </button>
+      </div>
+    </form>
+    <div>
+      <a
+        class="govuk-link"
+        href="/"
+        pdk-link=""
+        routerlink="../../"
+      >
+        Cancel
+      </a>
+    </div>
+  </copy-results>
+</ng-component>
+`;
+
+exports[`CopyResultsComponent copy from an offence target should render 1`] = `
+<ng-component
+  caseStatus$={[Function _Store]}
+  copyFromTargetId={[Function String]}
+  draftResult$={[Function _Store]}
+  hearing$={[Function _Store]}
+  invalidResultLines$={[Function _Store]}
+  isAmendApplicationPermission$={[Function _Store]}
+  route={[Function ActivatedRoute]}
+  store={[Function _Store]}
+>
+  <copy-results>
+    <h1
+      class="govuk-!-margin-bottom-4 govuk-heading-xl"
+      pdk-margin-bottom="4"
+      pdk-typography="heading-xlarge"
+    >
+      Apply results to other offences
+    </h1>
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      novalidate=""
+    >
+      <h2
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+        Select results you want to apply
+      </h2>
+      <div
+        class="govuk-!-margin-bottom-6 govuk-!-padding-4 pdk-!-fill-color-light-grey"
+        pdk-fill-colour="light-grey"
+        pdk-margin-bottom="6"
+        pdk-padding="4"
+      >
+        <h2
+          class="govuk-!-margin-bottom-0 govuk-heading-m"
+          pdk-margin-bottom="0"
+          pdk-typography="heading-medium"
+        >
+           HMCTS 
+        </h2>
+        <h2
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+           CASE_URN 
+        </h2>
+        <h3
+          class="govuk-heading-s"
+          pdk-typography="heading-small"
+        >
+           1. 
+           Robbery 
+        </h3>
+        <div
+          class="govuk-!-margin-bottom-4"
+          pdk-margin-bottom="4"
+        >
+          <pdk-foldable-text
+            class="pdk-!-text-color-dark-grey"
+            pdk-text-colour="dark-grey"
+          >
+            <div
+              class="pdk-foldable"
+            >
+              <span
+                class="pdk-foldable__content pdk-foldable__content__single"
+                id="pdk-foldable-text-GENERATED_ID"
+              >
+                 Stolen diamonds 
+              </span>
+            </div>
+          </pdk-foldable-text>
+        </div>
+        <fieldset
+          class="govuk-fieldset"
+          pdk-fieldset=""
+        >
+          <legend
+            class="govuk-fieldset__legend govuk-visually-hidden"
+            pdk-legend=""
+            pdk-visually-hidden=""
+          >
+            Select results you want to apply
+          </legend>
+          <pdk-checkbox-group
+            class="ng-untouched ng-pristine ng-valid"
+            name="selectedResultLineIds"
+          >
+            <div
+              class="govuk-checkboxes"
+            >
+              <div>
+                <div
+                  class="govuk-!-margin-bottom-4"
+                  pdk-margin-bottom="4"
+                >
+                  <pdk-checkbox
+                    class="copy-results__parent-result-checkbox govuk-checkboxes"
+                    data-test-id="copyFromTarget"
+                  >
+                    <div
+                      class="govuk-checkboxes__item"
+                    >
+                      <input
+                        class="govuk-checkboxes__input"
+                        id="pdk-checkbox-GENERATED_ID"
+                        name="pdk-checkbox-group-GENERATED_ID"
+                        type="checkbox"
+                        value="resultLineId2"
+                      />
+                      <label
+                        class="govuk-label govuk-checkboxes__label"
+                        for="pdk-checkbox-GENERATED_ID"
+                      >
+                        <ul
+                          class="pdk-!-negative-margin-top-2 govuk-list"
+                          pdk-list=""
+                          pdk-margin-top="-2"
+                        >
+                          <li
+                            class="pdk-!-negative-margin-bottom-3"
+                          >
+                            <div
+                              class="govuk-!-margin-right-1"
+                              cpp-draft-result-line-tag=""
+                              pdk-margin-right="1"
+                            >
+                              <div
+                                class="govuk-!-padding-left-1 govuk-!-padding-right-1 govuk-!-margin-0 govuk-body-s"
+                                pdk-margin="0"
+                                pdk-padding-horizontal="1"
+                                pdk-typography="body-small"
+                                style="display: inline-block; background-color: #d5d7ed;"
+                              >
+                                <b
+                                  data-test-id="resultLineTitle"
+                                >
+                                  Unpaid work
+                                </b>
+                              </div>
+                            </div>
+                            <cpp-result-prompts-summary
+                              style="display: block;"
+                            >
+                              <dl
+                                class="result-prompts-summary result-prompts-summary--inline"
+                              >
+                                <div
+                                  class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+                                >
+                                  <dt
+                                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                                    pdk-margin-right="1"
+                                    pdk-text-colour="black"
+                                    tint="25"
+                                  >
+                                     Number of hours 
+                                  </dt>
+                                  <dd>
+                                    60 minutes
+                                  </dd>
+                                </div>
+                                <div
+                                  class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+                                >
+                                  <dt
+                                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                                    pdk-margin-right="1"
+                                    pdk-text-colour="black"
+                                    tint="25"
+                                  >
+                                     Additional  / concurrent to what 
+                                  </dt>
+                                  <dd>
+                                    *
+                                  </dd>
+                                </div>
+                                <div
+                                  class="result-prompts-summary__row govuk-!-padding-left-1 govuk-!-padding-right-1"
+                                >
+                                  <dt
+                                    class="govuk-!-margin-right-1 pdk-!-text-color-black-tint-25"
+                                    pdk-margin-right="1"
+                                    pdk-text-colour="black"
+                                    tint="25"
+                                  >
+                                     Additional information 
+                                  </dt>
+                                  <dd>
+                                    *
+                                  </dd>
+                                </div>
+                              </dl>
+                            </cpp-result-prompts-summary>
+                          </li>
+                        </ul>
+                      </label>
+                    </div>
+                  </pdk-checkbox>
+                </div>
+              </div>
+            </div>
+          </pdk-checkbox-group>
+        </fieldset>
+      </div>
+      <h2
+        class="govuk-heading-m"
+        pdk-typography="heading-medium"
+      >
+        Select offences to apply to
+      </h2>
+      <pdk-checkbox
+        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+        data-test-id="copyToAllTargetGroups"
+      >
+        <div
+          class="govuk-checkboxes__item"
+        >
+          <input
+            class="govuk-checkboxes__input"
+            id="pdk-checkbox-GENERATED_ID"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="govuk-label govuk-checkboxes__label"
+            for="pdk-checkbox-GENERATED_ID"
+          >
+             Apply to all 
+          </label>
+        </div>
+      </pdk-checkbox>
+      <hr
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+        pdk-margin-vertical="4"
+      />
+      <pdk-form-field
+        class="govuk-!-margin-0"
+        label="Select targets to apply to"
+        labeltype="none"
+        pdk-margin="0"
+      >
+        <pdk-form-group
+          class="pdk-form-group"
+        >
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
+          >
+            <legend
+              class="govuk-fieldset__legend govuk-visually-hidden"
+            >
+               Select targets to apply to 
+            </legend>
+            <pdk-checkbox-group
+              class="ng-untouched ng-pristine ng-valid"
+              name="selectedTargetIds"
+            >
+              <div
+                class="govuk-checkboxes"
+              >
+                <div
+                  data-test-id="targetGroupsBySubject"
+                >
+                  <h3
+                    class="govuk-heading-m"
+                    data-test-id="subjectName"
+                    pdk-typography="heading-medium"
+                  >
+                     HMCTS 
+                  </h3>
+                  <div>
+                    <h4
+                      class="govuk-heading-s"
+                      data-test-id="caseReference"
+                      pdk-typography="heading-small"
+                    >
+                       CASE_URN 
+                    </h4>
+                    <ol
+                      class="govuk-list"
+                      pdk-list=""
+                    >
+                      <li>
+                        <pdk-checkbox
+                          class="govuk-!-margin-bottom-2 govuk-checkboxes"
+                          data-test-id="copyToTarget"
+                          pdk-margin-bottom="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="offenceId2"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                               2. 
+                              <span
+                                data-test-id="offenceTitle"
+                              >
+                                 Attempted Robbery 
+                              </span>
+                              <div
+                                class="govuk-!-margin-bottom-4"
+                                pdk-margin-bottom="4"
+                              >
+                                <pdk-foldable-text
+                                  class="pdk-!-text-color-dark-grey"
+                                  pdk-text-colour="dark-grey"
+                                >
+                                  <div
+                                    class="pdk-foldable"
+                                  >
+                                    <span
+                                      class="pdk-foldable__content pdk-foldable__content__single"
+                                      id="pdk-foldable-text-GENERATED_ID"
+                                    >
+                                       Attempted to steal emeralds 
+                                    </span>
+                                  </div>
+                                </pdk-foldable-text>
+                              </div>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </li>
+                    </ol>
+                    <ul>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>
+                        <pdk-checkbox
+                          class="govuk-!-margin-bottom-2 govuk-checkboxes"
+                          data-test-id="copyToTarget"
+                          pdk-margin-bottom="2"
+                        >
+                          <div
+                            class="govuk-checkboxes__item"
+                          >
+                            <input
+                              class="govuk-checkboxes__input"
+                              id="pdk-checkbox-GENERATED_ID"
+                              name="pdk-checkbox-group-GENERATED_ID"
+                              type="checkbox"
+                              value="applicationId"
+                            />
+                            <label
+                              class="govuk-label govuk-checkboxes__label"
+                              for="pdk-checkbox-GENERATED_ID"
+                            >
+                              <span
+                                data-test-id="applicationType"
+                              >
+                                 Application for witness summons 
+                              </span>
+                            </label>
+                          </div>
+                        </pdk-checkbox>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </pdk-checkbox-group>
+          </fieldset>
+        </pdk-form-group>
+      </pdk-form-field>
+      <hr
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+        pdk-margin-vertical="4"
+      />
+      <pdk-checkbox
+        class="govuk-checkboxes ng-untouched ng-pristine ng-valid"
+        data-test-id="copyToAllTargetGroups"
+      >
+        <div
+          class="govuk-checkboxes__item"
+        >
+          <input
+            class="govuk-checkboxes__input"
+            id="pdk-checkbox-GENERATED_ID"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="govuk-label govuk-checkboxes__label"
+            for="pdk-checkbox-GENERATED_ID"
+          >
+             Apply to all 
+          </label>
+        </div>
+      </pdk-checkbox>
+      <div
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-4"
+        pdk-margin-vertical="4"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+          type="submit"
+        >
+          Apply results
+        </button>
+      </div>
+    </form>
+    <div>
+      <a
+        class="govuk-link"
+        href="/"
+        pdk-link=""
+        routerlink="../../"
+      >
+        Cancel
+      </a>
+    </div>
+  </copy-results>
+</ng-component>
+`;
