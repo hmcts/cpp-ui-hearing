@@ -127,4 +127,17 @@ describe('AvailableHearingsTableComponent', () => {
     fixture.detectChanges();
     expect(component.onViewHearingDetails.emit).toHaveBeenCalledWith(validAvailableHearingMock1);
   });
+
+  it('#getRelatedHearingSlot should pass through courtScheduleId when present on the hearing day', () => {
+    const hearingDay = {
+      ...validAvailableHearingMock1.hearingDays[0],
+      courtScheduleId: 'court-schedule-id',
+    };
+    expect(component.getRelatedHearingSlot(validAvailableHearingMock1, hearingDay)).toEqual(
+      expect.objectContaining({
+        courtScheduleId: 'court-schedule-id',
+        hearingId: validAvailableHearingMock1.id,
+      })
+    );
+  });
 });

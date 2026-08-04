@@ -2,10 +2,9 @@
 
 exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
 <magistrates-scheduling-container
-  courtId="undefined"
   currentPage$={[Function _Store]}
   defaultFilters$={[Function Observable]}
-  filters$={[Function _Store]}
+  filters$={[Function Observable]}
   hearing$={[Function _Store]}
   hearingTypes$={[Function _Store]}
   localJusticeAreas$={[Function _Store]}
@@ -26,7 +25,6 @@ exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
     <br />
      filters: {
     "oucodeL2Code": "1",
-    "oucodeL3Code": "OUCODEL32",
     "ouCode": "OUCODEL32",
     "courtSession": "AM",
     "sessionStartDate": "2019-01-01",
@@ -34,6 +32,15 @@ exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
     "panel": "ADULT",
     "businessType": "HEARINGTYPE002",
     "hearingTypeId": "All",
+    "jurisdiction": "MAGISTRATES",
+    "organisationUnit": {
+      "id": "COURT002",
+      "oucode": "OUCODEL32",
+      "oucodeL2Code": "1",
+      "oucodeL2Name": "OUL2 X",
+      "oucodeL3Code": "OUCODEL32",
+      "oucodeL3Name": "Courthouse B"
+    },
     "hearingType": {
       "id": "All",
       "hearingCode": "All",
@@ -43,14 +50,6 @@ exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
       "hearingDescription": "All hearing types",
       "magistratesFlag": true,
       "crownFlag": true
-    },
-    "organisationUnit": {
-      "id": "COURT002",
-      "oucode": "OUCODEL32",
-      "oucodeL2Code": "1",
-      "oucodeL2Name": "OUL2 X",
-      "oucodeL3Code": "OUCODEL32",
-      "oucodeL3Name": "Courthouse B"
     }
   }
     <br />

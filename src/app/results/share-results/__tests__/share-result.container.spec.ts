@@ -1,4 +1,5 @@
 import { OverlayRef } from '@angular/cdk/overlay';
+import { HttpErrorResponse } from '@angular/common/http';
 import { fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
@@ -6,8 +7,9 @@ import { ModalService } from '@cpp/pdk';
 import { getOrganisationUnits, HearingType, LinkType, OrganisationUnit } from '@cpp/reference-data';
 import { getUserDetails } from '@cpp/users-groups';
 import { Store, provideState, provideStore } from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import {
+  ApiError,
   clearStandaloneAncillaryResults,
   getCurrentHearingAmendedByUserId,
   getCurrentHearingState,
@@ -15,6 +17,7 @@ import {
   HearingLockState,
   HearingPersonDetails,
   HearingState,
+  ListingService,
   reducers,
   WelshDefendantTranslate
 } from '../../../core';
@@ -1165,6 +1168,178 @@ describe('ShareResultContainerComponent', () => {
         const result = component['checkTrialEffectiveness'](hearing, null, true);
         expect(result).toBe(false);
       });
+    });
+  });
+
+  describe('Crown session availability validation', () => {
+    const crownHearing: HearingDetail = {
+      id: 'hearingId',
+      type: { id: 'non-trial-id-1', description: 'Plea' },
+      jurisdictionType: 'CROWN',
+      prosecutionCases: [
+        {
+          defendants: [
+            {
+              id: 'defendant-id',
+              personDefendant: { personDetails: { firstName: '' } }
+            }
+          ]
+        }
+      ],
+      courtCentre: { id: 'court-centre-id' }
+    } as HearingDetail;
+
+    const magistratesHearing = {
+      ...crownHearing,
+      jurisdictionType: 'MAGISTRATES'
+    } as HearingDetail;
+
+    const crownNextHearingLine = {
+      resultLineId: 'line-1',
+      shortCode: 'nhccs',
+      resultPrompts: [
+        {
+          type: 'HIDDEN',
+          promptId: 'booking-prompt-id',
+          promptRef: 'bookingReference',
+          label: 'Booking reference',
+          value: 'court-schedule-1'
+        },
+        {
+          type: 'DURATION',
+          promptId: 'duration-prompt-id',
+          promptRef: 'HEST',
+          label: 'Estimated duration',
+          value: [{ label: 'MINUTES', value: 30 }]
+        }
+      ]
+    };
+
+    const draftResultWithLines = (lines: Record<string, unknown>) =>
+      ({
+        hearingId: 'hearingId',
+        hearingDay: '2026-06-01',
+        relations: [],
+        shadowListedOffenceIds: [],
+        resultLines: lines
+      } as unknown as DraftResult);
+
+    const crownDraftResult = draftResultWithLines({ 'line-1': crownNextHearingLine });
+
+    let component: ShareResultContainerComponent;
+    let listingService: ListingService;
+    let validationResultSpy: jest.Mock;
+
+    const setup = (hearing: HearingDetail, draftResult: DraftResult) => {
+      validationResultSpy = jest.fn();
+      const fixture = createFixture({
+        amendedByUserId: null,
+        currentUserId: 'userId1',
+        draftResult,
+        hearingState: HearingLockState.INITIALISED,
+        hearing
+      });
+      component = fixture.componentInstance;
+      listingService = (component as any).listingService;
+      component.sharedResultsValidation.subscribe(validationResultSpy);
+      return fixture;
+    };
+
+    it('validates the booked session before sharing and shares when it is available', () => {
+      setup(crownHearing, crownDraftResult);
+      const validateSpy = jest
+        .spyOn(listingService, 'validateSessionAvailability')
+        .mockReturnValue(of({}));
+
+      component.handleShareDraftResult();
+
+      expect(validateSpy).toHaveBeenCalledWith('court-schedule-1', 30);
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    it('blocks sharing and emits a session availability error when the session is no longer available', () => {
+      setup(crownHearing, crownDraftResult);
+      jest
+        .spyOn(listingService, 'validateSessionAvailability')
+        .mockReturnValue(throwError(() => new HttpErrorResponse({ status: 400 })));
+
+      component.handleShareDraftResult();
+
+      expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).toHaveBeenCalledWith({
+        hasAttendanceError: false,
+        hasTrialEffectivenessError: false,
+        hasSessionAvailabilityError: true
+      });
+    });
+
+    it('dispatches an ApiError and does not show the availability banner when validation fails technically', () => {
+      setup(crownHearing, crownDraftResult);
+      jest
+        .spyOn(listingService, 'validateSessionAvailability')
+        .mockReturnValue(throwError(() => new HttpErrorResponse({ status: 500 })));
+
+      component.handleShareDraftResult();
+
+      expect(store.dispatch).toHaveBeenCalledWith(expect.any(ApiError));
+      expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).not.toHaveBeenCalledWith(
+        expect.objectContaining({ hasSessionAvailabilityError: true })
+      );
+    });
+
+    it('validates a Crown next hearing even when the current hearing is magistrates (committal to Crown)', () => {
+      setup(magistratesHearing, crownDraftResult);
+      const validateSpy = jest
+        .spyOn(listingService, 'validateSessionAvailability')
+        .mockReturnValue(of({}));
+
+      component.handleShareDraftResult();
+
+      expect(validateSpy).toHaveBeenCalledWith('court-schedule-1', 30);
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    it('does not validate when the booking is a magistrates next hearing (NHMC)', () => {
+      const magistratesBooking = draftResultWithLines({
+        'line-1': {
+          resultLineId: 'line-1',
+          shortCode: 'nhmc',
+          resultPrompts: [
+            {
+              type: 'TXT',
+              promptId: 'booking-prompt-id',
+              promptRef: 'bookingReference',
+              label: 'Booking reference',
+              value: 'provisional-booking-id'
+            }
+          ]
+        }
+      });
+      setup(crownHearing, magistratesBooking);
+      const validateSpy = jest
+        .spyOn(listingService, 'validateSessionAvailability')
+        .mockReturnValue(of({}));
+
+      component.handleShareDraftResult();
+
+      expect(validateSpy).not.toHaveBeenCalled();
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    it('shares without validation when the Crown next hearing has no booked session', () => {
+      const draftWithoutBooking = draftResultWithLines({
+        'line-1': { resultLineId: 'line-1', shortCode: 'nhccs', resultPrompts: [] }
+      });
+      setup(crownHearing, draftWithoutBooking);
+      const validateSpy = jest
+        .spyOn(listingService, 'validateSessionAvailability')
+        .mockReturnValue(of({}));
+
+      component.handleShareDraftResult();
+
+      expect(validateSpy).not.toHaveBeenCalled();
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
     });
   });
 });

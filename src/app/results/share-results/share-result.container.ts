@@ -1,4 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, DestroyRef, input, output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { select, Store } from '@ngrx/store';
 import {
   ApplicationAggregate,
@@ -10,9 +12,11 @@ import {
   HearingPersonDetails,
   IndividualDefendant,
   isCurrentHearingInWelshCourt,
+  ListingService,
   setStandaloneAncillaryResults,
   WelshDefendantTranslate,
-  HearingDetail
+  HearingDetail,
+  ApiError
 } from '../../core';
 import { hasCitSubreason } from '../../core/selectors/user-groups';
 import {
@@ -25,16 +29,18 @@ import {
 import { ResolvedDraftResultLine } from '../results.interfaces';
 import { ModalService } from '@cpp/pdk';
 import { WelshDefendantTranslateComponent } from './welsh-defendant-translate.component';
-import { combineLatest } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { combineLatest, forkJoin, of, throwError } from 'rxjs';
+import { catchError, map, switchMap, take } from 'rxjs/operators';
 
 import { ShareResultActionBarComponent } from './share-result-action-bar.component';
 import { AsyncPipe } from '@angular/common';
 import { getHearingTypes, HearingType } from '@cpp/reference-data';
+import { getSessionAvailabilityValidationData } from './session-availability.helper';
 
 export interface ShareValidationResult {
   hasAttendanceError: boolean;
   hasTrialEffectivenessError: boolean;
+  hasSessionAvailabilityError?: boolean;
   pendingAttendanceDefendants?: HearingPersonDetails[];
 }
 
@@ -63,7 +69,7 @@ export interface ShareValidationResult {
     </cpp-share-result-action-bar>
   `,
   imports: [ShareResultActionBarComponent, AsyncPipe],
-  providers: [ModalService]
+  providers: [ModalService, ListingService]
 })
 export class ShareResultContainerComponent {
   pendingAttendanceDefendants = input<HearingPersonDetails[]>([]);
@@ -83,7 +89,12 @@ export class ShareResultContainerComponent {
   hearingTypes$ = this.store.pipe(select(getHearingTypes));
   citSubreasonEnabled$ = this.store.pipe(select(hasCitSubreason));
 
-  constructor(private store: Store<ResultsState>, private modalService: ModalService) {}
+  constructor(
+    private store: Store<ResultsState>,
+    private modalService: ModalService,
+    private listingService: ListingService,
+    private destroyRef: DestroyRef
+  ) {}
 
   handleApproveAmendments() {
     this.store.dispatch(ShareResultsActions.approveAmendments());
@@ -133,8 +144,64 @@ export class ShareResultContainerComponent {
     if (hasAttendanceError || hasTrialEffectivenessError) {
       return;
     }
+
+    this.validateSessionAvailabilityAndShare(withWelshTranslate, individualDefendants);
+  }
+
+  private validateSessionAvailabilityAndShare(
+    withWelshTranslate: boolean,
+    individualDefendants: IndividualDefendant[]
+  ): void {
+    this.draftResult$
+      .pipe(
+        take(1),
+        switchMap(draftResult => {
+          const validations = getSessionAvailabilityValidationData(draftResult);
+
+          if (validations.length === 0) {
+            return of(true);
+          }
+
+          return forkJoin(
+            validations.map(({ courtScheduleId, duration }) =>
+              this.listingService.validateSessionAvailability(courtScheduleId, duration).pipe(
+                map(() => true),
+                catchError((httpError: HttpErrorResponse) => {
+                  if (httpError.status === 400) {
+                    return of(false);
+                  }
+                  return throwError(() => httpError);
+                })
+              )
+            )
+          ).pipe(map(results => results.every(Boolean)));
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe({
+        next: sessionAvailable => {
+          if (sessionAvailable) {
+            this.proceedWithResultShare(withWelshTranslate, individualDefendants);
+          } else {
+            this.sharedResultsValidation.emit({
+              hasAttendanceError: false,
+              hasTrialEffectivenessError: false,
+              hasSessionAvailabilityError: true
+            });
+          }
+        },
+        error: (httpError: HttpErrorResponse) => {
+          this.store.dispatch(new ApiError(httpError));
+        }
+      });
+  }
+
+  private proceedWithResultShare(
+    withWelshTranslate: boolean,
+    individualDefendants: IndividualDefendant[]
+  ): void {
     if (withWelshTranslate) {
-      this.shareWithWelshTranslation(individualDefendants);
+      this.shareWithWelshTranslation(individualDefendants!);
     } else {
       this.store.dispatch(ShareResultsActions.shareDraftResult());
       this.store.dispatch(clearCurrentAmendmentReason());

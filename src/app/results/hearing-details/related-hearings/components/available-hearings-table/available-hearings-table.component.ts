@@ -110,7 +110,8 @@ export class AvailableHearingsTableComponent {
       courtRoomId: hearing.courtRoomId,
       estimatedMinutes: hearing.estimatedMinutes,
       hearingType: hearing.type.description,
-      hearingId: hearing.id
+      hearingId: hearing.id,
+      courtScheduleId: hearingDay.courtScheduleId
     };
   }
 

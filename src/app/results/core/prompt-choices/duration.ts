@@ -7,8 +7,8 @@ import {
 } from '../../results.interfaces';
 
 const minutesPerHour = 60;
-const minutesPerDay = minutesPerHour * 24;
-const minutesPerWeek = minutesPerDay * 7;
+const minutesPerDay = minutesPerHour * 6;
+const minutesPerWeek = minutesPerDay * 5;
 
 export const isDurationPromptChoice = (
   promptChoice: PromptChoice | PromptChoiceChild
@@ -36,6 +36,24 @@ export const getDurationValueFromMinutes = (minutes: number): DraftResultPromptV
     return [{ label: 'HOURS', value: Math.floor(minutes / minutesPerHour) }];
   }
   return [{ label: 'MINUTES', value: minutes }];
+};
+
+export const getMinutesFromDurationValue = (value: DraftResultPromptValue[]): number => {
+  const sittingHoursPerDay = 6;
+
+  const minutesPerUnit: { [unit: string]: number } = {
+    HOURS: minutesPerHour,
+    DAYS: sittingHoursPerDay * minutesPerHour,
+    WEEKS: 7 * sittingHoursPerDay * minutesPerHour
+  };
+
+  const { label, value: amount } = value[0];
+
+  if (label === 'MINUTES') {
+    return amount;
+  }
+
+  return amount * minutesPerUnit[label];
 };
 
 export const serializeDurationValue = (value: DraftResultPromptValue[]): string => {

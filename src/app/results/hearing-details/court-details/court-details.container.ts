@@ -6,7 +6,7 @@ import {
   OrganisationUnit
 } from '@cpp/reference-data';
 import { select, Store } from '@ngrx/store';
-import { map, take } from 'rxjs/operators';
+import { distinctUntilChanged, map, take } from 'rxjs/operators';
 import { FormValues, CourtDetailsComponent } from './components/court-details.component';
 import { combineLatest, Observable } from 'rxjs';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../core';
@@ -20,27 +20,32 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { AsyncPipe } from '@angular/common';
+import { CrownSchedulingContainer } from '../allocation/containers/crown-scheduling.container';
 
 @Component({
   selector: 'court-details-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    @if ((isWeekCommencing$ | async) === true) {
     <court-details
       [hearingTypes]="hearingTypes"
       [defaultValues]="defaultFilters$ | async"
-      [isWeekCommencing]="isWeekCommencing"
+      [isWeekCommencing]="true"
       [weekCommencingPeriod]="1"
       [hearingData]="hearing$ | async"
       (submitData)="handleSubmit($event)"
       (cancel)="handleCancel()"
     >
     </court-details>
+    } @else {
+    <crown-scheduling-container></crown-scheduling-container>
+    }
   `,
-  imports: [CourtDetailsComponent, AsyncPipe]
+  imports: [CourtDetailsComponent, CrownSchedulingContainer, AsyncPipe]
 })
 export class CourtDetailsContainer {
   defaultHearingType: HearingType;
-  isWeekCommencing = false;
+  isWeekCommencing$: Observable<boolean>;
   defaultFilters$: Observable<Partial<FormValues>>;
   formValues: Partial<FormValues>;
 
@@ -59,12 +64,17 @@ export class CourtDetailsContainer {
 
     this.hearing$ = this.store.select(getCurrentHearing);
 
+    this.isWeekCommencing$ = this.store.pipe(
+      select(getRouteQueryParams),
+      map(queryParams => queryParams.weekCommencingType === 'WEEK_COMMENCING'),
+      distinctUntilChanged()
+    );
+
     this.defaultFilters$ = combineLatest([
       this.store.pipe(select(getRouteQueryParams)),
       this.store.pipe(select(getOrganisationUnits))
     ]).pipe(
       map(([queryParams, organisationUnits]) => {
-        this.isWeekCommencing = queryParams.weekCommencingType === 'WEEK_COMMENCING';
         this.organisationUnits = organisationUnits;
 
         const organisationUnit = this.organisationUnits.find(ou => ou.id === queryParams.courtId);
@@ -110,11 +120,9 @@ export class CourtDetailsContainer {
             const courtroom = courtCentre.courtrooms.find(r => r.id === courtRoomId);
             courtroomName = courtroom.courtroomName;
           }
-          const promptRefToValueMap = {
-            fixedDate: this.isWeekCommencing ? undefined : startDate,
-            weekCommencing: this.isWeekCommencing
-              ? moment(startDate).startOf('isoWeek').format('YYYY-MM-DD')
-              : undefined,
+          const promptRefToValueMap: Record<string, unknown> = {
+            fixedDate: undefined,
+            weekCommencing: moment(startDate).startOf('isoWeek').format('YYYY-MM-DD'),
             reservedJudiciary: judiciary
               ? `${judiciary.forenames} ${judiciary.surname}`
               : undefined,

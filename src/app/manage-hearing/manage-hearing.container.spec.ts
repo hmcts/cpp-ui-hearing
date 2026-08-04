@@ -386,6 +386,12 @@ describe('ManageHearingContainer', () => {
         jest.spyOn(component, 'clearTrialEffectivenessError');
         jest.spyOn(component, 'missingAttendanceHandler');
         jest.spyOn(component, 'onTrialEffectivenessMissing');
+        jest.spyOn(component, 'sessionNotAvailableHandler');
+      });
+
+      it('should clear errors, the session alert and trial effectiveness error', () => {
+        component.errors = [{ id: 'test', message: 'test' }];
+        component.sessionNotAvailable = true;
       });
 
       it('should clear errors and trial effectiveness error', () => {
@@ -395,6 +401,7 @@ describe('ManageHearingContainer', () => {
           hasTrialEffectivenessError: false
         });
         expect(component.errors).toEqual([]);
+        expect(component.sessionNotAvailable).toBe(false);
         expect(component.clearTrialEffectivenessError).toHaveBeenCalled();
       });
 
@@ -414,6 +421,25 @@ describe('ManageHearingContainer', () => {
           hasTrialEffectivenessError: true
         });
         expect(component.onTrialEffectivenessMissing).toHaveBeenCalled();
+      });
+
+      it('should call sessionNotAvailableHandler if hasSessionAvailabilityError is true', () => {
+        component.handleSharedResultsValidation({
+          hasAttendanceError: false,
+          hasTrialEffectivenessError: false,
+          hasSessionAvailabilityError: true
+        });
+        expect(component.sessionNotAvailableHandler).toHaveBeenCalled();
+      });
+    });
+
+    describe('sessionNotAvailableHandler', () => {
+      it('should show the session-not-available alert and scroll to the top of the page', () => {
+        component.sessionNotAvailableHandler();
+
+        expect(component.sessionNotAvailable).toBe(true);
+        expect(component.errors).toEqual([]);
+        expect(scrollSpy).toHaveBeenCalledWith(0, 0);
       });
     });
 

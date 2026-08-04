@@ -40,7 +40,7 @@ describe('DURATION prompt choice', () => {
     });
 
     it('should create a duration value from an exact day', () => {
-      const validValue = getDurationValueFromMinutes(60 * 24);
+      const validValue = getDurationValueFromMinutes(60 * 6);
 
       expect(validValue).toMatchInlineSnapshot(`
         [
@@ -51,20 +51,20 @@ describe('DURATION prompt choice', () => {
         ]
       `);
 
-      const invalidValue = getDurationValueFromMinutes(60 * 24 + 1);
+      const invalidValue = getDurationValueFromMinutes(60 * 6 + 1);
 
       expect(invalidValue).toMatchInlineSnapshot(`
         [
           {
             "label": "MINUTES",
-            "value": 1441,
+            "value": 361,
           },
         ]
       `);
     });
 
     it('should create a duration value from an exact week', () => {
-      const validValue = getDurationValueFromMinutes(60 * 24 * 7);
+      const validValue = getDurationValueFromMinutes(60 * 6 * 5);
 
       expect(validValue).toMatchInlineSnapshot(`
         [
@@ -75,13 +75,13 @@ describe('DURATION prompt choice', () => {
         ]
       `);
 
-      const invalidValue = getDurationValueFromMinutes(60 * 24 * 7 + 1);
+      const invalidValue = getDurationValueFromMinutes(60 * 6 * 5 + 1);
 
       expect(invalidValue).toMatchInlineSnapshot(`
         [
           {
             "label": "MINUTES",
-            "value": 10081,
+            "value": 1801,
           },
         ]
       `);

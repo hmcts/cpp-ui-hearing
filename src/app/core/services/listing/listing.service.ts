@@ -36,6 +36,19 @@ export class ListingService {
     });
   }
 
+  validateSessionAvailability(courtScheduleId: string, duration?: number): Observable<unknown> {
+    const body = {
+      courtScheduleIdList: [{ courtScheduleId }],
+      ...(duration != null && { duration })
+    };
+
+    return this.api.command({
+      url: '/listing-query-api/query/api/rest/listing/sessionAvailabilityValidation',
+      requestType: 'application/vnd.listing.validate.session.availability+json',
+      body
+    });
+  }
+
   private toHttpParams(params: any) {
     const cleanedParams = this.removeEmptyProperties(params);
     return Object.getOwnPropertyNames(cleanedParams).reduce(
