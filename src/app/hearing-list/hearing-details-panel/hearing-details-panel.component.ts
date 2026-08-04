@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-
 import {
   Defendant,
   DefenceCounsel,

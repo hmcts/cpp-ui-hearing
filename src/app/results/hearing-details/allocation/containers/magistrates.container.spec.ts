@@ -44,7 +44,8 @@ describe('MagistratesSchedulingContainer', () => {
     sessionEndDate: '2019-01-31',
     panel: 'ADULT',
     businessType: 'HEARINGTYPE002',
-    hearingTypeId: 'All'
+    hearingTypeId: 'All',
+    jurisdiction: 'MAGISTRATES'
   };
   const hearingId = 'HEARINGID1';
   const draftResult = extendDraftResult(createDraftResult({ results: ['NHMC'] }));
@@ -153,7 +154,8 @@ describe('MagistratesSchedulingContainer', () => {
         params: {
           hearingId,
           resultLineId
-        } as Params
+        } as Params,
+        queryParams: {}
       } as ActivatedRouteSnapshot
     } as ActivatedRoute;
 
@@ -225,8 +227,14 @@ describe('MagistratesSchedulingContainer', () => {
       relativeTo: activatedRoute,
       fragment: '_',
       queryParamsHandling: 'merge',
+      replaceUrl: true,
       queryParams: {
-        mf: JSON.stringify({ ...filters, sessionEndDate: '2019-02-11', pageNumber: 1 })
+        mf: JSON.stringify({
+          ...filters,
+          sessionEndDate: '2019-02-11',
+          pageNumber: 1,
+          jurisdiction: 'MAGISTRATES'
+        })
       }
     });
   });
@@ -240,6 +248,7 @@ describe('MagistratesSchedulingContainer', () => {
       relativeTo: activatedRoute,
       fragment: '_',
       queryParamsHandling: 'merge',
+      replaceUrl: true,
       queryParams: {
         mf: JSON.stringify({
           ...searchParams,

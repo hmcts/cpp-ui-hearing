@@ -4,7 +4,6 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
@@ -12,7 +11,6 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -25,7 +23,7 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -42,10 +40,10 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"
@@ -61,7 +59,6 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
@@ -69,7 +66,6 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -82,7 +78,7 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -108,10 +104,10 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"
@@ -127,7 +123,6 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
   errors={[Function Array]}
   filters={[Function Object]}
@@ -136,7 +131,6 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -182,7 +176,7 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
         </div>
       </div>
     </pdk-error-summary>
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -199,10 +193,10 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"
@@ -218,7 +212,6 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
@@ -226,7 +219,6 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -239,7 +231,7 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -256,10 +248,10 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
     <pdk-inset-text>
       <div
         class="govuk-inset-text"
@@ -284,7 +276,6 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage={[Function Number]}
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
@@ -292,12 +283,11 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
   rotaBusinessTypes={[Function Array]}
-  slotsRef={[Function MockSchedulingSlotsComponent]}
+  slotsRef={[Function MockMagistratesSchedulingSlotsComponent]}
   totalResults={[Function Number]}
 >
   <div
@@ -305,7 +295,7 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -322,10 +312,10 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
     <pdk-inset-text>
       <div
         class="govuk-inset-text"
@@ -338,7 +328,7 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
     <div
       id="magistrates-scheduling-slots"
     >
-      <scheduling-slots>
+      <magistrates-scheduling-slots>
         <div>
           <p>
             Mock Scheduling Slots
@@ -400,7 +390,7 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
             totalResults: 3
           </p>
         </div>
-      </scheduling-slots>
+      </magistrates-scheduling-slots>
     </div>
   </div><a
     class="govuk-link"

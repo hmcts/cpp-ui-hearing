@@ -101,4 +101,46 @@ describe('ListingService', () => {
       ).toBeTruthy();
     });
   });
+
+  describe('validateSessionAvailability', () => {
+    const url = '/listing-query-api/query/api/rest/listing/sessionAvailabilityValidation';
+    const requestType = 'application/vnd.listing.validate.session.availability+json';
+
+    it('should send only the courtScheduleIdList when no duration is provided', () => {
+      const httpResponse$ = cold('-a|', { a: {} });
+      const expected$ = cold('-b|', { b: {} });
+      const commandSpy = jest.fn().mockReturnValue(httpResponse$);
+      http.command = commandSpy;
+
+      const command$ = service.validateSessionAvailability('id-1');
+
+      expect(command$).toBeObservable(expected$);
+      expect(commandSpy).toHaveBeenCalledWith({
+        url,
+        requestType,
+        body: {
+          courtScheduleIdList: [{ courtScheduleId: 'id-1' }]
+        }
+      });
+    });
+
+    it('should include the duration in the body when provided', () => {
+      const httpResponse$ = cold('-a|', { a: {} });
+      const expected$ = cold('-b|', { b: {} });
+      const commandSpy = jest.fn().mockReturnValue(httpResponse$);
+      http.command = commandSpy;
+
+      const command$ = service.validateSessionAvailability('id-1', 20);
+
+      expect(command$).toBeObservable(expected$);
+      expect(commandSpy).toHaveBeenCalledWith({
+        url,
+        requestType,
+        body: {
+          courtScheduleIdList: [{ courtScheduleId: 'id-1' }],
+          duration: 20
+        }
+      });
+    });
+  });
 });

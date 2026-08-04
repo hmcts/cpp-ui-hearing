@@ -9,8 +9,8 @@ import {
   allocationFormConfigs,
   SchedulingFilters,
   HearingSlot,
-  SchedulingFiltersComponent,
-  SchedulingSlotsComponent,
+  MagistratesSchedulingFiltersComponent,
+  MagistratesSchedulingSlotsComponent,
   AllocationsFormConfig,
   HearingSlotAllocation
 } from '@cpp/scheduling';
@@ -53,10 +53,13 @@ describe('MagistratesSchedulingComponent', () => {
       teardown: { destroyAfterEach: false }
     }).overrideComponent(MagistratesSchedulingComponent, {
       remove: {
-        imports: [SchedulingFiltersComponent, SchedulingSlotsComponent]
+        imports: [MagistratesSchedulingFiltersComponent, MagistratesSchedulingSlotsComponent]
       },
       add: {
-        imports: [MockSchedulingFiltersComponent, MockSchedulingSlotsComponent]
+        imports: [
+          MockMagistratesSchedulingFiltersComponent,
+          MockMagistratesSchedulingSlotsComponent
+        ]
       }
     });
 
@@ -265,7 +268,7 @@ describe('MagistratesSchedulingComponent', () => {
 });
 
 @Component({
-  selector: 'scheduling-filters',
+  selector: 'magistrates-scheduling-filters',
   template: `
     <div>
       <p>Mock Scheduling Filters</p>
@@ -277,7 +280,7 @@ describe('MagistratesSchedulingComponent', () => {
   `,
   imports: [JsonPipe]
 })
-class MockSchedulingFiltersComponent {
+class MockMagistratesSchedulingFiltersComponent {
   @Input() organisationUnits: OrganisationUnit[];
   @Input() rotaBusinessTypes: RotaBusinessType[];
   @Input() defaultValues: Partial<SchedulingFilters>;
@@ -287,7 +290,7 @@ class MockSchedulingFiltersComponent {
 }
 
 @Component({
-  selector: 'scheduling-slots',
+  selector: 'magistrates-scheduling-slots',
   template: `
     <div>
       <p>Mock Scheduling Slots</p>
@@ -304,7 +307,7 @@ class MockSchedulingFiltersComponent {
   `,
   imports: [JsonPipe]
 })
-class MockSchedulingSlotsComponent {
+class MockMagistratesSchedulingSlotsComponent {
   @Input() selectionMode: string;
   @Input() formConfig: AllocationsFormConfig;
   @Input() currentPage: number;

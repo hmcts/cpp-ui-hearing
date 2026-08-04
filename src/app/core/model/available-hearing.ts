@@ -14,7 +14,7 @@ export interface SearchAvailableHearingsFormOptions {
 
 export enum SearchCriteriaAvailableHearingsType {
   CASE_IN_HEARING = 'CASE_IN_HEARING',
-  MATCHED_DEFENDANTS = 'MATCHED_DEFENDANTS'
+  MATCHED_DEFENDANTS = 'MATCHED_DEFENDANTS',
 }
 
 export interface AvailableHearing {
@@ -51,4 +51,5 @@ export interface RelatedHearingSlot {
   estimatedMinutes?: number;
   hearingType: string;
   hearingId: string;
+  courtScheduleId?: string;
 }

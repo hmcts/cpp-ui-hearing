@@ -57,7 +57,8 @@ describe('AllocationGuard', () => {
     panel: 'ADULT',
     businessType: 'businessTypeCode',
     availableDurationMins: 30,
-    pageNumber: 2
+    pageNumber: 2,
+    jurisdiction: 'MAGISTRATES'
   };
 
   const createActivatedRouteSnapshot = (

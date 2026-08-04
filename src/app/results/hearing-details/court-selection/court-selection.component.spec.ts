@@ -26,6 +26,7 @@ describe('CourtSelectionComponent', () => {
     fixture = TestBed.createComponent(CourtSelectionComponent);
     component = fixture.componentInstance;
     component.jurisdictionType = 'MAGISTRATES';
+    component.backUrl = ['/manage', 'test-hearing-id', 'enter-results'];
   });
 
   it('should render component', () => {
@@ -35,7 +36,7 @@ describe('CourtSelectionComponent', () => {
 
   it('should emit with selected court', () => {
     jest.spyOn(component.continue, 'emit');
-    component.selectedCourtCentre = { id: '*' } as OrganisationUnit;
+    component.selectedCourtCentre.set({ id: '*' } as OrganisationUnit);
     component.onContinue();
     expect(component.continue.emit).toHaveBeenCalledWith({ id: '*' });
   });

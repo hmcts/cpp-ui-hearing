@@ -6,6 +6,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -14,6 +15,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -42,6 +44,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -50,6 +53,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -84,6 +88,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -92,6 +97,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -108,6 +114,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -116,6 +123,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -150,6 +158,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -158,6 +167,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -174,6 +184,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -182,6 +193,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -210,6 +222,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -218,6 +231,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -246,6 +260,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -254,6 +269,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -288,6 +304,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -296,6 +313,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -312,6 +330,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -320,6 +339,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -348,6 +368,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -356,6 +377,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -372,6 +394,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -380,6 +403,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -396,6 +420,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -404,6 +429,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -432,6 +458,7 @@ exports[`ShareResultContainerComponent when the hearing has shared results shoul
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -440,6 +467,7 @@ exports[`ShareResultContainerComponent when the hearing has shared results shoul
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}
@@ -456,6 +484,7 @@ exports[`ShareResultContainerComponent when the hearing has shared results shoul
   amendedByCurrentUser$={[Function _Store]}
   caseStatus={[Function Function]}
   citSubreasonEnabled$={[Function _Store]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
   draftResult$={[Function _Store]}
   hasValidationErrors$={[Function _Store]}
   hearing$={[Function _Store]}
@@ -464,6 +493,7 @@ exports[`ShareResultContainerComponent when the hearing has shared results shoul
   individualDefendants$={[Function _Store]}
   isApplicationJourney={[Function Function]}
   isCurrentHearingInWelshCourt={[Function _Store]}
+  listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
   sharedResultsValidation={[Function OutputEmitterRef]}

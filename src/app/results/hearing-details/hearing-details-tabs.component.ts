@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, startWith } from 'rxjs/operators';
 import { JurisdictionTypes } from '../../hearing-events-log/core/models/jurisdiction-types';
 import {
   PdkTabsNavigationComponent,
@@ -6,31 +9,30 @@ import {
   PdkTabsLinkDirective
 } from '@cpp/pdk';
 
-import { RouterLinkActive, RouterLink } from '@angular/router';
 @Component({
   selector: 'cpp-hearing-details-tabs',
   template: `
     <pdk-tabs-navigation>
-      @if (jurisdictionType === jurisdictionTypes.CROWN) {
-      <pdk-tabs-nav-item routerLinkActive="govuk-tabs__list-item--selected">
-        <a routerLink="./related-hearings" pdk-tabs-link queryParamsHandling="preserve"
+      @if (jurisdictionType() === jurisdictionTypes.CROWN) {
+      <pdk-tabs-nav-item [selected]="isActive('related-hearings')">
+        <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('related-hearings')"
           >Related hearings</a
         >
       </pdk-tabs-nav-item>
-      <pdk-tabs-nav-item routerLinkActive="govuk-tabs__list-item--selected">
-        <a routerLink="./court-details" pdk-tabs-link queryParamsHandling="preserve"
-          >Enter hearing details</a
-        >
+      <pdk-tabs-nav-item [selected]="isActive('court-details')">
+        <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('court-details')">{{
+          weekCommencingType() === 'WEEK_COMMENCING' ? 'Enter hearing details' : 'Find a hearing'
+        }}</a>
       </pdk-tabs-nav-item>
-      } @else { @if (canAllocateRelatedHearing) {
-      <pdk-tabs-nav-item routerLinkActive="govuk-tabs__list-item--selected">
-        <a routerLink="./related-hearings" pdk-tabs-link queryParamsHandling="preserve"
+      } @else { @if (canAllocateRelatedHearing()) {
+      <pdk-tabs-nav-item [selected]="isActive('related-hearings')">
+        <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('related-hearings')"
           >Related hearings</a
         >
       </pdk-tabs-nav-item>
       }
-      <pdk-tabs-nav-item routerLinkActive="govuk-tabs__list-item--selected">
-        <a routerLink="./hearing-details" pdk-tabs-link queryParamsHandling="preserve"
+      <pdk-tabs-nav-item [selected]="isActive('hearing-details')">
+        <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('hearing-details')"
           >Find a hearing</a
         >
       </pdk-tabs-nav-item>
@@ -38,17 +40,35 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
     </pdk-tabs-navigation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    PdkTabsNavigationComponent,
-    PdkTabsNavItemDirective,
-    RouterLinkActive,
-    PdkTabsLinkDirective,
-    RouterLink
-  ]
+  imports: [PdkTabsNavigationComponent, PdkTabsNavItemDirective, PdkTabsLinkDirective]
 })
 export class HearingDetailsTabsComponent {
-  @Input() canAllocateRelatedHearing = true;
-  @Input() jurisdictionType: JurisdictionTypes;
+  canAllocateRelatedHearing = input(true);
+  jurisdictionType = input<JurisdictionTypes>();
+  weekCommencingType = input<'FIXED' | 'WEEK_COMMENCING' | 'DATE_TO_BE_FIXED'>();
 
   jurisdictionTypes = JurisdictionTypes;
+
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  private activeChildPath = toSignal(
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      map(() => this.route.firstChild?.snapshot.url[0]?.path ?? ''),
+      startWith(this.route.firstChild?.snapshot.url[0]?.path ?? '')
+    )
+  );
+
+  navigateTab(path: string): void {
+    this.router.navigate([path], {
+      relativeTo: this.route,
+      queryParamsHandling: 'preserve',
+      replaceUrl: true
+    });
+  }
+
+  isActive(path: string): boolean {
+    return this.activeChildPath() === path;
+  }
 }

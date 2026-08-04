@@ -2,15 +2,35 @@
 
 exports[`CourtSelectionComponent should render component 1`] = `
 <court-selection
-  cancel={[Function EventEmitter_]}
+  backUrl={[Function Array]}
   continue={[Function EventEmitter_]}
+  courtCentre={[Function Function]}
   errors={[Function EventEmitter_]}
   jurisdictionType={[Function String]}
+  selectedCourtCentre={[Function Function]}
 >
   <pdk-grid
     class="govuk-grid-row"
     container=""
   >
+    <pdk-grid
+      class="govuk-grid-column-full"
+      full=""
+    >
+      <div
+        class="govuk-!-margin-bottom-1"
+        pdk-margin-bottom="1"
+      >
+        <a
+          class="govuk-back-link"
+          data-role="cancel-btn"
+          href="/manage/test-hearing-id/enter-results"
+          pdk-back-link=""
+        >
+          Back
+        </a>
+      </div>
+    </pdk-grid>
     <div
       class="court-center-selection"
     >
@@ -76,18 +96,6 @@ exports[`CourtSelectionComponent should render component 1`] = `
           >
              Continue 
           </button>
-          <div
-            class="govuk-!-margin-top-2"
-            pdk-margin-top="2"
-          >
-            <a
-              class="govuk-link"
-              data-role="cancel-btn"
-              pdk-link=""
-            >
-              Back
-            </a>
-          </div>
         </form>
       </pdk-grid>
     </div>
