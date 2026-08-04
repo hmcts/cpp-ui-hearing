@@ -29,7 +29,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     </pdk-alert>
     } }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IdpcIngestionStatusComponent {
   @Input() phase: IdpcIngestionPhase;

@@ -16,7 +16,7 @@ import {
   mapTo,
   switchMap,
   tap,
-  withLatestFrom
+  withLatestFrom,
 } from 'rxjs/operators';
 import { AppConfigService } from '../../../config';
 import {
@@ -25,7 +25,7 @@ import {
   HearingLockState,
   MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
   omitUndefined,
-  WelshDefendantTranslate
+  WelshDefendantTranslate,
 } from '../../../core';
 import {
   AnyDraftResultLine,
@@ -41,7 +41,7 @@ import {
   SharedResult,
   SharedResultLine,
   TargetLike,
-  UnresolvedDraftResultLine
+  UnresolvedDraftResultLine,
 } from '../../results.interfaces';
 import {
   createDraftResultPromptsFromValueMap,
@@ -54,7 +54,7 @@ import {
   isResolvedDraftResultLine,
   isShareableDraftResultLine,
   isSharedResultLine,
-  serializeDraftResultPromptValue
+  serializeDraftResultPromptValue,
 } from '../helpers';
 import { Legacy, migrateDraftResultToVersion } from '../migrations';
 import { ResultsState } from '../store';
@@ -81,7 +81,7 @@ export class ResultsService {
    */
   setWelshDefendantTranslate({
     hearingId,
-    payload
+    payload,
   }: {
     hearingId: string;
     payload: WelshDefendantTranslate[];
@@ -90,7 +90,7 @@ export class ResultsService {
       url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}`,
       requestType: 'application/vnd.hearing.save-defendants-welsh-translations+json',
       successEvent: 'public.hearing.defendants-welsh-information-recorded',
-      body: { defendantsWelshList: payload }
+      body: { defendantsWelshList: payload },
     });
   }
 
@@ -120,8 +120,8 @@ export class ResultsService {
         validateAction: 'APPROVE',
         id: hearingId,
         hearingDay,
-        userId
-      }
+        userId,
+      },
     });
   }
 
@@ -137,14 +137,14 @@ export class ResultsService {
    */
   cancelAmendments({
     hearingId,
-    hearingDay
+    hearingDay,
   }: DraftResult<AnyDraftResultLine>): Observable<unknown> {
     return this.cppHttp.commandSync({
       url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}`,
       requestType: 'application/vnd.hearing.change-cancel-amendments+json',
       successEvent: 'public.hearing.result-amendments-cancelled',
       errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
-      body: { hearingDay }
+      body: { hearingDay },
     });
   }
 
@@ -165,14 +165,14 @@ export class ResultsService {
     return this.cppHttp
       .query<CompressedDraftResultWithMetadata | Legacy.DraftResult>({
         url: `/hearing-query-api/query/api/rest/hearing/hearings/${hearingId}/${hearingDay}/draft-result`,
-        requestType: 'application/vnd.hearing.get-draft-result-v2+json'
+        requestType: 'application/vnd.hearing.get-draft-result-v2+json',
       })
       .pipe(
-        map(wrappedDraftresult => this.unwrapDraftResult(wrappedDraftresult)),
+        map((wrappedDraftresult) => this.unwrapDraftResult(wrappedDraftresult)),
         withLatestFrom(
           this.store.pipe(
             select(getCurrentHearing),
-            filter(hearing => Boolean(hearing) && hearing.id === hearingId)
+            filter((hearing) => Boolean(hearing) && hearing.id === hearingId)
           )
         ),
         // Migrate the draft result to ensure that any historical draft result
@@ -186,7 +186,7 @@ export class ResultsService {
             {
               hearingId,
               hearingDay,
-              hearing
+              hearing,
             },
             isBoxwork,
             firstSharedDate
@@ -204,7 +204,7 @@ export class ResultsService {
         }),
         // the metadata is a private property used by this service only, so is not exposed
         // to the rest of the application
-        map(wrappedDraftResult => omit(wrappedDraftResult, '__metadata__'))
+        map((wrappedDraftResult) => omit(wrappedDraftResult, '__metadata__'))
       );
   }
 
@@ -238,12 +238,12 @@ export class ResultsService {
       withLatestFrom(
         this.store.pipe(
           select(getCurrentHearing),
-          filter(hearing => Boolean(hearing) && hearing.id === hearingId)
+          filter((hearing) => Boolean(hearing) && hearing.id === hearingId)
         )
       ),
       switchMap(([draftResult, hearing]) =>
         forkJoin(
-          values(draftResult.resultLines).map(resultLine => {
+          values(draftResult.resultLines).map((resultLine) => {
             if (isResolvedDraftResultLine(resultLine)) {
               return this.notepadParserService
                 .fetchParsedResultDefinition(resultLine, hearing.jurisdictionType)
@@ -253,14 +253,14 @@ export class ResultsService {
                       bailStatusCode,
                       conditionalMandatory,
                       promptChoices,
-                      childResultDefinitions = []
+                      childResultDefinitions = [],
                     }) =>
                       omitUndefined({
                         ...resultLine,
                         bailStatusCode,
                         conditionalMandatory,
                         promptChoices,
-                        childResultDefinitions
+                        childResultDefinitions,
                       })
                   )
                 );
@@ -269,9 +269,9 @@ export class ResultsService {
           })
         ).pipe(
           defaultIfEmpty([]),
-          map(resultLines => ({
+          map((resultLines) => ({
             ...draftResult,
-            resultLines: keyBy(resultLines, 'resultLineId')
+            resultLines: keyBy(resultLines, 'resultLineId'),
           }))
         )
       )
@@ -297,10 +297,10 @@ export class ResultsService {
     return this.cppHttp
       .query<SharedResult>({
         url: `/hearing-query-api/query/api/rest/hearing/hearings/${hearingId}/${hearingDay}/share-results`,
-        requestType: 'application/vnd.hearing.get-share-result-v2+json'
+        requestType: 'application/vnd.hearing.get-share-result-v2+json',
       })
       .pipe(
-        switchMap(sharedResult => {
+        switchMap((sharedResult) => {
           // If there are no shared result lines, then this must be a legacy
           // hearing, prior to when shared result lines were saved by the
           // database. Consequently, to recover the legacy shared results, we
@@ -312,7 +312,7 @@ export class ResultsService {
                 url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/${hearingDay}`,
                 requestType: 'application/vnd.hearing.delete-draft-result-v2+json',
                 successEvent: 'public.hearing.draft-result-deleted-v2',
-                body: { hearingId, hearingDay }
+                body: { hearingId, hearingDay },
               })
               .pipe(
                 switchMap(() =>
@@ -349,7 +349,7 @@ export class ResultsService {
       successEvent: 'public.hearing.event-amended',
       errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
       body: { hearingId, newHearingState },
-      background: true
+      background: true,
     });
   }
 
@@ -379,8 +379,8 @@ export class ResultsService {
         id: hearingId,
         hearingDay,
         version: version ?? 1,
-        userId
-      }
+        userId,
+      },
     });
   }
 
@@ -398,14 +398,14 @@ export class ResultsService {
   requestApprovalForAmendments({
     hearingId,
     hearingDay,
-    version
+    version,
   }: DraftResult<AnyDraftResultLine>): Observable<unknown> {
     return this.cppHttp.commandSync({
       url: `/hearing-command-api/command/api/rest/hearing/request-approval`,
       requestType: 'application/vnd.hearing.request-approval+json',
       successEvent: 'public.hearing.approval-requested',
       errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
-      body: { hearingId, hearingDay, version: version ?? 1 }
+      body: { hearingId, hearingDay, version: version ?? 1 },
     });
   }
 
@@ -430,17 +430,17 @@ export class ResultsService {
         if ('promptChoices' in resultLine) {
           return {
             ...resultLines,
-            [resultLineId]: produce(resultLine, nextResultLine => {
+            [resultLineId]: produce(resultLine, (nextResultLine) => {
               delete nextResultLine.bailStatusCode;
               delete nextResultLine.childResultDefinitions;
               delete nextResultLine.conditionalMandatory;
               delete nextResultLine.excludedFromResults;
               delete nextResultLine.promptChoices;
-            })
+            }),
           };
         }
         return { ...resultLines, [resultLineId]: resultLine };
-      }, {} as Record<string, UnresolvedDraftResultLine | ResolvedDraftResultLine>)
+      }, {} as Record<string, UnresolvedDraftResultLine | ResolvedDraftResultLine>),
     };
     return this.cppHttp
       .commandSync({
@@ -449,7 +449,7 @@ export class ResultsService {
         body: this.wrapDraftResult(transformedDraftResult, isResetResults),
         background: true,
         successEvent: 'public.hearing.draft-result-saved',
-        errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT
+        errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
       })
       .pipe(mapTo(transformedDraftResult));
   }
@@ -475,7 +475,7 @@ export class ResultsService {
       draftResult,
       userDetails,
       isBoxWork,
-      firstSharedDate
+      firstSharedDate,
     });
     return this.cppHttp
       .commandSync({
@@ -484,7 +484,7 @@ export class ResultsService {
         successEvent: 'public.events.hearing.hearing-resulted-success',
         errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
         body: shareableDraftResult,
-        timeout: 60000
+        timeout: 60000,
       })
       .pipe(
         switchMap(() =>
@@ -497,7 +497,7 @@ export class ResultsService {
     draftResult,
     userDetails: { userId, firstName, lastName },
     isBoxWork,
-    firstSharedDate
+    firstSharedDate,
   }: {
     draftResult: DraftResult;
     userDetails: UserDetails;
@@ -512,7 +512,7 @@ export class ResultsService {
       label,
       type,
       value,
-      welshValue
+      welshValue,
     }: DraftResultPrompt): ShareableResultPrompt | ShareableResultPrompt[] => {
       switch (type) {
         case 'ADDRESS':
@@ -533,7 +533,7 @@ export class ResultsService {
             promptRef,
             label,
             value: serializedValue,
-            welshValue: welshValue ? String(welshValue) : undefined
+            welshValue: welshValue ? String(welshValue) : undefined,
           });
         }
       }
@@ -565,7 +565,7 @@ export class ResultsService {
           resultPrompts = [],
           shortCode,
           nonStandaloneAncillaryResult,
-          category
+          category,
         } = resultLine;
 
         // BE saves amendmentsLogs as a string..
@@ -573,7 +573,7 @@ export class ResultsService {
           !!resultLine.amendmentsLog && JSON.stringify(resultLine.amendmentsLog);
 
         // strip any invalid or deleted result lines from the relation being shared
-        const childResultLineIds = relation.childResultLineIds.filter(childResultLineId => {
+        const childResultLineIds = relation.childResultLineIds.filter((childResultLineId) => {
           const childResultLine = getResultLineById(draftResult, childResultLineId);
 
           return (
@@ -610,10 +610,10 @@ export class ResultsService {
               'offenceId' in resultLine &&
               draftResult.shadowListedOffenceIds.includes(resultLine.offenceId),
             sharedDate,
-            nonStandaloneAncillaryResult
-          })
+            nonStandaloneAncillaryResult,
+          }),
         ];
-      }, [] as SharedResultLine[])
+      }, [] as SharedResultLine[]),
     };
   }
 
@@ -654,8 +654,8 @@ export class ResultsService {
         relations: [...a.relations, ...b.relations],
         resultLines: {
           ...a.resultLines,
-          ...b.resultLines
-        }
+          ...b.resultLines,
+        },
       };
     };
 
@@ -663,7 +663,7 @@ export class ResultsService {
       sharedResultLines: SharedResultLine[]
     ): Observable<Results> => {
       const standaloneResultLines = sharedResultLines.filter(
-        sharedResultLine =>
+        (sharedResultLine) =>
           !sharedResultLines.find(({ childResultLineIds = [] }) =>
             childResultLineIds.includes(sharedResultLine.resultLineId)
           )
@@ -671,11 +671,11 @@ export class ResultsService {
 
       if (standaloneResultLines.length > 0) {
         return forkJoin(
-          standaloneResultLines.map(standaloneResultLine =>
+          standaloneResultLines.map((standaloneResultLine) =>
             createResultForSharedResultLine(standaloneResultLine, 'standalone')
           )
         ).pipe(
-          map(childResults =>
+          map((childResults) =>
             childResults.reduce(
               (results, childResult) => mergeResults(results, childResult),
               initialResults
@@ -697,7 +697,7 @@ export class ResultsService {
             conditionalMandatory,
             childResultDefinitions = [],
             excludedFromResults,
-            promptChoices
+            promptChoices,
           }) => {
             const {
               amendmentReason,
@@ -715,7 +715,7 @@ export class ResultsService {
               resultDefinitionId,
               prompts,
               shortCode,
-              level
+              level,
             } = sharedResultLine;
 
             // BE saves amendmentsLogs as a string..
@@ -740,8 +740,8 @@ export class ResultsService {
                 {
                   resultLineId,
                   ruleType,
-                  childResultLineIds
-                }
+                  childResultLineIds,
+                },
               ],
               resultLines: {
                 [resultLineId]: omitUndefined({
@@ -751,7 +751,7 @@ export class ResultsService {
                   amendmentReason: amendmentReasonId
                     ? {
                         id: amendmentReasonId,
-                        reasonDescription: amendmentReason
+                        reasonDescription: amendmentReason,
                       }
                     : undefined,
                   autoPopulateBooleanResult,
@@ -779,25 +779,25 @@ export class ResultsService {
                     prompts.reduce(
                       (valueMap, prompt) => ({
                         ...valueMap,
-                        [prompt.promptRef]: prompt.value
+                        [prompt.promptRef]: prompt.value,
                       }),
                       {}
                     )
-                  )
-                })
-              }
+                  ),
+                }),
+              },
             };
 
             if (childResultDefinitions.length > 0) {
-              const sharedChildResultLines = sharedResult.resultLines.filter(resultLine =>
+              const sharedChildResultLines = sharedResult.resultLines.filter((resultLine) =>
                 childResultLineIds.includes(resultLine.resultLineId)
               );
 
               return forkJoin(
-                childResultDefinitions.map(childResultDefinition => {
+                childResultDefinitions.map((childResultDefinition) => {
                   // If this child result definition has a recognised child, then add it
                   const sharedChildResultLine = sharedChildResultLines.find(
-                    childResultLine =>
+                    (childResultLine) =>
                       childResultLine.resultDefinitionId === childResultDefinition.code
                   );
 
@@ -815,12 +815,12 @@ export class ResultsService {
                       ...getForeignKeysForTarget(sharedResultLine),
                       belongsToResultLineId: sharedResultLine.resultLineId,
                       orderedDate: sharedResultLine.orderedDate,
-                      shortCode: childResultDefinition.shortCode
+                      shortCode: childResultDefinition.shortCode,
                     });
                   }
                   return of(initialResults);
                 })
-              ).pipe(map(childResults => childResults.reduce(mergeResults, result)));
+              ).pipe(map((childResults) => childResults.reduce(mergeResults, result)));
             }
             return of(result);
           }
@@ -834,12 +834,14 @@ export class ResultsService {
           ...results,
           hearingId,
           hearingDay,
-          delegatedPowers: sharedResult.resultLines.some(resultLine => resultLine.delegatedPowers),
+          delegatedPowers: sharedResult.resultLines.some(
+            (resultLine) => resultLine.delegatedPowers
+          ),
           shadowListedOffenceIds: uniq(
             sharedResult.resultLines
-              .filter(resultLine => 'offenceId' in resultLine && resultLine.shadowListed)
-              .map(resultLine => (resultLine as { offenceId: string }).offenceId)
-          )
+              .filter((resultLine) => 'offenceId' in resultLine && resultLine.shadowListed)
+              .map((resultLine) => (resultLine as { offenceId: string }).offenceId)
+          ),
         })
       ),
       withLatestFrom(this.store),
@@ -850,11 +852,11 @@ export class ResultsService {
           // position of the offence in the hearing. Note that this means the
           // optional results will always be attached to the first result line
           // which they could belong to.
-          return new Observable<DraftResult<ResolvedDraftResultLine>>(subscriber => {
+          return new Observable<DraftResult<ResolvedDraftResultLine>>((subscriber) => {
             const hearing = getCurrentHearing(state);
             const userDetails = getUserDetails(state);
             const targets = getTargetsForHearing(hearing);
-            const sortedOptionalResults = sortBy(optionalResults, optionalResult => {
+            const sortedOptionalResults = sortBy(optionalResults, (optionalResult) => {
               // If an offence has an applicationId (court application offence)
               // then it should always be last as displayed in "Enter results" page. Return -1
               // Anything else can be sorted as normal
@@ -868,7 +870,7 @@ export class ResultsService {
               }
 
               return 'offenceId' in optionalResult
-                ? targets.findIndex(target => target.id === optionalResult.offenceId)
+                ? targets.findIndex((target) => target.id === optionalResult.offenceId)
                 : -1;
             });
 
@@ -876,24 +878,24 @@ export class ResultsService {
 
             return from(sortedOptionalResults)
               .pipe(
-                concatMap(optionalResult =>
+                concatMap((optionalResult) =>
                   this.draftResultBuilderService
                     .addChildResultDefinition(updatedDraftResult, userDetails, optionalResult)
                     .pipe(
                       tap({
-                        next: value => {
+                        next: (value) => {
                           updatedDraftResult = value as DraftResult<ResolvedDraftResultLine>;
-                        }
+                        },
                       })
                     )
                 )
               )
               .subscribe({
-                error: error => subscriber.error(error),
+                error: (error) => subscriber.error(error),
                 complete: () => {
                   subscriber.next(updatedDraftResult);
                   subscriber.complete();
-                }
+                },
               });
           });
         }
@@ -913,7 +915,7 @@ export class ResultsService {
     if (this.configService.compressionEnabled) {
       return {
         body: LZString.compress(JSON.stringify({ ...draftResult, isResetResults })),
-        __metadata__
+        __metadata__,
       };
     }
     return { ...draftResult, isResetResults, __metadata__ };
@@ -930,7 +932,7 @@ export class ResultsService {
 
       return {
         ...JSON.parse(LZString.decompress(body)),
-        ...other
+        ...other,
       };
     }
     return abstractDraftResult;

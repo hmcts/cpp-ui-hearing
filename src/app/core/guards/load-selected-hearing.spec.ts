@@ -38,26 +38,26 @@ describe('LoadSelectedHearingGuard', () => {
           organisationUnits: [
             {
               id: 'organisationUnitId',
-              oucode: 'courtCentreOuCode'
-            }
-          ]
+              oucode: 'courtCentreOuCode',
+            },
+          ],
         },
         hearings: {
           current: {
             hearing: {
               id: 'hearingId',
               courtCentre: {
-                id: 'organisationUnitId'
+                id: 'organisationUnitId',
               },
-              prosecutionCases: [{ id: 'caseId1' }, { id: 'caseId2' }]
+              prosecutionCases: [{ id: 'caseId1' }, { id: 'caseId2' }],
             },
-            hearingState: HearingLockState.INITIALISED
+            hearingState: HearingLockState.INITIALISED,
           },
-          selectedHearingDate: '2021-01-01'
+          selectedHearingDate: '2021-01-01',
         },
         usersGroups: {
           userDetails: {
-            userId: 'userId'
+            userId: 'userId',
           },
           permissionsMap: [
             {
@@ -65,18 +65,18 @@ describe('LoadSelectedHearingGuard', () => {
               source: 'userId',
               target: 'noMatchHearingId',
               object: 'CaseAccess',
-              action: 'View'
+              action: 'View',
             },
             {
               permissionId: 'permissionId2',
               source: 'userId',
               target: 'noMatchCaseId',
               object: 'CaseAccess',
-              action: 'View'
-            }
+              action: 'View',
+            },
           ],
-          userRoles: [{ userPlacements: [{ placementId: 'courtCentreOuCode' }] }]
-        }
+          userRoles: [{ userPlacements: [{ placementId: 'courtCentreOuCode' }] }],
+        },
       };
     };
 
@@ -93,9 +93,9 @@ describe('LoadSelectedHearingGuard', () => {
         provideMockStore({ initialState: mockState }),
         { provide: Router, useValue: { navigate } },
         { provide: HearingService, useValue: { getHearing } },
-        { provide: ReferenceDataService, useValue: { fetchJudicialMembers } }
+        { provide: ReferenceDataService, useValue: { fetchJudicialMembers } },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(LoadSelectedHearingGuard);
@@ -119,7 +119,7 @@ describe('LoadSelectedHearingGuard', () => {
       of({
         hearing: mockHearing,
         hearingState: HearingLockState.SHARED_AMEND_LOCKED_ADMIN_ERROR,
-        amendedByUserId: 'amendingUserId'
+        amendedByUserId: 'amendingUserId',
       })
     );
 
@@ -131,7 +131,7 @@ describe('LoadSelectedHearingGuard', () => {
       new LoadHearingDetailSuccessAction({
         hearing: mockHearing as unknown as HearingDetail,
         hearingState: HearingLockState.SHARED_AMEND_LOCKED_ADMIN_ERROR,
-        amendedByUserId: 'amendingUserId'
+        amendedByUserId: 'amendingUserId',
       })
     );
     expect(dispatchSpy).toHaveBeenCalledWith(
@@ -144,7 +144,7 @@ describe('LoadSelectedHearingGuard', () => {
       of({
         hearing: mockHearing,
         hearingState: HearingLockState.INITIALISED,
-        amendedByUserId: 'amendingUserId'
+        amendedByUserId: 'amendingUserId',
       })
     );
 
@@ -156,7 +156,7 @@ describe('LoadSelectedHearingGuard', () => {
       new LoadHearingDetailSuccessAction({
         hearing: mockHearing as unknown as HearingDetail,
         hearingState: HearingLockState.INITIALISED,
-        amendedByUserId: 'amendingUserId'
+        amendedByUserId: 'amendingUserId',
       })
     );
 
@@ -170,7 +170,7 @@ describe('LoadSelectedHearingGuard', () => {
       of({
         hearing: mockHearing,
         hearingState: HearingLockState.SHARED_AMEND_LOCKED_ADMIN_ERROR,
-        amendedByUserId: 'userId'
+        amendedByUserId: 'userId',
       })
     );
 
@@ -192,7 +192,7 @@ describe('LoadSelectedHearingGuard', () => {
   });
 
   it('should dispatch store values belong to response of hearing and draft results call', () => {
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
       expect(store.dispatch).toHaveBeenCalledTimes(2);
     });

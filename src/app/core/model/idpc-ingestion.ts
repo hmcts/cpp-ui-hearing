@@ -15,5 +15,5 @@ export enum IdpcIngestionPhase {
   IN_PROGRESS = 'IN_PROGRESS',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',
-  FORBIDDEN = 'FORBIDDEN'
+  FORBIDDEN = 'FORBIDDEN',
 }

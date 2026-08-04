@@ -30,12 +30,12 @@ describe('Remove future hearing effects', () => {
         {
           provide: FutureHearingsService,
           useValue: {
-            removeFutureHearing
-          }
+            removeFutureHearing,
+          },
         },
-        { provide: Router, useValue: { navigate } }
+        { provide: Router, useValue: { navigate } },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
     getHearingId.setResult('new-hearing-id');
     effects = TestBed.inject<RemoveFutureHearingEffects>(RemoveFutureHearingEffects);

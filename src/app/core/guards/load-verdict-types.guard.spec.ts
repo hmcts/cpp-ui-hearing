@@ -6,7 +6,7 @@ import { of, throwError } from 'rxjs';
 import { HearingService, LoadVerdictsTypesSuccessAction } from '..';
 import {
   hearingReferencedataReducer,
-  HearingReferenceDataState
+  HearingReferenceDataState,
 } from '../reducers/hearing-reference-data';
 import { LoadVerdictTypesGuard } from './load-verdict-types.guard';
 
@@ -25,12 +25,12 @@ describe('LoadVerdictTypesGuard', () => {
       providers: [
         provideStore(
           {
-            hearingReferenceData: hearingReferencedataReducer
+            hearingReferenceData: hearingReferencedataReducer,
           } as ActionReducerMap<{
             hearingReferenceData: HearingReferenceDataState;
           }>,
           {
-            runtimeChecks: {}
+            runtimeChecks: {},
           }
         ),
         provideRouter([]),
@@ -38,17 +38,17 @@ describe('LoadVerdictTypesGuard', () => {
         {
           provide: HearingService,
           useValue: {
-            getVerdictTypes
-          }
+            getVerdictTypes,
+          },
         },
         {
           provide: Router,
           useValue: {
-            navigateByUrl
-          }
-        }
+            navigateByUrl,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(LoadVerdictTypesGuard);
@@ -60,7 +60,7 @@ describe('LoadVerdictTypesGuard', () => {
   const createSnapshot = (referenceDataErrorRedirectTo = '') => {
     const snapshot = new ActivatedRouteSnapshot();
     snapshot.data = {
-      referenceDataErrorRedirectTo
+      referenceDataErrorRedirectTo,
     };
     return snapshot;
   };
@@ -71,7 +71,7 @@ describe('LoadVerdictTypesGuard', () => {
 
     store.dispatch(new LoadVerdictsTypesSuccessAction([]));
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
     });
   });
@@ -82,7 +82,7 @@ describe('LoadVerdictTypesGuard', () => {
 
     getVerdictTypes.mockReturnValue(of([]));
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
       expect(store.dispatch).toHaveBeenCalledWith(new LoadVerdictsTypesSuccessAction([]));
     });
@@ -95,7 +95,7 @@ describe('LoadVerdictTypesGuard', () => {
 
     getVerdictTypes.mockReturnValue(throwError(error));
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(false);
       expect(navigateByUrl).toHaveBeenCalledWith('/error-page');
     });

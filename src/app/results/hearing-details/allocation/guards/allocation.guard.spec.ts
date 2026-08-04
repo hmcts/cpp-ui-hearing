@@ -8,7 +8,7 @@ import { AllocationGuard, AllocationSnapshot } from './allocation.guard';
 import {
   loadHearingSlotsSuccess,
   resetHearingSlots,
-  SearchHearingSlotsParams
+  SearchHearingSlotsParams,
 } from '@cpp/scheduling';
 
 describe('AllocationGuard', () => {
@@ -29,17 +29,17 @@ describe('AllocationGuard', () => {
         {
           provide: SchedulingService,
           useValue: {
-            searchHearingSlots
-          }
+            searchHearingSlots,
+          },
         },
         {
           provide: Router,
           useValue: {
-            navigate
-          }
-        }
+            navigate,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
     guard = TestBed.inject<AllocationGuard>(AllocationGuard);
     store = TestBed.inject<Store<AppState>>(Store);
@@ -57,7 +57,7 @@ describe('AllocationGuard', () => {
     panel: 'ADULT',
     businessType: 'businessTypeCode',
     availableDurationMins: 30,
-    pageNumber: 2
+    pageNumber: 2,
   };
 
   const createActivatedRouteSnapshot = (
@@ -86,7 +86,7 @@ describe('AllocationGuard', () => {
     const searchResult = {
       totalResults: 1,
       hearingSlots: [{ courtScheduleId: '*' } as HearingSlot],
-      notes: [{ id: 'note-id' } as ListingNote]
+      notes: [{ id: 'note-id' } as ListingNote],
     };
     const search$ = cold('  --(r|)', { r: searchResult });
     const expected$ = cold('--(o|)', { o: true });
@@ -95,7 +95,7 @@ describe('AllocationGuard', () => {
 
     const params: SearchHearingSlotsParams = {
       ...defaultSearchParams,
-      pageSize: 10
+      pageSize: 10,
     };
 
     const { hearingSlots, totalResults, notes } = searchResult;

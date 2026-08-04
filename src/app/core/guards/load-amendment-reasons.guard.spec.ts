@@ -6,7 +6,7 @@ import { of, throwError } from 'rxjs';
 import { HearingService, LoadAmendmentReasonsSuccessAction } from '..';
 import {
   hearingReferencedataReducer,
-  HearingReferenceDataState
+  HearingReferenceDataState,
 } from '../reducers/hearing-reference-data';
 import { LoadAmendmentReasonsGuard } from './load-amendment-reasons.guard';
 
@@ -25,12 +25,12 @@ describe('LoadAmendmentReasonsGuard', () => {
       providers: [
         provideStore(
           {
-            hearingReferenceData: hearingReferencedataReducer
+            hearingReferenceData: hearingReferencedataReducer,
           } as ActionReducerMap<{
             hearingReferenceData: HearingReferenceDataState;
           }>,
           {
-            runtimeChecks: {}
+            runtimeChecks: {},
           }
         ),
         provideRouter([]),
@@ -38,17 +38,17 @@ describe('LoadAmendmentReasonsGuard', () => {
         {
           provide: HearingService,
           useValue: {
-            getAmendmentReasons
-          }
+            getAmendmentReasons,
+          },
         },
         {
           provide: Router,
           useValue: {
-            navigateByUrl
-          }
-        }
+            navigateByUrl,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(LoadAmendmentReasonsGuard);
@@ -60,7 +60,7 @@ describe('LoadAmendmentReasonsGuard', () => {
   const createSnapshot = (referenceDataErrorRedirectTo = '') => {
     const snapshot = new ActivatedRouteSnapshot();
     snapshot.data = {
-      referenceDataErrorRedirectTo
+      referenceDataErrorRedirectTo,
     };
     return snapshot;
   };
@@ -71,7 +71,7 @@ describe('LoadAmendmentReasonsGuard', () => {
 
     store.dispatch(new LoadAmendmentReasonsSuccessAction([]));
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
     });
   });
@@ -82,7 +82,7 @@ describe('LoadAmendmentReasonsGuard', () => {
 
     getAmendmentReasons.mockReturnValue(of([]));
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
       expect(store.dispatch).toHaveBeenCalledWith(new LoadAmendmentReasonsSuccessAction([]));
     });
@@ -95,7 +95,7 @@ describe('LoadAmendmentReasonsGuard', () => {
 
     getAmendmentReasons.mockReturnValue(throwError(error));
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(false);
       expect(navigateByUrl).toHaveBeenCalledWith('/error-page');
     });

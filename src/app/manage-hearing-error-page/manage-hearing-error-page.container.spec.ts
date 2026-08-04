@@ -14,8 +14,8 @@ describe('ManageHearingErrorPageContainer', () => {
   let dispatchSpy: any;
   const initialState = {
     results: {
-      manageHearingError: {} as ManageHearingPublicEventError
-    }
+      manageHearingError: {} as ManageHearingPublicEventError,
+    },
   } as ResultsState;
 
   beforeEach(() => {
@@ -27,12 +27,12 @@ describe('ManageHearingErrorPageContainer', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              params: { hearingId: 'hearingId' }
-            }
-          }
+              params: { hearingId: 'hearingId' },
+            },
+          },
         },
-        provideMockStore({ initialState })
-      ]
+        provideMockStore({ initialState }),
+      ],
     }).compileComponents();
 
     store = TestBed.inject(Store) as MockStore<ResultsState>;
@@ -53,7 +53,7 @@ describe('ManageHearingErrorPageContainer', () => {
   });
 
   it('should select manageHearingError$ from the store', () => {
-    component.manageHearingError$.subscribe(value => {
+    component.manageHearingError$.subscribe((value) => {
       expect(value).toEqual({} as ManageHearingPublicEventError);
     });
   });

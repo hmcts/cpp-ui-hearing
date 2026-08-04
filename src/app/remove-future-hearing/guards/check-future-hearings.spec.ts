@@ -24,11 +24,11 @@ describe('Check future hearings guard', () => {
         {
           provide: Router,
           useValue: {
-            navigate
-          }
-        }
+            navigate,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
     guard = TestBed.inject(CheckFutureHearingsGuard);
   });

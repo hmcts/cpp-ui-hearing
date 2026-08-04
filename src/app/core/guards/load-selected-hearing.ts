@@ -8,7 +8,7 @@ import { catchError, map, mapTo, switchMap, tap, withLatestFrom } from 'rxjs/ope
 import {
   LoadAmendingUserDetailsSuccessAction,
   LoadHearingDetailSuccessAction,
-  SetSelectedHearingDateAction
+  SetSelectedHearingDateAction,
 } from '../actions';
 import { HearingLockState } from '../model/hearing-detail';
 import { AppState } from '../reducers';
@@ -38,7 +38,7 @@ export class LoadSelectedHearingGuard implements CanActivate, CanActivateChild {
               userDetails.userId !== hearing.amendedByUserId
             ) {
               return this.hearingService.getUserDetails(hearing.amendedByUserId).pipe(
-                tap(amendedByUserDetails =>
+                tap((amendedByUserDetails) =>
                   this.store.dispatch(
                     new LoadAmendingUserDetailsSuccessAction(amendedByUserDetails)
                   )
@@ -48,16 +48,16 @@ export class LoadSelectedHearingGuard implements CanActivate, CanActivateChild {
             }
             return of(hearing);
           }),
-          switchMap(hearing => {
+          switchMap((hearing) => {
             if (!!hearing.hearing.judiciary.length) {
               const ids = hearing.hearing.judiciary
-                .map(judiciary => judiciary.judicialId)
+                .map((judiciary) => judiciary.judicialId)
                 .join(',');
               return this.refDataService.fetchJudicialMembers({ ids }).pipe(
-                map(judiciaries => {
-                  hearing.hearing.judiciary.forEach(judiciary => {
+                map((judiciaries) => {
+                  hearing.hearing.judiciary.forEach((judiciary) => {
                     judiciary.judicialMember = judiciaries.find(
-                      incoming => incoming.id === judiciary.judicialId
+                      (incoming) => incoming.id === judiciary.judicialId
                     );
                   });
                   return hearing;
@@ -66,15 +66,15 @@ export class LoadSelectedHearingGuard implements CanActivate, CanActivateChild {
             }
             return of(hearing);
           }),
-          tap(hearing => this.store.dispatch(new LoadHearingDetailSuccessAction(hearing)))
+          tap((hearing) => this.store.dispatch(new LoadHearingDetailSuccessAction(hearing)))
         );
       }),
       withLatestFrom(this.store.select(getSelectedHearingDate), (hearing, hearingDay) => {
         return hearingDay || moment(hearing.hearing.hearingDays[0].sittingDay).format('YYYY-MM-DD');
       }),
-      tap(hearingDay => this.store.dispatch(new SetSelectedHearingDateAction(hearingDay))),
+      tap((hearingDay) => this.store.dispatch(new SetSelectedHearingDateAction(hearingDay))),
       mapTo(true),
-      catchError(error => {
+      catchError((error) => {
         switch (error.status) {
           case 403:
             this.router.navigate(['/unauthorised-access']);

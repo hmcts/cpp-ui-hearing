@@ -19,25 +19,25 @@ describe('HearingGuard', () => {
         organisationUnits: [
           {
             id: 'organisationUnitId',
-            oucode: 'courtCentreOuCode'
-          }
-        ]
+            oucode: 'courtCentreOuCode',
+          },
+        ],
       },
       hearings: {
         current: {
           hearing: {
             id: 'hearingId',
             courtCentre: {
-              id: 'organisationUnitId'
+              id: 'organisationUnitId',
             },
-            prosecutionCases: [{ id: 'caseId1' }, { id: 'caseId2' }]
+            prosecutionCases: [{ id: 'caseId1' }, { id: 'caseId2' }],
           },
-          hearingState: HearingLockState.INITIALISED
-        }
+          hearingState: HearingLockState.INITIALISED,
+        },
       },
       usersGroups: {
         userDetails: {
-          userId: 'userId'
+          userId: 'userId',
         },
         permissionsMap: {
           permissionId1: {
@@ -45,18 +45,18 @@ describe('HearingGuard', () => {
             source: 'userId',
             target: 'noMatchHearingId',
             object: 'CaseAccess',
-            action: 'View'
+            action: 'View',
           } as RolePermission,
           permissionId2: {
             permissionId: 'permissionId2',
             source: 'userId',
             target: 'noMatchCaseId',
             object: 'CaseAccess',
-            action: 'View'
-          } as RolePermission
+            action: 'View',
+          } as RolePermission,
         } as Record<string, RolePermission>,
-        userRoles: [{ userPlacements: [{ placementId: 'courtCentreOuCode' }] }]
-      }
+        userRoles: [{ userPlacements: [{ placementId: 'courtCentreOuCode' }] }],
+      },
     } as AppState;
   };
 
@@ -69,10 +69,10 @@ describe('HearingGuard', () => {
       providers: [
         provideStore(
           {
-            referenceData: referenceDataReducer
+            referenceData: referenceDataReducer,
           },
           {
-            runtimeChecks: {}
+            runtimeChecks: {},
           }
         ),
         provideMockStore({ initialState: mockState }),
@@ -81,11 +81,11 @@ describe('HearingGuard', () => {
         {
           provide: Router,
           useValue: {
-            navigate
-          }
-        }
+            navigate,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(HearingGuard);
@@ -113,7 +113,7 @@ describe('HearingGuard', () => {
     snapshot.params = { hearingId };
     snapshot.data = {
       hearingGuardRouteId,
-      referenceDataErrorRedirectTo
+      referenceDataErrorRedirectTo,
     };
     return snapshot;
   };
@@ -122,7 +122,7 @@ describe('HearingGuard', () => {
     expect.assertions(1);
     const snapshot = createSnapshot();
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
     });
   });
@@ -137,7 +137,7 @@ describe('HearingGuard', () => {
     expect.assertions(1);
     const snapshot = createSnapshot();
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
     });
   });
@@ -153,7 +153,7 @@ describe('HearingGuard', () => {
     expect.assertions(1);
     const snapshot = createSnapshot();
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
     });
   });
@@ -169,7 +169,7 @@ describe('HearingGuard', () => {
     expect.assertions(1);
     const snapshot = createSnapshot();
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(didResolve).toBe(true);
     });
   });
@@ -178,7 +178,7 @@ describe('HearingGuard', () => {
     does not have a specific permission to either the hearing or any cases within a hearing`, () => {
     mockState = createState();
     mockState.usersGroups.userRoles[0].userPlacements = [
-      { placementId: 'noMatchWithHearingCourtCentreId' }
+      { placementId: 'noMatchWithHearingCourtCentreId' },
     ];
     mockState.usersGroups.permissionsMap['permissionId1'].target = 'noMatchHearingId';
     resetTestingModule();
@@ -186,7 +186,7 @@ describe('HearingGuard', () => {
     expect.assertions(2);
     const snapshot = createSnapshot();
 
-    guard.canActivate(snapshot).subscribe(didResolve => {
+    guard.canActivate(snapshot).subscribe((didResolve) => {
       expect(navigate).toHaveBeenCalledWith(['check-and-challenge', 'hearingId', 'hearing-list']);
       expect(didResolve).toEqual(false);
     });

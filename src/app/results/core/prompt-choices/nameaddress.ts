@@ -7,7 +7,7 @@ import {
   NameAddressPartName,
   NameAddressPromptChoice,
   PromptChoice,
-  PromptChoiceChild
+  PromptChoiceChild,
 } from '../../results.interfaces';
 import { validateAddressChildValue } from './address';
 import { isTextPromptChoice, validateTextValue } from './txt';
@@ -61,8 +61,8 @@ export const createNameAddressResultPromptForCourtCentre = (
           promptId: promptChoiceChild.code,
           label: promptChoiceChild.label,
           type: promptChoiceChild.type,
-          value: childValue
-        })
+          value: childValue,
+        }),
       ];
     }
     return resultPrompts;
@@ -75,7 +75,7 @@ export const createNameAddressResultPromptForCourtCentre = (
 
 export const formatNameAddressValue = (value: DraftResultPrompt<string>[]): string => {
   return value
-    .map(child => child.value)
+    .map((child) => child.value)
     .filter(Boolean)
     .join(', ');
 };
@@ -89,14 +89,14 @@ export const validateNameAddressValue = (
     ? valuesOrValueMap.reduce(
         (map, { promptRef, value }) => ({
           ...map,
-          [promptRef]: value
+          [promptRef]: value,
         }),
         {} as Record<string, string>
       )
     : valuesOrValueMap;
 
   const hasAnyChildValue = Object.keys(valueMap).some(
-    promptRef => valueMap[promptRef] && find(promptChoice.children, { promptRef })
+    (promptRef) => valueMap[promptRef] && find(promptChoice.children, { promptRef })
   );
 
   if (!promptChoice.required && !hasAnyChildValue) {
@@ -111,7 +111,7 @@ export const validateNameAddressValue = (
     // and 'Person' simultaneously as they are mutually exclusive choices
     if (
       promptChoice.children.find(
-        child =>
+        (child) =>
           ['FirstName', 'MiddleName', 'LastName'].includes(child.partName) &&
           valueMap[child.promptRef]
       )
@@ -121,7 +121,7 @@ export const validateNameAddressValue = (
 
     if (
       promptChoice.children.find(
-        child => ['OrganisationName'].includes(child.partName) && valueMap[child.promptRef]
+        (child) => ['OrganisationName'].includes(child.partName) && valueMap[child.promptRef]
       )
     ) {
       addressType = 'Organisation';

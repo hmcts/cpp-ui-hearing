@@ -14,7 +14,7 @@ import {
   ParseTextOptions,
   ReplaceDraftResultLineOptions,
   ResolvedDraftResultLine,
-  UnresolvedPartChoice
+  UnresolvedPartChoice,
 } from '../../../results.interfaces';
 import { isExtendedResolvedDraftResultLine, isResolvedDraftResultLine } from '../../helpers';
 import { DraftResultBuilderService } from '../../services/draft-result-builder.service';
@@ -37,7 +37,7 @@ export class DraftResultBuilder {
     firstName: 'firstName',
     lastName: 'lastName',
     email: '1@1.com',
-    prosecutingAuthorityAccess: 'prosecutingAuthorityAccess'
+    prosecutingAuthorityAccess: 'prosecutingAuthorityAccess',
   };
 
   constructor(draftResultBuilder?: DraftResultBuilderService) {
@@ -47,11 +47,11 @@ export class DraftResultBuilder {
       draftResultBuilder = new DraftResultBuilderService(
         {
           getValuesForResultLine: () => of([]),
-          getValuesForHierarchy: () => of({})
+          getValuesForHierarchy: () => of({}),
         } as any,
         TestBed.inject(NotepadParserService),
         {
-          transform: () => 'FirstName Lastname'
+          transform: () => 'FirstName Lastname',
         },
         TestBed.inject<Store<AppState>>(Store)
       );
@@ -97,10 +97,10 @@ export class DraftResultBuilder {
               'offenceId',
               'originalText'
             )
-          )
+          ),
         }),
         {}
-      )
+      ),
     };
   }
 
@@ -184,7 +184,7 @@ export class DraftResultBuilder {
     amendmentDate = '2020-01-02'
   ) => {
     this.draftResult = produce(this.draftResult, ({ resultLines }) => {
-      Object.keys(resultLines).forEach(resultLineId => {
+      Object.keys(resultLines).forEach((resultLineId) => {
         const resultLine = resultLines[resultLineId];
 
         if (isResolvedDraftResultLine(resultLine)) {
@@ -216,7 +216,7 @@ export class DraftResultBuilder {
   };
 
   setSharedDate = async (options: { resultLineId: string; sharedDate: string }) => {
-    this.draftResult = produce(this.draftResult, draftResult => {
+    this.draftResult = produce(this.draftResult, (draftResult) => {
       (draftResult.resultLines[options.resultLineId] as ResolvedDraftResultLine).sharedDate =
         options.sharedDate;
     });
@@ -225,8 +225,8 @@ export class DraftResultBuilder {
   };
 
   setSharedDateForAllResultLines = async (sharedDate: string) => {
-    this.draftResult = produce(this.draftResult, draftResult => {
-      Object.keys(draftResult.resultLines).forEach(resultLineId => {
+    this.draftResult = produce(this.draftResult, (draftResult) => {
+      Object.keys(draftResult.resultLines).forEach((resultLineId) => {
         const resultLine = draftResult.resultLines[resultLineId];
         if (isResolvedDraftResultLine(resultLine)) {
           resultLine.sharedDate = sharedDate;
