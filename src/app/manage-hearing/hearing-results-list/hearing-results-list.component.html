@@ -4,6 +4,7 @@
   data-test-id="defendant"
   class="hearing-results-list"
   pdk-margin-top="6"
+  [attr.id]="anchorPrefix + '-' + defendant.id"
 >
   <!-- defendant level details -->
   <defendant-level-detail
@@ -65,7 +66,12 @@
         {{ entry.message }}
       </pdk-warning-text>
       } }
-      <pdk-grid container class="offence" data-test-id="offence" data-test-id="offence">
+      <pdk-grid
+        container
+        class="offence"
+        data-test-id="offence"
+        [attr.id]="anchorPrefix + '-' + offence.id"
+      >
         <pdk-grid one-third>
           @if (hearingType === 'CROWN' && offence.count > 0) {
           <div class="offence-count-section">

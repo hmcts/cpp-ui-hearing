@@ -1,8 +1,14 @@
 import { Defendant } from '../../../../core/model/defendant';
 import { HearingDetail } from '../../../../core/model/hearing-detail';
 import { DraftResult, ResolvedDraftResultLine } from '../../../results.interfaces';
-import { ResultsLineValidation } from '../../../results-validation.interfaces';
-import { buildResultsValidationRequest } from '../results-validation';
+import {
+  ResultsLineValidation,
+  ValidationIssueSeverityEnum
+} from '../../../results-validation.interfaces';
+import {
+  buildResultsValidationRequest,
+  buildShareValidationErrorSummary
+} from '../results-validation';
 
 describe('buildResultsValidationRequest', () => {
   const createMinimalHearing = (overrides: Partial<HearingDetail> = {}): HearingDetail =>
@@ -905,5 +911,182 @@ describe('buildResultsValidationRequest', () => {
         );
       });
     });
+  });
+});
+
+describe('buildShareValidationErrorSummary', () => {
+  it('should return an empty summary when no validation failure is provided', () => {
+    expect(buildShareValidationErrorSummary(null)).toEqual([]);
+    expect(buildShareValidationErrorSummary({})).toEqual([]);
+  });
+
+  it('should create one summary error per affected offence anchored to the offence', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: ['top level message'],
+      validationIssues: [
+        {
+          ruleId: 'CTL-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          validationLevel: 'OFFENCE',
+          affectedOffences: [
+            { offenceId: 'offence-1', message: 'error validation number 1' },
+            { offenceId: 'offence-2', message: 'error validation number 2' }
+          ]
+        }
+      ]
+    });
+
+    expect(summary).toEqual([
+      {
+        id: 'results-validation-error-offence-1',
+        message: 'error validation number 1',
+        shouldFocus: false
+      },
+      {
+        id: 'results-validation-error-offence-2',
+        message: 'error validation number 2',
+        shouldFocus: false
+      }
+    ]);
+  });
+
+  it('should create summary errors anchored to affected defendants', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: [],
+      validationIssues: [
+        {
+          ruleId: 'DEF-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          validationLevel: 'DEFENDANT',
+          affectedDefendants: [{ defendantId: 'defendant-1', message: 'defendant level error' }]
+        }
+      ]
+    });
+
+    expect(summary).toEqual([
+      {
+        id: 'results-validation-error-defendant-1',
+        message: 'defendant level error',
+        shouldFocus: false
+      }
+    ]);
+  });
+
+  it('should use the issue message when an issue has no affected offences or defendants', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: [],
+      validationIssues: [
+        {
+          ruleId: 'GEN-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          message: 'general validation error'
+        }
+      ]
+    });
+
+    expect(summary).toEqual([
+      { id: 'results-validation-error-0', message: 'general validation error', shouldFocus: false }
+    ]);
+  });
+
+  it('should fall back to the top level error messages when there are no validation issues', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: ['first error', 'second error'],
+      validationIssues: []
+    });
+
+    expect(summary).toEqual([
+      { id: 'results-validation-error-0', message: 'first error', shouldFocus: false },
+      { id: 'results-validation-error-1', message: 'second error', shouldFocus: false }
+    ]);
+  });
+
+  it('should keep summary error ids unique when multiple issues affect the same offence', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: [],
+      validationIssues: [
+        {
+          ruleId: 'CTL-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          affectedOffences: [{ offenceId: 'offence-1', message: 'first error' }]
+        },
+        {
+          ruleId: 'DISW-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          affectedOffences: [{ offenceId: 'offence-1', message: 'second error' }]
+        }
+      ]
+    });
+
+    expect(summary.map(error => error.id)).toEqual([
+      'results-validation-error-offence-1',
+      'results-validation-error-offence-1-2'
+    ]);
+  });
+
+  it('should drop affected offences and defendants that carry no message', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: [],
+      validationIssues: [
+        {
+          ruleId: 'CTL-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          affectedOffences: [
+            { offenceId: 'offence-1', message: 'kept offence error' },
+            { offenceId: 'offence-2', message: '' }
+          ],
+          affectedDefendants: [
+            { defendantId: 'defendant-1', message: 'kept defendant error' },
+            { defendantId: 'defendant-2', message: '' }
+          ]
+        }
+      ]
+    });
+
+    expect(summary).toEqual([
+      {
+        id: 'results-validation-error-offence-1',
+        message: 'kept offence error',
+        shouldFocus: false
+      },
+      {
+        id: 'results-validation-error-defendant-1',
+        message: 'kept defendant error',
+        shouldFocus: false
+      }
+    ]);
+  });
+
+  it('should fall back to the issue message when its affected offences all lack a message', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: [],
+      validationIssues: [
+        {
+          ruleId: 'GEN-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          message: 'issue level message',
+          affectedOffences: [{ offenceId: 'offence-1' }]
+        }
+      ]
+    });
+
+    expect(summary).toEqual([
+      { id: 'results-validation-error-0', message: 'issue level message', shouldFocus: false }
+    ]);
+  });
+
+  it('should produce no entry when an issue has neither an affected message nor an issue message', () => {
+    const summary = buildShareValidationErrorSummary({
+      errorMessages: [],
+      validationIssues: [
+        {
+          ruleId: 'GEN-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          affectedDefendants: [{ defendantId: 'defendant-1', message: '' }]
+        }
+      ]
+    });
+
+    expect(summary).toEqual([]);
   });
 });
