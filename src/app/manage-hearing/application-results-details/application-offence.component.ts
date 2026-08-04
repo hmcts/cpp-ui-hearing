@@ -22,11 +22,12 @@ import { ShareableResultsContainerComponent } from '../../results/share-results/
 import { TranslatePipe } from '@ngx-translate/core';
 import { CPPDatePipe } from '../../shared/pipes/cpp-date.pipe';
 import { VerdictTypeDescriptionPipe } from '../../shared/pipes/verdict-type-description.pipe';
+import { RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX } from '../../results/core/helpers';
 
 @Component({
   selector: 'application-offence',
   template: `
-    <pdk-grid container pdk-padding-bottom="4">
+    <pdk-grid container pdk-padding-bottom="4" [attr.id]="anchorPrefix + '-' + offence.id">
       @if (showCaseUrn) {
       <pdk-grid full pdk-margin-bottom="4">
         <b>
@@ -329,6 +330,7 @@ import { VerdictTypeDescriptionPipe } from '../../shared/pipes/verdict-type-desc
 })
 export class ApplicationOffenceComponent {
   readonly BY_JURY = 'BY_JURY';
+  readonly anchorPrefix = RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX;
 
   @Input() caseId: string;
   @Input() masterDefendantId: string;
