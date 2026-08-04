@@ -361,7 +361,7 @@ describe('buildResultsValidationRequest', () => {
         ]);
       });
 
-      it('should filter out prompts whose value is a non-duration array or an object', () => {
+      it('should filter out prompts whose value is an array or object (non-primitive)', () => {
         const line = createResolvedResultLine({
           resultPrompts: [
             {
@@ -372,11 +372,11 @@ describe('buildResultsValidationRequest', () => {
               value: '2026-10-30'
             },
             {
-              type: 'FIXLM',
+              type: 'DURATION' as never,
               promptId: 'p2',
-              promptRef: 'fixedListMultiple',
-              label: 'Fixed list multiple',
-              value: ['option1', 'option2']
+              promptRef: 'duration',
+              label: 'Duration',
+              value: [{ type: 'months', value: 12 }] as never
             },
             {
               type: 'ONEOF' as never,
@@ -398,86 +398,6 @@ describe('buildResultsValidationRequest', () => {
         ]);
       });
 
-      it('should include DURATION prompts serialized as value-unit pairs', () => {
-        const line = createResolvedResultLine({
-          resultPrompts: [
-            {
-              type: 'DURATION',
-              promptId: 'p1',
-              promptRef: 'duration',
-              label: 'Duration',
-              value: [{ label: 'WEEKS', value: 4 }]
-            }
-          ]
-        });
-        const draftResult = createDraftResult({ [line.resultLineId]: line });
-
-        const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
-        ]);
-
-        expect(request.resultLines[0].prompts).toEqual([
-          { promptRef: 'duration', promptValue: '4 WEEKS' }
-        ]);
-      });
-
-      it('should serialize multi-part DURATION prompt values into a single string', () => {
-        const line = createResolvedResultLine({
-          resultPrompts: [
-            {
-              type: 'DURATION',
-              promptId: 'p1',
-              promptRef: 'imprisonmentDuration',
-              label: 'Imprisonment duration',
-              value: [
-                { label: 'YEARS', value: 1 },
-                { label: 'MONTHS', value: 6 }
-              ]
-            }
-          ]
-        });
-        const draftResult = createDraftResult({ [line.resultLineId]: line });
-
-        const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
-        ]);
-
-        expect(request.resultLines[0].prompts).toEqual([
-          { promptRef: 'imprisonmentDuration', promptValue: '1 YEARS 6 MONTHS' }
-        ]);
-      });
-
-      it('should include DURATION prompts alongside primitive-valued prompts', () => {
-        const line = createResolvedResultLine({
-          resultPrompts: [
-            {
-              type: 'DATE',
-              promptId: 'p1',
-              promptRef: 'endDate',
-              label: 'End date',
-              value: '2026-10-30'
-            },
-            {
-              type: 'DURATION',
-              promptId: 'p2',
-              promptRef: 'duration',
-              label: 'Duration',
-              value: [{ label: 'MONTHS', value: 12 }]
-            }
-          ]
-        });
-        const draftResult = createDraftResult({ [line.resultLineId]: line });
-
-        const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
-        ]);
-
-        expect(request.resultLines[0].prompts).toEqual([
-          { promptRef: 'endDate', promptValue: '2026-10-30' },
-          { promptRef: 'duration', promptValue: '12 MONTHS' }
-        ]);
-      });
-
       it('should NOT include the prompts field when resultPrompts is empty', () => {
         const line = createResolvedResultLine({ resultPrompts: [] });
         const draftResult = createDraftResult({ [line.resultLineId]: line });
@@ -489,15 +409,15 @@ describe('buildResultsValidationRequest', () => {
         expect(request.resultLines[0]).not.toHaveProperty('prompts');
       });
 
-      it('should NOT include the prompts field when no prompt value is serializable', () => {
+      it('should NOT include the prompts field when all values are non-primitive', () => {
         const line = createResolvedResultLine({
           resultPrompts: [
             {
-              type: 'FIXLM',
+              type: 'DURATION' as never,
               promptId: 'p1',
-              promptRef: 'fixedListMultiple',
-              label: 'Fixed list multiple',
-              value: ['option1', 'option2']
+              promptRef: 'duration',
+              label: 'Duration',
+              value: [{ type: 'months', value: 12 }] as never
             }
           ]
         });

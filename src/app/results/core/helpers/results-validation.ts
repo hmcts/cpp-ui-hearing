@@ -1,14 +1,13 @@
 import { Defendant } from '../../../core/model/defendant';
 import { HearingDetail } from '../../../core/model/hearing-detail';
 import { Offence } from '../../../core/model/offence';
-import { DraftResult, DraftResultPromptValue, OffenceLike } from '../../results.interfaces';
+import { DraftResult, OffenceLike } from '../../results.interfaces';
 import {
   ResultsValidation,
   ResultsValidationDefendant,
   ResultsValidationOffence,
   ResultsLineValidation
 } from '../../results-validation.interfaces';
-import { serializeDurationValue } from '../prompt-choices';
 import { isActiveDraftResultLine, isResolvedDraftResultLine } from './result-line';
 
 export const buildResultsValidationRequest = (
@@ -62,16 +61,9 @@ const buildResultLines = (draftResult: DraftResult): ResultsLineValidation[] => 
           p =>
             typeof p.value === 'string' ||
             typeof p.value === 'number' ||
-            typeof p.value === 'boolean' ||
-            (p.type === 'DURATION' && Array.isArray(p.value))
+            typeof p.value === 'boolean'
         )
-        .map(p => ({
-          promptRef: p.promptRef,
-          promptValue:
-            p.type === 'DURATION'
-              ? serializeDurationValue(p.value as DraftResultPromptValue[])
-              : String(p.value)
-        }));
+        .map(p => ({ promptRef: p.promptRef, promptValue: String(p.value) }));
       if (prompts.length > 0) {
         result.prompts = prompts;
       }
