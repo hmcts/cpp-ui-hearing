@@ -1,3 +1,4 @@
+import { ValidationError } from '@cpp/pdk';
 import { Defendant } from '../../../core/model/defendant';
 import { HearingDetail } from '../../../core/model/hearing-detail';
 import { Offence } from '../../../core/model/offence';
@@ -5,11 +6,54 @@ import { DraftResult, DraftResultPromptValue, OffenceLike } from '../../results.
 import {
   ResultsValidation,
   ResultsValidationDefendant,
+  ResultsValidationErrors,
   ResultsValidationOffence,
   ResultsLineValidation
 } from '../../results-validation.interfaces';
 import { serializeDurationValue } from '../prompt-choices';
 import { isActiveDraftResultLine, isResolvedDraftResultLine } from './result-line';
+
+export const RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX = 'results-validation-error';
+
+export const buildShareValidationErrorSummary = (
+  validationErrors: Partial<ResultsValidationErrors> | null
+): ValidationError[] => {
+  const summary: ValidationError[] = [];
+  const usedIds = new Set<string>();
+
+  const addSummaryError = (message: string, targetId?: string) => {
+    const baseId = `${RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX}-${targetId ?? summary.length}`;
+    let id = baseId;
+    for (let suffix = 2; usedIds.has(id); suffix += 1) {
+      id = `${baseId}-${suffix}`;
+    }
+    usedIds.add(id);
+    summary.push({ id, message, shouldFocus: false });
+  };
+
+  (validationErrors?.validationIssues || []).forEach(issue => {
+    const affectedOffences = (issue.affectedOffences || []).filter(offence => offence.message);
+    const affectedDefendants = (issue.affectedDefendants || []).filter(
+      defendant => defendant.message
+    );
+
+    if (affectedOffences.length === 0 && affectedDefendants.length === 0) {
+      if (issue.message) {
+        addSummaryError(issue.message);
+      }
+      return;
+    }
+    affectedOffences.forEach(offence => addSummaryError(offence.message, offence.offenceId));
+    affectedDefendants.forEach(defendant =>
+      addSummaryError(defendant.message, defendant.defendantId)
+    );
+  });
+
+  if (summary.length === 0) {
+    (validationErrors?.errorMessages || []).forEach(message => addSummaryError(message));
+  }
+  return summary;
+};
 
 export const buildResultsValidationRequest = (
   draftResult: DraftResult,

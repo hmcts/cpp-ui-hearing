@@ -15,6 +15,7 @@ exports[`HearingResultsListComponent should render the template with the values 
       class="hearing-results-list govuk-!-margin-top-6"
       data-role="hearing-defendant-95fb6e57-49f9-4bf8-b93d-12a95d92846d"
       data-test-id="defendant"
+      id="results-validation-error-95fb6e57-49f9-4bf8-b93d-12a95d92846d"
       pdk-margin-top="6"
     >
       <defendant-level-detail>
@@ -420,6 +421,7 @@ exports[`HearingResultsListComponent should render the template with the values 
             class="offence govuk-grid-row"
             container=""
             data-test-id="offence"
+            id="results-validation-error-294c821c-3f11-4e7b-aa51-3091c71342d9"
           >
             <pdk-grid
               class="govuk-grid-column-one-third"
