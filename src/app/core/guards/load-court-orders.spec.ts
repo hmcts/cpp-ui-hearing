@@ -27,8 +27,8 @@ describe('LoadCourtOrdersGuard', () => {
         {
           provide: CourtOrderService,
           useValue: {
-            getCourtOrdersByDefendantIdAndOffenceDate
-          }
+            getCourtOrdersByDefendantIdAndOffenceDate,
+          },
         },
         { provide: Router, useValue: { navigate } },
         provideMockStore({
@@ -39,13 +39,13 @@ describe('LoadCourtOrdersGuard', () => {
               value: {
                 hearingDate: '2018-08-01',
                 defendantIds: ['36273b86-ca5d-497b-a265-e8cb85c5881e'],
-                offenceDates: ['2022-02-16']
-              }
-            }
-          ]
-        })
+                offenceDates: ['2022-02-16'],
+              },
+            },
+          ],
+        }),
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(LoadCourtOrdersGuard);
@@ -93,7 +93,7 @@ describe('LoadCourtOrdersGuard', () => {
     store.overrideSelector(getCourtOrdersQueryParams, {
       hearingDate: '2018-08-01',
       defendantIds: [],
-      offenceDates: []
+      offenceDates: [],
     });
 
     const expected$ = cold('(a|)', { a: true });

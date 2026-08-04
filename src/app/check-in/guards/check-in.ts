@@ -15,13 +15,13 @@ export class CheckInGuard implements CanActivate {
     return this.store.pipe(
       select(getUserGroups),
       take(1),
-      map(userGroups => this.resolveNavigation(this.includesAllowedUsers(userGroups)))
+      map((userGroups) => this.resolveNavigation(this.includesAllowedUsers(userGroups)))
     );
   }
 
   includesAllowedUsers(userGroups: UserGroup[]): boolean {
-    const userGroupsName = userGroups.map(ug => ug.groupName.toLowerCase());
-    return this.allowedUsers.some(user => userGroupsName.includes(user));
+    const userGroupsName = userGroups.map((ug) => ug.groupName.toLowerCase());
+    return this.allowedUsers.some((user) => userGroupsName.includes(user));
   }
 
   resolveNavigation(isUserAllowed: boolean): boolean {

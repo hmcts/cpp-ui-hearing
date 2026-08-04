@@ -20,11 +20,11 @@ describe('ConnectionService', () => {
           provide: Store,
           useValue: {
             dispatch,
-            select: selectMock
-          }
-        }
+            select: selectMock,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
   });
   describe('Initialization', () => {

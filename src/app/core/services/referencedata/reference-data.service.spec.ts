@@ -10,14 +10,14 @@ const mockAlcoholLevels = [
     id: '7950068c-900f-4b53-80e0-6f387d11e128',
     seqNo: 1,
     methodCode: 'A',
-    methodDescription: 'Blood'
+    methodDescription: 'Blood',
   },
   {
     id: 'c81e728d-9d4c-3f63-af06-7f89cc14862c',
     seqNo: 2,
     methodCode: 'B',
-    methodDescription: 'Breath'
-  }
+    methodDescription: 'Breath',
+  },
 ];
 
 describe('ReferenceDataService', () => {
@@ -33,11 +33,11 @@ describe('ReferenceDataService', () => {
         {
           provide: CppHttp,
           useValue: {
-            query
-          }
-        }
+            query,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(ReferenceDataService);
   });
@@ -57,7 +57,7 @@ describe('ReferenceDataService', () => {
       expect(query$).toBeObservable(expected$);
       expect(query).toHaveBeenCalledWith({
         url: '/referencedata-query-api/query/api/rest/referencedata/alcohol-level-methods',
-        requestType: 'application/vnd.referencedata.alcohol-level-methods+json'
+        requestType: 'application/vnd.referencedata.alcohol-level-methods+json',
       });
     });
   });
@@ -79,7 +79,7 @@ describe('ReferenceDataService', () => {
       expect(query).toHaveBeenCalledWith({
         url: '/referencedata-query-api/query/api/rest/referencedata/judiciaries',
         requestType: 'application/vnd.reference-data.judiciaries+json',
-        params
+        params,
       });
     });
 
@@ -96,7 +96,7 @@ describe('ReferenceDataService', () => {
       expect(query).toHaveBeenCalledWith({
         url: '/referencedata-query-api/query/api/rest/referencedata/judiciaries',
         requestType: 'application/vnd.reference-data.judiciaries.all+json',
-        params
+        params,
       });
     });
   });

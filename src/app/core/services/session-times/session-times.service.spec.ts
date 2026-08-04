@@ -22,11 +22,11 @@ describe('SessionTimesService', () => {
           provide: CppHttp,
           useValue: {
             query,
-            command
-          }
-        }
+            command,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
     service = TestBed.inject(SessionTimesService);
   });
@@ -48,7 +48,7 @@ describe('SessionTimesService', () => {
       expect(query).toHaveBeenCalledWith({
         url: `/hearing-query-api/query/api/rest/hearing/session-time/${courtHouseId}/${courtRoomId}`,
         requestType: 'application/vnd.hearing.query.session-time+json',
-        params: httpParams
+        params: httpParams,
       });
     });
 
@@ -65,7 +65,7 @@ describe('SessionTimesService', () => {
       expect(query).toHaveBeenCalledWith({
         url: `/hearing-query-api/query/api/rest/hearing/session-time/${courtHouseId}/${courtRoomId}`,
         requestType: 'application/vnd.hearing.query.session-time+json',
-        params: httpParams
+        params: httpParams,
       });
     });
   });

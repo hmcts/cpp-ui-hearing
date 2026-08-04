@@ -14,7 +14,7 @@ const userDetails = {
   email: 'erica@test.hmcts.net',
   userType: 'User',
   organisationId: '1371dfe8-8aa5-47f7-bb76-275b83fc312d',
-  prosecutingAuthorityAccess: 'ALL'
+  prosecutingAuthorityAccess: 'ALL',
 };
 
 const orgDetails = {
@@ -27,7 +27,7 @@ const orgDetails = {
   addressLine4: 'London',
   addressPostcode: 'SW1H 9AJ',
   phoneNumber: '80012345678',
-  email: 'test@test.hmcts.gsi.gov.uk'
+  email: 'test@test.hmcts.gsi.gov.uk',
 };
 
 describe('HmctsOrganisationResolver', () => {
@@ -35,8 +35,8 @@ describe('HmctsOrganisationResolver', () => {
   let store: MockStore<AppState>;
   const routeStub = {
     paramMap: {
-      get: (_key: string) => '1'
-    }
+      get: (_key: string) => '1',
+    },
   };
   const stateStub = {};
 
@@ -50,17 +50,17 @@ describe('HmctsOrganisationResolver', () => {
         provideMockStore({
           initialState: {
             usersGroups: {
-              userDetails
-            }
-          }
+              userDetails,
+            },
+          },
         }),
         {
           provide: UserGroupsService,
           useValue: {
-            getOrganisationDetails
-          }
-        }
-      ]
+            getOrganisationDetails,
+          },
+        },
+      ],
     });
     store = TestBed.get(Store);
   });

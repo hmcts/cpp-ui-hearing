@@ -19,11 +19,11 @@ describe('IdpcIngestionComponentStore (Angular TestBed)', () => {
         {
           provide: HearingService,
           useValue: {
-            ingestIdpcs
-          }
+            ingestIdpcs,
+          },
         },
-        provideMockStore({})
-      ]
+        provideMockStore({}),
+      ],
     });
 
     componentStore = TestBed.inject(IdpcIngestionComponentStore);
@@ -32,7 +32,7 @@ describe('IdpcIngestionComponentStore (Angular TestBed)', () => {
 
   it('should set ingestionPhase via updaters', () => {
     let observedPhase: IdpcIngestionPhase | null = null;
-    const sub = componentStore.ingestionPhase$.subscribe(phase => (observedPhase = phase));
+    const sub = componentStore.ingestionPhase$.subscribe((phase) => (observedPhase = phase));
 
     componentStore.setIngestionPhase(IdpcIngestionPhase.STARTED);
     expect(observedPhase).toBe(IdpcIngestionPhase.STARTED);
@@ -42,7 +42,7 @@ describe('IdpcIngestionComponentStore (Angular TestBed)', () => {
 
   it('should clear ingestionPhase', () => {
     let observedPhase: IdpcIngestionPhase | null = null;
-    const sub = componentStore.ingestionPhase$.subscribe(phase => (observedPhase = phase));
+    const sub = componentStore.ingestionPhase$.subscribe((phase) => (observedPhase = phase));
 
     componentStore.setIngestionPhase(IdpcIngestionPhase.STARTED);
     expect(observedPhase).toBe(IdpcIngestionPhase.STARTED);
@@ -58,7 +58,7 @@ describe('IdpcIngestionComponentStore (Angular TestBed)', () => {
     const response = { phase: IdpcIngestionPhase.COMPLETED };
     ingestIdpcs.mockReturnValueOnce(of(response));
 
-    const sub = componentStore.ingestionPhase$.subscribe(phase => (observedPhase = phase));
+    const sub = componentStore.ingestionPhase$.subscribe((phase) => (observedPhase = phase));
 
     componentStore.ingestIdpcs({ courtCentreId: '1', roomId: '1', date: '2024-01-01' });
 
@@ -74,7 +74,7 @@ describe('IdpcIngestionComponentStore (Angular TestBed)', () => {
     ingestIdpcs.mockReturnValueOnce(throwError(new HttpErrorResponse(error)));
     const storeSpy = jest.spyOn(storeMock, 'dispatch');
 
-    const sub = componentStore.ingestionPhase$.subscribe(phase => (observedPhase = phase));
+    const sub = componentStore.ingestionPhase$.subscribe((phase) => (observedPhase = phase));
 
     componentStore.ingestIdpcs({ courtCentreId: '1', roomId: '1', date: '2024-01-01' });
 
@@ -90,7 +90,7 @@ describe('IdpcIngestionComponentStore (Angular TestBed)', () => {
     let observedPhase: IdpcIngestionPhase | null = null;
     const error = new HttpErrorResponse({ status: 403, statusText: 'server error' });
     ingestIdpcs.mockReturnValueOnce(throwError(error));
-    const sub = componentStore.ingestionPhase$.subscribe(phase => (observedPhase = phase));
+    const sub = componentStore.ingestionPhase$.subscribe((phase) => (observedPhase = phase));
     const storeSpy = jest.spyOn(storeMock, 'dispatch');
     componentStore.ingestIdpcs({ courtCentreId: '1', roomId: '1', date: '2024-01-01' });
 

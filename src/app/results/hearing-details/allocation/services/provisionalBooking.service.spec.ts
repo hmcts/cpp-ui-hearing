@@ -14,11 +14,11 @@ describe('ProvisionalBookingService', () => {
         {
           provide: CppHttp,
           useValue: {
-            query: jest.fn()
-          }
-        }
+            query: jest.fn(),
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
     http = TestBed.inject(CppHttp);
     service = TestBed.inject(ProvisionalBookingService);
@@ -37,9 +37,9 @@ describe('ProvisionalBookingService', () => {
         courtScheduleBookings: [
           {
             courtScheduleId: '*',
-            hearingStartTime: new Date().toISOString()
-          }
-        ]
+            hearingStartTime: new Date().toISOString(),
+          },
+        ],
       };
       const command$ = service.bookProvisionalHearingSlots(params);
 
@@ -49,7 +49,7 @@ describe('ProvisionalBookingService', () => {
         url: `/hearing-command-api/command/api/rest/hearing/hearings/hearingId/hearing-slots`,
         requestType: 'application/vnd.hearing.book-provisional-hearing-slots+json',
         body: { slots: params.courtScheduleBookings },
-        successEvent: 'public.hearing.hearing-slots-provisionally-booked'
+        successEvent: 'public.hearing.hearing-slots-provisionally-booked',
       });
     });
   });

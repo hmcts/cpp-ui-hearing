@@ -13,7 +13,7 @@ import {
   Offence,
   Organisation,
   Plea,
-  Verdict
+  Verdict,
 } from '.';
 import { PersonDefendant } from './person-defendant';
 import { CourtApplicationCase } from './court-application-case';

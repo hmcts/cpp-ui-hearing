@@ -8,7 +8,7 @@ import {
   NameAddressPartName,
   NameAddressPromptChoice,
   PromptChoice,
-  PromptChoiceChild
+  PromptChoiceChild,
 } from '../../results.interfaces';
 import { isTextPromptChoice, validateTextValue } from './txt';
 
@@ -25,7 +25,7 @@ export const isAddressPartName = (
     'OrganisationName',
     'FirstName',
     'MiddleName',
-    'LastName'
+    'LastName',
   ] as NameAddressPartName[];
 
   return !nonAddressPartNames.includes(partName);
@@ -33,7 +33,7 @@ export const isAddressPartName = (
 
 export const formatAddressValue = (value: DraftResultPrompt<string>[]): string => {
   return value
-    .map(child => child.value)
+    .map((child) => child.value)
     .filter(Boolean)
     .join(', ');
 };
@@ -62,14 +62,14 @@ export const validateAddressValue = (
     ? valuesOrValueMap.reduce(
         (map, { promptRef, value }) => ({
           ...map,
-          [promptRef]: value
+          [promptRef]: value,
         }),
         {} as Record<string, string>
       )
     : valuesOrValueMap;
 
   const hasAnyChildValue = Object.keys(valueMap).some(
-    promptRef => valueMap[promptRef] && find(promptChoice.children, { promptRef })
+    (promptRef) => valueMap[promptRef] && find(promptChoice.children, { promptRef })
   );
 
   if (!promptChoice.required && !hasAnyChildValue) {
@@ -119,7 +119,7 @@ export const validateAddressChildValue = (
         // https://tools.hmcts.net/jira/browse/DD-14631
         const emails = value.split(';');
         const valid = emails
-          .map(email => email.trim())
+          .map((email) => email.trim())
           .filter(Boolean)
           .every(validateEmail);
 

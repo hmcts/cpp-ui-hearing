@@ -26,11 +26,11 @@ describe('CheckFeaturesGuard', () => {
         {
           provide: Router,
           useValue: {
-            navigate
-          }
-        }
+            navigate,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(CheckFeaturesGuard);
@@ -47,7 +47,7 @@ describe('CheckFeaturesGuard', () => {
 
     it('should resolve to true when at least one of the expected features is allowed', () => {
       snapshot.data = {
-        allowedFeatures: ['feature-a', 'feature-c']
+        allowedFeatures: ['feature-a', 'feature-c'],
       };
       const expected$ = cold('(a|)', { a: true });
       const activate$ = guard.canActivate(snapshot);
@@ -57,7 +57,7 @@ describe('CheckFeaturesGuard', () => {
 
     it('should resolve to false and redirect when the expected features are not allowed', () => {
       snapshot.data = {
-        allowedFeatures: ['feature-c']
+        allowedFeatures: ['feature-c'],
       };
       const expected$ = cold('(a|)', { a: false });
       expect(navigate).not.toHaveBeenCalled();
@@ -70,7 +70,7 @@ describe('CheckFeaturesGuard', () => {
   describe('when features are not present in the state', () => {
     it('should resolve to false and redirect even when the expected features are allowed', () => {
       snapshot.data = {
-        allowedFeatures: ['feature-b']
+        allowedFeatures: ['feature-b'],
       };
       const expected$ = cold('(b|)', { b: false });
 
@@ -81,7 +81,7 @@ describe('CheckFeaturesGuard', () => {
 
     it('should resolve to false and redirect when the expected features are not allowed', () => {
       snapshot.data = {
-        allowedFeatures: ['feature-c']
+        allowedFeatures: ['feature-c'],
       };
       const expected$ = cold('(b|)', { b: false });
 
@@ -92,7 +92,7 @@ describe('CheckFeaturesGuard', () => {
 
     it('should resolve to false and redirect when fetching features fails', () => {
       snapshot.data = {
-        allowedFeatures: []
+        allowedFeatures: [],
       };
 
       const expected$ = cold('(b|)', { b: false });

@@ -33,25 +33,25 @@ export class ReusableInfoGuard implements CanActivate {
     return this.store.pipe(
       select(getSelectedHearingDate),
       take(1),
-      switchMap(orderedDate =>
+      switchMap((orderedDate) =>
         forkJoin([
           this.reusableInfoRemoteCacheService.fetchResuableInfoDefinitions(orderedDate),
           this.reusableInfoRemoteCacheService.fetchReusableInfo(hearingId).pipe(
-            tap(reusableInfo =>
+            tap((reusableInfo) =>
               this.store.dispatch(
                 DraftResultActions.setReusableInfoSuccess({
-                  reusableResults: reusableInfo.reusablePrompts
+                  reusableResults: reusableInfo.reusablePrompts,
                 })
               )
             )
-          )
+          ),
         ])
       ),
       mapTo(true),
       tap({
         error: () => {
           this.router.navigate(['/technical-error']);
-        }
+        },
       }),
       catchError(() => of(false))
     );

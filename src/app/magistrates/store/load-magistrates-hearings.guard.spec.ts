@@ -29,17 +29,17 @@ describe('LoadMagistratesHearingGuard', () => {
         {
           provide: HearingService,
           useValue: {
-            getHearingsForToday
-          }
+            getHearingsForToday,
+          },
         },
         {
           provide: Router,
           useValue: {
-            navigate
-          }
-        }
+            navigate,
+          },
+        },
       ],
-      teardown: { destroyAfterEach: false }
+      teardown: { destroyAfterEach: false },
     });
 
     guard = TestBed.inject(LoadMagistratesHearingGuard);
@@ -71,8 +71,8 @@ function buildHearings(): Observable<HearingSummary[]> {
         {
           listedDurationMinutes: 1,
           listingSequence: 0,
-          sittingDay: '2019-12-03T18:32:00.000Z'
-        }
+          sittingDay: '2019-12-03T18:32:00.000Z',
+        },
       ],
       id: 'hearing-id-test',
       prosecutionCaseSummaries: [
@@ -89,9 +89,9 @@ function buildHearings(): Observable<HearingSummary[]> {
                   id: 'offence-id-test',
                   offenceTitle: 'Section 18 - attempt    wounding with intent',
                   wording: 'Wound / inflict grievous bodily harm without intent',
-                  wordingWelsh: 'Wound / inflict grievous bodily harm without intent_WELSH'
-                }
-              ]
+                  wordingWelsh: 'Wound / inflict grievous bodily harm without intent_WELSH',
+                },
+              ],
             },
             {
               dateOfBirth: '1991-12-02',
@@ -104,25 +104,25 @@ function buildHearings(): Observable<HearingSummary[]> {
                   id: 'offence-id-test',
                   offenceTitle: 'Section 18 - attempt    wounding with intent',
                   wording: 'Wound / inflict grievous bodily harm without intent',
-                  wordingWelsh: 'Wound / inflict grievous bodily harm without intent_WELSH'
-                }
-              ]
-            }
+                  wordingWelsh: 'Wound / inflict grievous bodily harm without intent_WELSH',
+                },
+              ],
+            },
           ],
           id: 'prosecution-case-id-test',
           prosecutionCaseIdentifier: {
             prosecutionAuthorityCode: 'B01BH',
             prosecutionAuthorityReference: 'test ref',
             prosecutionAuthorityId: 'prosecution-authority-id-test',
-            caseURN: '57GD1981019'
-          }
-        }
+            caseURN: '57GD1981019',
+          },
+        },
       ],
       roomId: 'room-id-test',
       type: {
         description: 'First Hearing',
-        id: 'type-id-test'
-      }
-    }
+        id: 'type-id-test',
+      },
+    },
   ]);
 }
