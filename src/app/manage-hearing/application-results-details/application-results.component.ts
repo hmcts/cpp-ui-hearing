@@ -57,7 +57,7 @@ import { VerdictTypeDescriptionPipe } from '../../shared/pipes/verdict-type-desc
           {{ courtApplication.applicationReceivedDate | cppDate : 'DD MMMM YYYY' }}
         </div>
 
-        @if (hasAmendApplication) {
+        @if (hasAmendApplication && showPleaAndVerdict) {
         <!-- Pleas -->
         <div pdk-margin-top="6" pdk-margin-bottom="6">
           <pdk-grid container>
@@ -251,8 +251,8 @@ import { VerdictTypeDescriptionPipe } from '../../shared/pipes/verdict-type-desc
     @if (linkTypeIsNotFirstHearing) {
     <pdk-grid container>
       <pdk-grid full>
-        @if (hasOffences) { @for ( caseDetails of courtApplication.courtApplicationCases; track
-        caseDetails.prosecutionCaseId ) {
+        @if (hasOffences) { @for (caseDetails of courtApplication.courtApplicationCases; track
+        caseDetails.prosecutionCaseId) {
         <div>
           @for (offence of caseDetails.offences; track offence.id) {
           <application-offence
@@ -279,8 +279,8 @@ import { VerdictTypeDescriptionPipe } from '../../shared/pipes/verdict-type-desc
         </div>
         } } @if (courtApplication?.courtOrder) {
         <div>
-          @for ( offenceDetails of courtApplication.courtOrder.courtOrderOffences; track
-          offenceDetails.offence.id ) {
+          @for (offenceDetails of courtApplication.courtOrder.courtOrderOffences; track
+          offenceDetails.offence.id) {
           <application-offence
             [caseId]="offenceDetails.prosecutionCaseId"
             [showCaseUrn]="false"
@@ -358,9 +358,11 @@ export class ApplicationResultsComponent implements OnChanges {
   @Input() amendApplicationPermission: boolean;
   @Input() applicationCaseStatus: string;
   hasAmendApplication = false;
+  showPleaAndVerdict = false;
 
   ngOnChanges(_: SimpleChanges) {
     this.hasAmendApplication = this.courtApplication?.type?.pleaApplicableFlag ? true : false;
+    this.showPleaAndVerdict = !!this.courtApplication?.subject?.masterDefendant;
     if (this.amendApplicationPermission) {
       this.hasAmendApplication =
         this.courtApplication?.type?.pleaApplicableFlag &&

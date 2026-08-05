@@ -45,6 +45,77 @@ describe('ApplicationResultsComponent', () => {
     expect(hostFixture).toMatchSnapshot();
   });
 
+  describe('showPleaAndVerdict gate', () => {
+    const createPleaApplicableApplication = (subject?: CourtApplication['subject']) =>
+      ({
+        ...fakeCourtApplication,
+        subject,
+        type: {
+          type: 'Further offence committed during youth offender panel referral period',
+          pleaApplicableFlag: true
+        }
+      } as CourtApplication);
+
+    const subjectWithMasterDefendant = {
+      id: 'subject-id',
+      masterDefendant: { masterDefendantId: 'master-defendant-id' }
+    } as CourtApplication['subject'];
+
+    let component: ApplicationResultsComponent;
+
+    beforeEach(() => {
+      component = new ApplicationResultsComponent();
+    });
+
+    it('should open the gate when the application subject has a master defendant', () => {
+      component.courtApplication = createPleaApplicableApplication(subjectWithMasterDefendant);
+
+      component.ngOnChanges({});
+
+      expect(component.showPleaAndVerdict).toBe(true);
+    });
+
+    it('should close the gate when the application subject has no master defendant', () => {
+      component.courtApplication = createPleaApplicableApplication({
+        id: 'subject-id'
+      } as CourtApplication['subject']);
+
+      component.ngOnChanges({});
+
+      expect(component.showPleaAndVerdict).toBe(false);
+    });
+
+    it('should close the gate when the application has no subject', () => {
+      component.courtApplication = createPleaApplicableApplication();
+
+      component.ngOnChanges({});
+
+      expect(component.showPleaAndVerdict).toBe(false);
+    });
+
+    it('should render the plea and verdict sections when the subject has a master defendant', () => {
+      hostComponent.courtApplication = createPleaApplicableApplication(subjectWithMasterDefendant);
+      hostComponent.hearingType = 'MAGISTRATES';
+
+      hostFixture.detectChanges();
+
+      const text = hostFixture.nativeElement.textContent;
+      expect(text).toContain('MANAGE_HEARING.NO_PLEA_ENTERED');
+      expect(text).toContain('MANAGE_HEARING.NO_VERDICT_ENTERED');
+    });
+
+    it('should not render the plea and verdict sections when the subject has no master defendant', () => {
+      hostComponent.courtApplication = createPleaApplicableApplication();
+      hostComponent.hearingType = 'MAGISTRATES';
+
+      hostFixture.detectChanges();
+
+      const text = hostFixture.nativeElement.textContent;
+      expect(text).not.toContain('MANAGE_HEARING.NO_PLEA_ENTERED');
+      expect(text).not.toContain('MANAGE_HEARING.NO_VERDICT_ENTERED');
+    });
+  });
+
   describe('hasAmendApplication gate', () => {
     const createCourtApplication = ({
       applicationStatus = 'LISTED',

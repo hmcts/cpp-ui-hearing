@@ -1386,7 +1386,7 @@ const extractApplicationPleas = (
   courtApplications.forEach(application => {
     const { courtApplicationCases = [], applicationReference, subject } = application;
 
-    if (validateAmendApplication(application, hasAmendApplication)) {
+    if (validateAmendApplication(application, hasAmendApplication) && !!subject.masterDefendant) {
       const defendant = buildDefendantPerOffence(
         application.id,
         subject,
