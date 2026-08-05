@@ -394,6 +394,14 @@ exports[`HearingResultsListComponent should render the template with the values 
             >
                86GD2660720 
             </h4>
+            <h4
+              class="govuk-!-margin-top-2 govuk-heading-s"
+              data-test-id="remandStatus"
+              pdk-margin-top="2"
+              pdk-typography="heading-small"
+            >
+               HEARING_LIST.BAIL_STATUSConditional Bail 
+            </h4>
             <reporting-restrictions
               iswarning="true"
             >

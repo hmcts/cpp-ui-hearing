@@ -7,6 +7,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AppConfigService } from '../../config';
 import {
+  BailStatus,
   DefendantCasesApplications,
   HearingDetail,
   IndicatedPlea,
@@ -18,6 +19,7 @@ import {
   BreachedApplication,
   DefendantBreachApplication
 } from '../../core/model/breach-application';
+import { ProsecutionCaseDetails } from '../../core/model/shared/prosecution-case-details';
 import * as mockData from '../../core/selectors/mock/hearing.json';
 import { mockCourtOrderOne, mockCourtOrders } from '../../mock-data/test-mock-data';
 import { HearingResultsListComponent } from './hearing-results-list.component';
@@ -625,6 +627,86 @@ describe('HearingResultsListComponent', () => {
       component.onYouthBoxSelected(defendantCases);
 
       expect(onYouthCourtToggleSpy).not.toBeCalled();
+    });
+  });
+
+  describe('#getRemandStatus', () => {
+    const prosecutionCaseWithInitiationCode = (
+      initiationCode?: string
+    ): Omit<ProsecutionCaseDetails, 'defendants'> =>
+      ({ id: 'case-1', initiationCode } as Omit<ProsecutionCaseDetails, 'defendants'>);
+
+    const defendantWithBailStatus = (bailStatus?: BailStatus): DefendantCasesApplications =>
+      ({ personDefendant: { bailStatus } } as DefendantCasesApplications);
+
+    it('should return the defendant bail status description when it is available', () => {
+      const defendant = defendantWithBailStatus({
+        code: 'U',
+        id: 'bail-status-id',
+        description: 'Unconditional bail'
+      });
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
+        'Unconditional bail'
+      );
+    });
+
+    it('should return "Summons" when there is no bail status and the initiation code is S', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('S'))
+      ).toBe('Summons');
+    });
+
+    it('should return "Postal Requisition/Written charge" when there is no bail status and the initiation code is Q', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('Q'))
+      ).toBe('Postal Requisition/Written charge');
+    });
+
+    it('should return "Not recorded" when there is no bail status and the initiation code is neither S nor Q', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('C'))
+      ).toBe('Not recorded');
+    });
+
+    it('should return "Not recorded" when there is no bail status and no initiation code', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode())
+      ).toBe('Not recorded');
+    });
+  });
+
+  describe('remand status display', () => {
+    const queryRemandStatus = () =>
+      fixture.debugElement.query(By.css('[data-test-id="remandStatus"]'));
+
+    it('should display the remand status directly below the case URN', () => {
+      const remandStatus = queryRemandStatus();
+      expect(remandStatus).toBeTruthy();
+      expect(remandStatus.nativeElement.textContent).toContain('Conditional Bail');
+
+      const caseReference = fixture.debugElement.query(
+        By.css('[data-test-id="caseReference"]')
+      ).nativeElement;
+      expect(
+        caseReference.compareDocumentPosition(remandStatus.nativeElement) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should display the initiation-based remand status when the defendant has no bail status', () => {
+      const [groupedDefendant] = groupedCasesMock;
+      const input = [
+        {
+          ...groupedDefendant,
+          personDefendant: { ...groupedDefendant.personDefendant, bailStatus: undefined },
+          prosecutionCases: [{ ...groupedDefendant.prosecutionCases[0], initiationCode: 'S' }]
+        }
+      ] as DefendantCasesApplications[];
+
+      testHostComponent.setInput(input);
+      fixture.detectChanges();
+
+      expect(queryRemandStatus().nativeElement.textContent).toContain('Summons');
     });
   });
 });

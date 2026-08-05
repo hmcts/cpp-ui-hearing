@@ -19,6 +19,7 @@ import {
   TodaysDefendantAttendance
 } from '../../core/model/defendants-attendance';
 import { ActiveCourtOrderByDefendantId } from '../../core/model/court-orders';
+import { ProsecutionCaseDetails } from '../../core/model/shared/prosecution-case-details';
 import {
   ValidationError,
   PdkMarginDirective,
@@ -45,6 +46,12 @@ import { ValidationMessage } from '../../results/results-validation.interfaces';
 
 type NotifiedPleaValue = 'NO_NOTIFICATION' | 'NOTIFIED_NOT_GUILTY' | 'NOTIFIED_GUILTY';
 type NotifiedPleaMapping = Record<NotifiedPleaValue, string>;
+
+const REMAND_STATUS_NOT_RECORDED = 'Not recorded';
+const REMAND_STATUS_BY_INITIATION_CODE: Readonly<Record<string, string>> = {
+  S: 'Summons',
+  Q: 'Postal Requisition/Written charge'
+};
 
 @Component({
   selector: 'hearing-results-list',
@@ -344,6 +351,14 @@ export class HearingResultsListComponent {
   hasBulkCase(casesAndApplications: DefendantCasesApplications) {
     return casesAndApplications.prosecutionCases.some(kase => !!kase.isGroupMaster);
   }
+
+  getRemandStatus = (
+    defendant: DefendantCasesApplications,
+    prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
+  ): string =>
+    defendant?.personDefendant?.bailStatus?.description ??
+    REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode] ??
+    REMAND_STATUS_NOT_RECORDED;
 
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
