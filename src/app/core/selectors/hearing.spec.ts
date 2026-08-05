@@ -997,6 +997,87 @@ describe('Hearing selectors', () => {
     ]);
   });
 
+  describe('application pleas', () => {
+    const buildCourtApplication = (
+      subject: CourtApplicationParty,
+      pleaApplicableFlag = true
+    ): CourtApplication =>
+      ({
+        id: 'application-id',
+        applicationReference: 'APP-REF-1',
+        applicationStatus: 'LISTED',
+        courtApplicationCases: [],
+        subject,
+        type: {
+          id: 'application-type-id',
+          legislation: 'Legal text and other mumbo jumbo',
+          type: 'Bad character applications',
+          pleaApplicableFlag
+        } as CourtApplicationType
+      } as CourtApplication);
+
+    const subjectWithMasterDefendant = {
+      id: 'subject-id',
+      masterDefendant: {
+        masterDefendantId: 'master-defendant-id',
+        personDefendant: {
+          personDetails: {
+            firstName: 'Frodo',
+            lastName: 'Baggins'
+          } as Person
+        }
+      } as MasterDefendant
+    } as CourtApplicationParty;
+
+    const extractPleasFor = (application: CourtApplication) =>
+      fromSelectors.getHearingPleasFromCurrentHearing.projector(
+        { courtApplications: [application] } as HearingDetail,
+        false
+      );
+
+    it('should build an application plea when the subject has a master defendant', () => {
+      const result = extractPleasFor(buildCourtApplication(subjectWithMasterDefendant));
+
+      expect(result).toEqual([
+        {
+          caseURN: 'APP-REF-1',
+          withCount: [],
+          withoutCount: [
+            expect.objectContaining({
+              id: 'subject-id',
+              defendantId: 'subject-id',
+              masterDefendantId: 'master-defendant-id',
+              firstName: 'Frodo',
+              lastName: 'Baggins',
+              prosecutionCaseId: 'application-id',
+              offences: [
+                expect.objectContaining({
+                  id: 'application-id',
+                  offenceDefinitionId: 'application-type-id',
+                  offenceTitle: 'Bad character applications'
+                })
+              ]
+            })
+          ]
+        }
+      ]);
+    });
+
+    it('should not build an application plea when the subject has no master defendant', () => {
+      const result = extractPleasFor(
+        buildCourtApplication({ id: 'subject-id' } as CourtApplicationParty)
+      );
+
+      expect(result).toEqual([]);
+    });
+
+    it('should not build an application plea when the application type is not plea applicable', () => {
+      const result = extractPleasFor(buildCourtApplication(subjectWithMasterDefendant, false));
+
+      expect(result).toEqual([]);
+    });
+  });
+
   it('should return the available hearings', () => {
     let result: any;
     store.dispatch(new fromActions.SearchAvailableHearingsSuccessAction([]));
