@@ -662,9 +662,15 @@ describe('HearingResultsListComponent', () => {
       ).toBe('Postal Requisition/Written charge');
     });
 
-    it('should return "Not recorded" when there is no bail status and the initiation code is neither S nor Q', () => {
+    it('should return "Custody" when there is no bail status and the initiation code is C', () => {
       expect(
         component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('C'))
+      ).toBe('Custody');
+    });
+
+    it('should return "Not recorded" when there is no bail status and the initiation code is neither S, Q or C', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('A'))
       ).toBe('Not recorded');
     });
 
