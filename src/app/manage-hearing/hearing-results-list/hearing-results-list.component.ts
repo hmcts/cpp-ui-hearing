@@ -50,7 +50,8 @@ type NotifiedPleaMapping = Record<NotifiedPleaValue, string>;
 const REMAND_STATUS_NOT_RECORDED = 'Not recorded';
 const REMAND_STATUS_BY_INITIATION_CODE: Readonly<Record<string, string>> = {
   S: 'Summons',
-  Q: 'Postal Requisition/Written charge'
+  Q: 'Postal Requisition/Written charge',
+  C: 'Custody'
 };
 
 @Component({
@@ -359,7 +360,6 @@ export class HearingResultsListComponent {
     defendant?.personDefendant?.bailStatus?.description ??
     REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode] ??
     REMAND_STATUS_NOT_RECORDED;
-
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
       this.onYouthCourtToggle.emit(defendant.id);
