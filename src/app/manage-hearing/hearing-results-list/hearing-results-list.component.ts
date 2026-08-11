@@ -360,27 +360,6 @@ export class HearingResultsListComponent {
     defendant?.personDefendant?.bailStatus?.description ??
     REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode] ??
     REMAND_STATUS_NOT_RECORDED;
-
-  // getRemandStatus = (
-  //   defendant: DefendantCasesApplications,
-  //   prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
-  // ): string => {
-  //   debugger;
-
-  //   console.log('caseURN:', prosecutionCase.prosecutionCaseIdentifier.caseURN);
-
-  //   const bailStatus = defendant?.personDefendant?.bailStatus?.description;
-  //   console.log('bailStatus:', bailStatus);
-
-  //   const remandByCode = REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode];
-  //   console.log('remandByCode:', remandByCode);
-
-  //   const result = bailStatus ?? remandByCode ?? REMAND_STATUS_NOT_RECORDED;
-  //   console.log('final result:', result);
-
-  //   return result;
-  // };
-
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
       this.onYouthCourtToggle.emit(defendant.id);
