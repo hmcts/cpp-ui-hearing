@@ -8,7 +8,7 @@
     </parent>
     <groupId>uk.gov.moj.cpp.ui</groupId>
     <artifactId>ui-hearing</artifactId>
-    <version>19.0.45-SNAPSHOT</version>
+    <version>19.0.45-RV-2624-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
         <skip.node.install>false</skip.node.install>

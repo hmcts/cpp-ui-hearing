@@ -664,7 +664,7 @@ describe('buildResultsValidationRequest', () => {
         id: 'defendantId2',
         masterDefendantId: 'masterDefendantId2',
         personDefendant: {
-          personDetails: { firstName: 'Bob', lastName: 'Jones' }
+          personDetails: { firstName: 'Bob', lastName: 'Jones', dateOfBirth: '1990-05-20' }
         } as any
       });
 
@@ -677,6 +677,7 @@ describe('buildResultsValidationRequest', () => {
           defendantId: 'defendantId2',
           firstName: 'Bob',
           lastName: 'Jones',
+          dateOfBirth: '1990-05-20',
           masterDefendantId: 'masterDefendantId2'
         }
       ]);
@@ -711,6 +712,22 @@ describe('buildResultsValidationRequest', () => {
 
       expect(request.defendants[0].firstName).toBe('ACME Corp');
       expect(request.defendants[0].lastName).toBe('');
+    });
+
+    it('should leave dateOfBirth undefined for a legal entity (organisation) defendant', () => {
+      const defendant = createDefendant({
+        id: 'defendantId3',
+        personDefendant: undefined as any,
+        legalEntityDefendant: {
+          organisation: { name: 'ACME Corp' }
+        } as any
+      });
+
+      const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
+        defendant
+      ]);
+
+      expect(request.defendants[0].dateOfBirth).toBeUndefined();
     });
 
     it('should fallback to empty string when defendant has no personDefendant and no legalEntityDefendant', () => {

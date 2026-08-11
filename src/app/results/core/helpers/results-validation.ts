@@ -138,6 +138,7 @@ const buildDefendants = (defendants: Defendant[]): ResultsValidationDefendant[] 
         ? defendant.personDefendant.personDetails.firstName
         : defendant.legalEntityDefendant?.organisation.name || '',
       lastName: defendant.personDefendant ? defendant.personDefendant.personDetails.lastName : '',
+      dateOfBirth: defendant.personDefendant?.personDetails?.dateOfBirth,
       masterDefendantId: defendant.masterDefendantId
     }));
 };
