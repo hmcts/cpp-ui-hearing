@@ -18,4 +18,9 @@ export interface PersonDefendant {
   employerOrganisation: EmployerOrganisation;
   employerPayrollReference: string;
   custodialEstablishment?: CustodyEstablishment;
+  extendedPersonDefendent?: ExtendedPersonDefendant;
+}
+
+export interface ExtendedPersonDefendant {
+  allBailStatuses: BailStatus[];
 }

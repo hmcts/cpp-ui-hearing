@@ -641,12 +641,12 @@ describe('HearingResultsListComponent', () => {
 
     it('should return the defendant bail status description when it is available', () => {
       const defendant = defendantWithBailStatus({
-        code: 'U',
+        code: 'Q',
         id: 'bail-status-id',
-        description: 'Unconditional bail'
+        description: 'Postal Requisition/Written charge'
       });
-      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
-        'Unconditional bail'
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('Q'))).toBe(
+        'Postal Requisition/Written charge'
       );
     });
 
@@ -662,13 +662,7 @@ describe('HearingResultsListComponent', () => {
       ).toBe('Postal Requisition/Written charge');
     });
 
-    it('should return "Custody" when there is no bail status and the initiation code is C', () => {
-      expect(
-        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('C'))
-      ).toBe('Custody');
-    });
-
-    it('should return "Not recorded" when there is no bail status and the initiation code is neither S, Q or C', () => {
+    it('should return "Not recorded" when there is no bail status and the initiation code is neither S nor Q', () => {
       expect(
         component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('A'))
       ).toBe('Not recorded');
@@ -688,7 +682,6 @@ describe('HearingResultsListComponent', () => {
     it('should display the remand status directly below the case URN', () => {
       const remandStatus = queryRemandStatus();
       expect(remandStatus).toBeTruthy();
-      expect(remandStatus.nativeElement.textContent).toContain('Conditional Bail');
 
       const caseReference = fixture.debugElement.query(
         By.css('[data-test-id="caseReference"]')

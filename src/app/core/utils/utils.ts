@@ -19,6 +19,7 @@ import {
 import { cloneDeep, isUndefined, omitBy, sortBy, findIndex } from 'lodash-es';
 import { CourtOrderOffence } from '../model/court-orders';
 import { CourtApplicationCase } from '../model/court-application-case';
+import { BailStatus } from '../model/bail-status';
 
 export interface RouterStateUrl {
   url: string;
@@ -197,19 +198,53 @@ export const sortOffences = (
  * @returns distinct defendants
  */
 export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
-  const distinctDefendants: Defendant[] = [];
+  const groupedDefendants = new Map<
+    string,
+    { defendant: Defendant; bailStatusMap: Map<string, BailStatus> }
+  >();
 
   for (const defendant of defendants) {
-    if (
-      !distinctDefendants.find(def => def.masterDefendantId === defendant.masterDefendantId) &&
-      !distinctDefendants.find(def => def.id === defendant.masterDefendantId) &&
-      !distinctDefendants.find(def => def.masterDefendantId === defendant.id)
-    ) {
-      distinctDefendants.push(defendant);
+    const key = defendant.masterDefendantId;
+    const currentBailStatus = defendant.personDefendant?.bailStatus;
+
+    if (!groupedDefendants.has(key)) {
+      const bailStatusMap = new Map<string, BailStatus>();
+      if (currentBailStatus && defendant.prosecutionCaseId) {
+        bailStatusMap.set(defendant.prosecutionCaseId, currentBailStatus);
+      }
+
+      const extendedDefendant: Defendant = {
+        ...defendant,
+        personDefendant: {
+          ...defendant.personDefendant,
+          extendedPersonDefendent: {
+            allBailStatuses: currentBailStatus ? [currentBailStatus] : []
+          }
+        }
+      };
+
+      groupedDefendants.set(key, {
+        defendant: extendedDefendant,
+        bailStatusMap: bailStatusMap
+      });
+    } else {
+      const existing = groupedDefendants.get(key)!;
+
+      if (currentBailStatus && defendant.prosecutionCaseId) {
+        const bailStatusExists = existing.bailStatusMap.has(defendant.prosecutionCaseId);
+
+        if (!bailStatusExists) {
+          existing.bailStatusMap.set(defendant.prosecutionCaseId, currentBailStatus);
+
+          existing.defendant.personDefendant.extendedPersonDefendent?.allBailStatuses.push(
+            currentBailStatus
+          );
+        }
+      }
     }
   }
 
-  return distinctDefendants;
+  return Array.from(groupedDefendants.values()).map(item => item.defendant);
 };
 
 /**
