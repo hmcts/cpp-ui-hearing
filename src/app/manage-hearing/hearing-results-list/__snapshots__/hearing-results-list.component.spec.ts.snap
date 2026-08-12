@@ -400,7 +400,7 @@ exports[`HearingResultsListComponent should render the template with the values 
               pdk-margin-top="2"
               pdk-typography="heading-small"
             >
-               HEARING_LIST.BAIL_STATUSNot recorded 
+               HEARING_LIST.BAIL_STATUSConditional Bail 
             </h4>
             <reporting-restrictions
               iswarning="true"

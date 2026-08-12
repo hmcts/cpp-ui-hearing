@@ -356,24 +356,19 @@ export class HearingResultsListComponent {
     defendant: DefendantCasesApplications,
     prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
   ): string => {
-    const bailStatuses = defendant?.personDefendant?.extendedPersonDefendent?.allBailStatuses;
+    const bailStatus = defendant?.personDefendant?.bailStatus;
     let bailStatusDescription = '';
+    const caseId = prosecutionCase?.id;
+    if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {
+      const matchingIndex = defendant.prosecutionCases.findIndex((pc: any) => pc.id === caseId);
 
-    if (bailStatuses && bailStatuses.length > 0) {
-      const caseId = prosecutionCase?.id;
-      let matchingBailStatus = null;
-
-      if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {
-        const matchingIndex = defendant.prosecutionCases.findIndex((pc: any) => pc.id === caseId);
-        if (matchingIndex !== -1 && matchingIndex < bailStatuses.length) {
-          matchingBailStatus = bailStatuses[matchingIndex];
-        }
+      if (matchingIndex !== -1 && matchingIndex < bailStatus.length) {
+        bailStatusDescription = bailStatus[matchingIndex]?.description || '';
       }
+    }
 
-      if (!matchingBailStatus) {
-        matchingBailStatus = bailStatuses[0];
-      }
-      bailStatusDescription = matchingBailStatus?.description || '';
+    if (!bailStatusDescription && bailStatus.length > 0) {
+      bailStatusDescription = bailStatus[0]?.description || '';
     }
 
     const remandByCode = REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode];

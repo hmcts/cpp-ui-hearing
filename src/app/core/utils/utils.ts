@@ -19,7 +19,6 @@ import {
 import { cloneDeep, isUndefined, omitBy, sortBy, findIndex } from 'lodash-es';
 import { CourtOrderOffence } from '../model/court-orders';
 import { CourtApplicationCase } from '../model/court-application-case';
-import { BailStatus } from '../model/bail-status';
 
 export interface RouterStateUrl {
   url: string;
@@ -198,53 +197,36 @@ export const sortOffences = (
  * @returns distinct defendants
  */
 export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
-  const groupedDefendants = new Map<
-    string,
-    { defendant: Defendant; bailStatusMap: Map<string, BailStatus> }
-  >();
+  const groupedDefendants = new Map<string, any>();
 
   for (const defendant of defendants) {
     const key = defendant.masterDefendantId;
     const currentBailStatus = defendant.personDefendant?.bailStatus;
 
     if (!groupedDefendants.has(key)) {
-      const bailStatusMap = new Map<string, BailStatus>();
-      if (currentBailStatus && defendant.prosecutionCaseId) {
-        bailStatusMap.set(defendant.prosecutionCaseId, currentBailStatus);
-      }
-
-      const extendedDefendant: Defendant = {
+      const newDefendant = {
         ...defendant,
         personDefendant: {
           ...defendant.personDefendant,
-          extendedPersonDefendent: {
-            allBailStatuses: currentBailStatus ? [currentBailStatus] : []
-          }
+          bailStatus: currentBailStatus ? [currentBailStatus] : []
         }
       };
-
-      groupedDefendants.set(key, {
-        defendant: extendedDefendant,
-        bailStatusMap: bailStatusMap
-      });
+      groupedDefendants.set(key, newDefendant);
     } else {
-      const existing = groupedDefendants.get(key)!;
+      const existingDefendant = groupedDefendants.get(key)!;
 
-      if (currentBailStatus && defendant.prosecutionCaseId) {
-        const bailStatusExists = existing.bailStatusMap.has(defendant.prosecutionCaseId);
-
-        if (!bailStatusExists) {
-          existing.bailStatusMap.set(defendant.prosecutionCaseId, currentBailStatus);
-
-          existing.defendant.personDefendant.extendedPersonDefendent?.allBailStatuses.push(
-            currentBailStatus
-          );
+      if (currentBailStatus) {
+        if (!Array.isArray(existingDefendant.personDefendant.bailStatus)) {
+          existingDefendant.personDefendant.bailStatus = [
+            existingDefendant.personDefendant.bailStatus
+          ];
         }
+        existingDefendant.personDefendant.bailStatus.push(currentBailStatus);
       }
     }
   }
 
-  return Array.from(groupedDefendants.values()).map(item => item.defendant);
+  return Array.from(groupedDefendants.values()) as Defendant[];
 };
 
 /**

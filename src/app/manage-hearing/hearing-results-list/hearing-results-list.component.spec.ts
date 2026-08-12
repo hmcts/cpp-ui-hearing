@@ -631,23 +631,56 @@ describe('HearingResultsListComponent', () => {
   });
 
   describe('#getRemandStatus', () => {
-    const prosecutionCaseWithInitiationCode = (
-      initiationCode?: string
-    ): Omit<ProsecutionCaseDetails, 'defendants'> =>
-      ({ id: 'case-1', initiationCode } as Omit<ProsecutionCaseDetails, 'defendants'>);
+    const conditionalBail: BailStatus = {
+      code: 'B',
+      id: 'bail-status-id-1',
+      description: 'Conditional Bail'
+    };
 
-    const defendantWithBailStatus = (bailStatus?: BailStatus): DefendantCasesApplications =>
-      ({ personDefendant: { bailStatus } } as DefendantCasesApplications);
+    const unconditionalBail: BailStatus = {
+      code: 'U',
+      id: 'bail-status-id-2',
+      description: 'Unconditional bail'
+    };
+    const prosecutionCaseWithInitiationCode = (
+      initiationCode?: string,
+      id = 'case-1'
+    ): Omit<ProsecutionCaseDetails, 'defendants'> =>
+      ({ id, initiationCode } as Omit<ProsecutionCaseDetails, 'defendants'>);
+
+    const defendantWithBailStatus = (
+      bailStatus: BailStatus[] = [],
+      prosecutionCases: { id: string }[] = []
+    ): DefendantCasesApplications =>
+      ({
+        personDefendant: { bailStatus },
+        prosecutionCases
+      } as unknown as DefendantCasesApplications);
 
     it('should return the defendant bail status description when it is available', () => {
-      const defendant = defendantWithBailStatus({
-        code: 'Q',
-        id: 'bail-status-id',
-        description: 'Postal Requisition/Written charge'
-      });
-      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('Q'))).toBe(
-        'Postal Requisition/Written charge'
+      const defendant = defendantWithBailStatus([unconditionalBail]);
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
+        'Unconditional bail'
       );
+    });
+
+    it('should return the bail status description that matches the given prosecution case when the defendant has bail statuses for multiple cases', () => {
+      const defendant = defendantWithBailStatus(
+        [conditionalBail, unconditionalBail],
+        [{ id: 'case-1' }, { id: 'case-2' }]
+      );
+
+      expect(
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S', 'case-2'))
+      ).toBe('Unconditional bail');
+    });
+
+    it('should fall back to the first bail status description when the prosecution case does not match any of the defendant cases', () => {
+      const defendant = defendantWithBailStatus([conditionalBail], [{ id: 'other-case' }]);
+
+      expect(
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S', 'case-1'))
+      ).toBe('Conditional Bail');
     });
 
     it('should return "Summons" when there is no bail status and the initiation code is S', () => {
@@ -697,7 +730,7 @@ describe('HearingResultsListComponent', () => {
       const input = [
         {
           ...groupedDefendant,
-          personDefendant: { ...groupedDefendant.personDefendant, bailStatus: undefined },
+          personDefendant: { ...groupedDefendant.personDefendant, bailStatus: [] },
           prosecutionCases: [{ ...groupedDefendant.prosecutionCases[0], initiationCode: 'S' }]
         }
       ] as DefendantCasesApplications[];
