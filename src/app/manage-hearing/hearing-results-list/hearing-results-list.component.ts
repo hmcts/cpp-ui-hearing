@@ -50,8 +50,7 @@ type NotifiedPleaMapping = Record<NotifiedPleaValue, string>;
 const REMAND_STATUS_NOT_RECORDED = 'Not recorded';
 const REMAND_STATUS_BY_INITIATION_CODE: Readonly<Record<string, string>> = {
   S: 'Summons',
-  Q: 'Postal Requisition/Written charge',
-  C: 'Custody'
+  Q: 'Postal Requisition/Written charge'
 };
 
 @Component({
@@ -356,10 +355,27 @@ export class HearingResultsListComponent {
   getRemandStatus = (
     defendant: DefendantCasesApplications,
     prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
-  ): string =>
-    defendant?.personDefendant?.bailStatus?.description ??
-    REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode] ??
-    REMAND_STATUS_NOT_RECORDED;
+  ): string => {
+    const bailStatus = defendant?.personDefendant?.bailStatus;
+    let bailStatusDescription = '';
+    const caseId = prosecutionCase?.id;
+    if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {
+      const matchingIndex = defendant.prosecutionCases.findIndex((pc: any) => pc.id === caseId);
+
+      if (matchingIndex !== -1 && matchingIndex < bailStatus.length) {
+        bailStatusDescription = bailStatus[matchingIndex]?.description || '';
+      }
+    }
+
+    if (!bailStatusDescription && bailStatus.length > 0) {
+      bailStatusDescription = bailStatus[0]?.description || '';
+    }
+
+    const remandByCode = REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode];
+    const result = bailStatusDescription || remandByCode || REMAND_STATUS_NOT_RECORDED;
+    return result;
+  };
+
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
       this.onYouthCourtToggle.emit(defendant.id);
