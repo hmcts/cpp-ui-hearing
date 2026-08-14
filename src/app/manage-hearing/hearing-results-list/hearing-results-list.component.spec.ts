@@ -741,6 +741,25 @@ describe('HearingResultsListComponent', () => {
       expect(queryRemandStatus().nativeElement.textContent).toContain('Summons');
     });
   });
+
+  describe('custodial establishment display', () => {
+    it('should display the recorded custodial establishment name directly below the case URN', () => {
+      const [groupedDefendant] = groupedCasesMock;
+      const input = [
+        {
+          ...groupedDefendant,
+          personDefendant: {
+            ...groupedDefendant.personDefendant,
+            custodialEstablishment: { id: 'HMP1', name: 'HMP Wandsworth', custody: 'REMAND' }
+          }
+        }
+      ] as DefendantCasesApplications[];
+
+      testHostComponent.setInput(input);
+      fixture.detectChanges();
+      expect(fixture).toMatchSnapshot();
+    });
+  });
 });
 
 @Component({
