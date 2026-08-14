@@ -10,7 +10,12 @@ import {
   getSelectedHearingDate
 } from '../../../core';
 import { ResultsService } from '../services/results.service';
-import { DraftResultActions, getDraftResult, ResultsState } from '../store';
+import {
+  DraftResultActions,
+  getDraftResult,
+  ResultsState,
+  ResultsValidationActions
+} from '../store';
 
 export interface ExtendedDraftResultGuardParams {
   hearingId: string;
@@ -49,6 +54,9 @@ export class ExtendedDraftResultGuard implements CanActivate {
           draftResultFromStore.hearingId === hearingId &&
           draftResultFromStore.hearingDay === hearingDay
         ) {
+          this.store.dispatch(
+            ResultsValidationActions.validateResults({ navigateOnSuccess: false })
+          );
           return of(draftResultFromStore);
         }
         return this.resultsService
