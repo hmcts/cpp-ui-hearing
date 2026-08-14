@@ -1,0 +1,340 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TierAndListTypeReviewComponent rendering should render a finalised record 1`] = `
+<tier-and-list-type-review
+  canFinalise={[Function Function]}
+  delete={[Function OutputEmitterRef]}
+  finalise={[Function OutputEmitterRef]}
+  formRoute={[Function Function]}
+  isFinalised={[Function Function]}
+  listTypeOption={[Function Function]}
+  ptphDetail={[Function Function]}
+  tierOption={[Function Function]}
+>
+  <dl
+    class="pdk-summary-list"
+    pdk-summary-list=""
+  >
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.TIER
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.TIER_1_LABEL 
+        <div
+          class="govuk-body-s"
+          pdk-typography="body-small"
+        >
+           TIER_AND_LIST_TYPE.TIER_1_DESCRIPTION 
+        </div>
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-action=""
+      >
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="javascript:void(0)"
+          pdk-link=""
+          unvisited=""
+        >
+           TIER_AND_LIST_TYPE.DELETE 
+        </a>
+      </dd>
+    </div>
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.LIST_TYPE
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.LIST_TYPE_1_LABEL 
+        <div
+          class="govuk-body-s"
+          pdk-typography="body-small"
+        >
+          TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
+        </div>
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-action=""
+      >
+      </dd>
+    </div>
+  </dl>
+</tier-and-list-type-review>
+`;
+
+exports[`TierAndListTypeReviewComponent rendering should render a record that can be finalised 1`] = `
+<tier-and-list-type-review
+  canFinalise={[Function Function]}
+  delete={[Function OutputEmitterRef]}
+  finalise={[Function OutputEmitterRef]}
+  formRoute={[Function Function]}
+  isFinalised={[Function Function]}
+  listTypeOption={[Function Function]}
+  ptphDetail={[Function Function]}
+  tierOption={[Function Function]}
+>
+  <dl
+    class="pdk-summary-list"
+    pdk-summary-list=""
+  >
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.TIER
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.TIER_1_LABEL 
+        <div
+          class="govuk-body-s"
+          pdk-typography="body-small"
+        >
+           TIER_AND_LIST_TYPE.TIER_1_DESCRIPTION 
+        </div>
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-action=""
+      >
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/hearing-1/tier-and-list-type/edit"
+          pdk-link=""
+          unvisited=""
+        >
+           TIER_AND_LIST_TYPE.CHANGE 
+        </a>
+      </dd>
+    </div>
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.LIST_TYPE
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.LIST_TYPE_1_LABEL 
+        <div
+          class="govuk-body-s"
+          pdk-typography="body-small"
+        >
+          TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
+        </div>
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-action=""
+      >
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/hearing-1/tier-and-list-type/edit"
+          pdk-link=""
+          unvisited=""
+        >
+           TIER_AND_LIST_TYPE.CHANGE 
+        </a>
+      </dd>
+    </div>
+  </dl><pdk-warning-text
+    class="govuk-!-margin-top-4"
+    pdk-margin-top="4"
+  >
+    <div
+      class="govuk-warning-text"
+    >
+      <span
+        aria-hidden="true"
+        class="govuk-warning-text__icon"
+      >
+        !
+      </span>
+      <strong
+        class="govuk-warning-text__text"
+      >
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Warning
+        </span>
+         TIER_AND_LIST_TYPE.NO_CHANGE_AFTER_FINALISATION
+      </strong>
+    </div>
+  </pdk-warning-text><button
+    class="govuk-!-margin-top-4 govuk-button"
+    pdk-button=""
+    pdk-margin-top="4"
+    type="button"
+  >
+     TIER_AND_LIST_TYPE.FINALISE
+  </button>
+</tier-and-list-type-review>
+`;
+
+exports[`TierAndListTypeReviewComponent rendering should render a record that is not finalised 1`] = `
+<tier-and-list-type-review
+  canFinalise={[Function Function]}
+  delete={[Function OutputEmitterRef]}
+  finalise={[Function OutputEmitterRef]}
+  formRoute={[Function Function]}
+  isFinalised={[Function Function]}
+  listTypeOption={[Function Function]}
+  ptphDetail={[Function Function]}
+  tierOption={[Function Function]}
+>
+  <dl
+    class="pdk-summary-list"
+    pdk-summary-list=""
+  >
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.TIER
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.TIER_1_LABEL 
+        <div
+          class="govuk-body-s"
+          pdk-typography="body-small"
+        >
+           TIER_AND_LIST_TYPE.TIER_1_DESCRIPTION 
+        </div>
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-action=""
+      >
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/hearing-1/tier-and-list-type/edit"
+          pdk-link=""
+          unvisited=""
+        >
+           TIER_AND_LIST_TYPE.CHANGE 
+        </a>
+      </dd>
+    </div>
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.LIST_TYPE
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.LIST_TYPE_1_LABEL 
+        <div
+          class="govuk-body-s"
+          pdk-typography="body-small"
+        >
+          TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
+        </div>
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-action=""
+      >
+        <a
+          class="govuk-link govuk-link--no-visited-state"
+          href="/manage/hearing-1/tier-and-list-type/edit"
+          pdk-link=""
+          unvisited=""
+        >
+           TIER_AND_LIST_TYPE.CHANGE 
+        </a>
+      </dd>
+    </div>
+  </dl><pdk-inset-text
+    class="govuk-!-margin-top-4"
+    pdk-margin-top="4"
+  >
+    <div
+      class="govuk-inset-text"
+    >
+       TIER_AND_LIST_TYPE.NEEDED_TO_FINALISE 
+    </div>
+  </pdk-inset-text><pdk-warning-text
+    class="govuk-!-margin-top-4"
+    pdk-margin-top="4"
+  >
+    <div
+      class="govuk-warning-text"
+    >
+      <span
+        aria-hidden="true"
+        class="govuk-warning-text__icon"
+      >
+        !
+      </span>
+      <strong
+        class="govuk-warning-text__text"
+      >
+        <span
+          class="govuk-visually-hidden"
+          pdk-visually-hidden=""
+        >
+          Warning
+        </span>
+         TIER_AND_LIST_TYPE.NO_CHANGE_AFTER_FINALISATION
+      </strong>
+    </div>
+  </pdk-warning-text><button
+    class="govuk-!-margin-top-4 govuk-button"
+    disabled="disabled"
+    pdk-button=""
+    pdk-margin-top="4"
+    type="button"
+  >
+     TIER_AND_LIST_TYPE.FINALISE
+  </button>
+</tier-and-list-type-review>
+`;

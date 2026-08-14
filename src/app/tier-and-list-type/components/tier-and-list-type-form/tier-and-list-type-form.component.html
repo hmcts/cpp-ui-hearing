@@ -1,0 +1,84 @@
+<form
+  pdk-form
+  novalidate
+  [formGroup]="form"
+  (validSubmit)="onValidSubmit()"
+  (errors)="errors.emit($event)"
+>
+  <pdk-form-field
+    label="{{ 'TIER_AND_LIST_TYPE.SELECT_TIER' | translate }}"
+    labelType="small"
+    [errorMessages]="[
+      { rule: 'required', message: 'TIER_AND_LIST_TYPE.ERROR_TIER_REQUIRED' | translate }
+    ]"
+  >
+    <pdk-radio-group formControlName="tier">
+      @for (option of tierOptions; track option.value) {
+      <pdk-radio-button [value]="option.value">
+        {{ option.labelKey | translate }}
+        <pdk-hint>
+          {{ option.descriptionKey | translate }}
+          @if (option.bulletKeys.length > 0) {
+          <ul pdk-list="bullet" pdk-text-colour="dark-grey" pdk-margin-bottom="0">
+            @for (bulletKey of option.bulletKeys; track bulletKey) {
+            <li>{{ bulletKey | translate }}</li>
+            }
+          </ul>
+          }
+        </pdk-hint>
+      </pdk-radio-button>
+      }
+    </pdk-radio-group>
+  </pdk-form-field>
+
+  <pdk-divider />
+
+  <pdk-form-field label="{{ 'TIER_AND_LIST_TYPE.SELECT_LIST_TYPE' | translate }}" labelType="small">
+    <pdk-radio-group formControlName="listType">
+      @for (option of listTypeOptions; track option.value) {
+      <pdk-radio-button [value]="option.value">
+        {{ option.labelKey | translate }}
+        <pdk-hint>{{ option.hintKey | translate }}</pdk-hint>
+      </pdk-radio-button>
+
+      @if (option.requiresKeyReason && fixedDateSelected()) {
+      <pdk-radio-conditional>
+        <pdk-form-field
+          label="{{ 'TIER_AND_LIST_TYPE.KEY_REASON_LABEL' | translate }}"
+          labelType="small"
+          [errorMessages]="[
+            {
+              rule: 'required',
+              message: 'TIER_AND_LIST_TYPE.ERROR_KEY_REASON_REQUIRED' | translate
+            }
+          ]"
+        >
+          <textarea pdk-input pdk-text-input pdk-resize formControlName="keyReason"></textarea>
+        </pdk-form-field>
+      </pdk-radio-conditional>
+      } }
+    </pdk-radio-group>
+
+    <div pdk-margin-top="2">
+      <a
+        href="javascript:void(0)"
+        pdk-link
+        unvisited
+        (click)="clearListTypeSelection(); $event.preventDefault()"
+      >
+        {{ 'TIER_AND_LIST_TYPE.CLEAR_LIST_TYPE' | translate }}
+      </a>
+    </div>
+  </pdk-form-field>
+
+  <pdk-divider />
+
+  <pdk-button-group>
+    <button type="submit" pdk-button>
+      {{ 'TIER_AND_LIST_TYPE.SAVE_AND_CONTINUE' | translate }}
+    </button>
+    <a [routerLink]="cancelRoute()" pdk-link unvisited (click)="cancel.emit()">
+      {{ 'TIER_AND_LIST_TYPE.CANCEL' | translate }}
+    </a>
+  </pdk-button-group>
+</form>

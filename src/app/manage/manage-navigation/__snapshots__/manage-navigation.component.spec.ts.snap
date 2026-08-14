@@ -112,6 +112,21 @@ exports[`ManageNavigationComponent should disable manage hearing tab if flag is 
             >
               <a
                 href="/"
+                id="tier-and-list-type-link"
+                role="tab"
+                routerlink="./tier-and-list-type"
+              >
+                 MANAGE_HEARING.TIER_AND_LIST_TYPE 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
                 id="enter-results-link"
                 routerlink="./enter-results"
               >
@@ -230,6 +245,21 @@ exports[`ManageNavigationComponent should have the expected template 1`] = `
               >
                  MANAGE_HEARING.ENTER_VERDICTS 
               </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="tier-and-list-type-link"
+                role="tab"
+                routerlink="./tier-and-list-type"
+              >
+                 MANAGE_HEARING.TIER_AND_LIST_TYPE 
+              </a>
             </li>
             <li
               class="pdk-service-nav-list-item govuk-service-navigation__item"
@@ -367,6 +397,21 @@ exports[`ManageNavigationComponent should have the expected template for Applica
             >
               <a
                 href="/"
+                id="tier-and-list-type-link"
+                role="tab"
+                routerlink="./tier-and-list-type"
+              >
+                 MANAGE_HEARING.TIER_AND_LIST_TYPE 
+              </a>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
                 id="enter-results-link"
                 routerlink="./enter-results"
               >
@@ -486,6 +531,21 @@ exports[`ManageNavigationComponent should have the expected template for offence
               >
                  MANAGE_HEARING.ENTER_VERDICTS 
               </span>
+            </li>
+            <li
+              class="pdk-service-nav-list-item govuk-service-navigation__item"
+              pdk-service-nav-list-item=""
+              role="presentation"
+              routerlinkactive=""
+            >
+              <a
+                href="/"
+                id="tier-and-list-type-link"
+                role="tab"
+                routerlink="./tier-and-list-type"
+              >
+                 MANAGE_HEARING.TIER_AND_LIST_TYPE 
+              </a>
             </li>
             <li
               class="pdk-service-nav-list-item govuk-service-navigation__item"

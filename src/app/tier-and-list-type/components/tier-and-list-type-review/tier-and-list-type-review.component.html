@@ -1,0 +1,76 @@
+<dl pdk-summary-list>
+  <div pdk-summary-list-item>
+    <dt pdk-summary-list-key>{{ 'TIER_AND_LIST_TYPE.TIER' | translate }}</dt>
+    <dd pdk-summary-list-value>
+      @if (tierOption(); as option) {
+      {{ option.labelKey | translate }}
+      <div pdk-typography="body-small">
+        {{ option.descriptionKey | translate }}
+        @if (option.bulletKeys.length > 0) {
+        <ul pdk-list="bullet" pdk-margin-bottom="0">
+          @for (bulletKey of option.bulletKeys; track bulletKey) {
+          <li pdk-typography="body-small">{{ bulletKey | translate }}</li>
+          }
+        </ul>
+        }
+      </div>
+      }
+    </dd>
+    <dd pdk-summary-list-action>
+      @if (isFinalised()) {
+      <a
+        href="javascript:void(0)"
+        pdk-link
+        unvisited
+        (click)="delete.emit(); $event.preventDefault()"
+      >
+        {{ 'TIER_AND_LIST_TYPE.DELETE' | translate }}
+      </a>
+      } @else {
+      <a [routerLink]="formRoute()" pdk-link unvisited>
+        {{ 'TIER_AND_LIST_TYPE.CHANGE' | translate }}
+      </a>
+      }
+    </dd>
+  </div>
+
+  <div pdk-summary-list-item>
+    <dt pdk-summary-list-key>{{ 'TIER_AND_LIST_TYPE.LIST_TYPE' | translate }}</dt>
+    <dd pdk-summary-list-value>
+      @if (listTypeOption(); as option) {
+      {{ option.labelKey | translate }}
+      <div pdk-typography="body-small">{{ option.hintKey | translate }}</div>
+      } @else {
+      {{ 'TIER_AND_LIST_TYPE.NONE_SELECTED' | translate }}
+      }
+    </dd>
+    <dd pdk-summary-list-action>
+      @if (!isFinalised()) {
+      <a [routerLink]="formRoute()" pdk-link unvisited>
+        {{ 'TIER_AND_LIST_TYPE.CHANGE' | translate }}
+      </a>
+      }
+    </dd>
+  </div>
+</dl>
+
+@if (!isFinalised()) { @if (!canFinalise()) {
+<pdk-inset-text pdk-margin-top="4">
+  {{ 'TIER_AND_LIST_TYPE.NEEDED_TO_FINALISE' | translate }}
+</pdk-inset-text>
+}
+
+<pdk-warning-text pdk-margin-top="4">
+  {{ 'TIER_AND_LIST_TYPE.NO_CHANGE_AFTER_FINALISATION' | translate }}
+</pdk-warning-text>
+
+<button
+  pdk-button
+  type="button"
+  pdk-margin-top="4"
+  [disabled]="!canFinalise()"
+  (click)="finalise.emit()"
+>
+  {{ 'TIER_AND_LIST_TYPE.FINALISE' | translate }}
+</button>
+}

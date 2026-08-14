@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TierAndListTypeFormContainer rendering should render the entry page 1`] = `
+<tier-and-list-type-form-container
+  appStore={[Function _MockStore]}
+  cancelRoute={[Function Function]}
+  caseUrn={[Function Function]}
+  formErrors={[Function Function]}
+  hearingId={[Function String]}
+  route={[Function Object]}
+  store={[Function _SignalStore]}
+>
+  <h1
+    class="govuk-heading-l"
+    pdk-typography="heading-large"
+  >
+    TIER_AND_LIST_TYPE.ENTRY_HEADING
+  </h1><pdk-divider
+    class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+    pdk-margin-vertical="2"
+  >
+    <hr
+      class="pdk-divider"
+    />
+  </pdk-divider><strong
+    class="govuk-body-s"
+    pdk-typography="body-small"
+  >
+    URN-1
+  </strong><pdk-divider
+    class="govuk-!-margin-top-2 govuk-!-margin-bottom-2"
+    pdk-margin-vertical="2"
+  >
+    <hr
+      class="pdk-divider"
+    />
+  </pdk-divider><tier-and-list-type-form>
+    <div>
+      mock form
+    </div>
+  </tier-and-list-type-form>
+</tier-and-list-type-form-container>
+`;
