@@ -300,7 +300,7 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that is
     <div
       class="govuk-inset-text"
     >
-       TIER_AND_LIST_TYPE.NEEDED_TO_FINALISE 
+       TIER_AND_LIST_TYPE.NEEDED_TO_FINALISE
     </div>
   </pdk-inset-text><pdk-warning-text
     class="govuk-!-margin-top-4"
