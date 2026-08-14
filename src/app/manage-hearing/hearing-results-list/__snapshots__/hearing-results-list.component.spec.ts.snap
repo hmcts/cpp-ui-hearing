@@ -402,6 +402,13 @@ exports[`HearingResultsListComponent should render the template with the values 
             >
                HEARING_LIST.BAIL_STATUSConditional Bail 
             </h4>
+            <h4
+              class="govuk-heading-s"
+              data-test-id="custodialEstablishment"
+              pdk-typography="heading-small"
+            >
+               HEARING_LIST.CUSTODIAL_ESTABLISHMENTNone selected 
+            </h4>
             <reporting-restrictions
               iswarning="true"
             >

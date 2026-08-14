@@ -42,7 +42,12 @@
         <h4 data-test-id="remandStatus" pdk-typography="heading-small" pdk-margin-top="2">
           {{ 'HEARING_LIST.BAIL_STATUS' | translate }}{{ getRemandStatus(defendant, case) }}
         </h4>
-        } &nbsp;
+        @if (!!defendant.personDefendant) {
+        <h4 data-test-id="custodialEstablishment" pdk-typography="heading-small">
+          {{ 'HEARING_LIST.CUSTODIAL_ESTABLISHMENT' | translate
+          }}{{ getCustodialEstablishment(defendant, case) }}
+        </h4>
+        } }&nbsp;
         <reporting-restrictions isWarning="true" [caseId]="case.id" [offences]="case.offences">
         </reporting-restrictions>
       </pdk-grid>

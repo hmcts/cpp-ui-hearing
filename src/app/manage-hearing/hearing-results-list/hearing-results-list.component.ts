@@ -53,6 +53,8 @@ const REMAND_STATUS_BY_INITIATION_CODE: Readonly<Record<string, string>> = {
   Q: 'Postal Requisition/Written charge'
 };
 
+const CUSTODIAL_ESTABLISHMENT_NOT_SELECTED = 'None selected';
+
 @Component({
   selector: 'hearing-results-list',
   templateUrl: './hearing-results-list.component.html',
@@ -375,6 +377,13 @@ export class HearingResultsListComponent {
     const result = bailStatusDescription || remandByCode || REMAND_STATUS_NOT_RECORDED;
     return result;
   };
+
+  getCustodialEstablishment = (
+    defendant: DefendantCasesApplications,
+    prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
+  ): string =>
+    defendant?.personDefendant?.custodialEstablishment?.name ??
+    CUSTODIAL_ESTABLISHMENT_NOT_SELECTED;
 
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
