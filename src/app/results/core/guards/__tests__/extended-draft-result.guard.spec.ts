@@ -19,10 +19,12 @@ describe('ExtendedDraftResultGuard', () => {
   let store: Store<ResultsState>;
   let fetchExtendedDraftResult: jest.Mock;
   let navigate: jest.Mock;
+  let getCurrentNavigation: jest.Mock;
 
   beforeEach(() => {
     fetchExtendedDraftResult = jest.fn();
     navigate = jest.fn();
+    getCurrentNavigation = jest.fn().mockReturnValue(null);
 
     TestBed.configureTestingModule({
       imports: [],
@@ -40,7 +42,8 @@ describe('ExtendedDraftResultGuard', () => {
         {
           provide: Router,
           useValue: {
-            navigate
+            navigate,
+            getCurrentNavigation
           }
         }
       ],
@@ -78,6 +81,21 @@ describe('ExtendedDraftResultGuard', () => {
 
     expect(guard.canActivate(snapshot)).toBeObservable(expected$);
     expect(store.dispatch).toHaveBeenCalledWith(
+      ResultsValidationActions.validateResults({ navigateOnSuccess: false })
+    );
+  });
+
+  it('should not re-validate results when the navigation came from an already-validated save', () => {
+    store.dispatch(DraftResultActions.setDraftResult({ draftResult }));
+    (store.dispatch as jest.Mock).mockClear();
+    getCurrentNavigation.mockReturnValue({
+      extras: { state: { skipResultsValidation: true } }
+    });
+    const snapshot = createSnapshot('hearingId');
+    const expected$ = cold('(e|)', { e: true });
+
+    expect(guard.canActivate(snapshot)).toBeObservable(expected$);
+    expect(store.dispatch).not.toHaveBeenCalledWith(
       ResultsValidationActions.validateResults({ navigateOnSuccess: false })
     );
   });
