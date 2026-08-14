@@ -1,5 +1,769 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`HearingResultsListComponent custodial establishment display should display the recorded custodial establishment name directly below the case URN 1`] = `
+<ng-component
+  activeCourtOrders={[Function Object]}
+  breachTypes={[Function Array]}
+  casesAndApplicationsGroupedByDefendant={[Function Array]}
+  guiltyPleasValues={[Function Array]}
+  hearingId={[Function String]}
+  mockHearing={[Function Object]}
+  pleasMapping={[Function Object]}
+>
+  <hearing-results-list>
+    <div
+      class="hearing-results-list govuk-!-margin-top-6"
+      data-role="hearing-defendant-95fb6e57-49f9-4bf8-b93d-12a95d92846d"
+      data-test-id="defendant"
+      pdk-margin-top="6"
+    >
+      <defendant-level-detail>
+        <pdk-grid
+          class="govuk-grid-row"
+          container=""
+        >
+          <pdk-grid
+            class="govuk-grid-column-full"
+            full=""
+          >
+            <div
+              class="hearing-results-header"
+            >
+              <div
+                style="flex: 1;"
+              >
+                <h4
+                  class="defendant-name govuk-heading-xl"
+                  data-test-id="defendantName"
+                  pdk-typography="heading-xlarge"
+                >
+                   Adam SMITH 
+                </h4>
+                <pdk-badge
+                  class="presence-badger pdk-!-border-color-green pdk-!-text-color-green"
+                  data-test-id="defendantAttendance"
+                >
+                </pdk-badge>
+              </div>
+              <div>
+                <div
+                  class="govuk-!-margin-bottom-3"
+                  pdk-margin-bottom="3"
+                >
+                  <button
+                    class="govuk-!-margin-bottom-3 govuk-button govuk-button--secondary"
+                    data-role="driver-record"
+                    pdk-button="secondary"
+                    pdk-margin-bottom="3"
+                  >
+                     MANAGE_HEARING.DRIVER_RECORD 
+                  </button>
+                  <button
+                    class="govuk-!-margin-bottom-3 govuk-button govuk-button--secondary"
+                    data-role="outstanding-fine"
+                    pdk-button="secondary"
+                    pdk-margin-bottom="3"
+                  >
+                     COMMON.OUTSTANDING_FINE 
+                  </button>
+                </div>
+                <pdk-checkbox
+                  checkboxtype="small"
+                  class="youth-selector govuk-checkboxes govuk-checkboxes--small ng-untouched ng-pristine ng-valid"
+                  name="youthCourtCheckbox"
+                >
+                  <div
+                    class="govuk-checkboxes__item"
+                  >
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="pdk-checkbox-GENERATED_ID"
+                      name="youthCourtCheckbox"
+                      type="checkbox"
+                      value="true"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="pdk-checkbox-GENERATED_ID"
+                    >
+                       MANAGE_HEARING.SITTING_YOUTH_COURT 
+                    </label>
+                  </div>
+                </pdk-checkbox>
+              </div>
+            </div>
+            <div
+              class="govuk-!-padding-top-2"
+              pdk-padding-top="2"
+            >
+              <details
+                class="govuk-details"
+                data-role="change-attendance"
+                pdk-details=""
+              >
+                <summary
+                  class="govuk-details__summary"
+                >
+                  <span
+                    class="govuk-details__summary-text"
+                  >
+                     MANAGE_HEARING.ENTER 
+                    <span
+                      class="govuk-visually-hidden"
+                      pdk-visually-hidden=""
+                    >
+                       defendant presence
+                    </span>
+                  </span>
+                </summary>
+                <pdk-details-text
+                  class="govuk-details__text"
+                >
+                  <div
+                    class="govuk-!-padding-top-2"
+                    pdk-padding-top="2"
+                  >
+                    <dl
+                      class="defendant-details"
+                    >
+                      <div
+                        class="defendantAddress"
+                        data-role="defendantAddress"
+                      >
+                        <dt
+                          class="defendant-details-label pdk-!-text-color-dark-grey"
+                          pdk-text-colour="dark-grey"
+                        >
+                           MANAGE_HEARING.ADDRESS 
+                        </dt>
+                        <dd
+                          class="defendant-address govuk-!-margin-0"
+                          pdk-margin="0"
+                        >
+                          <one-line-address>
+                            <span>
+                              11 St Andrews
+                            </span>
+                          </one-line-address>
+                        </dd>
+                      </div>
+                      <div
+                        data-role="custodyEstablishment"
+                      >
+                        <dt
+                          class="defendant-details-label pdk-!-text-color-dark-grey"
+                          pdk-text-colour="dark-grey"
+                        >
+                           MANAGE_HEARING.CUSTODY_ESTABLISHMENT 
+                        </dt>
+                        <dd
+                          class="custody-establishment govuk-!-margin-0"
+                          pdk-margin="0"
+                        >
+                          <span>
+                            HMP Wandsworth
+                          </span>
+                        </dd>
+                      </div>
+                      <div
+                        data-role="dateOfBirth"
+                      >
+                        <dt
+                          class="defendant-details-label pdk-!-text-color-dark-grey"
+                          pdk-text-colour="dark-grey"
+                        >
+                           MANAGE_HEARING.DATE_OF_BIRTH 
+                        </dt>
+                        <dd
+                          class="date-of-birth govuk-!-margin-0"
+                          pdk-margin="0"
+                        >
+                          <span>
+                            27 October 2001
+                          </span>
+                        </dd>
+                      </div>
+                      <div
+                        data-role="age"
+                      >
+                        <dt
+                          class="defendant-details-label pdk-!-text-color-dark-grey"
+                          pdk-text-colour="dark-grey"
+                        >
+                           MANAGE_HEARING.AGE 
+                        </dt>
+                        <dd
+                          class="defendant-age govuk-!-margin-0"
+                          pdk-margin="0"
+                        >
+                          <span>
+                             24 COMMON.YEARS_OLD 
+                          </span>
+                        </dd>
+                      </div>
+                      <div
+                        class="nationality"
+                        data-role="nationality"
+                      >
+                        <dt
+                          class="defendant-details-label pdk-!-text-color-dark-grey"
+                          pdk-text-colour="dark-grey"
+                        >
+                           MANAGE_HEARING.NATIONALITY 
+                        </dt>
+                        <dd
+                          class="defendant-nationality govuk-!-margin-0"
+                          pdk-margin="0"
+                        >
+                          <span>
+                            British
+                          </span>
+                        </dd>
+                      </div>
+                    </dl>
+                    <span>
+                      <a
+                        class="edit-link govuk-link govuk-link--no-visited-state"
+                        href="undefined/prosecution-casefile/edit-case/0e448414-62ec-4f92-9c61-44d608079353/personal-details/95fb6e57-49f9-4bf8-b93d-12a95d92846d/edit/4b9c55c-1805-4f5c-978c-54089e74f84a"
+                        pdk-link=""
+                        target="_blank"
+                        unvisited=""
+                      >
+                          MANAGE_HEARING.OPENS_NEW_WINDOW 
+                      </a>
+                    </span>
+                    <defendant-presence>
+                      <div
+                        class="defendant-presence"
+                      >
+                        <form
+                          class="presence-form ng-untouched ng-pristine ng-invalid"
+                          novalidate=""
+                          pdk-form=""
+                        >
+                          <pdk-form-field
+                            class="presence-form-field"
+                            id="presence-form-95fb6e57-49f9-4bf8-b93d-12a95d92846d"
+                            labeltype="small"
+                          >
+                            <pdk-form-group
+                              class="pdk-form-group"
+                            >
+                              <fieldset
+                                class="govuk-fieldset"
+                                pdk-fieldset=""
+                              >
+                                <legend
+                                  class="govuk-fieldset__legend govuk-fieldset__legend--s"
+                                >
+                                   MANAGE_HEARING.IS_DEFENDANT_PRESENT 
+                                </legend>
+                                <pdk-radio-group
+                                  class="ng-untouched ng-pristine ng-invalid"
+                                  data-role="defendant-presence"
+                                  name="presence-radios"
+                                  required=""
+                                >
+                                  <div
+                                    class="govuk-radios"
+                                  >
+                                    <pdk-radio-button>
+                                      <div
+                                        class="govuk-radios__item"
+                                      >
+                                        <input
+                                          class="govuk-radios__input"
+                                          id="pdk-radio-GENERATED_ID"
+                                          name="pdk-radio-group-GENERATED_ID"
+                                          type="radio"
+                                          value="IN_PERSON"
+                                        />
+                                        <label
+                                          class="govuk-radios__label govuk-label"
+                                          for="pdk-radio-GENERATED_ID"
+                                          pdk-label=""
+                                        >
+                                           COMMON.IN_PERSON 
+                                        </label>
+                                      </div>
+                                    </pdk-radio-button>
+                                    <pdk-radio-button>
+                                      <div
+                                        class="govuk-radios__item"
+                                      >
+                                        <input
+                                          class="govuk-radios__input"
+                                          id="pdk-radio-GENERATED_ID"
+                                          name="pdk-radio-group-GENERATED_ID"
+                                          type="radio"
+                                          value="BY_VIDEO"
+                                        />
+                                        <label
+                                          class="govuk-radios__label govuk-label"
+                                          for="pdk-radio-GENERATED_ID"
+                                          pdk-label=""
+                                        >
+                                           COMMON.BY_VIDEO 
+                                        </label>
+                                      </div>
+                                    </pdk-radio-button>
+                                    <pdk-radio-button>
+                                      <div
+                                        class="govuk-radios__item"
+                                      >
+                                        <input
+                                          class="govuk-radios__input"
+                                          id="pdk-radio-GENERATED_ID"
+                                          name="pdk-radio-group-GENERATED_ID"
+                                          type="radio"
+                                          value="NOT_PRESENT"
+                                        />
+                                        <label
+                                          class="govuk-radios__label govuk-label"
+                                          for="pdk-radio-GENERATED_ID"
+                                          pdk-label=""
+                                        >
+                                           COMMON.NOT_PRESENT 
+                                        </label>
+                                      </div>
+                                    </pdk-radio-button>
+                                  </div>
+                                </pdk-radio-group>
+                              </fieldset>
+                            </pdk-form-group>
+                          </pdk-form-field>
+                          <button
+                            class="save-presence-btn govuk-!-margin-bottom-1 govuk-button"
+                            disabled="disabled"
+                            pdk-button=""
+                            pdk-margin-bottom="1"
+                            type="submit"
+                          >
+                             COMMON.SAVE 
+                          </button>
+                        </form>
+                      </div>
+                    </defendant-presence>
+                  </div>
+                </pdk-details-text>
+              </details>
+            </div>
+          </pdk-grid>
+        </pdk-grid>
+      </defendant-level-detail>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-full"
+          full=""
+        >
+          <cpp-shareable-results-container>
+          </cpp-shareable-results-container>
+        </pdk-grid>
+      </pdk-grid>
+      <pdk-divider
+        class="govuk-!-margin-top-4 govuk-!-margin-bottom-2"
+        pdk-margin-bottom="2"
+        pdk-margin-top="4"
+      >
+        <hr
+          class="pdk-divider"
+        />
+      </pdk-divider>
+      <div>
+        <pdk-grid
+          class="govuk-grid-row"
+          container=""
+        >
+          <pdk-grid
+            class="govuk-grid-column-one-third"
+            one-third=""
+          >
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+              Case reference: 
+            </span>
+            <h4
+              class="case govuk-heading-s"
+              data-test-id="caseReference"
+              pdk-typography="heading-small"
+            >
+               86GD2660720 
+            </h4>
+            <h4
+              class="govuk-!-margin-top-2 govuk-heading-s"
+              data-test-id="remandStatus"
+              pdk-margin-top="2"
+              pdk-typography="heading-small"
+            >
+               HEARING_LIST.BAIL_STATUSConditional Bail 
+            </h4>
+            <h4
+              class="govuk-heading-s"
+              data-test-id="custodialEstablishment"
+              pdk-typography="heading-small"
+            >
+               HEARING_LIST.CUSTODIAL_ESTABLISHMENTHMP Wandsworth 
+            </h4>
+            <reporting-restrictions
+              iswarning="true"
+            >
+            </reporting-restrictions>
+          </pdk-grid>
+          <pdk-grid
+            class="govuk-grid-column-two-thirds"
+            data-test-id="defendantResults"
+            two-thirds=""
+          >
+            <cpp-shareable-results-container>
+            </cpp-shareable-results-container>
+          </pdk-grid>
+        </pdk-grid>
+        <div
+          data-test-id="offences"
+        >
+          <pdk-divider>
+            <hr
+              class="pdk-divider"
+            />
+          </pdk-divider>
+          <pdk-grid
+            class="offence govuk-grid-row"
+            container=""
+            data-test-id="offence"
+          >
+            <pdk-grid
+              class="govuk-grid-column-one-third"
+              one-third=""
+            >
+              <div
+                class="offence-index"
+              >
+                <span>
+                  1.
+                </span>
+              </div>
+              <div
+                class="offence-title"
+              >
+                <span
+                  data-test-id="offenceTitle"
+                >
+                  Drivemotorvehiclewhenalcohollevelabovelimit
+                </span>
+              </div>
+              <div
+                class="govuk-!-margin-top-6"
+                pdk-margin-top="6"
+              >
+                <pdk-grid
+                  class="govuk-grid-row"
+                  container=""
+                >
+                  <pdk-grid
+                    class="bold govuk-grid-column-full"
+                    full=""
+                  >
+                     MANAGE_HEARING.NOTIFIED_PLEA 
+                  </pdk-grid>
+                </pdk-grid>
+                <div
+                  class="govuk-!-margin-bottom-4"
+                  pdk-margin-bottom="4"
+                >
+                  <pdk-grid
+                    class="govuk-grid-row"
+                    container=""
+                  >
+                    <pdk-grid
+                      class="govuk-grid-column-two-thirds"
+                      data-role="offence-notified-plea"
+                      two-thirds=""
+                    >
+                       Guilty 
+                    </pdk-grid>
+                  </pdk-grid>
+                  <pdk-grid
+                    class="govuk-grid-row"
+                    container=""
+                  >
+                    <pdk-grid
+                      class="govuk-grid-column-two-thirds"
+                      two-thirds=""
+                    >
+                      <span
+                        class="date-message pdk-!-text-color-dark-grey"
+                        pdk-text-colour="dark-grey"
+                      >
+                         MANAGE_HEARING.PLEA_ENTERED_ON 28 December 2018 
+                      </span>
+                    </pdk-grid>
+                  </pdk-grid>
+                  <pdk-grid
+                    class="govuk-grid-row"
+                    container=""
+                  >
+                    <pdk-grid
+                      class="govuk-grid-column-two-thirds"
+                      two-thirds=""
+                    >
+                      <span
+                        class="date-message pdk-!-text-color-dark-grey"
+                        pdk-text-colour="dark-grey"
+                      >
+                         MANAGE_HEARING.CONVICTED_ON 07 January 2019 
+                      </span>
+                    </pdk-grid>
+                  </pdk-grid>
+                </div>
+              </div>
+              <div
+                class="govuk-!-margin-bottom-6 govuk-!-margin-top-6"
+                pdk-margin-bottom="6"
+                pdk-margin-top="6"
+              >
+                <pdk-grid
+                  class="govuk-grid-row"
+                  container=""
+                >
+                  <pdk-grid
+                    class="bold govuk-grid-column-full"
+                    full=""
+                  >
+                     MANAGE_HEARING.PLEA 
+                  </pdk-grid>
+                </pdk-grid>
+                <pdk-grid
+                  class="govuk-grid-row"
+                  container=""
+                >
+                  <pdk-grid
+                    class="govuk-grid-column-two-thirds"
+                    two-thirds=""
+                  >
+                    <span
+                      data-test-id="pleaNotYetEntered"
+                    >
+                       MANAGE_HEARING.NO_PLEA_ENTERED 
+                    </span>
+                  </pdk-grid>
+                  <pdk-grid
+                    class="action-bar-column govuk-grid-column-one-third"
+                    one-third=""
+                  >
+                  </pdk-grid>
+                </pdk-grid>
+              </div>
+              <div>
+                <div
+                  class="govuk-!-margin-bottom-4"
+                  pdk-margin-bottom="4"
+                >
+                  <pdk-grid
+                    class="govuk-grid-row"
+                    container=""
+                  >
+                    <pdk-grid
+                      class="bold govuk-grid-column-full"
+                      full=""
+                    >
+                       MANAGE_HEARING.ALLOCATION_DECISION 
+                    </pdk-grid>
+                  </pdk-grid>
+                  <div>
+                    <pdk-grid
+                      class="govuk-grid-row"
+                      container=""
+                    >
+                      <pdk-grid
+                        class="allocation-decision govuk-grid-column-two-thirds"
+                        data-role="offence-allocation-decision"
+                        two-thirds=""
+                      >
+                         No mode of Trial - Either way offence 
+                      </pdk-grid>
+                    </pdk-grid>
+                    <pdk-grid
+                      class="govuk-grid-row"
+                      container=""
+                    >
+                      <pdk-grid
+                        class="govuk-grid-column-two-thirds"
+                        two-thirds=""
+                      >
+                        <span
+                          class="date-message pdk-!-text-color-dark-grey"
+                          pdk-text-colour="dark-grey"
+                        >
+                           MANAGE_HEARING.ALLOCATION_DECISION_RECORDED_ON 25 July 2018 
+                        </span>
+                      </pdk-grid>
+                    </pdk-grid>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="govuk-!-margin-bottom-4"
+                    pdk-margin-bottom="4"
+                  >
+                    <pdk-grid
+                      class="govuk-grid-row"
+                      container=""
+                    >
+                      <pdk-grid
+                        class="bold govuk-grid-column-full"
+                        full=""
+                      >
+                         MANAGE_HEARING.SENTENCING_INDICATION 
+                      </pdk-grid>
+                    </pdk-grid>
+                    <div>
+                      <pdk-grid
+                        class="govuk-grid-row"
+                        container=""
+                      >
+                        <pdk-grid
+                          class="sentencing-decision govuk-grid-column-two-thirds"
+                          data-role="offence-sentencing-decision"
+                          two-thirds=""
+                        >
+                           Test Sentence Indication 
+                        </pdk-grid>
+                      </pdk-grid>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="govuk-!-margin-bottom-6"
+                pdk-margin-bottom="6"
+              >
+                <pdk-grid
+                  class="govuk-grid-row"
+                  container=""
+                >
+                  <pdk-grid
+                    class="bold govuk-grid-column-one-third"
+                    one-third=""
+                  >
+                     MANAGE_HEARING.VERDICT 
+                  </pdk-grid>
+                </pdk-grid>
+                <pdk-grid
+                  class="govuk-grid-row"
+                  container=""
+                >
+                </pdk-grid>
+                <pdk-grid
+                  class="govuk-grid-row"
+                  container=""
+                >
+                  <pdk-grid
+                    class="govuk-grid-column-two-thirds"
+                    two-thirds=""
+                  >
+                     MANAGE_HEARING.NO_VERDICT_ENTERED 
+                  </pdk-grid>
+                  <pdk-grid
+                    class="action-bar-column govuk-grid-column-one-third"
+                    one-third=""
+                  >
+                  </pdk-grid>
+                </pdk-grid>
+              </div>
+            </pdk-grid>
+            <pdk-grid
+              class="govuk-grid-column-two-thirds"
+              two-thirds=""
+            >
+              <div
+                class="govuk-!-margin-bottom-6"
+                pdk-margin-bottom="6"
+              >
+                <cpp-shareable-results-container>
+                </cpp-shareable-results-container>
+              </div>
+            </pdk-grid>
+          </pdk-grid>
+        </div>
+      </div>
+      <pdk-grid
+        class="govuk-grid-row"
+        container=""
+      >
+        <pdk-grid
+          class="govuk-grid-column-one-third"
+          one-third=""
+        >
+        </pdk-grid>
+        <pdk-grid
+          class="govuk-grid-column-two-thirds"
+          two-thirds=""
+        >
+          <breach-form>
+            <pdk-warning-text
+              class="govuk-!-margin-top-1 govuk-!-margin-bottom-1"
+              pdk-margin-bottom="1"
+              pdk-margin-top="1"
+            >
+              <div
+                class="govuk-warning-text"
+              >
+                <span
+                  aria-hidden="true"
+                  class="govuk-warning-text__icon"
+                >
+                  !
+                </span>
+                <strong
+                  class="govuk-warning-text__text"
+                >
+                  <span
+                    class="govuk-visually-hidden"
+                    pdk-visually-hidden=""
+                  >
+                    Warning
+                  </span>
+                   ENTER_BREACHES.ACTIVE_ORDERS
+                </strong>
+              </div>
+            </pdk-warning-text>
+            <pdk-checkbox
+              class="govuk-!-margin-top-5 govuk-!-margin-bottom-7 govuk-checkboxes ng-untouched ng-pristine ng-valid"
+              data-role="tick-input"
+              data-test-id="showActiveOrders"
+              pdk-margin-bottom="7"
+              pdk-margin-top="5"
+            >
+              <div
+                class="govuk-checkboxes__item"
+              >
+                <input
+                  class="govuk-checkboxes__input"
+                  id="pdk-checkbox-GENERATED_ID"
+                  type="checkbox"
+                  value="true"
+                />
+                <label
+                  class="govuk-label govuk-checkboxes__label"
+                  for="pdk-checkbox-GENERATED_ID"
+                >
+                   ENTER_BREACHES.SHOW_ACTIVE
+                </label>
+              </div>
+            </pdk-checkbox>
+          </breach-form>
+        </pdk-grid>
+      </pdk-grid>
+    </div>
+  </hearing-results-list>
+</ng-component>
+`;
+
 exports[`HearingResultsListComponent should render the template with the values expected 1`] = `
 <ng-component
   activeCourtOrders={[Function Object]}

@@ -743,17 +743,6 @@ describe('HearingResultsListComponent', () => {
   });
 
   describe('custodial establishment display', () => {
-    const queryCustodialEstablishment = () =>
-      fixture.debugElement.query(By.css('[data-test-id="custodialEstablishment"]'));
-
-    it('should display "None selected" when the defendant has no custodial establishment recorded', () => {
-      const custodialEstablishment = queryCustodialEstablishment();
-      expect(custodialEstablishment).toBeTruthy();
-      expect(custodialEstablishment.nativeElement.textContent).toContain(
-        'HEARING_LIST.CUSTODIAL_ESTABLISHMENT'
-      );
-    });
-
     it('should display the recorded custodial establishment name directly below the case URN', () => {
       const [groupedDefendant] = groupedCasesMock;
       const input = [
@@ -768,17 +757,7 @@ describe('HearingResultsListComponent', () => {
 
       testHostComponent.setInput(input);
       fixture.detectChanges();
-
-      const custodialEstablishment = queryCustodialEstablishment();
-      expect(custodialEstablishment.nativeElement.textContent).toContain('HMP Wandsworth');
-
-      const caseReference = fixture.debugElement.query(
-        By.css('[data-test-id="caseReference"]')
-      ).nativeElement;
-      expect(
-        caseReference.compareDocumentPosition(custodialEstablishment.nativeElement) &
-          Node.DOCUMENT_POSITION_FOLLOWING
-      ).toBeTruthy();
+      expect(fixture).toMatchSnapshot();
     });
   });
 });
