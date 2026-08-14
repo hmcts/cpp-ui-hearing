@@ -159,13 +159,19 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
       seen.add(offence.id);
       return true;
     })
-    .map(({ offence, caseUrn }) => ({
-      offenceId: offence.id,
-      offenceCode: offence.offenceCode,
-      offenceTitle: offence.offenceTitle,
-      orderIndex: offence.orderIndex,
-      caseUrn,
-      hasExistingCtlRecord: !!offence.custodyTimeLimit,
-      isConvicted: !!offence.convictionDate
-    }));
+    .map(({ offence, caseUrn }) => {
+      let isConvicted = !!offence.convictionDate;
+      if (isConvicted && offence?.verdict?.isDeleted) {
+        isConvicted = false;
+      }
+      return {
+        offenceId: offence.id,
+        offenceCode: offence.offenceCode,
+        offenceTitle: offence.offenceTitle,
+        orderIndex: offence.orderIndex,
+        caseUrn,
+        hasExistingCtlRecord: !!offence.custodyTimeLimit,
+        isConvicted
+      };
+    });
 };
