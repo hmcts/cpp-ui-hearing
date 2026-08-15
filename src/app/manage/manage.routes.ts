@@ -85,6 +85,14 @@ export const routes: Routes = [
             }
           },
           {
+            path: 'tier-and-list-type',
+            loadChildren: () =>
+              import('../tier-and-list-type/tier-and-list-type.routes').then(m => m.routes),
+            data: {
+              title: 'Tier and list type | Common Platform | GOV.UK'
+            }
+          },
+          {
             path: 'enter-results',
             canActivate: [LoadDefendantsTrackingStatusGuard],
             loadChildren: () => import('../results/results.routes').then(m => m.routes),
