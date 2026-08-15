@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { PdkAlertComponent, PdkCore } from '@cpp/pdk';
 import { TranslateModule } from '@ngx-translate/core';
@@ -17,7 +10,7 @@ import { FORM_PATH, formRoute, REVIEW_PATH, reviewRoute } from '../utils/tier-an
   selector: 'tier-and-list-type',
   template: `
     @if (store.alert(); as alert) {
-    <pdk-alert [type]="alertType()" icon pdk-margin-bottom="6">
+    <pdk-alert [type]="alert.kind" icon pdk-margin-bottom="6">
       {{ alert.messageKey | translate }}
     </pdk-alert>
     }
@@ -34,10 +27,6 @@ export class TierAndListTypeContainer implements OnInit {
   private readonly hearingId = getFlattenedParams(this.route.snapshot)['hearingId'];
 
   readonly store = inject(TierAndListTypeStore);
-
-  readonly alertType = computed(() =>
-    this.store.alert()?.kind === 'failure' ? 'warning' : 'success'
-  );
 
   constructor() {
     effect(() => {

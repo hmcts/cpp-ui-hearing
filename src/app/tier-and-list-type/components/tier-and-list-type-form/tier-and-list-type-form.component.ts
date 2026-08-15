@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
   PdkButton,
@@ -17,9 +17,14 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { LIST_TYPE_OPTIONS, listTypeRequiresKeyReason } from '../../models/list-type-options';
-import { PtphDetail, SavePtphDetailPayload } from '../../models/ptph-detail.model';
+import { ListType, PtphDetail, SavePtphDetailPayload, Tier } from '../../models/ptph-detail.model';
 import { TIER_OPTIONS } from '../../models/tier-options';
-import { buildTierAndListTypeFormGroup } from '../../utils/tier-and-list-type-form.utils';
+
+interface TierAndListTypeControls {
+  tier: FormControl<Tier | null>;
+  listType: FormControl<ListType | null>;
+  keyReason: FormControl<string | null>;
+}
 
 @Component({
   selector: 'tier-and-list-type-form',
@@ -49,7 +54,12 @@ export class TierAndListTypeFormComponent {
   readonly errors = output<ValidationError[] | null>();
   readonly cancel = output<void>();
 
-  readonly form = buildTierAndListTypeFormGroup();
+  readonly form = new FormGroup<TierAndListTypeControls>({
+    tier: new FormControl<Tier | null>(null, Validators.required),
+    listType: new FormControl<ListType | null>(null),
+    keyReason: new FormControl<string | null>(null)
+  });
+
   readonly tierOptions = TIER_OPTIONS;
   readonly listTypeOptions = LIST_TYPE_OPTIONS;
 

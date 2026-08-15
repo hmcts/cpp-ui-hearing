@@ -23,7 +23,7 @@ const savePayload: SavePtphDetailPayload = {
   listType: 'TYPE_1_FIXED'
 };
 
-const failure = (messageKey: string) => ({ kind: 'failure', messageKey });
+const failure = (messageKey: string) => ({ kind: 'warning', messageKey });
 const success = (messageKey: string) => ({ kind: 'success', messageKey });
 
 describe('TierAndListTypeStore', () => {

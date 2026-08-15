@@ -220,13 +220,13 @@ describe('TierAndListTypeContainer', () => {
     });
   });
 
-  describe('alertType', () => {
-    it('should map a failure alert to a warning alert', () => {
+  describe('alert', () => {
+    it('should render a failure alert as a warning alert', () => {
       getPtphDetail.mockReturnValue(throwError(() => new Error('load failed')));
 
       createComponent();
 
-      expect(component.alertType()).toBe('warning');
+      expect(component.store.alert()?.kind).toBe('warning');
       expect(alertComponent().componentInstance.type).toBe('warning');
     });
 
@@ -242,7 +242,6 @@ describe('TierAndListTypeContainer', () => {
         kind: 'success',
         messageKey: 'TIER_AND_LIST_TYPE.ALERT_FINALISED_SUCCESS'
       });
-      expect(component.alertType()).toBe('success');
       expect(alertComponent().componentInstance.type).toBe('success');
     });
 

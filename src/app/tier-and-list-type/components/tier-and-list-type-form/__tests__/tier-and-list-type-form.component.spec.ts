@@ -116,6 +116,27 @@ describe('TierAndListTypeFormComponent', () => {
     });
   });
 
+  describe('form construction', () => {
+    it('should create exactly the tier, listType and keyReason controls', () => {
+      expect(Object.keys(component.form.controls).sort()).toEqual([
+        'keyReason',
+        'listType',
+        'tier'
+      ]);
+    });
+
+    it('should attach the required validator to tier only', () => {
+      expect(component.form.controls.tier.hasValidator(Validators.required)).toBe(true);
+      expect(component.form.controls.listType.hasValidator(Validators.required)).toBe(false);
+      expect(component.form.controls.keyReason.hasValidator(Validators.required)).toBe(false);
+    });
+
+    it('should leave the optional controls valid while empty', () => {
+      expect(component.form.controls.listType.valid).toBe(true);
+      expect(component.form.controls.keyReason.valid).toBe(true);
+    });
+  });
+
   describe('validation', () => {
     it('should require a tier', () => {
       expect(component.form.controls.tier.hasError('required')).toBe(true);

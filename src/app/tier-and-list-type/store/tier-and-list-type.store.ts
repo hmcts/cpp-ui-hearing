@@ -1,4 +1,5 @@
 import { computed, inject } from '@angular/core';
+import { AlertType } from '@cpp/pdk';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -7,7 +8,7 @@ import { PtphDetail, SavePtphDetailPayload } from '../models/ptph-detail.model';
 import { PtphDetailService } from '../services/ptph-detail.service';
 
 export interface TierAndListTypeAlert {
-  kind: 'success' | 'failure';
+  kind: Extract<AlertType, 'success' | 'warning'>;
   messageKey: string;
 }
 
@@ -24,7 +25,7 @@ const FINALISED_SUCCESS_ALERT: TierAndListTypeAlert = {
 };
 
 const FINALISE_FAILURE_ALERT: TierAndListTypeAlert = {
-  kind: 'failure',
+  kind: 'warning',
   messageKey: 'TIER_AND_LIST_TYPE.ALERT_FINALISE_FAILURE'
 };
 
@@ -34,17 +35,17 @@ const DELETED_SUCCESS_ALERT: TierAndListTypeAlert = {
 };
 
 const DELETE_FAILURE_ALERT: TierAndListTypeAlert = {
-  kind: 'failure',
+  kind: 'warning',
   messageKey: 'TIER_AND_LIST_TYPE.ALERT_DELETE_FAILURE'
 };
 
 const SAVE_FAILURE_ALERT: TierAndListTypeAlert = {
-  kind: 'failure',
+  kind: 'warning',
   messageKey: 'TIER_AND_LIST_TYPE.ALERT_SAVE_FAILURE'
 };
 
 const LOAD_FAILURE_ALERT: TierAndListTypeAlert = {
-  kind: 'failure',
+  kind: 'warning',
   messageKey: 'TIER_AND_LIST_TYPE.ALERT_LOAD_FAILURE'
 };
 
