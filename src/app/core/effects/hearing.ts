@@ -662,6 +662,22 @@ export class HearingEffects {
     )
   );
 
+  setTierAndListType$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(HearingActions.SET_TIER_AND_LIST_TYPE),
+      switchMap((action: HearingActions.SetTierAndListTypeAction) => {
+        const { hearingId, tierAndListType } = action.payload;
+
+        return this.hearingService.setTierAndListType(hearingId, tierAndListType).pipe(
+          map(
+            () => new HearingActions.SetTierAndListTypeActionSuccess({ hearingId, tierAndListType })
+          ),
+          catchError(error => of(new ApiError(error)))
+        );
+      })
+    )
+  );
+
   vacateTrial$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(HearingActions.VACATE_TRIAL),

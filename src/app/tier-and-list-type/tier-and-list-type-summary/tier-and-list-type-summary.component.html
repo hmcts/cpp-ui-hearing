@@ -1,0 +1,40 @@
+<dl pdk-summary-list data-role="tier-and-list-type-summary">
+  <div pdk-summary-list-item>
+    <dt pdk-summary-list-key>{{ 'TIER_AND_LIST_TYPE.TIER' | translate }}</dt>
+    <dd pdk-summary-list-value data-role="summary-tier">
+      {{ tierLabelKey | translate }}
+      @if (tier2SubcategoryLabelKey) {
+      <span class="summary-subcategory" data-role="summary-tier-2-subcategory">
+        {{ tier2SubcategoryLabelKey | translate }}
+      </span>
+      }
+    </dd>
+    <dd pdk-summary-list-actions>
+      <a
+        pdk-link
+        href="javascript:void(0)"
+        data-role="change-tier-and-list-type"
+        (click)="changeSelection.emit()"
+      >
+        {{ 'COMMON.CHANGE' | translate }}
+        <span pdk-visually-hidden>{{ 'TIER_AND_LIST_TYPE.TIER_AND_LIST_TYPE' | translate }}</span>
+      </a>
+    </dd>
+  </div>
+
+  <div pdk-summary-list-item>
+    <dt pdk-summary-list-key>{{ 'TIER_AND_LIST_TYPE.LIST_TYPE' | translate }}</dt>
+    <dd pdk-summary-list-value data-role="summary-list-type">
+      @if (listTypeLabelKey) {
+      {{ listTypeLabelKey | translate }}
+      @if (showFixedDateReason) {
+      <span class="summary-fixed-date-reason" data-role="summary-fixed-date-reason">
+        {{ tierAndListType?.fixedDateReason }}
+      </span>
+      } } @else {
+      {{ 'TIER_AND_LIST_TYPE.NO_LIST_TYPE' | translate }}
+      }
+    </dd>
+    <dd pdk-summary-list-actions></dd>
+  </div>
+</dl>

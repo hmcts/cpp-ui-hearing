@@ -33,6 +33,8 @@ export class ManageNavigationComponent implements AfterViewInit, OnDestroy {
   @Input() isManageHearingPageApplicableFlag = true;
   @Input() isVerdictsPageAvailable: boolean;
   @Input() isPleaApplicableFlag: boolean;
+  @Input() isTierAndListTypeAvailable: boolean;
+  @Input() isTierAndListTypeEntered: boolean;
   @Input() currentTab: string;
   @Input() isBoxwork: boolean;
 

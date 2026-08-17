@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TierAndListTypeSummaryComponent renders a tier saved without a list type 1`] = `
+<div
+  id="root1"
+>
+  <dl
+    class="pdk-summary-list"
+    data-role="tier-and-list-type-summary"
+    pdk-summary-list=""
+  >
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.TIER
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        data-role="summary-tier"
+        pdk-summary-list-value=""
+      >
+         TIER_AND_LIST_TYPE.TIER_5 
+        
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-actions=""
+      >
+        <a
+          class="govuk-link"
+          data-role="change-tier-and-list-type"
+          href="javascript:void(0)"
+          pdk-link=""
+        >
+           COMMON.CHANGE 
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            TIER_AND_LIST_TYPE.TIER_AND_LIST_TYPE
+          </span>
+        </a>
+      </dd>
+    </div>
+    <div
+      class="pdk-summary-list__row"
+      pdk-summary-list-item=""
+    >
+      <dt
+        class="pdk-summary-list__key"
+        pdk-summary-list-key=""
+      >
+        TIER_AND_LIST_TYPE.LIST_TYPE
+      </dt>
+      <dd
+        class="pdk-summary-list__value"
+        data-role="summary-list-type"
+        pdk-summary-list-value=""
+      >
+        
+         TIER_AND_LIST_TYPE.NO_LIST_TYPE 
+        
+      </dd>
+      <dd
+        class="pdk-summary-list__actions"
+        pdk-summary-list-actions=""
+      />
+    </div>
+  </dl>
+</div>
+`;

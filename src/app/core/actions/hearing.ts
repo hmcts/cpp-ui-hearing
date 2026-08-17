@@ -30,7 +30,12 @@ import {
   Offence,
   OffenceType
 } from '../model';
-import { AmendmentReason, TrialTypeBody, TrialTypeSuccessBody } from '../model/shared';
+import {
+  AmendmentReason,
+  TierAndListType,
+  TrialTypeBody,
+  TrialTypeSuccessBody
+} from '../model/shared';
 import { OrganisationUnit } from '@cpp/reference-data';
 import { VacateTrialParams } from '../../trial-outcome/vacate-trial.interfaces';
 import { UserDetails } from '@cpp/users-groups';
@@ -96,6 +101,8 @@ export const UPDATE_APPLICATION_RESPONSE_SUCCESS = 'UPDATE_APPLICATION_RESPONSE_
 
 export const SET_TRIAL_TYPE = 'SET_TRIAL_TYPE';
 export const SET_TRIAL_TYPE_SUCCESS = 'SET_TRIAL_TYPE_SUCCESS';
+export const SET_TIER_AND_LIST_TYPE = 'SET_TIER_AND_LIST_TYPE';
+export const SET_TIER_AND_LIST_TYPE_SUCCESS = 'SET_TIER_AND_LIST_TYPE_SUCCESS';
 
 export const APPLY_DECISION = 'APPLY_DECISION';
 
@@ -535,6 +542,26 @@ export class SetTrialTypeActionSuccess implements Action {
   ) {}
 }
 
+export class SetTierAndListTypeAction implements Action {
+  readonly type = SET_TIER_AND_LIST_TYPE;
+  constructor(
+    public readonly payload: {
+      hearingId: string;
+      tierAndListType: TierAndListType;
+    }
+  ) {}
+}
+
+export class SetTierAndListTypeActionSuccess implements Action {
+  readonly type = SET_TIER_AND_LIST_TYPE_SUCCESS;
+  constructor(
+    public readonly payload: {
+      hearingId: string;
+      tierAndListType: TierAndListType;
+    }
+  ) {}
+}
+
 export class VacateTrialAction implements Action {
   readonly type = VACATE_TRIAL;
   constructor(public payload: VacateTrialParams) {}
@@ -769,6 +796,8 @@ export type HearingAction =
   | SaveRespondentCounselsSuccessAction
   | SetTrialTypeAction
   | SetTrialTypeActionSuccess
+  | SetTierAndListTypeAction
+  | SetTierAndListTypeActionSuccess
   | ApplyDecisionAction
   | CheckInAsProsecutorAction
   | CheckInAsProsecutorActionSuccess

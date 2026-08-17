@@ -1,0 +1,414 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TierAndListTypeFormComponent renders the entry screen 1`] = `
+<div
+  id="root3"
+>
+  <form
+    class="ng-untouched ng-pristine ng-valid"
+    errorformat="extended"
+    novalidate=""
+    pdk-form=""
+  >
+    <pdk-form-field
+      labeltype="small"
+    >
+      
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <fieldset
+          class="govuk-fieldset"
+          pdk-fieldset=""
+        >
+          <legend
+            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+          >
+             TIER_AND_LIST_TYPE.SELECT_TIER 
+          </legend>
+          
+          
+          
+          <pdk-radio-group
+            class="ng-untouched ng-pristine ng-valid"
+            data-role="tier-options"
+            name="tier"
+            required=""
+          >
+            <div
+              class="govuk-radios"
+            >
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_1"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_1 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_1_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_2"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_2 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_2_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_3"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_3 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_3_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_4"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_4 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_4_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_5"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_5 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_5_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_6"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_6 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_6_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="tier-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TIER_7"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.TIER_7 
+                    <span
+                      class="tier-description govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.TIER_7_DESCRIPTION
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              
+            </div>
+          </pdk-radio-group>
+          
+        </fieldset>
+        
+        
+      </pdk-form-group>
+    </pdk-form-field>
+    <pdk-form-field
+      class="govuk-!-margin-top-6"
+      labeltype="small"
+      pdk-margin-top="6"
+    >
+      
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <fieldset
+          class="govuk-fieldset"
+          pdk-fieldset=""
+        >
+          <legend
+            class="govuk-fieldset__legend govuk-fieldset__legend--s"
+          >
+             TIER_AND_LIST_TYPE.SELECT_LIST_TYPE 
+          </legend>
+          
+          
+          
+          <pdk-radio-group
+            class="ng-untouched ng-pristine ng-valid"
+            data-role="list-type-options"
+            name="listType"
+          >
+            <div
+              class="govuk-radios"
+            >
+              
+              <pdk-radio-button
+                data-role="list-type-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TYPE_1"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.LIST_TYPE_1 
+                    <span
+                      class="list-type-hint govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              <pdk-radio-button
+                data-role="list-type-option"
+              >
+                <div
+                  class="govuk-radios__item"
+                >
+                  <input
+                    class="govuk-radios__input"
+                    id="pdk-radio-GENERATED_ID"
+                    name="pdk-radio-group-GENERATED_ID"
+                    type="radio"
+                    value="TYPE_2"
+                  />
+                  <label
+                    class="govuk-radios__label govuk-label"
+                    for="pdk-radio-GENERATED_ID"
+                    pdk-label=""
+                  >
+                     TIER_AND_LIST_TYPE.LIST_TYPE_2 
+                    <span
+                      class="list-type-hint govuk-hint"
+                      pdk-hint=""
+                    >
+                      <div>
+                        
+                        TIER_AND_LIST_TYPE.LIST_TYPE_2_HINT
+                        
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </pdk-radio-button>
+              
+              
+            </div>
+          </pdk-radio-group>
+          
+        </fieldset>
+        
+        
+      </pdk-form-group>
+    </pdk-form-field>
+    <a
+      class="govuk-link"
+      data-role="clear-list-type"
+      href="javascript:void(0)"
+      pdk-link=""
+    >
+       TIER_AND_LIST_TYPE.CLEAR_LIST_TYPE 
+    </a>
+    <pdk-button-group
+      class="govuk-!-margin-top-6"
+      pdk-margin-top="6"
+    >
+      <div
+        class="govuk-button-group"
+      >
+        <button
+          class="govuk-button"
+          data-role="save-tier-and-list-type"
+          pdk-button=""
+          type="submit"
+        >
+           COMMON.SAVE 
+        </button>
+      </div>
+    </pdk-button-group>
+  </form>
+</div>
+`;

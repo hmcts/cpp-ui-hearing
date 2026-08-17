@@ -9,7 +9,8 @@ import {
   IntermediaryCounsel,
   IntermediaryType,
   RespondentCounsel,
-  setSelectedOptions
+  setSelectedOptions,
+  TierAndListType
 } from '../../core';
 import {
   hearingCaseNoteMock,
@@ -73,6 +74,46 @@ describe('HearingReducer', () => {
     );
     expect(actual.current.hearing.crackedIneffectiveTrial.trialType).toBe('mock type');
   });
+  it('should store the tier and list type against the current hearing', () => {
+    state = mockHearingState;
+    const tierAndListType = {
+      tier: 'TIER_2',
+      tier2Subcategory: 'WITNESS_FROM_ABROAD',
+      listType: 'TYPE_1',
+      fixedDateReason: 'Witness only available in June'
+    } as TierAndListType;
+
+    const actual = hearingLegacyReducer(
+      state,
+      new HearingActions.SetTierAndListTypeActionSuccess({
+        hearingId: 'mock-hearing-id',
+        tierAndListType
+      })
+    );
+
+    expect(actual.current.hearing.tierAndListType).toEqual(tierAndListType);
+  });
+
+  it('should replace a previously saved tier and list type', () => {
+    state = hearingLegacyReducer(
+      mockHearingState as HearingState,
+      new HearingActions.SetTierAndListTypeActionSuccess({
+        hearingId: 'mock-hearing-id',
+        tierAndListType: { tier: 'TIER_1', listType: 'TYPE_1', fixedDateReason: 'First reason' }
+      })
+    );
+
+    const actual = hearingLegacyReducer(
+      state,
+      new HearingActions.SetTierAndListTypeActionSuccess({
+        hearingId: 'mock-hearing-id',
+        tierAndListType: { tier: 'TIER_5' }
+      })
+    );
+
+    expect(actual.current.hearing.tierAndListType).toEqual({ tier: 'TIER_5' });
+  });
+
   it('should add the date to the selected Hearing date', () => {
     state = mockHearingState;
     const actual = hearingLegacyReducer(

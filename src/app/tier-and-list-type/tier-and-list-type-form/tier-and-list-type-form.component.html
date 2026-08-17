@@ -1,0 +1,118 @@
+<form
+  #form="ngForm"
+  pdk-form
+  errorFormat="extended"
+  novalidate
+  (errors)="errors.emit($event)"
+  (validSubmit)="handleValidSubmit()"
+>
+  <pdk-form-field
+    label="{{ 'TIER_AND_LIST_TYPE.SELECT_TIER' | translate }}"
+    labelType="small"
+    [errorMessages]="[
+      {
+        rule: 'required',
+        message: 'TIER_AND_LIST_TYPE.TIER_REQUIRED_ERROR' | translate,
+      },
+    ]"
+  >
+    <pdk-radio-group
+      name="tier"
+      data-role="tier-options"
+      [(ngModel)]="tier"
+      (ngModelChange)="tierSelected()"
+      required
+    >
+      @for (option of tierOptions; track option.value) {
+      <pdk-radio-button [value]="option.value" data-role="tier-option">
+        {{ option.labelKey | translate }}
+        <span pdk-hint class="tier-description">{{ option.descriptionKey | translate }}</span>
+      </pdk-radio-button>
+      @if (option.value === tier2 && tier === tier2) {
+      <pdk-radio-conditional>
+        <pdk-form-field
+          label="{{ 'TIER_AND_LIST_TYPE.SELECT_TIER_2_CATEGORY' | translate }}"
+          labelType="small"
+          [errorMessages]="[
+            {
+              rule: 'required',
+              message: 'TIER_AND_LIST_TYPE.TIER_2_CATEGORY_REQUIRED_ERROR' | translate,
+            },
+          ]"
+        >
+          <pdk-radio-group
+            name="tier2Subcategory"
+            data-role="tier-2-subcategory-options"
+            [(ngModel)]="tier2Subcategory"
+            required
+          >
+            @for (subcategory of tier2SubcategoryOptions; track subcategory.value) {
+            <pdk-radio-button [value]="subcategory.value" data-role="tier-2-subcategory-option">
+              {{ subcategory.labelKey | translate }}
+            </pdk-radio-button>
+            }
+          </pdk-radio-group>
+        </pdk-form-field>
+      </pdk-radio-conditional>
+      } }
+    </pdk-radio-group>
+  </pdk-form-field>
+
+  <pdk-form-field
+    label="{{ 'TIER_AND_LIST_TYPE.SELECT_LIST_TYPE' | translate }}"
+    labelType="small"
+    pdk-margin-top="6"
+  >
+    <pdk-radio-group
+      name="listType"
+      data-role="list-type-options"
+      [(ngModel)]="listType"
+      (ngModelChange)="listTypeSelected()"
+    >
+      @for (option of listTypeOptions; track option.value) {
+      <pdk-radio-button [value]="option.value" data-role="list-type-option">
+        {{ option.labelKey | translate }}
+        <span pdk-hint class="list-type-hint">{{ option.hintKey | translate }}</span>
+      </pdk-radio-button>
+      @if (option.value === fixedDateListType && listType === fixedDateListType) {
+      <pdk-radio-conditional>
+        <pdk-form-field
+          label="{{ 'TIER_AND_LIST_TYPE.FIXED_DATE_REASON' | translate }}"
+          labelType="small"
+          [errorMessages]="[
+            {
+              rule: 'required',
+              message: 'TIER_AND_LIST_TYPE.FIXED_DATE_REASON_REQUIRED_ERROR' | translate,
+            },
+            {
+              rule: 'containsOnlyWhitespaces',
+              message: 'TIER_AND_LIST_TYPE.FIXED_DATE_REASON_REQUIRED_ERROR' | translate,
+            },
+          ]"
+        >
+          <textarea
+            name="fixedDateReason"
+            data-role="fixed-date-reason"
+            pdk-input
+            pdk-text-input
+            pdk-resize
+            [(ngModel)]="fixedDateReason"
+            required
+            noWhitespaceValidator
+          ></textarea>
+        </pdk-form-field>
+      </pdk-radio-conditional>
+      } }
+    </pdk-radio-group>
+  </pdk-form-field>
+
+  <a pdk-link href="javascript:void(0)" data-role="clear-list-type" (click)="clearListType()">
+    {{ 'TIER_AND_LIST_TYPE.CLEAR_LIST_TYPE' | translate }}
+  </a>
+
+  <pdk-button-group pdk-margin-top="6">
+    <button pdk-button type="submit" data-role="save-tier-and-list-type">
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </pdk-button-group>
+</form>

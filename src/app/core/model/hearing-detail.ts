@@ -11,6 +11,7 @@ import { Judiciary } from './shared/judiciary';
 import { CompanyRepresentative } from './company-representative';
 import { IntermediaryCounsel } from './intermediaryCounsel';
 import { CourtCentre } from './court-centre';
+import { TierAndListType } from './shared/tier-and-list-type';
 import { TrialType } from './shared/trial-type';
 import { ProsecutionCaseDetails } from './shared/prosecution-case-details';
 import { HearingCaseNotes } from './hearing-case-notes';
@@ -79,6 +80,7 @@ export interface HearingDetail extends HearingBase {
   boxWorkTaskId?: string;
   boxWorkTaskStatus?: string;
   crackedIneffectiveTrial?: TrialType;
+  tierAndListType?: TierAndListType;
   isEffectiveTrial?: boolean;
   isVacatedTrial?: boolean;
   approvalsRequested?: ApprovalRequest[];

@@ -5,6 +5,7 @@ import { ActivatedRoute, provideRouter } from '@angular/router';
 import { Store, provideStore } from '@ngrx/store';
 import { AppState, reducers } from '../../core';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('ManageNavigationComponent', () => {
   let fixture: ComponentFixture<ManageNavigationComponent>;
@@ -69,5 +70,42 @@ describe('ManageNavigationComponent', () => {
     fixture.componentInstance.isManageHearingPageApplicableFlag = false;
     fixture.detectChanges();
     expect(fixture).toMatchSnapshot();
+  });
+
+  describe('tier and list type tab', () => {
+    const tabLink = () =>
+      fixture.debugElement.query(By.css('#tier-and-list-type-link'))?.nativeElement;
+
+    it('is absent outside the Crown Court', () => {
+      fixture.componentInstance.isTierAndListTypeAvailable = false;
+      fixture.detectChanges();
+
+      expect(tabLink()).toBeUndefined();
+    });
+
+    it('links to the tier and list type screen for a Crown Court hearing', () => {
+      fixture.componentInstance.isTierAndListTypeAvailable = true;
+      fixture.detectChanges();
+
+      expect(tabLink()).toBeTruthy();
+      expect(tabLink().getAttribute('routerLink')).toEqual('./tier-and-list-type');
+    });
+
+    it('invites entry until a tier has been saved', () => {
+      fixture.componentInstance.isTierAndListTypeAvailable = true;
+      fixture.componentInstance.isTierAndListTypeEntered = false;
+      fixture.detectChanges();
+
+      expect(tabLink().textContent).toContain('MANAGE_HEARING.ENTER_TIER_AND_LIST_TYPE');
+    });
+
+    it('drops the "Enter" prefix once a tier has been saved', () => {
+      fixture.componentInstance.isTierAndListTypeAvailable = true;
+      fixture.componentInstance.isTierAndListTypeEntered = true;
+      fixture.detectChanges();
+
+      expect(tabLink().textContent).toContain('MANAGE_HEARING.TIER_AND_LIST_TYPE');
+      expect(tabLink().textContent).not.toContain('ENTER_TIER_AND_LIST_TYPE');
+    });
   });
 });

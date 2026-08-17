@@ -29,6 +29,7 @@ import {
   PleaUpdate,
   ProsecutionCounsel,
   RespondentCounsel,
+  TierAndListType,
   TrialType,
   TrialTypeBody,
   UpdateDefendantAttendance,
@@ -371,6 +372,14 @@ export class HearingService {
       url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}`,
       requestType: 'application/vnd.hearing.set-trial-type+json',
       body: trialTypeBody
+    });
+  }
+
+  setTierAndListType(hearingId: string, tierAndListType: TierAndListType): Observable<any> {
+    return this.api.command({
+      url: constructApiEndPointUrl('hearingCommand', 'hearings', hearingId),
+      requestType: 'application/vnd.hearing.set-tier-and-list-type+json',
+      body: tierAndListType
     });
   }
 

@@ -1,0 +1,6 @@
+// The tier 2 category and the fixed-date reason qualify the value above them,
+// so they read as a second line rather than continuing the same sentence.
+.summary-subcategory,
+.summary-fixed-date-reason {
+  display: block;
+}

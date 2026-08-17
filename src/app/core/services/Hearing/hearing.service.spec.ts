@@ -14,7 +14,12 @@ import {
   IntermediaryType,
   AttendantType
 } from '../../../core';
-import { UpdateDefendantAttendance, RespondentCounsel, EventLog } from '../../model';
+import {
+  UpdateDefendantAttendance,
+  RespondentCounsel,
+  EventLog,
+  TierAndListType
+} from '../../model';
 import { HearingService } from './hearing.service';
 import { AttendanceTypeEnum } from '../../model/defendants-attendance';
 import { MotReason } from '../../model/mot-reason';
@@ -693,6 +698,42 @@ describe('HearingService', () => {
         requestType: 'application/vnd.hearing.set-trial-type+json',
         body
       });
+    });
+  });
+
+  describe('setTierAndListType', () => {
+    // These strings are the whole contract with the backend command handler —
+    // if the media type changes, this is the assertion that has to change with it.
+    it('should set the tier and list type against the hearing', () => {
+      const body = {
+        tier: 'TIER_2',
+        tier2Subcategory: 'WITNESS_FROM_ABROAD',
+        listType: 'TYPE_1',
+        fixedDateReason: 'Witness only available in June'
+      } as TierAndListType;
+
+      const response = { status: 202 };
+      const response$ = cold('--(a|)', { a: response });
+      const expected$ = cold('--(b|)', { b: response });
+
+      http.command = jest.fn().mockReturnValue(response$);
+      const command$ = service.setTierAndListType('hearingId', body);
+
+      expect(command$).toBeObservable(expected$);
+      expect(http.command).toHaveBeenCalledWith({
+        url: `/hearing-command-api/command/api/rest/hearing/hearings/hearingId`,
+        requestType: 'application/vnd.hearing.set-tier-and-list-type+json',
+        body
+      });
+    });
+
+    it('should send a tier on its own when no list type was chosen', () => {
+      const body = { tier: 'TIER_5' } as TierAndListType;
+
+      http.command = jest.fn().mockReturnValue(cold('--(a|)', { a: { status: 202 } }));
+      service.setTierAndListType('hearingId', body);
+
+      expect(http.command).toHaveBeenCalledWith(expect.objectContaining({ body }));
     });
   });
 

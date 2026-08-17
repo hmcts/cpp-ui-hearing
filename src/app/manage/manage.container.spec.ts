@@ -155,7 +155,7 @@ describe('ManageContainer', () => {
     });
 
     it('should select all required data from Store upon initialization', () => {
-      expect(selectSpy).toHaveBeenCalledTimes(21);
+      expect(selectSpy).toHaveBeenCalledTimes(23);
     });
 
     it('should dispatch an action when a day is selected and it has a value', () => {

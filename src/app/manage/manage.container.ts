@@ -40,6 +40,8 @@ import {
   isBoxwork,
   isCurrentHearingRestricted,
   isPleaApplicable,
+  isTierAndListTypeApplicable,
+  isTierAndListTypeEntered,
   isVerdictsPageAvailable,
   loadHearingEventLogCountAction,
   LoadHearingEventsAction,
@@ -133,6 +135,8 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
   isBoxwork$: Observable<boolean>;
   isCurrentUserAuthorisedToSeeThisHearing$: Observable<boolean>;
   isPleaApplicableFlag$: Observable<boolean>;
+  isTierAndListTypeAvailable$: Observable<boolean>;
+  isTierAndListTypeEntered$: Observable<boolean>;
   showFutureHearingsRemoved$: Observable<boolean>;
   displayUnlockHearingLink: boolean;
 
@@ -193,6 +197,8 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
     this.hearingDays$ = this.store.select(getCurrentHearingDays);
     this.isPleaApplicableFlag$ = this.store.select(isPleaApplicable);
     this.isVerdictsPageAvailable$ = this.store.select(isVerdictsPageAvailable);
+    this.isTierAndListTypeAvailable$ = this.store.select(isTierAndListTypeApplicable);
+    this.isTierAndListTypeEntered$ = this.store.select(isTierAndListTypeEntered);
     this.hearingNotes$ = this.store.select(getCurrentHearingNotes);
     this.canAddChildApplications$ = this.store
       .select(getFeatures)

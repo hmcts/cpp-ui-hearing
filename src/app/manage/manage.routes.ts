@@ -8,6 +8,7 @@ import { ProvisionalBookingService } from '../results/hearing-details/allocation
 import {
   LoadDefendantsTrackingStatusGuard,
   HearingNotLockedByOtherUserGuard,
+  CrownCourtHearingGuard,
   LoadFutureHearingsGuard
 } from '../core/guards';
 import { CheckFeaturesGuard } from '../core/guards/check-features';
@@ -82,6 +83,15 @@ export const routes: Routes = [
             canActivate: [HearingNotLockedByOtherUserGuard],
             data: {
               title: 'Enter verdicts | Common Platform | GOV.UK'
+            }
+          },
+          {
+            path: 'tier-and-list-type',
+            loadChildren: () =>
+              import('../tier-and-list-type/tier-and-list-type.routes').then(m => m.routes),
+            canActivate: [HearingNotLockedByOtherUserGuard, CrownCourtHearingGuard],
+            data: {
+              title: 'Tier and list type | Common Platform | GOV.UK'
             }
           },
           {

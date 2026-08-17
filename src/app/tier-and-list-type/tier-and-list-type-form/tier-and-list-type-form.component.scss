@@ -1,0 +1,8 @@
+// The Practice Direction description sits inside the radio's label so that
+// clicking it selects the tier; it still needs to read as a hint below the
+// tier name rather than running on from it.
+.tier-description,
+.list-type-hint {
+  display: block;
+  margin-bottom: 0;
+}

@@ -37,7 +37,8 @@ import {
   Plea,
   PleaOption,
   ProsecutionCaseDetails,
-  ProsecutionCounsel
+  ProsecutionCounsel,
+  TierAndListType
 } from '../model';
 import { mockProsecutionCounsels, mockSelectedOptions } from '../../mock-data/test-mock-data';
 import { ProsecutingAuthority } from '../model/prosecuting-authority';
@@ -2327,6 +2328,85 @@ describe('getListingNoteByCourtRoomAndDate', () => {
           } as CourtApplication
         ])
       ).toMatchSnapshot();
+    });
+  });
+
+  describe('tier and list type', () => {
+    const hearingWith = (overrides: Partial<HearingDetail>) =>
+      ({ ...mockHearing, ...overrides } as HearingDetail);
+
+    describe('getCurrentHearingTierAndListType', () => {
+      it('returns the saved decision', () => {
+        const tierAndListType = { tier: 'TIER_4' } as TierAndListType;
+
+        expect(
+          fromSelectors.getCurrentHearingTierAndListType.projector(hearingWith({ tierAndListType }))
+        ).toEqual(tierAndListType);
+      });
+
+      it('returns undefined when nothing has been saved', () => {
+        expect(
+          fromSelectors.getCurrentHearingTierAndListType.projector(hearingWith({}))
+        ).toBeUndefined();
+      });
+    });
+
+    describe('isTierAndListTypeApplicable', () => {
+      it('is true for a Crown Court hearing', () => {
+        expect(
+          fromSelectors.isTierAndListTypeApplicable.projector(
+            hearingWith({ jurisdictionType: 'CROWN' })
+          )
+        ).toBe(true);
+      });
+
+      it('is false for a magistrates hearing', () => {
+        expect(
+          fromSelectors.isTierAndListTypeApplicable.projector(
+            hearingWith({ jurisdictionType: 'MAGISTRATES' })
+          )
+        ).toBe(false);
+      });
+
+      it('is false for a youth hearing', () => {
+        expect(
+          fromSelectors.isTierAndListTypeApplicable.projector(
+            hearingWith({ jurisdictionType: 'YOUTH' })
+          )
+        ).toBe(false);
+      });
+    });
+
+    describe('isTierAndListTypeEntered', () => {
+      it('is true once a tier is saved', () => {
+        expect(fromSelectors.isTierAndListTypeEntered.projector({ tier: 'TIER_1' })).toBe(true);
+      });
+
+      it('is false when only a list type was somehow saved', () => {
+        expect(
+          fromSelectors.isTierAndListTypeEntered.projector({
+            listType: 'TYPE_2'
+          } as TierAndListType)
+        ).toBe(false);
+      });
+
+      it('is false when nothing is saved', () => {
+        expect(fromSelectors.isTierAndListTypeEntered.projector(undefined)).toBe(false);
+      });
+    });
+
+    describe('isTierAndListTypeRequired', () => {
+      it('prompts a Crown Court hearing with no tier', () => {
+        expect(fromSelectors.isTierAndListTypeRequired.projector(true, false)).toBe(true);
+      });
+
+      it('does not prompt once a tier is entered', () => {
+        expect(fromSelectors.isTierAndListTypeRequired.projector(true, true)).toBe(false);
+      });
+
+      it('never prompts outside the Crown Court', () => {
+        expect(fromSelectors.isTierAndListTypeRequired.projector(false, false)).toBe(false);
+      });
     });
   });
 

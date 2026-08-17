@@ -4,6 +4,7 @@ export { LoadSelectedHearingGuard } from './load-selected-hearing';
 export { LoadDefendantsTrackingStatusGuard } from './load-defendants-tracking-status';
 export { EnterPleasGuard } from './enter-pleas';
 export { HearingNotLockedByOtherUserGuard } from './hearing-not-locked-by-other-user.guard';
+export { CrownCourtHearingGuard } from './crown-court-hearing.guard';
 export { HearingGuard } from './hearing-guard';
 export { LoadFutureHearingsGuard } from './load-future-hearings';
 export { LoadAmendmentReasonsGuard } from './load-amendment-reasons.guard';

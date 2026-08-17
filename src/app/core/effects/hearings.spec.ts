@@ -75,7 +75,8 @@ import {
   PleaData,
   ProsecutionCounsel,
   SearchAvailableHearingsFormOptions,
-  SearchCriteriaAvailableHearingsType
+  SearchCriteriaAvailableHearingsType,
+  TierAndListType
 } from '../model';
 import { Judiciary } from '../model/shared/judiciary';
 import { AppState, reducers } from '../reducers';
@@ -125,6 +126,7 @@ describe('Hearing effects', () => {
   const fetchJudicialMembers = jest.fn();
   const updateApplicationResponse = jest.fn();
   const setTrialType = jest.fn();
+  const setTierAndListType = jest.fn();
   const searchAvailableHearings = jest.fn();
   const splitFutureHearingDays = jest.fn();
   const sortByHearingDay = jest.fn();
@@ -301,6 +303,7 @@ describe('Hearing effects', () => {
             updateIntermediaryCounsel: jest.fn(),
             removeIntermediaryCounsel: jest.fn(),
             setTrialType,
+            setTierAndListType,
             vacateTrial,
             getLoggedInUserDetails: jest.fn(),
             extendMagistratesAccess: jest.fn(),
@@ -1463,6 +1466,46 @@ describe('Hearing effects', () => {
 
       setTrialType.mockReturnValue(error$);
       expect(effects.setTrialType$).toBeObservable(expected$);
+    });
+  });
+
+  describe('setTierAndListType$', () => {
+    const hearingId = 'test-hearing-123';
+    const tierAndListType = {
+      tier: 'TIER_2',
+      tier2Subcategory: 'WITNESS_FROM_ABROAD',
+      listType: 'TYPE_1',
+      fixedDateReason: 'Witness only available in June'
+    } as TierAndListType;
+
+    const inputAction = new HearingActions.SetTierAndListTypeAction({
+      hearingId,
+      tierAndListType
+    });
+
+    it('should save the tier and list type and dispatch SetTierAndListTypeActionSuccess', () => {
+      const outputAction = new HearingActions.SetTierAndListTypeActionSuccess({
+        hearingId,
+        tierAndListType
+      });
+
+      actions$ = hot('-a---', { a: inputAction });
+      const expected$ = cold('-b', { b: outputAction });
+
+      setTierAndListType.mockReturnValue(of(undefined));
+      expect(effects.setTierAndListType$).toBeObservable(expected$);
+      expect(setTierAndListType).toHaveBeenCalledWith(hearingId, tierAndListType);
+    });
+
+    it('should catch an error when saving the tier and list type and throw ApiError', () => {
+      const expectedAction: ApiError = new ApiError('error');
+
+      actions$ = hot('-a---', { a: inputAction });
+      const error$ = cold('#');
+      const expected$ = cold('-b', { b: expectedAction });
+
+      setTierAndListType.mockReturnValue(error$);
+      expect(effects.setTierAndListType$).toBeObservable(expected$);
     });
   });
 

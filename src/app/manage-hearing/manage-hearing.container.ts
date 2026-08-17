@@ -61,6 +61,7 @@ import {
   getCurrentHearingCasesAndApplicationsDefendants,
   getStandaloneAncillaryResults,
   isPleaApplicable,
+  isTierAndListTypeRequired,
   isVerdictsPageAvailable,
   selectTrialEffectivenessError
 } from '../core/selectors';
@@ -151,6 +152,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   isPleaApplicableFlag$: Observable<boolean>;
   isVerdictsPageAvailable$: Observable<boolean>;
   isFirstHearing$: Observable<boolean>;
+  reminders$: Observable<{ attendance: boolean; tierAndListType: boolean }>;
   isAmendApplicationPermission$: Observable<boolean>;
   hasResultingAssistant$: Observable<boolean>;
   offenceLevelWarningMessages$: Observable<Map<string, ValidationMessage[]>>;
@@ -312,6 +314,18 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
         );
       })
     );
+
+    this.reminders$ = combineLatest([
+      this.pendingAttendanceDefendants$,
+      this.isFirstHearing$,
+      this.store.pipe(select(isTierAndListTypeRequired))
+    ]).pipe(
+      map(([pendingAttendanceDefendants, isFirstHearing, tierAndListTypeRequired]) => ({
+        attendance: pendingAttendanceDefendants?.length > 0 && isFirstHearing === false,
+        tierAndListType: tierAndListTypeRequired
+      }))
+    );
+
     this.isAmendApplicationPermission$ = this.store.pipe(select(canAmendApplication));
     this.hasResultingAssistant$ = this.store.pipe(select(hasResultingAssistant));
     this.offenceLevelWarningMessages$ = this.store.pipe(select(getOffenceLevelWarningMessages));

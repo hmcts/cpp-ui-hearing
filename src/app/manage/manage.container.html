@@ -81,6 +81,8 @@
           [isVerdictsPageAvailable]="(isVerdictsPageAvailable$ | async)  && (isGroupCaseApplication$ | async) === false"
           [isBoxwork]="isBoxwork$ | async"
           [isPleaApplicableFlag]="(isPleaApplicableFlag$ | async) && (isGroupCaseApplication$ | async) === false"
+          [isTierAndListTypeAvailable]="isTierAndListTypeAvailable$ | async"
+          [isTierAndListTypeEntered]="isTierAndListTypeEntered$ | async"
         >
         </manage-navigation>
       </div>

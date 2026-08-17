@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ActivatedRoute, Router, provideRouter } from '@angular/router';
 import { applicationTypeMockOne } from '@cpp/reference-data';
 import { Store, provideStore } from '@ngrx/store';
 import { of, Subscription } from 'rxjs';
+import { By } from '@angular/platform-browser';
 import { AppConfigService } from '../config';
 import { reducers, UpdateDefendantAttendance, UpdatePresenceAction } from '../core';
 import { CreateCourtOrdersAction } from '../core/actions/court-orders';
@@ -428,6 +429,60 @@ describe('ManageHearingContainer', () => {
       component.onClearTrialEffectivenessError();
       const call = dispatchSpy.mock.calls[0]?.[0];
       expect(call?.error).toBeNull();
+    });
+  });
+
+  describe('the Important reminder banner', () => {
+    // The store double here cannot tell one selector from another, so the banner is
+    // driven through reminders$ directly; which reminders apply is covered by the
+    // isTierAndListTypeRequired selector tests.
+    const banner = () => fixture.debugElement.query(By.css('.notification-banner'))?.nativeElement;
+    const tierReminder = () =>
+      fixture.debugElement.query(By.css('[data-role="tier-and-list-type-reminder"]'))
+        ?.nativeElement;
+
+    const renderWithReminders = (reminders: { attendance: boolean; tierAndListType: boolean }) => {
+      const mockState = createState(resultsByTarget, {
+        ...hearingNoCourtApplicationsMock,
+        type: { id: 'trial-id-1', description: 'Trial' }
+      });
+      initializeWithState(mockState);
+      component.errors = [];
+      component.shareValidationErrors = [];
+      component.trialEffectivenessError = null;
+      component.reminders$ = of(reminders);
+      // The container is OnPush, so a field assigned from outside needs the view
+      // marking before the host's change detection will pick it up.
+      fixture.debugElement.children[0].injector.get(ChangeDetectorRef).markForCheck();
+      fixture.detectChanges();
+    };
+
+    it('is hidden when nothing needs entering', () => {
+      renderWithReminders({ attendance: false, tierAndListType: false });
+
+      expect(banner()).toBeUndefined();
+    });
+
+    it('prompts for the tier when a Crown Court hearing has none', () => {
+      renderWithReminders({ attendance: false, tierAndListType: true });
+
+      expect(banner()).toBeTruthy();
+      expect(tierReminder().textContent).toContain(
+        'MANAGE_HEARING.ENTER_PLEAS_OR_TIER_TO_ENTER_RESULTS'
+      );
+    });
+
+    it('does not prompt for the tier once one is saved', () => {
+      renderWithReminders({ attendance: true, tierAndListType: false });
+
+      expect(banner()).toBeTruthy();
+      expect(tierReminder()).toBeUndefined();
+    });
+
+    it('shows both reminders together', () => {
+      renderWithReminders({ attendance: true, tierAndListType: true });
+
+      expect(banner().querySelectorAll('.notification-banner__msg').length).toEqual(2);
     });
   });
 

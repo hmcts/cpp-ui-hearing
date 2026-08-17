@@ -517,6 +517,18 @@ export function hearingLegacyReducer(
         }
       };
 
+    case HearingActions.SET_TIER_AND_LIST_TYPE_SUCCESS:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          hearing: {
+            ...state.current.hearing,
+            tierAndListType: action.payload.tierAndListType
+          }
+        }
+      };
+
     case HearingActions.STORE_PLEAS:
       const stateCopy = cloneDeep(state.current);
       const hearing = getUpdatedHearing(stateCopy, action.payload, action.guiltyPleas);

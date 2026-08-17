@@ -110,6 +110,29 @@
     </li>
     }
 
+    <!--
+      Crown Court only. Unlike the pleas and verdicts tabs there is no greyed-out
+      variant — a tier has no meaning outside the Crown Court, so the tab is absent.
+    -->
+    @if (isTierAndListTypeAvailable) {
+    <li
+      pdk-service-nav-list-item
+      routerLinkActive
+      #tierAndListTypeActive="routerLinkActive"
+      [selected]="tierAndListTypeActive.isActive"
+      role="presentation"
+    >
+      <a routerLink="./tier-and-list-type" id="tier-and-list-type-link" role="tab">
+        {{
+          (isTierAndListTypeEntered
+            ? 'MANAGE_HEARING.TIER_AND_LIST_TYPE'
+            : 'MANAGE_HEARING.ENTER_TIER_AND_LIST_TYPE'
+          ) | translate
+        }}
+      </a>
+    </li>
+    }
+
     <li
       pdk-service-nav-list-item
       routerLinkActive

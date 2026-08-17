@@ -48,6 +48,7 @@ import { getUserDetails } from '@cpp/users-groups';
 import { ListingNote } from '@cpp/scheduling';
 import { canAmendApplication } from './user-groups';
 import { CrackedIneffectiveSubReason } from '../model/shared/cracked-ineffective-sub-reason';
+import { TierAndListType } from '../model/shared/tier-and-list-type';
 
 const byPersonLastName = (a: Defendant, b: Defendant) => {
   if (a.personDefendant && b.personDefendant) {
@@ -1041,6 +1042,35 @@ export const getHearingAllOffences = createSelector(
 
     return [].concat(prosecutionCasesOffences || []).concat(appAndAppOffences || []);
   }
+);
+
+export const getCurrentHearingTierAndListType = createSelector(
+  getCurrentHearing,
+  (hearing): TierAndListType => hearing?.tierAndListType
+);
+
+/**
+ * The tier and list type tab exists only for Crown Court hearings — it records a
+ * Practice Direction decision that has no equivalent in the magistrates' court.
+ */
+export const isTierAndListTypeApplicable = createSelector(
+  getCurrentHearing,
+  (hearing): boolean => hearing?.jurisdictionType === 'CROWN'
+);
+
+export const isTierAndListTypeEntered = createSelector(
+  getCurrentHearingTierAndListType,
+  (tierAndListType): boolean => !!tierAndListType?.tier
+);
+
+/**
+ * A Crown Court hearing that has no tier saved yet needs one before results can be
+ * entered, so the manage hearing screen prompts for it.
+ */
+export const isTierAndListTypeRequired = createSelector(
+  isTierAndListTypeApplicable,
+  isTierAndListTypeEntered,
+  (isApplicable, isEntered): boolean => isApplicable && !isEntered
 );
 
 export const isVerdictsPageAvailable = createSelector(

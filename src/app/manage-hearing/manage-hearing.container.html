@@ -3,16 +3,22 @@
 <div [hidden]="hasApiActivity$ | async">
   <pdk-grid container>
     <pdk-grid full>
-      @if ((pendingAttendanceDefendants$ | async)?.length > 0 && getAllErrors()?.length === 0 &&
-      (isFirstHearing$ | async) === false) {
+      @if (getAllErrors()?.length === 0 && (reminders$ | async); as reminders) { @if
+      (reminders.attendance || reminders.tierAndListType) {
       <div class="notification-banner">
         <span class="notification-banner__title">
           {{ 'MANAGE_HEARING.IMPORTANT' | translate }}
         </span>
 
+        @if (reminders.attendance) {
         <span class="notification-banner__msg"> {{ participant | translate }} </span>
+        } @if (reminders.tierAndListType) {
+        <span class="notification-banner__msg" data-role="tier-and-list-type-reminder">
+          {{ 'MANAGE_HEARING.ENTER_PLEAS_OR_TIER_TO_ENTER_RESULTS' | translate }}
+        </span>
+        }
       </div>
-      }
+      } }
     </pdk-grid>
 
     <pdk-grid full>
