@@ -409,7 +409,7 @@
   >
   </application-result-details-container>
   } @if ( activeCourtOrders && activeCourtOrders[defendant.masterDefendantId]?.length > 0 &&
-  hasAnyGuiltyPleasOrConvictionDates(defendant) ) {
+  hasAnyGuiltyPleasOrConvictionDates(defendant) && !isCivilCase(defendant) ) {
   <pdk-grid container>
     <pdk-grid one-third>&nbsp;</pdk-grid>
     <pdk-grid two-thirds>

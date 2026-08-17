@@ -347,6 +347,10 @@ export class HearingResultsListComponent {
     return casesAndApplications.prosecutionCases.some(kase => !!kase.isGroupMaster);
   }
 
+  isCivilCase(casesAndApplications: DefendantCasesApplications): boolean {
+    return casesAndApplications.prosecutionCases?.some(kase => !!kase.isCivil);
+  }
+
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
       this.onYouthCourtToggle.emit(defendant.id);

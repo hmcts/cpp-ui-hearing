@@ -532,6 +532,46 @@ describe('HearingResultsListComponent', () => {
     });
   });
 
+  describe('#isCivilCase', () => {
+    it('should return true when defendant has a civil case', () => {
+      const defendantCases = {
+        ...casesAndApplicationsGroupedByDefendant[0],
+        prosecutionCases: [
+          { ...casesAndApplicationsGroupedByDefendant[0].prosecutionCases[0], isCivil: true }
+        ]
+      };
+      expect(component.isCivilCase(defendantCases)).toBeTruthy();
+    });
+
+    it('should return false when a defendant does not have a civil case', () => {
+      const defendantCases = {
+        ...casesAndApplicationsGroupedByDefendant[0]
+      };
+      expect(component.isCivilCase(defendantCases)).toBeFalsy();
+    });
+  });
+
+  describe('breach-form rendering for civil cases', () => {
+    it('should render the breach-form when the defendant does not have a civil case', () => {
+      const breachForm = fixture.debugElement.query(By.css('breach-form'));
+      expect(breachForm).toBeTruthy();
+    });
+
+    it('should not render the breach-form when the defendant has a civil case', () => {
+      const civilGroupedCasesMock = [
+        {
+          ...groupedCasesMock[0],
+          prosecutionCases: [{ ...groupedCasesMock[0].prosecutionCases[0], isCivil: true }]
+        }
+      ];
+      testHostComponent.setInput(civilGroupedCasesMock);
+      fixture.detectChanges();
+
+      const breachForm = fixture.debugElement.query(By.css('breach-form'));
+      expect(breachForm).toBeNull();
+    });
+  });
+
   describe('defendant-level warning rendering (DD-42868)', () => {
     const MASTER_DEFENDANT_ID = 'master-1';
     const CASE_DEFENDANT_ID = 'def-1';
