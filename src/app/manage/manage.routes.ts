@@ -8,7 +8,8 @@ import { ProvisionalBookingService } from '../results/hearing-details/allocation
 import {
   LoadDefendantsTrackingStatusGuard,
   HearingNotLockedByOtherUserGuard,
-  LoadFutureHearingsGuard
+  LoadFutureHearingsGuard,
+  CrownCourtOnlyGuard
 } from '../core/guards';
 import { CheckFeaturesGuard } from '../core/guards/check-features';
 import { EnterPleasGuard } from '../core/guards/enter-pleas';
@@ -88,6 +89,7 @@ export const routes: Routes = [
             path: 'tier-and-list-type',
             loadChildren: () =>
               import('../tier-and-list-type/tier-and-list-type.routes').then(m => m.routes),
+            canActivate: [CrownCourtOnlyGuard],
             data: {
               title: 'Tier and list type | Common Platform | GOV.UK'
             }
