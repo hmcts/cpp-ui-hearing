@@ -360,7 +360,7 @@
     "TIER_7_LABEL": "Tier 7",
     "TIER_7_DESCRIPTION": "Case allocated to the Economic Crime List",
     "LIST_TYPE_1_LABEL": "Type 1 (1F)",
-    "LIST_TYPE_1_HINT": "Trial fixed date",
+    "LIST_TYPE_1_HINT": "Trial Fixed date",
     "LIST_TYPE_2_LABEL": "Type 2 (2F)",
     "LIST_TYPE_2_HINT": "Trial Flexible date",
     "CLEAR_LIST_TYPE": "Clear list type selection",
