@@ -1,6 +1,7 @@
 import { Action, createAction, props } from '@ngrx/store';
 import { HearingLockState, WelshDefendantTranslate } from '../../../core';
 import { DraftResult } from '../../results.interfaces';
+import { ResultsValidationErrors } from '../../results-validation.interfaces';
 import { CommandError } from '@cpp/core';
 
 const approveAmendments = createAction('APPROVE_AMENDMENTS');
@@ -16,6 +17,10 @@ const rejectAmendmentsSuccess = createAction('REJECT_AMENDMENTS_SUCCESS');
 const requestApprovalForAmendments = createAction('REQUEST_APPROVAL_FOR_AMENDMENTS');
 const requestApprovalForAmendmentsSuccess = createAction('REQUEST_APPROVAL_FOR_AMENDMENTS_SUCCESS');
 const shareDraftResult = createAction('SHARE_DRAFT_RESULT');
+const shareDraftResultValidationFailed = createAction(
+  'SHARE_DRAFT_RESULT_VALIDATION_FAILED',
+  props<{ validationErrors: ResultsValidationErrors }>()
+);
 const lockHearingForAmendments = createAction(
   'LOCK_HEARING_FOR_AMENDMENTS',
   props<{
@@ -51,6 +56,7 @@ export const ShareResultsActions = {
   requestApprovalForAmendmentsSuccess,
   shareDraftResult,
   shareDraftResultSuccess,
+  shareDraftResultValidationFailed,
   shareDraftResultWithWelshTranslate,
   unlockHearing
 };
