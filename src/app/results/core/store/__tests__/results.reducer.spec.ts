@@ -1,11 +1,13 @@
 import { PromptEntry, ResolvedDraftResultLine } from 'src/app/results/results.interfaces';
 import {
+  ResultsValidationErrors,
   ResultsValidationResponse,
   ValidationIssueSeverityEnum
 } from '../../../results-validation.interfaces';
 import { createDraftResult } from '../../testing';
 import { DraftResultActions } from '../draft-result.actions';
 import { ResultsValidationActions } from '../results-validation.actions';
+import { ShareResultsActions } from '../share-results.actions';
 import { initialState, results as reducer } from '../results.reducer';
 
 describe('ResultsReducer', () => {
@@ -42,6 +44,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -68,6 +71,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -86,6 +90,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -112,6 +117,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -146,6 +152,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -181,6 +188,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -202,6 +210,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -260,8 +269,48 @@ describe('ResultsReducer', () => {
               },
             },
           ],
+          "shareResultsValidationFailure": null,
         }
       `);
+    });
+  });
+
+  describe('ShareResultsActions.shareDraftResultValidationFailed', () => {
+    const validationErrors: ResultsValidationErrors = {
+      errorMessages: ['A custody time limit result is required'],
+      validationIssues: [
+        {
+          ruleId: 'CTL-001',
+          severity: ValidationIssueSeverityEnum.ERROR,
+          validationLevel: 'OFFENCE',
+          message: 'A custody time limit result is required',
+          affectedOffences: [
+            { offenceId: 'offenceId', message: 'A custody time limit result is required' }
+          ]
+        }
+      ]
+    };
+
+    it('should store the share results validation failure on state', () => {
+      const result = reducer(
+        { ...initialState, draftResult },
+        ShareResultsActions.shareDraftResultValidationFailed({ validationErrors })
+      );
+
+      expect(result.shareResultsValidationFailure).toEqual(validationErrors);
+      expect(result.draftResultSaving).toBe(false);
+    });
+
+    it('should clear a previously stored share results validation failure when the share is re-attempted', () => {
+      const populated = reducer(
+        { ...initialState, draftResult },
+        ShareResultsActions.shareDraftResultValidationFailed({ validationErrors })
+      );
+
+      const result = reducer(populated, ShareResultsActions.shareDraftResult());
+
+      expect(result.shareResultsValidationFailure).toBeNull();
+      expect(result.manageHearingError).toBeNull();
     });
   });
 

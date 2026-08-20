@@ -1,3 +1,4 @@
+import { NotificationEvent } from '@cpp/core';
 import { JurisdictionType } from '../core/model/hearing-detail';
 
 export interface ResultsValidationErrors {
@@ -15,6 +16,20 @@ export interface ResultsValidationResponse {
   warnings: ValidationIssue[];
   processingTimeMs: number;
 }
+
+export type ResultsValidationFailedEvent = NotificationEvent<{
+  hearingId: string;
+  hearingDay?: string;
+  userId?: string;
+  validationId?: string;
+  timestamp?: string;
+  mode?: string;
+  rulesEvaluated?: string[];
+  isValid?: boolean;
+  errors?: Partial<ResultsValidationErrors>;
+  warnings?: ValidationIssue[];
+  processingTimeMs?: number;
+}>;
 
 export interface AffectedOffence {
   offenceId?: string;

@@ -43,6 +43,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { VerdictTypeDescriptionPipe } from '../../shared/pipes/verdict-type-description.pipe';
 import { ReportingRestrictionsComponent } from '../../shared/components/reporting-restrictions/reporting-restrictions.component';
 import { ValidationMessage } from '../../results/results-validation.interfaces';
+import { RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX } from '../../results/core/helpers';
 
 type NotifiedPleaValue = 'NO_NOTIFICATION' | 'NOTIFIED_NOT_GUILTY' | 'NOTIFIED_GUILTY';
 type NotifiedPleaMapping = Record<NotifiedPleaValue, string>;
@@ -84,6 +85,7 @@ const CUSTODIAL_ESTABLISHMENT_NOT_SELECTED = 'None selected';
 })
 export class HearingResultsListComponent {
   readonly BY_JURY = 'BY_JURY';
+  readonly anchorPrefix = RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX;
 
   @Input() hearing: HearingDetail;
   @Input() hearingId: string;
