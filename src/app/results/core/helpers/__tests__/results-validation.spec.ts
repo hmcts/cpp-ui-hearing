@@ -1,5 +1,7 @@
 import { Defendant } from '../../../../core/model/defendant';
 import { HearingDetail } from '../../../../core/model/hearing-detail';
+import { PersonDefendant } from '../../../../core/model/person-defendant';
+import { Organisation } from '../../../../core/model/organisation';
 import { DraftResult, ResolvedDraftResultLine } from '../../../results.interfaces';
 import {
   ResultsLineValidation,
@@ -665,7 +667,7 @@ describe('buildResultsValidationRequest', () => {
         masterDefendantId: 'masterDefendantId2',
         personDefendant: {
           personDetails: { firstName: 'Bob', lastName: 'Jones', dateOfBirth: '1990-05-20' }
-        } as any
+        } as Partial<PersonDefendant> as PersonDefendant
       });
 
       const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
@@ -717,10 +719,12 @@ describe('buildResultsValidationRequest', () => {
     it('should leave dateOfBirth undefined for a legal entity (organisation) defendant', () => {
       const defendant = createDefendant({
         id: 'defendantId3',
-        personDefendant: undefined as any,
+        personDefendant: {
+          personDetails: {}
+        } as Partial<PersonDefendant> as PersonDefendant,
         legalEntityDefendant: {
-          organisation: { name: 'ACME Corp' }
-        } as any
+          organisation: { name: 'ACME Corp' } as Partial<Organisation> as Organisation
+        }
       });
 
       const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
