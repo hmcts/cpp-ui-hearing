@@ -138,6 +138,7 @@ const buildDefendants = (defendants: Defendant[]): ResultsValidationDefendant[] 
         ? defendant.personDefendant.personDetails.firstName
         : defendant.legalEntityDefendant?.organisation.name || '',
       lastName: defendant.personDefendant ? defendant.personDefendant.personDetails.lastName : '',
+      dateOfBirth: defendant.personDefendant?.personDetails?.dateOfBirth,
       masterDefendantId: defendant.masterDefendantId
     }));
 };
@@ -158,13 +159,19 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
       seen.add(offence.id);
       return true;
     })
-    .map(({ offence, caseUrn }) => ({
-      offenceId: offence.id,
-      offenceCode: offence.offenceCode,
-      offenceTitle: offence.offenceTitle,
-      orderIndex: offence.orderIndex,
-      caseUrn,
-      hasExistingCtlRecord: !!offence.custodyTimeLimit,
-      isConvicted: !!offence.convictionDate
-    }));
+    .map(({ offence, caseUrn }) => {
+      let isConvicted = !!offence.convictionDate;
+      if (isConvicted && offence?.verdict?.isDeleted) {
+        isConvicted = false;
+      }
+      return {
+        offenceId: offence.id,
+        offenceCode: offence.offenceCode,
+        offenceTitle: offence.offenceTitle,
+        orderIndex: offence.orderIndex,
+        caseUrn,
+        hasExistingCtlRecord: !!offence.custodyTimeLimit,
+        isConvicted
+      };
+    });
 };
