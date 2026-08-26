@@ -5,7 +5,12 @@ import { Store, provideStore, provideState } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 import { ApiError, reducers, SetSelectedHearingDateAction } from '../../../../core';
 import { ResultsService } from '../../services/results.service';
-import { DraftResultActions, resultsReducer, ResultsState } from '../../store';
+import {
+  DraftResultActions,
+  resultsReducer,
+  ResultsState,
+  ResultsValidationActions
+} from '../../store';
 import { createDraftResult } from '../../testing';
 import { ExtendedDraftResultGuard } from '../extended-draft-result.guard';
 
@@ -14,10 +19,12 @@ describe('ExtendedDraftResultGuard', () => {
   let store: Store<ResultsState>;
   let fetchExtendedDraftResult: jest.Mock;
   let navigate: jest.Mock;
+  let getCurrentNavigation: jest.Mock;
 
   beforeEach(() => {
     fetchExtendedDraftResult = jest.fn();
     navigate = jest.fn();
+    getCurrentNavigation = jest.fn().mockReturnValue(null);
 
     TestBed.configureTestingModule({
       imports: [],
@@ -35,7 +42,8 @@ describe('ExtendedDraftResultGuard', () => {
         {
           provide: Router,
           useValue: {
-            navigate
+            navigate,
+            getCurrentNavigation
           }
         }
       ],
@@ -63,6 +71,33 @@ describe('ExtendedDraftResultGuard', () => {
     const expected$ = cold('(e|)', { e: true });
 
     expect(guard.canActivate(snapshot)).toBeObservable(expected$);
+  });
+
+  it('should re-validate results when the draft result already exists in the store', () => {
+    store.dispatch(DraftResultActions.setDraftResult({ draftResult }));
+    (store.dispatch as jest.Mock).mockClear();
+    const snapshot = createSnapshot('hearingId');
+    const expected$ = cold('(e|)', { e: true });
+
+    expect(guard.canActivate(snapshot)).toBeObservable(expected$);
+    expect(store.dispatch).toHaveBeenCalledWith(
+      ResultsValidationActions.validateResults({ navigateOnSuccess: false })
+    );
+  });
+
+  it('should not re-validate results when the navigation came from an already-validated save', () => {
+    store.dispatch(DraftResultActions.setDraftResult({ draftResult }));
+    (store.dispatch as jest.Mock).mockClear();
+    getCurrentNavigation.mockReturnValue({
+      extras: { state: { skipResultsValidation: true } }
+    });
+    const snapshot = createSnapshot('hearingId');
+    const expected$ = cold('(e|)', { e: true });
+
+    expect(guard.canActivate(snapshot)).toBeObservable(expected$);
+    expect(store.dispatch).not.toHaveBeenCalledWith(
+      ResultsValidationActions.validateResults({ navigateOnSuccess: false })
+    );
   });
 
   it('should resolve to true after fetching the draft result for the current hearing day', () => {
