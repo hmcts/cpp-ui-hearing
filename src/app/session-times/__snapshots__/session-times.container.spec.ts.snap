@@ -423,221 +423,215 @@ exports[`SessionTimesContainer should render the template with the values expect
                   class="flex-column-one govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
-                  <pdk-form-field
-                    labeltype="small"
+                  <pdk-form-group
+                    class="pdk-form-group"
+                    ngmodelgroup="judiciaries"
                   >
-                    <pdk-form-group
-                      class="pdk-form-group"
-                    >
-                      <label
-                        class="govuk-label govuk-label--s"
-                        for="pdk-form-control-undefined-GENERATED_ID"
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
                       >
-                         SESSION_TIMES.JUDICIARY 
-                      </label>
-                      <judiciary-typeahead
-                        class="ng-untouched ng-pristine ng-valid"
-                        data-role="judiciary-typeahead-0"
-                        name="judge1"
-                      >
-                        <div
-                          class="judiciary-typeahead"
+                        <label
+                          class="govuk-label govuk-label--s"
+                          for="pdk-form-control-undefined-GENERATED_ID"
                         >
-                          <pdk-autosuggest-lite
-                            suggestionkey="id"
-                            suggestionsubtitle="judicialMemberLocation"
+                           SESSION_TIMES.JUDICIARY 
+                        </label>
+                        <judiciary-typeahead
+                          class="ng-untouched ng-pristine ng-valid"
+                          data-role="judiciary-typeahead-0"
+                        >
+                          <div
+                            class="judiciary-typeahead"
                           >
-                            <pdk-autosuggest
-                              highlightcolor="blue"
+                            <pdk-autosuggest-lite
+                              suggestionkey="id"
+                              suggestionsubtitle="judicialMemberLocation"
                             >
-                              <pdk-interaction-container>
-                                <div>
-                                  <div
-                                    class="pdk-autosuggest"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
-                                      aria-expanded="false"
-                                      aria-label="Judge name"
-                                      autocomplete="off"
-                                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                                      role="combobox"
-                                      type="text"
-                                    />
-                                    <span
-                                      class="govuk-visually-hidden"
-                                      id="pdk-autosuggest__instructions-GENERATED_ID"
-                                      pdk-visually-hidden=""
-                                    >
-                                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                                    </span>
-                                    <span
-                                      aria-live="polite"
-                                      class="govuk-visually-hidden"
-                                      pdk-visually-hidden=""
-                                      role="status"
-                                    >
-                                    </span>
+                              <pdk-autosuggest
+                                highlightcolor="blue"
+                              >
+                                <pdk-interaction-container>
+                                  <div>
                                     <div
-                                      class="pdk-autosuggest__suggestions-container"
-                                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      class="pdk-autosuggest"
                                     >
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                        aria-expanded="false"
+                                        aria-label="Judge name"
+                                        autocomplete="off"
+                                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                        role="combobox"
+                                        type="text"
+                                      />
+                                      <span
+                                        class="govuk-visually-hidden"
+                                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                                        pdk-visually-hidden=""
+                                      >
+                                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                      </span>
+                                      <span
+                                        aria-live="polite"
+                                        class="govuk-visually-hidden"
+                                        pdk-visually-hidden=""
+                                        role="status"
+                                      >
+                                      </span>
+                                      <div
+                                        class="pdk-autosuggest__suggestions-container"
+                                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      >
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </pdk-interaction-container>
-                            </pdk-autosuggest>
-                          </pdk-autosuggest-lite>
-                        </div>
-                      </judiciary-typeahead>
-                    </pdk-form-group>
-                  </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 2"
-                    labeltype="none"
-                  >
-                    <pdk-form-group
-                      class="pdk-form-group"
-                    >
-                      <label
-                        class="govuk-visually-hidden govuk-label"
-                        for="pdk-form-control-undefined-GENERATED_ID"
+                                </pdk-interaction-container>
+                              </pdk-autosuggest>
+                            </pdk-autosuggest-lite>
+                          </div>
+                        </judiciary-typeahead>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
                       >
-                         Judiciary 2 
-                      </label>
-                      <judiciary-typeahead
-                        class="ng-untouched ng-pristine ng-valid"
-                        data-role="judiciary-typeahead-1"
-                        name="judge2"
-                      >
-                        <div
-                          class="judiciary-typeahead"
+                        <label
+                          class="govuk-visually-hidden govuk-label"
+                          for="pdk-form-control-undefined-GENERATED_ID"
                         >
-                          <pdk-autosuggest-lite
-                            suggestionkey="id"
-                            suggestionsubtitle="judicialMemberLocation"
+                           Judiciary 2 
+                        </label>
+                        <judiciary-typeahead
+                          class="ng-untouched ng-pristine ng-valid"
+                          data-role="judiciary-typeahead-1"
+                        >
+                          <div
+                            class="judiciary-typeahead"
                           >
-                            <pdk-autosuggest
-                              highlightcolor="blue"
+                            <pdk-autosuggest-lite
+                              suggestionkey="id"
+                              suggestionsubtitle="judicialMemberLocation"
                             >
-                              <pdk-interaction-container>
-                                <div>
-                                  <div
-                                    class="pdk-autosuggest"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
-                                      aria-expanded="false"
-                                      aria-label="Judge name"
-                                      autocomplete="off"
-                                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                                      role="combobox"
-                                      type="text"
-                                    />
-                                    <span
-                                      class="govuk-visually-hidden"
-                                      id="pdk-autosuggest__instructions-GENERATED_ID"
-                                      pdk-visually-hidden=""
-                                    >
-                                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                                    </span>
-                                    <span
-                                      aria-live="polite"
-                                      class="govuk-visually-hidden"
-                                      pdk-visually-hidden=""
-                                      role="status"
-                                    >
-                                    </span>
+                              <pdk-autosuggest
+                                highlightcolor="blue"
+                              >
+                                <pdk-interaction-container>
+                                  <div>
                                     <div
-                                      class="pdk-autosuggest__suggestions-container"
-                                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      class="pdk-autosuggest"
                                     >
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                        aria-expanded="false"
+                                        aria-label="Judge name"
+                                        autocomplete="off"
+                                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                        role="combobox"
+                                        type="text"
+                                      />
+                                      <span
+                                        class="govuk-visually-hidden"
+                                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                                        pdk-visually-hidden=""
+                                      >
+                                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                      </span>
+                                      <span
+                                        aria-live="polite"
+                                        class="govuk-visually-hidden"
+                                        pdk-visually-hidden=""
+                                        role="status"
+                                      >
+                                      </span>
+                                      <div
+                                        class="pdk-autosuggest__suggestions-container"
+                                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      >
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </pdk-interaction-container>
-                            </pdk-autosuggest>
-                          </pdk-autosuggest-lite>
-                        </div>
-                      </judiciary-typeahead>
-                    </pdk-form-group>
-                  </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 3"
-                    labeltype="none"
-                  >
-                    <pdk-form-group
-                      class="pdk-form-group"
-                    >
-                      <label
-                        class="govuk-visually-hidden govuk-label"
-                        for="pdk-form-control-undefined-GENERATED_ID"
+                                </pdk-interaction-container>
+                              </pdk-autosuggest>
+                            </pdk-autosuggest-lite>
+                          </div>
+                        </judiciary-typeahead>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
                       >
-                         Judiciary 3 
-                      </label>
-                      <judiciary-typeahead
-                        class="ng-untouched ng-pristine ng-valid"
-                        data-role="judiciary-typeahead-2"
-                        name="judge3"
-                      >
-                        <div
-                          class="judiciary-typeahead"
+                        <label
+                          class="govuk-visually-hidden govuk-label"
+                          for="pdk-form-control-undefined-GENERATED_ID"
                         >
-                          <pdk-autosuggest-lite
-                            suggestionkey="id"
-                            suggestionsubtitle="judicialMemberLocation"
+                           Judiciary 3 
+                        </label>
+                        <judiciary-typeahead
+                          class="ng-untouched ng-pristine ng-valid"
+                          data-role="judiciary-typeahead-2"
+                        >
+                          <div
+                            class="judiciary-typeahead"
                           >
-                            <pdk-autosuggest
-                              highlightcolor="blue"
+                            <pdk-autosuggest-lite
+                              suggestionkey="id"
+                              suggestionsubtitle="judicialMemberLocation"
                             >
-                              <pdk-interaction-container>
-                                <div>
-                                  <div
-                                    class="pdk-autosuggest"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
-                                      aria-expanded="false"
-                                      aria-label="Judge name"
-                                      autocomplete="off"
-                                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                                      role="combobox"
-                                      type="text"
-                                    />
-                                    <span
-                                      class="govuk-visually-hidden"
-                                      id="pdk-autosuggest__instructions-GENERATED_ID"
-                                      pdk-visually-hidden=""
-                                    >
-                                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                                    </span>
-                                    <span
-                                      aria-live="polite"
-                                      class="govuk-visually-hidden"
-                                      pdk-visually-hidden=""
-                                      role="status"
-                                    >
-                                    </span>
+                              <pdk-autosuggest
+                                highlightcolor="blue"
+                              >
+                                <pdk-interaction-container>
+                                  <div>
                                     <div
-                                      class="pdk-autosuggest__suggestions-container"
-                                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      class="pdk-autosuggest"
                                     >
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                        aria-expanded="false"
+                                        aria-label="Judge name"
+                                        autocomplete="off"
+                                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                        role="combobox"
+                                        type="text"
+                                      />
+                                      <span
+                                        class="govuk-visually-hidden"
+                                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                                        pdk-visually-hidden=""
+                                      >
+                                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                      </span>
+                                      <span
+                                        aria-live="polite"
+                                        class="govuk-visually-hidden"
+                                        pdk-visually-hidden=""
+                                        role="status"
+                                      >
+                                      </span>
+                                      <div
+                                        class="pdk-autosuggest__suggestions-container"
+                                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      >
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </pdk-interaction-container>
-                            </pdk-autosuggest>
-                          </pdk-autosuggest-lite>
-                        </div>
-                      </judiciary-typeahead>
-                    </pdk-form-group>
-                  </pdk-form-field>
+                                </pdk-interaction-container>
+                              </pdk-autosuggest>
+                            </pdk-autosuggest-lite>
+                          </div>
+                        </judiciary-typeahead>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                  </pdk-form-group>
                   <pdk-form-group
                     class="pdk-form-group"
                     ngmodelgroup="otherJudiciaries"
@@ -1191,221 +1185,215 @@ exports[`SessionTimesContainer should render the template with the values expect
                   class="flex-column-one govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
-                  <pdk-form-field
-                    labeltype="small"
+                  <pdk-form-group
+                    class="pdk-form-group"
+                    ngmodelgroup="judiciaries"
                   >
-                    <pdk-form-group
-                      class="pdk-form-group"
-                    >
-                      <label
-                        class="govuk-label govuk-label--s"
-                        for="pdk-form-control-undefined-GENERATED_ID"
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
                       >
-                         SESSION_TIMES.JUDICIARY 
-                      </label>
-                      <judiciary-typeahead
-                        class="ng-untouched ng-pristine ng-valid"
-                        data-role="judiciary-typeahead-0"
-                        name="judge1"
-                      >
-                        <div
-                          class="judiciary-typeahead"
+                        <label
+                          class="govuk-label govuk-label--s"
+                          for="pdk-form-control-undefined-GENERATED_ID"
                         >
-                          <pdk-autosuggest-lite
-                            suggestionkey="id"
-                            suggestionsubtitle="judicialMemberLocation"
+                           SESSION_TIMES.JUDICIARY 
+                        </label>
+                        <judiciary-typeahead
+                          class="ng-untouched ng-pristine ng-valid"
+                          data-role="judiciary-typeahead-0"
+                        >
+                          <div
+                            class="judiciary-typeahead"
                           >
-                            <pdk-autosuggest
-                              highlightcolor="blue"
+                            <pdk-autosuggest-lite
+                              suggestionkey="id"
+                              suggestionsubtitle="judicialMemberLocation"
                             >
-                              <pdk-interaction-container>
-                                <div>
-                                  <div
-                                    class="pdk-autosuggest"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
-                                      aria-expanded="false"
-                                      aria-label="Judge name"
-                                      autocomplete="off"
-                                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                                      role="combobox"
-                                      type="text"
-                                    />
-                                    <span
-                                      class="govuk-visually-hidden"
-                                      id="pdk-autosuggest__instructions-GENERATED_ID"
-                                      pdk-visually-hidden=""
-                                    >
-                                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                                    </span>
-                                    <span
-                                      aria-live="polite"
-                                      class="govuk-visually-hidden"
-                                      pdk-visually-hidden=""
-                                      role="status"
-                                    >
-                                    </span>
+                              <pdk-autosuggest
+                                highlightcolor="blue"
+                              >
+                                <pdk-interaction-container>
+                                  <div>
                                     <div
-                                      class="pdk-autosuggest__suggestions-container"
-                                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      class="pdk-autosuggest"
                                     >
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                        aria-expanded="false"
+                                        aria-label="Judge name"
+                                        autocomplete="off"
+                                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                        role="combobox"
+                                        type="text"
+                                      />
+                                      <span
+                                        class="govuk-visually-hidden"
+                                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                                        pdk-visually-hidden=""
+                                      >
+                                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                      </span>
+                                      <span
+                                        aria-live="polite"
+                                        class="govuk-visually-hidden"
+                                        pdk-visually-hidden=""
+                                        role="status"
+                                      >
+                                      </span>
+                                      <div
+                                        class="pdk-autosuggest__suggestions-container"
+                                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      >
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </pdk-interaction-container>
-                            </pdk-autosuggest>
-                          </pdk-autosuggest-lite>
-                        </div>
-                      </judiciary-typeahead>
-                    </pdk-form-group>
-                  </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 2"
-                    labeltype="none"
-                  >
-                    <pdk-form-group
-                      class="pdk-form-group"
-                    >
-                      <label
-                        class="govuk-visually-hidden govuk-label"
-                        for="pdk-form-control-undefined-GENERATED_ID"
+                                </pdk-interaction-container>
+                              </pdk-autosuggest>
+                            </pdk-autosuggest-lite>
+                          </div>
+                        </judiciary-typeahead>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
                       >
-                         Judiciary 2 
-                      </label>
-                      <judiciary-typeahead
-                        class="ng-untouched ng-pristine ng-valid"
-                        data-role="judiciary-typeahead-1"
-                        name="judge2"
-                      >
-                        <div
-                          class="judiciary-typeahead"
+                        <label
+                          class="govuk-visually-hidden govuk-label"
+                          for="pdk-form-control-undefined-GENERATED_ID"
                         >
-                          <pdk-autosuggest-lite
-                            suggestionkey="id"
-                            suggestionsubtitle="judicialMemberLocation"
+                           Judiciary 2 
+                        </label>
+                        <judiciary-typeahead
+                          class="ng-untouched ng-pristine ng-valid"
+                          data-role="judiciary-typeahead-1"
+                        >
+                          <div
+                            class="judiciary-typeahead"
                           >
-                            <pdk-autosuggest
-                              highlightcolor="blue"
+                            <pdk-autosuggest-lite
+                              suggestionkey="id"
+                              suggestionsubtitle="judicialMemberLocation"
                             >
-                              <pdk-interaction-container>
-                                <div>
-                                  <div
-                                    class="pdk-autosuggest"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
-                                      aria-expanded="false"
-                                      aria-label="Judge name"
-                                      autocomplete="off"
-                                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                                      role="combobox"
-                                      type="text"
-                                    />
-                                    <span
-                                      class="govuk-visually-hidden"
-                                      id="pdk-autosuggest__instructions-GENERATED_ID"
-                                      pdk-visually-hidden=""
-                                    >
-                                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                                    </span>
-                                    <span
-                                      aria-live="polite"
-                                      class="govuk-visually-hidden"
-                                      pdk-visually-hidden=""
-                                      role="status"
-                                    >
-                                    </span>
+                              <pdk-autosuggest
+                                highlightcolor="blue"
+                              >
+                                <pdk-interaction-container>
+                                  <div>
                                     <div
-                                      class="pdk-autosuggest__suggestions-container"
-                                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      class="pdk-autosuggest"
                                     >
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                        aria-expanded="false"
+                                        aria-label="Judge name"
+                                        autocomplete="off"
+                                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                        role="combobox"
+                                        type="text"
+                                      />
+                                      <span
+                                        class="govuk-visually-hidden"
+                                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                                        pdk-visually-hidden=""
+                                      >
+                                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                      </span>
+                                      <span
+                                        aria-live="polite"
+                                        class="govuk-visually-hidden"
+                                        pdk-visually-hidden=""
+                                        role="status"
+                                      >
+                                      </span>
+                                      <div
+                                        class="pdk-autosuggest__suggestions-container"
+                                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      >
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </pdk-interaction-container>
-                            </pdk-autosuggest>
-                          </pdk-autosuggest-lite>
-                        </div>
-                      </judiciary-typeahead>
-                    </pdk-form-group>
-                  </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 3"
-                    labeltype="none"
-                  >
-                    <pdk-form-group
-                      class="pdk-form-group"
-                    >
-                      <label
-                        class="govuk-visually-hidden govuk-label"
-                        for="pdk-form-control-undefined-GENERATED_ID"
+                                </pdk-interaction-container>
+                              </pdk-autosuggest>
+                            </pdk-autosuggest-lite>
+                          </div>
+                        </judiciary-typeahead>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                    <pdk-form-field>
+                      <pdk-form-group
+                        class="pdk-form-group"
                       >
-                         Judiciary 3 
-                      </label>
-                      <judiciary-typeahead
-                        class="ng-untouched ng-pristine ng-valid"
-                        data-role="judiciary-typeahead-2"
-                        name="judge3"
-                      >
-                        <div
-                          class="judiciary-typeahead"
+                        <label
+                          class="govuk-visually-hidden govuk-label"
+                          for="pdk-form-control-undefined-GENERATED_ID"
                         >
-                          <pdk-autosuggest-lite
-                            suggestionkey="id"
-                            suggestionsubtitle="judicialMemberLocation"
+                           Judiciary 3 
+                        </label>
+                        <judiciary-typeahead
+                          class="ng-untouched ng-pristine ng-valid"
+                          data-role="judiciary-typeahead-2"
+                        >
+                          <div
+                            class="judiciary-typeahead"
                           >
-                            <pdk-autosuggest
-                              highlightcolor="blue"
+                            <pdk-autosuggest-lite
+                              suggestionkey="id"
+                              suggestionsubtitle="judicialMemberLocation"
                             >
-                              <pdk-interaction-container>
-                                <div>
-                                  <div
-                                    class="pdk-autosuggest"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
-                                      aria-expanded="false"
-                                      aria-label="Judge name"
-                                      autocomplete="off"
-                                      class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
-                                      role="combobox"
-                                      type="text"
-                                    />
-                                    <span
-                                      class="govuk-visually-hidden"
-                                      id="pdk-autosuggest__instructions-GENERATED_ID"
-                                      pdk-visually-hidden=""
-                                    >
-                                       When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
-                                    </span>
-                                    <span
-                                      aria-live="polite"
-                                      class="govuk-visually-hidden"
-                                      pdk-visually-hidden=""
-                                      role="status"
-                                    >
-                                    </span>
+                              <pdk-autosuggest
+                                highlightcolor="blue"
+                              >
+                                <pdk-interaction-container>
+                                  <div>
                                     <div
-                                      class="pdk-autosuggest__suggestions-container"
-                                      id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      class="pdk-autosuggest"
                                     >
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
+                                        aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                        aria-expanded="false"
+                                        aria-label="Judge name"
+                                        autocomplete="off"
+                                        class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
+                                        role="combobox"
+                                        type="text"
+                                      />
+                                      <span
+                                        class="govuk-visually-hidden"
+                                        id="pdk-autosuggest__instructions-GENERATED_ID"
+                                        pdk-visually-hidden=""
+                                      >
+                                         When autocomplete results are available, use the up and down arrows to review and Enter to select. Touch device users, explore options with swipe gestures. 
+                                      </span>
+                                      <span
+                                        aria-live="polite"
+                                        class="govuk-visually-hidden"
+                                        pdk-visually-hidden=""
+                                        role="status"
+                                      >
+                                      </span>
+                                      <div
+                                        class="pdk-autosuggest__suggestions-container"
+                                        id="pdk-autosuggest__suggestions-container-GENERATED_ID"
+                                      >
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </pdk-interaction-container>
-                            </pdk-autosuggest>
-                          </pdk-autosuggest-lite>
-                        </div>
-                      </judiciary-typeahead>
-                    </pdk-form-group>
-                  </pdk-form-field>
+                                </pdk-interaction-container>
+                              </pdk-autosuggest>
+                            </pdk-autosuggest-lite>
+                          </div>
+                        </judiciary-typeahead>
+                      </pdk-form-group>
+                    </pdk-form-field>
+                  </pdk-form-group>
                   <pdk-form-group
                     class="pdk-form-group"
                     ngmodelgroup="otherJudiciaries"
