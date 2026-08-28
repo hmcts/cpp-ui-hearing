@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule, NgControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
@@ -14,7 +14,7 @@ import { of, Subject } from 'rxjs';
 describe('JudiciaryTypeaheadComponent', () => {
   let component: JudiciaryTypeaheadComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  let fetchJudicialMembers = jest.fn();
+  let getJudicialMembersByNamePattern = jest.fn(() => of([]));
 
   const judiciaries = [
     {
@@ -77,7 +77,10 @@ describe('JudiciaryTypeaheadComponent', () => {
       imports: [TestHostComponent],
       providers: [
         provideCppCoreHttpServices(),
-        { provide: ReferenceDataService, useValue: { fetchJudicialMembers } },
+        {
+          provide: ReferenceDataService,
+          useValue: { getJudicialMembersByNamePattern }
+        },
         {
           provide: CppHttp,
           useValue: {
@@ -109,6 +112,12 @@ describe('JudiciaryTypeaheadComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should request up to 50 judiciary suggestions', fakeAsync(() => {
+    component.input$.next('ab');
+    tick(300);
+    expect(getJudicialMembersByNamePattern).toHaveBeenCalledWith('ab', 50);
+  }));
 
   it('should show ljaShortName if it`s provided by endpoint', () => {
     const magistrate = judiciaries.find(judi => judi.judiciaryType === 'Magistrate');

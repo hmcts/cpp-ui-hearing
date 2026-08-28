@@ -2,6 +2,7 @@
   <pdk-autosuggest-lite
     #autosuggest="pdkAutosuggestLite"
     (inputText)="input$.next($event)"
+    (keydown)="onKeydown($event)"
     [ariaDescribedBy]="'judge-label'"
     [ariaLabel]="'Judge name'"
     [inputWidth]="25"
