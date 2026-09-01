@@ -11,11 +11,13 @@ export const groupedCasesMock = [
     isYouth: false,
     masterDefendantId: '95fb6e57-49f9-4bf8-b93d-12a95d92846d',
     personDefendant: {
-      bailStatus: {
-        code: 'B',
-        description: 'Conditional Bail',
-        id: 'dd4073b6-22be-3875-9d63-5da286bb3ece'
-      },
+      bailStatus: [
+        {
+          code: 'B',
+          description: 'Conditional Bail',
+          id: 'dd4073b6-22be-3875-9d63-5da286bb3ece'
+        }
+      ],
       personDetails: {
         additionalNationalityCode: 'POL',
         additionalNationalityId: 'e3baf6cc-1711-43cd-8aad-80ca6e89c946',

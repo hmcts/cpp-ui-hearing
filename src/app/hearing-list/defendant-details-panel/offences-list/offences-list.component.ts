@@ -37,7 +37,7 @@ export class OffencesListComponent {
       this.defendant.personDefendant &&
       this.defendant.personDefendant.bailStatus
     ) {
-      return this.defendant.personDefendant.bailStatus.description;
+      return this.defendant.personDefendant.bailStatus[0].description;
     }
 
     return null;

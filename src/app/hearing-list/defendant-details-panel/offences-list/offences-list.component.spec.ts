@@ -234,11 +234,13 @@ class TestHostComponent {
     numberOfPreviousConvictionsCited: 0,
     personDefendant: {
       arrestSummonsNumber: '007',
-      bailStatus: {
-        code: 'C',
-        description: 'BAIL_STATUS_DESCRIPTION',
-        id: '12e69486-4d01-3403-a50a-7419ca040635'
-      },
+      bailStatus: [
+        {
+          code: 'C',
+          description: 'BAIL_STATUS_DESCRIPTION',
+          id: '12e69486-4d01-3403-a50a-7419ca040635'
+        }
+      ],
       driverNumber: '007',
       employerOrganisation: {
         address: {

@@ -19,6 +19,7 @@ import {
   TodaysDefendantAttendance
 } from '../../core/model/defendants-attendance';
 import { ActiveCourtOrderByDefendantId } from '../../core/model/court-orders';
+import { ProsecutionCaseDetails } from '../../core/model/shared/prosecution-case-details';
 import {
   ValidationError,
   PdkMarginDirective,
@@ -46,6 +47,14 @@ import { RESULTS_VALIDATION_ERROR_ANCHOR_PREFIX } from '../../results/core/helpe
 
 type NotifiedPleaValue = 'NO_NOTIFICATION' | 'NOTIFIED_NOT_GUILTY' | 'NOTIFIED_GUILTY';
 type NotifiedPleaMapping = Record<NotifiedPleaValue, string>;
+
+const REMAND_STATUS_NOT_RECORDED = 'Not recorded';
+const REMAND_STATUS_BY_INITIATION_CODE: Readonly<Record<string, string>> = {
+  S: 'Summons',
+  Q: 'Postal Requisition/Written charge'
+};
+
+const CUSTODIAL_ESTABLISHMENT_NOT_SELECTED = 'None selected';
 
 @Component({
   selector: 'hearing-results-list',
@@ -346,6 +355,37 @@ export class HearingResultsListComponent {
   hasBulkCase(casesAndApplications: DefendantCasesApplications) {
     return casesAndApplications.prosecutionCases.some(kase => !!kase.isGroupMaster);
   }
+
+  getRemandStatus = (
+    defendant: DefendantCasesApplications,
+    prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
+  ): string => {
+    const bailStatus = defendant?.personDefendant?.bailStatus;
+    let bailStatusDescription = '';
+    const caseId = prosecutionCase?.id;
+    if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {
+      const matchingIndex = defendant.prosecutionCases.findIndex((pc: any) => pc.id === caseId);
+
+      if (matchingIndex !== -1 && matchingIndex < bailStatus.length) {
+        bailStatusDescription = bailStatus[matchingIndex]?.description || '';
+      }
+    }
+
+    if (!bailStatusDescription && bailStatus.length > 0) {
+      bailStatusDescription = bailStatus[0]?.description || '';
+    }
+
+    const remandByCode = REMAND_STATUS_BY_INITIATION_CODE[prosecutionCase.initiationCode];
+    const result = bailStatusDescription || remandByCode || REMAND_STATUS_NOT_RECORDED;
+    return result;
+  };
+
+  getCustodialEstablishment = (
+    defendant: DefendantCasesApplications,
+    prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
+  ): string =>
+    defendant?.personDefendant?.custodialEstablishment?.name ??
+    CUSTODIAL_ESTABLISHMENT_NOT_SELECTED;
 
   onYouthBoxSelected(defendant: DefendantCasesApplications) {
     if (!this.hasBulkCase(defendant)) {
