@@ -8,6 +8,7 @@ exports[`TierAndListTypeFormComponent rendering should render the empty form 1`]
   fixedDateSelected={[Function Function]}
   form={[Function FormGroup]}
   hearingId={[Function Function]}
+  keyReasonMaxLength={[Function Number]}
   listTypeOptions={[Function Array]}
   ptphDetail={[Function Function]}
   save={[Function OutputEmitterRef]}
@@ -393,6 +394,7 @@ exports[`TierAndListTypeFormComponent rendering should render the form with a fi
   fixedDateSelected={[Function Function]}
   form={[Function FormGroup]}
   hearingId={[Function Function]}
+  keyReasonMaxLength={[Function Number]}
   listTypeOptions={[Function Array]}
   ptphDetail={[Function Function]}
   save={[Function OutputEmitterRef]}
@@ -720,6 +722,14 @@ exports[`TierAndListTypeFormComponent rendering should render the form with a fi
                         pdk-text-input=""
                         style="resize: none; min-height: NaNpx; max-height: NaNpx;"
                       />
+                      <pdk-character-count>
+                        <span
+                          aria-live="polite"
+                          class="govuk-hint govuk-character-count__message"
+                        >
+                           You have 3000 characters remaining 
+                        </span>
+                      </pdk-character-count>
                     </pdk-form-group>
                   </pdk-form-field>
                 </div>

@@ -44,6 +44,7 @@
     "CANCEL": "Cancel-WELSH",
     "ERROR_TIER_REQUIRED": "Select the Tier for this hearing-WELSH",
     "ERROR_KEY_REASON_REQUIRED": "Enter reason why the trial is fixed date-WELSH",
+    "ERROR_KEY_REASON_MAX_LENGTH": "Key reason must be 3000 characters or fewer-WELSH",
     "ALERT_FINALISED_SUCCESS": "Success. Tier and list type is finalised and saved-WELSH",
     "ALERT_FINALISE_FAILURE": "The tier and list type could not be finalised-WELSH",
     "ALERT_DELETED_SUCCESS": "Success. Tier and list type has been deleted-WELSH",

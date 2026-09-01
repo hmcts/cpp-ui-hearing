@@ -23,6 +23,16 @@ describe('TierAndListTypeFormComponent', () => {
   const keyReasonElement = () => fixture.debugElement.query(By.css('textarea[pdk-text-input]'));
   const clearLink = () => fixture.debugElement.query(By.css('a[href="javascript:void(0)"]'));
   const cancelLink = () => fixture.debugElement.query(By.css('pdk-button-group a'));
+  const characterCount = () => fixture.debugElement.query(By.css('pdk-character-count'));
+  const characterCountText = () =>
+    characterCount().nativeElement.textContent.replace(/s+/g, ' ').trim();
+
+  const typeKeyReason = (text: string) => {
+    const textarea = keyReasonElement().nativeElement as HTMLTextAreaElement;
+    textarea.value = text;
+    textarea.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+  };
 
   const submit = () => {
     formElement().triggerEventHandler('submit', new Event('submit'));
@@ -205,6 +215,104 @@ describe('TierAndListTypeFormComponent', () => {
       fixture.detectChanges();
 
       expect(component.form.valid).toBe(true);
+    });
+
+    it('should accept a keyReason of exactly 3000 characters', () => {
+      component.form.controls.tier.setValue('TIER_1');
+      selectListType('TYPE_1_FIXED');
+      component.form.controls.keyReason.setValue('a'.repeat(3000));
+      fixture.detectChanges();
+
+      expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(false);
+      expect(component.form.valid).toBe(true);
+    });
+
+    it('should reject a keyReason longer than 3000 characters', () => {
+      component.form.controls.tier.setValue('TIER_1');
+      selectListType('TYPE_1_FIXED');
+      component.form.controls.keyReason.setValue('a'.repeat(3001));
+      fixture.detectChanges();
+
+      expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(true);
+      expect(component.form.invalid).toBe(true);
+    });
+
+    it('should block submit when the keyReason exceeds 3000 characters', () => {
+      component.form.controls.tier.setValue('TIER_1');
+      selectListType('TYPE_1_FIXED');
+      component.form.controls.keyReason.setValue('a'.repeat(3001));
+      fixture.detectChanges();
+
+      submit();
+
+      expect(savedPayloads).toEqual([]);
+      expect(emittedErrors[0]).not.toBeNull();
+    });
+
+    it('should remove the max length validator along with required when the list type changes', () => {
+      selectListType('TYPE_1_FIXED');
+      component.form.controls.keyReason.setValue('a'.repeat(3001));
+      fixture.detectChanges();
+
+      selectListType('TYPE_2_FLEXIBLE');
+
+      expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(false);
+      expect(component.form.controls.keyReason.value).toBeNull();
+      expect(component.form.controls.keyReason.valid).toBe(true);
+    });
+  });
+
+  describe('character count', () => {
+    const countInstance = () =>
+      characterCount().componentInstance as {
+        value: string;
+        limit: number;
+        remaining: number;
+      };
+
+    it('should not render the character count while the reveal is closed', () => {
+      expect(characterCount()).toBeNull();
+    });
+
+    it('should render the character count with the limit when the reveal opens', () => {
+      selectListType('TYPE_1_FIXED');
+
+      expect(characterCount()).not.toBeNull();
+      expect(countInstance().limit).toBe(component.keyReasonMaxLength);
+      expect(countInstance().remaining).toBe(component.keyReasonMaxLength);
+      expect(characterCountText()).not.toBe('');
+    });
+
+    it('should update the remaining count as the user types', () => {
+      selectListType('TYPE_1_FIXED');
+
+      typeKeyReason('abc');
+
+      expect(component.form.controls.keyReason.value).toBe('abc');
+      expect(countInstance().value).toBe('abc');
+      expect(countInstance().remaining).toBe(component.keyReasonMaxLength - 3);
+    });
+
+    it('should report a negative remaining count when over the limit', () => {
+      selectListType('TYPE_1_FIXED');
+
+      typeKeyReason('a'.repeat(component.keyReasonMaxLength + 2));
+
+      expect(countInstance().remaining).toBe(-2);
+    });
+
+    it('should share one limit between the count and the validator', () => {
+      selectListType('TYPE_1_FIXED');
+
+      typeKeyReason('a'.repeat(component.keyReasonMaxLength));
+
+      expect(countInstance().remaining).toBe(0);
+      expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(false);
+
+      typeKeyReason('a'.repeat(component.keyReasonMaxLength + 1));
+
+      expect(countInstance().remaining).toBe(-1);
+      expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(true);
     });
   });
 

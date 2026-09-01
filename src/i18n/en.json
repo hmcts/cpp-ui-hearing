@@ -369,6 +369,7 @@
     "CANCEL": "Cancel",
     "ERROR_TIER_REQUIRED": "Select the Tier for this hearing",
     "ERROR_KEY_REASON_REQUIRED": "Enter reason why the trial is fixed date",
+    "ERROR_KEY_REASON_MAX_LENGTH": "Key reason must be 3000 characters or fewer",
     "ALERT_FINALISED_SUCCESS": "Success. Tier and list type is finalised and saved",
     "ALERT_FINALISE_FAILURE": "The tier and list type could not be finalised",
     "ALERT_DELETED_SUCCESS": "Success. Tier and list type has been deleted",
