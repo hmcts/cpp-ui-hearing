@@ -108,8 +108,7 @@
         {{ 'MANAGE_HEARING.ENTER_VERDICTS' | translate }}
       </span>
     </li>
-    }
-
+    } @if (isCrownCourt) {
     <li
       pdk-service-nav-list-item
       routerLinkActive
@@ -121,7 +120,7 @@
         {{ 'MANAGE_HEARING.TIER_AND_LIST_TYPE' | translate }}
       </a>
     </li>
-
+    }
     <li
       pdk-service-nav-list-item
       routerLinkActive

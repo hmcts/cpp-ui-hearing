@@ -38,6 +38,7 @@ import {
   HearingCaseNotes,
   HearingDetail,
   isBoxwork,
+  isCrownCourt,
   isCurrentHearingRestricted,
   isPleaApplicable,
   isVerdictsPageAvailable,
@@ -133,6 +134,7 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
   isBoxwork$: Observable<boolean>;
   isCurrentUserAuthorisedToSeeThisHearing$: Observable<boolean>;
   isPleaApplicableFlag$: Observable<boolean>;
+  isCrownCourt$: Observable<boolean>;
   showFutureHearingsRemoved$: Observable<boolean>;
   displayUnlockHearingLink: boolean;
 
@@ -193,6 +195,7 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
     this.hearingDays$ = this.store.select(getCurrentHearingDays);
     this.isPleaApplicableFlag$ = this.store.select(isPleaApplicable);
     this.isVerdictsPageAvailable$ = this.store.select(isVerdictsPageAvailable);
+    this.isCrownCourt$ = this.store.select(isCrownCourt);
     this.hearingNotes$ = this.store.select(getCurrentHearingNotes);
     this.canAddChildApplications$ = this.store
       .select(getFeatures)
