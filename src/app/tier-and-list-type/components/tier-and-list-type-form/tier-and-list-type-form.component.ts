@@ -3,7 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
+  InputValidators,
   PdkButton,
+  PdkCharacterCountComponent,
   PdkCore,
   PdkDividerComponent,
   PdkForm,
@@ -39,6 +41,7 @@ interface TierAndListTypeControls {
     PdkButton,
     PdkCore,
     PdkDividerComponent,
+    PdkCharacterCountComponent,
     PdkHintComponent,
     PdkResizeDirective,
     RouterLink,
@@ -60,6 +63,7 @@ export class TierAndListTypeFormComponent {
     keyReason: new FormControl<string | null>(null)
   });
 
+  readonly keyReasonMaxLength = 3000;
   readonly tierOptions = TIER_OPTIONS;
   readonly listTypeOptions = LIST_TYPE_OPTIONS;
 
@@ -107,7 +111,10 @@ export class TierAndListTypeFormComponent {
     const keyReason = this.form.controls.keyReason;
 
     if (fixedDate) {
-      keyReason.setValidators(Validators.required);
+      keyReason.setValidators([
+        Validators.required,
+        InputValidators.maximumLength(this.keyReasonMaxLength)
+      ]);
     } else {
       keyReason.clearValidators();
       keyReason.setValue(null, { emitEvent: false });

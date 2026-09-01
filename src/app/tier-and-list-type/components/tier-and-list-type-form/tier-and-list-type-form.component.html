@@ -50,10 +50,18 @@
             {
               rule: 'required',
               message: 'TIER_AND_LIST_TYPE.ERROR_KEY_REASON_REQUIRED' | translate
+            },
+            {
+              rule: 'maximumLength',
+              message: 'TIER_AND_LIST_TYPE.ERROR_KEY_REASON_MAX_LENGTH' | translate
             }
           ]"
         >
           <textarea pdk-input pdk-text-input pdk-resize formControlName="keyReason"></textarea>
+          <pdk-character-count
+            [value]="form.controls.keyReason.value"
+            [limit]="keyReasonMaxLength"
+          />
         </pdk-form-field>
       </pdk-radio-conditional>
       } }
