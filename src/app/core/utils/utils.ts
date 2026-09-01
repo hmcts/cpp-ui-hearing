@@ -16,6 +16,7 @@ import {
   ProsecutionCaseDetails,
   SubjectDefendant
 } from '../model';
+import { BailStatus } from '../model/bail-status';
 import { cloneDeep, isUndefined, omitBy, sortBy, findIndex } from 'lodash-es';
 import { CourtOrderOffence } from '../model/court-orders';
 import { CourtApplicationCase } from '../model/court-application-case';
@@ -197,36 +198,35 @@ export const sortOffences = (
  * @returns distinct defendants
  */
 export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
-  const groupedDefendants = new Map<string, any>();
+  const groupedDefendants = new Map<string, Defendant>();
 
   for (const defendant of defendants) {
     const key = defendant.masterDefendantId;
-    const currentBailStatus = defendant.personDefendant?.bailStatus;
+    const rawBailStatus: BailStatus | BailStatus[] | undefined =
+      defendant.personDefendant?.bailStatus;
+    const currentBailStatuses = Array.isArray(rawBailStatus)
+      ? rawBailStatus
+      : rawBailStatus
+      ? [rawBailStatus]
+      : [];
 
     if (!groupedDefendants.has(key)) {
-      const newDefendant = {
+      const newDefendant: Defendant = {
         ...defendant,
         personDefendant: {
           ...defendant.personDefendant,
-          bailStatus: currentBailStatus ? [currentBailStatus] : []
+          bailStatus: currentBailStatuses
         }
       };
       groupedDefendants.set(key, newDefendant);
     } else {
       const existingDefendant = groupedDefendants.get(key)!;
 
-      if (currentBailStatus) {
-        if (!Array.isArray(existingDefendant.personDefendant.bailStatus)) {
-          existingDefendant.personDefendant.bailStatus = [
-            existingDefendant.personDefendant.bailStatus
-          ];
-        }
-        existingDefendant.personDefendant.bailStatus.push(currentBailStatus);
-      }
+      existingDefendant.personDefendant.bailStatus.push(...currentBailStatuses);
     }
   }
 
-  return Array.from(groupedDefendants.values()) as Defendant[];
+  return Array.from(groupedDefendants.values());
 };
 
 /**
