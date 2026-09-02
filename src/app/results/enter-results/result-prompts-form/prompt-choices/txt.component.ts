@@ -17,6 +17,7 @@ const TEXTAREA_MIN_LENGTH = 100;
   selector: 'cpp-txt-prompt-choice',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    <!-- Address lookup -->
     @if (promptChoice.isStructuredUnstructuredAddress) {
     <pdk-form-field label="Search address or Postcode" labelType="small">
       <cpp-address-autosuggest
