@@ -141,6 +141,10 @@ describe('TierAndListTypeFormComponent', () => {
       expect(component.form.controls.keyReason.hasValidator(Validators.required)).toBe(false);
     });
 
+    it('should cap the key reason at 500 characters', () => {
+      expect(component.keyReasonMaxLength).toBe(500);
+    });
+
     it('should leave the optional controls valid while empty', () => {
       expect(component.form.controls.listType.valid).toBe(true);
       expect(component.form.controls.keyReason.valid).toBe(true);
@@ -217,30 +221,30 @@ describe('TierAndListTypeFormComponent', () => {
       expect(component.form.valid).toBe(true);
     });
 
-    it('should accept a keyReason of exactly 3000 characters', () => {
+    it('should accept a keyReason at exactly the maximum length', () => {
       component.form.controls.tier.setValue('TIER_1');
       selectListType('TYPE_1_FIXED');
-      component.form.controls.keyReason.setValue('a'.repeat(3000));
+      component.form.controls.keyReason.setValue('a'.repeat(component.keyReasonMaxLength));
       fixture.detectChanges();
 
       expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(false);
       expect(component.form.valid).toBe(true);
     });
 
-    it('should reject a keyReason longer than 3000 characters', () => {
+    it('should reject a keyReason beyond the maximum length', () => {
       component.form.controls.tier.setValue('TIER_1');
       selectListType('TYPE_1_FIXED');
-      component.form.controls.keyReason.setValue('a'.repeat(3001));
+      component.form.controls.keyReason.setValue('a'.repeat(component.keyReasonMaxLength + 1));
       fixture.detectChanges();
 
       expect(component.form.controls.keyReason.hasError('maximumLength')).toBe(true);
       expect(component.form.invalid).toBe(true);
     });
 
-    it('should block submit when the keyReason exceeds 3000 characters', () => {
+    it('should block submit when the keyReason exceeds the maximum length', () => {
       component.form.controls.tier.setValue('TIER_1');
       selectListType('TYPE_1_FIXED');
-      component.form.controls.keyReason.setValue('a'.repeat(3001));
+      component.form.controls.keyReason.setValue('a'.repeat(component.keyReasonMaxLength + 1));
       fixture.detectChanges();
 
       submit();
@@ -251,7 +255,7 @@ describe('TierAndListTypeFormComponent', () => {
 
     it('should remove the max length validator along with required when the list type changes', () => {
       selectListType('TYPE_1_FIXED');
-      component.form.controls.keyReason.setValue('a'.repeat(3001));
+      component.form.controls.keyReason.setValue('a'.repeat(component.keyReasonMaxLength + 1));
       fixture.detectChanges();
 
       selectListType('TYPE_2_FLEXIBLE');

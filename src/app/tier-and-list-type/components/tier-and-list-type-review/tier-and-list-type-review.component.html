@@ -25,10 +25,12 @@
         (click)="delete.emit(); $event.preventDefault()"
       >
         {{ 'TIER_AND_LIST_TYPE.DELETE' | translate }}
+        <span pdk-visually-hidden>{{ 'TIER_AND_LIST_TYPE.REVIEW_HEADING' | translate }}</span>
       </a>
       } @else {
       <a [routerLink]="formRoute()" pdk-link unvisited>
         {{ 'TIER_AND_LIST_TYPE.CHANGE' | translate }}
+        <span pdk-visually-hidden>{{ 'TIER_AND_LIST_TYPE.TIER' | translate }}</span>
       </a>
       }
     </dd>
@@ -42,12 +44,30 @@
       <div pdk-typography="body-small">{{ option.hintKey | translate }}</div>
       } @else {
       {{ 'TIER_AND_LIST_TYPE.NONE_SELECTED' | translate }}
+      } @if (ptphDetail().keyReason; as keyReason) {
+      <div pdk-margin-top="3">
+        <span pdk-typography="body-small" data-test-id="keyReasonLabel"
+          >{{ 'TIER_AND_LIST_TYPE.KEY_REASON' | translate
+          }}<span pdk-visually-hidden
+            >{{ ' ' }}{{ 'TIER_AND_LIST_TYPE.KEY_REASON_CONTEXT' | translate }}</span
+          >:</span
+        >
+        <pdk-foldable-text
+          pdk-typography="body-small"
+          [lineClamp]="3"
+          [ariaMoreLabel]="'TIER_AND_LIST_TYPE.KEY_REASON_SHOW_MORE' | translate"
+          [ariaLessLabel]="'TIER_AND_LIST_TYPE.KEY_REASON_SHOW_LESS' | translate"
+        >
+          {{ keyReason }}
+        </pdk-foldable-text>
+      </div>
       }
     </dd>
     <dd pdk-summary-list-action>
       @if (!isFinalised()) {
       <a [routerLink]="formRoute()" pdk-link unvisited>
         {{ 'TIER_AND_LIST_TYPE.CHANGE' | translate }}
+        <span pdk-visually-hidden>{{ 'TIER_AND_LIST_TYPE.LIST_TYPE' | translate }}</span>
       </a>
       }
     </dd>

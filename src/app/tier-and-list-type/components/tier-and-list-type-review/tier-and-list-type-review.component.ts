@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import {
   PdkButton,
   PdkCore,
+  PdkFoldableTextComponent,
   PdkInsetTextComponent,
   PdkSummaryList,
   PdkWarningTextComponent
@@ -20,6 +21,7 @@ import { TIER_OPTIONS } from '../../models/tier-options';
     PdkSummaryList,
     PdkButton,
     PdkCore,
+    PdkFoldableTextComponent,
     PdkInsetTextComponent,
     PdkWarningTextComponent,
     RouterLink,

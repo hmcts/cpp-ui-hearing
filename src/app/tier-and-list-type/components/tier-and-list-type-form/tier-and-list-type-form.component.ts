@@ -63,7 +63,7 @@ export class TierAndListTypeFormComponent {
     keyReason: new FormControl<string | null>(null)
   });
 
-  readonly keyReasonMaxLength = 3000;
+  readonly keyReasonMaxLength = 500;
   readonly tierOptions = TIER_OPTIONS;
   readonly listTypeOptions = LIST_TYPE_OPTIONS;
 
