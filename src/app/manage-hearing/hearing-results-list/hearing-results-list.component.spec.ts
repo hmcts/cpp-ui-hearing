@@ -7,6 +7,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AppConfigService } from '../../config';
 import {
+  BailStatus,
   DefendantCasesApplications,
   HearingDetail,
   IndicatedPlea,
@@ -18,6 +19,7 @@ import {
   BreachedApplication,
   DefendantBreachApplication
 } from '../../core/model/breach-application';
+import { ProsecutionCaseDetails } from '../../core/model/shared/prosecution-case-details';
 import * as mockData from '../../core/selectors/mock/hearing.json';
 import { mockCourtOrderOne, mockCourtOrders } from '../../mock-data/test-mock-data';
 import { HearingResultsListComponent } from './hearing-results-list.component';
@@ -625,6 +627,137 @@ describe('HearingResultsListComponent', () => {
       component.onYouthBoxSelected(defendantCases);
 
       expect(onYouthCourtToggleSpy).not.toBeCalled();
+    });
+  });
+
+  describe('#getRemandStatus', () => {
+    const conditionalBail: BailStatus = {
+      code: 'B',
+      id: 'bail-status-id-1',
+      description: 'Conditional Bail'
+    };
+
+    const unconditionalBail: BailStatus = {
+      code: 'U',
+      id: 'bail-status-id-2',
+      description: 'Unconditional bail'
+    };
+    const prosecutionCaseWithInitiationCode = (
+      initiationCode?: string,
+      id = 'case-1'
+    ): Omit<ProsecutionCaseDetails, 'defendants'> =>
+      ({ id, initiationCode } as Omit<ProsecutionCaseDetails, 'defendants'>);
+
+    const defendantWithBailStatus = (
+      bailStatus: BailStatus[] = [],
+      prosecutionCases: { id: string }[] = []
+    ): DefendantCasesApplications =>
+      ({
+        personDefendant: { bailStatus },
+        prosecutionCases
+      } as unknown as DefendantCasesApplications);
+
+    it('should return the defendant bail status description when it is available', () => {
+      const defendant = defendantWithBailStatus([unconditionalBail]);
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
+        'Unconditional bail'
+      );
+    });
+
+    it('should return the bail status description that matches the given prosecution case when the defendant has bail statuses for multiple cases', () => {
+      const defendant = defendantWithBailStatus(
+        [conditionalBail, unconditionalBail],
+        [{ id: 'case-1' }, { id: 'case-2' }]
+      );
+
+      expect(
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S', 'case-2'))
+      ).toBe('Unconditional bail');
+    });
+
+    it('should fall back to the first bail status description when the prosecution case does not match any of the defendant cases', () => {
+      const defendant = defendantWithBailStatus([conditionalBail], [{ id: 'other-case' }]);
+
+      expect(
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S', 'case-1'))
+      ).toBe('Conditional Bail');
+    });
+
+    it('should return "Summons" when there is no bail status and the initiation code is S', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('S'))
+      ).toBe('Summons');
+    });
+
+    it('should return "Postal Requisition/Written charge" when there is no bail status and the initiation code is Q', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('Q'))
+      ).toBe('Postal Requisition/Written charge');
+    });
+
+    it('should return "Not recorded" when there is no bail status and the initiation code is neither S nor Q', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode('A'))
+      ).toBe('Not recorded');
+    });
+
+    it('should return "Not recorded" when there is no bail status and no initiation code', () => {
+      expect(
+        component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode())
+      ).toBe('Not recorded');
+    });
+  });
+
+  describe('remand status display', () => {
+    const queryRemandStatus = () =>
+      fixture.debugElement.query(By.css('[data-test-id="remandStatus"]'));
+
+    it('should display the remand status directly below the case URN', () => {
+      const remandStatus = queryRemandStatus();
+      expect(remandStatus).toBeTruthy();
+
+      const caseReference = fixture.debugElement.query(
+        By.css('[data-test-id="caseReference"]')
+      ).nativeElement;
+      expect(
+        caseReference.compareDocumentPosition(remandStatus.nativeElement) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should display the initiation-based remand status when the defendant has no bail status', () => {
+      const [groupedDefendant] = groupedCasesMock;
+      const input = [
+        {
+          ...groupedDefendant,
+          personDefendant: { ...groupedDefendant.personDefendant, bailStatus: [] },
+          prosecutionCases: [{ ...groupedDefendant.prosecutionCases[0], initiationCode: 'S' }]
+        }
+      ] as DefendantCasesApplications[];
+
+      testHostComponent.setInput(input);
+      fixture.detectChanges();
+
+      expect(queryRemandStatus().nativeElement.textContent).toContain('Summons');
+    });
+  });
+
+  describe('custodial establishment display', () => {
+    it('should display the recorded custodial establishment name directly below the case URN', () => {
+      const [groupedDefendant] = groupedCasesMock;
+      const input = [
+        {
+          ...groupedDefendant,
+          personDefendant: {
+            ...groupedDefendant.personDefendant,
+            custodialEstablishment: { id: 'HMP1', name: 'HMP Wandsworth', custody: 'REMAND' }
+          }
+        }
+      ] as DefendantCasesApplications[];
+
+      testHostComponent.setInput(input);
+      fixture.detectChanges();
+      expect(fixture).toMatchSnapshot();
     });
   });
 });
