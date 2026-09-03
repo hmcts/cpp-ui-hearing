@@ -48,6 +48,12 @@ exports[`TierAndListTypeReviewComponent rendering should render a finalised reco
           unvisited=""
         >
            TIER_AND_LIST_TYPE.DELETE 
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            TIER_AND_LIST_TYPE.REVIEW_HEADING
+          </span>
         </a>
       </dd>
     </div>
@@ -71,6 +77,40 @@ exports[`TierAndListTypeReviewComponent rendering should render a finalised reco
           pdk-typography="body-small"
         >
           TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
+        </div>
+        <div
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <span
+            class="govuk-body-s"
+            data-test-id="keyReasonLabel"
+            pdk-typography="body-small"
+          >
+            TIER_AND_LIST_TYPE.KEY_REASON
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+               TIER_AND_LIST_TYPE.KEY_REASON_CONTEXT
+            </span>
+            :
+          </span>
+          <pdk-foldable-text
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+            <div
+              class="pdk-foldable"
+            >
+              <span
+                class="pdk-foldable__content pdk-foldable__content__multiple pdk-foldable__content__multiple-3"
+                id="pdk-foldable-text-GENERATED_ID"
+              >
+                 Key witness unavailable 
+              </span>
+            </div>
+          </pdk-foldable-text>
         </div>
       </dd>
       <dd
@@ -131,6 +171,12 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that ca
           unvisited=""
         >
            TIER_AND_LIST_TYPE.CHANGE 
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            TIER_AND_LIST_TYPE.TIER
+          </span>
         </a>
       </dd>
     </div>
@@ -155,6 +201,40 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that ca
         >
           TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
         </div>
+        <div
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <span
+            class="govuk-body-s"
+            data-test-id="keyReasonLabel"
+            pdk-typography="body-small"
+          >
+            TIER_AND_LIST_TYPE.KEY_REASON
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+               TIER_AND_LIST_TYPE.KEY_REASON_CONTEXT
+            </span>
+            :
+          </span>
+          <pdk-foldable-text
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+            <div
+              class="pdk-foldable"
+            >
+              <span
+                class="pdk-foldable__content pdk-foldable__content__multiple pdk-foldable__content__multiple-3"
+                id="pdk-foldable-text-GENERATED_ID"
+              >
+                 Key witness unavailable 
+              </span>
+            </div>
+          </pdk-foldable-text>
+        </div>
       </dd>
       <dd
         class="pdk-summary-list__actions"
@@ -167,6 +247,12 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that ca
           unvisited=""
         >
            TIER_AND_LIST_TYPE.CHANGE 
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            TIER_AND_LIST_TYPE.LIST_TYPE
+          </span>
         </a>
       </dd>
     </div>
@@ -254,6 +340,12 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that is
           unvisited=""
         >
            TIER_AND_LIST_TYPE.CHANGE 
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            TIER_AND_LIST_TYPE.TIER
+          </span>
         </a>
       </dd>
     </div>
@@ -278,6 +370,40 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that is
         >
           TIER_AND_LIST_TYPE.LIST_TYPE_1_HINT
         </div>
+        <div
+          class="govuk-!-margin-top-3"
+          pdk-margin-top="3"
+        >
+          <span
+            class="govuk-body-s"
+            data-test-id="keyReasonLabel"
+            pdk-typography="body-small"
+          >
+            TIER_AND_LIST_TYPE.KEY_REASON
+            <span
+              class="govuk-visually-hidden"
+              pdk-visually-hidden=""
+            >
+               TIER_AND_LIST_TYPE.KEY_REASON_CONTEXT
+            </span>
+            :
+          </span>
+          <pdk-foldable-text
+            class="govuk-body-s"
+            pdk-typography="body-small"
+          >
+            <div
+              class="pdk-foldable"
+            >
+              <span
+                class="pdk-foldable__content pdk-foldable__content__multiple pdk-foldable__content__multiple-3"
+                id="pdk-foldable-text-GENERATED_ID"
+              >
+                 Key witness unavailable 
+              </span>
+            </div>
+          </pdk-foldable-text>
+        </div>
       </dd>
       <dd
         class="pdk-summary-list__actions"
@@ -290,6 +416,12 @@ exports[`TierAndListTypeReviewComponent rendering should render a record that is
           unvisited=""
         >
            TIER_AND_LIST_TYPE.CHANGE 
+          <span
+            class="govuk-visually-hidden"
+            pdk-visually-hidden=""
+          >
+            TIER_AND_LIST_TYPE.LIST_TYPE
+          </span>
         </a>
       </dd>
     </div>

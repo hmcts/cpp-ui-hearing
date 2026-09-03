@@ -42,6 +42,14 @@ describe('TierAndListTypeReviewComponent', () => {
     fixture.debugElement
       .queryAll(By.css('dd[pdk-summary-list-action] a'))
       .find(link => link.nativeElement.textContent.includes('TIER_AND_LIST_TYPE.DELETE'));
+  const summaryRows = () => fixture.debugElement.queryAll(By.css('div[pdk-summary-list-item]'));
+  const foldableText = () => fixture.debugElement.query(By.css('pdk-foldable-text'));
+  const foldableInstance = () =>
+    foldableText().componentInstance as {
+      lineClamp: number;
+      ariaMoreLabel: string;
+      ariaLessLabel: string;
+    };
 
   const render = (detail: PtphDetail, canFinalise = false) => {
     fixture.componentRef.setInput('ptphDetail', detail);
@@ -293,6 +301,127 @@ describe('TierAndListTypeReviewComponent', () => {
       expect(component.listTypeOption()).toBeUndefined();
       expect(listTypeValueCell().nativeElement.textContent).toContain(
         'TIER_AND_LIST_TYPE.NONE_SELECTED'
+      );
+    });
+  });
+
+  describe('key reason', () => {
+    const keyReasonLabel = () =>
+      listTypeValueCell().query(By.css('[data-test-id="keyReasonLabel"]'));
+
+    it('should sit inside the list type value cell rather than its own row', () => {
+      render(notFinalised);
+
+      expect(summaryRows().length).toBe(2);
+      expect(keyReasonLabel()).not.toBeNull();
+      expect(listTypeValueCell().query(By.css('pdk-foldable-text'))).not.toBeNull();
+    });
+
+    it('should read the label immediately before its value', () => {
+      render(notFinalised);
+
+      const text = listTypeValueCell().nativeElement.textContent;
+
+      expect(text).toContain('TIER_AND_LIST_TYPE.KEY_REASON');
+      expect(text.indexOf('TIER_AND_LIST_TYPE.KEY_REASON')).toBeLessThan(
+        text.indexOf('Key witness unavailable')
+      );
+    });
+
+    it('should read as one phrase ending in a colon', () => {
+      render(notFinalised);
+
+      expect(keyReasonLabel().nativeElement.textContent).toBe(
+        'TIER_AND_LIST_TYPE.KEY_REASON TIER_AND_LIST_TYPE.KEY_REASON_CONTEXT:'
+      );
+    });
+
+    it('should tell assistive technology what the key reason explains', () => {
+      render(notFinalised);
+
+      const hidden = keyReasonLabel().query(By.css('span[pdk-visually-hidden]'));
+
+      expect(hidden.nativeElement.textContent.trim()).toBe('TIER_AND_LIST_TYPE.KEY_REASON_CONTEXT');
+      expect(hidden.nativeElement.classList.contains('govuk-visually-hidden')).toBe(true);
+    });
+
+    it('should not use a heading or a nested list for the label', () => {
+      render(notFinalised);
+
+      expect(listTypeValueCell().queryAll(By.css('h1, h2, h3, h4, h5, h6')).length).toBe(0);
+      expect(listTypeValueCell().query(By.css('dl'))).toBeNull();
+      expect(listTypeValueCell().query(By.css('strong'))).toBeNull();
+    });
+
+    it('should fold the key reason to three lines', () => {
+      render(notFinalised);
+
+      expect(foldableInstance().lineClamp).toBe(3);
+    });
+
+    it('should give the fold toggle translated accessible labels', () => {
+      render(notFinalised);
+
+      expect(foldableInstance().ariaMoreLabel).toBe('TIER_AND_LIST_TYPE.KEY_REASON_SHOW_MORE');
+      expect(foldableInstance().ariaLessLabel).toBe('TIER_AND_LIST_TYPE.KEY_REASON_SHOW_LESS');
+    });
+
+    it('should still show the key reason once finalised', () => {
+      render(finalised);
+
+      expect(keyReasonLabel()).not.toBeNull();
+      expect(foldableText().nativeElement.textContent).toContain('Key witness unavailable');
+    });
+
+    it('should omit the key reason entirely when none is recorded', () => {
+      render({ tier: 'TIER_1', listType: 'TYPE_2_FLEXIBLE', finalised: false });
+
+      expect(keyReasonLabel()).toBeNull();
+      expect(foldableText()).toBeNull();
+    });
+
+    it('should omit the key reason when it is an empty string', () => {
+      render({ ...notFinalised, keyReason: '' });
+
+      expect(keyReasonLabel()).toBeNull();
+      expect(foldableText()).toBeNull();
+    });
+  });
+
+  describe('accessible action link names', () => {
+    const hiddenTextIn = (cell: { queryAll: Function }) =>
+      cell
+        .queryAll(By.css('span[pdk-visually-hidden]'))
+        .map((span: { nativeElement: HTMLElement }) => span.nativeElement.textContent.trim());
+
+    it('should qualify the tier change link with the field name', () => {
+      render(notFinalised);
+
+      expect(hiddenTextIn(tierActionCell())).toEqual(['TIER_AND_LIST_TYPE.TIER']);
+    });
+
+    it('should qualify the list type change link with the field name', () => {
+      render(notFinalised);
+
+      expect(hiddenTextIn(listTypeActionCell())).toEqual(['TIER_AND_LIST_TYPE.LIST_TYPE']);
+    });
+
+    it('should qualify the delete link with what it deletes', () => {
+      render(finalised);
+
+      expect(hiddenTextIn(tierActionCell())).toEqual(['TIER_AND_LIST_TYPE.REVIEW_HEADING']);
+    });
+
+    it('should hide the qualifiers visually via the govuk class', () => {
+      render(notFinalised);
+
+      const spans = fixture.debugElement.queryAll(
+        By.css('dd[pdk-summary-list-action] span[pdk-visually-hidden]')
+      );
+
+      expect(spans.length).toBe(2);
+      spans.forEach(span =>
+        expect(span.nativeElement.classList.contains('govuk-visually-hidden')).toBe(true)
       );
     });
   });

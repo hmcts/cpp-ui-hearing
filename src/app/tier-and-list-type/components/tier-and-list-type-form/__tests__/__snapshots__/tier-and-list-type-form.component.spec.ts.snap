@@ -727,7 +727,7 @@ exports[`TierAndListTypeFormComponent rendering should render the form with a fi
                           aria-live="polite"
                           class="govuk-hint govuk-character-count__message"
                         >
-                           You have 3000 characters remaining 
+                           You have 500 characters remaining 
                         </span>
                       </pdk-character-count>
                     </pdk-form-group>
