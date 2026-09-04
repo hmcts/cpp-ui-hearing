@@ -347,7 +347,7 @@ describe('ResultPromptsForm', () => {
     const ADDRESS_WITH_LOOKUP = {
       ...getPromptChoiceForType('ADDRESS'),
       required: true,
-      isStructuredUnstructuredAddress: true
+      useAddressLookup: true
     };
 
     beforeEach(() => {
@@ -360,9 +360,9 @@ describe('ResultPromptsForm', () => {
       expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
     }));
 
-    it('should not render the address lookup when isStructuredUnstructuredAddress is not set', fakeAsync(() => {
+    it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
       fixture.componentInstance.promptChoices = [
-        { ...ADDRESS_WITH_LOOKUP, isStructuredUnstructuredAddress: false }
+        { ...ADDRESS_WITH_LOOKUP, useAddressLookup: false }
       ];
       fixture.detectChanges();
       tick();
@@ -1443,7 +1443,7 @@ describe('ResultPromptsForm', () => {
       const FCOST = getParsedResultDefinitionByShortCode('FCOST');
       const NAMEADDRESS = {
         ...((FCOST.promptChoices[1] as OneOfPromptChoice).children[1] as NameAddressPromptChoice),
-        isStructuredUnstructuredAddress: true
+        useAddressLookup: true
       };
 
       beforeEach(() => {
@@ -1456,10 +1456,8 @@ describe('ResultPromptsForm', () => {
         expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
       }));
 
-      it('should not render the address lookup when isStructuredUnstructuredAddress is not set', fakeAsync(() => {
-        fixture.componentInstance.promptChoices = [
-          { ...NAMEADDRESS, isStructuredUnstructuredAddress: false }
-        ];
+      it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
+        fixture.componentInstance.promptChoices = [{ ...NAMEADDRESS, useAddressLookup: false }];
         fixture.detectChanges();
         tick();
         expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
@@ -2318,7 +2316,7 @@ describe('ResultPromptsForm', () => {
       minLength: '1',
       maxLength: '99',
       required: true,
-      isStructuredUnstructuredAddress: true
+      useAddressLookup: true
     } as TextPromptChoice;
 
     beforeEach(() => {
@@ -2331,10 +2329,8 @@ describe('ResultPromptsForm', () => {
       expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
     }));
 
-    it('should not render the address lookup when isStructuredUnstructuredAddress is not set', fakeAsync(() => {
-      fixture.componentInstance.promptChoices = [
-        { ...TXT_WITH_LOOKUP, isStructuredUnstructuredAddress: false }
-      ];
+    it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
+      fixture.componentInstance.promptChoices = [{ ...TXT_WITH_LOOKUP, useAddressLookup: false }];
       fixture.detectChanges();
       tick();
       expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();

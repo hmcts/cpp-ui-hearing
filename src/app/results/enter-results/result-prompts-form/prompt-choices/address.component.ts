@@ -18,7 +18,7 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- Address lookup -->
-    @if (promptChoice.isStructuredUnstructuredAddress) {
+    @if (promptChoice.useAddressLookup) {
     <pdk-form-field label="Search address or Postcode" labelType="small">
       <cpp-address-autosuggest
         [ngModel]="currentAddress"
