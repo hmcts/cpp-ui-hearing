@@ -289,6 +289,7 @@ export interface AddressPromptChoice extends DefaultPromptChoice {
   type: 'ADDRESS';
   children: PromptChoiceChild<AddressPartName>[];
   required: boolean;
+  useAddressLookup?: boolean;
 }
 
 export interface BooleanPromptChoice extends DefaultPromptChoice {
@@ -376,6 +377,7 @@ export interface NameAddressPromptChoice extends DefaultPromptChoice {
   nameAddressList?: NameAddressListItem[];
   children: PromptChoiceChild<NameAddressPartName>[];
   required: boolean;
+  useAddressLookup?: boolean;
 }
 
 export interface OneOfPromptChoice extends DefaultPromptChoice {
@@ -390,6 +392,7 @@ export interface TextPromptChoice extends DefaultPromptChoice {
   maxLength?: string;
   minLength?: string;
   partName?: string;
+  useAddressLookup?: boolean;
 }
 
 export interface TimePromptChoice extends DefaultPromptChoice {
