@@ -113,6 +113,35 @@ describe('JudiciaryTypeaheadComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should scroll the highlighted suggestion into view on ArrowDown', () => {
+    const container = document.createElement('div');
+    container.id = 'suggestions-container';
+
+    const item = document.createElement('li');
+    item.id = 'judicial-id-1';
+    (item as any).scrollIntoView = jest.fn();
+    container.appendChild(item);
+    document.body.appendChild(container);
+
+    component.autoSuggest = {
+      autoSuggestRef: {
+        highlightedSuggestion: { id: 'judicial-id-1' } as JudiciaryAutoSuggestOption,
+        suggestionsContainerId: 'suggestions-container',
+        mapSuggestionToKey: (suggestion: JudiciaryAutoSuggestOption) => suggestion.id
+      }
+    } as any;
+
+    component.onKeydown(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+    expect((item as any).scrollIntoView).toHaveBeenCalledWith({
+      block: 'nearest',
+      inline: 'nearest',
+      behavior: 'auto'
+    });
+
+    document.body.removeChild(container);
+  });
+
   it('should request up to 50 judiciary suggestions', fakeAsync(() => {
     component.input$.next('ab');
     tick(300);
