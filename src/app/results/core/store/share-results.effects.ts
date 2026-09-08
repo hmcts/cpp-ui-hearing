@@ -28,9 +28,11 @@ import {
   LoadHearingDetailSuccessAction,
   MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
   PendingApiRequest,
+  RESULTS_VALIDATION_FAILED_PUBLIC_EVENT,
   RequestOptions,
   setHearingState
 } from '../../../core';
+import { ResultsValidationFailedEvent } from '../../results-validation.interfaces';
 import { ResultsService } from '../services/results.service';
 import { ReusableInfoService } from '../services/reusable-info.service';
 import { DraftResultActions } from './draft-result.actions';
@@ -324,6 +326,21 @@ export class ShareResultsEffects {
       // Clear the draft result in the state to prevent users from hitting the
       // browser back button and attempting to resubmit
       mergeMap(({ error }: { error: CommandError | String }) => {
+        if (
+          typeof error === 'object' &&
+          'originalEvent' in error &&
+          error.originalEvent._metadata?.name === RESULTS_VALIDATION_FAILED_PUBLIC_EVENT
+        ) {
+          const { errors } = error.originalEvent as ResultsValidationFailedEvent;
+          return of(
+            ShareResultsActions.shareDraftResultValidationFailed({
+              validationErrors: {
+                errorMessages: errors?.errorMessages || [],
+                validationIssues: errors?.validationIssues || []
+              }
+            })
+          );
+        }
         if (
           typeof error === 'object' &&
           'originalEvent' in error &&

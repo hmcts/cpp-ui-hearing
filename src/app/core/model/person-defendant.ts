@@ -5,7 +5,7 @@ import { CustodyEstablishment } from './custody-establishment';
 
 export interface PersonDefendant {
   personDetails: PersonDetails;
-  bailStatus: BailStatus;
+  bailStatus: BailStatus[];
   custodyTimeLimit: Date;
   perceivedBirthYear: number;
   observedEthnicityId: string;

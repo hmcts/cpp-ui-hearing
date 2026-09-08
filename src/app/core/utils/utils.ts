@@ -16,6 +16,7 @@ import {
   ProsecutionCaseDetails,
   SubjectDefendant
 } from '../model';
+import { BailStatus } from '../model/bail-status';
 import { cloneDeep, isUndefined, omitBy, sortBy, findIndex } from 'lodash-es';
 import { CourtOrderOffence } from '../model/court-orders';
 import { CourtApplicationCase } from '../model/court-application-case';
@@ -197,19 +198,35 @@ export const sortOffences = (
  * @returns distinct defendants
  */
 export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
-  const distinctDefendants: Defendant[] = [];
+  const groupedDefendants = new Map<string, Defendant>();
 
   for (const defendant of defendants) {
-    if (
-      !distinctDefendants.find(def => def.masterDefendantId === defendant.masterDefendantId) &&
-      !distinctDefendants.find(def => def.id === defendant.masterDefendantId) &&
-      !distinctDefendants.find(def => def.masterDefendantId === defendant.id)
-    ) {
-      distinctDefendants.push(defendant);
+    const key = defendant.masterDefendantId;
+    const rawBailStatus: BailStatus | BailStatus[] | undefined =
+      defendant.personDefendant?.bailStatus;
+    const currentBailStatuses = Array.isArray(rawBailStatus)
+      ? rawBailStatus
+      : rawBailStatus
+      ? [rawBailStatus]
+      : [];
+
+    if (!groupedDefendants.has(key)) {
+      const newDefendant: Defendant = {
+        ...defendant,
+        personDefendant: {
+          ...defendant.personDefendant,
+          bailStatus: currentBailStatuses
+        }
+      };
+      groupedDefendants.set(key, newDefendant);
+    } else {
+      const existingDefendant = groupedDefendants.get(key)!;
+
+      existingDefendant.personDefendant.bailStatus.push(...currentBailStatuses);
     }
   }
 
-  return distinctDefendants;
+  return Array.from(groupedDefendants.values());
 };
 
 /**
