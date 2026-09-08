@@ -52,9 +52,9 @@ export interface Offence {
     isExParte?: boolean;
   };
   bailStatus?: {
-    code?: string;
-    description?: string;
-    id?: string;
+    code: string;
+    description: string;
+    id: string;
   };
 }
 

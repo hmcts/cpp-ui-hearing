@@ -164,15 +164,21 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
       if (isConvicted && offence?.verdict?.isDeleted) {
         isConvicted = false;
       }
-      return {
+
+      const result: ResultsValidationOffence = {
         offenceId: offence.id,
         offenceCode: offence.offenceCode,
         offenceTitle: offence.offenceTitle,
         orderIndex: offence.orderIndex,
         caseUrn,
         hasExistingCtlRecord: !!offence.custodyTimeLimit,
-        isConvicted,
-        ...(offence?.bailStatus ? { bailStatus: offence?.bailStatus?.code } : {})
+        isConvicted
       };
+
+      if (offence?.bailStatus) {
+        result.bailStatus = offence.bailStatus.code;
+      }
+
+      return result;
     });
 };
