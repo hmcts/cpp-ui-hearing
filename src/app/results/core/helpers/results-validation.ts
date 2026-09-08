@@ -171,7 +171,8 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
         orderIndex: offence.orderIndex,
         caseUrn,
         hasExistingCtlRecord: !!offence.custodyTimeLimit,
-        isConvicted
+        isConvicted,
+        ...(offence?.bailStatus ? { bailStatus: offence?.bailStatus?.code } : {})
       };
     });
 };
