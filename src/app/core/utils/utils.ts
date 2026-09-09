@@ -197,6 +197,7 @@ export const sortOffences = (
  * @param defendants all defendants
  * @returns distinct defendants
  */
+
 export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
   const groupedDefendants = new Map<string, Defendant>();
 
@@ -213,10 +214,12 @@ export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
     if (!groupedDefendants.has(key)) {
       const newDefendant: Defendant = {
         ...defendant,
-        personDefendant: {
-          ...defendant.personDefendant,
-          bailStatus: currentBailStatuses
-        }
+        personDefendant: defendant.personDefendant
+          ? {
+              ...defendant.personDefendant,
+              bailStatus: currentBailStatuses
+            }
+          : undefined
       };
       groupedDefendants.set(key, newDefendant);
     } else {

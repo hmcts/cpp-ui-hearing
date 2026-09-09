@@ -1,6 +1,7 @@
 import {
   getApplicationsByDefendant,
   getDefendantsContainsOffence,
+  getDistinctDefendants,
   getHearingCaseUrl,
   groupApplicantRespondentOrAppellantFromCourtApplication,
   resolveProceedingsConcluded
@@ -42,6 +43,73 @@ describe('Utils', () => {
       const result = getDefendantsContainsOffence(offence, defendants);
       expect(result.length).toBe(1);
       expect(result[0].offences[0].offenceDefinitionId).toBe('off1');
+    });
+  });
+
+  describe('getDistinctDefendants', () => {
+    it('should not throw and should leave personDefendant undefined when it is missing', () => {
+      const defendants: Defendant[] = [{ masterDefendantId: 'def1', offences: [] } as Defendant];
+
+      const result = getDistinctDefendants(defendants);
+
+      expect(result.length).toBe(1);
+      expect(result[0].personDefendant).toBeUndefined();
+    });
+
+    it('should dedupe defendants sharing the same masterDefendantId', () => {
+      const defendants: Defendant[] = [
+        {
+          masterDefendantId: 'def1',
+          offences: [],
+          personDefendant: {
+            bailStatus: [{ code: 'C', description: 'CONDITIONAL' }]
+          }
+        } as unknown as Defendant,
+        {
+          masterDefendantId: 'def1',
+          offences: [],
+          personDefendant: {
+            bailStatus: [{ code: 'U', description: 'UNCONDITIONAL' }]
+          }
+        } as unknown as Defendant
+      ];
+
+      const result = getDistinctDefendants(defendants);
+
+      expect(result.length).toBe(1);
+      expect(result[0].personDefendant.bailStatus).toEqual([
+        { code: 'C', description: 'CONDITIONAL' },
+        { code: 'U', description: 'UNCONDITIONAL' }
+      ]);
+    });
+
+    it('should keep distinct defendants with different masterDefendantId', () => {
+      const defendants: Defendant[] = [
+        { masterDefendantId: 'def1', offences: [] } as Defendant,
+        { masterDefendantId: 'def2', offences: [] } as Defendant
+      ];
+
+      const result = getDistinctDefendants(defendants);
+
+      expect(result.length).toBe(2);
+    });
+
+    it('should normalise a single (non-array) bailStatus into an array', () => {
+      const defendants: Defendant[] = [
+        {
+          masterDefendantId: 'def1',
+          offences: [],
+          personDefendant: {
+            bailStatus: { code: 'C', description: 'CONDITIONAL' }
+          }
+        } as unknown as Defendant
+      ];
+
+      const result = getDistinctDefendants(defendants);
+
+      expect(result[0].personDefendant.bailStatus).toEqual([
+        { code: 'C', description: 'CONDITIONAL' }
+      ]);
     });
   });
 
