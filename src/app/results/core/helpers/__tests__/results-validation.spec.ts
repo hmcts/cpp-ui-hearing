@@ -932,6 +932,74 @@ describe('buildResultsValidationRequest', () => {
         );
       });
     });
+
+    describe('bailStatus field', () => {
+      const buildHearingWithOffence = (offence: object) =>
+        createMinimalHearing({
+          prosecutionCases: [
+            {
+              id: 'prosecutionCaseId1',
+              prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+              defendants: [createDefendant({ offences: [offence as any] })]
+            } as any
+          ]
+        });
+
+      it('should include bailStatus mapped from bailStatus.code when the offence has a bailStatus object', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1,
+          bailStatus: { code: 'B', description: 'Bail', id: 'bailStatusId1' }
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).toEqual(expect.objectContaining({ bailStatus: 'B' }));
+      });
+
+      it('should NOT include bailStatus when the offence has no bailStatus object', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('bailStatus');
+      });
+
+      it('should NOT include bailStatus when the bailStatus object is undefined', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1,
+          bailStatus: undefined
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('bailStatus');
+      });
+
+      it('should include bailStatus as undefined-code value when bailStatus object is present but code is missing', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1,
+          bailStatus: { description: 'Bail', id: 'bailStatusId1' }
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).toEqual(expect.objectContaining({ bailStatus: undefined }));
+      });
+    });
   });
 });
 
