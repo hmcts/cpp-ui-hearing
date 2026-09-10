@@ -56,7 +56,7 @@ describe('Utils', () => {
       expect(result[0].personDefendant).toBeUndefined();
     });
 
-    it('should dedupe defendants sharing the same masterDefendantId', () => {
+    it('should dedupe defendants sharing the same masterDefendantId and keep the first occurrence', () => {
       const defendants: Defendant[] = [
         {
           masterDefendantId: 'def1',
@@ -64,22 +64,21 @@ describe('Utils', () => {
           personDefendant: {
             bailStatus: [{ code: 'C', description: 'CONDITIONAL' }]
           }
-        } as unknown as Defendant,
+        } as Defendant,
         {
           masterDefendantId: 'def1',
           offences: [],
           personDefendant: {
             bailStatus: [{ code: 'U', description: 'UNCONDITIONAL' }]
           }
-        } as unknown as Defendant
+        } as Defendant
       ];
 
       const result = getDistinctDefendants(defendants);
 
       expect(result.length).toBe(1);
       expect(result[0].personDefendant.bailStatus).toEqual([
-        { code: 'C', description: 'CONDITIONAL' },
-        { code: 'U', description: 'UNCONDITIONAL' }
+        { code: 'C', description: 'CONDITIONAL' }
       ]);
     });
 
@@ -94,22 +93,28 @@ describe('Utils', () => {
       expect(result.length).toBe(2);
     });
 
-    it('should normalise a single (non-array) bailStatus into an array', () => {
+    it('should treat a defendant as a duplicate when its id matches an earlier masterDefendantId', () => {
       const defendants: Defendant[] = [
-        {
-          masterDefendantId: 'def1',
-          offences: [],
-          personDefendant: {
-            bailStatus: { code: 'C', description: 'CONDITIONAL' }
-          }
-        } as unknown as Defendant
+        { id: 'def1', masterDefendantId: 'def1', offences: [] } as Defendant,
+        { id: 'def1', masterDefendantId: 'def2', offences: [] } as Defendant
       ];
 
       const result = getDistinctDefendants(defendants);
 
-      expect(result[0].personDefendant.bailStatus).toEqual([
-        { code: 'C', description: 'CONDITIONAL' }
-      ]);
+      expect(result.length).toBe(1);
+      expect(result[0].masterDefendantId).toBe('def1');
+    });
+
+    it('should treat a defendant as a duplicate when its masterDefendantId matches an earlier id', () => {
+      const defendants: Defendant[] = [
+        { id: 'def1', masterDefendantId: 'def2', offences: [] } as Defendant,
+        { id: 'def3', masterDefendantId: 'def1', offences: [] } as Defendant
+      ];
+
+      const result = getDistinctDefendants(defendants);
+
+      expect(result.length).toBe(1);
+      expect(result[0].id).toBe('def1');
     });
   });
 

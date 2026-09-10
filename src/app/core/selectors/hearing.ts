@@ -48,6 +48,7 @@ import { getUserDetails } from '@cpp/users-groups';
 import { ListingNote } from '@cpp/scheduling';
 import { canAmendApplication } from './user-groups';
 import { CrackedIneffectiveSubReason } from '../model/shared/cracked-ineffective-sub-reason';
+import { BailStatus } from '../model/bail-status';
 
 const byPersonLastName = (a: Defendant, b: Defendant) => {
   if (a.personDefendant && b.personDefendant) {
@@ -1302,7 +1303,37 @@ const groupCasesAndApplicationsByDefendant = (
 
     const defendantApplications = getApplicationsByDefendant(defendant, hearing);
 
-    const groupedDefendant = { ...defendant };
+    let groupedDefendant = { ...defendant };
+
+    if (!!defendant.personDefendant) {
+      const defWithBailStatus = sortedDefendants.find(
+        def =>
+          def.masterDefendantId === defendant.masterDefendantId &&
+          def.id === defendant.masterDefendantId &&
+          def.masterDefendantId === defendant.id &&
+          defendant.personDefendant &&
+          defendant.personDefendant.bailStatus
+      );
+
+      if (defWithBailStatus) {
+        const rawBailStatus: BailStatus | BailStatus[] | undefined =
+          defWithBailStatus.personDefendant?.bailStatus;
+        const currentBailStatuses = Array.isArray(rawBailStatus)
+          ? rawBailStatus
+          : rawBailStatus
+          ? [rawBailStatus]
+          : [];
+
+        groupedDefendant = {
+          ...defendant,
+          personDefendant: {
+            ...defendant.personDefendant,
+            bailStatus: currentBailStatuses
+          }
+        };
+      }
+    }
+
     delete groupedDefendant.offences;
     defendantsGrouped.push({
       ...groupedDefendant,
