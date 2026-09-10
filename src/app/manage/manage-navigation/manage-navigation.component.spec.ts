@@ -70,4 +70,15 @@ describe('ManageNavigationComponent', () => {
     fixture.detectChanges();
     expect(fixture).toMatchSnapshot();
   });
+  it('should show the tier and list type tab for Crown Court', () => {
+    fixture.componentInstance.isCrownCourt = true;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#tier-and-list-type-link')).toBeTruthy();
+  });
+
+  it('should not show the tier and list type tab for Magistrates', () => {
+    fixture.componentInstance.isCrownCourt = false;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#tier-and-list-type-link')).toBeNull();
+  });
 });
