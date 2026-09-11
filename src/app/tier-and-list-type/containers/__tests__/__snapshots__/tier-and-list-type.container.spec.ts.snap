@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TierAndListTypeContainer rendering should render a failure alert 1`] = `
+<tier-and-list-type
+  hearingId={[Function String]}
+  route={[Function Object]}
+  router={[Function Object]}
+  store={[Function _SignalStore]}
+>
+  <pdk-alert
+    class="govuk-!-margin-bottom-6"
+    icon=""
+    pdk-margin-bottom="6"
+  >
+    <div
+      class="pdk-alert pdk-alert--warning"
+      role="alert"
+    >
+      <div
+        class="pdk-alert__container"
+      >
+        <i
+          aria-hidden="true"
+          class="pdk-alert__icon pdk-alert__icon--alert"
+          role="presentation"
+        />
+        <div
+          class="pdk-alert__message"
+        >
+          <div>
+             TIER_AND_LIST_TYPE.ALERT_LOAD_FAILURE 
+          </div>
+        </div>
+      </div>
+    </div>
+  </pdk-alert><router-outlet />
+</tier-and-list-type>
+`;
+
+exports[`TierAndListTypeContainer rendering should render without an alert 1`] = `
+<tier-and-list-type
+  hearingId={[Function String]}
+  route={[Function Object]}
+  router={[Function Object]}
+  store={[Function _SignalStore]}
+>
+  <router-outlet />
+</tier-and-list-type>
+`;

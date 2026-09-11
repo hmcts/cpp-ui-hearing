@@ -35,6 +35,7 @@ export class ManageNavigationComponent implements AfterViewInit, OnDestroy {
   @Input() isPleaApplicableFlag: boolean;
   @Input() currentTab: string;
   @Input() isBoxwork: boolean;
+  @Input() isCrownCourt = false;
 
   hearingId: string;
   destroy$: Subject<boolean> = new Subject<boolean>();
