@@ -1,5 +1,6 @@
 import { HearingDetail } from '../../../../core';
 import {
+  ResultsValidationErrors,
   ResultsValidationResponse,
   ValidationIssue,
   ValidationIssueSeverityEnum
@@ -14,6 +15,7 @@ import {
   getResultsValidationErrors,
   getResultsValidationSummaryErrors,
   getResultsValidationWarnings,
+  getShareResultsValidationFailure,
   ResultsState
 } from '..';
 
@@ -72,6 +74,34 @@ describe('Results validation selectors', () => {
 
     it('should return null when no validation has run', () => {
       expect(getResultsValidation(buildState(null))).toBeNull();
+    });
+  });
+
+  describe('getShareResultsValidationFailure', () => {
+    const buildShareFailureState = (
+      shareResultsValidationFailure: ResultsValidationErrors | null
+    ): ResultsState => ({ results: { shareResultsValidationFailure } } as unknown as ResultsState);
+
+    it('should return the share results validation failure slice from state', () => {
+      const failure: ResultsValidationErrors = {
+        errorMessages: ['A custody time limit result is required'],
+        validationIssues: [
+          {
+            ruleId: 'CTL-001',
+            severity: ValidationIssueSeverityEnum.ERROR,
+            validationLevel: 'OFFENCE',
+            message: 'A custody time limit result is required',
+            affectedOffences: [
+              { offenceId: 'offenceId', message: 'A custody time limit result is required' }
+            ]
+          }
+        ]
+      };
+      expect(getShareResultsValidationFailure(buildShareFailureState(failure))).toBe(failure);
+    });
+
+    it('should return null when no share validation failure is stored', () => {
+      expect(getShareResultsValidationFailure(buildShareFailureState(null))).toBeNull();
     });
   });
 

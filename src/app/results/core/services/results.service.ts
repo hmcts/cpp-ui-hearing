@@ -25,6 +25,7 @@ import {
   HearingLockState,
   MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
   omitUndefined,
+  RESULTS_VALIDATION_FAILED_PUBLIC_EVENT,
   WelshDefendantTranslate
 } from '../../../core';
 import {
@@ -482,7 +483,7 @@ export class ResultsService {
         url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/${hearingDay}`,
         requestType: 'application/vnd.hearing.shared-results+json',
         successEvent: 'public.events.hearing.hearing-resulted-success',
-        errorEvent: MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
+        errorEvent: [MANAGE_RESULTS_FAILED_PUBLIC_EVENT, RESULTS_VALIDATION_FAILED_PUBLIC_EVENT],
         body: shareableDraftResult,
         timeout: 60000
       })
