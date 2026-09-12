@@ -4,30 +4,21 @@
       <h3>{{ sessionType | uppercase }}</h3>
     </pdk-grid>
     <pdk-grid one-quarter class="flex-column-one">
-      <pdk-form-field label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}" labelType="small">
-        <judiciary-typeahead
-          data-role="judiciary-typeahead-0"
-          name="judge1"
-          [ngModel]="getJudiciaryWithId(0)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 0)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
-      <pdk-form-field label="Judiciary 2" labelType="none">
-        <judiciary-typeahead
-          name="judge2"
-          data-role="judiciary-typeahead-1"
-          [ngModel]="getJudiciaryWithId(1)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 1)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
-      <pdk-form-field label="Judiciary 3" labelType="none">
-        <judiciary-typeahead
-          name="judge3"
-          data-role="judiciary-typeahead-2"
-          [ngModel]="getJudiciaryWithId(2)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 2)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
+      <pdk-form-group ngModelGroup="judiciaries">
+        @for (judiciary of judiciaryFields; track $index; let i = $index) {
+        <pdk-form-field
+          [label]="i === 0 ? ('SESSION_TIMES.JUDICIARY' | translate) : 'Judiciary ' + (i + 1)"
+          [labelType]="i === 0 ? 'small' : 'none'"
+        >
+          <judiciary-typeahead
+            [attr.data-role]="'judiciary-typeahead-' + i"
+            [name]="i.toString()"
+            [ngModel]="getJudiciaryWithId(i)"
+            (ngModelChange)="onSetJudiciaryTypeahead($event, i)"
+          ></judiciary-typeahead>
+        </pdk-form-field>
+        }
+      </pdk-form-group>
       <pdk-form-group ngModelGroup="otherJudiciaries">
         @for (otherJudiciary of otherJudiciaries; track $index; let i = $index) {
         <pdk-form-field>
@@ -65,30 +56,17 @@
           class="chairman-radio-group"
           data-role="chairman-radio-group"
         >
+          @for (selectedJudiciary of selectedJudiciaries; track selectedJudiciary.index; let i =
+          $index) {
           <pdk-radio-button
-            [value]="0"
-            [disabled]="isChairmanDisabled(0)"
+            [value]="i"
+            [disabled]="isChairmanDisabled(i)"
             class="chairman-radio-button"
-            data-role="chairman-radio-btn-0"
+            [attr.data-role]="'chairman-radio-btn-' + i"
           >
-            <span pdk-visually-hidden>Judiciary 1</span>
+            <span pdk-visually-hidden>Judiciary {{ i + 1 }}</span>
           </pdk-radio-button>
-          <pdk-radio-button
-            [value]="1"
-            [disabled]="isChairmanDisabled(1)"
-            class="chairman-radio-button"
-            data-role="chairman-radio-btn-1"
-          >
-            <span pdk-visually-hidden>Judiciary 2</span>
-          </pdk-radio-button>
-          <pdk-radio-button
-            [value]="2"
-            [disabled]="isChairmanDisabled(2)"
-            class="chairman-radio-button"
-            data-role="chairman-radio-btn-2"
-          >
-            <span pdk-visually-hidden>Judiciary 3</span>
-          </pdk-radio-button>
+          }
         </pdk-radio-group>
       </pdk-form-field>
     </pdk-grid>
@@ -138,6 +116,7 @@
           [ngModel]="courtOfficerModelGroup['courtClerks']"
           [highlightFirstSuggestion]="true"
           [highlightMatchedText]="true"
+          [maxVisibleSuggestions]="10"
           (ngModelChange)="selectCourtOfficer()"
         >
         </pdk-autosuggest-lite>
@@ -153,6 +132,7 @@
           [ngModel]="courtOfficerModelGroup['courtAssociate']"
           [highlightFirstSuggestion]="true"
           [highlightMatchedText]="true"
+          [maxVisibleSuggestions]="10"
           (ngModelChange)="selectCourtOfficer()"
         >
         </pdk-autosuggest-lite>
@@ -168,6 +148,7 @@
           [ngModel]="courtOfficerModelGroup['legalAdvisers']"
           [highlightFirstSuggestion]="true"
           [highlightMatchedText]="true"
+          [maxVisibleSuggestions]="10"
           (ngModelChange)="selectCourtOfficer()"
         >
         </pdk-autosuggest-lite>

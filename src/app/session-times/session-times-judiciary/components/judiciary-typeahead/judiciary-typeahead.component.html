@@ -5,6 +5,7 @@
     [ariaDescribedBy]="'judge-label'"
     [ariaLabel]="'Judge name'"
     [inputWidth]="25"
+    [maxVisibleSuggestions]="10"
     [suggestions]="(source$ | async) || []"
     suggestionKey="id"
     [suggestionTitle]="'judicialMemberName'"
