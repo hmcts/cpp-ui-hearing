@@ -22,7 +22,6 @@ exports[`ManageContainer should have the expected template 1`] = `
   hearingNotes$={[Function Observable]}
   inWorkingArea$={[Function Observable]}
   isBoxwork$={[Function Observable]}
-  isCrownCourt$={[Function Observable]}
   isCurrentUserAuthorisedToSeeThisHearing$={[Function Observable]}
   isPleaApplicableFlag$={[Function Observable]}
   isVerdictsPageAvailable$={[Function Observable]}

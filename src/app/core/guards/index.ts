@@ -8,4 +8,3 @@ export { HearingGuard } from './hearing-guard';
 export { LoadFutureHearingsGuard } from './load-future-hearings';
 export { LoadAmendmentReasonsGuard } from './load-amendment-reasons.guard';
 export { LoadVerdictTypesGuard } from './load-verdict-types.guard';
-export { CrownCourtOnlyGuard } from './crown-court-only.guard';
