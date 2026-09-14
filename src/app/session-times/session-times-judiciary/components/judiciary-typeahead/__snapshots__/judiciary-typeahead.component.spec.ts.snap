@@ -13,6 +13,8 @@ exports[`JudiciaryTypeaheadComponent should create the right templates with acti
         class="judiciary-typeahead"
       >
         <pdk-autosuggest-lite
+          class="role-typeahead"
+          roletypeahead=""
           suggestionkey="id"
           suggestionsubtitle="judicialMemberLocation"
         >

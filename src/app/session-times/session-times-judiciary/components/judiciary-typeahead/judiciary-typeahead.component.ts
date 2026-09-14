@@ -20,6 +20,7 @@ import {
 import { Subject } from 'rxjs';
 import { auditTime, filter, map, switchMap } from 'rxjs/operators';
 import { FormFieldControl, PdkAutosuggestLiteComponent } from '@cpp/pdk';
+import { RoleTypeaheadDirective } from '../role-typeahead/role-typeahead.directive';
 import { JudicialMember } from '../../../../core/model';
 import { ReferenceDataService } from '../../../../core/services';
 import { AsyncPipe } from '@angular/common';
@@ -53,7 +54,7 @@ const coerceBooleanProperty = (value: any): boolean => {
       useExisting: forwardRef(() => JudiciaryTypeaheadComponent)
     }
   ],
-  imports: [AsyncPipe, PdkAutosuggestLiteComponent]
+  imports: [AsyncPipe, PdkAutosuggestLiteComponent, RoleTypeaheadDirective]
 })
 export class JudiciaryTypeaheadComponent
   implements ControlValueAccessor, FormFieldControl, Validator, OnDestroy
@@ -133,65 +134,6 @@ export class JudiciaryTypeaheadComponent
 
   onSelect(match: JudiciaryAutoSuggestOption) {
     this.propagateChange(match);
-  }
-
-  onKeydown(event: KeyboardEvent) {
-    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
-      return;
-    }
-
-    const autoSuggest = this.autoSuggest?.autoSuggestRef;
-    const highlighted = autoSuggest?.highlightedSuggestion;
-
-    if (!autoSuggest || !highlighted) {
-      return;
-    }
-
-    const suggestionId = String(autoSuggest.mapSuggestionToKey(highlighted));
-    const container = document.getElementById(autoSuggest.suggestionsContainerId);
-    const item = document.getElementById(suggestionId);
-
-    if (container && item && typeof item.scrollIntoView === 'function') {
-      item.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' });
-    }
-  }
-
-  onMousedown(event: MouseEvent) {
-    const autoSuggest = this.autoSuggest?.autoSuggestRef;
-    const target = event.target as HTMLElement;
-
-    if (!autoSuggest || !target) {
-      return;
-    }
-
-    if (target.closest('pdk-autosuggest-option')) {
-      return;
-    }
-
-    if (target.classList.contains('pdk-autosuggest__input')) {
-      return;
-    }
-
-    const container = document.getElementById(autoSuggest.suggestionsContainerId);
-
-    if (container) {
-      autoSuggest.didTargetSuggestion = container;
-    }
-  }
-
-  onMouseup(event: MouseEvent) {
-    const autoSuggest = this.autoSuggest?.autoSuggestRef;
-    const target = event.target as HTMLElement;
-
-    if (!autoSuggest || !target) {
-      return;
-    }
-
-    const container = document.getElementById(autoSuggest.suggestionsContainerId);
-
-    if (container && autoSuggest.didTargetSuggestion === container) {
-      autoSuggest.didTargetSuggestion = null as any;
-    }
   }
 
   validate(c: AbstractControl): ValidationErrors | null {

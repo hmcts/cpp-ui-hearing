@@ -131,6 +131,7 @@
         <pdk-autosuggest-lite
           name="courtClerk"
           data-role="record-court-clerk"
+          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'courtClerks')"
           [suggestions]="filteredOfficerSuggestions['courtClerks']"
           suggestionKey="id"
@@ -146,6 +147,7 @@
         <pdk-autosuggest-lite
           name="courtAssociate"
           data-role="record-court-associate"
+          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'courtAssociate')"
           [suggestions]="filteredOfficerSuggestions['courtAssociate']"
           suggestionKey="id"
@@ -161,6 +163,7 @@
         <pdk-autosuggest-lite
           name="legalAdviser"
           data-role="record-legal-advisor"
+          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'legalAdvisers')"
           [suggestions]="filteredOfficerSuggestions['legalAdvisers']"
           suggestionKey="id"

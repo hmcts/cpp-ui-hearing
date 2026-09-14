@@ -33,6 +33,7 @@ import {
   PdkAutosuggestLiteComponent
 } from '@cpp/pdk';
 import { JudiciaryTypeaheadComponent } from '../judiciary-typeahead/judiciary-typeahead.component';
+import { RoleTypeaheadDirective } from '../role-typeahead/role-typeahead.directive';
 import { UpperCasePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -67,6 +68,7 @@ export interface JudiciaryAutoSuggestOption extends JudicialMember {
     PdkRadioButtonComponent,
     PdkTimeInputComponent,
     PdkAutosuggestLiteComponent,
+    RoleTypeaheadDirective,
     UpperCasePipe,
     TranslatePipe
   ]

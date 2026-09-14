@@ -1,10 +1,8 @@
 <div class="judiciary-typeahead">
   <pdk-autosuggest-lite
     #autosuggest="pdkAutosuggestLite"
+    roleTypeahead
     (inputText)="input$.next($event)"
-    (keydown)="onKeydown($event)"
-    (mousedown)="onMousedown($event)"
-    (mouseup)="onMouseup($event)"
     [ariaDescribedBy]="'judge-label'"
     [ariaLabel]="'Judge name'"
     [inputWidth]="25"
