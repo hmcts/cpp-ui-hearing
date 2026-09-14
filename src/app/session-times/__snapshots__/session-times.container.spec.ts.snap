@@ -653,6 +653,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                       class="mt-m"
                     >
                       <a
+                        class="govuk-link govuk-!-margin-bottom-5"
                         data-role="add-new-judiciary-link"
                         href="javascript:void(0)"
                       >
@@ -1431,6 +1432,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                       class="mt-m"
                     >
                       <a
+                        class="govuk-link govuk-!-margin-bottom-5"
                         data-role="add-new-judiciary-link"
                         href="javascript:void(0)"
                       >
