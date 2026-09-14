@@ -49,6 +49,16 @@ export class ListingService {
     });
   }
 
+  getBookingStatus(bookingIds: string[]): Observable<{
+    bookings: { bookingId: string; safeToShare: boolean; status: string }[];
+  }> {
+    return this.api.command({
+      url: '/listing-query-api/query/api/rest/listing/bookingStatus',
+      requestType: 'application/vnd.listing.query.booking.status+json',
+      body: { bookingIds }
+    });
+  }
+
   private toHttpParams(params: any) {
     const cleanedParams = this.removeEmptyProperties(params);
     return Object.getOwnPropertyNames(cleanedParams).reduce(

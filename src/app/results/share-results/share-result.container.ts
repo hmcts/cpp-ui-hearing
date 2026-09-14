@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, DestroyRef, input, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { select, Store } from '@ngrx/store';
@@ -15,8 +14,7 @@ import {
   ListingService,
   setStandaloneAncillaryResults,
   WelshDefendantTranslate,
-  HearingDetail,
-  ApiError
+  HearingDetail
 } from '../../core';
 import { hasCitSubreason } from '../../core/selectors/user-groups';
 import {
@@ -29,18 +27,19 @@ import {
 import { ResolvedDraftResultLine } from '../results.interfaces';
 import { ModalService } from '@cpp/pdk';
 import { WelshDefendantTranslateComponent } from './welsh-defendant-translate.component';
-import { combineLatest, forkJoin, of, throwError } from 'rxjs';
+import { combineLatest, of } from 'rxjs';
 import { catchError, map, switchMap, take } from 'rxjs/operators';
 
 import { ShareResultActionBarComponent } from './share-result-action-bar.component';
 import { AsyncPipe } from '@angular/common';
 import { getHearingTypes, HearingType } from '@cpp/reference-data';
-import { getSessionAvailabilityValidationData } from './session-availability.helper';
+import { getBookingReferencesToCheck } from './session-availability.helper';
 
 export interface ShareValidationResult {
   hasAttendanceError: boolean;
   hasTrialEffectivenessError: boolean;
   hasSessionAvailabilityError?: boolean;
+  sessionUnavailableReason?: string;
   pendingAttendanceDefendants?: HearingPersonDetails[];
 }
 
@@ -156,42 +155,41 @@ export class ShareResultContainerComponent {
       .pipe(
         take(1),
         switchMap(draftResult => {
-          const validations = getSessionAvailabilityValidationData(draftResult);
+          const bookingReferences = getBookingReferencesToCheck(draftResult);
 
-          if (validations.length === 0) {
-            return of(true);
+          if (bookingReferences.length === 0) {
+            return of({ blocked: false as const });
           }
 
-          return forkJoin(
-            validations.map(({ courtScheduleId, duration }) =>
-              this.listingService.validateSessionAvailability(courtScheduleId, duration).pipe(
-                map(() => true),
-                catchError((httpError: HttpErrorResponse) => {
-                  if (httpError.status === 400) {
-                    return of(false);
-                  }
-                  return throwError(() => httpError);
-                })
-              )
-            )
-          ).pipe(map(results => results.every(Boolean)));
+          return this.listingService.getBookingStatus(bookingReferences).pipe(
+            map(response => {
+              const unsafe = (response?.bookings ?? []).filter(b => b.safeToShare === false);
+              // status: 'UNKNOWN' means listing could not reach courtscheduler; it answers
+              // safeToShare: true for that case, so it naturally falls through here and does
+              // not block - an advisory check must not block a share on a transient blip.
+              return unsafe.length === 0
+                ? { blocked: false as const }
+                : { blocked: true as const, status: unsafe[0].status };
+            }),
+            // Fails open deliberately: if the booking-status call itself errors (network,
+            // 5xx, unreachable, etc.) we must not block every Crown share in the building for
+            // an advisory check over a transient failure - the share still validates
+            // server-side. Do not "tighten" this to rethrow.
+            catchError(() => of({ blocked: false as const }))
+          );
         }),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe({
-        next: sessionAvailable => {
-          if (sessionAvailable) {
-            this.proceedWithResultShare(withWelshTranslate, individualDefendants);
-          } else {
-            this.sharedResultsValidation.emit({
-              hasAttendanceError: false,
-              hasTrialEffectivenessError: false,
-              hasSessionAvailabilityError: true
-            });
-          }
-        },
-        error: (httpError: HttpErrorResponse) => {
-          this.store.dispatch(new ApiError(httpError));
+      .subscribe(result => {
+        if (result.blocked) {
+          this.sharedResultsValidation.emit({
+            hasAttendanceError: false,
+            hasTrialEffectivenessError: false,
+            hasSessionAvailabilityError: true,
+            sessionUnavailableReason: result.status
+          });
+        } else {
+          this.proceedWithResultShare(withWelshTranslate, individualDefendants);
         }
       });
   }

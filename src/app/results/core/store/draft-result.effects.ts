@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { forkJoin, from, merge, of } from 'rxjs';
+import { EMPTY, forkJoin, from, merge, of } from 'rxjs';
 import {
   catchError,
   concatMap,
   filter,
   map,
   mapTo,
+  mergeMap,
   switchMap,
   tap,
   withLatestFrom,
@@ -25,12 +26,14 @@ import { ReusableInfoService } from '../services/reusable-info.service';
 import { ResultsService } from '../services/results.service';
 import { ResultsValidationService } from '../services/results-validation.service';
 import { buildResultsValidationRequest } from '../helpers/results-validation';
+import { getBookingReferenceToRelease, getResultLineById } from '../helpers';
+import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { getUserDetails } from '@cpp/users-groups';
 import { hasResultingAssistant } from '../../../core/selectors/user-groups';
 import { DraftResultActions } from './draft-result.actions';
 import { ResultsValidationActions } from './results-validation.actions';
 import { ResultsState, getDraftResult } from './index';
-import { InvalidResulLinesError } from '../../results.interfaces';
+import { DraftResult, InvalidResulLinesError } from '../../results.interfaces';
 import { ManageHearingPublicEventError } from '../../../manage-hearing-error-page/manage-hearing-error-page.interfaces';
 import { CommandError } from '@cpp/core';
 import {
@@ -46,6 +49,7 @@ export class DraftResultEffects {
   constructor(
     private actions$: Actions,
     private draftResultBuilderService: DraftResultBuilderService,
+    private provisionalBookingService: ProvisionalBookingService,
     private resultService: ResultsService,
     private resultsValidationService: ResultsValidationService,
     private reusableInfoService: ReusableInfoService,
@@ -311,6 +315,52 @@ export class DraftResultEffects {
       })
     )
   );
+
+  // Releases the provisional slot hold (if any) carried by a result line the
+  // instant it is abandoned with no new pick to follow it - i.e. deleted
+  // outright on a DRAFT line, or deleted via amend on a SHARED line. Both
+  // paths eventually call DraftResultBuilderService.destroyResultLine, which
+  // rebuilds the draft result without the line - and with it, without the
+  // only remaining pointer to the bookingId. So the reference is read here,
+  // from the not-yet-rebuilt draft result, before that happens.
+  //
+  // This runs as its own dispatch: false effect, deliberately kept out of the
+  // draftResultEvents$ merge above: that pipeline's single catchError turns
+  // any failure into setDraftResultError, and the release must never surface
+  // as a failure to delete, nor delay it (it is best-effort and idempotent on
+  // the backend - see ProvisionalBookingService.releaseProvisionalHearingSlots).
+  releaseAbandonedProvisionalBooking$ = createEffect(
+    () =>
+      merge(
+        this.actions$.pipe(ofType(DraftResultActions.destroyDraftResultLine)),
+        this.actions$.pipe(
+          ofType(DraftResultActions.setAmendmentReason),
+          filter(({ destroyResultLine }) => !!destroyResultLine)
+        )
+      ).pipe(
+        withLatestFrom(this.draftResult$),
+        mergeMap(([{ resultLineId }, draftResult]) =>
+          this.releaseProvisionalBookingForResultLine(draftResult, resultLineId)
+        )
+      ),
+    { dispatch: false }
+  );
+
+  private releaseProvisionalBookingForResultLine(draftResult: DraftResult, resultLineId: string) {
+    const resultLine = getResultLineById(draftResult, resultLineId);
+    const bookingReference = getBookingReferenceToRelease(resultLine);
+
+    if (!bookingReference) {
+      return EMPTY;
+    }
+
+    return this.provisionalBookingService
+      .releaseProvisionalHearingSlots({
+        hearingId: draftResult.hearingId,
+        bookingId: bookingReference
+      })
+      .pipe(catchError(() => EMPTY));
+  }
 
   validate$ = createEffect(() =>
     this.actions$.pipe(

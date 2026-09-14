@@ -1,5 +1,5 @@
 import { DraftResult } from '../results.interfaces';
-import { getSessionAvailabilityValidationData } from './session-availability.helper';
+import { getBookingReferencesToCheck } from './session-availability.helper';
 
 const buildDraftResult = (resultLines: Record<string, unknown>): DraftResult =>
   ({
@@ -18,11 +18,11 @@ const bookingReferencePrompt = (value: string) => ({
   value
 });
 
-const durationPrompt = (value: unknown) => ({
-  type: 'DURATION',
-  promptId: 'duration-prompt-id',
-  promptRef: 'HEST',
-  label: 'Estimated duration',
+const existingHearingIdPrompt = (value: string) => ({
+  type: 'HIDDEN',
+  promptId: 'existing-hearing-prompt-id',
+  promptRef: 'existingHearingId',
+  label: 'Existing hearing id',
   value
 });
 
@@ -32,18 +32,13 @@ const crownLine = (resultLineId: string, prompts: unknown[]) => ({
   resultPrompts: prompts
 });
 
-describe('getSessionAvailabilityValidationData', () => {
-  it('reads the courtScheduleId from the bookingReference prompt and the duration from the DURATION prompt', () => {
+describe('getBookingReferencesToCheck', () => {
+  it('reads the bookingReference from an NHCCS line', () => {
     const draftResult = buildDraftResult({
-      'line-1': crownLine('line-1', [
-        bookingReferencePrompt('court-schedule-1'),
-        durationPrompt([{ label: 'MINUTES', value: 30 }])
-      ])
+      'line-1': crownLine('line-1', [bookingReferencePrompt('booking-1')])
     });
 
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([
-      { courtScheduleId: 'court-schedule-1', duration: 30 }
-    ]);
+    expect(getBookingReferencesToCheck(draftResult)).toEqual(['booking-1']);
   });
 
   it('matches the NHCCS shortCode case-insensitively', () => {
@@ -51,65 +46,26 @@ describe('getSessionAvailabilityValidationData', () => {
       'line-1': {
         resultLineId: 'line-1',
         shortCode: 'NHCCS',
-        resultPrompts: [
-          bookingReferencePrompt('court-schedule-1'),
-          durationPrompt([{ label: 'MINUTES', value: 30 }])
-        ]
+        resultPrompts: [bookingReferencePrompt('booking-1')]
       }
     });
 
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([
-      { courtScheduleId: 'court-schedule-1', duration: 30 }
-    ]);
+    expect(getBookingReferencesToCheck(draftResult)).toEqual(['booking-1']);
   });
 
-  it('converts DURATION prompts expressed in hours into minutes', () => {
+  // Regression guard for related-hearings.container.ts: attaching to an already-listed
+  // hearing writes a genuine courtScheduleId into bookingReference and books nothing, so
+  // this line must be skipped - checking it against the booking-status endpoint would
+  // return NONE and wrongly block the share.
+  it('skips a line whose prompts include existingHearingId, even though it carries a bookingReference', () => {
     const draftResult = buildDraftResult({
       'line-1': crownLine('line-1', [
         bookingReferencePrompt('court-schedule-1'),
-        durationPrompt([{ label: 'HOURS', value: 1 }])
+        existingHearingIdPrompt('existing-hearing-id')
       ])
     });
 
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([
-      { courtScheduleId: 'court-schedule-1', duration: 60 }
-    ]);
-  });
-
-  it('deserializes a DURATION prompt held as a serialized string', () => {
-    const draftResult = buildDraftResult({
-      'line-1': crownLine('line-1', [
-        bookingReferencePrompt('court-schedule-1'),
-        durationPrompt('1 HOURS')
-      ])
-    });
-
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([
-      { courtScheduleId: 'court-schedule-1', duration: 60 }
-    ]);
-  });
-
-  it('validates every Crown court line separately, including repeated courtScheduleIds, each with its own duration', () => {
-    const draftResult = buildDraftResult({
-      'line-1': crownLine('line-1', [
-        bookingReferencePrompt('court-schedule-1'),
-        durationPrompt([{ label: 'MINUTES', value: 20 }])
-      ]),
-      'line-2': crownLine('line-2', [
-        bookingReferencePrompt('court-schedule-2'),
-        durationPrompt([{ label: 'MINUTES', value: 45 }])
-      ]),
-      'line-3': crownLine('line-3', [
-        bookingReferencePrompt('court-schedule-1'),
-        durationPrompt([{ label: 'MINUTES', value: 15 }])
-      ])
-    });
-
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([
-      { courtScheduleId: 'court-schedule-1', duration: 20 },
-      { courtScheduleId: 'court-schedule-2', duration: 45 },
-      { courtScheduleId: 'court-schedule-1', duration: 15 }
-    ]);
+    expect(getBookingReferencesToCheck(draftResult)).toEqual([]);
   });
 
   it('ignores result lines that are not a Crown Court next hearing, even if they carry a bookingReference', () => {
@@ -119,36 +75,33 @@ describe('getSessionAvailabilityValidationData', () => {
       'line-1': {
         resultLineId: 'line-1',
         shortCode: 'nhmc',
-        resultPrompts: [
-          bookingReferencePrompt('provisional-booking-id'),
-          durationPrompt([{ label: 'MINUTES', value: 30 }])
-        ]
+        resultPrompts: [bookingReferencePrompt('provisional-booking-id')]
       }
     });
 
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([]);
+    expect(getBookingReferencesToCheck(draftResult)).toEqual([]);
   });
 
-  it('returns no courtScheduleIds when the Crown line has no bookingReference prompt', () => {
+  it('validates every Crown court line separately, including repeated bookingReferences', () => {
     const draftResult = buildDraftResult({
-      'line-1': crownLine('line-1', [durationPrompt([{ label: 'MINUTES', value: 30 }])])
+      'line-1': crownLine('line-1', [bookingReferencePrompt('booking-1')]),
+      'line-2': crownLine('line-2', [bookingReferencePrompt('booking-2')]),
+      'line-3': crownLine('line-3', [bookingReferencePrompt('booking-1')])
     });
 
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([]);
+    expect(getBookingReferencesToCheck(draftResult)).toEqual(['booking-1', 'booking-2', 'booking-1']);
   });
 
-  it('returns an undefined duration when the booked line has no DURATION prompt', () => {
+  it('returns no bookingReferences when the Crown line has no bookingReference prompt', () => {
     const draftResult = buildDraftResult({
-      'line-1': crownLine('line-1', [bookingReferencePrompt('court-schedule-1')])
+      'line-1': crownLine('line-1', [])
     });
 
-    expect(getSessionAvailabilityValidationData(draftResult)).toEqual([
-      { courtScheduleId: 'court-schedule-1', duration: undefined }
-    ]);
+    expect(getBookingReferencesToCheck(draftResult)).toEqual([]);
   });
 
   it('handles an empty or missing draft result safely', () => {
-    expect(getSessionAvailabilityValidationData(buildDraftResult({}))).toEqual([]);
-    expect(getSessionAvailabilityValidationData(undefined as unknown as DraftResult)).toEqual([]);
+    expect(getBookingReferencesToCheck(buildDraftResult({}))).toEqual([]);
+    expect(getBookingReferencesToCheck(undefined as unknown as DraftResult)).toEqual([]);
   });
 });

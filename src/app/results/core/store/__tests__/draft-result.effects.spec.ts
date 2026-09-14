@@ -4,10 +4,11 @@ import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action, provideStore, provideState, Store } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
-import { Observable } from 'rxjs';
-import { DraftResultPrompt } from '../../../../results/results.interfaces';
+import { Observable, of } from 'rxjs';
+import { DraftResult, DraftResultPrompt } from '../../../../results/results.interfaces';
 import { UserDetails, reducers } from '../../../../core';
 import { DraftResultBuilderService } from '../../services/draft-result-builder.service';
+import { ProvisionalBookingService } from '../../../hearing-details/allocation/services/provisionalBooking.service';
 import { ReusableInfoService } from '../../services/reusable-info.service';
 import { ResultsService } from '../../services/results.service';
 import { createDraftResult, createDraftResultPromptsForShortcode } from '../../testing';
@@ -31,10 +32,12 @@ describe('DraftResultEffects', () => {
   let actions$: Observable<Action>;
   let draftResultBuilderService: DraftResultBuilderService;
   let effects: DraftResultEffects;
+  let provisionalBookingService: ProvisionalBookingService;
   let resultsService: ResultsService;
   let reusableInfoService: ReusableInfoService;
   let resultsValidationService: ResultsValidationService;
   let router: Router;
+  let store: Store;
 
   const draftResult = createDraftResult();
   const successAction = DraftResultActions.saveDraftResult({ draftResult });
@@ -69,6 +72,12 @@ describe('DraftResultEffects', () => {
         }),
         DraftResultEffects,
         DraftResultBuilderService,
+        {
+          provide: ProvisionalBookingService,
+          useValue: {
+            releaseProvisionalHearingSlots: jest.fn(() => of(undefined))
+          }
+        },
         ResultsService,
         ReusableInfoService,
         ResultsValidationService,
@@ -87,10 +96,12 @@ describe('DraftResultEffects', () => {
     actions$ = TestBed.inject(Actions);
     draftResultBuilderService = TestBed.inject(DraftResultBuilderService);
     effects = TestBed.inject(DraftResultEffects);
+    provisionalBookingService = TestBed.inject(ProvisionalBookingService);
     resultsService = TestBed.inject(ResultsService);
     reusableInfoService = TestBed.inject(ReusableInfoService);
     resultsValidationService = TestBed.inject(ResultsValidationService);
     router = TestBed.inject(Router);
+    store = TestBed.inject(Store);
   });
 
   describe('draft result actions', () => {
@@ -674,6 +685,135 @@ describe('DraftResultEffects', () => {
       expect(effects.saveDraftResult$).toBeObservable(expected$);
     });
   });
+
+  describe('releaseAbandonedProvisionalBooking$', () => {
+    const bookingReferencePrompt = (value: string): DraftResultPrompt => ({
+      type: 'HIDDEN',
+      promptId: 'booking-prompt-id',
+      promptRef: 'bookingReference',
+      label: 'Booking reference',
+      value
+    });
+
+    const existingHearingIdPrompt = (value: string): DraftResultPrompt => ({
+      type: 'HIDDEN',
+      promptId: 'existing-hearing-prompt-id',
+      promptRef: 'existingHearingId',
+      label: 'Existing hearing id',
+      value
+    });
+
+    const draftResultWithLine = (resultPrompts: DraftResultPrompt[]): DraftResult =>
+      ({
+        ...draftResult,
+        resultLines: {
+          resultLineId: {
+            resultLineId: 'resultLineId',
+            shortCode: 'NHCCS',
+            resultPrompts
+          }
+        }
+      } as unknown as DraftResult);
+
+    const seedDraftResult = (nextDraftResult: DraftResult) => {
+      store.dispatch(DraftResultActions.setDraftResult({ draftResult: nextDraftResult }));
+    };
+
+    describe('DraftResultActions.destroyDraftResultLine', () => {
+      const requestAction = DraftResultActions.destroyDraftResultLine({
+        resultLineId: 'resultLineId'
+      });
+
+      it('releases the bookingReference held by the deleted line', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-1')]));
+        const release$ = cold('-(r|)', { r: undefined });
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+        actions$ = hot('-a--', { a: requestAction });
+        const expected$ = cold('--r', { r: undefined });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(expected$);
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+          hearingId: draftResult.hearingId,
+          bookingId: 'booking-1'
+        });
+      });
+
+      it('calls nothing when the line carries no bookingReference', () => {
+        seedDraftResult(draftResultWithLine([]));
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+        actions$ = hot('-a--', { a: requestAction });
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+      });
+
+      // Same exclusion as Task 1 (session-availability.helper.ts): related-hearings.container.ts
+      // writes a genuine courtScheduleId into bookingReference for a line attached to an
+      // already-listed hearing - nothing was booked, so releasing would be meaningless at best.
+      it('calls nothing for a related-hearings line that carries existingHearingId', () => {
+        seedDraftResult(
+          draftResultWithLine([
+            bookingReferencePrompt('court-schedule-1'),
+            existingHearingIdPrompt('existing-hearing-id')
+          ])
+        );
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+        actions$ = hot('-a--', { a: requestAction });
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+      });
+
+      it('does not block or surface an error when the release fails', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-1')]));
+        const release$ = cold('-#', undefined, new Error('release failed'));
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+        actions$ = hot('-a--', { a: requestAction });
+        // The failure is swallowed: the effect completes quietly rather than erroring.
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+      });
+    });
+
+    describe('DraftResultActions.setAmendmentReason (destroyResultLine on a SHARED line)', () => {
+      const requestAction = DraftResultActions.setAmendmentReason({
+        resultLineId: 'resultLineId',
+        amendmentReason: { id: 'amendmentReasonId' },
+        destroyResultLine: true
+      });
+
+      it('releases the bookingReference held by the line being destroyed via amend', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-2')]));
+        const release$ = cold('-(r|)', { r: undefined });
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+        actions$ = hot('-a--', { a: requestAction });
+        const expected$ = cold('--r', { r: undefined });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(expected$);
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+          hearingId: draftResult.hearingId,
+          bookingId: 'booking-2'
+        });
+      });
+
+      it('calls nothing when the amendment is not destroying the line', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-2')]));
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+        actions$ = hot('-a--', {
+          a: DraftResultActions.setAmendmentReason({
+            resultLineId: 'resultLineId',
+            amendmentReason: { id: 'amendmentReasonId' }
+          })
+        });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+      });
+    });
+  });
 });
 
 describe('DraftResultEffects validateOnDraftResultLoad$ (hasResultingAssistant enabled)', () => {
@@ -690,6 +830,12 @@ describe('DraftResultEffects validateOnDraftResultLoad$ (hasResultingAssistant e
         provideRouter([]),
         DraftResultEffects,
         DraftResultBuilderService,
+        {
+          provide: ProvisionalBookingService,
+          useValue: {
+            releaseProvisionalHearingSlots: jest.fn(() => of(undefined))
+          }
+        },
         ResultsService,
         ReusableInfoService,
         ResultsValidationService,

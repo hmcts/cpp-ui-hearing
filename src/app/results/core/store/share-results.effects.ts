@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { getUserDetails } from '@cpp/users-groups';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { concat, forkJoin, from, merge, of, throwError } from 'rxjs';
+import { concat, EMPTY, forkJoin, from, merge, of, throwError } from 'rxjs';
 import {
   catchError,
   filter,
@@ -33,6 +33,8 @@ import {
 } from '../../../core';
 import { ResultsService } from '../services/results.service';
 import { ReusableInfoService } from '../services/reusable-info.service';
+import { getBookingReferencesToRelease } from '../helpers';
+import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { DraftResultActions } from './draft-result.actions';
 import {
   getDraftResult,
@@ -53,6 +55,7 @@ export class ShareResultsEffects {
     private actions$: Actions,
     private draftResultBuilderService: DraftResultBuilderService,
     private hearingService: HearingService,
+    private provisionalBookingService: ProvisionalBookingService,
     private resultService: ResultsService,
     private reusableInfoService: ReusableInfoService,
     private router: Router,
@@ -60,6 +63,39 @@ export class ShareResultsEffects {
   ) {}
 
   private draftResult$ = this.store.pipe(select(getDraftResult));
+
+  // cancelAmendments, rejectAmendments and unlockHearing all discard whatever
+  // draft result is currently held locally (isResetResults: true) and replace
+  // it wholesale with the shared result fetched from the server. Any
+  // provisional slot hold that only the discarded draft result was still
+  // pointing at is abandoned the instant that happens - nothing is left that
+  // could ask for it to be released later, and only the 01:00 purge would
+  // otherwise recover it. So every hold on the about-to-be-discarded draft
+  // result is released here, read from the store before the reset overwrites
+  // it. This is a dispatch: false effect for the same reason as
+  // DraftResultEffects.releaseAbandonedProvisionalBooking$: it must never
+  // surface as, or delay, an error on the action that triggered the reset.
+  releaseAbandonedProvisionalBookings$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(
+          ShareResultsActions.cancelAmendments,
+          ShareResultsActions.rejectAmendments,
+          ShareResultsActions.unlockHearing
+        ),
+        withLatestFrom(this.draftResult$),
+        mergeMap(([, draftResult]) =>
+          from(getBookingReferencesToRelease(draftResult)).pipe(
+            mergeMap(bookingId =>
+              this.provisionalBookingService
+                .releaseProvisionalHearingSlots({ hearingId: draftResult.hearingId, bookingId })
+                .pipe(catchError(() => EMPTY))
+            )
+          )
+        )
+      ),
+    { dispatch: false }
+  );
   approveAmendments$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ShareResultsActions.approveAmendments),

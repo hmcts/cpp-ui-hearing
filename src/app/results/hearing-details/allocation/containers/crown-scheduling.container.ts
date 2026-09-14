@@ -10,9 +10,11 @@ import {
   RotaBusinessType
 } from '@cpp/reference-data';
 import { select, Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { ValidationError } from '@cpp/pdk';
 import moment from 'moment';
-import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, EMPTY, Observable, of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
   createDraftResultPromptsFromValueMap,
@@ -23,6 +25,7 @@ import {
 import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
 import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
+import { ProvisionalBookingService } from '../services/provisionalBooking.service';
 import {
   CrownSchedulingFilters,
   getSearchMetadata,
@@ -49,6 +52,7 @@ import { AllocateHearingParams } from './magistrates.container';
       [rotaBusinessTypes]="rotaBusinessTypes$ | async"
       [totalResults]="totalResults$ | async"
       [hearingData]="hearing$ | async"
+      [externalErrors]="bookingErrors$ | async"
       (cancel)="handleReturnToResults()"
       (filtersSubmit)="handleFiltersSubmit($event)"
       (hearingSlotAllocationsSubmit)="hearingSubmitAllocations($event)"
@@ -59,6 +63,12 @@ import { AllocateHearingParams } from './magistrates.container';
   imports: [CrownSchedulingComponent, AsyncPipe]
 })
 export class CrownSchedulingContainer {
+  private static readonly SESSION_NOT_AVAILABLE_ERROR_ID = 'crown-session-not-available';
+
+  private readonly bookingErrorSubject = new BehaviorSubject<ValidationError[] | null>(null);
+  readonly bookingErrors$: Observable<ValidationError[] | null> =
+    this.bookingErrorSubject.asObservable();
+
   currentPage$: Observable<number>;
   defaultFilters$: Observable<Partial<CrownSchedulingFilters>>;
   filters$: Observable<Partial<CrownSchedulingFilters>>;
@@ -73,7 +83,9 @@ export class CrownSchedulingContainer {
   constructor(
     private store: Store<ResultsState>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private provisionalBookingService: ProvisionalBookingService,
+    private translateService: TranslateService
   ) {
     const metadata$ = this.store.pipe(select(getSearchMetadata));
 
@@ -193,8 +205,10 @@ export class CrownSchedulingContainer {
     ])
       .pipe(
         take(1),
-        map(([organisationUnits, rotaBusinessTypes, resultLine]) => {
+        switchMap(([organisationUnits, rotaBusinessTypes, resultLine]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
+          const existingBookingReference = (resultLine as ExtendedResolvedDraftResultLine).resultPrompts
+            ?.find(prompt => prompt.promptRef === 'bookingReference')?.value as string | undefined;
           const { hearingSlot, hearingSlotTime, duration } = hearingSlotAllocations[0];
           const redirectTo = ['/manage', hearingId, 'enter-results'];
           const rotaBusinessType = rotaBusinessTypes.find(
@@ -211,21 +225,57 @@ export class CrownSchedulingContainer {
               rotaBusinessType && rotaBusinessType.duration
                 ? duration || (hearingSlot.courtSession === 'AD' ? 360 : 180)
                 : hearingType.defaultDurationMin || 20
-            ),
-            bookingReference: hearingSlot.courtScheduleId
+            )
           };
 
-          return DraftResultActions.updateResultPromptsForDraftResultLine({
-            resultLineId,
-            redirectTo,
-            resultPrompts: [
-              ...createDraftResultPromptsFromValueMap(promptChoices, promptRefToValueMap),
-              createNameAddressResultPromptForCourtCentre(
-                promptChoices.find(isNameAddressPromptChoice),
-                organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode)
-              )
-            ]
-          });
+          const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
+            courtScheduleId: allocation.hearingSlot.courtScheduleId,
+            hearingStartTime: allocation.hearingSlotTime,
+            duration: allocation.duration
+          }));
+
+          return this.provisionalBookingService
+            .bookProvisionalHearingSlots({
+              hearingId,
+              courtScheduleBookings,
+              bookingId: existingBookingReference
+            })
+            .pipe(
+              tap(() => this.bookingErrorSubject.next(null)),
+              map(({ bookingId }) =>
+                DraftResultActions.updateResultPromptsForDraftResultLine({
+                  resultLineId,
+                  redirectTo,
+                  resultPrompts: [
+                    ...createDraftResultPromptsFromValueMap(promptChoices, {
+                      ...promptRefToValueMap,
+                      bookingReference: bookingId
+                    }),
+                    createNameAddressResultPromptForCourtCentre(
+                      promptChoices.find(isNameAddressPromptChoice),
+                      organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode)
+                    )
+                  ]
+                })
+              ),
+              // A refusal (e.g. the session is now fully booked) must not
+              // propagate to `.subscribe(this.store)`: NgRx's Store.error()
+              // forwards to the shared ActionsSubject, which would end
+              // dispatching for the whole application, not just this picker.
+              // Catch it here, surface it to the picker, and complete with
+              // no value so nothing reaches the store subscription - no
+              // prompt is written and no redirect happens.
+              catchError(() => {
+                this.bookingErrorSubject.next([
+                  {
+                    id: CrownSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
+                    message: this.translateService.instant('MANAGE_HEARING.SESSION_NOT_AVAILABLE'),
+                    shouldFocus: true
+                  }
+                ]);
+                return EMPTY;
+              })
+            );
         })
       )
       .subscribe(this.store);

@@ -143,4 +143,28 @@ describe('ListingService', () => {
       });
     });
   });
+
+  describe('getBookingStatus', () => {
+    const url = '/listing-query-api/query/api/rest/listing/bookingStatus';
+    const requestType = 'application/vnd.listing.query.booking.status+json';
+
+    it('sends the bookingIds and returns the bookings response', () => {
+      const response = {
+        bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'AVAILABLE' }]
+      };
+      const httpResponse$ = cold('-a|', { a: response });
+      const expected$ = cold('-b|', { b: response });
+      const commandSpy = jest.fn().mockReturnValue(httpResponse$);
+      http.command = commandSpy;
+
+      const command$ = service.getBookingStatus(['booking-1']);
+
+      expect(command$).toBeObservable(expected$);
+      expect(commandSpy).toHaveBeenCalledWith({
+        url,
+        requestType,
+        body: { bookingIds: ['booking-1'] }
+      });
+    });
+  });
 });

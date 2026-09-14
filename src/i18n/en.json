@@ -287,7 +287,8 @@
     "SHARE_RESULT_ALERT_DESCRIPTION": "You are about to share this result with other unresulted offences.",
     "SHARE_RESULT_ALERT_CONFIRMATION": "Do you still wish to share the result?",
     "TRIAL_EFFECTIVENESS_REQUIRED": "Trial Effectiveness not yet entered",
-    "SESSION_NOT_AVAILABLE": "The session you have selected is now fully booked or is no longer available. Select another session."
+    "SESSION_NOT_AVAILABLE": "The session you have selected is now fully booked or is no longer available. Select another session.",
+    "SESSION_RESERVATION_EXPIRED": "The session you reserved has expired and been released. Select another session."
   },
   "APPLICATION": {
     "DUE_ON": "On",

@@ -142,6 +142,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   errors: ValidationError[] = [];
   trialEffectivenessError: ValidationError[] | null = null;
   sessionNotAvailable = false;
+  sessionNotAvailableKey = 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
   isTrialApplication$: Observable<boolean>;
 
   pendingAttendanceDefendants$: Observable<HearingPersonDetails[]>;
@@ -452,6 +453,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   handleSharedResultsValidation(result: ShareValidationResult): void {
     this.errors = [];
     this.sessionNotAvailable = false;
+    this.sessionNotAvailableKey = 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
     this.clearTrialEffectivenessError();
 
     if (result.hasAttendanceError && result.pendingAttendanceDefendants) {
@@ -463,12 +465,16 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
     }
 
     if (result.hasSessionAvailabilityError) {
-      this.sessionNotAvailableHandler();
+      this.sessionNotAvailableHandler(result.sessionUnavailableReason);
     }
   }
 
-  sessionNotAvailableHandler(): void {
+  sessionNotAvailableHandler(reason?: string): void {
     this.sessionNotAvailable = true;
+    this.sessionNotAvailableKey =
+      reason === 'NONE'
+        ? 'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED'
+        : 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
     this.window.scroll(0, 0);
   }
 

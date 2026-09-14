@@ -33,8 +33,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div pdk-padding="6" pdk-margin-bottom="6" class="magistrates-scheduling-filters--bordered">
-      @if (errors) {
-      <pdk-error-summary [errors]="errors"></pdk-error-summary>
+      @if (displayErrors) {
+      <pdk-error-summary [errors]="displayErrors"></pdk-error-summary>
       }
       <magistrates-scheduling-filters
         [organisationUnits]="organisationUnits"
@@ -111,6 +111,8 @@ export class MagistratesSchedulingComponent {
   @Input() rotaBusinessTypes: RotaBusinessType[] = [];
   @Input() totalResults = -1;
   @Input() hearingData: HearingDetail;
+  /** Errors supplied by the container (e.g. a refused reservation), merged with errors from the child form/slots components rather than replacing them. */
+  @Input() externalErrors: ValidationError[] | null;
   @Output() cancel = new EventEmitter<unknown>();
   @Output() filtersSubmit = new EventEmitter<SchedulingFilters>();
   @Output() hearingSlotAllocationsSubmit = new EventEmitter<{
@@ -129,6 +131,13 @@ export class MagistratesSchedulingComponent {
 
   get allocationFormConfig(): AllocationsFormConfig {
     return this.allocationFormConfigs['showHearingType'];
+  }
+
+  get displayErrors(): ValidationError[] | null {
+    if (!this.externalErrors && !this.errors) {
+      return null;
+    }
+    return [...(this.externalErrors || []), ...(this.errors || [])];
   }
 
   handleSubmitFilters(filters: SchedulingFilters) {
