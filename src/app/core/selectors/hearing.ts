@@ -1159,11 +1159,6 @@ export const isBoxwork = createSelector(
   (hearing: HearingDetail) => hearing.isBoxHearing
 );
 
-export const isCrownCourt = createSelector(
-  getCurrentHearing,
-  (hearing: HearingDetail) => hearing.jurisdictionType === 'CROWN'
-);
-
 function groupHearingSummariesByCaseId(
   hearingSummaries: (HearingSummary | CheckInHearingSummary)[]
 ): HearingSummariesGroupedByCaseId[] {
