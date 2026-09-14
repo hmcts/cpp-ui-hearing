@@ -10,26 +10,31 @@ describe('RoleTypeaheadDirective', () => {
   it('should scroll the highlighted suggestion into view on ArrowDown', () => {
     const container = document.createElement('div');
     container.id = 'suggestions-container';
+    container.scrollTop = 0;
+    jest
+      .spyOn(container, 'getBoundingClientRect')
+      .mockReturnValue({ top: 0, height: 100 } as DOMRect);
 
-    const item = document.createElement('li');
-    item.id = 'judicial-id-1';
-    (item as any).scrollIntoView = jest.fn();
-    container.appendChild(item);
+    const item1 = document.createElement('li');
+    item1.setAttribute('role', 'option');
+    jest.spyOn(item1, 'getBoundingClientRect').mockReturnValue({ top: 0, height: 40 } as DOMRect);
+    container.appendChild(item1);
+
+    const item2 = document.createElement('li');
+    item2.setAttribute('role', 'option');
+    jest.spyOn(item2, 'getBoundingClientRect').mockReturnValue({ top: 120, height: 40 } as DOMRect);
+    container.appendChild(item2);
+
     document.body.appendChild(container);
 
     const { directive } = setup({
-      highlightedSuggestion: { id: 'judicial-id-1' },
-      suggestionsContainerId: 'suggestions-container',
-      mapSuggestionToKey: (suggestion: any) => suggestion.id
+      highlightedSuggestionIndex: 1,
+      suggestionsContainerId: 'suggestions-container'
     });
 
     directive.onKeydown(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 
-    expect((item as any).scrollIntoView).toHaveBeenCalledWith({
-      block: 'nearest',
-      inline: 'nearest',
-      behavior: 'auto'
-    });
+    expect(container.scrollTop).toBe(60);
 
     document.body.removeChild(container);
   });
@@ -37,26 +42,31 @@ describe('RoleTypeaheadDirective', () => {
   it('should scroll the highlighted suggestion into view on ArrowUp', () => {
     const container = document.createElement('div');
     container.id = 'suggestions-container';
+    container.scrollTop = 60;
+    jest
+      .spyOn(container, 'getBoundingClientRect')
+      .mockReturnValue({ top: 0, height: 100 } as DOMRect);
 
-    const item = document.createElement('li');
-    item.id = 'judicial-id-1';
-    (item as any).scrollIntoView = jest.fn();
-    container.appendChild(item);
+    const item1 = document.createElement('li');
+    item1.setAttribute('role', 'option');
+    jest.spyOn(item1, 'getBoundingClientRect').mockReturnValue({ top: -20, height: 40 } as DOMRect);
+    container.appendChild(item1);
+
+    const item2 = document.createElement('li');
+    item2.setAttribute('role', 'option');
+    jest.spyOn(item2, 'getBoundingClientRect').mockReturnValue({ top: 100, height: 40 } as DOMRect);
+    container.appendChild(item2);
+
     document.body.appendChild(container);
 
     const { directive } = setup({
-      highlightedSuggestion: { id: 'judicial-id-1' },
-      suggestionsContainerId: 'suggestions-container',
-      mapSuggestionToKey: (suggestion: any) => suggestion.id
+      highlightedSuggestionIndex: 0,
+      suggestionsContainerId: 'suggestions-container'
     });
 
     directive.onKeydown(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
 
-    expect((item as any).scrollIntoView).toHaveBeenCalledWith({
-      block: 'nearest',
-      inline: 'nearest',
-      behavior: 'auto'
-    });
+    expect(container.scrollTop).toBe(40);
 
     document.body.removeChild(container);
   });
