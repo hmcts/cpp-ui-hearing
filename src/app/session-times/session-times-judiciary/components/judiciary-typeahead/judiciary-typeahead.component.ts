@@ -108,8 +108,9 @@ export class JudiciaryTypeaheadComponent
             let judiciaryMemberType = judicialMember.judiciaryType || '';
             return {
               ...judicialMember,
-              judicialMemberName: `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`,
-              judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`
+              judicialMemberName:
+                `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`.trim(),
+              judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`.trim()
             } as JudiciaryAutoSuggestOption;
           })
         )
@@ -151,7 +152,7 @@ export class JudiciaryTypeaheadComponent
       }
       this.selectedJudicialMember = {
         ...value,
-        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`
+        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`.trim()
       };
       this.autoSuggest.writeValue(this.selectedJudicialMember);
     }

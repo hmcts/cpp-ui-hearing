@@ -164,8 +164,10 @@ export class SessionTimesJudiciaryComponent {
         .filter(([, judicialMember]) => !!judicialMember)
         .map(([key, judicialMember], index) => {
           const judiciaryIndex = Number(key.replace('otherJudiciary', ''));
+          const member = judicialMember as JudicialMember;
+          const isNameOnly = !member.id;
           return {
-            judiciaryId: (judicialMember as JudicialMember).id,
+            ...(isNameOnly ? { judiciaryName: member.forenames } : { judiciaryId: member.id }),
             benchChairman: chairman === judiciaryIndex + 3
           };
         });

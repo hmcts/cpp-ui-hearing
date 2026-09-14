@@ -229,8 +229,14 @@ export class JudiciaryFormComponent implements OnChanges {
       }));
       const extraFromNames = withNamesOnly.map((judiciary, index) => ({
         index: extra.length + index,
-        isEnabled: false,
-        value: null as any
+        isEnabled: true,
+        value: {
+          id: '',
+          seqId: -1,
+          forenames: judiciary.judiciaryName,
+          surname: '',
+          judiciaryType: ''
+        } as JudicialMember
       }));
       this.otherJudiciaries = [...extra, ...extraFromNames] as SelectedJudiciary[];
       modelGroup = {
