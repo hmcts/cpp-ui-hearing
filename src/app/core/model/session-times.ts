@@ -44,7 +44,7 @@ export interface SessionTimesCourtForm {
   judge1: JudicialMember;
   judge2: JudicialMember;
   judge3: JudicialMember;
-  otherJudiciaries: string[];
+  otherJudiciaries: { [key: string]: JudicialMember };
   courtClerk: TypeaheadOption;
   courtAssociate: TypeaheadOption;
   legalAdviser: TypeaheadOption;

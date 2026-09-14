@@ -24,8 +24,6 @@ import {
   PdkGridComponent,
   PdkGridDirective,
   PdkFormFieldComponent,
-  PdkTypographyDirective,
-  PdkTextInputDirective,
   PdkVisuallyHiddenDirective,
   PdkRadioGroupComponent,
   PdkRadioButtonComponent,
@@ -39,7 +37,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 interface JudiciaryModelGroup {
   withIds: JudicialMember[];
-  withNamesOnly: string[];
+  extraJudiciaries: SelectedJudiciary[];
 }
 
 type CourtOfficerModelGroup = { [role in CourtOfficerRole]: TypeaheadOption };
@@ -61,8 +59,6 @@ export interface JudiciaryAutoSuggestOption extends JudicialMember {
     PdkGridDirective,
     PdkFormFieldComponent,
     JudiciaryTypeaheadComponent,
-    PdkTypographyDirective,
-    PdkTextInputDirective,
     PdkVisuallyHiddenDirective,
     PdkRadioGroupComponent,
     PdkRadioButtonComponent,
@@ -82,7 +78,7 @@ export class JudiciaryFormComponent implements OnChanges {
 
   judiciaryModelGroup: JudiciaryModelGroup = {
     withIds: [],
-    withNamesOnly: []
+    extraJudiciaries: []
   };
 
   courtOfficerModelGroup: CourtOfficerModelGroup = {
@@ -115,7 +111,7 @@ export class JudiciaryFormComponent implements OnChanges {
       value: null
     }
   ];
-  otherJudiciaries: string[] = [];
+  otherJudiciaries: SelectedJudiciary[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.hasChange(changes.courtSession) && this.courtOfficerOptions) {
@@ -161,13 +157,33 @@ export class JudiciaryFormComponent implements OnChanges {
   }
 
   onAddAnotherJudiciary() {
-    this.otherJudiciaries.push('');
+    const index = 3 + this.otherJudiciaries.length;
+    this.otherJudiciaries = [
+      ...this.otherJudiciaries,
+      { index, isEnabled: true, value: null } as SelectedJudiciary
+    ];
+    this.selectedJudiciaries = [
+      ...this.selectedJudiciaries,
+      { index, isEnabled: false, value: null } as SelectedJudiciary
+    ];
   }
 
-  addOtherJudiciary(event: any): void {
-    if (event) {
-      this.enableSave();
+  onSetOtherJudiciary(event: JudicialMember, index: number) {
+    this.otherJudiciaries[index] = {
+      ...this.otherJudiciaries[index],
+      value: event,
+      isEnabled: !!event
+    };
+
+    const selectedIndex = 3 + index;
+    if (this.selectedJudiciaries[selectedIndex]) {
+      this.selectedJudiciaries[selectedIndex] = {
+        ...this.selectedJudiciaries[selectedIndex],
+        value: event ? event.id : null,
+        isEnabled: !!event
+      };
     }
+    this.enableSave();
   }
 
   getJudiciaryWithId(index: number): JudicialMember {
@@ -205,14 +221,22 @@ export class JudiciaryFormComponent implements OnChanges {
       this.selectedJudiciaries = this.prepareSelectedJudiciaires(judiciaries);
 
       const withIds = judiciaries.filter(j => j.judiciaryId).map(j => j.judicialMember);
-      const withNamesOnly = judiciaries
-        .filter(j => !j.judiciaryId && j.judiciaryName)
-        .map(j => j.judiciaryName);
-      this.otherJudiciaries = [...withNamesOnly];
+      const withNamesOnly = judiciaries.filter(j => !j.judiciaryId && j.judiciaryName);
+      const extra = withIds.slice(3).map((judicialMember, index) => ({
+        index,
+        isEnabled: true,
+        value: judicialMember
+      }));
+      const extraFromNames = withNamesOnly.map((judiciary, index) => ({
+        index: extra.length + index,
+        isEnabled: false,
+        value: null as any
+      }));
+      this.otherJudiciaries = [...extra, ...extraFromNames] as SelectedJudiciary[];
       modelGroup = {
-        withIds,
-        withNamesOnly
-      };
+        withIds: withIds.slice(0, 3),
+        extraJudiciaries: this.otherJudiciaries
+      } as JudiciaryModelGroup;
     }
 
     return modelGroup;

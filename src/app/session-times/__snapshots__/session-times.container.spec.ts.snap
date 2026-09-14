@@ -424,6 +424,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   one-quarter=""
                 >
                   <pdk-form-field
+                    class="judiciary-form-field"
                     labeltype="small"
                   >
                     <pdk-form-group
@@ -1201,6 +1202,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   one-quarter=""
                 >
                   <pdk-form-field
+                    class="judiciary-form-field"
                     labeltype="small"
                   >
                     <pdk-form-group
