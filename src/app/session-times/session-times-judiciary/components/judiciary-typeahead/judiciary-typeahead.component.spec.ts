@@ -142,6 +142,72 @@ describe('JudiciaryTypeaheadComponent', () => {
     document.body.removeChild(container);
   });
 
+  it('should set didTargetSuggestion to suggestions container on scrollbar mousedown', () => {
+    const container = document.createElement('div');
+    container.id = 'suggestions-container';
+    container.classList.add('pdk-autosuggest__suggestions-container');
+    document.body.appendChild(container);
+
+    const autoSuggest = {
+      suggestionsContainerId: 'suggestions-container',
+      didTargetSuggestion: null
+    } as any;
+    component.autoSuggest = { autoSuggestRef: autoSuggest } as any;
+
+    const event = new MouseEvent('mousedown', { bubbles: true });
+    container.dispatchEvent(event);
+    component.onMousedown(event);
+
+    expect(autoSuggest.didTargetSuggestion).toBe(container);
+
+    document.body.removeChild(container);
+  });
+
+  it('should not set didTargetSuggestion when a suggestion is mousedowned', () => {
+    const container = document.createElement('div');
+    container.id = 'suggestions-container';
+    document.body.appendChild(container);
+
+    const option = document.createElement('pdk-autosuggest-option') as any;
+    const span = document.createElement('span');
+    option.appendChild(span);
+    container.appendChild(option);
+
+    const autoSuggest = {
+      suggestionsContainerId: 'suggestions-container',
+      didTargetSuggestion: null
+    } as any;
+    component.autoSuggest = { autoSuggestRef: autoSuggest } as any;
+
+    const event = new MouseEvent('mousedown', { bubbles: true });
+    span.dispatchEvent(event);
+    component.onMousedown(event);
+
+    expect(autoSuggest.didTargetSuggestion).toBeNull();
+
+    document.body.removeChild(container);
+  });
+
+  it('should clear didTargetSuggestion on container mouseup', () => {
+    const container = document.createElement('div');
+    container.id = 'suggestions-container';
+    document.body.appendChild(container);
+
+    const autoSuggest = {
+      suggestionsContainerId: 'suggestions-container',
+      didTargetSuggestion: container
+    } as any;
+    component.autoSuggest = { autoSuggestRef: autoSuggest } as any;
+
+    const event = new MouseEvent('mouseup', { bubbles: true });
+    container.dispatchEvent(event);
+    component.onMouseup(event);
+
+    expect(autoSuggest.didTargetSuggestion).toBeNull();
+
+    document.body.removeChild(container);
+  });
+
   it('should request up to 50 judiciary suggestions', fakeAsync(() => {
     component.input$.next('ab');
     tick(300);

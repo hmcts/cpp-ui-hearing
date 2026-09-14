@@ -156,6 +156,44 @@ export class JudiciaryTypeaheadComponent
     }
   }
 
+  onMousedown(event: MouseEvent) {
+    const autoSuggest = this.autoSuggest?.autoSuggestRef;
+    const target = event.target as HTMLElement;
+
+    if (!autoSuggest || !target) {
+      return;
+    }
+
+    if (target.closest('pdk-autosuggest-option')) {
+      return;
+    }
+
+    if (target.classList.contains('pdk-autosuggest__input')) {
+      return;
+    }
+
+    const container = document.getElementById(autoSuggest.suggestionsContainerId);
+
+    if (container) {
+      autoSuggest.didTargetSuggestion = container;
+    }
+  }
+
+  onMouseup(event: MouseEvent) {
+    const autoSuggest = this.autoSuggest?.autoSuggestRef;
+    const target = event.target as HTMLElement;
+
+    if (!autoSuggest || !target) {
+      return;
+    }
+
+    const container = document.getElementById(autoSuggest.suggestionsContainerId);
+
+    if (container && autoSuggest.didTargetSuggestion === container) {
+      autoSuggest.didTargetSuggestion = null as any;
+    }
+  }
+
   validate(c: AbstractControl): ValidationErrors | null {
     if (this.required && !c.value) {
       return { required: { actual: c.value } };
