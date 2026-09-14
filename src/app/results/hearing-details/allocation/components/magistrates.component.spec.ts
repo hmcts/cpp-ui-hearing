@@ -84,6 +84,19 @@ describe('MagistratesSchedulingComponent', () => {
     expect(fixture).toMatchSnapshot();
   }));
 
+  it('merges container-supplied errors with child-supplied errors rather than replacing them', () => {
+    fixture.componentInstance.externalErrors = [
+      { id: 'booking-error', message: 'The session you have selected is no longer available' }
+    ] as ValidationError[];
+    fixture.componentInstance.errors = [{ id: 'filter-error', message: 'Filter error' }];
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.displayErrors).toEqual([
+      { id: 'booking-error', message: 'The session you have selected is no longer available' },
+      { id: 'filter-error', message: 'Filter error' }
+    ]);
+  });
+
   it('should handle submitting valid filters', () => {
     jest.spyOn(fixture.componentInstance.filtersSubmit, 'emit');
 

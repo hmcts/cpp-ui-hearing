@@ -6,7 +6,7 @@ import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action, Store, provideStore, provideState } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   AppState,
   clearCurrentAmendmentReason,
@@ -22,9 +22,10 @@ import {
   setHearingState,
   WelshDefendantTranslate
 } from '../../../../core';
-import { DraftResult } from '../../../results.interfaces';
+import { DraftResult, DraftResultPrompt } from '../../../results.interfaces';
 import { ResultsService } from '../../services/results.service';
 import { ReusableInfoService } from '../../services/reusable-info.service';
+import { ProvisionalBookingService } from '../../../hearing-details/allocation/services/provisionalBooking.service';
 import { createDraftResult } from '../../testing';
 import { DraftResultActions } from '../draft-result.actions';
 import { resultsReducer } from '../index';
@@ -41,6 +42,7 @@ describe('ShareResultEffects', () => {
   let effects: ShareResultsEffects;
   let draftResultBuilderService: DraftResultBuilderService;
   let hearingService: HearingService;
+  let provisionalBookingService: ProvisionalBookingService;
   let resultsService: ResultsService;
   let reusableInfoService: ReusableInfoService;
   let router: Router;
@@ -97,6 +99,12 @@ describe('ShareResultEffects', () => {
           }
         },
         HearingService,
+        {
+          provide: ProvisionalBookingService,
+          useValue: {
+            releaseProvisionalHearingSlots: jest.fn(() => of(undefined))
+          }
+        },
         ResultsService,
         ReusableInfoService,
         {
@@ -116,6 +124,7 @@ describe('ShareResultEffects', () => {
     actions$ = TestBed.inject(Actions);
     effects = TestBed.inject(ShareResultsEffects);
     hearingService = TestBed.inject(HearingService);
+    provisionalBookingService = TestBed.inject(ProvisionalBookingService);
     resultsService = TestBed.inject(ResultsService);
     reusableInfoService = TestBed.inject(ReusableInfoService);
     draftResultBuilderService = TestBed.inject(DraftResultBuilderService);
@@ -611,6 +620,103 @@ describe('ShareResultEffects', () => {
 
       expect(effects.onError$).toBeObservable(expected$);
       expect(router.navigate).toHaveBeenCalledWith(['/technical-error']);
+    });
+  });
+
+  describe('releaseAbandonedProvisionalBookings$', () => {
+    const bookingReferencePrompt = (value: string): DraftResultPrompt => ({
+      type: 'HIDDEN',
+      promptId: 'booking-prompt-id',
+      promptRef: 'bookingReference',
+      label: 'Booking reference',
+      value
+    });
+
+    const existingHearingIdPrompt = (value: string): DraftResultPrompt => ({
+      type: 'HIDDEN',
+      promptId: 'existing-hearing-prompt-id',
+      promptRef: 'existingHearingId',
+      label: 'Existing hearing id',
+      value
+    });
+
+    const draftResultWithLines = (
+      resultLines: Record<string, { resultPrompts: DraftResultPrompt[] }>
+    ): DraftResult =>
+      ({
+        ...draftResult,
+        resultLines
+      } as unknown as DraftResult);
+
+    const seedDraftResult = (nextDraftResult: DraftResult) => {
+      store.dispatch(DraftResultActions.setDraftResult({ draftResult: nextDraftResult }));
+    };
+
+    it('releases every bookingReference on the draft result being discarded, excluding related-hearings lines', () => {
+      seedDraftResult(
+        draftResultWithLines({
+          'line-1': { resultPrompts: [bookingReferencePrompt('booking-1')] },
+          'line-2': {
+            resultPrompts: [
+              bookingReferencePrompt('court-schedule-1'),
+              existingHearingIdPrompt('existing-hearing-id')
+            ]
+          },
+          'line-3': { resultPrompts: [] }
+        })
+      );
+      const release$ = cold('-(r|)', { r: undefined });
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+      actions$ = hot('-a--', { a: ShareResultsActions.cancelAmendments() });
+      const expected$ = cold('--r', { r: undefined });
+
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(expected$);
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledTimes(1);
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+        hearingId: draftResult.hearingId,
+        bookingId: 'booking-1'
+      });
+    });
+
+    it('calls nothing when the discarded draft result carries no bookingReference', () => {
+      seedDraftResult(draftResultWithLines({ 'line-1': { resultPrompts: [] } }));
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+      actions$ = hot('-a--', { a: ShareResultsActions.rejectAmendments() });
+
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(cold('----'));
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+    });
+
+    it('releases on unlockHearing too', () => {
+      seedDraftResult(
+        draftResultWithLines({ 'line-1': { resultPrompts: [bookingReferencePrompt('booking-4')] } })
+      );
+      const release$ = cold('-(r|)', { r: undefined });
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+      actions$ = hot('-a--', { a: ShareResultsActions.unlockHearing() });
+      const expected$ = cold('--r', { r: undefined });
+
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(expected$);
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+        hearingId: draftResult.hearingId,
+        bookingId: 'booking-4'
+      });
+    });
+
+    it('does not block or surface an error when a release fails', () => {
+      seedDraftResult(
+        draftResultWithLines({ 'line-1': { resultPrompts: [bookingReferencePrompt('booking-5')] } })
+      );
+      const release$ = cold('-#', undefined, new Error('release failed'));
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+      actions$ = hot('-a--', { a: ShareResultsActions.cancelAmendments() });
+
+      // The failure is swallowed: the effect completes quietly rather than erroring.
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(cold('----'));
     });
   });
 });

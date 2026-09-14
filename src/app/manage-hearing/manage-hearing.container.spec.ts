@@ -423,23 +423,46 @@ describe('ManageHearingContainer', () => {
         expect(component.onTrialEffectivenessMissing).toHaveBeenCalled();
       });
 
-      it('should call sessionNotAvailableHandler if hasSessionAvailabilityError is true', () => {
+      it('should call sessionNotAvailableHandler with the reason if hasSessionAvailabilityError is true', () => {
         component.handleSharedResultsValidation({
           hasAttendanceError: false,
           hasTrialEffectivenessError: false,
-          hasSessionAvailabilityError: true
+          hasSessionAvailabilityError: true,
+          sessionUnavailableReason: 'NONE'
         });
-        expect(component.sessionNotAvailableHandler).toHaveBeenCalled();
+        expect(component.sessionNotAvailableHandler).toHaveBeenCalledWith('NONE');
+      });
+
+      it('should reset the session-not-available key back to the default before re-evaluating', () => {
+        component.sessionNotAvailableKey = 'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED';
+        component.handleSharedResultsValidation({
+          hasAttendanceError: false,
+          hasTrialEffectivenessError: false
+        });
+        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
       });
     });
 
     describe('sessionNotAvailableHandler', () => {
-      it('should show the session-not-available alert and scroll to the top of the page', () => {
+      it('should show the session-not-available alert with the default key and scroll to the top of the page', () => {
         component.sessionNotAvailableHandler();
 
         expect(component.sessionNotAvailable).toBe(true);
+        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
         expect(component.errors).toEqual([]);
         expect(scrollSpy).toHaveBeenCalledWith(0, 0);
+      });
+
+      it('should show the session-reservation-expired key when the reason is NONE', () => {
+        component.sessionNotAvailableHandler('NONE');
+
+        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_RESERVATION_EXPIRED');
+      });
+
+      it('should show the default session-not-available key for any other reason', () => {
+        component.sessionNotAvailableHandler('BOOKED');
+
+        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
       });
     });
 

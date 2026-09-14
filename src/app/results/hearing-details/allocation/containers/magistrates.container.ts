@@ -14,9 +14,11 @@ import {
   defaultHearingTypePlaceHolder
 } from '@cpp/reference-data';
 import { select, Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { ValidationError } from '@cpp/pdk';
 import moment from 'moment';
-import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, EMPTY, Observable, of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
   createNameAddressResultPromptForCourtCentre,
@@ -64,12 +66,19 @@ import { MagistratesSchedulingComponent } from '../components/magistrates.compon
       (hearingSlotAllocationsSubmit)="hearingSubmitAllocations($event)"
       (pageChange)="handlePageChange($event)"
       [hearingData]="hearing$ | async"
+      [externalErrors]="bookingErrors$ | async"
     >
     </magistrates-scheduling>
   `,
   imports: [MagistratesSchedulingComponent, AsyncPipe]
 })
 export class MagistratesSchedulingContainer {
+  private static readonly SESSION_NOT_AVAILABLE_ERROR_ID = 'magistrates-session-not-available';
+
+  private readonly bookingErrorSubject = new BehaviorSubject<ValidationError[] | null>(null);
+  readonly bookingErrors$: Observable<ValidationError[] | null> =
+    this.bookingErrorSubject.asObservable();
+
   currentPage$: Observable<number>;
   defaultFilters$: Observable<Partial<MagistratesSchedulingFilters>>;
   filters$: Observable<Partial<SchedulingFilters>>;
@@ -86,7 +95,8 @@ export class MagistratesSchedulingContainer {
     private store: Store<ResultsState>,
     private route: ActivatedRoute,
     private router: Router,
-    private provisionalBookingService: ProvisionalBookingService
+    private provisionalBookingService: ProvisionalBookingService,
+    private translateService: TranslateService
   ) {
     const metadata$ = this.store.pipe(select(getSearchMetadata));
 
@@ -223,6 +233,8 @@ export class MagistratesSchedulingContainer {
         take(1),
         switchMap(([organisationUnits, rotaBusinessTypes, resultLine, filters]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
+          const existingBookingReference = (resultLine as ExtendedResolvedDraftResultLine).resultPrompts
+            ?.find(prompt => prompt.promptRef === 'bookingReference')?.value as string | undefined;
           const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
             courtScheduleId: allocation.hearingSlot.courtScheduleId,
             hearingStartTime: allocation.hearingSlotTime
@@ -256,8 +268,13 @@ export class MagistratesSchedulingContainer {
           };
 
           return this.provisionalBookingService
-            .bookProvisionalHearingSlots({ hearingId, courtScheduleBookings })
+            .bookProvisionalHearingSlots({
+              hearingId,
+              courtScheduleBookings,
+              bookingId: existingBookingReference
+            })
             .pipe(
+              tap(() => this.bookingErrorSubject.next(null)),
               map(({ bookingId }) => {
                 return DraftResultActions.updateResultPromptsForDraftResultLine({
                   resultLineId,
@@ -273,6 +290,23 @@ export class MagistratesSchedulingContainer {
                     )
                   ]
                 });
+              }),
+              // A refusal (e.g. the session is now fully booked) must not
+              // propagate to `.subscribe(this.store)`: NgRx's Store.error()
+              // forwards to the shared ActionsSubject, which would end
+              // dispatching for the whole application, not just this picker.
+              // Catch it here, surface it to the picker, and complete with
+              // no value so nothing reaches the store subscription - no
+              // prompt is written and no redirect happens.
+              catchError(() => {
+                this.bookingErrorSubject.next([
+                  {
+                    id: MagistratesSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
+                    message: this.translateService.instant('MANAGE_HEARING.SESSION_NOT_AVAILABLE'),
+                    shouldFocus: true
+                  }
+                ]);
+                return EMPTY;
               })
             );
         })
