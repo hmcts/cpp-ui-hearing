@@ -93,7 +93,7 @@ export class JudiciaryTypeaheadComponent
       .pipe(
         filter(text => text.length > 1),
         auditTime(250),
-        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 10)),
+        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 50)),
         map(judicialMembers =>
           judicialMembers.map(judicialMember => {
             let judiciaryTitle = judicialMember.titlePrefix || '';
@@ -133,6 +133,27 @@ export class JudiciaryTypeaheadComponent
 
   onSelect(match: JudiciaryAutoSuggestOption) {
     this.propagateChange(match);
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+      return;
+    }
+
+    const autoSuggest = this.autoSuggest?.autoSuggestRef;
+    const highlighted = autoSuggest?.highlightedSuggestion;
+
+    if (!autoSuggest || !highlighted) {
+      return;
+    }
+
+    const suggestionId = String(autoSuggest.mapSuggestionToKey(highlighted));
+    const container = document.getElementById(autoSuggest.suggestionsContainerId);
+    const item = document.getElementById(suggestionId);
+
+    if (container && item && typeof item.scrollIntoView === 'function') {
+      item.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' });
+    }
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
