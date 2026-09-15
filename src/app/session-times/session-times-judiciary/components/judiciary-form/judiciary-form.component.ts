@@ -135,6 +135,18 @@ export class JudiciaryFormComponent implements OnChanges {
     return this.selectedJudiciaries[index].isEnabled === false;
   }
 
+  getJudiciaryDisplayName(index: number): string {
+    const judicialMember =
+      index < 3 ? this.getJudiciaryWithId(index) : this.otherJudiciaries[index - 3]?.value;
+
+    if (!judicialMember) {
+      return '';
+    }
+
+    const title = judicialMember.titleJudicialPrefix || judicialMember.titlePrefix || '';
+    return `${title} ${judicialMember.forenames} ${judicialMember.surname}`.trim();
+  }
+
   onSetJudiciaryTypeahead(event: JudicialMember, index: number) {
     if (!!event) {
       this.selectedJudiciaries[index] = {

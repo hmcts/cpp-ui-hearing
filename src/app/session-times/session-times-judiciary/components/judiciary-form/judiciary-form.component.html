@@ -74,7 +74,10 @@
             class="chairman-radio-button"
             [attr.data-role]="'chairman-radio-btn-' + i"
           >
-            <span pdk-visually-hidden>Judiciary {{ i + 1 }}</span>
+            <span pdk-visually-hidden
+              >Judiciary {{ i + 1
+              }}{{ getJudiciaryDisplayName(i) ? ' ' + getJudiciaryDisplayName(i) : '' }}</span
+            >
           </pdk-radio-button>
           }
         </pdk-radio-group>
