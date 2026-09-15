@@ -113,6 +113,8 @@ export class JudiciaryFormComponent implements OnChanges {
   ];
   otherJudiciaries: SelectedJudiciary[] = [];
 
+  private readonly fixedJudiciaryCount = 3;
+
   ngOnChanges(changes: SimpleChanges) {
     if (this.hasChange(changes.courtSession) && this.courtOfficerOptions) {
       this.courtOfficerModelGroup = this.toCourtOfficerModelGroup(
@@ -137,7 +139,9 @@ export class JudiciaryFormComponent implements OnChanges {
 
   getJudiciaryDisplayName(index: number): string {
     const judicialMember =
-      index < 3 ? this.getJudiciaryWithId(index) : this.otherJudiciaries[index - 3]?.value;
+      index < this.fixedJudiciaryCount
+        ? this.getJudiciaryWithId(index)
+        : this.otherJudiciaries[index - this.fixedJudiciaryCount]?.value;
 
     if (!judicialMember) {
       return '';
@@ -169,7 +173,7 @@ export class JudiciaryFormComponent implements OnChanges {
   }
 
   onAddAnotherJudiciary() {
-    const index = 3 + this.otherJudiciaries.length;
+    const index = this.fixedJudiciaryCount + this.otherJudiciaries.length;
     this.otherJudiciaries = [
       ...this.otherJudiciaries,
       { index, isEnabled: true, value: null } as SelectedJudiciary
@@ -187,7 +191,7 @@ export class JudiciaryFormComponent implements OnChanges {
       isEnabled: !!event
     };
 
-    const selectedIndex = 3 + index;
+    const selectedIndex = this.fixedJudiciaryCount + index;
     if (this.selectedJudiciaries[selectedIndex]) {
       this.selectedJudiciaries[selectedIndex] = {
         ...this.selectedJudiciaries[selectedIndex],
@@ -234,7 +238,7 @@ export class JudiciaryFormComponent implements OnChanges {
 
       const withIds = judiciaries.filter(j => j.judiciaryId).map(j => j.judicialMember);
       const withNamesOnly = judiciaries.filter(j => !j.judiciaryId && j.judiciaryName);
-      const extra = withIds.slice(3).map((judicialMember, index) => ({
+      const extra = withIds.slice(this.fixedJudiciaryCount).map((judicialMember, index) => ({
         index,
         isEnabled: true,
         value: judicialMember
@@ -252,7 +256,7 @@ export class JudiciaryFormComponent implements OnChanges {
       }));
       this.otherJudiciaries = [...extra, ...extraFromNames] as SelectedJudiciary[];
       modelGroup = {
-        withIds: withIds.slice(0, 3),
+        withIds: withIds.slice(0, this.fixedJudiciaryCount),
         extraJudiciaries: this.otherJudiciaries
       } as JudiciaryModelGroup;
     }
