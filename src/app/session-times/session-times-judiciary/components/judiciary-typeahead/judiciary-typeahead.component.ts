@@ -20,6 +20,7 @@ import {
 import { Subject } from 'rxjs';
 import { auditTime, filter, map, switchMap } from 'rxjs/operators';
 import { FormFieldControl, PdkAutosuggestLiteComponent } from '@cpp/pdk';
+import { RoleTypeaheadDirective } from '../role-typeahead/role-typeahead.directive';
 import { JudicialMember } from '../../../../core/model';
 import { ReferenceDataService } from '../../../../core/services';
 import { AsyncPipe } from '@angular/common';
@@ -53,7 +54,7 @@ const coerceBooleanProperty = (value: any): boolean => {
       useExisting: forwardRef(() => JudiciaryTypeaheadComponent)
     }
   ],
-  imports: [AsyncPipe, PdkAutosuggestLiteComponent]
+  imports: [AsyncPipe, PdkAutosuggestLiteComponent, RoleTypeaheadDirective]
 })
 export class JudiciaryTypeaheadComponent
   implements ControlValueAccessor, FormFieldControl, Validator, OnDestroy
@@ -93,7 +94,7 @@ export class JudiciaryTypeaheadComponent
       .pipe(
         filter(text => text.length > 1),
         auditTime(250),
-        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 10)),
+        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 50)),
         map(judicialMembers =>
           judicialMembers.map(judicialMember => {
             let judiciaryTitle = judicialMember.titlePrefix || '';
@@ -107,8 +108,9 @@ export class JudiciaryTypeaheadComponent
             let judiciaryMemberType = judicialMember.judiciaryType || '';
             return {
               ...judicialMember,
-              judicialMemberName: `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`,
-              judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`
+              judicialMemberName:
+                `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`.trim(),
+              judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`.trim()
             } as JudiciaryAutoSuggestOption;
           })
         )
@@ -150,7 +152,7 @@ export class JudiciaryTypeaheadComponent
       }
       this.selectedJudicialMember = {
         ...value,
-        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`
+        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`.trim()
       };
       this.autoSuggest.writeValue(this.selectedJudicialMember);
     }

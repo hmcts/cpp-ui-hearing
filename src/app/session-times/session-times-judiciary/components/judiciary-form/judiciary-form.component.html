@@ -4,7 +4,12 @@
       <h3>{{ sessionType | uppercase }}</h3>
     </pdk-grid>
     <pdk-grid one-quarter class="flex-column-one">
-      <pdk-form-field label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}" labelType="small">
+      <pdk-form-field
+        label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}"
+        labelType="small"
+        class="judiciary-form-field"
+        pdk-margin-bottom="3"
+      >
         <judiciary-typeahead
           data-role="judiciary-typeahead-0"
           name="judge1"
@@ -31,20 +36,17 @@
       <pdk-form-group ngModelGroup="otherJudiciaries">
         @for (otherJudiciary of otherJudiciaries; track $index; let i = $index) {
         <pdk-form-field>
-          <input
-            pdk-typography="body-xsmall"
-            type="text"
+          <judiciary-typeahead
+            [attr.data-role]="'other-judiciary-typeahead-' + i"
             [name]="'otherJudiciary' + i"
-            [ngModel]="otherJudiciary"
-            (ngModelChange)="addOtherJudiciary($event)"
-            pdk-text-input
-            class="other-judiciary"
-            [attr.data-role]="'otherJudiciary-' + i"
-          />
+            [ngModel]="otherJudiciary.value"
+            (ngModelChange)="onSetOtherJudiciary($event, i)"
+          ></judiciary-typeahead>
         </pdk-form-field>
         }
         <p class="mt-m">
           <a
+            class="govuk-!-margin-bottom-5 govuk-link"
             data-role="add-new-judiciary-link"
             href="javascript:void(0)"
             (click)="onAddAnotherJudiciary()"
@@ -65,30 +67,20 @@
           class="chairman-radio-group"
           data-role="chairman-radio-group"
         >
+          @for (selectedJudiciary of selectedJudiciaries; track selectedJudiciary.index; let i =
+          $index) {
           <pdk-radio-button
-            [value]="0"
-            [disabled]="isChairmanDisabled(0)"
+            [value]="i"
+            [disabled]="isChairmanDisabled(i)"
             class="chairman-radio-button"
-            data-role="chairman-radio-btn-0"
+            [attr.data-role]="'chairman-radio-btn-' + i"
           >
-            <span pdk-visually-hidden>Judiciary 1</span>
+            <span pdk-visually-hidden
+              >Judiciary {{ i + 1
+              }}{{ getJudiciaryDisplayName(i) ? ' ' + getJudiciaryDisplayName(i) : '' }}</span
+            >
           </pdk-radio-button>
-          <pdk-radio-button
-            [value]="1"
-            [disabled]="isChairmanDisabled(1)"
-            class="chairman-radio-button"
-            data-role="chairman-radio-btn-1"
-          >
-            <span pdk-visually-hidden>Judiciary 2</span>
-          </pdk-radio-button>
-          <pdk-radio-button
-            [value]="2"
-            [disabled]="isChairmanDisabled(2)"
-            class="chairman-radio-button"
-            data-role="chairman-radio-btn-2"
-          >
-            <span pdk-visually-hidden>Judiciary 3</span>
-          </pdk-radio-button>
+          }
         </pdk-radio-group>
       </pdk-form-field>
     </pdk-grid>
@@ -131,6 +123,7 @@
         <pdk-autosuggest-lite
           name="courtClerk"
           data-role="record-court-clerk"
+          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'courtClerks')"
           [suggestions]="filteredOfficerSuggestions['courtClerks']"
           suggestionKey="id"
@@ -146,6 +139,7 @@
         <pdk-autosuggest-lite
           name="courtAssociate"
           data-role="record-court-associate"
+          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'courtAssociate')"
           [suggestions]="filteredOfficerSuggestions['courtAssociate']"
           suggestionKey="id"
@@ -161,6 +155,7 @@
         <pdk-autosuggest-lite
           name="legalAdviser"
           data-role="record-legal-advisor"
+          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'legalAdvisers')"
           [suggestions]="filteredOfficerSuggestions['legalAdvisers']"
           suggestionKey="id"
