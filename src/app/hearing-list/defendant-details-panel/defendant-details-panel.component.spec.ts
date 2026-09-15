@@ -114,6 +114,21 @@ describe('DefendantDetailsPanelComponent', () => {
     const marker = fixture.debugElement.query(By.css('#legalaidStatus'));
     expect(marker).toBeNull();
   });
+
+  it('should not throw and should render an empty name when personDetails is missing', () => {
+    component.selectedDefendant = {
+      ...mockDefendant,
+      personDefendant: {
+        ...mockDefendant.personDefendant,
+        personDetails: undefined
+      }
+    };
+
+    expect(() => fixture.detectChanges()).not.toThrow();
+
+    const actualDefendantName = fixture.nativeElement.querySelector('h4').textContent.trim();
+    expect(actualDefendantName).toEqual('');
+  });
 });
 
 @Component({

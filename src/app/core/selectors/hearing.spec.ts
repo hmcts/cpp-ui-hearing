@@ -921,6 +921,85 @@ describe('Hearing selectors', () => {
       });
   });
 
+  it('should normalise a single bailStatus for a defendant whose id equals its masterDefendantId', () => {
+    const hearing: HearingDetail = {
+      jurisdictionType: 'MAGISTRATES',
+      prosecutionCases: [
+        {
+          id: 'case-1',
+          offences: [],
+          defendants: [
+            {
+              id: 'master-1',
+              masterDefendantId: 'master-1',
+              offences: [],
+              personDefendant: {
+                bailStatus: { code: 'C', description: 'CONDITIONAL' } as any
+              }
+            }
+          ]
+        }
+      ],
+      courtApplications: []
+    } as HearingDetail;
+
+    store.dispatch(
+      new fromActions.LoadHearingDetailSuccessAction({
+        hearing,
+        hearingState: HearingLockState.INITIALISED
+      })
+    );
+
+    let result: DefendantCasesApplications[];
+    store
+      .select(fromSelectors.getCasesAndApplicationsGroupedByDefendant)
+      .subscribe(value => (result = value));
+
+    expect(result[0].personDefendant.bailStatus).toEqual([
+      { code: 'C', description: 'CONDITIONAL' }
+    ]);
+  });
+
+  it('should leave bailStatus untouched for a case-linked defendant whose id differs from its masterDefendantId', () => {
+    const hearing: HearingDetail = {
+      jurisdictionType: 'MAGISTRATES',
+      prosecutionCases: [
+        {
+          id: 'case-1',
+          offences: [],
+          defendants: [
+            {
+              id: 'case-defendant-1',
+              masterDefendantId: 'master-1',
+              offences: [],
+              personDefendant: {
+                bailStatus: { code: 'C', description: 'CONDITIONAL' } as any
+              }
+            }
+          ]
+        }
+      ],
+      courtApplications: []
+    } as HearingDetail;
+
+    store.dispatch(
+      new fromActions.LoadHearingDetailSuccessAction({
+        hearing,
+        hearingState: HearingLockState.INITIALISED
+      })
+    );
+
+    let result: DefendantCasesApplications[];
+    store
+      .select(fromSelectors.getCasesAndApplicationsGroupedByDefendant)
+      .subscribe(value => (result = value));
+
+    expect(result[0].personDefendant.bailStatus).toEqual({
+      code: 'C',
+      description: 'CONDITIONAL'
+    });
+  });
+
   it('should get sorted defendants and offences', () => {
     const defendant1 = {
       personDefendant: {
