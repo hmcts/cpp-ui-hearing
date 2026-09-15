@@ -87,6 +87,7 @@ export interface ResultsValidationDefendant {
   defendantId: string;
   firstName: string;
   lastName: string;
+  dateOfBirth?: string;
   masterDefendantId?: string;
 }
 
