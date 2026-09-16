@@ -1,7 +1,9 @@
 import { Defendant } from '../../../../core/model/defendant';
 import { HearingDetail } from '../../../../core/model/hearing-detail';
+import { Offence } from '../../../../core/model/offence';
 import { PersonDefendant } from '../../../../core/model/person-defendant';
 import { Organisation } from '../../../../core/model/organisation';
+import { ProsecutionCaseDetails } from '../../../../core/model/shared/prosecution-case-details';
 import { DraftResult, ResolvedDraftResultLine } from '../../../results.interfaces';
 import {
   ResultsLineValidation,
@@ -799,17 +801,25 @@ describe('buildResultsValidationRequest', () => {
               createDefendant({
                 id: 'defendantId1',
                 offences: [
-                  { id: 'offenceId1', offenceCode: 'TH68001', offenceTitle: 'Theft' } as any
+                  {
+                    id: 'offenceId1',
+                    offenceCode: 'TH68001',
+                    offenceTitle: 'Theft'
+                  } as Partial<Offence> as Offence
                 ]
               }),
               createDefendant({
                 id: 'defendantId2',
                 offences: [
-                  { id: 'offenceId2', offenceCode: 'TH68002', offenceTitle: 'Burglary' } as any
+                  {
+                    id: 'offenceId2',
+                    offenceCode: 'TH68002',
+                    offenceTitle: 'Burglary'
+                  } as Partial<Offence> as Offence
                 ]
               })
             ]
-          } as any
+          } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
         ]
       });
 
