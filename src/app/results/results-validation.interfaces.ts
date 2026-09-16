@@ -101,6 +101,7 @@ export interface ResultsValidationOffence {
   hasExistingCtlRecord?: boolean;
   isConvicted?: boolean;
   bailStatus?: string;
+  defendantId: string;
 }
 
 export interface ResultsValidation {
