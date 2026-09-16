@@ -41,9 +41,7 @@ export interface SelectedJudiciary {
 
 export interface SessionTimesCourtForm {
   chairman: number;
-  judge1: JudicialMember;
-  judge2: JudicialMember;
-  judge3: JudicialMember;
+  judiciaries: { [index: string]: JudicialMember };
   otherJudiciaries: string[];
   courtClerk: TypeaheadOption;
   courtAssociate: TypeaheadOption;
