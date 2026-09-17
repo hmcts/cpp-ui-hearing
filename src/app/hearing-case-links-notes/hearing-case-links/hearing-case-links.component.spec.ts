@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
+import { LinkType } from '@cpp/reference-data';
 import { HearingCaseLinksComponent } from './hearing-case-links.component';
 import { CourtApplication, HearingCaseLinkType, ProsecutionCaseDetails } from '../../core';
 
@@ -133,5 +134,76 @@ describe('HearingCaseLinksComponent', () => {
 
   it('should match the snapshot', () => {
     expect(fixture).toMatchSnapshot();
+  });
+
+  describe('canAddChildApplicationTo', () => {
+    it('should return true when the application type is standalone', () => {
+      const application = { type: { linkType: LinkType.STANDALONE } } as CourtApplication;
+      expect(component.canAddChildApplicationTo(application)).toBe(true);
+    });
+
+    it('should return true when the application is an appeal', () => {
+      const application = {
+        type: { linkType: LinkType.LINKED, appealFlag: true }
+      } as CourtApplication;
+      expect(component.canAddChildApplicationTo(application)).toBe(true);
+    });
+
+    it('should return false for a non-standalone, non-appeal application', () => {
+      const application = {
+        type: { linkType: LinkType.LINKED, appealFlag: false }
+      } as CourtApplication;
+      expect(component.canAddChildApplicationTo(application)).toBe(false);
+    });
+
+    it('should return false when the application has no type', () => {
+      const application = {} as CourtApplication;
+      expect(component.canAddChildApplicationTo(application)).toBe(false);
+    });
+  });
+
+  describe('add child application link visibility', () => {
+    function renderWithApplication(application: CourtApplication): void {
+      fixture = TestBed.createComponent(HearingCaseLinksComponent);
+      component = fixture.componentInstance;
+      component.isStandAloneApplication = false;
+      component.prosecutionCases = [];
+      component.canAddChildApplication = true;
+      component.courtApplications = [application];
+      fixture.detectChanges();
+    }
+
+    it('should not show "Add application" for a non-standalone, non-appeal parent application', () => {
+      renderWithApplication({
+        id: 'app1',
+        applicationReference: 'APP_REF1',
+        type: { linkType: LinkType.LINKED, appealFlag: false },
+        courtApplicationCases: [{ prosecutionCaseId: 'case1', caseStatus: 'INACTIVE' }]
+      } as CourtApplication);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="APP_REF1"] a'));
+      expect(links.length).toBe(2);
+    });
+
+    it('should show "Add application" for a standalone parent application', () => {
+      renderWithApplication({
+        id: 'app1',
+        applicationReference: 'APP_REF1',
+        type: { linkType: LinkType.STANDALONE },
+        courtApplicationCases: [{ prosecutionCaseId: 'case1', caseStatus: 'INACTIVE' }]
+      } as CourtApplication);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="APP_REF1"] a'));
+      expect(links.length).toBe(3);
+    });
+
+    it('should show "Add application" for an appeal parent application', () => {
+      renderWithApplication({
+        id: 'app1',
+        applicationReference: 'APP_REF1',
+        type: { linkType: LinkType.LINKED, appealFlag: true },
+        courtApplicationCases: [{ prosecutionCaseId: 'case1', caseStatus: 'INACTIVE' }]
+      } as CourtApplication);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="APP_REF1"] a'));
+      expect(links.length).toBe(3);
+    });
   });
 });

@@ -14,6 +14,7 @@ import {
   PdkLinkDirective
 } from '@cpp/pdk';
 import { TranslatePipe } from '@ngx-translate/core';
+import { LinkType } from '@cpp/reference-data';
 
 @Component({
   selector: 'hearing-case-links',
@@ -145,7 +146,7 @@ import { TranslatePipe } from '@ngx-translate/core';
                 {{ 'COMMON.CASE_MATERIAL' | translate }}
               </a>
               @if ( !isChild && (addType !== hearingCaseLinkType.ADD_CHILD_APPLICATION ||
-              canAddChildApplication) ) {
+              (canAddChildApplication && canAddChildApplicationTo(application))) ) {
               <a
                 pdk-link
                 href="javascript:void(0);"
@@ -232,6 +233,10 @@ export class HearingCaseLinksComponent {
       parentApplication?.courtOrder?.courtOrderOffences?.[0]?.prosecutionCaseId ??
       null
     );
+  }
+
+  canAddChildApplicationTo(application: CourtApplication): boolean {
+    return application.type?.linkType === LinkType.STANDALONE || !!application.type?.appealFlag;
   }
 
   getCaseReference(prosecutionCase: ProsecutionCaseDetails): string {
