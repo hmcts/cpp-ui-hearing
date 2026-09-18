@@ -114,14 +114,6 @@ exports[`HearingCaseLinksNotesComponent should have the expected template 1`] = 
                             pdk-link=""
                             pdk-margin-top="2"
                           >
-                             HEARING_LIST.GO_TO_ADD_APPLICATION 
-                          </a>
-                          <a
-                            class="govuk-!-margin-top-2 govuk-link"
-                            href="javascript:void(0);"
-                            pdk-link=""
-                            pdk-margin-top="2"
-                          >
                              HEARING_LIST.GO_TO_CREATE_TASK 
                           </a>
                         </div>

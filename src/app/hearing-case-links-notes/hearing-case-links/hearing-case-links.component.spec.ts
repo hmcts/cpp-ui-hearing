@@ -162,6 +162,81 @@ describe('HearingCaseLinksComponent', () => {
     });
   });
 
+  describe('canAddApplication', () => {
+    it('should be true when there are no court applications', () => {
+      component.courtApplications = [];
+      expect(component.canAddApplication).toBe(true);
+    });
+
+    it('should be true when every court application is standalone or an appeal', () => {
+      component.courtApplications = [
+        { id: 'app1', type: { linkType: LinkType.STANDALONE } } as CourtApplication
+      ];
+      expect(component.canAddApplication).toBe(true);
+    });
+
+    it('should be false when a court application is non-standalone and not an appeal', () => {
+      component.courtApplications = [
+        { id: 'app1', type: { linkType: LinkType.LINKED, appealFlag: false } } as CourtApplication
+      ];
+      expect(component.canAddApplication).toBe(false);
+    });
+  });
+
+  describe('case-level add application link visibility', () => {
+    function renderWithCourtApplications(courtApplications: CourtApplication[]): void {
+      fixture = TestBed.createComponent(HearingCaseLinksComponent);
+      component = fixture.componentInstance;
+      component.isStandAloneApplication = false;
+      component.prosecutionCases = [
+        {
+          id: 'case1',
+          prosecutionCaseIdentifier: { caseURN: 'URN1', prosecutionAuthorityReference: 'REF1' }
+        } as ProsecutionCaseDetails
+      ];
+      component.courtApplications = courtApplications;
+      fixture.detectChanges();
+    }
+
+    it('should hide "Add application" when a non-standalone, non-appeal application exists', () => {
+      renderWithCourtApplications([
+        { id: 'app1', type: { linkType: LinkType.LINKED, appealFlag: false } } as CourtApplication
+      ]);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="URN1"] a'));
+      expect(links.map(link => link.nativeElement.textContent.trim())).not.toContain(
+        'HEARING_LIST.GO_TO_ADD_APPLICATION'
+      );
+    });
+
+    it('should show "Add application" when there are no court applications', () => {
+      renderWithCourtApplications([]);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="URN1"] a'));
+      expect(links.map(link => link.nativeElement.textContent.trim())).toContain(
+        'HEARING_LIST.GO_TO_ADD_APPLICATION'
+      );
+    });
+
+    it('should show "Add application" when the application is standalone', () => {
+      renderWithCourtApplications([
+        { id: 'app1', type: { linkType: LinkType.STANDALONE } } as CourtApplication
+      ]);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="URN1"] a'));
+      expect(links.map(link => link.nativeElement.textContent.trim())).toContain(
+        'HEARING_LIST.GO_TO_ADD_APPLICATION'
+      );
+    });
+
+    it('should show "Add application" when the application is an appeal', () => {
+      renderWithCourtApplications([
+        { id: 'app1', type: { linkType: LinkType.LINKED, appealFlag: true } } as CourtApplication
+      ]);
+      const links = fixture.debugElement.queryAll(By.css('[data-test-id="URN1"] a'));
+      expect(links.map(link => link.nativeElement.textContent.trim())).toContain(
+        'HEARING_LIST.GO_TO_ADD_APPLICATION'
+      );
+    });
+  });
+
   describe('add child application link visibility', () => {
     function renderWithApplication(application: CourtApplication): void {
       fixture = TestBed.createComponent(HearingCaseLinksComponent);
