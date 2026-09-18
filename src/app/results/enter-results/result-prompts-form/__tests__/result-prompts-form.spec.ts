@@ -3,6 +3,8 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { NgForm } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Address } from '@cpp/application';
+import { CppHttp } from '@cpp/core';
 import { provideMockStore } from '@ngrx/store/testing';
 import { last } from 'lodash-es';
 import { of } from 'rxjs';
@@ -15,6 +17,7 @@ import {
 } from '../../../core/testing';
 import {
   DraftResultPrompt,
+  NameAddressPromptChoice,
   OneOfPromptChoice,
   PromptChoice,
   PromptEntry,
@@ -54,7 +57,11 @@ describe('ResultPromptsForm', () => {
             getValueForPromptChoice: jest.fn(() => of(undefined))
           }
         },
-        provideMockStore({ initialState: { results: {} } })
+        provideMockStore({ initialState: { results: {} } }),
+        {
+          provide: CppHttp,
+          useValue: { query: jest.fn(() => of({ results: [] })) }
+        }
       ],
       teardown: { destroyAfterEach: false }
     });
@@ -86,6 +93,17 @@ describe('ResultPromptsForm', () => {
 
   const submitForm = () => {
     fixture.debugElement.query(By.css(`button[type=submit]`)).nativeElement.click();
+  };
+
+  const selectAutosuggestAddress = (address: Address) => {
+    const autosuggest = fixture.debugElement.query(By.css('cpp-address-autosuggest'));
+
+    // cpp-address-autosuggest forwards its own registerOnChange straight onto its
+    // internal pdk-autosuggest-lite child (liteRef) - calling that child's
+    // propagateChange is exactly what a real dropdown selection does.
+    (autosuggest.componentInstance as any).liteRef.propagateChange(address);
+    fixture.detectChanges();
+    tick();
   };
 
   const getSubmittedResultPrompts = () => {
@@ -310,6 +328,158 @@ describe('ResultPromptsForm', () => {
           },
         ]
       `);
+    }));
+  });
+
+  describe('ADDRESS prompt with address lookup', () => {
+    const ADDRESS_WITH_LOOKUP = {
+      ...getPromptChoiceForType('ADDRESS'),
+      required: true,
+      useAddressLookup: true
+    };
+
+    beforeEach(() => {
+      fixture.componentInstance.promptChoices = [ADDRESS_WITH_LOOKUP];
+    });
+
+    it('should render the address lookup above the address fields', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
+    }));
+
+    it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
+      fixture.componentInstance.promptChoices = [
+        { ...ADDRESS_WITH_LOOKUP, useAddressLookup: false }
+      ];
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
+    }));
+
+    it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBe(0);
+    }));
+
+    it('should render the address fields immediately when amending a result that already has an address', fakeAsync(() => {
+      fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(ADDRESS_WITH_LOOKUP)];
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBeGreaterThan(0);
+      expect(getFormValues()).toMatchObject({
+        protectedpersonsaddressAddress1: 'X',
+        protectedpersonsaddressPostCode: 'CR0 1XN'
+      });
+    }));
+
+    it('should reveal the address fields when "Enter address manually" is clicked, without an address selected', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+
+      enterManuallyLink.nativeElement.click();
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBeGreaterThan(0);
+      expect(getFormValues()).toMatchObject({
+        protectedpersonsaddressAddress1: null,
+        protectedpersonsaddressPostCode: null
+      });
+    }));
+
+    it('should hide the "Enter address manually" link once the address fields are shown', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+
+      enterManuallyLink.nativeElement.click();
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.debugElement.query(By.css('a[pdk-link]'))).toBeNull();
+    }));
+
+    it('should populate the address fields when an address is selected', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      selectAutosuggestAddress({
+        line1: '29 Acacia Road',
+        line3: 'Bristol',
+        postcode: 'BS1 1AA'
+      });
+      expect(getFormValues()).toMatchObject({
+        protectedpersonsaddressAddress1: '29 Acacia Road',
+        protectedpersonsaddressAddress3: 'Bristol',
+        protectedpersonsaddressPostCode: 'BS1 1AA'
+      });
+    }));
+
+    it('should keep the same currentAddress object across repeated change detection cycles once a result is populated', fakeAsync(() => {
+      // currentAddress feeds cpp-address-autosuggest's [ngModel]. A getter that
+      // built a new object on every read would look "changed" to Angular on
+      // every check once the result has real address data, re-triggering
+      // cpp-address's real OS Places verification call in a tight loop.
+      fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(ADDRESS_WITH_LOOKUP)];
+      fixture.detectChanges();
+      tick();
+      const component = fixture.debugElement.query(By.css('cpp-address-prompt-choice'))
+        .componentInstance as { currentAddress: unknown };
+      const first = component.currentAddress;
+
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      tick();
+
+      expect(component.currentAddress).toBe(first);
+    }));
+
+    it('should overwrite the address fields when a different address is selected', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      selectAutosuggestAddress({
+        line1: '29 Acacia Road',
+        line3: 'Bristol',
+        postcode: 'BS1 1AA'
+      });
+      selectAutosuggestAddress({
+        line1: '31 Acacia Road',
+        line3: 'Bristol',
+        postcode: 'BS1 1AB'
+      });
+      submitForm();
+      const [{ value: children }] = getSubmittedResultPrompts();
+      const address1 = children.find(
+        (child: DraftResultPrompt) => child.promptRef === 'protectedpersonsaddressAddress1'
+      );
+      const postCode = children.find(
+        (child: DraftResultPrompt) => child.promptRef === 'protectedpersonsaddressPostCode'
+      );
+      expect(address1.value).toBe('31 Acacia Road');
+      expect(postCode.value).toBe('BS1 1AB');
+    }));
+
+    it('should clear address lines that are absent from a subsequently selected address', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      selectAutosuggestAddress({
+        line1: '29 Acacia Road',
+        line2: 'Flat 2',
+        line3: 'Bristol',
+        postcode: 'BS1 1AA'
+      });
+      selectAutosuggestAddress({
+        line1: '31 Anchor Road',
+        line3: 'Bristol',
+        postcode: 'BS1 1AB'
+      });
+      expect(getFormValues()).toMatchObject({
+        protectedpersonsaddressAddress1: '31 Anchor Road',
+        protectedpersonsaddressAddress2: null
+      });
     }));
   });
 
@@ -1257,6 +1427,104 @@ describe('ResultPromptsForm', () => {
       }));
     });
 
+    describe('Both / Person with address lookup', () => {
+      const FCOST = getParsedResultDefinitionByShortCode('FCOST');
+      const NAMEADDRESS = {
+        ...((FCOST.promptChoices[1] as OneOfPromptChoice).children[1] as NameAddressPromptChoice),
+        useAddressLookup: true
+      };
+
+      beforeEach(() => {
+        fixture.componentInstance.promptChoices = [NAMEADDRESS];
+      });
+
+      it('should render the address lookup above the address fields', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
+      }));
+
+      it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
+        fixture.componentInstance.promptChoices = [{ ...NAMEADDRESS, useAddressLookup: false }];
+        fixture.detectChanges();
+        tick();
+        expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
+      }));
+
+      const addressLineOrPostcodeFields = () =>
+        fixture.debugElement.queryAll(
+          By.css('input[ng-reflect-format=addressLine], input[ng-reflect-format=postcode]')
+        );
+
+      it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        expect(addressLineOrPostcodeFields().length).toBe(0);
+      }));
+
+      it('should render the address fields immediately when amending a result that already has an address', fakeAsync(() => {
+        fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(NAMEADDRESS)];
+        fixture.detectChanges();
+        tick();
+        expect(addressLineOrPostcodeFields().length).toBeGreaterThan(0);
+        expect(getFormValues()).toMatchObject({
+          minorcreditornameandaddressAddress1: 'X',
+          minorcreditornameandaddressPostCode: 'CR0 1XN'
+        });
+      }));
+
+      it('should reveal the address fields when "Enter address manually" is clicked, without an address selected', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+
+        enterManuallyLink.nativeElement.click();
+        fixture.detectChanges();
+        tick();
+
+        expect(addressLineOrPostcodeFields().length).toBeGreaterThan(0);
+        expect(getFormValues()).toMatchObject({
+          minorcreditornameandaddressAddress1: null,
+          minorcreditornameandaddressPostCode: null
+        });
+      }));
+
+      it('should populate the address fields when an address is selected', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        selectAutosuggestAddress({
+          line1: '29 Acacia Road',
+          line3: 'Bristol',
+          postcode: 'BS1 1AA'
+        });
+        expect(getFormValues()).toMatchObject({
+          minorcreditornameandaddressAddress1: '29 Acacia Road',
+          minorcreditornameandaddressAddress3: 'Bristol',
+          minorcreditornameandaddressPostCode: 'BS1 1AA'
+        });
+      }));
+
+      it('should keep the same currentAddress object across repeated change detection cycles once a result is populated', fakeAsync(() => {
+        // currentAddress feeds cpp-address-autosuggest's [ngModel]. A getter that
+        // built a new object on every read would look "changed" to Angular on
+        // every check once the result has real address data, re-triggering
+        // cpp-address's real OS Places verification call in a tight loop.
+        fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(NAMEADDRESS)];
+        fixture.detectChanges();
+        tick();
+        const component = fixture.debugElement.query(By.css('cpp-nameaddress-prompt-choice'))
+          .componentInstance as { currentAddress: unknown };
+        const first = component.currentAddress;
+
+        fixture.detectChanges();
+        tick();
+        fixture.detectChanges();
+        tick();
+
+        expect(component.currentAddress).toBe(first);
+      }));
+    });
+
     describe('Organisation', () => {
       const NAMEADDRESS = {
         ...getPromptChoiceForType('NAMEADDRESS'),
@@ -2065,6 +2333,70 @@ describe('ResultPromptsForm', () => {
           },
         ]
       `);
+    }));
+  });
+
+  describe('TXT prompt with address lookup', () => {
+    const TXT_WITH_LOOKUP = {
+      ...getPromptChoiceForType('TXT'),
+      minLength: '1',
+      maxLength: '99',
+      required: true,
+      useAddressLookup: true
+    } as TextPromptChoice;
+
+    beforeEach(() => {
+      fixture.componentInstance.promptChoices = [TXT_WITH_LOOKUP];
+    });
+
+    it('should render the address lookup above the text box', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
+    }));
+
+    it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
+      fixture.componentInstance.promptChoices = [{ ...TXT_WITH_LOOKUP, useAddressLookup: false }];
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
+    }));
+
+    it('should insert the selected address as a single comma-separated line in the text box', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      selectAutosuggestAddress({
+        line1: '29 Acacia Road',
+        line3: 'Bristol',
+        postcode: 'BS1 1AA'
+      });
+      expect(getFormValues()).toMatchObject({
+        consecutiveToOffenceNumber: '29 Acacia Road, Bristol, BS1 1AA'
+      });
+    }));
+
+    it('should still allow the inserted text to be edited manually', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      selectAutosuggestAddress({
+        line1: '29 Acacia Road',
+        line3: 'Bristol',
+        postcode: 'BS1 1AA'
+      });
+      const ngForm = fixture.debugElement.query(By.directive(NgForm)).componentInstance.ngForm;
+
+      ngForm.controls['consecutiveToOffenceNumber'].setValue(
+        '29 Acacia Road, Bristol, BS1 1AA (flat 2)'
+      );
+      fixture.detectChanges();
+      tick();
+      submitForm();
+      expect(getSubmittedResultPrompts()).toMatchObject([
+        {
+          promptRef: 'consecutiveToOffenceNumber',
+          value: '29 Acacia Road, Bristol, BS1 1AA (flat 2)'
+        }
+      ]);
     }));
   });
 });
