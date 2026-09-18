@@ -1,4 +1,4 @@
-import { ValidationErrors } from '@angular/forms';
+import { NgForm, ValidationErrors } from '@angular/forms';
 import { Address } from '@cpp/application';
 import { validateAddressLine, validateEmail, validatePostcode } from '@cpp/pdk';
 import { find } from 'lodash-es';
@@ -41,10 +41,6 @@ const ADDRESS_LINE_PART_NAMES: AddressPartName[] = [
   'PostCode'
 ];
 
-// The part names covered by cpp-address-autosuggest's own fields (address lines and
-// postcode). EmailAddress1/2 (and, for NAMEADDRESS, OrganisationName/FirstName/
-// MiddleName/LastName) are not - they stay as separate manual inputs regardless of
-// whether the address lookup is shown.
 export const isAddressLineOrPostcodePartName = (
   partName: AddressPartName | NameAddressPartName
 ): boolean => ADDRESS_LINE_PART_NAMES.includes(partName as AddressPartName);
@@ -56,10 +52,6 @@ export const formatAddressValue = (value: DraftResultPrompt<string>[]): string =
     .join(', ');
 };
 
-// Maps a selected cpp-address-autosuggest Address onto our AddressLine1-5/PostCode
-// promptRefs. Our AddressLine3/AddressLine4 double up as "Town, City"/"County"
-// (see getHintTextForAddressPart), which the pdk Address model holds separately -
-// line3/line4 win when both are present.
 export const addressToPromptChildValues = (
   address: Address,
   children: PromptChoiceChild<AddressPartName | NameAddressPartName>[]
@@ -67,8 +59,8 @@ export const addressToPromptChildValues = (
   const valueByPartName: Partial<Record<AddressPartName, string>> = {
     AddressLine1: address.line1,
     AddressLine2: address.line2,
-    AddressLine3: address.line3 || address.town,
-    AddressLine4: address.line4 || address.county,
+    AddressLine3: address.line3,
+    AddressLine4: address.line4,
     AddressLine5: address.line5,
     PostCode: address.postcode
   };
@@ -81,6 +73,31 @@ export const addressToPromptChildValues = (
     }
     return acc;
   }, {} as Record<string, string>);
+};
+
+// Writes a selected Address onto the matching AddressLine1-5/PostCode controls -
+// shared by AddressPromptChoiceComponent and NameAddressPromptChoiceComponent, whose
+// handleAddressSelected()/applyAddress() are otherwise identical. Postcode has no
+// value to enter for a selected address, so it's always (re-)enabled here - unlike
+// EmailAddress1/2 (and, for NAMEADDRESS, name/organisation fields), which the address
+// lookup has nothing to do with and so are left untouched.
+export const applyAddressToControls = (
+  ngForm: NgForm,
+  children: PromptChoiceChild<AddressPartName | NameAddressPartName>[],
+  address: Address
+): void => {
+  const values = addressToPromptChildValues(address, children);
+
+  children
+    .filter(({ partName }) => isAddressLineOrPostcodePartName(partName))
+    .forEach(({ promptRef, partName }) => {
+      const control = ngForm.control.get(promptRef);
+
+      control.setValue(values[promptRef] || null);
+      if (partName === 'PostCode') {
+        control.enable();
+      }
+    });
 };
 
 // Reverse of addressToPromptChildValues, used to seed cpp-address-autosuggest when
@@ -116,7 +133,6 @@ export const promptChildValuesToAddress = (
     line3: valueForPartName('AddressLine3'),
     line4: valueForPartName('AddressLine4'),
     line5: valueForPartName('AddressLine5'),
-    town: '',
     postcode: postcode || ''
   };
 };

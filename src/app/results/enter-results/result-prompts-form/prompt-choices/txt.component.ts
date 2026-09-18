@@ -19,11 +19,16 @@ const TEXTAREA_MIN_LENGTH = 100;
   template: `
     <!-- Address lookup -->
     @if (promptChoice.useAddressLookup) {
-    <pdk-form-field label="Search address or Postcode" labelType="small">
+    <pdk-form-field
+      label="Search address or Postcode"
+      hintText="Enter at least 3 characters to see address suggestions"
+      labelType="small"
+    >
       <cpp-address-autosuggest
         [ngModel]="null"
         [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="handleAddressSelected($event)"
+        clearOnSelection
       >
       </cpp-address-autosuggest>
     </pdk-form-field>
@@ -52,13 +57,6 @@ const TEXTAREA_MIN_LENGTH = 100;
       }
     </pdk-form-field>
   `,
-  // cpp-address-autosuggest's own nested <cpp-address> fields (address line 1-5/town/
-  // county/postcode) aren't wanted here - this prompt only wants the address inserted
-  // as a single line into the text box above. Scoped through the cpp-address element
-  // specifically: pdk-interaction-container is a generic wrapper pdk reuses inside
-  // many components, including the search dropdown itself - an unscoped
-  // "::ng-deep pdk-interaction-container" hides the search box too.
-  styles: [':host ::ng-deep cpp-address pdk-interaction-container { display: none; }'],
   viewProviders: [
     {
       provide: ControlContainer,

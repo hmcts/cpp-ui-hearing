@@ -1,9 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges
+} from '@angular/core';
 import { ControlContainer, NgForm, FormsModule } from '@angular/forms';
 import { Address, CppAddressAutosuggestComponent } from '@cpp/application';
 import {
   PdkFormComponent,
   PdkFormFieldComponent,
+  PdkLinkDirective,
   PdkRadioGroupComponent,
   PdkRadioButtonComponent,
   PdkTextInput,
@@ -13,7 +20,7 @@ import {
 import { find, keyBy } from 'lodash-es';
 import { validateValueForPromptChoice } from '../../../core/helpers';
 import {
-  addressToPromptChildValues,
+  applyAddressToControls,
   isAddressLineOrPostcodePartName,
   promptChildValuesToAddress
 } from '../../../core/prompt-choices/address';
@@ -86,15 +93,41 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
     <!-- Address lookup -->
 
     @if (promptChoice.useAddressLookup && !hasOrganisationLookup) {
-    <pdk-form-field label="Search address or Postcode" labelType="small">
+    <pdk-form-field
+      label="Search address or Postcode"
+      hintText="Enter at least 3 characters to see address suggestions"
+      labelType="small"
+    >
       <cpp-address-autosuggest
-        [ngModel]="currentAddress"
+        [ngModel]="null"
         [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="handleAddressSelected($event)"
+        clearOnSelection
       >
       </cpp-address-autosuggest>
     </pdk-form-field>
-    }
+    @if (!showFields) {
+    <div pdk-margin-bottom="6">
+      <a pdk-link role="button" href="javascript:void(0)" (click)="handleEnterManually()"
+        >Enter address manually</a
+      >
+    </div>
+    } @for (partName of otherPartNames; track trackByPartName($index, partName)) { @if
+    (!isAddressLineOrPostcodePartName(partName) || showFields) {
+    <pdk-form-field
+      [label]="getChildPromptChoice(partName) | promptChoiceLabel"
+      [hintText]="getChildPromptChoice(partName).hint"
+      labelType="small"
+    >
+      <input
+        type="text"
+        [name]="getChildPromptChoice(partName).promptRef"
+        [ngModel]="formValues[getChildPromptChoice(partName).promptRef]?.value"
+        pdk-input
+        [pdk-text-input]="getChildPromptChoice(partName) | promptChoiceFormat"
+      />
+    </pdk-form-field>
+    } } } @else {
     <!-- Other part names -->
 
     @for (partName of otherPartNames; track trackByPartName($index, partName)) {
@@ -111,15 +144,8 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
         [pdk-text-input]="getChildPromptChoice(partName) | promptChoiceFormat"
       />
     </pdk-form-field>
-    }
+    } }
   `,
-  // cpp-address-autosuggest's own nested <cpp-address> fields use generic labels
-  // (Address line 1, Town or city, ...) that don't match this result's per-field
-  // labels above - hide just that block. Scoped through the cpp-address element
-  // specifically: pdk-interaction-container is a generic wrapper pdk reuses inside
-  // many components, including the search dropdown itself - an unscoped
-  // "::ng-deep pdk-interaction-container" hides the search box too.
-  styles: [':host ::ng-deep cpp-address pdk-interaction-container { display: none; }'],
   viewProviders: [
     {
       provide: ControlContainer,
@@ -136,6 +162,7 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
     PdkTextInput,
     PdkAutosuggestLiteComponent,
     PdkMarginDirective,
+    PdkLinkDirective,
     CppAddressAutosuggestComponent
   ]
 })
@@ -148,26 +175,24 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
   set value(resultPrompt: DraftResultPrompt<DraftResultPrompt<string>[]> | undefined) {
     const resultPromptValues = resultPrompt ? resultPrompt : this.obtainDefaultingOption();
     this.formValues = resultPromptValues ? keyBy(resultPromptValues.value, 'promptRef') : {};
-    // Computed once here, not as a live getter: cpp-address-autosuggest's nested
-    // <cpp-address> re-verifies (a real network call) whenever its bound value
-    // changes reference. A getter rebuilding a new object on every template
-    // check would look like "changed" on every change detection cycle once
-    // formValues holds real address data, flooding OS Places and freezing the page.
     this.currentAddress = promptChildValuesToAddress(
       this.formValues,
       this.promptChoice?.children ?? []
     );
+    this.showFields = !!this.currentAddress;
   }
 
   childPromptChoices: Record<NameAddressPartName, PromptChoiceChild>;
   formValues: Record<string, DraftResultPrompt<string>> = {};
   currentAddress: Address | null = null;
+  showFields = false;
+  // Exposed for the template - it can only call component members, not free imported functions.
+  isAddressLineOrPostcodePartName = isAddressLineOrPostcodePartName;
   selectedAddressType: 'Organisation' | 'Person' | 'Both';
   selectedOrganisation: NameAddressListItem;
   suggestions: NameAddressListItem[] = [];
 
-  constructor(private ngForm: NgForm, pdkForm: PdkFormComponent) {
-    // As a performance optimization, validate only on submit
+  constructor(private ngForm: NgForm, pdkForm: PdkFormComponent, private cdr: ChangeDetectorRef) {
     pdkForm.onBeforeSubmit$.subscribe(() => {
       const errors = validateValueForPromptChoice(this.promptChoice, this.ngForm.form.value);
 
@@ -253,19 +278,17 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
     if (!address) {
       return;
     }
-    const values = addressToPromptChildValues(address, this.promptChoice.children);
+    this.showFields = true;
+    this.cdr.detectChanges();
+    Promise.resolve().then(() => this.applyAddress(address));
+  }
 
-    this.promptChoice.children
-      .filter(({ partName }) => isAddressLineOrPostcodePartName(partName))
-      .forEach(({ promptRef, partName }) => {
-        const control = this.ngForm.control.get(promptRef);
+  handleEnterManually(): void {
+    this.showFields = true;
+  }
 
-        control.setValue(values[promptRef] || null);
-        if (partName === 'PostCode') {
-          // No fixed abode has no postcode to enter or validate.
-          address.noFixedAbode ? control.disable() : control.enable();
-        }
-      });
+  private applyAddress(address: Address): void {
+    applyAddressToControls(this.ngForm, this.promptChoice.children, address);
   }
 
   handleOrganisationInputText(inputText: string) {

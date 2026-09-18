@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NgForm } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Address, ADDRESS_LOOKUP_CONFIG } from '@cpp/application';
+import { Address } from '@cpp/application';
+import { CppHttp } from '@cpp/core';
 import { provideMockStore } from '@ngrx/store/testing';
 import { last } from 'lodash-es';
 import { of } from 'rxjs';
@@ -59,11 +58,9 @@ describe('ResultPromptsForm', () => {
           }
         },
         provideMockStore({ initialState: { results: {} } }),
-        provideHttpClient(),
-        provideHttpClientTesting(),
         {
-          provide: ADDRESS_LOOKUP_CONFIG,
-          useValue: { baseUrl: 'https://example.test/places', dataset: 'DPA' }
+          provide: CppHttp,
+          useValue: { query: jest.fn(() => of({ results: [] })) }
         }
       ],
       teardown: { destroyAfterEach: false }
@@ -101,19 +98,10 @@ describe('ResultPromptsForm', () => {
   const selectAutosuggestAddress = (address: Address) => {
     const autosuggest = fixture.debugElement.query(By.css('cpp-address-autosuggest'));
 
-    autosuggest.componentInstance.selectAddress(address);
-    fixture.detectChanges();
-    tick();
-  };
-
-  // selectAddress() (above) is for picking a suggestion from the search dropdown, and
-  // is gated by isPopulatedAddress (real OS Places results always have line1/town/postcode).
-  // "No fixed abode" is set via the nested cpp-address's own checkbox, which writes
-  // straight to addressControl and isn't subject to that gate - simulate that path directly.
-  const editAutosuggestAddress = (address: Address) => {
-    const autosuggest = fixture.debugElement.query(By.css('cpp-address-autosuggest'));
-
-    autosuggest.componentInstance.addressControl.setValue(address);
+    // cpp-address-autosuggest forwards its own registerOnChange straight onto its
+    // internal pdk-autosuggest-lite child (liteRef) - calling that child's
+    // propagateChange is exactly what a real dropdown selection does.
+    (autosuggest.componentInstance as any).liteRef.propagateChange(address);
     fixture.detectChanges();
     tick();
   };
@@ -369,12 +357,57 @@ describe('ResultPromptsForm', () => {
       expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
     }));
 
+    it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBe(0);
+    }));
+
+    it('should render the address fields immediately when amending a result that already has an address', fakeAsync(() => {
+      fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(ADDRESS_WITH_LOOKUP)];
+      fixture.detectChanges();
+      tick();
+      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBeGreaterThan(0);
+      expect(getFormValues()).toMatchObject({
+        protectedpersonsaddressAddress1: 'X',
+        protectedpersonsaddressPostCode: 'CR0 1XN'
+      });
+    }));
+
+    it('should reveal the address fields when "Enter address manually" is clicked, without an address selected', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+
+      enterManuallyLink.nativeElement.click();
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBeGreaterThan(0);
+      expect(getFormValues()).toMatchObject({
+        protectedpersonsaddressAddress1: null,
+        protectedpersonsaddressPostCode: null
+      });
+    }));
+
+    it('should hide the "Enter address manually" link once the address fields are shown', fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+
+      enterManuallyLink.nativeElement.click();
+      fixture.detectChanges();
+      tick();
+
+      expect(fixture.debugElement.query(By.css('a[pdk-link]'))).toBeNull();
+    }));
+
     it('should populate the address fields when an address is selected', fakeAsync(() => {
       fixture.detectChanges();
       tick();
       selectAutosuggestAddress({
         line1: '29 Acacia Road',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AA'
       });
       expect(getFormValues()).toMatchObject({
@@ -409,12 +442,12 @@ describe('ResultPromptsForm', () => {
       tick();
       selectAutosuggestAddress({
         line1: '29 Acacia Road',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AA'
       });
       selectAutosuggestAddress({
         line1: '31 Acacia Road',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AB'
       });
       submitForm();
@@ -435,63 +468,18 @@ describe('ResultPromptsForm', () => {
       selectAutosuggestAddress({
         line1: '29 Acacia Road',
         line2: 'Flat 2',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AA'
       });
       selectAutosuggestAddress({
         line1: '31 Anchor Road',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AB'
       });
       expect(getFormValues()).toMatchObject({
         protectedpersonsaddressAddress1: '31 Anchor Road',
         protectedpersonsaddressAddress2: null
       });
-    }));
-
-    it('should clear all other address fields except address line 1 when "No fixed abode" is selected', fakeAsync(() => {
-      fixture.detectChanges();
-      tick();
-      selectAutosuggestAddress({
-        line1: '29 Acacia Road',
-        line2: 'Flat 2',
-        town: 'Bristol',
-        postcode: 'BS1 1AA'
-      });
-      editAutosuggestAddress({
-        line1: 'No fixed abode',
-        town: '',
-        postcode: '',
-        noFixedAbode: true
-      });
-      expect(getFormValues()).toMatchObject({
-        protectedpersonsaddressAddress1: 'No fixed abode',
-        protectedpersonsaddressAddress2: null,
-        protectedpersonsaddressAddress3: null
-      });
-      expect(getFormValues()).not.toHaveProperty('protectedpersonsaddressPostCode');
-    }));
-
-    it('should disable the postcode field when "No fixed abode" is selected, and re-enable it when a real address is selected afterwards', fakeAsync(() => {
-      fixture.detectChanges();
-      tick();
-      const ngForm = fixture.debugElement.query(By.directive(NgForm)).componentInstance.ngForm;
-
-      editAutosuggestAddress({
-        line1: 'No fixed abode',
-        town: '',
-        postcode: '',
-        noFixedAbode: true
-      });
-      expect(ngForm.controls['protectedpersonsaddressPostCode'].disabled).toBe(true);
-
-      selectAutosuggestAddress({
-        line1: '29 Acacia Road',
-        town: 'Bristol',
-        postcode: 'BS1 1AA'
-      });
-      expect(ngForm.controls['protectedpersonsaddressPostCode'].disabled).toBe(false);
-      expect(getFormValues()).toMatchObject({ protectedpersonsaddressPostCode: 'BS1 1AA' });
     }));
   });
 
@@ -1463,12 +1451,50 @@ describe('ResultPromptsForm', () => {
         expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
       }));
 
+      const addressLineOrPostcodeFields = () =>
+        fixture.debugElement.queryAll(
+          By.css('input[ng-reflect-format=addressLine], input[ng-reflect-format=postcode]')
+        );
+
+      it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        expect(addressLineOrPostcodeFields().length).toBe(0);
+      }));
+
+      it('should render the address fields immediately when amending a result that already has an address', fakeAsync(() => {
+        fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(NAMEADDRESS)];
+        fixture.detectChanges();
+        tick();
+        expect(addressLineOrPostcodeFields().length).toBeGreaterThan(0);
+        expect(getFormValues()).toMatchObject({
+          minorcreditornameandaddressAddress1: 'X',
+          minorcreditornameandaddressPostCode: 'CR0 1XN'
+        });
+      }));
+
+      it('should reveal the address fields when "Enter address manually" is clicked, without an address selected', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+
+        enterManuallyLink.nativeElement.click();
+        fixture.detectChanges();
+        tick();
+
+        expect(addressLineOrPostcodeFields().length).toBeGreaterThan(0);
+        expect(getFormValues()).toMatchObject({
+          minorcreditornameandaddressAddress1: null,
+          minorcreditornameandaddressPostCode: null
+        });
+      }));
+
       it('should populate the address fields when an address is selected', fakeAsync(() => {
         fixture.detectChanges();
         tick();
         selectAutosuggestAddress({
           line1: '29 Acacia Road',
-          town: 'Bristol',
+          line3: 'Bristol',
           postcode: 'BS1 1AA'
         });
         expect(getFormValues()).toMatchObject({
@@ -2341,7 +2367,7 @@ describe('ResultPromptsForm', () => {
       tick();
       selectAutosuggestAddress({
         line1: '29 Acacia Road',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AA'
       });
       expect(getFormValues()).toMatchObject({
@@ -2354,7 +2380,7 @@ describe('ResultPromptsForm', () => {
       tick();
       selectAutosuggestAddress({
         line1: '29 Acacia Road',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AA'
       });
       const ngForm = fixture.debugElement.query(By.directive(NgForm)).componentInstance.ngForm;

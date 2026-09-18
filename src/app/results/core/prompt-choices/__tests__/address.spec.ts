@@ -85,7 +85,7 @@ describe('Address prompt choice helpers', () => {
       const address: Address = {
         line1: '29 Acacia Road',
         line2: 'Flat 2',
-        town: 'Bristol',
+        line3: 'Bristol',
         postcode: 'BS1 1AA'
       };
 
@@ -97,24 +97,8 @@ describe('Address prompt choice helpers', () => {
       });
     });
 
-    it('should prefer an explicit line3/line4 over town/county when both are present', () => {
-      const address: Address = {
-        line1: '29 Acacia Road',
-        line3: 'Old Market',
-        line4: 'Avon',
-        town: 'Bristol',
-        county: 'Somerset',
-        postcode: 'BS1 1AA'
-      };
-
-      expect(addressToPromptChildValues(address, CHILDREN)).toMatchObject({
-        testAddress3: 'Old Market',
-        testAddress4: 'Avon'
-      });
-    });
-
     it('should not set values for children the address has nothing for', () => {
-      const address: Address = { line1: '29 Acacia Road', town: 'Bristol', postcode: 'BS1 1AA' };
+      const address: Address = { line1: '29 Acacia Road', postcode: 'BS1 1AA' };
       const values = addressToPromptChildValues(address, CHILDREN);
 
       expect(values).not.toHaveProperty('testAddress4');
@@ -150,7 +134,6 @@ describe('Address prompt choice helpers', () => {
         line3: 'Bristol',
         line4: undefined,
         line5: undefined,
-        town: '',
         postcode: 'BS1 1AA'
       });
     });
