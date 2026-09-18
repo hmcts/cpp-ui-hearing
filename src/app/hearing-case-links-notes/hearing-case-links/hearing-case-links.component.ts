@@ -54,6 +54,7 @@ import { LinkType } from '@cpp/reference-data';
             >
               {{ 'COMMON.CASE_MATERIAL' | translate }}
             </a>
+            @if (canAddApplication) {
             <a
               pdk-link
               href="javascript:void(0);"
@@ -67,6 +68,7 @@ import { LinkType } from '@cpp/reference-data';
             >
               {{ 'HEARING_LIST.GO_TO_ADD_APPLICATION' | translate }}
             </a>
+            }
             <a
               pdk-link
               href="javascript:void(0);"
@@ -237,6 +239,12 @@ export class HearingCaseLinksComponent {
 
   canAddChildApplicationTo(application: CourtApplication): boolean {
     return application.type?.linkType === LinkType.STANDALONE || !!application.type?.appealFlag;
+  }
+
+  get canAddApplication(): boolean {
+    return (this.courtApplications || []).every(application =>
+      this.canAddChildApplicationTo(application)
+    );
   }
 
   getCaseReference(prosecutionCase: ProsecutionCaseDetails): string {
