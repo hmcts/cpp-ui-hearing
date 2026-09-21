@@ -1,7 +1,9 @@
 import { Defendant } from '../../../../core/model/defendant';
 import { HearingDetail } from '../../../../core/model/hearing-detail';
+import { Offence } from '../../../../core/model/offence';
 import { PersonDefendant } from '../../../../core/model/person-defendant';
 import { Organisation } from '../../../../core/model/organisation';
+import { ProsecutionCaseDetails } from '../../../../core/model/shared/prosecution-case-details';
 import { DraftResult, ResolvedDraftResultLine } from '../../../results.interfaces';
 import {
   ResultsLineValidation,
@@ -783,8 +785,49 @@ describe('buildResultsValidationRequest', () => {
           orderIndex: 1,
           caseUrn: 'caseURN1',
           hasExistingCtlRecord: false,
-          isConvicted: false
+          isConvicted: false,
+          defendantId: 'defendantId1'
         }
+      ]);
+    });
+
+    it('should map defendantId to the offence from its owning defendant', () => {
+      const hearing = createMinimalHearing({
+        prosecutionCases: [
+          {
+            id: 'prosecutionCaseId1',
+            prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+            defendants: [
+              createDefendant({
+                id: 'defendantId1',
+                offences: [
+                  {
+                    id: 'offenceId1',
+                    offenceCode: 'TH68001',
+                    offenceTitle: 'Theft'
+                  } as Partial<Offence> as Offence
+                ]
+              }),
+              createDefendant({
+                id: 'defendantId2',
+                offences: [
+                  {
+                    id: 'offenceId2',
+                    offenceCode: 'TH68002',
+                    offenceTitle: 'Burglary'
+                  } as Partial<Offence> as Offence
+                ]
+              })
+            ]
+          } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+        ]
+      });
+
+      const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+      expect(request.offences).toEqual([
+        expect.objectContaining({ offenceId: 'offenceId1', defendantId: 'defendantId1' }),
+        expect.objectContaining({ offenceId: 'offenceId2', defendantId: 'defendantId2' })
       ]);
     });
 
