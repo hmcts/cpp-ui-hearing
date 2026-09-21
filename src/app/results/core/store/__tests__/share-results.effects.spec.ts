@@ -6,7 +6,7 @@ import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action, Store, provideStore, provideState } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import {
   AppState,
   clearCurrentAmendmentReason,
@@ -20,7 +20,8 @@ import {
   reducers,
   RequestOptions,
   setHearingState,
-  WelshDefendantTranslate
+  WelshDefendantTranslate,
+  ListingService
 } from '../../../../core';
 import { DraftResult, DraftResultPrompt } from '../../../results.interfaces';
 import { ResultsService } from '../../services/results.service';
@@ -43,6 +44,7 @@ describe('ShareResultEffects', () => {
   let draftResultBuilderService: DraftResultBuilderService;
   let hearingService: HearingService;
   let provisionalBookingService: ProvisionalBookingService;
+  let listingService: ListingService;
   let resultsService: ResultsService;
   let reusableInfoService: ReusableInfoService;
   let router: Router;
@@ -105,6 +107,22 @@ describe('ShareResultEffects', () => {
             releaseProvisionalHearingSlots: jest.fn(() => of(undefined))
           }
         },
+        {
+          provide: ListingService,
+          useValue: {
+            // Default: every id asked about is still an unconfirmed hold, so the sweep may
+            // release it. Tests covering a CONFIRMED booking override this per-test.
+            getBookingStatus: jest.fn((bookingIds: string[]) =>
+              of({
+                bookings: bookingIds.map(bookingId => ({
+                  bookingId,
+                  safeToShare: true,
+                  status: 'RESERVED'
+                }))
+              })
+            )
+          }
+        },
         ResultsService,
         ReusableInfoService,
         {
@@ -125,6 +143,7 @@ describe('ShareResultEffects', () => {
     effects = TestBed.inject(ShareResultsEffects);
     hearingService = TestBed.inject(HearingService);
     provisionalBookingService = TestBed.inject(ProvisionalBookingService);
+    listingService = TestBed.inject(ListingService);
     resultsService = TestBed.inject(ResultsService);
     reusableInfoService = TestBed.inject(ReusableInfoService);
     draftResultBuilderService = TestBed.inject(DraftResultBuilderService);
@@ -641,7 +660,7 @@ describe('ShareResultEffects', () => {
     });
 
     const draftResultWithLines = (
-      resultLines: Record<string, { resultPrompts: DraftResultPrompt[] }>
+      resultLines: Record<string, { resultPrompts: DraftResultPrompt[]; sharedDate?: string }>
     ): DraftResult =>
       ({
         ...draftResult,
@@ -677,6 +696,80 @@ describe('ShareResultEffects', () => {
         hearingId: draftResult.hearingId,
         bookingId: 'booking-1'
       });
+    });
+
+    // Discarding local edits is not a share, so a CONFIRMED booking must survive it untouched -
+    // only a share may change one. An unconfirmed hold on the same draft is still given back.
+    it('releases only the unconfirmed holds, leaving confirmed bookings alone', () => {
+      seedDraftResult(
+        draftResultWithLines({
+          'line-1': { resultPrompts: [bookingReferencePrompt('booking-confirmed')] },
+          'line-2': { resultPrompts: [bookingReferencePrompt('booking-held')] }
+        })
+      );
+      listingService.getBookingStatus = jest.fn(() =>
+        of({
+          bookings: [
+            { bookingId: 'booking-confirmed', safeToShare: true, status: 'SHARED' },
+            { bookingId: 'booking-held', safeToShare: true, status: 'RESERVED' }
+          ]
+        })
+      );
+      const release$ = cold('-(r|)', { r: undefined });
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+      actions$ = hot('-a--', { a: ShareResultsActions.cancelAmendments() });
+      const expected$ = cold('--r', { r: undefined });
+
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(expected$);
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledTimes(1);
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+        hearingId: draftResult.hearingId,
+        bookingId: 'booking-held'
+      });
+    });
+
+    // A SHARED line can still hold an unconfirmed booking - a re-pick during the amendment
+    // reuses the bookingId - so the sweep must offer it and act on courtscheduler's verdict.
+    it('sweeps a SHARED line whose booking is still RESERVED', () => {
+      seedDraftResult(
+        draftResultWithLines({
+          'line-1': {
+            resultPrompts: [bookingReferencePrompt('booking-repicked')],
+            sharedDate: '2026-09-21'
+          }
+        })
+      );
+      const release$ = cold('-(r|)', { r: undefined });
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+      actions$ = hot('-a--', { a: ShareResultsActions.cancelAmendments() });
+      const expected$ = cold('--r', { r: undefined });
+
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(expected$);
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+        hearingId: draftResult.hearingId,
+        bookingId: 'booking-repicked'
+      });
+    });
+
+    // Fails CLOSED: without a verdict we cannot tell a confirmed booking from an unconfirmed
+    // one, and releasing a confirmed one must never happen. The 01:00 purge is the backstop.
+    it('releases nothing when the booking-status lookup fails', () => {
+      seedDraftResult(
+        draftResultWithLines({
+          'line-1': { resultPrompts: [bookingReferencePrompt('booking-1')] }
+        })
+      );
+      listingService.getBookingStatus = jest.fn(() =>
+        throwError(() => new Error('courtscheduler unreachable'))
+      );
+      provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+      actions$ = hot('-a--', { a: ShareResultsActions.cancelAmendments() });
+
+      expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(cold('----'));
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
     });
 
     it('calls nothing when the discarded draft result carries no bookingReference', () => {
