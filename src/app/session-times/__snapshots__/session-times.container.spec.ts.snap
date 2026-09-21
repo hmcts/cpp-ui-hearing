@@ -446,8 +446,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                           class="judiciary-typeahead"
                         >
                           <pdk-autosuggest-lite
-                            class="role-typeahead"
-                            roletypeahead=""
                             suggestionkey="id"
                             suggestionsubtitle="judicialMemberLocation"
                           >
@@ -462,9 +460,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="First Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -520,8 +518,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                           class="judiciary-typeahead"
                         >
                           <pdk-autosuggest-lite
-                            class="role-typeahead"
-                            roletypeahead=""
                             suggestionkey="id"
                             suggestionsubtitle="judicialMemberLocation"
                           >
@@ -536,9 +532,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Second Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -594,8 +590,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                           class="judiciary-typeahead"
                         >
                           <pdk-autosuggest-lite
-                            class="role-typeahead"
-                            roletypeahead=""
                             suggestionkey="id"
                             suggestionsubtitle="judicialMemberLocation"
                           >
@@ -610,9 +604,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Third Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -991,10 +985,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                          SESSION_TIMES.COURT_CLERK 
                       </label>
                       <pdk-autosuggest-lite
-                        class="ng-untouched ng-pristine ng-valid role-typeahead"
+                        class="ng-untouched ng-pristine ng-valid"
                         data-role="record-court-clerk"
                         name="courtClerk"
-                        roletypeahead=""
                         suggestionkey="id"
                         suggestiontitle="label"
                       >
@@ -1056,10 +1049,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                          SESSION_TIMES.COURT_ASSOCIATE 
                       </label>
                       <pdk-autosuggest-lite
-                        class="ng-untouched ng-pristine ng-valid role-typeahead"
+                        class="ng-untouched ng-pristine ng-valid"
                         data-role="record-court-associate"
                         name="courtAssociate"
-                        roletypeahead=""
                         suggestionkey="id"
                         suggestiontitle="label"
                       >
@@ -1121,10 +1113,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                          SESSION_TIMES.LEGAL_ADVISOR 
                       </label>
                       <pdk-autosuggest-lite
-                        class="ng-untouched ng-pristine ng-valid role-typeahead"
+                        class="ng-untouched ng-pristine ng-valid"
                         data-role="record-legal-advisor"
                         name="legalAdviser"
-                        roletypeahead=""
                         suggestionkey="id"
                         suggestiontitle="label"
                       >
@@ -1226,8 +1217,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                           class="judiciary-typeahead"
                         >
                           <pdk-autosuggest-lite
-                            class="role-typeahead"
-                            roletypeahead=""
                             suggestionkey="id"
                             suggestionsubtitle="judicialMemberLocation"
                           >
@@ -1242,9 +1231,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="First Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -1300,8 +1289,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                           class="judiciary-typeahead"
                         >
                           <pdk-autosuggest-lite
-                            class="role-typeahead"
-                            roletypeahead=""
                             suggestionkey="id"
                             suggestionsubtitle="judicialMemberLocation"
                           >
@@ -1316,9 +1303,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Second Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -1374,8 +1361,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                           class="judiciary-typeahead"
                         >
                           <pdk-autosuggest-lite
-                            class="role-typeahead"
-                            roletypeahead=""
                             suggestionkey="id"
                             suggestionsubtitle="judicialMemberLocation"
                           >
@@ -1390,9 +1375,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Third Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -1771,10 +1756,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                          SESSION_TIMES.COURT_CLERK 
                       </label>
                       <pdk-autosuggest-lite
-                        class="ng-untouched ng-pristine ng-valid role-typeahead"
+                        class="ng-untouched ng-pristine ng-valid"
                         data-role="record-court-clerk"
                         name="courtClerk"
-                        roletypeahead=""
                         suggestionkey="id"
                         suggestiontitle="label"
                       >
@@ -1836,10 +1820,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                          SESSION_TIMES.COURT_ASSOCIATE 
                       </label>
                       <pdk-autosuggest-lite
-                        class="ng-untouched ng-pristine ng-valid role-typeahead"
+                        class="ng-untouched ng-pristine ng-valid"
                         data-role="record-court-associate"
                         name="courtAssociate"
-                        roletypeahead=""
                         suggestionkey="id"
                         suggestiontitle="label"
                       >
@@ -1901,10 +1884,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                          SESSION_TIMES.LEGAL_ADVISOR 
                       </label>
                       <pdk-autosuggest-lite
-                        class="ng-untouched ng-pristine ng-valid role-typeahead"
+                        class="ng-untouched ng-pristine ng-valid"
                         data-role="record-legal-advisor"
                         name="legalAdviser"
-                        roletypeahead=""
                         suggestionkey="id"
                         suggestiontitle="label"
                       >

@@ -5,14 +5,15 @@
     </pdk-grid>
     <pdk-grid one-quarter class="flex-column-one">
       <pdk-form-field
+        class="judiciary-form-field"
         label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}"
         labelType="small"
-        class="judiciary-form-field"
         pdk-margin-bottom="3"
       >
         <judiciary-typeahead
           data-role="judiciary-typeahead-0"
           name="judge1"
+          [ariaLabel]="'First Judge name'"
           [ngModel]="getJudiciaryWithId(0)"
           (ngModelChange)="onSetJudiciaryTypeahead($event, 0)"
         ></judiciary-typeahead>
@@ -21,6 +22,7 @@
         <judiciary-typeahead
           name="judge2"
           data-role="judiciary-typeahead-1"
+          [ariaLabel]="'Second Judge name'"
           [ngModel]="getJudiciaryWithId(1)"
           (ngModelChange)="onSetJudiciaryTypeahead($event, 1)"
         ></judiciary-typeahead>
@@ -29,6 +31,7 @@
         <judiciary-typeahead
           name="judge3"
           data-role="judiciary-typeahead-2"
+          [ariaLabel]="'Third Judge name'"
           [ngModel]="getJudiciaryWithId(2)"
           (ngModelChange)="onSetJudiciaryTypeahead($event, 2)"
         ></judiciary-typeahead>
@@ -39,6 +42,7 @@
           <judiciary-typeahead
             [attr.data-role]="'other-judiciary-typeahead-' + i"
             [name]="'otherJudiciary' + i"
+            [ariaLabel]="'Additional Judge ' + (i + 1) + ' name'"
             [ngModel]="otherJudiciary.value"
             (ngModelChange)="onSetOtherJudiciary($event, i)"
           ></judiciary-typeahead>
@@ -123,7 +127,6 @@
         <pdk-autosuggest-lite
           name="courtClerk"
           data-role="record-court-clerk"
-          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'courtClerks')"
           [suggestions]="filteredOfficerSuggestions['courtClerks']"
           suggestionKey="id"
@@ -139,7 +142,6 @@
         <pdk-autosuggest-lite
           name="courtAssociate"
           data-role="record-court-associate"
-          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'courtAssociate')"
           [suggestions]="filteredOfficerSuggestions['courtAssociate']"
           suggestionKey="id"
@@ -155,7 +157,6 @@
         <pdk-autosuggest-lite
           name="legalAdviser"
           data-role="record-legal-advisor"
-          roleTypeahead
           (inputText)="handleSearchSuggestions($event, 'legalAdvisers')"
           [suggestions]="filteredOfficerSuggestions['legalAdvisers']"
           suggestionKey="id"

@@ -20,7 +20,6 @@ import {
 import { Subject } from 'rxjs';
 import { auditTime, filter, map, switchMap } from 'rxjs/operators';
 import { FormFieldControl, PdkAutosuggestLiteComponent } from '@cpp/pdk';
-import { RoleTypeaheadDirective } from '../role-typeahead/role-typeahead.directive';
 import { JudicialMember } from '../../../../core/model';
 import { ReferenceDataService } from '../../../../core/services';
 import { AsyncPipe } from '@angular/common';
@@ -54,13 +53,14 @@ const coerceBooleanProperty = (value: any): boolean => {
       useExisting: forwardRef(() => JudiciaryTypeaheadComponent)
     }
   ],
-  imports: [AsyncPipe, PdkAutosuggestLiteComponent, RoleTypeaheadDirective]
+  imports: [AsyncPipe, PdkAutosuggestLiteComponent]
 })
 export class JudiciaryTypeaheadComponent
   implements ControlValueAccessor, FormFieldControl, Validator, OnDestroy
 {
   id: string;
   ariaDescribedBy: string | null;
+  @Input() ariaLabel = 'Judge name';
   @ViewChild('autosuggest', { static: true })
   autoSuggest: PdkAutosuggestLiteComponent<JudiciaryAutoSuggestOption>;
 
