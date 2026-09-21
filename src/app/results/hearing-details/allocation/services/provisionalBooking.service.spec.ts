@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { CppHttp } from '@cpp/core';
 import { cold } from 'jasmine-marbles';
-import { ProvisionalBookingService } from './provisionalBooking.service';
+import { of } from 'rxjs';
+import { BookingRefusedError, ProvisionalBookingService } from './provisionalBooking.service';
 
 describe('ProvisionalBookingService', () => {
   let service: ProvisionalBookingService;
@@ -62,7 +63,7 @@ describe('ProvisionalBookingService', () => {
     // `bookingId`, so `command$` never errors.
     it('produces an errored observable when the backend refuses the booking', () => {
       const response$ = cold('-a|', { a: { error: 'no capacity' } });
-      const expected$ = cold('-#', {}, new Error('no capacity'));
+      const expected$ = cold('-#', {}, new BookingRefusedError('no capacity'));
 
       http.commandSync = jest.fn().mockReturnValue(response$);
 
@@ -73,6 +74,27 @@ describe('ProvisionalBookingService', () => {
       const command$ = service.bookProvisionalHearingSlots(params);
 
       expect(command$).toBeObservable(expected$);
+    });
+
+    // Pins the contract the pickers rely on to tell a deliberate refusal from a
+    // technical failure. If this stops being a BookingRefusedError, both pickers
+    // silently fall back to the generic "technical problem" message and a genuine
+    // "session is full" stops telling the clerk to choose another session.
+    it('refuses with a BookingRefusedError, not a plain Error', done => {
+      http.commandSync = jest.fn().mockReturnValue(of({ error: 'no capacity' }));
+
+      service
+        .bookProvisionalHearingSlots({
+          hearingId: 'hearingId',
+          courtScheduleBookings: [{ courtScheduleId: '*' }]
+        })
+        .subscribe({
+          error: (error: unknown) => {
+            expect(error).toBeInstanceOf(BookingRefusedError);
+            expect((error as Error).message).toBe('no capacity');
+            done();
+          }
+        });
     });
 
     it('produces a value when the backend accepts the booking', () => {

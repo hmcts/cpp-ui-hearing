@@ -19,7 +19,10 @@ import { AppState, HearingDetail, HearingLockState } from '../../../../core';
 import { CrownSchedulingContainer } from './crown-scheduling.container';
 import { CrownSchedulingComponent } from '../components/crown-scheduling.component';
 import { createDraftResult, extendDraftResult } from '../../../core/testing';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService
+} from '../services/provisionalBooking.service';
 import { HearingSlot, CrownSchedulingFilters, SearchHearingSlotsParams } from '@cpp/scheduling';
 import { AllocateHearingParams } from './magistrates.container';
 
@@ -323,22 +326,46 @@ describe('CrownSchedulingContainer', () => {
       expect(router.navigate).not.toHaveBeenCalled();
     }));
 
-    it('surfaces an error to the component when the reservation fails', fakeAsync(() => {
+    it('surfaces an error to the component when the reservation is refused', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new Error('no capacity'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations();
       tick();
       fixture.detectChanges();
 
-      const stub = fixture.debugElement.query(
-        By.directive(TestCrownSchedulingComponent)
-      ).componentInstance as TestCrownSchedulingComponent;
+      const stub = fixture.debugElement.query(By.directive(TestCrownSchedulingComponent))
+        .componentInstance as TestCrownSchedulingComponent;
 
       expect(stub.externalErrors).toEqual([
         expect.objectContaining({
           message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+        })
+      ]);
+    }));
+
+    // A technical failure of the booking call says nothing about the session's
+    // availability. Reporting it as "fully booked" sends the clerk off to re-pick
+    // a session that was never the problem - which is exactly what happened on
+    // STE02 when a schema rejection rolled the command back and no event arrived.
+    it('does not blame the session when the booking fails for a technical reason', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(
+          () => new Error('Timeout waiting for public.hearing.hearing-slots-provisionally-booked')
+        )
+      );
+
+      submitHearingSlotAllocations();
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestCrownSchedulingComponent))
+        .componentInstance as TestCrownSchedulingComponent;
+
+      expect(stub.externalErrors).toEqual([
+        expect.objectContaining({
+          message: 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
         })
       ]);
     }));
