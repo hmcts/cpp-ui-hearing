@@ -1,14 +1,16 @@
 import { ValidationError } from '@cpp/pdk';
+import { CourtApplication } from '../../../core/model/court-application';
 import { Defendant } from '../../../core/model/defendant';
 import { HearingDetail } from '../../../core/model/hearing-detail';
-import { Offence } from '../../../core/model/offence';
+import { ProsecutionCaseDetails } from '../../../core/model/shared/prosecution-case-details';
 import { DraftResult, DraftResultPromptValue, OffenceLike } from '../../results.interfaces';
 import {
   ResultsValidation,
   ResultsValidationDefendant,
   ResultsValidationErrors,
   ResultsValidationOffence,
-  ResultsLineValidation
+  ResultsLineValidation,
+  ResultsValidationOffenceEntry
 } from '../../results-validation.interfaces';
 import { serializeDurationValue } from '../prompt-choices';
 import { isActiveDraftResultLine, isResolvedDraftResultLine } from './result-line';
@@ -143,21 +145,66 @@ const buildDefendants = (defendants: Defendant[]): ResultsValidationDefendant[] 
     }));
 };
 
+const buildOffenceEntriesFromProsecutionCases = (
+  prosecutionCases: ProsecutionCaseDetails[]
+): ResultsValidationOffenceEntry[] =>
+  prosecutionCases.reduce<ResultsValidationOffenceEntry[]>((acc, kase) => {
+    const caseUrn = kase.prosecutionCaseIdentifier?.caseURN;
+    return acc.concat(
+      (kase.defendants || [])
+        .reduce<ResultsValidationOffenceEntry[]>(
+          (offAcc, d) =>
+            offAcc.concat((d.offences || []).map(offence => ({ offence, defendantId: d.id }))),
+          []
+        )
+        .map(({ offence, defendantId }) => ({ offence, caseUrn, defendantId }))
+    );
+  }, []);
+
+const buildOffenceEntriesFromCourtApplications = (
+  courtApplications: CourtApplication[]
+): ResultsValidationOffenceEntry[] =>
+  courtApplications.reduce<ResultsValidationOffenceEntry[]>((acc, application) => {
+    const { courtApplicationCases, courtOrder, subject } = application;
+    const [defendantCase] = subject.masterDefendant?.defendantCase || [];
+    const defendantId = defendantCase?.defendantId;
+
+    if (courtApplicationCases !== undefined) {
+      return acc.concat(
+        courtApplicationCases.reduce<ResultsValidationOffenceEntry[]>(
+          (caseAcc, applicationCase) =>
+            caseAcc.concat(
+              (applicationCase.offences || []).map(offence => ({
+                offence,
+                caseUrn: applicationCase.prosecutionCaseIdentifier?.caseURN,
+                defendantId
+              }))
+            ),
+          []
+        )
+      );
+    }
+
+    if (courtOrder) {
+      return acc.concat(
+        (courtOrder.courtOrderOffences || []).map(({ offence, prosecutionCaseIdentifier }) => ({
+          offence,
+          caseUrn: prosecutionCaseIdentifier?.caseURN,
+          defendantId
+        }))
+      );
+    }
+
+    return acc;
+  }, []);
+
 const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
   const seen = new Set<string>();
-  return (hearing.prosecutionCases || [])
-    .reduce<{ offence: Offence; caseUrn?: string; defendantId: string }[]>((acc, kase) => {
-      const caseUrn = kase.prosecutionCaseIdentifier?.caseURN;
-      return acc.concat(
-        (kase.defendants || [])
-          .reduce<{ offence: Offence; defendantId: string }[]>(
-            (offAcc, d) =>
-              offAcc.concat((d.offences || []).map(offence => ({ offence, defendantId: d.id }))),
-            []
-          )
-          .map(({ offence, defendantId }) => ({ offence, caseUrn, defendantId }))
-      );
-    }, [])
+  const offenceEntries = (hearing.prosecutionCases || []).length
+    ? buildOffenceEntriesFromProsecutionCases(hearing.prosecutionCases)
+    : buildOffenceEntriesFromCourtApplications(hearing.courtApplications || []);
+
+  return offenceEntries
     .filter(({ offence }) => {
       if (seen.has(offence.id)) return false;
       seen.add(offence.id);

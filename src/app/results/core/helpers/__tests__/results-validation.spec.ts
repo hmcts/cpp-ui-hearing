@@ -899,6 +899,183 @@ describe('buildResultsValidationRequest', () => {
       expect(request.offences).toEqual([]);
     });
 
+    describe('court applications fallback (no prosecution cases)', () => {
+      const createSubject = (defendantId: string) => ({
+        id: 'subjectId1',
+        masterDefendant: {
+          masterDefendantId: 'masterDefendantId1',
+          defendantCase: [{ defendantId, caseId: 'caseId1', caseReference: 'caseReference1' }]
+        }
+      });
+
+      it('should map offences from courtApplicationCases when prosecutionCases is empty', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [],
+          courtApplications: [
+            {
+              subject: createSubject('subjectDefendantId1'),
+              courtApplicationCases: [
+                {
+                  prosecutionCaseIdentifier: { caseURN: 'appCaseURN1' },
+                  offences: [
+                    {
+                      id: 'offenceId1',
+                      offenceCode: 'TH68001',
+                      offenceTitle: 'Theft',
+                      orderIndex: 1
+                    } as Partial<Offence> as Offence
+                  ]
+                }
+              ]
+            } as any
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([
+          {
+            offenceId: 'offenceId1',
+            offenceCode: 'TH68001',
+            offenceTitle: 'Theft',
+            orderIndex: 1,
+            caseUrn: 'appCaseURN1',
+            hasExistingCtlRecord: false,
+            isConvicted: false,
+            defendantId: 'subjectDefendantId1'
+          }
+        ]);
+      });
+
+      it('should fall back to courtOrder offences when courtApplicationCases is undefined', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [],
+          courtApplications: [
+            {
+              subject: createSubject('subjectDefendantId2'),
+              courtOrder: {
+                courtOrderOffences: [
+                  {
+                    offence: {
+                      id: 'offenceId2',
+                      offenceCode: 'BU68002',
+                      offenceTitle: 'Burglary',
+                      orderIndex: 2
+                    } as Partial<Offence> as Offence,
+                    prosecutionCaseIdentifier: { caseURN: 'orderCaseURN1' }
+                  }
+                ]
+              }
+            } as any
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([
+          {
+            offenceId: 'offenceId2',
+            offenceCode: 'BU68002',
+            offenceTitle: 'Burglary',
+            orderIndex: 2,
+            caseUrn: 'orderCaseURN1',
+            hasExistingCtlRecord: false,
+            isConvicted: false,
+            defendantId: 'subjectDefendantId2'
+          }
+        ]);
+      });
+
+      it('should prefer courtApplicationCases offences over courtOrder offences when both are present', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [],
+          courtApplications: [
+            {
+              subject: createSubject('subjectDefendantId3'),
+              courtApplicationCases: [
+                {
+                  prosecutionCaseIdentifier: { caseURN: 'appCaseURN2' },
+                  offences: [
+                    {
+                      id: 'offenceId3',
+                      offenceCode: 'TH68003',
+                      offenceTitle: 'Theft'
+                    } as Partial<Offence> as Offence
+                  ]
+                }
+              ],
+              courtOrder: {
+                courtOrderOffences: [
+                  {
+                    offence: {
+                      id: 'offenceId4',
+                      offenceCode: 'BU68004',
+                      offenceTitle: 'Burglary'
+                    } as Partial<Offence> as Offence,
+                    prosecutionCaseIdentifier: { caseURN: 'orderCaseURN2' }
+                  }
+                ]
+              }
+            } as any
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([expect.objectContaining({ offenceId: 'offenceId3' })]);
+      });
+
+      it('should NOT fall back to courtOrder offences when courtApplicationCases is an empty (not undefined) array', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [],
+          courtApplications: [
+            {
+              subject: createSubject('subjectDefendantId6'),
+              courtApplicationCases: [],
+              courtOrder: {
+                courtOrderOffences: [
+                  {
+                    offence: {
+                      id: 'offenceId5',
+                      offenceCode: 'BU68005',
+                      offenceTitle: 'Burglary'
+                    } as Partial<Offence> as Offence,
+                    prosecutionCaseIdentifier: { caseURN: 'orderCaseURN3' }
+                  }
+                ]
+              }
+            } as any
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([]);
+      });
+
+      it('should return an empty array when prosecutionCases and courtApplications are both empty', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [],
+          courtApplications: []
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([]);
+      });
+
+      it('should return an empty array when a court application has neither courtApplicationCases nor courtOrder', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [],
+          courtApplications: [{ subject: createSubject('subjectDefendantId5') } as any]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([]);
+      });
+    });
+
     describe('CTL and conviction flags', () => {
       const buildHearingWithOffence = (offence: object) =>
         createMinimalHearing({

@@ -2075,6 +2075,90 @@ describe('#getDefendantsFromAllCases', () => {
   });
 });
 
+describe('#getDefendantsFromCasesAndApplications', () => {
+  it('should return the defendants from all prosecution cases when prosecution cases exist', () => {
+    const state = {
+      hearings: {
+        current: {
+          hearing: { ...mockHearing }
+        } as HearingDetailRedux
+      } as HearingState
+    } as AppState;
+
+    const result = fromSelectors.getDefendantsFromCasesAndApplications(state);
+
+    expect(result).toEqual(mockHearing.prosecutionCases[0].defendants);
+  });
+
+  it('should return the masterDefendant details from court applications when there are no prosecution cases', () => {
+    const masterDefendant: MasterDefendant = {
+      masterDefendantId: 'master-defendant-id',
+      personDefendant: {
+        personDetails: {
+          firstName: 'F',
+          lastName: 'L'
+        }
+      },
+      defendantCase: [
+        {
+          defendantId: 'case-defendant-id',
+          caseId: 'case-id',
+          caseReference: 'case-reference'
+        }
+      ]
+    } as MasterDefendant;
+
+    const state = {
+      hearings: {
+        current: {
+          hearing: {
+            ...mockHearing,
+            prosecutionCases: [],
+            courtApplications: [
+              {
+                subject: {
+                  id: 'subject-id',
+                  masterDefendant
+                } as CourtApplicationParty
+              } as CourtApplication
+            ]
+          }
+        } as HearingDetailRedux
+      } as HearingState
+    } as AppState;
+
+    const result = fromSelectors.getDefendantsFromCasesAndApplications(state);
+
+    expect(result).toEqual([
+      { ...masterDefendant, id: masterDefendant.defendantCase[0].defendantId }
+    ]);
+  });
+
+  it('should ignore applications without a masterDefendant subject when there are no prosecution cases', () => {
+    const state = {
+      hearings: {
+        current: {
+          hearing: {
+            ...mockHearing,
+            prosecutionCases: [],
+            courtApplications: [
+              {
+                subject: {
+                  id: 'subject-id'
+                } as CourtApplicationParty
+              } as CourtApplication
+            ]
+          }
+        } as HearingDetailRedux
+      } as HearingState
+    } as AppState;
+
+    const result = fromSelectors.getDefendantsFromCasesAndApplications(state);
+
+    expect(result).toEqual([]);
+  });
+});
+
 describe('getListingNotesMap', () => {
   it('should get map of listing notes', () => {
     const listingNotes = [

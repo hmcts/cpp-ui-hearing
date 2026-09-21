@@ -1697,3 +1697,27 @@ export const getSubReasonById = (subReasonId: string) =>
     if (!subReasonId || !subReasons?.length) return null;
     return subReasons.find(sr => sr.id === subReasonId);
   });
+
+export const getDefendantsFromCasesAndApplications = createSelector(
+  getHearingProsecutionCases,
+  getHearingCourtApplications,
+  (prosecutionCases, courtApplications): Defendant[] => {
+    if (prosecutionCases.length === 0) {
+      return courtApplications.reduce((defendants: Defendant[], { subject }) => {
+        if (subject && subject.masterDefendant) {
+          const [defendantCase] = subject.masterDefendant.defendantCase || [];
+          defendants.push({
+            ...subject.masterDefendant,
+            id: defendantCase?.defendantId
+          } as Defendant);
+        }
+        return defendants;
+      }, []);
+    }
+
+    return prosecutionCases.reduce(
+      (defendants: Defendant[], kase) => defendants.concat(kase.defendants),
+      []
+    );
+  }
+);
