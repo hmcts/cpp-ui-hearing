@@ -25,7 +25,10 @@ import {
 import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
 import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService
+} from '../services/provisionalBooking.service';
 import {
   CrownSchedulingFilters,
   getSearchMetadata,
@@ -207,8 +210,11 @@ export class CrownSchedulingContainer {
         take(1),
         switchMap(([organisationUnits, rotaBusinessTypes, resultLine]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
-          const existingBookingReference = (resultLine as ExtendedResolvedDraftResultLine).resultPrompts
-            ?.find(prompt => prompt.promptRef === 'bookingReference')?.value as string | undefined;
+          const existingBookingReference = (
+            resultLine as ExtendedResolvedDraftResultLine
+          ).resultPrompts?.find(prompt => prompt.promptRef === 'bookingReference')?.value as
+            | string
+            | undefined;
           const { hearingSlot, hearingSlotTime, duration } = hearingSlotAllocations[0];
           const redirectTo = ['/manage', hearingId, 'enter-results'];
           const rotaBusinessType = rotaBusinessTypes.find(
@@ -258,18 +264,25 @@ export class CrownSchedulingContainer {
                   ]
                 })
               ),
-              // A refusal (e.g. the session is now fully booked) must not
-              // propagate to `.subscribe(this.store)`: NgRx's Store.error()
-              // forwards to the shared ActionsSubject, which would end
-              // dispatching for the whole application, not just this picker.
-              // Catch it here, surface it to the picker, and complete with
-              // no value so nothing reaches the store subscription - no
-              // prompt is written and no redirect happens.
-              catchError(() => {
+              // A failure must not propagate to `.subscribe(this.store)`: NgRx's
+              // Store.error() forwards to the shared ActionsSubject, which would
+              // end dispatching for the whole application, not just this picker.
+              // Catch it here, surface it to the picker, and complete with no
+              // value so nothing reaches the store subscription - no prompt is
+              // written and no redirect happens.
+              //
+              // Only a deliberate refusal means the session is unavailable. A
+              // technical failure of the same call must not claim that, or the
+              // clerk is sent to re-pick a session that was never the problem.
+              catchError(error => {
                 this.bookingErrorSubject.next([
                   {
                     id: CrownSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
-                    message: this.translateService.instant('MANAGE_HEARING.SESSION_NOT_AVAILABLE'),
+                    message: this.translateService.instant(
+                      error instanceof BookingRefusedError
+                        ? 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+                        : 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
+                    ),
                     shouldFocus: true
                   }
                 ]);

@@ -3,7 +3,7 @@ import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { DefendantNamesPipe } from '../shared/pipes/defendant-names.pipe';
 import { HearingEventsLogService } from '../hearing-events-log/core/services/hearing-events-log.service';
-import { ReferenceDataService as CoreReferenceDataService } from '../core/services';
+import { ListingService, ReferenceDataService as CoreReferenceDataService } from '../core/services';
 import { ProvisionalBookingService } from '../results/hearing-details/allocation/services/provisionalBooking.service';
 import {
   LoadDefendantsTrackingStatusGuard,
@@ -37,7 +37,11 @@ export const routes: Routes = [
       DefendantNamesPipe,
       HearingEventsLogService,
       CoreReferenceDataService,
-      ProvisionalBookingService
+      ProvisionalBookingService,
+      // Needed by DraftResultEffects/ShareResultsEffects, which ask courtscheduler whether a
+      // booking is still unconfirmed before releasing it. Provided here alongside
+      // ProvisionalBookingService because the effects live in this route's injector.
+      ListingService
     ],
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     canActivate: [

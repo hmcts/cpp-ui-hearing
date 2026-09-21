@@ -20,13 +20,13 @@ import {
   getCurrentHearingState,
   getDefendantsFromAllCases
 } from '../../../core/selectors/hearing';
-import { getCurrentHearing } from '../../../core';
+import { getCurrentHearing, ListingService } from '../../../core';
 import { DraftResultBuilderService } from '../services/draft-result-builder.service';
 import { ReusableInfoService } from '../services/reusable-info.service';
 import { ResultsService } from '../services/results.service';
 import { ResultsValidationService } from '../services/results-validation.service';
 import { buildResultsValidationRequest } from '../helpers/results-validation';
-import { getBookingReferenceToRelease, getResultLineById } from '../helpers';
+import { getBookingReferenceToRelease, getResultLineById, isUnconfirmedBooking } from '../helpers';
 import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { getUserDetails } from '@cpp/users-groups';
 import { hasResultingAssistant } from '../../../core/selectors/user-groups';
@@ -49,6 +49,7 @@ export class DraftResultEffects {
   constructor(
     private actions$: Actions,
     private draftResultBuilderService: DraftResultBuilderService,
+    private listingService: ListingService,
     private provisionalBookingService: ProvisionalBookingService,
     private resultService: ResultsService,
     private resultsValidationService: ResultsValidationService,
@@ -317,12 +318,19 @@ export class DraftResultEffects {
   );
 
   // Releases the provisional slot hold (if any) carried by a result line the
-  // instant it is abandoned with no new pick to follow it - i.e. deleted
-  // outright on a DRAFT line, or deleted via amend on a SHARED line. Both
-  // paths eventually call DraftResultBuilderService.destroyResultLine, which
-  // rebuilds the draft result without the line - and with it, without the
-  // only remaining pointer to the bookingId. So the reference is read here,
-  // from the not-yet-rebuilt draft result, before that happens.
+  // instant it is abandoned with no new pick to follow it. Both trigger paths
+  // (deleted outright, or deleted via amend) eventually call
+  // DraftResultBuilderService.destroyResultLine, which rebuilds the draft
+  // result without the line - and with it, without the only remaining pointer
+  // to the bookingId. So the reference is read here, from the not-yet-rebuilt
+  // draft result, before that happens.
+  //
+  // Only a booking courtscheduler still reports as UNCONFIRMED is released.
+  // A confirmed one is left entirely alone here - deleting or amending its
+  // line does nothing at the time, and the subsequent share applies the
+  // change. A shared LINE may still hold an unconfirmed booking (a re-pick
+  // during the amendment reuses the id), which is why the line's own
+  // sharedDate cannot decide this - see isUnconfirmedBooking.
   //
   // This runs as its own dispatch: false effect, deliberately kept out of the
   // draftResultEvents$ merge above: that pipeline's single catchError turns
@@ -354,12 +362,24 @@ export class DraftResultEffects {
       return EMPTY;
     }
 
-    return this.provisionalBookingService
-      .releaseProvisionalHearingSlots({
-        hearingId: draftResult.hearingId,
-        bookingId: bookingReference
-      })
-      .pipe(catchError(() => EMPTY));
+    // Ask courtscheduler whether this booking is still unconfirmed before touching it. A
+    // confirmed booking may only be changed by another share, and the bookingReference alone
+    // cannot tell them apart - a re-pick reuses the same id. See isUnconfirmedBooking.
+    return this.listingService.getBookingStatus([bookingReference]).pipe(
+      switchMap(response =>
+        isUnconfirmedBooking(response?.bookings, bookingReference)
+          ? this.provisionalBookingService.releaseProvisionalHearingSlots({
+              hearingId: draftResult.hearingId,
+              bookingId: bookingReference
+            })
+          : EMPTY
+      ),
+      // Fails CLOSED, unlike the pre-share gate: if the status lookup itself fails we do not
+      // know whether the booking is confirmed, and releasing a confirmed one is the thing that
+      // must never happen. Skipping costs only that an unconfirmed hold waits for the 01:00
+      // purge, which exists for exactly this.
+      catchError(() => EMPTY)
+    );
   }
 
   validate$ = createEffect(() =>

@@ -4,9 +4,9 @@ import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action, provideStore, provideState, Store } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { DraftResult, DraftResultPrompt } from '../../../../results/results.interfaces';
-import { UserDetails, reducers } from '../../../../core';
+import { ListingService, UserDetails, reducers } from '../../../../core';
 import { DraftResultBuilderService } from '../../services/draft-result-builder.service';
 import { ProvisionalBookingService } from '../../../hearing-details/allocation/services/provisionalBooking.service';
 import { ReusableInfoService } from '../../services/reusable-info.service';
@@ -33,6 +33,7 @@ describe('DraftResultEffects', () => {
   let draftResultBuilderService: DraftResultBuilderService;
   let effects: DraftResultEffects;
   let provisionalBookingService: ProvisionalBookingService;
+  let listingService: ListingService;
   let resultsService: ResultsService;
   let reusableInfoService: ReusableInfoService;
   let resultsValidationService: ResultsValidationService;
@@ -78,6 +79,22 @@ describe('DraftResultEffects', () => {
             releaseProvisionalHearingSlots: jest.fn(() => of(undefined))
           }
         },
+        {
+          provide: ListingService,
+          useValue: {
+            // Default: every id asked about is still an unconfirmed hold, so releasing is
+            // permitted. Tests covering a CONFIRMED booking override this per-test.
+            getBookingStatus: jest.fn((bookingIds: string[]) =>
+              of({
+                bookings: bookingIds.map(bookingId => ({
+                  bookingId,
+                  safeToShare: true,
+                  status: 'RESERVED'
+                }))
+              })
+            )
+          }
+        },
         ResultsService,
         ReusableInfoService,
         ResultsValidationService,
@@ -97,6 +114,7 @@ describe('DraftResultEffects', () => {
     draftResultBuilderService = TestBed.inject(DraftResultBuilderService);
     effects = TestBed.inject(DraftResultEffects);
     provisionalBookingService = TestBed.inject(ProvisionalBookingService);
+    listingService = TestBed.inject(ListingService);
     resultsService = TestBed.inject(ResultsService);
     reusableInfoService = TestBed.inject(ReusableInfoService);
     resultsValidationService = TestBed.inject(ResultsValidationService);
@@ -703,14 +721,18 @@ describe('DraftResultEffects', () => {
       value
     });
 
-    const draftResultWithLine = (resultPrompts: DraftResultPrompt[]): DraftResult =>
+    const draftResultWithLine = (
+      resultPrompts: DraftResultPrompt[],
+      sharedDate?: string
+    ): DraftResult =>
       ({
         ...draftResult,
         resultLines: {
           resultLineId: {
             resultLineId: 'resultLineId',
             shortCode: 'NHCCS',
-            resultPrompts
+            resultPrompts,
+            ...(sharedDate ? { sharedDate } : {})
           }
         }
       } as unknown as DraftResult);
@@ -776,14 +798,66 @@ describe('DraftResultEffects', () => {
       });
     });
 
-    describe('DraftResultActions.setAmendmentReason (destroyResultLine on a SHARED line)', () => {
+    describe('DraftResultActions.setAmendmentReason (destroyResultLine via amend)', () => {
       const requestAction = DraftResultActions.setAmendmentReason({
         resultLineId: 'resultLineId',
         amendmentReason: { id: 'amendmentReasonId' },
         destroyResultLine: true
       });
 
-      it('releases the bookingReference held by the line being destroyed via amend', () => {
+      // Rule 1: a CONFIRMED booking may only be changed by another share. Deleting or amending
+      // its line does nothing at the time; the subsequent share applies the change. The line
+      // being shared is not what decides this - courtscheduler's verdict is.
+      it('calls nothing when courtscheduler reports the booking as CONFIRMED (SHARED)', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-2')], '2026-09-21'));
+        listingService.getBookingStatus = jest.fn(() =>
+          of({ bookings: [{ bookingId: 'booking-2', safeToShare: true, status: 'SHARED' }] })
+        );
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+        actions$ = hot('-a--', { a: requestAction });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+      });
+
+      // Rule 2 for the case a shared LINE can still be in: the clerk amended it and re-picked,
+      // which reuses the same bookingId. The line keeps its sharedDate but now holds a fresh,
+      // unconfirmed reservation - and courtscheduler says RESERVED, so it must be given back.
+      it('releases a SHARED line whose booking courtscheduler still reports as RESERVED', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-2')], '2026-09-21'));
+        listingService.getBookingStatus = jest.fn(() =>
+          of({ bookings: [{ bookingId: 'booking-2', safeToShare: true, status: 'RESERVED' }] })
+        );
+        const release$ = cold('-(r|)', { r: undefined });
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
+
+        actions$ = hot('-a--', { a: requestAction });
+        const expected$ = cold('--r', { r: undefined });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(expected$);
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+          hearingId: draftResult.hearingId,
+          bookingId: 'booking-2'
+        });
+      });
+
+      // Fails CLOSED: an unanswered status lookup leaves the booking's state unknown, and
+      // releasing a confirmed one must never happen. The 01:00 purge recovers a hold missed here.
+      it('releases nothing when the booking-status lookup fails', () => {
+        seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-2')]));
+        listingService.getBookingStatus = jest.fn(() =>
+          throwError(() => new Error('courtscheduler unreachable'))
+        );
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+        actions$ = hot('-a--', { a: requestAction });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+      });
+
+      it('releases the bookingReference when the line destroyed via amend was never shared', () => {
         seedDraftResult(draftResultWithLine([bookingReferencePrompt('booking-2')]));
         const release$ = cold('-(r|)', { r: undefined });
         provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
@@ -834,6 +908,22 @@ describe('DraftResultEffects validateOnDraftResultLoad$ (hasResultingAssistant e
           provide: ProvisionalBookingService,
           useValue: {
             releaseProvisionalHearingSlots: jest.fn(() => of(undefined))
+          }
+        },
+        {
+          provide: ListingService,
+          useValue: {
+            // Default: every id asked about is still an unconfirmed hold, so releasing is
+            // permitted. Tests covering a CONFIRMED booking override this per-test.
+            getBookingStatus: jest.fn((bookingIds: string[]) =>
+              of({
+                bookings: bookingIds.map(bookingId => ({
+                  bookingId,
+                  safeToShare: true,
+                  status: 'RESERVED'
+                }))
+              })
+            )
           }
         },
         ResultsService,
