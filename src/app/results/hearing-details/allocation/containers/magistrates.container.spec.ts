@@ -19,7 +19,10 @@ import { AppState, HearingDetail, HearingLockState } from '../../../../core';
 import { MagistratesSchedulingContainer } from './magistrates.container';
 import { MagistratesSchedulingComponent } from '../components/magistrates.component';
 import { createDraftResult, extendDraftResult } from '../../../core/testing';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService
+} from '../services/provisionalBooking.service';
 import {
   HearingSlot,
   SchedulingFilters,
@@ -377,7 +380,7 @@ describe('MagistratesSchedulingContainer', () => {
 
     it('surfaces an error to the component when the reservation is refused', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new Error('no capacity'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations([
@@ -389,13 +392,42 @@ describe('MagistratesSchedulingContainer', () => {
       tick();
       fixture.detectChanges();
 
-      const stub = fixture.debugElement.query(
-        By.directive(TestMagistratesSchedulingComponent)
-      ).componentInstance as TestMagistratesSchedulingComponent;
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
 
       expect(stub.externalErrors).toEqual([
         expect.objectContaining({
           message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+        })
+      ]);
+    }));
+
+    // A technical failure of the booking call says nothing about the session's
+    // availability. Reporting it as "fully booked" sends the clerk off to re-pick
+    // a session that was never the problem - which is exactly what happened on
+    // STE02 when a schema rejection rolled the command back and no event arrived.
+    it('does not blame the session when the booking fails for a technical reason', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(
+          () => new Error('Timeout waiting for public.hearing.hearing-slots-provisionally-booked')
+        )
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+
+      expect(stub.externalErrors).toEqual([
+        expect.objectContaining({
+          message: 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
         })
       ]);
     }));

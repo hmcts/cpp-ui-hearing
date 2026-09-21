@@ -3,6 +3,27 @@ import { CppHttp } from '@cpp/core';
 import { Observable, of, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+/**
+ * The backend deliberately refused the reservation - typically because the session filled up
+ * between the search and the pick. This is a business outcome the clerk can act on by choosing
+ * another session, and it is the ONLY case that may be reported as such.
+ *
+ * <p>Anything else that fails this call - an HTTP error, a rejected command, a rolled-back
+ * transaction, a timeout waiting for the success event - is a technical failure. The session
+ * itself may be perfectly available, so telling the clerk it is "fully booked" sends them off to
+ * re-pick a session that was never the problem. Observed on STE02: a JSON-schema rejection of
+ * `bookingId` in the command handler rolled the transaction back, no event was ever published,
+ * commandSync timed out, and the picker reported the session as fully booked.
+ */
+export class BookingRefusedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'BookingRefusedError';
+    // Restores the prototype chain so `instanceof` works when targeting ES5 downlevel output.
+    Object.setPrototypeOf(this, BookingRefusedError.prototype);
+  }
+}
+
 @Injectable()
 export class ProvisionalBookingService {
   constructor(private cppHttp: CppHttp) {}
@@ -45,11 +66,19 @@ export class ProvisionalBookingService {
         // declared return type - `Observable<{ bookingId: string }>` - stays
         // true: a value always has a bookingId. Do not remove this as
         // redundant; without it, callers cannot tell a refusal from success.
+        //
+        // It is thrown as a BookingRefusedError specifically so callers can tell
+        // a DELIBERATE refusal apart from a technical failure of the same call
+        // (HTTP error, rejected command, timeout waiting for the event). Only a
+        // refusal means "pick another session" - see BookingRefusedError.
         switchMap(response =>
           response.bookingId
             ? of(response as { bookingId: string })
             : throwError(
-                () => new Error(response.error || 'Provisional hearing slot booking was refused')
+                () =>
+                  new BookingRefusedError(
+                    response.error || 'Provisional hearing slot booking was refused'
+                  )
               )
         )
       );

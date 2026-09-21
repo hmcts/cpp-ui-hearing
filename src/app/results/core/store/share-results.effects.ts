@@ -24,6 +24,7 @@ import {
   getHearingStateDetails,
   HearingLockState,
   HearingService,
+  ListingService,
   LoadHearingDetailAction,
   LoadHearingDetailSuccessAction,
   MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
@@ -33,7 +34,7 @@ import {
 } from '../../../core';
 import { ResultsService } from '../services/results.service';
 import { ReusableInfoService } from '../services/reusable-info.service';
-import { getBookingReferencesToRelease } from '../helpers';
+import { getBookingReferencesToRelease, selectUnconfirmedBookingIds } from '../helpers';
 import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { DraftResultActions } from './draft-result.actions';
 import {
@@ -55,6 +56,7 @@ export class ShareResultsEffects {
     private actions$: Actions,
     private draftResultBuilderService: DraftResultBuilderService,
     private hearingService: HearingService,
+    private listingService: ListingService,
     private provisionalBookingService: ProvisionalBookingService,
     private resultService: ResultsService,
     private reusableInfoService: ReusableInfoService,
@@ -72,7 +74,9 @@ export class ShareResultsEffects {
   // could ask for it to be released later, and only the 01:00 purge would
   // otherwise recover it. So every hold on the about-to-be-discarded draft
   // result is released here, read from the store before the reset overwrites
-  // it. This is a dispatch: false effect for the same reason as
+  // it - but only those courtscheduler still reports as UNCONFIRMED. A
+  // confirmed booking survives the discard untouched: only a share may change
+  // one. This is a dispatch: false effect for the same reason as
   // DraftResultEffects.releaseAbandonedProvisionalBooking$: it must never
   // surface as, or delay, an error on the action that triggered the reset.
   releaseAbandonedProvisionalBookings$ = createEffect(
@@ -84,15 +88,32 @@ export class ShareResultsEffects {
           ShareResultsActions.unlockHearing
         ),
         withLatestFrom(this.draftResult$),
-        mergeMap(([, draftResult]) =>
-          from(getBookingReferencesToRelease(draftResult)).pipe(
-            mergeMap(bookingId =>
-              this.provisionalBookingService
-                .releaseProvisionalHearingSlots({ hearingId: draftResult.hearingId, bookingId })
-                .pipe(catchError(() => EMPTY))
-            )
-          )
-        )
+        mergeMap(([, draftResult]) => {
+          const candidates = getBookingReferencesToRelease(draftResult);
+
+          if (candidates.length === 0) {
+            return EMPTY;
+          }
+
+          // Only the holds courtscheduler still reports as unconfirmed are given back. A
+          // confirmed booking is left untouched - discarding local edits is not a share, and
+          // only a share may change it. One batched lookup covers the whole draft result.
+          return this.listingService.getBookingStatus(candidates).pipe(
+            mergeMap(response =>
+              from(selectUnconfirmedBookingIds(response?.bookings, candidates)).pipe(
+                mergeMap(bookingId =>
+                  this.provisionalBookingService
+                    .releaseProvisionalHearingSlots({ hearingId: draftResult.hearingId, bookingId })
+                    .pipe(catchError(() => EMPTY))
+                )
+              )
+            ),
+            // Fails CLOSED: an unanswered status lookup leaves us unable to tell a confirmed
+            // booking from an unconfirmed one, and releasing a confirmed one must never happen.
+            // An unconfirmed hold missed here is recovered by the 01:00 purge.
+            catchError(() => EMPTY)
+          );
+        })
       ),
     { dispatch: false }
   );
