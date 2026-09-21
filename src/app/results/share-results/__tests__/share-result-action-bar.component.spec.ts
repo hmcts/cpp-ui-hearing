@@ -1,6 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalService } from '@cpp/pdk';
-import { ApplicationAggregate, CourtApplication } from '../../../core';
+import { ApplicationAggregate, CourtApplication, HearingLockState } from '../../../core';
 import { createResolvedDraftResultLine } from '../../core/testing';
 import { ShareResultActionBarComponent } from '../share-result-action-bar.component';
 import { ShareResultConfirmationData } from '../share-result-confirmation-form.component';
@@ -209,6 +209,25 @@ describe('ShareResultActionBarComponent', () => {
 
       expect(openMock).not.toHaveBeenCalled();
       expect(shareDraftResultSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('canRequestApproval', () => {
+    beforeEach(() => {
+      component['draftResultValid'] = true;
+      component.hearingLockState = HearingLockState.SHARED_AMEND_LOCKED_ADMIN_ERROR;
+      component.amendedByCurrentUser = true;
+      component.hasValidationErrors = false;
+    });
+
+    it('should return true when the draft result is valid, there are no validation errors, the hearing is locked for an admin/user error and the current user made the amendment', () => {
+      expect(component.canRequestApproval).toBe(true);
+    });
+
+    it('should return false when there are validation errors even though every other condition is met', () => {
+      component.hasValidationErrors = true;
+
+      expect(component.canRequestApproval).toBe(false);
     });
   });
 

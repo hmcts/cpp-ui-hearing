@@ -146,6 +146,7 @@ export class ShareResultActionBarComponent {
   get canRequestApproval(): boolean {
     return (
       this.draftResultValid &&
+      !this.hasValidationErrors &&
       (this.hearingLockState === HearingLockState.SHARED_AMEND_LOCKED_ADMIN_ERROR ||
         this.hearingLockState === HearingLockState.SHARED_AMEND_LOCKED_USER_ERROR) &&
       this.amendedByCurrentUser
