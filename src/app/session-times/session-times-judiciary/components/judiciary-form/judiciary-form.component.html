@@ -4,12 +4,7 @@
       <h3>{{ sessionType | uppercase }}</h3>
     </pdk-grid>
     <pdk-grid one-quarter class="flex-column-one">
-      <pdk-form-field
-        class="judiciary-form-field"
-        label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}"
-        labelType="small"
-        pdk-margin-bottom="3"
-      >
+      <pdk-form-field label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}" labelType="small">
         <judiciary-typeahead
           data-role="judiciary-typeahead-0"
           name="judge1"
@@ -62,7 +57,7 @@
         </p>
       </pdk-form-group>
     </pdk-grid>
-    <pdk-grid one-quarter class="flex-column-two">
+    <pdk-grid one-quarter class="flex-column-two pdk-form-field-custom-margin-bottom-1">
       <pdk-form-field label="{{ 'SESSION_TIMES.CHAIRPERSON' | translate }}" labelType="small">
         <pdk-radio-group
           name="chairman"
@@ -88,7 +83,7 @@
         </pdk-radio-group>
       </pdk-form-field>
     </pdk-grid>
-    <pdk-grid one-quarter class="flex-column-three">
+    <pdk-grid one-quarter class="flex-column-three pdk-form-field-custom-margin-bottom-1">
       <div class="start-end-time">
         <pdk-form-field
           labelType="small"
@@ -105,7 +100,7 @@
         </pdk-form-field>
       </div>
     </pdk-grid>
-    <pdk-grid one-quarter class="flex-column-four">
+    <pdk-grid one-quarter class="flex-column-four pdk-form-field-custom-margin-bottom-1">
       <pdk-form-field
         labelType="small"
         label="{{ 'SESSION_TIMES.END_TIME' | translate }}"

@@ -1,11 +1,12 @@
 .chairman-radio-button {
-  margin-bottom: 28px;
+  margin-bottom: 25px;
 }
 
-pdk-form-field.judiciary-form-field ::ng-deep .govuk-label--s {
-  margin-bottom: 18px !important;
+.pdk-form-field-custom-margin-bottom-1 {
+  ::ng-deep .govuk-fieldset__legend {
+    margin-bottom: 5px;
+  }
 }
-
 ::ng-deep pdk-autosuggest-lite {
   // ~10 rows visible, then scroll.
   $visible-rows: 13;
