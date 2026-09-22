@@ -106,14 +106,14 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
       >
       </cpp-address-autosuggest>
     </pdk-form-field>
-    @if (!showFields) {
+    @if (!showAddressFields) {
     <div pdk-margin-bottom="6">
       <a pdk-link role="button" href="javascript:void(0)" (click)="handleEnterManually()"
         >Enter address manually</a
       >
     </div>
     } @for (partName of otherPartNames; track trackByPartName($index, partName)) { @if
-    (!isAddressLineOrPostcodePartName(partName) || showFields) {
+    (!isAddressLineOrPostcodePartName(partName) || showAddressFields) {
     <pdk-form-field
       [label]="getChildPromptChoice(partName) | promptChoiceLabel"
       [hintText]="getChildPromptChoice(partName).hint"
@@ -179,13 +179,13 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
       this.formValues,
       this.promptChoice?.children ?? []
     );
-    this.showFields = !!this.currentAddress;
+    this.showAddressFields = !!this.currentAddress;
   }
 
   childPromptChoices: Record<NameAddressPartName, PromptChoiceChild>;
   formValues: Record<string, DraftResultPrompt<string>> = {};
   currentAddress: Address | null = null;
-  showFields = false;
+  showAddressFields = false;
   // Exposed for the template - it can only call component members, not free imported functions.
   isAddressLineOrPostcodePartName = isAddressLineOrPostcodePartName;
   selectedAddressType: 'Organisation' | 'Person' | 'Both';
@@ -278,13 +278,13 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
     if (!address) {
       return;
     }
-    this.showFields = true;
+    this.showAddressFields = true;
     this.cdr.detectChanges();
     Promise.resolve().then(() => this.applyAddress(address));
   }
 
   handleEnterManually(): void {
-    this.showFields = true;
+    this.showAddressFields = true;
   }
 
   private applyAddress(address: Address): void {

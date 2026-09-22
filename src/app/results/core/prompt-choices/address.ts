@@ -32,13 +32,20 @@ export const isAddressPartName = (
   return !nonAddressPartNames.includes(partName);
 };
 
+export const ADDRESS_LINE1: AddressPartName = 'AddressLine1';
+export const ADDRESS_LINE2: AddressPartName = 'AddressLine2';
+export const ADDRESS_LINE3: AddressPartName = 'AddressLine3';
+export const ADDRESS_LINE4: AddressPartName = 'AddressLine4';
+export const ADDRESS_LINE5: AddressPartName = 'AddressLine5';
+export const POST_CODE: AddressPartName = 'PostCode';
+
 const ADDRESS_LINE_PART_NAMES: AddressPartName[] = [
-  'AddressLine1',
-  'AddressLine2',
-  'AddressLine3',
-  'AddressLine4',
-  'AddressLine5',
-  'PostCode'
+  ADDRESS_LINE1,
+  ADDRESS_LINE2,
+  ADDRESS_LINE3,
+  ADDRESS_LINE4,
+  ADDRESS_LINE5,
+  POST_CODE
 ];
 
 export const isAddressLineOrPostcodePartName = (
@@ -57,12 +64,12 @@ export const addressToPromptChildValues = (
   children: PromptChoiceChild<AddressPartName | NameAddressPartName>[]
 ): Record<string, string> => {
   const valueByPartName: Partial<Record<AddressPartName, string>> = {
-    AddressLine1: address.line1,
-    AddressLine2: address.line2,
-    AddressLine3: address.line3,
-    AddressLine4: address.line4,
-    AddressLine5: address.line5,
-    PostCode: address.postcode
+    [ADDRESS_LINE1]: address.line1,
+    [ADDRESS_LINE2]: address.line2,
+    [ADDRESS_LINE3]: address.line3,
+    [ADDRESS_LINE4]: address.line4,
+    [ADDRESS_LINE5]: address.line5,
+    [POST_CODE]: address.postcode
   };
 
   return children.reduce((acc, { partName, promptRef }) => {
@@ -94,7 +101,7 @@ export const applyAddressToControls = (
       const control = ngForm.control.get(promptRef);
 
       control.setValue(values[promptRef] || null);
-      if (partName === 'PostCode') {
+      if (partName === POST_CODE) {
         control.enable();
       }
     });
@@ -120,8 +127,8 @@ export const promptChildValuesToAddress = (
     return child ? (formValues[child.promptRef]?.value as string | undefined) : undefined;
   };
 
-  const line1 = valueForPartName('AddressLine1');
-  const postcode = valueForPartName('PostCode');
+  const line1 = valueForPartName(ADDRESS_LINE1);
+  const postcode = valueForPartName(POST_CODE);
 
   if (!line1 && !postcode) {
     return null;
@@ -129,10 +136,10 @@ export const promptChildValuesToAddress = (
 
   return {
     line1: line1 || '',
-    line2: valueForPartName('AddressLine2'),
-    line3: valueForPartName('AddressLine3'),
-    line4: valueForPartName('AddressLine4'),
-    line5: valueForPartName('AddressLine5'),
+    line2: valueForPartName(ADDRESS_LINE2),
+    line3: valueForPartName(ADDRESS_LINE3),
+    line4: valueForPartName(ADDRESS_LINE4),
+    line5: valueForPartName(ADDRESS_LINE5),
     postcode: postcode || ''
   };
 };

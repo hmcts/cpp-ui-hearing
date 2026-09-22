@@ -3,8 +3,9 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { NgForm } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Address } from '@cpp/application';
+import { Address, CppAddressAutosuggestComponent } from '@cpp/application';
 import { CppHttp } from '@cpp/core';
+import { PdkLinkDirective } from '@cpp/pdk';
 import { provideMockStore } from '@ngrx/store/testing';
 import { last } from 'lodash-es';
 import { of } from 'rxjs';
@@ -25,6 +26,8 @@ import {
 } from '../../../results.interfaces';
 import { DraftResultLineComponent } from '../../draft-result-line/draft-result-line.component';
 import { ResultPromptsFormComponent } from '../result-prompts-form.component';
+import { AddressPromptChoiceComponent } from '../prompt-choices/address.component';
+import { NameAddressPromptChoiceComponent } from '../prompt-choices/nameaddress.component';
 
 describe('ResultPromptsForm', () => {
   let fixture: ComponentFixture<ResultPromptFormTestComponent>;
@@ -96,7 +99,7 @@ describe('ResultPromptsForm', () => {
   };
 
   const selectAutosuggestAddress = (address: Address) => {
-    const autosuggest = fixture.debugElement.query(By.css('cpp-address-autosuggest'));
+    const autosuggest = fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent));
 
     // cpp-address-autosuggest forwards its own registerOnChange straight onto its
     // internal pdk-autosuggest-lite child (liteRef) - calling that child's
@@ -345,7 +348,9 @@ describe('ResultPromptsForm', () => {
     it('should render the address lookup above the address fields', fakeAsync(() => {
       fixture.detectChanges();
       tick();
-      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
+      expect(
+        fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))
+      ).not.toBeNull();
     }));
 
     it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
@@ -354,20 +359,19 @@ describe('ResultPromptsForm', () => {
       ];
       fixture.detectChanges();
       tick();
-      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
+      expect(fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))).toBeNull();
     }));
 
     it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {
       fixture.detectChanges();
       tick();
-      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBe(0);
+      expect(getFormValues()).not.toHaveProperty('protectedpersonsaddressAddress1');
     }));
 
     it('should render the address fields immediately when amending a result that already has an address', fakeAsync(() => {
       fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(ADDRESS_WITH_LOOKUP)];
       fixture.detectChanges();
       tick();
-      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBeGreaterThan(0);
       expect(getFormValues()).toMatchObject({
         protectedpersonsaddressAddress1: 'X',
         protectedpersonsaddressPostCode: 'CR0 1XN'
@@ -377,13 +381,12 @@ describe('ResultPromptsForm', () => {
     it('should reveal the address fields when "Enter address manually" is clicked, without an address selected', fakeAsync(() => {
       fixture.detectChanges();
       tick();
-      const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+      const enterManuallyLink = fixture.debugElement.query(By.directive(PdkLinkDirective));
 
       enterManuallyLink.nativeElement.click();
       fixture.detectChanges();
       tick();
 
-      expect(fixture.debugElement.queryAll(By.css('input[pdk-input]')).length).toBeGreaterThan(0);
       expect(getFormValues()).toMatchObject({
         protectedpersonsaddressAddress1: null,
         protectedpersonsaddressPostCode: null
@@ -393,13 +396,13 @@ describe('ResultPromptsForm', () => {
     it('should hide the "Enter address manually" link once the address fields are shown', fakeAsync(() => {
       fixture.detectChanges();
       tick();
-      const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+      const enterManuallyLink = fixture.debugElement.query(By.directive(PdkLinkDirective));
 
       enterManuallyLink.nativeElement.click();
       fixture.detectChanges();
       tick();
 
-      expect(fixture.debugElement.query(By.css('a[pdk-link]'))).toBeNull();
+      expect(fixture.debugElement.query(By.directive(PdkLinkDirective))).toBeNull();
     }));
 
     it('should populate the address fields when an address is selected', fakeAsync(() => {
@@ -425,7 +428,7 @@ describe('ResultPromptsForm', () => {
       fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(ADDRESS_WITH_LOOKUP)];
       fixture.detectChanges();
       tick();
-      const component = fixture.debugElement.query(By.css('cpp-address-prompt-choice'))
+      const component = fixture.debugElement.query(By.directive(AddressPromptChoiceComponent))
         .componentInstance as { currentAddress: unknown };
       const first = component.currentAddress;
 
@@ -1441,32 +1444,28 @@ describe('ResultPromptsForm', () => {
       it('should render the address lookup above the address fields', fakeAsync(() => {
         fixture.detectChanges();
         tick();
-        expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
+        expect(
+          fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))
+        ).not.toBeNull();
       }));
 
       it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
         fixture.componentInstance.promptChoices = [{ ...NAMEADDRESS, useAddressLookup: false }];
         fixture.detectChanges();
         tick();
-        expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
+        expect(fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))).toBeNull();
       }));
-
-      const addressLineOrPostcodeFields = () =>
-        fixture.debugElement.queryAll(
-          By.css('input[ng-reflect-format=addressLine], input[ng-reflect-format=postcode]')
-        );
 
       it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {
         fixture.detectChanges();
         tick();
-        expect(addressLineOrPostcodeFields().length).toBe(0);
+        expect(getFormValues()).not.toHaveProperty('minorcreditornameandaddressAddress1');
       }));
 
       it('should render the address fields immediately when amending a result that already has an address', fakeAsync(() => {
         fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(NAMEADDRESS)];
         fixture.detectChanges();
         tick();
-        expect(addressLineOrPostcodeFields().length).toBeGreaterThan(0);
         expect(getFormValues()).toMatchObject({
           minorcreditornameandaddressAddress1: 'X',
           minorcreditornameandaddressPostCode: 'CR0 1XN'
@@ -1476,13 +1475,12 @@ describe('ResultPromptsForm', () => {
       it('should reveal the address fields when "Enter address manually" is clicked, without an address selected', fakeAsync(() => {
         fixture.detectChanges();
         tick();
-        const enterManuallyLink = fixture.debugElement.query(By.css('a[pdk-link]'));
+        const enterManuallyLink = fixture.debugElement.query(By.directive(PdkLinkDirective));
 
         enterManuallyLink.nativeElement.click();
         fixture.detectChanges();
         tick();
 
-        expect(addressLineOrPostcodeFields().length).toBeGreaterThan(0);
         expect(getFormValues()).toMatchObject({
           minorcreditornameandaddressAddress1: null,
           minorcreditornameandaddressPostCode: null
@@ -1512,7 +1510,7 @@ describe('ResultPromptsForm', () => {
         fixture.componentInstance.resultPrompts = [createTestDraftResultPrompt(NAMEADDRESS)];
         fixture.detectChanges();
         tick();
-        const component = fixture.debugElement.query(By.css('cpp-nameaddress-prompt-choice'))
+        const component = fixture.debugElement.query(By.directive(NameAddressPromptChoiceComponent))
           .componentInstance as { currentAddress: unknown };
         const first = component.currentAddress;
 
@@ -2352,14 +2350,16 @@ describe('ResultPromptsForm', () => {
     it('should render the address lookup above the text box', fakeAsync(() => {
       fixture.detectChanges();
       tick();
-      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).not.toBeNull();
+      expect(
+        fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))
+      ).not.toBeNull();
     }));
 
     it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
       fixture.componentInstance.promptChoices = [{ ...TXT_WITH_LOOKUP, useAddressLookup: false }];
       fixture.detectChanges();
       tick();
-      expect(fixture.debugElement.query(By.css('cpp-address-autosuggest'))).toBeNull();
+      expect(fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))).toBeNull();
     }));
 
     it('should insert the selected address as a single comma-separated line in the text box', fakeAsync(() => {

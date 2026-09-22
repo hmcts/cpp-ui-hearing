@@ -31,11 +31,11 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
       >
       </cpp-address-autosuggest>
     </pdk-form-field>
-    @if (!showFields) {
+    @if (!showAddressFields) {
     <a pdk-link role="button" href="javascript:void(0)" (click)="handleEnterManually()"
       >Enter address manually</a
     >
-    } @if (showFields) { @for (childPromptChoice of promptChoice.children; track
+    } @if (showAddressFields) { @for (childPromptChoice of promptChoice.children; track
     childPromptChoice.promptRef) {
     <pdk-form-field [label]="childPromptChoice | promptChoiceLabel" labelType="small">
       <input
@@ -84,12 +84,12 @@ export class AddressPromptChoiceComponent {
       this.formValues,
       this.promptChoice?.children ?? []
     );
-    this.showFields = !!this.currentAddress;
+    this.showAddressFields = !!this.currentAddress;
   }
 
   formValues: Record<string, DraftResultPrompt> = {};
   currentAddress: Address | null = null;
-  showFields = false;
+  showAddressFields = false;
 
   constructor(
     private ngForm: NgForm,
@@ -111,13 +111,13 @@ export class AddressPromptChoiceComponent {
     if (!address) {
       return;
     }
-    this.showFields = true;
+    this.showAddressFields = true;
     this.cdr.detectChanges();
     Promise.resolve().then(() => this.applyAddress(address));
   }
 
   handleEnterManually(): void {
-    this.showFields = true;
+    this.showAddressFields = true;
   }
 
   private applyAddress(address: Address): void {
