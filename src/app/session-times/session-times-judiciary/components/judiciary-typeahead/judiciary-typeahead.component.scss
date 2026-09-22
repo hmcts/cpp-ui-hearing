@@ -8,14 +8,5 @@
         max-width: 32ex;
       }
     }
-
-    // ~10 rows visible, then scroll.
-    $visible-rows: 10;
-    $row-height: 2.5rem;
-
-    .pdk-autosuggest__suggestions-container--open {
-      max-height: $visible-rows * $row-height;
-      overflow-y: auto;
-    }
   }
 }

@@ -8,11 +8,15 @@ pdk-form-field.judiciary-form-field ::ng-deep .govuk-label--s {
 
 ::ng-deep pdk-autosuggest-lite {
   // ~10 rows visible, then scroll.
-  $visible-rows: 10;
+  $visible-rows: 13;
   $row-height: 2.5rem;
 
   .pdk-autosuggest__suggestions-container--open {
     max-height: $visible-rows * $row-height;
     overflow-y: auto;
+  }
+
+  .pdk-autosuggest__suggestion {
+    min-height: $row-height;
   }
 }
