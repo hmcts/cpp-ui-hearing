@@ -361,6 +361,50 @@ describe('MagistratesSchedulingContainer', () => {
       );
     }));
 
+    // courtscheduler decrements available_duration by this value when reserving a duration-based
+    // session. Without it the reservation cannot take the capacity it claims - observed on STE02,
+    // where a duration-based mags pick reached courtscheduler carrying only courtScheduleId and
+    // hearingStartTime.
+    it('sends the picked duration so a duration-based session can take its capacity', fakeAsync(() => {
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'TRL' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z',
+          duration: 10
+        }
+      ]);
+      tick();
+
+      expect(provisionalBookingService.bookProvisionalHearingSlots).toHaveBeenCalledWith(
+        expect.objectContaining({
+          courtScheduleBookings: [
+            expect.objectContaining({
+              courtScheduleId: '1',
+              hearingStartTime: '2020-01-01T10:00:00.000Z',
+              duration: 10
+            })
+          ]
+        })
+      );
+    }));
+
+    // A slot-based session carries no duration; courtscheduler counts slots there. Passing
+    // undefined keeps the key out of the JSON entirely, which is what it expects.
+    it('leaves duration undefined for a slot-based pick', fakeAsync(() => {
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      const { courtScheduleBookings } = (
+        provisionalBookingService.bookProvisionalHearingSlots as jest.Mock
+      ).mock.calls[0][0];
+      expect(courtScheduleBookings[0].duration).toBeUndefined();
+    }));
+
     it('does not write any prompt or navigate away when the reservation is refused', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
         throwError(() => new Error('no capacity'))
