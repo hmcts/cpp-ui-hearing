@@ -24,8 +24,6 @@ import {
   PdkGridComponent,
   PdkGridDirective,
   PdkFormFieldComponent,
-  PdkTypographyDirective,
-  PdkTextInputDirective,
   PdkVisuallyHiddenDirective,
   PdkRadioGroupComponent,
   PdkRadioButtonComponent,
@@ -33,12 +31,13 @@ import {
   PdkAutosuggestLiteComponent
 } from '@cpp/pdk';
 import { JudiciaryTypeaheadComponent } from '../judiciary-typeahead/judiciary-typeahead.component';
+
 import { UpperCasePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
 interface JudiciaryModelGroup {
   withIds: JudicialMember[];
-  withNamesOnly: string[];
+  extraJudiciaries: SelectedJudiciary[];
 }
 
 type CourtOfficerModelGroup = { [role in CourtOfficerRole]: TypeaheadOption };
@@ -60,8 +59,6 @@ export interface JudiciaryAutoSuggestOption extends JudicialMember {
     PdkGridDirective,
     PdkFormFieldComponent,
     JudiciaryTypeaheadComponent,
-    PdkTypographyDirective,
-    PdkTextInputDirective,
     PdkVisuallyHiddenDirective,
     PdkRadioGroupComponent,
     PdkRadioButtonComponent,
@@ -80,7 +77,7 @@ export class JudiciaryFormComponent implements OnChanges {
 
   judiciaryModelGroup: JudiciaryModelGroup = {
     withIds: [],
-    withNamesOnly: []
+    extraJudiciaries: []
   };
 
   courtOfficerModelGroup: CourtOfficerModelGroup = {
@@ -113,7 +110,9 @@ export class JudiciaryFormComponent implements OnChanges {
       value: null
     }
   ];
-  otherJudiciaries: string[] = [];
+  otherJudiciaries: SelectedJudiciary[] = [];
+
+  private readonly fixedJudiciaryCount = 3;
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.hasChange(changes.courtSession) && this.courtOfficerOptions) {
@@ -135,6 +134,20 @@ export class JudiciaryFormComponent implements OnChanges {
 
   isChairmanDisabled(index: number) {
     return this.selectedJudiciaries[index].isEnabled === false;
+  }
+
+  getJudiciaryDisplayName(index: number): string {
+    const judicialMember =
+      index < this.fixedJudiciaryCount
+        ? this.getJudiciaryWithId(index)
+        : this.otherJudiciaries[index - this.fixedJudiciaryCount]?.value;
+
+    if (!judicialMember) {
+      return '';
+    }
+
+    const title = judicialMember.titleJudicialPrefix || judicialMember.titlePrefix || '';
+    return `${title} ${judicialMember.forenames} ${judicialMember.surname}`.trim();
   }
 
   onSetJudiciaryTypeahead(event: JudicialMember, index: number) {
@@ -159,13 +172,33 @@ export class JudiciaryFormComponent implements OnChanges {
   }
 
   onAddAnotherJudiciary() {
-    this.otherJudiciaries.push('');
+    const index = this.fixedJudiciaryCount + this.otherJudiciaries.length;
+    this.otherJudiciaries = [
+      ...this.otherJudiciaries,
+      { index, isEnabled: true, value: null } as SelectedJudiciary
+    ];
+    this.selectedJudiciaries = [
+      ...this.selectedJudiciaries,
+      { index, isEnabled: false, value: null } as SelectedJudiciary
+    ];
   }
 
-  addOtherJudiciary(event: any): void {
-    if (event) {
-      this.enableSave();
+  onSetOtherJudiciary(event: JudicialMember, index: number) {
+    this.otherJudiciaries[index] = {
+      ...this.otherJudiciaries[index],
+      value: event,
+      isEnabled: !!event
+    };
+
+    const selectedIndex = this.fixedJudiciaryCount + index;
+    if (this.selectedJudiciaries[selectedIndex]) {
+      this.selectedJudiciaries[selectedIndex] = {
+        ...this.selectedJudiciaries[selectedIndex],
+        value: event ? event.id : null,
+        isEnabled: !!event
+      };
     }
+    this.enableSave();
   }
 
   getJudiciaryWithId(index: number): JudicialMember {
@@ -203,14 +236,28 @@ export class JudiciaryFormComponent implements OnChanges {
       this.selectedJudiciaries = this.prepareSelectedJudiciaires(judiciaries);
 
       const withIds = judiciaries.filter(j => j.judiciaryId).map(j => j.judicialMember);
-      const withNamesOnly = judiciaries
-        .filter(j => !j.judiciaryId && j.judiciaryName)
-        .map(j => j.judiciaryName);
-      this.otherJudiciaries = [...withNamesOnly];
+      const withNamesOnly = judiciaries.filter(j => !j.judiciaryId && j.judiciaryName);
+      const extra = withIds.slice(this.fixedJudiciaryCount).map((judicialMember, index) => ({
+        index,
+        isEnabled: true,
+        value: judicialMember
+      }));
+      const extraFromNames = withNamesOnly.map((judiciary, index) => ({
+        index: extra.length + index,
+        isEnabled: true,
+        value: {
+          id: '',
+          seqId: -1,
+          forenames: judiciary.judiciaryName,
+          surname: '',
+          judiciaryType: ''
+        } as JudicialMember
+      }));
+      this.otherJudiciaries = [...extra, ...extraFromNames] as SelectedJudiciary[];
       modelGroup = {
-        withIds,
-        withNamesOnly
-      };
+        withIds: withIds.slice(0, this.fixedJudiciaryCount),
+        extraJudiciaries: this.otherJudiciaries
+      } as JudiciaryModelGroup;
     }
 
     return modelGroup;

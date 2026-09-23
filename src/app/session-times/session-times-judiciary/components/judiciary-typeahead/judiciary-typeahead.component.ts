@@ -60,6 +60,7 @@ export class JudiciaryTypeaheadComponent
 {
   id: string;
   ariaDescribedBy: string | null;
+  @Input() ariaLabel = 'Judge name';
   @ViewChild('autosuggest', { static: true })
   autoSuggest: PdkAutosuggestLiteComponent<JudiciaryAutoSuggestOption>;
 
@@ -93,7 +94,7 @@ export class JudiciaryTypeaheadComponent
       .pipe(
         filter(text => text.length > 1),
         auditTime(250),
-        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 10)),
+        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 50)),
         map(judicialMembers =>
           judicialMembers.map(judicialMember => {
             let judiciaryTitle = judicialMember.titlePrefix || '';
@@ -107,8 +108,9 @@ export class JudiciaryTypeaheadComponent
             let judiciaryMemberType = judicialMember.judiciaryType || '';
             return {
               ...judicialMember,
-              judicialMemberName: `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`,
-              judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`
+              judicialMemberName:
+                `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`.trim(),
+              judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`.trim()
             } as JudiciaryAutoSuggestOption;
           })
         )
@@ -150,7 +152,7 @@ export class JudiciaryTypeaheadComponent
       }
       this.selectedJudicialMember = {
         ...value,
-        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`
+        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`.trim()
       };
       this.autoSuggest.writeValue(this.selectedJudicialMember);
     }

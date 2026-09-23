@@ -458,9 +458,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="First Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -530,9 +530,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Second Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -602,9 +602,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Third Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -648,6 +648,8 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <a
                         data-role="add-new-judiciary-link"
                         href="javascript:void(0)"
+                        pdk-link=""
+                        pdk-margin-bottom="5"
                       >
                         <span>
                           SESSION_TIMES.ADD_ANOTHER_LINK
@@ -669,7 +671,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   </pdk-form-group>
                 </pdk-grid>
                 <pdk-grid
-                  class="flex-column-two govuk-grid-column-one-quarter"
+                  class="flex-column-two pdk-form-field-custom-margin-bottom-1 govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
                   <pdk-form-field
@@ -789,7 +791,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   </pdk-form-field>
                 </pdk-grid>
                 <pdk-grid
-                  class="flex-column-three govuk-grid-column-one-quarter"
+                  class="flex-column-three pdk-form-field-custom-margin-bottom-1 govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
                   <div
@@ -877,7 +879,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   </div>
                 </pdk-grid>
                 <pdk-grid
-                  class="flex-column-four govuk-grid-column-one-quarter"
+                  class="flex-column-four pdk-form-field-custom-margin-bottom-1 govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
                   <pdk-form-field
@@ -1226,9 +1228,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="First Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -1298,9 +1300,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Second Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -1370,9 +1372,9 @@ exports[`SessionTimesContainer should render the template with the values expect
                                     <input
                                       aria-autocomplete="list"
                                       aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                                      aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                                       aria-expanded="false"
-                                      aria-label="Judge name"
+                                      aria-label="Third Judge name"
                                       autocomplete="off"
                                       class="pdk-autosuggest__input ng-untouched ng-pristine ng-valid govuk-input"
                                       role="combobox"
@@ -1416,6 +1418,8 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <a
                         data-role="add-new-judiciary-link"
                         href="javascript:void(0)"
+                        pdk-link=""
+                        pdk-margin-bottom="5"
                       >
                         <span>
                           SESSION_TIMES.ADD_ANOTHER_LINK
@@ -1437,7 +1441,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   </pdk-form-group>
                 </pdk-grid>
                 <pdk-grid
-                  class="flex-column-two govuk-grid-column-one-quarter"
+                  class="flex-column-two pdk-form-field-custom-margin-bottom-1 govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
                   <pdk-form-field
@@ -1557,7 +1561,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   </pdk-form-field>
                 </pdk-grid>
                 <pdk-grid
-                  class="flex-column-three govuk-grid-column-one-quarter"
+                  class="flex-column-three pdk-form-field-custom-margin-bottom-1 govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
                   <div
@@ -1645,7 +1649,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   </div>
                 </pdk-grid>
                 <pdk-grid
-                  class="flex-column-four govuk-grid-column-one-quarter"
+                  class="flex-column-four pdk-form-field-custom-margin-bottom-1 govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
                   <pdk-form-field

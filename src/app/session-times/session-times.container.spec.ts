@@ -10,7 +10,7 @@ import { GetSessionTimesAction, RecordSessionTimesAction } from '../core/actions
 import { CourtFilterOptions } from '../core/model';
 import { ReferenceDataService } from '../core/services';
 
-let todaysDate = new Date();
+let mockTodaysDate = new Date();
 
 jest.mock('../core/utils/cpp-date', () => {
   const cppDateModule = jest.requireActual('../core/utils/cpp-date');
@@ -18,7 +18,7 @@ jest.mock('../core/utils/cpp-date', () => {
     ...cppDateModule,
     getCPPDate: () => {
       const actualCPPDate = cppDateModule.getCPPDate();
-      actualCPPDate.getCurrentDate = jest.fn().mockReturnValue(todaysDate);
+      actualCPPDate.getCurrentDate = jest.fn().mockReturnValue(mockTodaysDate);
       return actualCPPDate;
     }
   };

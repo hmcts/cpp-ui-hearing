@@ -27,7 +27,7 @@ exports[`JudiciaryTypeaheadComponent should create the right templates with acti
                   <input
                     aria-autocomplete="list"
                     aria-controls="pdk-autosuggest__suggestions-container-GENERATED_ID-listbox"
-                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID judge-label"
+                    aria-describedby="pdk-autosuggest__instructions-GENERATED_ID"
                     aria-expanded="false"
                     aria-label="Judge name"
                     autocomplete="off"

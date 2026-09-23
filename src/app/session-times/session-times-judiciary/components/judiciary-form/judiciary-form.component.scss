@@ -1,7 +1,23 @@
 .chairman-radio-button {
-  margin-bottom: 28px;
+  margin-bottom: 25px;
 }
 
-.other-judiciary {
-  margin-bottom: 0;
+.pdk-form-field-custom-margin-bottom-1 {
+  ::ng-deep .govuk-fieldset__legend {
+    margin-bottom: 5px;
+  }
+}
+::ng-deep pdk-autosuggest-lite {
+  // ~10 rows visible, then scroll.
+  $visible-rows: 13;
+  $row-height: 2.5rem;
+
+  .pdk-autosuggest__suggestions-container--open {
+    max-height: $visible-rows * $row-height;
+    overflow-y: auto;
+  }
+
+  .pdk-autosuggest__suggestion {
+    min-height: $row-height;
+  }
 }

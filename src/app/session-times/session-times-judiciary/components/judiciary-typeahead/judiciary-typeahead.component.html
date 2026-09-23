@@ -2,8 +2,7 @@
   <pdk-autosuggest-lite
     #autosuggest="pdkAutosuggestLite"
     (inputText)="input$.next($event)"
-    [ariaDescribedBy]="'judge-label'"
-    [ariaLabel]="'Judge name'"
+    [ariaLabel]="ariaLabel"
     [inputWidth]="25"
     [suggestions]="(source$ | async) || []"
     suggestionKey="id"
