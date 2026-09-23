@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges
+} from '@angular/core';
 import { ControlContainer, NgForm, FormsModule } from '@angular/forms';
+import { Address, CppAddressAutosuggestComponent } from '@cpp/application';
 import {
   PdkFormComponent,
   PdkFormFieldComponent,
+  PdkLinkDirective,
   PdkRadioGroupComponent,
   PdkRadioButtonComponent,
   PdkTextInput,
@@ -11,6 +19,11 @@ import {
 } from '@cpp/pdk';
 import { find, keyBy } from 'lodash-es';
 import { validateValueForPromptChoice } from '../../../core/helpers';
+import {
+  applyAddressToControls,
+  isAddressLineOrPostcodePartName,
+  promptChildValuesToAddress
+} from '../../../core/prompt-choices/address';
 import {
   DraftResultPrompt,
   NameAddressListItem,
@@ -77,6 +90,44 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
       [ngModel]="formValues[childPromptChoices.OrganisationName.promptRef]?.value"
     />
     }
+    <!-- Address lookup -->
+
+    @if (promptChoice.useAddressLookup && !hasOrganisationLookup) {
+    <pdk-form-field
+      label="Search address or Postcode"
+      hintText="Enter at least 3 characters to see address suggestions"
+      labelType="small"
+    >
+      <cpp-address-autosuggest
+        [ngModel]="null"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="handleAddressSelected($event)"
+        clearOnSelection
+      >
+      </cpp-address-autosuggest>
+    </pdk-form-field>
+    @if (!showAddressFields) {
+    <div pdk-margin-bottom="6">
+      <a pdk-link role="button" href="javascript:void(0)" (click)="handleEnterManually()"
+        >Enter address manually</a
+      >
+    </div>
+    } @for (partName of otherPartNames; track trackByPartName($index, partName)) { @if
+    (!isAddressLineOrPostcodePartName(partName) || showAddressFields) {
+    <pdk-form-field
+      [label]="getChildPromptChoice(partName) | promptChoiceLabel"
+      [hintText]="getChildPromptChoice(partName).hint"
+      labelType="small"
+    >
+      <input
+        type="text"
+        [name]="getChildPromptChoice(partName).promptRef"
+        [ngModel]="formValues[getChildPromptChoice(partName).promptRef]?.value"
+        pdk-input
+        [pdk-text-input]="getChildPromptChoice(partName) | promptChoiceFormat"
+      />
+    </pdk-form-field>
+    } } } @else {
     <!-- Other part names -->
 
     @for (partName of otherPartNames; track trackByPartName($index, partName)) {
@@ -93,7 +144,7 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
         [pdk-text-input]="getChildPromptChoice(partName) | promptChoiceFormat"
       />
     </pdk-form-field>
-    }
+    } }
   `,
   viewProviders: [
     {
@@ -110,7 +161,9 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
     PdkRadioButtonComponent,
     PdkTextInput,
     PdkAutosuggestLiteComponent,
-    PdkMarginDirective
+    PdkMarginDirective,
+    PdkLinkDirective,
+    CppAddressAutosuggestComponent
   ]
 })
 export class NameAddressPromptChoiceComponent implements OnChanges {
@@ -122,16 +175,24 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
   set value(resultPrompt: DraftResultPrompt<DraftResultPrompt<string>[]> | undefined) {
     const resultPromptValues = resultPrompt ? resultPrompt : this.obtainDefaultingOption();
     this.formValues = resultPromptValues ? keyBy(resultPromptValues.value, 'promptRef') : {};
+    this.currentAddress = promptChildValuesToAddress(
+      this.formValues,
+      this.promptChoice?.children ?? []
+    );
+    this.showAddressFields = !!this.currentAddress;
   }
 
   childPromptChoices: Record<NameAddressPartName, PromptChoiceChild>;
   formValues: Record<string, DraftResultPrompt<string>> = {};
+  currentAddress: Address | null = null;
+  showAddressFields = false;
+  // Exposed for the template - it can only call component members, not free imported functions.
+  isAddressLineOrPostcodePartName = isAddressLineOrPostcodePartName;
   selectedAddressType: 'Organisation' | 'Person' | 'Both';
   selectedOrganisation: NameAddressListItem;
   suggestions: NameAddressListItem[] = [];
 
-  constructor(private ngForm: NgForm, pdkForm: PdkFormComponent) {
-    // As a performance optimization, validate only on submit
+  constructor(private ngForm: NgForm, pdkForm: PdkFormComponent, private cdr: ChangeDetectorRef) {
     pdkForm.onBeforeSubmit$.subscribe(() => {
       const errors = validateValueForPromptChoice(this.promptChoice, this.ngForm.form.value);
 
@@ -211,6 +272,23 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
         }
       }
     }
+  }
+
+  handleAddressSelected(address: Address | null): void {
+    if (!address) {
+      return;
+    }
+    this.showAddressFields = true;
+    this.cdr.detectChanges();
+    Promise.resolve().then(() => this.applyAddress(address));
+  }
+
+  handleEnterManually(): void {
+    this.showAddressFields = true;
+  }
+
+  private applyAddress(address: Address): void {
+    applyAddressToControls(this.ngForm, this.promptChoice.children, address);
   }
 
   handleOrganisationInputText(inputText: string) {
