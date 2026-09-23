@@ -241,9 +241,16 @@ export class MagistratesSchedulingContainer {
           ).resultPrompts?.find(prompt => prompt.promptRef === 'bookingReference')?.value as
             | string
             | undefined;
+          // duration is what courtscheduler decrements available_duration by when reserving a
+          // DURATION-BASED session, so omitting it leaves such a reservation unable to take the
+          // capacity it is claiming. It is undefined for slot-based sessions and is dropped from
+          // the JSON in that case, which is what courtscheduler expects - it counts slots there.
+          // The crown picker has always sent it; magistrates did not, so a duration-based mags
+          // pick reached courtscheduler with no duration at all.
           const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
             courtScheduleId: allocation.hearingSlot.courtScheduleId,
-            hearingStartTime: allocation.hearingSlotTime
+            hearingStartTime: allocation.hearingSlotTime,
+            duration: allocation.duration
           }));
 
           // We need the take the earliest hearing slot from our array of hearing slots.
