@@ -184,6 +184,12 @@ export class MagistratesSchedulingContainer {
     organisationUnit,
     ...filters
   }: MagistratesSchedulingFilters): void {
+    // Clear any banner from a previous pick. It is only otherwise cleared on a SUCCESSFUL
+    // booking, so a failed one left it on screen indefinitely - and because the error carries
+    // shouldFocus, the summary reclaimed focus on every change detection and the filters became
+    // effectively unusable. A new search is a new attempt; last attempt's outcome does not apply.
+    this.bookingErrorSubject.next(null);
+
     let hearingTypeId;
 
     if (hearingType && hearingType.id && hearingType.id !== defaultHearingTypePlaceHolder.id) {
@@ -202,6 +208,12 @@ export class MagistratesSchedulingContainer {
   }
 
   handlePageChange(pageNumber: number): void {
+    // Clear any banner from a previous pick. It is only otherwise cleared on a SUCCESSFUL
+    // booking, so a failed one left it on screen indefinitely - and because the error carries
+    // shouldFocus, the summary reclaimed focus on every change detection and the filters became
+    // effectively unusable. A new search is a new attempt; last attempt's outcome does not apply.
+    this.bookingErrorSubject.next(null);
+
     this.store
       .pipe(
         select(getSearchParams),
@@ -222,6 +234,9 @@ export class MagistratesSchedulingContainer {
     hearingType,
     ...params
   }: AllocateHearingParams) {
+    // A retry starts clean: the previous attempt's banner must not outlive the attempt itself.
+    this.bookingErrorSubject.next(null);
+
     const parentParams = this.route.parent?.snapshot.params || {};
     const currentParams = this.route.snapshot.params;
     const { hearingId, resultLineId } = { ...parentParams, ...currentParams };
