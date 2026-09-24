@@ -2264,9 +2264,17 @@ describe('getListingNoteByCourtRoomAndDate', () => {
                 personDefendant: {
                   personDetails: {
                     firstName: 'F',
-                    lastName: 'L'
+                    lastName: 'L',
+                    dateOfBirth: '1945-02-18'
                   }
-                }
+                },
+                defendantCase: [
+                  {
+                    defendantId: 'case-defendant-id',
+                    caseId: 'case-id',
+                    caseReference: 'CASE-URN-1'
+                  }
+                ]
               }
             },
             courtOrder: {
@@ -2303,7 +2311,14 @@ describe('getListingNoteByCourtRoomAndDate', () => {
                   organisation: {
                     name: 'Org'
                   }
-                }
+                },
+                defendantCase: [
+                  {
+                    defendantId: 'case-defendant-id-2',
+                    caseId: 'case-id-2',
+                    caseReference: 'CASE-URN-2'
+                  }
+                ]
               }
             },
             courtOrder: {
