@@ -4,9 +4,43 @@ import { Injectable } from '@angular/core';
 import { CppHttp } from '@cpp/core';
 import cleanDeep from 'clean-deep';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SearchAvailableHearingsFormOptions } from '../../model';
 import { getCPPDate } from '../../utils/cpp-date';
 import { ListingNote } from '@cpp/scheduling';
+
+export interface BookingStatus {
+  bookingId: string;
+  safeToShare: boolean;
+  status: string;
+}
+
+export interface BookingStatusResponse {
+  bookings: BookingStatus[];
+}
+
+/**
+ * Pulls the `bookings` array out of whatever `CppHttp.command` hands back.
+ *
+ * <p>In production that is an `HttpResponse<string>` whose `body` is unparsed JSON. Tests and
+ * any future change to `CppHttp` may pass the object straight through, so both are accepted -
+ * but a shape carrying no `bookings` array is an error, never an empty result. See
+ * {@link ListingService.getBookingStatus} for why that distinction is load-bearing.
+ */
+const parseBookingStatusResponse = (response: unknown): BookingStatusResponse => {
+  const payload =
+    typeof (response as { body?: unknown })?.body === 'string'
+      ? JSON.parse((response as { body: string }).body)
+      : response;
+
+  const bookings = (payload as BookingStatusResponse)?.bookings;
+
+  if (!Array.isArray(bookings)) {
+    throw new Error('bookingStatus response carried no bookings array');
+  }
+
+  return { bookings };
+};
 
 @Injectable()
 export class ListingService {
@@ -49,14 +83,38 @@ export class ListingService {
     });
   }
 
-  getBookingStatus(bookingIds: string[]): Observable<{
-    bookings: { bookingId: string; safeToShare: boolean; status: string }[];
-  }> {
-    return this.api.command({
-      url: '/listing-query-api/query/api/rest/listing/bookingStatus',
-      requestType: 'application/vnd.listing.query.booking.status+json',
-      body: { bookingIds }
-    });
+  /**
+   * Asks listing whether each booking is still safe to share.
+   *
+   * <p>`bookingStatus` is a POST, so it must go through `api.command` rather than `api.query`.
+   * That matters: `command` resolves to an Angular `HttpResponse` built with
+   * `{ observe: 'response', responseType: 'text' }`, so the payload arrives as an UNPARSED
+   * STRING on `.body` and the object itself has no `bookings` property. `command` is also
+   * typed `Observable<any>`, so returning it directly satisfies any declared return type and
+   * the compiler says nothing.
+   *
+   * <p>That combination is what made the pre-share gate pass a booking it had just been told
+   * was expired: the gate read `response?.bookings`, got `undefined` off the `HttpResponse`,
+   * and its `?? []` turned that into "no unsafe bookings". The request was made, the correct
+   * `safeToShare: false` came back over the wire, and nothing acted on it.
+   *
+   * <p>So the parse belongs here, once, rather than at each of the three call sites. It
+   * deliberately THROWS on a body it cannot read instead of answering `{ bookings: [] }` -
+   * an empty list is indistinguishable from "everything is fine" and is precisely how this
+   * failed silently before. Every caller already handles the error stream and has chosen its
+   * own direction: the pre-share gate fails open, the two release effects fail closed.
+   *
+   * @param bookingIds the bookings to ask about
+   * @returns the parsed `bookings` array
+   */
+  getBookingStatus(bookingIds: string[]): Observable<BookingStatusResponse> {
+    return this.api
+      .command({
+        url: '/listing-query-api/query/api/rest/listing/bookingStatus',
+        requestType: 'application/vnd.listing.query.booking.status+json',
+        body: { bookingIds }
+      })
+      .pipe(map(response => parseBookingStatusResponse(response)));
   }
 
   private toHttpParams(params: any) {
