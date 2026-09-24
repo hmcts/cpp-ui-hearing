@@ -1,6 +1,8 @@
 import { ValidationError } from '@cpp/pdk';
 import { HearingDetail } from '../../../core/model/hearing-detail';
 import { Offence } from '../../../core/model/offence';
+import { CourtApplication } from '../../../core/model/court-application';
+import { ProsecutionCaseDetails } from '../../../core/model/shared/prosecution-case-details';
 import { DraftResult, DraftResultPromptValue, OffenceLike } from '../../results.interfaces';
 import {
   ResultsValidation,
@@ -143,7 +145,7 @@ const buildDefendants = (defendants: HearingPersonDetails[]): ResultsValidationD
 };
 
 const buildApplicationOffences = (
-  courtApplications: HearingDetail['courtApplications']
+  courtApplications: CourtApplication[]
 ): OffenceWithCaseAndDefendant[] => {
   return getApplicationSubjectAsCaseDefendant(courtApplications || []).reduce<
     OffenceWithCaseAndDefendant[]
@@ -159,7 +161,7 @@ const buildApplicationOffences = (
 };
 
 const buildCaseOffences = (
-  prosecutionCases: HearingDetail['prosecutionCases']
+  prosecutionCases: ProsecutionCaseDetails[]
 ): OffenceWithCaseAndDefendant[] => {
   return (prosecutionCases || []).reduce<OffenceWithCaseAndDefendant[]>((acc, kase) => {
     const caseUrn = kase.prosecutionCaseIdentifier?.caseURN;
@@ -178,7 +180,7 @@ const buildCaseOffences = (
 const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
   const uniqueOffences = new Set<string>();
   const applicationOffences: OffenceWithCaseAndDefendant[] = buildApplicationOffences(
-    hearing.courtApplications
+    hearing.courtApplications || []
   );
   const caseOffences = buildCaseOffences(hearing.prosecutionCases);
 
