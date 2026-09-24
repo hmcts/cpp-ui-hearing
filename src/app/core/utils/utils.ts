@@ -196,9 +196,9 @@ export const sortOffences = (
  * @param defendants all defendants
  * @returns distinct defendants
  */
+
 export const getDistinctDefendants = (defendants: Defendant[]): Defendant[] => {
   const distinctDefendants: Defendant[] = [];
-
   for (const defendant of defendants) {
     if (
       !distinctDefendants.find(def => def.masterDefendantId === defendant.masterDefendantId) &&
