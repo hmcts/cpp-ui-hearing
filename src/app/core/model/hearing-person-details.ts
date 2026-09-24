@@ -7,4 +7,6 @@ export interface HearingPersonDetails {
   offences?: Offence[];
   masterDefendantId?: string;
   title?: string;
+  dateOfBirth?: string;
+  caseURN?: string;
 }
