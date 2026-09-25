@@ -231,6 +231,36 @@ describe('ShareResultActionBarComponent', () => {
     });
   });
 
+  describe('canAdjudicateAmendmentsValidate', () => {
+    beforeEach(() => {
+      component.hearingLockState = HearingLockState.APPROVAL_REQUESTED;
+      component.amendedByCurrentUser = false;
+      component.hasValidationErrors = false;
+    });
+
+    it('should return true when approval has been requested, the current user did not make the amendment and there are no validation errors', () => {
+      expect(component.canAdjudicateAmendmentsValidate).toBe(true);
+    });
+
+    it('should return false when there are validation errors even though every other condition is met', () => {
+      component.hasValidationErrors = true;
+
+      expect(component.canAdjudicateAmendmentsValidate).toBe(false);
+    });
+
+    it('should return false when the current user made the amendment', () => {
+      component.amendedByCurrentUser = true;
+
+      expect(component.canAdjudicateAmendmentsValidate).toBe(false);
+    });
+
+    it('should return false when approval has not been requested', () => {
+      component.hearingLockState = HearingLockState.SHARED;
+
+      expect(component.canAdjudicateAmendmentsValidate).toBe(false);
+    });
+  });
+
   describe('handleShareDraftResult when there are non-valid ancillary results', () => {
     it('should emit the standalone ancillary results and not share or open the confirmation modal', async () => {
       configureComponent({ amendApplicationPermission: false });
