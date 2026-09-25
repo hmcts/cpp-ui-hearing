@@ -440,6 +440,7 @@ export interface PromptChoiceChild<P = string> {
   maxValue?: number;
   minValue?: number;
   hint?: string;
+  useAddressLookup?: boolean;
 }
 
 export interface ChildResultDefinition {

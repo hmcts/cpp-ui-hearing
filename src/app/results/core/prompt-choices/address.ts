@@ -52,6 +52,15 @@ export const isAddressLineOrPostcodePartName = (
   partName: AddressPartName | NameAddressPartName
 ): boolean => ADDRESS_LINE_PART_NAMES.includes(partName as AddressPartName);
 
+// Some result definitions (e.g. FCOMP's Minor Creditor) set useAddressLookup on
+// each of the ADDRESS/NAMEADDRESS prompt's own children instead of (or as well
+// as) on the prompt choice itself - check both places rather than assuming the
+// backend always puts it at the top level.
+export const hasAddressLookupEnabled = (
+  promptChoice: AddressPromptChoice | NameAddressPromptChoice
+): boolean =>
+  !!promptChoice.useAddressLookup || promptChoice.children.some(child => !!child.useAddressLookup);
+
 export const formatAddressValue = (value: DraftResultPrompt<string>[]): string => {
   return value
     .map(child => child.value)
