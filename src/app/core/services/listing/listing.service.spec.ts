@@ -148,10 +148,10 @@ describe('ListingService', () => {
     const url = '/listing-query-api/query/api/rest/listing/bookingStatus';
     const requestType = 'application/vnd.listing.query.booking.status+json';
 
+    const bookings = [{ bookingId: 'booking-1', safeToShare: false, status: 'NONE' }];
+
     it('sends the bookingIds and returns the bookings response', () => {
-      const response = {
-        bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'AVAILABLE' }]
-      };
+      const response = { bookings };
       const httpResponse$ = cold('-a|', { a: response });
       const expected$ = cold('-b|', { b: response });
       const commandSpy = jest.fn().mockReturnValue(httpResponse$);
@@ -165,6 +165,33 @@ describe('ListingService', () => {
         requestType,
         body: { bookingIds: ['booking-1'] }
       });
+    });
+
+    // The shape production actually produces, and the one this service used to pass straight
+    // through to its callers. `CppHttp.command` posts with `{ observe: 'response',
+    // responseType: 'text' }`, so the payload is an UNPARSED STRING on `.body` and the object
+    // has no `bookings` of its own. Callers read `response?.bookings`, got undefined, and
+    // their `?? []` read it as "nothing unsafe" - the pre-share gate shared a booking listing
+    // had just reported as expired. Mocking the declared shape (the test above) cannot catch
+    // that, because `command` is typed `Observable<any>` and so the compiler never objects.
+    it('parses the text body of a real HttpResponse', () => {
+      const httpResponse = { status: 200, body: JSON.stringify({ bookings }) };
+      http.command = jest.fn().mockReturnValue(cold('-a|', { a: httpResponse }));
+
+      expect(service.getBookingStatus(['booking-1'])).toBeObservable(
+        cold('-b|', { b: { bookings } })
+      );
+    });
+
+    // Must ERROR, never resolve to an empty list. Each caller has chosen its own direction for
+    // a failed lookup - the pre-share gate fails open, the release effects fail closed - and
+    // `{ bookings: [] }` would silently rob them of that choice by looking like a clean answer.
+    it('errors rather than reporting no bookings when the body is unreadable', () => {
+      http.command = jest.fn().mockReturnValue(cold('-a|', { a: { status: 200, body: 'null' } }));
+
+      expect(service.getBookingStatus(['booking-1'])).toBeObservable(
+        cold('-#', null, new Error('bookingStatus response carried no bookings array'))
+      );
     });
   });
 });

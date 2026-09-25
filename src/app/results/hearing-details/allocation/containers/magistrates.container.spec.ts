@@ -405,6 +405,60 @@ describe('MagistratesSchedulingContainer', () => {
       expect(courtScheduleBookings[0].duration).toBeUndefined();
     }));
 
+    // The banner used to be cleared ONLY on a successful booking, so a failed pick left it on
+    // screen indefinitely. Because the error carries shouldFocus, the summary reclaimed focus on
+    // every change detection and the filters became unusable - the clerk could not search again.
+    it('clears the error banner when the clerk searches again', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('boom'))
+      );
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+      expect(stub.externalErrors).not.toBeNull();
+
+      stub.filtersSubmit.emit({
+        courtRoomId: '*',
+        sessionStartDate: '2019-01-01'
+      } as MagistratesSchedulingFilters);
+      tick();
+      fixture.detectChanges();
+
+      expect(stub.externalErrors).toBeNull();
+    }));
+
+    it('clears the error banner when the clerk pages through results', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('boom'))
+      );
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+      expect(stub.externalErrors).not.toBeNull();
+
+      stub.pageChange.emit(2);
+      tick();
+      fixture.detectChanges();
+
+      expect(stub.externalErrors).toBeNull();
+    }));
+
     it('does not write any prompt or navigate away when the reservation is refused', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
         throwError(() => new Error('no capacity'))
