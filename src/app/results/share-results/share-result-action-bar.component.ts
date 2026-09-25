@@ -178,6 +178,7 @@ export class ShareResultActionBarComponent {
       (this.canAdjudicateAmendments ||
         this.canCancelAmendments ||
         this.canRequestApproval ||
+        this.canAdjudicateAmendmentsValidate ||
         this.canShareUnlockedDraftResult)
     );
   }
