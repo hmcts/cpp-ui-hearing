@@ -21,6 +21,7 @@ import { find, keyBy } from 'lodash-es';
 import { validateValueForPromptChoice } from '../../../core/helpers';
 import {
   applyAddressToControls,
+  hasAddressLookupEnabled,
   isAddressLineOrPostcodePartName,
   promptChildValuesToAddress
 } from '../../../core/prompt-choices/address';
@@ -92,7 +93,7 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
     }
     <!-- Address lookup -->
 
-    @if (promptChoice.useAddressLookup && !hasOrganisationLookup) {
+    @if (hasAddressLookupEnabled(promptChoice) && !hasOrganisationLookup) {
     <pdk-form-field
       label="Search address or Postcode"
       hintText="Enter at least 3 characters to see address suggestions"
@@ -188,6 +189,7 @@ export class NameAddressPromptChoiceComponent implements OnChanges {
   showAddressFields = false;
   // Exposed for the template - it can only call component members, not free imported functions.
   isAddressLineOrPostcodePartName = isAddressLineOrPostcodePartName;
+  hasAddressLookupEnabled = hasAddressLookupEnabled;
   selectedAddressType: 'Organisation' | 'Person' | 'Both';
   selectedOrganisation: NameAddressListItem;
   suggestions: NameAddressListItem[] = [];

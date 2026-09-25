@@ -353,6 +353,24 @@ describe('ResultPromptsForm', () => {
       ).not.toBeNull();
     }));
 
+    it('should render the address lookup when useAddressLookup is set on a child instead of the prompt choice itself', fakeAsync(() => {
+      fixture.componentInstance.promptChoices = [
+        {
+          ...ADDRESS_WITH_LOOKUP,
+          useAddressLookup: false,
+          children: ADDRESS_WITH_LOOKUP.children.map(child => ({
+            ...child,
+            useAddressLookup: true
+          }))
+        }
+      ];
+      fixture.detectChanges();
+      tick();
+      expect(
+        fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))
+      ).not.toBeNull();
+    }));
+
     it('should not render the address lookup when useAddressLookup is not set', fakeAsync(() => {
       fixture.componentInstance.promptChoices = [
         { ...ADDRESS_WITH_LOOKUP, useAddressLookup: false }
@@ -1454,6 +1472,21 @@ describe('ResultPromptsForm', () => {
         fixture.detectChanges();
         tick();
         expect(fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))).toBeNull();
+      }));
+
+      it("should render the address lookup when useAddressLookup is set on a child instead of the prompt choice itself - e.g. FCOMP's Minor Creditor", fakeAsync(() => {
+        fixture.componentInstance.promptChoices = [
+          {
+            ...NAMEADDRESS,
+            useAddressLookup: false,
+            children: NAMEADDRESS.children.map(child => ({ ...child, useAddressLookup: true }))
+          }
+        ];
+        fixture.detectChanges();
+        tick();
+        expect(
+          fixture.debugElement.query(By.directive(CppAddressAutosuggestComponent))
+        ).not.toBeNull();
       }));
 
       it('should not render the address fields at page load when no address is saved yet', fakeAsync(() => {

@@ -6,6 +6,7 @@ import { keyBy } from 'lodash-es';
 import { validateValueForPromptChoice } from '../../../core/helpers';
 import {
   applyAddressToControls,
+  hasAddressLookupEnabled,
   promptChildValuesToAddress
 } from '../../../core/prompt-choices/address';
 import { AddressPromptChoice, DraftResultPrompt } from '../../../results.interfaces';
@@ -17,7 +18,7 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- Address lookup -->
-    @if (promptChoice.useAddressLookup) {
+    @if (hasAddressLookupEnabled(promptChoice)) {
     <pdk-form-field
       label="Search address or Postcode"
       hintText="Enter at least 3 characters to see address suggestions"
@@ -90,6 +91,9 @@ export class AddressPromptChoiceComponent {
   formValues: Record<string, DraftResultPrompt> = {};
   currentAddress: Address | null = null;
   showAddressFields = false;
+  // Exposed for the template - it can only call component members, not
+  // free imported functions.
+  hasAddressLookupEnabled = hasAddressLookupEnabled;
 
   constructor(
     private ngForm: NgForm,
