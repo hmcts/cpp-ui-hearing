@@ -26,8 +26,8 @@
       class="defendant-name"
       data-role="name"
     >
-      {{ defendant.personDefendant.personDetails.firstName }}
-      {{ defendant.personDefendant.personDetails.lastName | uppercase }}
+      {{ defendant?.personDefendant?.personDetails?.firstName }}
+      {{ defendant?.personDefendant?.personDetails?.lastName | uppercase }}
     </h4>
     @if (defendant.isYouth) {
     <div pdk-typography="body-xsmall" class="youth-marker">Youth</div>

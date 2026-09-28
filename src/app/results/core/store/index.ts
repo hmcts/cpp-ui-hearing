@@ -173,6 +173,9 @@ export const getShareableResultLinesFor = (rawOptions: ShareableResultLineOption
 
 export const getResultsValidation = (state: ResultsState) => state.results.resultsValidation;
 
+export const getShareResultsValidationFailure = (state: ResultsState) =>
+  state.results.shareResultsValidationFailure;
+
 export const getResultsValidationErrors = createSelector(
   getResultsValidation,
   resultsValidation => resultsValidation?.errors?.validationIssues || []

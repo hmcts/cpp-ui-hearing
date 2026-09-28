@@ -322,7 +322,9 @@ export class DraftResultEffects {
         return this.resultsValidationService.validate(request).pipe(
           tap(response => {
             if (action.navigateOnSuccess && response.isValid) {
-              this.router.navigateByUrl(`/manage/${draftResult.hearingId}`);
+              this.router.navigateByUrl(`/manage/${draftResult.hearingId}`, {
+                state: { skipResultsValidation: action.skipResultsValidation }
+              });
             }
           }),
           map(response => ResultsValidationActions.validateResultsSuccess({ response })),
@@ -332,7 +334,9 @@ export class DraftResultEffects {
           // from loading the hearing page or sharing results.
           catchError(() => {
             if (action.navigateOnSuccess) {
-              this.router.navigateByUrl(`/manage/${draftResult.hearingId}`);
+              this.router.navigateByUrl(`/manage/${draftResult.hearingId}`, {
+                state: { skipResultsValidation: action.skipResultsValidation }
+              });
             }
             return of(ResultsValidationActions.clearValidationResults());
           })
