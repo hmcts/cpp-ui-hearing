@@ -1313,8 +1313,8 @@ describe('ShareResultContainerComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
     });
 
-    it('does not check when the booking is a magistrates next hearing (NHMC)', () => {
-      const magistratesBooking = draftResultWithLines({
+    const magistratesDraftResult = () =>
+      draftResultWithLines({
         'line-1': {
           resultLineId: 'line-1',
           shortCode: 'nhmc',
@@ -1324,20 +1324,70 @@ describe('ShareResultContainerComponent', () => {
               promptId: 'booking-prompt-id',
               promptRef: 'bookingReference',
               label: 'Booking reference',
-              value: 'provisional-booking-id'
+              value: 'mags-booking-id'
             }
           ]
         }
       });
-      setup(crownHearing, magistratesBooking);
-      const bookingStatusSpy = jest
-        .spyOn(listingService, 'getBookingStatus')
-        .mockReturnValue(of({ bookings: [] }));
+
+    // This test previously asserted the OPPOSITE - that a magistrates next hearing was not
+    // checked at all. That exclusion was the defect: getBookingReferencesToCheck returned []
+    // for a magistrates-only draft, so validateSessionAvailabilityAndShare short-circuited on
+    // `bookingReferences.length === 0` and never called listing, and the share went through
+    // whatever state the hold was in. Reproduced on STE02 by deleting the reservation row for
+    // booking 751930c9 and sharing an NHMC result, which succeeded silently.
+    it('checks a magistrates next hearing (NHMC) and shares when the hold is still good', () => {
+      setup(crownHearing, magistratesDraftResult());
+      const bookingStatusSpy = jest.spyOn(listingService, 'getBookingStatus').mockReturnValue(
+        of({
+          bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'RESERVED' }]
+        })
+      );
 
       component.handleShareDraftResult();
 
-      expect(bookingStatusSpy).not.toHaveBeenCalled();
+      expect(bookingStatusSpy).toHaveBeenCalledWith(['mags-booking-id']);
       expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    // The STE02 scenario itself: the magistrates hold has been purged, so the share must be
+    // refused rather than proceeding into a booking that no longer exists.
+    it('blocks a magistrates next hearing whose hold has expired', () => {
+      setup(crownHearing, magistratesDraftResult());
+      jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NONE' }] })
+        );
+
+      component.handleShareDraftResult();
+
+      expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).toHaveBeenCalledWith({
+        hasAttendanceError: false,
+        hasTrialEffectivenessError: false,
+        hasSessionAvailabilityError: true,
+        sessionUnavailableReason: 'NONE'
+      });
+    });
+
+    // A magistrates draft saved before reserve-a-slot shipped holds no reservation row.
+    // courtscheduler answers LEGACY with safeToShare true, so it must NOT be blocked -
+    // this is what made it safe to start checking NHMC at all (DEC-1 / NEW-7a).
+    it('shares a legacy magistrates draft that holds no reservation', () => {
+      setup(crownHearing, magistratesDraftResult());
+      jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'LEGACY' }] })
+        );
+
+      component.handleShareDraftResult();
+
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).not.toHaveBeenCalledWith(
+        expect.objectContaining({ hasSessionAvailabilityError: true })
+      );
     });
 
     // Regression guard for related-hearings.container.ts: attaching to an already-listed

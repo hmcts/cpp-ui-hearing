@@ -12,8 +12,10 @@ import {
   PdkAlertComponent,
   PdkErrorSummaryComponent,
   PdkMarginDirective,
+  PdkNotificationBannerComponent,
   PdkTypographyDirective
 } from '@cpp/pdk';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Action } from '@ngrx/store';
 import { AmendmentReason, HearingDetail } from '../../core';
 import { Offence } from '../../magistrates/interfaces/magistrates-hearing.interface';
@@ -34,6 +36,18 @@ export interface DelegatedPowersValue {
   selector: 'cpp-enter-results',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    @if (sessionBooked) {
+    <div pdk-margin-bottom="3">
+      <pdk-notification-banner
+        [title]="'MANAGE_HEARING.SESSION_BOOKED_TITLE' | translate"
+        data-test-id="sessionBookedBanner"
+      >
+        <p pdk-typography="body">
+          {{ 'MANAGE_HEARING.SESSION_BOOKED_MESSAGE' | translate }}
+        </p>
+      </pdk-notification-banner>
+    </div>
+    }
     @if (isSelectedHearingInFuture) {
     <div pdk-margin-bottom="3">
       <pdk-alert type="warning" icon="true" data-test-id="futureHearingWarningBanner">
@@ -96,6 +110,8 @@ export interface DelegatedPowersValue {
   ],
   imports: [
     PdkAlertComponent,
+    PdkNotificationBannerComponent,
+    TranslatePipe,
     PdkErrorSummaryComponent,
     PdkMarginDirective,
     PdkTypographyDirective,
@@ -106,6 +122,8 @@ export interface DelegatedPowersValue {
   providers: [AmendmentService]
 })
 export class EnterResultsComponent implements OnChanges {
+  /** The clerk has just held a session; the hold dies at midnight unless shared. */
+  @Input() sessionBooked = false;
   @Input() isSelectedHearingInFuture = false;
   @Input() delegatedPowers = false;
   @Input() draftResultError = false;

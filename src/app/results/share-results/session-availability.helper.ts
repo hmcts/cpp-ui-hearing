@@ -1,47 +1,34 @@
-import { DraftResult, ResolvedDraftResultLine } from '../results.interfaces';
+import { DraftResult } from '../results.interfaces';
+import { getBookingReferencesToRelease } from '../core/helpers';
 
-const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
-// Written by related-hearings.container.ts when a clerk attaches this result to an
-// already-listed hearing (an "existing" hearing, not a newly booked one). In that
-// path bookingReference holds a genuine courtScheduleId, not a bookingId - nothing
-// was booked, so asking the booking-status endpoint about it would come back NONE
-// and wrongly block the share. Skip these lines.
-const EXISTING_HEARING_PROMPT_REF = 'existingHearingId';
-// "Next hearing in Crown Court" - the only result that books a Crown court
-// schedule without a provisional booking (magistrates' NHMC is provisionally
-// booked and must NOT be re-validated).
-const NEXT_HEARING_IN_CROWN_COURT = 'NHCCS';
-
-export const getBookingReferencesToCheck = (draftResult: DraftResult): string[] => {
-  const bookingReferences: string[] = [];
-
-  const resultLines = Object.values(draftResult?.resultLines || {}) as ResolvedDraftResultLine[];
-
-  for (const resultLine of resultLines) {
-    if (resultLine?.shortCode?.toUpperCase() !== NEXT_HEARING_IN_CROWN_COURT) {
-      continue;
-    }
-
-    const prompts = resultLine.resultPrompts || [];
-
-    const hasExistingHearing = prompts.some(
-      prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF
-    );
-
-    if (hasExistingHearing) {
-      continue;
-    }
-
-    const bookingReference = prompts.find(
-      prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF
-    )?.value as string;
-
-    if (!bookingReference) {
-      continue;
-    }
-
-    bookingReferences.push(bookingReference);
-  }
-
-  return bookingReferences;
-};
+/**
+ * Every bookingId the draft result is carrying, so the pre-share gate can ask
+ * courtscheduler whether each hold is still there.
+ *
+ * <p>Delegates to {@link getBookingReferencesToRelease} because the two questions have the
+ * same answer: a line holds a booking iff it carries a `bookingReference` prompt and is not
+ * an attach-to-existing-hearing line. Sharing one predicate is the point of this file now.
+ *
+ * <p>It previously kept its own copy, gated on an allowlist of short codes
+ * (`['NHCCS']`, later `['NHCCS', 'NHMC']`). That was the defect behind two STE02
+ * reproductions: NHMC was missing from the list, so a magistrates-only draft produced [],
+ * the gate short-circuited before calling listing at all, and a clerk shared into a hold
+ * that had already been purged. An allowlist fails SILENTLY - a missing entry is
+ * indistinguishable from "nothing to check" - while the release path, which never used
+ * one, never had the bug.
+ *
+ * <p>The allowlist was also redundant. Only the two pickers write a `bookingReference`
+ * (crown-scheduling.container.ts and magistrates.container.ts), and the only other writer,
+ * related-hearings.container.ts, puts a courtScheduleId there and always sets
+ * `existingHearingId` alongside - which both helpers already exclude. So the prompt can
+ * only ever land on the very lines the list named.
+ *
+ * <p>Keeping the name: the gate asks a different question of the same set, and a future
+ * result type that books a session is now covered here automatically rather than needing
+ * to be remembered.
+ *
+ * @param draftResult the draft about to be shared
+ * @returns the bookingIds to check, in result-line order
+ */
+export const getBookingReferencesToCheck = (draftResult: DraftResult): string[] =>
+  getBookingReferencesToRelease(draftResult);

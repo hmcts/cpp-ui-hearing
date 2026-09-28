@@ -13,6 +13,16 @@ export interface State {
   reusableResults: PromptEntry[] | null;
   invalidResultLines: ResolvedDraftResultLine[] | null;
   resultsValidation: ResultsValidationResponse | null;
+  /**
+   * Whether to tell the clerk their newly held session expires at midnight.
+   *
+   * <p>Deliberately transient, and deliberately in the store rather than a query
+   * param: the notice is a confirmation of an action just taken, so it should not
+   * survive a reload or reappear when the clerk navigates back. Being in memory
+   * gives the reload behaviour for free; dismissSessionBooked, dispatched when the
+   * results page is destroyed, gives the navigation behaviour.
+   */
+  sessionBookedNotification: boolean;
 }
 
 export const initialState: State = {
@@ -21,11 +31,20 @@ export const initialState: State = {
   draftResultSaving: false,
   reusableResults: null,
   invalidResultLines: null,
-  resultsValidation: null
+  resultsValidation: null,
+  sessionBookedNotification: false
 };
 
 export const results = createReducer(
   initialState,
+  on(DraftResultActions.sessionBooked, state => ({
+    ...state,
+    sessionBookedNotification: true
+  })),
+  on(DraftResultActions.dismissSessionBooked, state => ({
+    ...state,
+    sessionBookedNotification: false
+  })),
   on(DraftResultActions.saveDraftResult, (state, { draftResult }) => ({
     ...state,
     draftResult: {

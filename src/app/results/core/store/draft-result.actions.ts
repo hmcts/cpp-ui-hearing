@@ -136,7 +136,20 @@ const setReusableInfoSuccess = createAction(
   props<{ reusableResults: PromptEntry[] }>()
 );
 
+/**
+ * A session has just been held for this draft. Raised by the pickers so the results
+ * page can tell the clerk the hold is provisional and dies at midnight - the one
+ * moment in the whole flow where that rule is stated. See sessionBookedNotification
+ * in the results reducer for why it is transient.
+ */
+const sessionBooked = createAction('SESSION_BOOKED');
+
+/** The clerk has left the results page, so the notice has served its purpose. */
+const dismissSessionBooked = createAction('DISMISS_SESSION_BOOKED');
+
 export const DraftResultActions = {
+  sessionBooked,
+  dismissSessionBooked,
   addChildToDraftResultLine,
   copyDraftResultLines,
   destroyDraftResultLine,
