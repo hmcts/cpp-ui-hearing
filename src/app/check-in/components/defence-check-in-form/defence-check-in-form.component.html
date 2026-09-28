@@ -38,7 +38,7 @@
                   </tr>
                 </thead>
                 <tbody pdk-table-body>
-                  @for (case of defendantGroup.cases; track case.caseId) {
+                  @for (case of defendantGroup.cases; track case.hearingId + '_' + case.caseId) {
                   <tr pdk-table-row>
                     <td pdk-table-cell style="width: 100px">
                       <pdk-checkbox

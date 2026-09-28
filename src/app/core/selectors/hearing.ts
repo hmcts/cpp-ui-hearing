@@ -31,6 +31,7 @@ import { AppState } from '../reducers';
 import {
   getApplicationsByDefendant,
   getCasesByDefendant,
+  getDefendantFullName,
   getDefendantsContainsOffence,
   getDistinctDefendants,
   getFlattenOffencesFromDefendants,
@@ -1171,13 +1172,33 @@ function groupHearingSummariesByCaseId(
     return [];
   }
 
-  const flattenedCases = hearingSummaries
-    .filter(
-      hearingSummary =>
-        hearingSummary.prosecutionCaseSummaries &&
-        hearingSummary.prosecutionCaseSummaries.length > 0
-    )
-    .reduce<HearingSummariesGroupedByCaseIdCase[]>((acc, hearingSummary) => {
+  const flattenedCases = hearingSummaries.reduce<HearingSummariesGroupedByCaseIdCase[]>(
+    (acc, hearingSummary) => {
+      if (!hearingSummary.prosecutionCaseSummaries?.length) {
+        const inactiveCaseSummaries = (hearingSummary.courtApplicationSummaries ?? []).reduce<
+          HearingSummariesGroupedByCaseIdCase[]
+        >(
+          (applicationAcc, { caseSummaries, subject }) => [
+            ...applicationAcc,
+            ...(caseSummaries ?? []).map(caseSummary => ({
+              caseReference: caseSummary.prosecutionCaseIdentifier.caseURN,
+              caseId: caseSummary.id,
+              hearingId: hearingSummary.id,
+              defendants: [
+                {
+                  hearingId: hearingSummary.id,
+                  name: getDefendantFullName(subject),
+                  id: subject?.masterDefendantId
+                }
+              ],
+              courtroomName: hearingSummary.courtCentre.roomName
+            }))
+          ],
+          []
+        );
+        return [...acc, ...inactiveCaseSummaries];
+      }
+
       const caseSummaries = hearingSummary.prosecutionCaseSummaries.map(kaseSummary => ({
         caseReference:
           kaseSummary.prosecutionCaseIdentifier.caseURN ||
@@ -1186,18 +1207,15 @@ function groupHearingSummariesByCaseId(
         hearingId: hearingSummary.id,
         defendants: kaseSummary.defendants.map(defendant => ({
           hearingId: hearingSummary.id,
-          name: defendant.organisationName
-            ? defendant.organisationName
-            : defendant.firstName +
-              (defendant.middleName ? ` ${defendant.middleName}` : '') +
-              ` ${defendant.lastName.toUpperCase()}`,
+          name: getDefendantFullName(defendant),
           id: defendant.id
         })),
         courtroomName: hearingSummary.courtCentre.roomName
       }));
       return [...acc, ...caseSummaries];
-    }, []);
-
+    },
+    []
+  );
   const groupedSummaries = flattenedCases.reduce<
     Record<string, HearingSummariesGroupedByCaseIdCase[]>
   >((accumulator, value) => {
