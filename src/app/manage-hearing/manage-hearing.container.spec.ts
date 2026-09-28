@@ -463,6 +463,69 @@ describe('ManageHearingContainer', () => {
     });
   });
 
+  describe('share results validation errors', () => {
+    it('should surface each validation issue in the error summary anchored to the affected offence or defendant', () => {
+      const mockState = createState(resultsByTarget, hearingNoCourtApplicationsMock);
+      mockState.validationIssues = [
+        {
+          ruleId: 'CTL-001',
+          severity: 'ERROR',
+          validationLevel: 'OFFENCE',
+          affectedOffences: [
+            { offenceId: 'offence-1', message: 'The results could not be shared: error 1' }
+          ]
+        },
+        {
+          ruleId: 'DEF-001',
+          severity: 'ERROR',
+          validationLevel: 'DEFENDANT',
+          affectedDefendants: [
+            { defendantId: 'defendant-1', message: 'The results could not be shared: error 2' }
+          ]
+        }
+      ];
+      initializeWithState(mockState);
+
+      expect(component.shareValidationErrors).toEqual([
+        {
+          id: 'results-validation-error-offence-1',
+          message: 'The results could not be shared: error 1',
+          shouldFocus: false
+        },
+        {
+          id: 'results-validation-error-defendant-1',
+          message: 'The results could not be shared: error 2',
+          shouldFocus: false
+        }
+      ]);
+      expect(component.getAllErrors()).toEqual(component.shareValidationErrors);
+      expect(scrollSpy).toHaveBeenCalledWith(0, 0);
+    });
+
+    it('should fall back to the top level error messages when the issues carry no affected offences or defendants', () => {
+      const mockState = createState(resultsByTarget, hearingNoCourtApplicationsMock);
+      mockState.errorMessages = ['The results could not be shared: error 1'];
+      initializeWithState(mockState);
+
+      expect(component.shareValidationErrors).toEqual([
+        {
+          id: 'results-validation-error-0',
+          message: 'The results could not be shared: error 1',
+          shouldFocus: false
+        }
+      ]);
+      expect(scrollSpy).toHaveBeenCalledWith(0, 0);
+    });
+
+    it('should not surface share validation errors when no validation failure is stored', () => {
+      const mockState = createState(resultsByTarget, hearingNoCourtApplicationsMock);
+      initializeWithState(mockState);
+
+      expect(component.shareValidationErrors).toEqual([]);
+      expect(component.getAllErrors()).toEqual([]);
+    });
+  });
+
   describe('isTrialApplication$ Observable', () => {
     afterEach(() => {
       if (subscription) {

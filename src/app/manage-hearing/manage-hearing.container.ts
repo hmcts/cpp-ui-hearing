@@ -65,10 +65,15 @@ import {
   selectTrialEffectivenessError
 } from '../core/selectors';
 import { OutstandingFineDefendantDetails } from '../outstanding-fines/outstanding-fines.interfaces';
-import { getTargetsForHearing, Target } from '../results/core/helpers';
+import {
+  buildShareValidationErrorSummary,
+  getTargetsForHearing,
+  Target
+} from '../results/core/helpers';
 import {
   getDefendantLevelWarningMessages,
   getOffenceLevelWarningMessages,
+  getShareResultsValidationFailure,
   ResultsState
 } from '../results/core/store';
 import { OffenceLike, ResolvedDraftResultLine } from '../results/results.interfaces';
@@ -139,6 +144,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   translated: { [key: string]: string };
   errors: ValidationError[] = [];
   trialEffectivenessError: ValidationError[] | null = null;
+  shareValidationErrors: ValidationError[] = [];
   isTrialApplication$: Observable<boolean>;
 
   pendingAttendanceDefendants$: Observable<HearingPersonDetails[]>;
@@ -317,6 +323,17 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
         this.trialEffectivenessError = error;
       });
 
+    this.store
+      .pipe(select(getShareResultsValidationFailure), takeUntil(this.destroy$))
+      .subscribe(shareResultsValidationFailure => {
+        this.shareValidationErrors = buildShareValidationErrorSummary(
+          shareResultsValidationFailure
+        );
+        if (this.shareValidationErrors.length > 0) {
+          this.window.scroll(0, 0);
+        }
+      });
+
     this.isTrialApplication$ = combineLatest([
       this.store.pipe(select(getCurrentHearing)),
       this.store.pipe(select(getHearingTypes))
@@ -399,7 +416,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   }
 
   getAllErrors(): ValidationError[] {
-    const combined = [...this.errors];
+    const combined = [...this.errors, ...this.shareValidationErrors];
     if (this.trialEffectivenessError && Array.isArray(this.trialEffectivenessError)) {
       combined.push(...this.trialEffectivenessError);
     }
