@@ -347,7 +347,10 @@ describe('Hearing selectors', () => {
               lastName: 'Jones',
               masterDefendantId: 'master-def-1'
             },
-            caseSummaries: [{ id: 'case-3', prosecutionCaseIdentifier: { caseURN: 'CASE-URN-3' } }]
+            caseSummaries: [
+              { id: 'case-3', prosecutionCaseIdentifier: { caseURN: 'CASE-URN-3' } },
+              { id: 'case-4', prosecutionCaseIdentifier: { caseURN: 'CASE-URN-4' } }
+            ]
           }
         ]
       };
@@ -358,6 +361,13 @@ describe('Hearing selectors', () => {
           {
             caseReference: 'CASE-URN-3',
             caseId: 'case-3',
+            hearingId: 'hearing-3',
+            courtroomName: 'Courtroom 03',
+            defendants: [{ hearingId: 'hearing-3', id: 'master-def-1', name: 'Tavish R JONES' }]
+          },
+          {
+            caseReference: 'CASE-URN-4',
+            caseId: 'case-4',
             hearingId: 'hearing-3',
             courtroomName: 'Courtroom 03',
             defendants: [{ hearingId: 'hearing-3', id: 'master-def-1', name: 'Tavish R JONES' }]
