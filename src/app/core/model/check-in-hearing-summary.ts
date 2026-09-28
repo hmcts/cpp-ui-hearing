@@ -1,3 +1,5 @@
+import { CourtApplicationSummary } from './shared/court-application-summary';
+
 export interface CheckInDefendant {
   id: string;
   firstName?: string;
@@ -25,4 +27,5 @@ export interface CheckInHearingSummary {
   id: string;
   courtCentre: CheckInCourtCentre;
   prosecutionCaseSummaries: CheckInProsecutionCaseSummary[];
+  courtApplicationSummaries?: CourtApplicationSummary[];
 }

@@ -332,6 +332,103 @@ describe('Hearing selectors', () => {
         }
       ]);
     });
+
+    describe('inactive cases', () => {
+      const inactiveCaseSummary: any = {
+        id: 'hearing-3',
+        courtCentre: { roomName: 'Courtroom 03' },
+        prosecutionCaseSummaries: [],
+        courtApplicationSummaries: [
+          {
+            id: 'app-1',
+            subject: {
+              firstName: 'Tavish',
+              middleName: 'R',
+              lastName: 'Jones',
+              masterDefendantId: 'master-def-1'
+            },
+            caseSummaries: [{ id: 'case-3', prosecutionCaseIdentifier: { caseURN: 'CASE-URN-3' } }]
+          }
+        ]
+      };
+
+      const inactiveCaseGroup = {
+        courtroomName: 'Courtroom 03',
+        cases: [
+          {
+            caseReference: 'CASE-URN-3',
+            caseId: 'case-3',
+            hearingId: 'hearing-3',
+            courtroomName: 'Courtroom 03',
+            defendants: [{ hearingId: 'hearing-3', id: 'master-def-1', name: 'Tavish R JONES' }]
+          }
+        ]
+      };
+
+      it('returns an inactive case record from the court application summary', () => {
+        let result: any;
+        store
+          .select(fromSelectors.getCheckInHearingSummariesGroupedByCaseId)
+          .subscribe(value => (result = value));
+
+        store.dispatch(
+          fromActions.loadCheckInHearingListSuccess({ summaries: [inactiveCaseSummary] })
+        );
+
+        expect(result).toEqual([inactiveCaseGroup]);
+      });
+
+      it('returns both active and inactive cases', () => {
+        let result: any;
+        store
+          .select(fromSelectors.getCheckInHearingSummariesGroupedByCaseId)
+          .subscribe(value => (result = value));
+
+        store.dispatch(
+          fromActions.loadCheckInHearingListSuccess({
+            summaries: [personDefendantSummary, inactiveCaseSummary]
+          })
+        );
+
+        expect(result).toEqual([
+          {
+            courtroomName: 'Courtroom 01',
+            cases: [
+              {
+                caseReference: 'CASE-URN-1',
+                caseId: 'case-1',
+                hearingId: 'hearing-1',
+                courtroomName: 'Courtroom 01',
+                defendants: [{ hearingId: 'hearing-1', id: 'def-1', name: 'Glennie M BAILEY' }]
+              }
+            ]
+          },
+          inactiveCaseGroup
+        ]);
+      });
+
+      it('returns no case when prosecutionCaseSummaries is empty and there is no linked caseSummary (standalone application)', () => {
+        let result: any;
+        store
+          .select(fromSelectors.getCheckInHearingSummariesGroupedByCaseId)
+          .subscribe(value => (result = value));
+
+        store.dispatch(
+          fromActions.loadCheckInHearingListSuccess({
+            summaries: [
+              {
+                ...inactiveCaseSummary,
+                courtApplicationSummaries: [
+                  { id: 'app-2', subject: { firstName: 'Tavish', lastName: 'Jones' } }
+                ]
+              }
+            ]
+          })
+        );
+
+        expect(result).toEqual([]);
+      });
+    });
   });
 
   it('should return the hearing list stored in the store', () => {

@@ -1171,13 +1171,31 @@ function groupHearingSummariesByCaseId(
     return [];
   }
 
-  const flattenedCases = hearingSummaries
-    .filter(
-      hearingSummary =>
-        hearingSummary.prosecutionCaseSummaries &&
-        hearingSummary.prosecutionCaseSummaries.length > 0
-    )
-    .reduce<HearingSummariesGroupedByCaseIdCase[]>((acc, hearingSummary) => {
+  const flattenedCases = hearingSummaries.reduce<HearingSummariesGroupedByCaseIdCase[]>(
+    (acc, hearingSummary) => {
+      if (!hearingSummary.prosecutionCaseSummaries?.length) {
+        const inactiveCaseSummaries = (hearingSummary.courtApplicationSummaries ?? [])
+          .filter(({ caseSummaries }) => caseSummaries?.length > 0)
+          .map(({ caseSummaries: [caseSummary], subject }) => ({
+            caseReference: caseSummary.prosecutionCaseIdentifier.caseURN,
+            caseId: caseSummary.id,
+            hearingId: hearingSummary.id,
+            defendants: [
+              {
+                hearingId: hearingSummary.id,
+                name: subject?.firstName
+                  ? subject.firstName +
+                    (subject.middleName ? ` ${subject.middleName}` : '') +
+                    ` ${subject.lastName.toUpperCase()}`
+                  : '',
+                id: subject?.masterDefendantId
+              }
+            ],
+            courtroomName: hearingSummary.courtCentre.roomName
+          }));
+        return [...acc, ...inactiveCaseSummaries];
+      }
+
       const caseSummaries = hearingSummary.prosecutionCaseSummaries.map(kaseSummary => ({
         caseReference:
           kaseSummary.prosecutionCaseIdentifier.caseURN ||
@@ -1196,7 +1214,9 @@ function groupHearingSummariesByCaseId(
         courtroomName: hearingSummary.courtCentre.roomName
       }));
       return [...acc, ...caseSummaries];
-    }, []);
+    },
+    []
+  );
 
   const groupedSummaries = flattenedCases.reduce<
     Record<string, HearingSummariesGroupedByCaseIdCase[]>

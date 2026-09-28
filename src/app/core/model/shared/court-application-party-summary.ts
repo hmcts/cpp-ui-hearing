@@ -5,4 +5,5 @@ export interface CourtApplicationPartySummary {
   middleName?: string;
   organisationName?: string;
   organisationCode?: string;
+  masterDefendantId?: string;
 }
