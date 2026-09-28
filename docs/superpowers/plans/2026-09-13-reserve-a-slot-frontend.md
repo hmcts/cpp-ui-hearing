@@ -27,8 +27,8 @@
 
 - **Booking status:** `POST /listing-query-api/query/api/rest/listing/bookingStatus`, request media type `application/vnd.listing.query.booking.status+json`, body `{"bookingIds":[...]}`, response `{"bookings":[{"bookingId","safeToShare","status"}]}` where `status` is `RESERVED` | `SHARED` | `LEGACY` | `NONE` | `UNKNOWN`.
   - `safeToShare` is `status !== 'NONE'`. `UNKNOWN` means listing could not reach courtscheduler and **failed open** — it is safe to share and must not block.
-- **Reserve:** unchanged — `POST /hearings/{hearingId}/hearing-slots`, `application/vnd.hearing.book-provisional-hearing-slots+json`, resolving on `public.hearing.hearing-slots-provisionally-booked`. It now accepts an **optional top-level `bookingId`**: supplied means *reuse this booking* (the backend releases the previous pick's hold in the same transaction), absent means *mint a new one*.
-- **Release:** `POST /hearings/{hearingId}`, `application/vnd.hearing.release-provisional-hearing-slots+json`. Best-effort and idempotent — releasing an unknown or already-released booking is a no-op, never an error. Confirm the exact path and body shape against `cpp-context-hearing/hearing-command/hearing-command-api/src/raml/hearing-command-api.raml` (the action is declared around line 391) and its request schema before writing the call.
+- **Reserve:** unchanged — `POST /hearings/{hearingId}/hearing-slots`, `application/vnd.hearing.book-unconfirmed-hearing-slots+json`, resolving on `public.hearing.hearing-slots-provisionally-booked`. It now accepts an **optional top-level `bookingId`**: supplied means *reuse this booking* (the backend releases the previous pick's hold in the same transaction), absent means *mint a new one*.
+- **Release:** `POST /hearings/{hearingId}`, `application/vnd.hearing.release-unconfirmed-hearing-slots+json`. Best-effort and idempotent — releasing an unknown or already-released booking is a no-op, never an error. Confirm the exact path and body shape against `cpp-context-hearing/hearing-command/hearing-command-api/src/raml/hearing-command-api.raml` (the action is declared around line 391) and its request schema before writing the call.
 
 ---
 
@@ -215,7 +215,7 @@ Expected: PASS, 14 pre-existing tests included.
 
 - [ ] **Step 1: Add the release call**
 
-Confirm the path and body against the hearing RAML (`hearing.release-provisional-hearing-slots`, around line 391) and its request schema **before writing it**. Then add a method mirroring `bookProvisionalHearingSlots`'s style. It is fire-and-forget: the backend swallows "nothing to release", so the UI must never surface an error from it or block on it.
+Confirm the path and body against the hearing RAML (`hearing.release-unconfirmed-hearing-slots`, around line 391) and its request schema **before writing it**. Then add a method mirroring `bookProvisionalHearingSlots`'s style. It is fire-and-forget: the backend swallows "nothing to release", so the UI must never surface an error from it or block on it.
 
 - [ ] **Step 2: Release on the three paths**
 

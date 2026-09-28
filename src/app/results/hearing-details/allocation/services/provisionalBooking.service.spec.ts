@@ -49,7 +49,7 @@ describe('ProvisionalBookingService', () => {
 
       expect(http.commandSync).toHaveBeenCalledWith({
         url: `/hearing-command-api/command/api/rest/hearing/hearings/hearingId/hearing-slots`,
-        requestType: 'application/vnd.hearing.book-provisional-hearing-slots+json',
+        requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
         body: { slots: params.courtScheduleBookings },
         successEvent: 'public.hearing.hearing-slots-provisionally-booked'
       });
@@ -130,7 +130,7 @@ describe('ProvisionalBookingService', () => {
 
       expect(http.command).toHaveBeenCalledWith({
         url: `/hearing-command-api/command/api/rest/hearing/hearings/hearingId/hearing-slots`,
-        requestType: 'application/vnd.hearing.release-provisional-hearing-slots+json',
+        requestType: 'application/vnd.hearing.release-unconfirmed-hearing-slots+json',
         body: { bookingId: 'booking-1' }
       });
     });

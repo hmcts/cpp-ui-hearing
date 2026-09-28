@@ -44,8 +44,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -72,8 +72,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -92,8 +92,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -120,8 +120,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -156,8 +156,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -193,8 +193,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -216,8 +216,8 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });
@@ -276,8 +276,8 @@ describe('ResultsReducer', () => {
               },
             },
           ],
-          "shareResultsValidationFailure": null,
           "sessionBookedNotification": false,
+          "shareResultsValidationFailure": null,
         }
       `);
     });

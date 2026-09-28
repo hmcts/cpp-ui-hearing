@@ -37,7 +37,7 @@ export const initialState: State = {
   reusableResults: null,
   invalidResultLines: null,
   resultsValidation: null,
-  shareResultsValidationFailure: null
+  shareResultsValidationFailure: null,
   sessionBookedNotification: false
 };
 

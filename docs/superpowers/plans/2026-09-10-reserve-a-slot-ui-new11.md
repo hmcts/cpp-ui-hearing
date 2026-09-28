@@ -46,7 +46,7 @@ Match whatever the repo's `package.json` scripts actually define — prefer `npm
 - Test: `src/app/results/hearing-details/allocation/containers/crown-scheduling.container.spec.ts`
 
 **Interfaces:**
-- Consumes: `ProvisionalBookingService.bookProvisionalHearingSlots({ hearingId, courtScheduleBookings, ...filters })` → `Observable<{ bookingId: string }>`. Already exists and is already used by the magistrates container. It posts `hearing.book-provisional-hearing-slots` and resolves on `public.hearing.hearing-slots-provisionally-booked`.
+- Consumes: `ProvisionalBookingService.bookProvisionalHearingSlots({ hearingId, courtScheduleBookings, ...filters })` → `Observable<{ bookingId: string }>`. Already exists and is already used by the magistrates container. It posts `hearing.book-unconfirmed-hearing-slots` and resolves on `public.hearing.hearing-slots-provisionally-booked`.
 - Produces: no new exported API. The `bookingReference` prompt written by this container becomes a `bookingId`.
 
 **Read first, then write.** Open `magistrates.container.ts` around lines 215-285 and copy its shape: build `courtScheduleBookings`, call the service inside a `switchMap`, and `map` the returned `bookingId` into the prompt map before dispatching `updateResultPromptsForDraftResultLine`. Crown's existing code builds the same prompt map inside a `map` — it becomes a `switchMap` over the service call.
