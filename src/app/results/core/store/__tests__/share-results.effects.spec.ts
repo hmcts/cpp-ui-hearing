@@ -5,6 +5,8 @@ import { UserDetails, UsersGroupsActions } from '@cpp/users-groups';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action, Store, provideStore, provideState } from '@ngrx/store';
+import { cold, getTestScheduler, hot } from 'jasmine-marbles';
+import { Observable } from 'rxjs';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of, throwError } from 'rxjs';
 import {
@@ -23,7 +25,12 @@ import {
   WelshDefendantTranslate,
   ListingService
 } from '../../../../core';
-import { DraftResult, DraftResultPrompt } from '../../../results.interfaces';
+import {
+  ResultsValidationFailedEvent,
+  ValidationIssue,
+  ValidationIssueSeverityEnum
+} from '../../../results-validation.interfaces';
+import { DraftResult,DraftResultPrompt } from '../../../results.interfaces';
 import { ResultsService } from '../../services/results.service';
 import { ReusableInfoService } from '../../services/reusable-info.service';
 import { ProvisionalBookingService } from '../../../hearing-details/allocation/services/provisionalBooking.service';
@@ -623,6 +630,116 @@ describe('ShareResultEffects', () => {
   });
 
   describe('ShareResultsActions.error', () => {
+    const resultsValidationIssues: ValidationIssue[] = [
+      {
+        ruleId: 'CTL-001',
+        severity: ValidationIssueSeverityEnum.ERROR,
+        validationLevel: 'OFFENCE',
+        message: 'A custody time limit result is required',
+        affectedOffences: [
+          { offenceId: 'offenceId', message: 'A custody time limit result is required' }
+        ]
+      }
+    ];
+    const resultsValidationFailedEvent: ResultsValidationFailedEvent = {
+      _metadata: {
+        id: 'public.hearing.results-validation-failed',
+        name: 'public.hearing.results-validation-failed'
+      },
+      hearingId: 'hearingId',
+      hearingDay: '2020-01-01',
+      isValid: false,
+      errors: {
+        errorMessages: ['A custody time limit result is required'],
+        validationIssues: resultsValidationIssues
+      },
+      warnings: [
+        {
+          ruleId: 'DISW-001',
+          severity: ValidationIssueSeverityEnum.WARNING,
+          message: 'a warning that must not be surfaced'
+        }
+      ]
+    };
+    const resultsValidationFailedNotification: CommandError = {
+      status: -1,
+      originalEvent: resultsValidationFailedEvent,
+      data: {}
+    };
+
+    it('should store the validation errors without redirecting when the results validation failed event is received', () => {
+      const errorAction = ShareResultsActions.setShareDraftResultError({
+        action: ShareResultsActions.shareDraftResult(),
+        error: resultsValidationFailedNotification
+      });
+
+      actions$ = hot('        -a----', { a: errorAction });
+      const expected$ = cold('-b----', {
+        b: ShareResultsActions.shareDraftResultValidationFailed({
+          validationErrors: {
+            errorMessages: ['A custody time limit result is required'],
+            validationIssues: resultsValidationIssues
+          }
+        })
+      });
+
+      router.navigate = jest.fn();
+
+      expect(effects.onError$).toBeObservable(expected$);
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should not surface the validation warnings from the results validation failed event', () => {
+      const errorAction = ShareResultsActions.setShareDraftResultError({
+        action: ShareResultsActions.shareDraftResult(),
+        error: resultsValidationFailedNotification
+      });
+
+      actions$ = hot('-a----', { a: errorAction });
+
+      let dispatched: ReturnType<typeof ShareResultsActions.shareDraftResultValidationFailed>;
+      effects.onError$.subscribe(action => {
+        dispatched = action as ReturnType<
+          typeof ShareResultsActions.shareDraftResultValidationFailed
+        >;
+      });
+      getTestScheduler().flush();
+
+      expect(JSON.stringify(dispatched.validationErrors)).not.toContain(
+        'a warning that must not be surfaced'
+      );
+    });
+
+    it('should surface empty validation errors when the results validation failed event has no errors payload', () => {
+      const eventWithoutErrors: ResultsValidationFailedEvent = {
+        _metadata: {
+          id: 'public.hearing.results-validation-failed',
+          name: 'public.hearing.results-validation-failed'
+        },
+        hearingId: 'hearingId',
+        hearingDay: '2020-01-01',
+        isValid: false
+      };
+      const notificationWithoutErrors: CommandError = {
+        status: -1,
+        originalEvent: eventWithoutErrors,
+        data: {}
+      };
+      const errorAction = ShareResultsActions.setShareDraftResultError({
+        action: ShareResultsActions.shareDraftResult(),
+        error: notificationWithoutErrors
+      });
+
+      actions$ = hot('        -a----', { a: errorAction });
+      const expected$ = cold('-b----', {
+        b: ShareResultsActions.shareDraftResultValidationFailed({
+          validationErrors: { errorMessages: [], validationIssues: [] }
+        })
+      });
+
+      expect(effects.onError$).toBeObservable(expected$);
+    });
+
     it('should redirect to the technical error page when a share effect yields an error', () => {
       const errorAction = ShareResultsActions.setShareDraftResultError({
         action: ShareResultsActions.shareDraftResult(),

@@ -133,7 +133,10 @@ export class EnterResultsContainerComponent implements OnDestroy {
       .subscribe(([featureEnabled, hearing]) => {
         if (featureEnabled) {
           this.store.dispatch(
-            ResultsValidationActions.validateResults({ navigateOnSuccess: true })
+            ResultsValidationActions.validateResults({
+              navigateOnSuccess: true,
+              skipResultsValidation: true
+            })
           );
         } else {
           this.router.navigate(['/manage', hearing.id]);

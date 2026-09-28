@@ -13,6 +13,7 @@ exports[`ApplicationOffenceComponent should render the component for CROWN juris
     <pdk-grid
       class="govuk-!-padding-bottom-4 govuk-grid-row"
       container=""
+      id="results-validation-error-7b5c859b-7b07-4c8b-acaa-50af22b0847f"
       pdk-padding-bottom="4"
     >
       <pdk-grid
@@ -180,6 +181,7 @@ exports[`ApplicationOffenceComponent should render the component for CROWN juris
     <pdk-grid
       class="govuk-!-padding-bottom-4 govuk-grid-row"
       container=""
+      id="results-validation-error-7b5c859b-7b07-4c8b-acaa-50af22b0847f"
       pdk-padding-bottom="4"
     >
       <pdk-grid
@@ -347,6 +349,7 @@ exports[`ApplicationOffenceComponent should render the component for MAGISTRATES
     <pdk-grid
       class="govuk-!-padding-bottom-4 govuk-grid-row"
       container=""
+      id="results-validation-error-7b5c859b-7b07-4c8b-acaa-50af22b0847f"
       pdk-padding-bottom="4"
     >
       <pdk-grid

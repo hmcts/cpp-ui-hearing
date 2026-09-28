@@ -586,7 +586,10 @@ describe('DraftResultEffects', () => {
     });
 
     it('should dispatch validateResultsSuccess and navigate when navigateOnSuccess is true and response is valid', () => {
-      const requestAction = ResultsValidationActions.validateResults({ navigateOnSuccess: true });
+      const requestAction = ResultsValidationActions.validateResults({
+        navigateOnSuccess: true,
+        skipResultsValidation: true
+      });
 
       actions$ = hot('        -a----', { a: requestAction });
       const response$ = cold(' -(r|)', { r: validResponse });
@@ -596,7 +599,9 @@ describe('DraftResultEffects', () => {
       resultsValidationService.validate = jest.fn(() => response$);
 
       expect(effects.validate$).toBeObservable(expected$);
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/manage/hearingId');
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/manage/hearingId', {
+        state: { skipResultsValidation: true }
+      });
     });
 
     it('should dispatch validateResultsSuccess without navigating when navigateOnSuccess is false', () => {
@@ -614,7 +619,10 @@ describe('DraftResultEffects', () => {
     });
 
     it('should dispatch clearValidationResults and navigate on service error when navigateOnSuccess is true', () => {
-      const requestAction = ResultsValidationActions.validateResults({ navigateOnSuccess: true });
+      const requestAction = ResultsValidationActions.validateResults({
+        navigateOnSuccess: true,
+        skipResultsValidation: true
+      });
       const error = new Error('API error');
 
       actions$ = hot('        -a----', { a: requestAction });
@@ -625,7 +633,9 @@ describe('DraftResultEffects', () => {
       resultsValidationService.validate = jest.fn(() => response$);
 
       expect(effects.validate$).toBeObservable(expected$);
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/manage/hearingId');
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/manage/hearingId', {
+        state: { skipResultsValidation: true }
+      });
     });
 
     it('should dispatch clearValidationResults without navigating on service error when navigateOnSuccess is false', () => {
