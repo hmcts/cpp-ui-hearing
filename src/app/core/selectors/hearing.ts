@@ -31,6 +31,7 @@ import { AppState } from '../reducers';
 import {
   getApplicationsByDefendant,
   getCasesByDefendant,
+  getDefendantFullName,
   getDefendantsContainsOffence,
   getDistinctDefendants,
   getFlattenOffencesFromDefendants,
@@ -1186,11 +1187,7 @@ function groupHearingSummariesByCaseId(
               defendants: [
                 {
                   hearingId: hearingSummary.id,
-                  name: subject?.firstName
-                    ? subject.firstName +
-                      (subject.middleName ? ` ${subject.middleName}` : '') +
-                      ` ${subject.lastName.toUpperCase()}`
-                    : '',
+                  name: getDefendantFullName(subject),
                   id: subject?.masterDefendantId
                 }
               ],
@@ -1210,11 +1207,7 @@ function groupHearingSummariesByCaseId(
         hearingId: hearingSummary.id,
         defendants: kaseSummary.defendants.map(defendant => ({
           hearingId: hearingSummary.id,
-          name: defendant.organisationName
-            ? defendant.organisationName
-            : defendant.firstName +
-              (defendant.middleName ? ` ${defendant.middleName}` : '') +
-              ` ${defendant.lastName.toUpperCase()}`,
+          name: getDefendantFullName(defendant),
           id: defendant.id
         })),
         courtroomName: hearingSummary.courtCentre.roomName

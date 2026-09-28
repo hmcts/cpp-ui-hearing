@@ -19,6 +19,7 @@ import {
 import { cloneDeep, isUndefined, omitBy, sortBy, findIndex } from 'lodash-es';
 import { CourtOrderOffence } from '../model/court-orders';
 import { CourtApplicationCase } from '../model/court-application-case';
+import { CourtApplicationPartySummary } from '../model/shared/court-application-party-summary';
 
 export interface RouterStateUrl {
   url: string;
@@ -539,4 +540,18 @@ export const getHearingCaseUrl = (hearingId: string, hearingCaseLink: HearingCas
     default:
       return '';
   }
+};
+
+export const getDefendantFullName = (party: CourtApplicationPartySummary): string => {
+  if (party?.organisationName) {
+    return party.organisationName;
+  }
+  if (!party?.firstName) {
+    return '';
+  }
+  return (
+    party.firstName +
+    (party.middleName ? ` ${party.middleName}` : '') +
+    ` ${party.lastName?.toUpperCase() ?? ''}`
+  );
 };
