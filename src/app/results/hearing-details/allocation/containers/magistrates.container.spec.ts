@@ -15,6 +15,7 @@ import { HearingType, OrganisationUnit, RotaBusinessType } from '@cpp/reference-
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
+import { DraftResultActions } from '../../../core/store';
 import { AppState, HearingDetail, HearingLockState } from '../../../../core';
 import { MagistratesSchedulingContainer } from './magistrates.container';
 import { MagistratesSchedulingComponent } from '../components/magistrates.component';
@@ -563,6 +564,43 @@ describe('MagistratesSchedulingContainer', () => {
         (p: { promptRef: string }) => p.promptRef === 'bookingReference'
       );
       expect(bookingRefPrompt.value).toBe(bookingId);
+    }));
+
+    // The midnight deadline is stated to the clerk exactly once, here, on the success
+    // path. Nothing else in the flow mentions that the hold is provisional, so if this
+    // dispatch is lost the rule becomes invisible until the share is refused next day.
+    it('announces the midnight deadline when a session is held', fakeAsync(() => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        of({ bookingId: 'bk-notice' })
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(dispatch).toHaveBeenCalledWith(DraftResultActions.sessionBooked());
+    }));
+
+    it('does not announce the deadline when the pick is refused', fakeAsync(() => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('no capacity'))
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(dispatch).not.toHaveBeenCalledWith(DraftResultActions.sessionBooked());
     }));
 
     it('clears an earlier error once a later pick succeeds', fakeAsync(() => {

@@ -1,8 +1,12 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { DraftResult, PromptEntry, ResolvedDraftResultLine } from '../../results.interfaces';
-import { ResultsValidationResponse } from '../../results-validation.interfaces';
+import {
+  ResultsValidationErrors,
+  ResultsValidationResponse
+} from '../../results-validation.interfaces';
 import { DraftResultActions } from './draft-result.actions';
 import { ResultsValidationActions } from './results-validation.actions';
+import { ShareResultsActions } from './share-results.actions';
 import { ManageHearingPublicEventError } from '../../../manage-hearing-error-page/manage-hearing-error-page.interfaces';
 
 export interface State {
@@ -13,6 +17,17 @@ export interface State {
   reusableResults: PromptEntry[] | null;
   invalidResultLines: ResolvedDraftResultLine[] | null;
   resultsValidation: ResultsValidationResponse | null;
+  shareResultsValidationFailure: ResultsValidationErrors | null;
+  /**
+   * Whether to tell the clerk their newly held session expires at midnight.
+   *
+   * <p>Deliberately transient, and deliberately in the store rather than a query
+   * param: the notice is a confirmation of an action just taken, so it should not
+   * survive a reload or reappear when the clerk navigates back. Being in memory
+   * gives the reload behaviour for free; dismissSessionBooked, dispatched when the
+   * results page is destroyed, gives the navigation behaviour.
+   */
+  sessionBookedNotification: boolean;
 }
 
 export const initialState: State = {
@@ -21,11 +36,21 @@ export const initialState: State = {
   draftResultSaving: false,
   reusableResults: null,
   invalidResultLines: null,
-  resultsValidation: null
+  resultsValidation: null,
+  shareResultsValidationFailure: null,
+  sessionBookedNotification: false
 };
 
 export const results = createReducer(
   initialState,
+  on(DraftResultActions.sessionBooked, state => ({
+    ...state,
+    sessionBookedNotification: true
+  })),
+  on(DraftResultActions.dismissSessionBooked, state => ({
+    ...state,
+    sessionBookedNotification: false
+  })),
   on(DraftResultActions.saveDraftResult, (state, { draftResult }) => ({
     ...state,
     draftResult: {
@@ -61,6 +86,16 @@ export const results = createReducer(
   on(DraftResultActions.removeManageHearingError, state => ({
     ...state,
     manageHearingError: null as State['manageHearingError']
+  })),
+  on(ShareResultsActions.shareDraftResult, state => ({
+    ...state,
+    manageHearingError: null as State['manageHearingError'],
+    shareResultsValidationFailure: null as State['shareResultsValidationFailure']
+  })),
+  on(ShareResultsActions.shareDraftResultValidationFailed, (state, { validationErrors }) => ({
+    ...state,
+    shareResultsValidationFailure: validationErrors,
+    draftResultSaving: false
   })),
   on(DraftResultActions.setDraftResultLineErrors, (state, { invalidResultLines }) => ({
     ...state,

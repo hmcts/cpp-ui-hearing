@@ -51,6 +51,9 @@ export const getInvalidResultLines = (state: ResultsState) => {
   return state.results.invalidResultLines;
 };
 
+export const getSessionBookedNotification = (state: ResultsState): boolean =>
+  state.results.sessionBookedNotification;
+
 export const getDraftResultSaving = (state: ResultsState): boolean => {
   return state.results.draftResultSaving;
 };
@@ -172,6 +175,9 @@ export const getShareableResultLinesFor = (rawOptions: ShareableResultLineOption
 };
 
 export const getResultsValidation = (state: ResultsState) => state.results.resultsValidation;
+
+export const getShareResultsValidationFailure = (state: ResultsState) =>
+  state.results.shareResultsValidationFailure;
 
 export const getResultsValidationErrors = createSelector(
   getResultsValidation,

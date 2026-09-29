@@ -15,6 +15,7 @@ import { HearingType, OrganisationUnit, RotaBusinessType } from '@cpp/reference-
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
+import { DraftResultActions } from '../../../core/store';
 import { AppState, HearingDetail, HearingLockState } from '../../../../core';
 import { CrownSchedulingContainer } from './crown-scheduling.container';
 import { CrownSchedulingComponent } from '../components/crown-scheduling.component';
@@ -234,6 +235,33 @@ describe('CrownSchedulingContainer', () => {
           ...params
         });
     };
+
+    // The midnight deadline is stated to the clerk exactly once, here, on the success
+    // path. Nothing else in the flow mentions the hold is provisional, so if this
+    // dispatch is lost the rule stays invisible until the share is refused next day.
+    it('announces the midnight deadline when a session is held', fakeAsync(() => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        of({ bookingId: 'bk-notice' })
+      );
+
+      submitHearingSlotAllocations();
+      tick();
+
+      expect(dispatch).toHaveBeenCalledWith(DraftResultActions.sessionBooked());
+    }));
+
+    it('does not announce the deadline when the pick is refused', fakeAsync(() => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('no capacity'))
+      );
+
+      submitHearingSlotAllocations();
+      tick();
+
+      expect(dispatch).not.toHaveBeenCalledWith(DraftResultActions.sessionBooked());
+    }));
 
     it('reserves the picked session and writes the returned bookingId as bookingReference', fakeAsync(() => {
       const bookingId = 'bk-1111-2222';

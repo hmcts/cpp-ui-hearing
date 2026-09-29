@@ -262,7 +262,13 @@ export class CrownSchedulingContainer {
               bookingId: existingBookingReference
             })
             .pipe(
-              tap(() => this.bookingErrorSubject.next(null)),
+              tap(() => {
+                this.bookingErrorSubject.next(null);
+                // The hold is provisional and dies at midnight. This is the only
+                // point in the flow where the clerk is told that rule, so it is
+                // raised on the success path itself rather than inferred later.
+                this.store.dispatch(DraftResultActions.sessionBooked());
+              }),
               map(({ bookingId }) =>
                 DraftResultActions.updateResultPromptsForDraftResultLine({
                   resultLineId,

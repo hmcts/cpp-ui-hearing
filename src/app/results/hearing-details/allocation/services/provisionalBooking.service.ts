@@ -47,7 +47,7 @@ export class ProvisionalBookingService {
     return this.cppHttp
       .commandSync<{ bookingId?: string; error?: string }>({
         url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
-        requestType: 'application/vnd.hearing.book-provisional-hearing-slots+json',
+        requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
         successEvent: 'public.hearing.hearing-slots-provisionally-booked',
         body: {
           ...filters,
@@ -86,7 +86,7 @@ export class ProvisionalBookingService {
 
   /**
    * Releases a previously booked provisional hearing slot hold. This is
-   * fire-and-forget: per `hearing.release-provisional-hearing-slots` (see
+   * fire-and-forget: per `hearing.release-unconfirmed-hearing-slots` (see
    * hearing-command-api.raml), the backend treats an unknown or
    * already-released bookingId as a no-op, never an error, and it does not
    * publish a public event on completion - so `command` is used here rather
@@ -102,7 +102,7 @@ export class ProvisionalBookingService {
   }): Observable<void> {
     return this.cppHttp.command({
       url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
-      requestType: 'application/vnd.hearing.release-provisional-hearing-slots+json',
+      requestType: 'application/vnd.hearing.release-unconfirmed-hearing-slots+json',
       body: { bookingId }
     });
   }
