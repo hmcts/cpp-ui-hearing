@@ -292,8 +292,7 @@
     "SESSION_NOT_AVAILABLE": "The session you have selected is now fully booked or is no longer available. Select another session.",
     "SESSION_RESERVATION_EXPIRED": "The session you reserved has expired and been released. Select another session.",
     "SESSION_BOOKING_FAILED": "The session could not be reserved because of a technical problem. The session may still be available - try again, and report this if it keeps happening.",
-    "SESSION_BOOKED_TITLE": "Session booked",
-    "SESSION_BOOKED_MESSAGE": "You must share this result before midnight. If you do not, the session will be released automatically and you will need to book another."
+    "SESSION_BOOKED_MESSAGE": "Session booked. You must share this result before midnight. If you do not, the session will be released automatically and you will need to book another."
   },
   "APPLICATION": {
     "DUE_ON": "On",
