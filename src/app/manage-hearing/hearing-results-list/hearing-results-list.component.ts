@@ -360,7 +360,16 @@ export class HearingResultsListComponent {
     defendant: DefendantCasesApplications,
     prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
   ): string => {
-    const bailStatus = defendant?.personDefendant?.bailStatus;
+    // RESTORED, not added: main has carried `|| []` here all along and the merge in 26b151c4b
+    // resolved this file to the branch side, dropping it. personDefendant is optional-chained
+    // because it genuinely can be absent, but person-defendant.ts types bailStatus as a
+    // non-optional BailStatus[], so nothing in the type system objects to the two .length reads
+    // below while the API omits the field for a defendant with no recorded bail status.
+    //
+    // It throws during render, so one such defendant takes out the whole hearing: STE02 showed
+    // "Cannot read properties of undefined (reading 'length')" and the page sat on
+    // "Page loading" forever. Kept as `|| []` rather than `?? []` to stay byte-identical to main.
+    const bailStatus = defendant?.personDefendant?.bailStatus || [];
     let bailStatusDescription = '';
     const caseId = prosecutionCase?.id;
     if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {
