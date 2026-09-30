@@ -657,6 +657,31 @@ describe('HearingResultsListComponent', () => {
         prosecutionCases
       } as unknown as DefendantCasesApplications);
 
+    // These exist because main carried the guard with no test, so when a merge dropped it
+    // nothing failed and it reached STE02. The throw happens during render, so the symptom was
+    // not a missing value but the whole page stuck on "Page loading".
+    it('falls back to the initiation code when the defendant has no bailStatus at all', () => {
+      const defendant = {
+        personDefendant: {},
+        prosecutionCases: [{ id: 'case-1' }]
+      } as unknown as DefendantCasesApplications;
+
+      expect(() =>
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))
+      ).not.toThrow();
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
+        'Summons'
+      );
+    });
+
+    it('survives a defendant with no personDefendant', () => {
+      const defendant = { prosecutionCases: [] } as unknown as DefendantCasesApplications;
+
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode())).toBe(
+        'Not recorded'
+      );
+    });
+
     it('should return the defendant bail status description when it is available', () => {
       const defendant = defendantWithBailStatus([unconditionalBail]);
       expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
