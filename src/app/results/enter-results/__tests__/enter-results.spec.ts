@@ -101,6 +101,7 @@ describe('EnterResultsContainerComponent', () => {
     it('states the midnight deadline and the consequence in the copy', () => {
       const copy = en.MANAGE_HEARING.SESSION_BOOKED_MESSAGE;
 
+      expect(copy).toContain('Session booked');
       expect(copy).toContain('midnight');
       expect(copy).toContain('released');
     });

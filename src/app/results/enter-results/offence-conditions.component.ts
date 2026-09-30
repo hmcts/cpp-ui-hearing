@@ -12,7 +12,6 @@ import {
   PdkAlertComponent,
   PdkErrorSummaryComponent,
   PdkMarginDirective,
-  PdkNotificationBannerComponent,
   PdkTypographyDirective
 } from '@cpp/pdk';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -38,17 +37,15 @@ export interface DelegatedPowersValue {
   template: `
     @if (sessionBooked) {
     <div pdk-margin-bottom="3">
-      <pdk-notification-banner
-        [title]="'MANAGE_HEARING.SESSION_BOOKED_TITLE' | translate"
-        data-test-id="sessionBookedBanner"
-      >
-        <p pdk-typography="body">
-          {{ 'MANAGE_HEARING.SESSION_BOOKED_MESSAGE' | translate }}
-        </p>
-      </pdk-notification-banner>
+      <!-- pdk-alert type="success", matching the app's other success messages
+           (manage.container.html, idpc-ingestion-status, check-in-outcome) rather than
+           pdk-notification-banner, whose neutral variant rendered blue. pdk-alert has no
+           title input, so the heading is folded into the single projected message. -->
+      <pdk-alert type="success" icon="true" data-test-id="sessionBookedBanner">
+        <span>{{ 'MANAGE_HEARING.SESSION_BOOKED_MESSAGE' | translate }}</span>
+      </pdk-alert>
     </div>
-    }
-    @if (isSelectedHearingInFuture) {
+    } @if (isSelectedHearingInFuture) {
     <div pdk-margin-bottom="3">
       <pdk-alert type="warning" icon="true" data-test-id="futureHearingWarningBanner">
         This hearing is in the future. Are you sure you want to result it?
@@ -110,7 +107,6 @@ export interface DelegatedPowersValue {
   ],
   imports: [
     PdkAlertComponent,
-    PdkNotificationBannerComponent,
     TranslatePipe,
     PdkErrorSummaryComponent,
     PdkMarginDirective,
