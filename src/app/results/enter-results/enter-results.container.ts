@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
 import { CPPDate, getCPPDate, getCurrentHearing } from '../../core';
@@ -20,6 +20,7 @@ import {
   getDraftResultPromptsValid,
   getDraftResultReadOnly,
   getDraftResultSaving,
+  getSessionBookedNotification,
   getProsecutortobenotified,
   getResultLinesGroupedByTargetId,
   getResultsValidationErrorMessagesByOffenceId,
@@ -40,6 +41,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   template: `
     <cpp-enter-results
+      [sessionBooked]="sessionBookedNotification$ | async"
       [isSelectedHearingInFuture]="isSelectedHearingInFuture$ | async"
       [delegatedPowers]="delegatedPowers$ | async"
       [draftResultError]="draftResultError$ | async"
@@ -71,7 +73,8 @@ import { AsyncPipe } from '@angular/common';
   `,
   imports: [EnterResultsComponent, AsyncPipe]
 })
-export class EnterResultsContainerComponent {
+export class EnterResultsContainerComponent implements OnDestroy {
+  sessionBookedNotification$ = this.store.pipe(select(getSessionBookedNotification));
   isSelectedHearingInFuture$ = this.store.pipe(select(isSelectedHearingInFuture));
   delegatedPowers$ = this.store.pipe(select(getDelegatedPowers));
   draftResultError$ = this.store.pipe(select(getDraftResultError));
@@ -109,6 +112,15 @@ export class EnterResultsContainerComponent {
   ) {
     this._cppDateUtil = getCPPDate();
     this.isHmctsOrganisation$ = this.route.data.pipe(map(data => data && data.isHmctsOrganisation));
+  }
+
+  /**
+   * The notice confirms an action the clerk has just taken, so it should not follow
+   * them around. Clearing on destroy means it goes when they leave the page; being
+   * held in memory means a reload clears it too.
+   */
+  ngOnDestroy() {
+    this.store.dispatch(DraftResultActions.dismissSessionBooked());
   }
 
   handleDelegatedPowers(value: DelegatedPowersValue) {

@@ -44,6 +44,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -71,6 +72,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -90,6 +92,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -117,6 +120,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -152,6 +156,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -188,6 +193,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -210,6 +216,7 @@ describe('ResultsReducer', () => {
           "manageHearingError": null,
           "resultsValidation": null,
           "reusableResults": null,
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -269,6 +276,7 @@ describe('ResultsReducer', () => {
               },
             },
           ],
+          "sessionBookedNotification": false,
           "shareResultsValidationFailure": null,
         }
       `);
@@ -363,6 +371,29 @@ describe('ResultsReducer', () => {
       const result = reducer(populated, ResultsValidationActions.clearValidationResults());
 
       expect(result.resultsValidation).toBeNull();
+    });
+  });
+
+  // The clerk is told the midnight deadline once, at the moment they hold a session.
+  // Holding it in memory is what makes a reload clear it; dismissSessionBooked, raised
+  // when the results page is destroyed, is what makes navigating away clear it.
+  describe('session booked notification', () => {
+    it('raises the notice when a session is held', () => {
+      const state = reducer(initialState, DraftResultActions.sessionBooked());
+
+      expect(state.sessionBookedNotification).toBe(true);
+    });
+
+    it('clears the notice when the results page is left', () => {
+      const shown = reducer(initialState, DraftResultActions.sessionBooked());
+
+      expect(
+        reducer(shown, DraftResultActions.dismissSessionBooked()).sessionBookedNotification
+      ).toBe(false);
+    });
+
+    it('starts with no notice', () => {
+      expect(initialState.sessionBookedNotification).toBe(false);
     });
   });
 });

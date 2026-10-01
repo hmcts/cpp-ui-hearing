@@ -1,64 +1,18 @@
-import {
-  deserializeDurationValue,
-  getMinutesFromDurationValue
-} from '../core/prompt-choices/duration';
-import {
-  DraftResult,
-  DraftResultPrompt,
-  DraftResultPromptValue,
-  ResolvedDraftResultLine
-} from '../results.interfaces';
+import { DraftResult } from '../results.interfaces';
+import { getBookingReferencesToRelease } from '../core/helpers';
 
-const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
-const DURATION_PROMPT_TYPE = 'DURATION';
-// "Next hearing in Crown Court" - the only result that books a Crown court
-// schedule without a provisional booking (magistrates' NHMC is provisionally
-// booked and must NOT be re-validated).
-const NEXT_HEARING_IN_CROWN_COURT = 'NHCCS';
-
-export interface SessionAvailabilityValidationData {
-  courtScheduleId: string;
-  duration?: number;
-}
-
-export const getSessionAvailabilityValidationData = (
-  draftResult: DraftResult
-): SessionAvailabilityValidationData[] => {
-  const validations: SessionAvailabilityValidationData[] = [];
-
-  const resultLines = Object.values(draftResult?.resultLines || {}) as ResolvedDraftResultLine[];
-
-  for (const resultLine of resultLines) {
-    if (resultLine?.shortCode?.toUpperCase() !== NEXT_HEARING_IN_CROWN_COURT) {
-      continue;
-    }
-
-    const prompts = resultLine.resultPrompts || [];
-    const courtScheduleId = prompts.find(
-      prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF
-    )?.value as string;
-
-    if (!courtScheduleId) {
-      continue;
-    }
-
-    validations.push({ courtScheduleId, duration: getDurationInMinutes(prompts) });
-  }
-
-  return validations;
-};
-
-const getDurationInMinutes = (prompts: DraftResultPrompt[]): number | undefined => {
-  const durationPrompt = prompts.find(prompt => prompt.type === DURATION_PROMPT_TYPE);
-
-  if (!durationPrompt || durationPrompt.value == null) {
-    return undefined;
-  }
-
-  const value =
-    typeof durationPrompt.value === 'string'
-      ? deserializeDurationValue(durationPrompt.value)
-      : (durationPrompt.value as DraftResultPromptValue[]);
-
-  return getMinutesFromDurationValue(value);
-};
+/**
+ * Every bookingId the draft result is carrying, so the pre-share gate can ask courtscheduler
+ * whether each hold is still there.
+ *
+ * <p>Deliberately the same predicate as {@link getBookingReferencesToRelease}: a line holds a
+ * booking iff it carries a `bookingReference` prompt and is not an attach-to-existing-hearing
+ * line. This used to keep its own copy gated on an allowlist of result short codes, which
+ * silently returned [] for the codes nobody remembered to add - the gate then skipped the call
+ * entirely and a clerk shared into a purged hold. Do not reintroduce one.
+ *
+ * @param draftResult the draft about to be shared
+ * @returns the bookingIds to check, in result-line order
+ */
+export const getBookingReferencesToCheck = (draftResult: DraftResult): string[] =>
+  getBookingReferencesToRelease(draftResult);

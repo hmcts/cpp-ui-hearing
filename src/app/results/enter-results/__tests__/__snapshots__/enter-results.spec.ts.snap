@@ -20,6 +20,7 @@ exports[`EnterResultsContainerComponent draft result validity should render the 
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -150,6 +151,7 @@ exports[`EnterResultsContainerComponent draft result validity should render the 
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -279,6 +281,7 @@ exports[`EnterResultsContainerComponent draft result validity should render vali
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -408,6 +411,7 @@ exports[`EnterResultsContainerComponent draft result validity should render vali
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -537,6 +541,7 @@ exports[`EnterResultsContainerComponent should render a draft result with a hier
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -667,6 +672,7 @@ exports[`EnterResultsContainerComponent should render a draft result with shadow
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -796,6 +802,7 @@ exports[`EnterResultsContainerComponent should render a draft result with shared
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -925,6 +932,7 @@ exports[`EnterResultsContainerComponent should render an empty draft result 1`] 
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -1054,6 +1062,7 @@ exports[`EnterResultsContainerComponent should render the delegated powers of th
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -1183,6 +1192,7 @@ exports[`EnterResultsContainerComponent should render the error status of the dr
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}
@@ -1312,6 +1322,7 @@ exports[`EnterResultsContainerComponent should render the saving status of the d
   readonly$={[Function _Store]}
   route={[Function Object]}
   router={[Function _Router]}
+  sessionBookedNotification$={[Function _Store]}
   shadowListedOffenceIds$={[Function _Store]}
   sharedTargetIds$={[Function _Store]}
   store={[Function _Store]}

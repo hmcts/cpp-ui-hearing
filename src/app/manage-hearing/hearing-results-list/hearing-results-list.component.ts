@@ -360,7 +360,10 @@ export class HearingResultsListComponent {
     defendant: DefendantCasesApplications,
     prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
   ): string => {
-    const bailStatus = defendant?.personDefendant?.bailStatus;
+    // person-defendant.ts types bailStatus as a non-optional BailStatus[], so TS does not object
+    // to the .length reads below - but the API omits it for a defendant with no recorded bail
+    // status, and it then throws during render, taking out the whole hearing page.
+    const bailStatus = defendant?.personDefendant?.bailStatus || [];
     let bailStatusDescription = '';
     const caseId = prosecutionCase?.id;
     if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {

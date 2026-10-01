@@ -136,7 +136,18 @@ const setReusableInfoSuccess = createAction(
   props<{ reusableResults: PromptEntry[] }>()
 );
 
+/**
+ * A session has just been held. Raised by the pickers so the results page can state the midnight
+ * deadline - the one moment in the flow where that rule is given to the clerk.
+ */
+const sessionBooked = createAction('SESSION_BOOKED');
+
+/** The clerk has left the results page, so the notice has served its purpose. */
+const dismissSessionBooked = createAction('DISMISS_SESSION_BOOKED');
+
 export const DraftResultActions = {
+  sessionBooked,
+  dismissSessionBooked,
   addChildToDraftResultLine,
   copyDraftResultLines,
   destroyDraftResultLine,

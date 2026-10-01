@@ -10,9 +10,11 @@ import {
   RotaBusinessType
 } from '@cpp/reference-data';
 import { select, Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { ValidationError } from '@cpp/pdk';
 import moment from 'moment';
-import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, EMPTY, Observable, of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
   createDraftResultPromptsFromValueMap,
@@ -23,6 +25,10 @@ import {
 import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
 import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService
+} from '../services/provisionalBooking.service';
 import {
   CrownSchedulingFilters,
   getSearchMetadata,
@@ -49,6 +55,7 @@ import { AllocateHearingParams } from './magistrates.container';
       [rotaBusinessTypes]="rotaBusinessTypes$ | async"
       [totalResults]="totalResults$ | async"
       [hearingData]="hearing$ | async"
+      [externalErrors]="bookingErrors$ | async"
       (cancel)="handleReturnToResults()"
       (filtersSubmit)="handleFiltersSubmit($event)"
       (hearingSlotAllocationsSubmit)="hearingSubmitAllocations($event)"
@@ -59,6 +66,12 @@ import { AllocateHearingParams } from './magistrates.container';
   imports: [CrownSchedulingComponent, AsyncPipe]
 })
 export class CrownSchedulingContainer {
+  private static readonly SESSION_NOT_AVAILABLE_ERROR_ID = 'crown-session-not-available';
+
+  private readonly bookingErrorSubject = new BehaviorSubject<ValidationError[] | null>(null);
+  readonly bookingErrors$: Observable<ValidationError[] | null> =
+    this.bookingErrorSubject.asObservable();
+
   currentPage$: Observable<number>;
   defaultFilters$: Observable<Partial<CrownSchedulingFilters>>;
   filters$: Observable<Partial<CrownSchedulingFilters>>;
@@ -73,7 +86,9 @@ export class CrownSchedulingContainer {
   constructor(
     private store: Store<ResultsState>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private provisionalBookingService: ProvisionalBookingService,
+    private translateService: TranslateService
   ) {
     const metadata$ = this.store.pipe(select(getSearchMetadata));
 
@@ -143,6 +158,12 @@ export class CrownSchedulingContainer {
     hearingType,
     ...filters
   }: CrownSchedulingFilters): void {
+    // Clear any banner from a previous pick. It is only otherwise cleared on a SUCCESSFUL
+    // booking, so a failed one left it on screen indefinitely - and because the error carries
+    // shouldFocus, the summary reclaimed focus on every change detection and the filters became
+    // effectively unusable. A new search is a new attempt; last attempt's outcome does not apply.
+    this.bookingErrorSubject.next(null);
+
     let hearingTypeId: string;
 
     if (hearingType && hearingType.id && hearingType.id !== defaultHearingTypePlaceHolder.id) {
@@ -162,6 +183,12 @@ export class CrownSchedulingContainer {
   }
 
   handlePageChange(pageNumber: number): void {
+    // Clear any banner from a previous pick. It is only otherwise cleared on a SUCCESSFUL
+    // booking, so a failed one left it on screen indefinitely - and because the error carries
+    // shouldFocus, the summary reclaimed focus on every change detection and the filters became
+    // effectively unusable. A new search is a new attempt; last attempt's outcome does not apply.
+    this.bookingErrorSubject.next(null);
+
     this.store
       .pipe(
         select(getSearchParams),
@@ -182,6 +209,9 @@ export class CrownSchedulingContainer {
       return;
     }
 
+    // A retry starts clean: the previous attempt's banner must not outlive the attempt itself.
+    this.bookingErrorSubject.next(null);
+
     const parentParams = this.route.parent?.snapshot.params || {};
     const currentParams = this.route.snapshot.params;
     const { hearingId, resultLineId } = { ...parentParams, ...currentParams };
@@ -193,8 +223,13 @@ export class CrownSchedulingContainer {
     ])
       .pipe(
         take(1),
-        map(([organisationUnits, rotaBusinessTypes, resultLine]) => {
+        switchMap(([organisationUnits, rotaBusinessTypes, resultLine]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
+          const existingBookingReference = (
+            resultLine as ExtendedResolvedDraftResultLine
+          ).resultPrompts?.find(prompt => prompt.promptRef === 'bookingReference')?.value as
+            | string
+            | undefined;
           const { hearingSlot, hearingSlotTime, duration } = hearingSlotAllocations[0];
           const redirectTo = ['/manage', hearingId, 'enter-results'];
           const rotaBusinessType = rotaBusinessTypes.find(
@@ -211,21 +246,65 @@ export class CrownSchedulingContainer {
               rotaBusinessType && rotaBusinessType.duration
                 ? duration || (hearingSlot.courtSession === 'AD' ? 360 : 180)
                 : hearingType.defaultDurationMin || 20
-            ),
-            bookingReference: hearingSlot.courtScheduleId
+            )
           };
 
-          return DraftResultActions.updateResultPromptsForDraftResultLine({
-            resultLineId,
-            redirectTo,
-            resultPrompts: [
-              ...createDraftResultPromptsFromValueMap(promptChoices, promptRefToValueMap),
-              createNameAddressResultPromptForCourtCentre(
-                promptChoices.find(isNameAddressPromptChoice),
-                organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode)
-              )
-            ]
-          });
+          const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
+            courtScheduleId: allocation.hearingSlot.courtScheduleId,
+            hearingStartTime: allocation.hearingSlotTime,
+            duration: allocation.duration
+          }));
+
+          return this.provisionalBookingService
+            .bookProvisionalHearingSlots({
+              hearingId,
+              courtScheduleBookings,
+              bookingId: existingBookingReference
+            })
+            .pipe(
+              tap(() => {
+                this.bookingErrorSubject.next(null);
+                // The hold is provisional and dies at midnight. This is the only
+                // point in the flow where the clerk is told that rule, so it is
+                // raised on the success path itself rather than inferred later.
+                this.store.dispatch(DraftResultActions.sessionBooked());
+              }),
+              map(({ bookingId }) =>
+                DraftResultActions.updateResultPromptsForDraftResultLine({
+                  resultLineId,
+                  redirectTo,
+                  resultPrompts: [
+                    ...createDraftResultPromptsFromValueMap(promptChoices, {
+                      ...promptRefToValueMap,
+                      bookingReference: bookingId
+                    }),
+                    createNameAddressResultPromptForCourtCentre(
+                      promptChoices.find(isNameAddressPromptChoice),
+                      organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode)
+                    )
+                  ]
+                })
+              ),
+              // A failure must NOT propagate to `.subscribe(this.store)`: NgRx's Store.error()
+              // forwards to the shared ActionsSubject and would end dispatching for the whole
+              // application. Catch here and complete empty, so no prompt is written and no
+              // redirect happens. Only a deliberate refusal blames the session - see
+              // BookingRefusedError.
+              catchError(error => {
+                this.bookingErrorSubject.next([
+                  {
+                    id: CrownSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
+                    message: this.translateService.instant(
+                      error instanceof BookingRefusedError
+                        ? 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+                        : 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
+                    ),
+                    shouldFocus: true
+                  }
+                ]);
+                return EMPTY;
+              })
+            );
         })
       )
       .subscribe(this.store);
