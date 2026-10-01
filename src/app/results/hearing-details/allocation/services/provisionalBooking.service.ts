@@ -6,16 +6,11 @@ import { ListingService } from '../../../../core/services/listing/listing.servic
 import { isSharedBooking } from '../../../core/helpers/provisional-booking';
 
 /**
- * The backend deliberately refused the reservation - typically because the session filled up
- * between the search and the pick. This is a business outcome the clerk can act on by choosing
- * another session, and it is the ONLY case that may be reported as such.
- *
- * <p>Anything else that fails this call - an HTTP error, a rejected command, a rolled-back
- * transaction, a timeout waiting for the success event - is a technical failure. The session
- * itself may be perfectly available, so telling the clerk it is "fully booked" sends them off to
- * re-pick a session that was never the problem. Observed on STE02: a JSON-schema rejection of
- * `bookingId` in the command handler rolled the transaction back, no event was ever published,
- * commandSync timed out, and the picker reported the session as fully booked.
+ * The backend deliberately refused the reservation - typically the session filled up between the
+ * search and the pick. This is the ONLY failure that may be reported to the clerk as "pick
+ * another session". Anything else (HTTP error, rejected command, timeout waiting for the event)
+ * is technical: the session may be fine, and blaming it sends the clerk off to re-pick for
+ * nothing.
  */
 export class BookingRefusedError extends Error {
   constructor(message: string) {
@@ -31,24 +26,15 @@ export class ProvisionalBookingService {
   constructor(private cppHttp: CppHttp, private listingService: ListingService) {}
 
   /**
-   * Decides which bookingId, if any, a new reservation may be taken against.
+   * Which bookingId, if any, a new reservation may be taken against.
    *
-   * <p>Reusing the id is how a clerk changes their mind about a session: courtscheduler releases
-   * the abandoned hold and takes the new one under the same reference, in one transaction. But
-   * that only works while the booking is still a HOLD. Once a share has confirmed it, the id
-   * belongs to a real listing and `guardAgainstConfirmedAllocation` refuses to reserve against
-   * it - which is exactly the amend journey: share a result, amend it, pick a different session.
-   * Before this check that refusal surfaced to the clerk as "this session is fully booked", about
-   * a session that was free.
+   * <p>Reusing the id is how a clerk changes their mind: courtscheduler releases the abandoned
+   * hold and takes the new one under the same reference. That only works while it is still a
+   * HOLD - once a share confirms it, guardAgainstConfirmedAllocation refuses, which is the amend
+   * journey. Returning undefined makes the caller omit the id so a fresh one is minted.
    *
-   * <p>Returning undefined makes the caller omit `bookingId` so courtscheduler mints a fresh one.
-   * The old confirmed listing is deliberately left alone - the amended share reconciles it, and
-   * that release is keyed on hearing_id, not on bookingId.
-   *
-   * <p>On a failed status lookup this keeps TODAY'S behaviour and reuses the id, rather than
-   * minting a new one. Minting on every transient blip would strand the previous hold's capacity
-   * until the nightly purge, on a session another clerk may be waiting for; reusing at worst
-   * reproduces the refusal the clerk already knows how to read.
+   * <p>A failed lookup reuses the id rather than minting: minting on every transient blip would
+   * strand the old hold's capacity until the nightly purge.
    */
   private bookingIdToReuse(bookingId?: string): Observable<string | undefined> {
     if (!bookingId) {
@@ -91,21 +77,10 @@ export class ProvisionalBookingService {
         })
       )
     ).pipe(
-        // The backend publishes the SAME event name -
-        // `public.hearing.hearing-slots-provisionally-booked` - for both a
-        // successful reservation and a refusal (e.g. the session is now full).
-        // Because commandSync resolves as soon as that event name arrives, a
-        // refusal (`{ error }`, no `bookingId`) would otherwise flow through
-        // this method as an ordinary value rather than an observable error.
-        // This guard turns that refusal into an errored observable so the
-        // declared return type - `Observable<{ bookingId: string }>` - stays
-        // true: a value always has a bookingId. Do not remove this as
-        // redundant; without it, callers cannot tell a refusal from success.
-        //
-        // It is thrown as a BookingRefusedError specifically so callers can tell
-        // a DELIBERATE refusal apart from a technical failure of the same call
-        // (HTTP error, rejected command, timeout waiting for the event). Only a
-        // refusal means "pick another session" - see BookingRefusedError.
+        // The backend publishes the same event name for both a successful reservation and a
+        // refusal, and commandSync resolves on the name alone - so a refusal (`{ error }`, no
+        // `bookingId`) would otherwise flow through as an ordinary value. Not redundant: without
+        // this, callers cannot tell a refusal from success.
         switchMap(response =>
           response.bookingId
             ? of(response as { bookingId: string })
@@ -120,13 +95,9 @@ export class ProvisionalBookingService {
   }
 
   /**
-   * Releases a previously booked provisional hearing slot hold. This is
-   * fire-and-forget: per `hearing.release-unconfirmed-hearing-slots` (see
-   * hearing-command-api.raml), the backend treats an unknown or
-   * already-released bookingId as a no-op, never an error, and it does not
-   * publish a public event on completion - so `command` is used here rather
-   * than `commandSync`, which would otherwise wait indefinitely for a
-   * successEvent that is never emitted.
+   * Releases a hold. Fire-and-forget: the backend treats an unknown or already-released
+   * bookingId as a no-op and publishes no event, so `command` is used rather than `commandSync`,
+   * which would wait forever for an event that never comes.
    */
   releaseProvisionalHearingSlots({
     hearingId,

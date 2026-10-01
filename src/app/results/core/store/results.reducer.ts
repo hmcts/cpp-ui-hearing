@@ -19,13 +19,10 @@ export interface State {
   resultsValidation: ResultsValidationResponse | null;
   shareResultsValidationFailure: ResultsValidationErrors | null;
   /**
-   * Whether to tell the clerk their newly held session expires at midnight.
-   *
-   * <p>Deliberately transient, and deliberately in the store rather than a query
-   * param: the notice is a confirmation of an action just taken, so it should not
-   * survive a reload or reappear when the clerk navigates back. Being in memory
-   * gives the reload behaviour for free; dismissSessionBooked, dispatched when the
-   * results page is destroyed, gives the navigation behaviour.
+   * Whether to tell the clerk their newly held session expires at midnight. Deliberately
+   * transient and in-memory rather than a query param: it confirms an action just taken, so it
+   * must not survive a reload (free, being in memory) or a navigate-back (dismissSessionBooked,
+   * dispatched when the results page is destroyed).
    */
   sessionBookedNotification: boolean;
 }
