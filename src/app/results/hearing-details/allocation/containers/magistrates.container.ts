@@ -325,16 +325,11 @@ export class MagistratesSchedulingContainer {
                   ]
                 });
               }),
-              // A failure must not propagate to `.subscribe(this.store)`: NgRx's
-              // Store.error() forwards to the shared ActionsSubject, which would
-              // end dispatching for the whole application, not just this picker.
-              // Catch it here, surface it to the picker, and complete with no
-              // value so nothing reaches the store subscription - no prompt is
-              // written and no redirect happens.
-              //
-              // Only a deliberate refusal means the session is unavailable. A
-              // technical failure of the same call must not claim that, or the
-              // clerk is sent to re-pick a session that was never the problem.
+              // A failure must NOT propagate to `.subscribe(this.store)`: NgRx's Store.error()
+              // forwards to the shared ActionsSubject and would end dispatching for the whole
+              // application. Catch here and complete empty, so no prompt is written and no
+              // redirect happens. Only a deliberate refusal blames the session - see
+              // BookingRefusedError.
               catchError(error => {
                 this.bookingErrorSubject.next([
                   {

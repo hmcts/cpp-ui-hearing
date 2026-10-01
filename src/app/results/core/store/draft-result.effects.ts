@@ -317,26 +317,16 @@ export class DraftResultEffects {
     )
   );
 
-  // Releases the provisional slot hold (if any) carried by a result line the
-  // instant it is abandoned with no new pick to follow it. Both trigger paths
-  // (deleted outright, or deleted via amend) eventually call
-  // DraftResultBuilderService.destroyResultLine, which rebuilds the draft
-  // result without the line - and with it, without the only remaining pointer
-  // to the bookingId. So the reference is read here, from the not-yet-rebuilt
-  // draft result, before that happens.
+  // Releases the hold a result line carries the instant the line is abandoned. Both trigger
+  // paths end in destroyResultLine, which rebuilds the draft without the line - and so without
+  // the only pointer to the bookingId - so the reference is read here, before that happens.
   //
-  // Only a booking courtscheduler still reports as UNCONFIRMED is released.
-  // A confirmed one is left entirely alone here - deleting or amending its
-  // line does nothing at the time, and the subsequent share applies the
-  // change. A shared LINE may still hold an unconfirmed booking (a re-pick
-  // during the amendment reuses the id), which is why the line's own
-  // sharedDate cannot decide this - see isUnconfirmedBooking.
+  // Only a booking courtscheduler reports as UNCONFIRMED is released; a confirmed one is left
+  // alone, since only a share may change it. The line's own sharedDate cannot decide this - see
+  // isUnconfirmedBooking.
   //
-  // This runs as its own dispatch: false effect, deliberately kept out of the
-  // draftResultEvents$ merge above: that pipeline's single catchError turns
-  // any failure into setDraftResultError, and the release must never surface
-  // as a failure to delete, nor delay it (it is best-effort and idempotent on
-  // the backend - see ProvisionalBookingService.releaseProvisionalHearingSlots).
+  // dispatch: false, and kept out of the draftResultEvents$ merge whose catchError would turn a
+  // failed release into a failed delete. It is best-effort and idempotent on the backend.
   releaseAbandonedProvisionalBooking$ = createEffect(
     () =>
       merge(

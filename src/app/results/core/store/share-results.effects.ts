@@ -68,19 +68,12 @@ export class ShareResultsEffects {
 
   private draftResult$ = this.store.pipe(select(getDraftResult));
 
-  // cancelAmendments, rejectAmendments and unlockHearing all discard whatever
-  // draft result is currently held locally (isResetResults: true) and replace
-  // it wholesale with the shared result fetched from the server. Any
-  // provisional slot hold that only the discarded draft result was still
-  // pointing at is abandoned the instant that happens - nothing is left that
-  // could ask for it to be released later, and only the 01:00 purge would
-  // otherwise recover it. So every hold on the about-to-be-discarded draft
-  // result is released here, read from the store before the reset overwrites
-  // it - but only those courtscheduler still reports as UNCONFIRMED. A
-  // confirmed booking survives the discard untouched: only a share may change
-  // one. This is a dispatch: false effect for the same reason as
-  // DraftResultEffects.releaseAbandonedProvisionalBooking$: it must never
-  // surface as, or delay, an error on the action that triggered the reset.
+  // cancelAmendments, rejectAmendments and unlockHearing discard the local draft wholesale
+  // (isResetResults: true). Any hold only that draft still pointed at becomes unreachable the
+  // instant it goes - nothing could ask for it later and only the 01:00 purge would recover it -
+  // so holds are read from the store and released here, before the reset overwrites it. Only
+  // UNCONFIRMED ones: a confirmed booking survives untouched, since only a share may change it.
+  // dispatch: false, for the same reason as DraftResultEffects.releaseAbandonedProvisionalBooking$.
   releaseAbandonedProvisionalBookings$ = createEffect(
     () =>
       this.actions$.pipe(

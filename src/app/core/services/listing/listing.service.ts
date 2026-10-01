@@ -20,12 +20,9 @@ export interface BookingStatusResponse {
 }
 
 /**
- * Pulls the `bookings` array out of whatever `CppHttp.command` hands back.
- *
- * <p>In production that is an `HttpResponse<string>` whose `body` is unparsed JSON. Tests and
- * any future change to `CppHttp` may pass the object straight through, so both are accepted -
- * but a shape carrying no `bookings` array is an error, never an empty result. See
- * {@link ListingService.getBookingStatus} for why that distinction is load-bearing.
+ * Pulls the `bookings` array out of whatever `CppHttp.command` hands back - an
+ * `HttpResponse<string>` in production, the object itself in tests. A shape carrying no
+ * `bookings` array is an ERROR, never an empty result; see {@link ListingService.getBookingStatus}.
  */
 const parseBookingStatusResponse = (response: unknown): BookingStatusResponse => {
   const payload =
@@ -86,26 +83,15 @@ export class ListingService {
   /**
    * Asks listing whether each booking is still safe to share.
    *
-   * <p>`bookingStatus` is a POST, so it must go through `api.command` rather than `api.query`.
-   * That matters: `command` resolves to an Angular `HttpResponse` built with
-   * `{ observe: 'response', responseType: 'text' }`, so the payload arrives as an UNPARSED
-   * STRING on `.body` and the object itself has no `bookings` property. `command` is also
-   * typed `Observable<any>`, so returning it directly satisfies any declared return type and
-   * the compiler says nothing.
+   * <p>A POST, so it goes through `api.command`, which resolves to an `HttpResponse` with the
+   * payload as an UNPARSED STRING on `.body` - and is typed `Observable<any>`, so returning it
+   * raw satisfies any declared type and the compiler says nothing. That is exactly how the
+   * pre-share gate once read `response?.bookings`, got `undefined`, and turned it into "nothing
+   * unsafe" while the correct `safeToShare: false` sat unread on the wire.
    *
-   * <p>That combination is what made the pre-share gate pass a booking it had just been told
-   * was expired: the gate read `response?.bookings`, got `undefined` off the `HttpResponse`,
-   * and its `?? []` turned that into "no unsafe bookings". The request was made, the correct
-   * `safeToShare: false` came back over the wire, and nothing acted on it.
-   *
-   * <p>So the parse belongs here, once, rather than at each of the three call sites. It
-   * deliberately THROWS on a body it cannot read instead of answering `{ bookings: [] }` -
-   * an empty list is indistinguishable from "everything is fine" and is precisely how this
-   * failed silently before. Every caller already handles the error stream and has chosen its
-   * own direction: the pre-share gate fails open, the two release effects fail closed.
-   *
-   * @param bookingIds the bookings to ask about
-   * @returns the parsed `bookings` array
+   * <p>Hence the parse here, once, and it THROWS on a body it cannot read rather than answering
+   * `{ bookings: [] }` - an empty list is indistinguishable from "all fine". Callers each choose
+   * a direction: the pre-share gate fails open, the release effects fail closed.
    */
   getBookingStatus(bookingIds: string[]): Observable<BookingStatusResponse> {
     return this.api

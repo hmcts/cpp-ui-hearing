@@ -137,10 +137,8 @@ const setReusableInfoSuccess = createAction(
 );
 
 /**
- * A session has just been held for this draft. Raised by the pickers so the results
- * page can tell the clerk the hold is provisional and dies at midnight - the one
- * moment in the whole flow where that rule is stated. See sessionBookedNotification
- * in the results reducer for why it is transient.
+ * A session has just been held. Raised by the pickers so the results page can state the midnight
+ * deadline - the one moment in the flow where that rule is given to the clerk.
  */
 const sessionBooked = createAction('SESSION_BOOKED');
 
