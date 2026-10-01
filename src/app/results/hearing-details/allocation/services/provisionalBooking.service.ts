@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CppHttp } from '@cpp/core';
 import { Observable, of, throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ListingService } from '../../../../core/services/listing/listing.service';
+import { isSharedBooking } from '../../../core/helpers/provisional-booking';
 
 /**
  * The backend deliberately refused the reservation - typically because the session filled up
@@ -26,7 +28,38 @@ export class BookingRefusedError extends Error {
 
 @Injectable()
 export class ProvisionalBookingService {
-  constructor(private cppHttp: CppHttp) {}
+  constructor(private cppHttp: CppHttp, private listingService: ListingService) {}
+
+  /**
+   * Decides which bookingId, if any, a new reservation may be taken against.
+   *
+   * <p>Reusing the id is how a clerk changes their mind about a session: courtscheduler releases
+   * the abandoned hold and takes the new one under the same reference, in one transaction. But
+   * that only works while the booking is still a HOLD. Once a share has confirmed it, the id
+   * belongs to a real listing and `guardAgainstConfirmedAllocation` refuses to reserve against
+   * it - which is exactly the amend journey: share a result, amend it, pick a different session.
+   * Before this check that refusal surfaced to the clerk as "this session is fully booked", about
+   * a session that was free.
+   *
+   * <p>Returning undefined makes the caller omit `bookingId` so courtscheduler mints a fresh one.
+   * The old confirmed listing is deliberately left alone - the amended share reconciles it, and
+   * that release is keyed on hearing_id, not on bookingId.
+   *
+   * <p>On a failed status lookup this keeps TODAY'S behaviour and reuses the id, rather than
+   * minting a new one. Minting on every transient blip would strand the previous hold's capacity
+   * until the nightly purge, on a session another clerk may be waiting for; reusing at worst
+   * reproduces the refusal the clerk already knows how to read.
+   */
+  private bookingIdToReuse(bookingId?: string): Observable<string | undefined> {
+    if (!bookingId) {
+      return of(undefined);
+    }
+
+    return this.listingService.getBookingStatus([bookingId]).pipe(
+      map(({ bookings }) => (isSharedBooking(bookings, bookingId) ? undefined : bookingId)),
+      catchError(() => of(bookingId))
+    );
+  }
 
   bookProvisionalHearingSlots({
     hearingId,
@@ -44,18 +77,20 @@ export class ProvisionalBookingService {
     }[];
     priority?: string;
   }): Observable<{ bookingId: string }> {
-    return this.cppHttp
-      .commandSync<{ bookingId?: string; error?: string }>({
-        url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
-        requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
-        successEvent: 'public.hearing.hearing-slots-provisionally-booked',
-        body: {
-          ...filters,
-          ...(bookingId ? { bookingId } : {}),
-          slots: courtScheduleBookings
-        }
-      })
-      .pipe(
+    return this.bookingIdToReuse(bookingId).pipe(
+      switchMap(reusableBookingId =>
+        this.cppHttp.commandSync<{ bookingId?: string; error?: string }>({
+          url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
+          requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
+          successEvent: 'public.hearing.hearing-slots-provisionally-booked',
+          body: {
+            ...filters,
+            ...(reusableBookingId ? { bookingId: reusableBookingId } : {}),
+            slots: courtScheduleBookings
+          }
+        })
+      )
+    ).pipe(
         // The backend publishes the SAME event name -
         // `public.hearing.hearing-slots-provisionally-booked` - for both a
         // successful reservation and a refusal (e.g. the session is now full).

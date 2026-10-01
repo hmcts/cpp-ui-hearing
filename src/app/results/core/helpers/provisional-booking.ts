@@ -16,10 +16,10 @@ const EXISTING_HEARING_PROMPT_REF = 'existingHearingId';
  *
  * <p>This returns a CANDIDATE, not a decision. Whether the hold may actually be released depends
  * on whether that booking has been confirmed by a share, and the answer is not derivable here:
- * a re-pick REUSES the existing bookingId (the picker sends it as `bookingId` and writes the
- * same value straight back), so the prompt is byte-identical whether the booking is still the
- * confirmed one or a fresh hold taken during an amendment. `sharedDate` cannot settle it either
- * - it describes the LINE, not the BOOKING. Callers must ask courtscheduler via
+ * a re-pick on a still-unconfirmed booking REUSES the existing bookingId (the picker sends it as
+ * `bookingId` and writes the same value straight back), so the prompt is byte-identical whether
+ * the booking is still held or was just re-picked. `sharedDate` cannot settle it either - it
+ * describes the LINE, not the BOOKING. Callers must ask courtscheduler via
  * {@link isUnconfirmedBooking}; see that function for the rule being enforced.
  *
  * @param resultLine the result line to inspect - an unresolved line has no prompts yet,
@@ -82,10 +82,12 @@ export const RESERVED_BOOKING_STATUS = 'RESERVED';
  *       separate call for that case.)</li>
  * </ol>
  *
- * <p>Only courtscheduler can tell the two apart. A re-pick during an amendment reuses the same
- * bookingId, leaving a line that is shared AND holding a fresh unconfirmed reservation - so the
- * status lookup short-circuits to RESERVED on the reservation and the new hold is correctly
- * released, while the confirmed listing behind the same id is left alone.
+ * <p>Only courtscheduler can tell the two apart. A re-pick during an amendment does NOT reuse the
+ * shared bookingId - courtscheduler refuses to reserve over a confirmed allocation
+ * (ConfirmedBookingExistsException), so {@link isSharedBooking} makes the picker mint a fresh one
+ * instead. The amended line therefore carries the NEW id, whose status is RESERVED and which is
+ * released normally if abandoned; the old confirmed listing is no longer referenced by the draft
+ * and is reconciled at share time, which releases by hearing_id rather than by bookingId.
  *
  * @param bookings the `bookings` array from listing's bookingStatus response
  * @param bookingId the booking being considered for release
@@ -110,3 +112,36 @@ export const selectUnconfirmedBookingIds = (
   bookings: { bookingId: string; status: string }[] | undefined,
   candidates: string[]
 ): string[] => candidates.filter(bookingId => isUnconfirmedBooking(bookings, bookingId));
+
+/**
+ * courtscheduler's verdict for a booking that has been confirmed by a share - it is a real
+ * listing now (`expires_at IS NULL`), not a hold.
+ */
+export const SHARED_BOOKING_STATUS = 'SHARED';
+
+/**
+ * Whether a bookingId has already been confirmed by a share, and so must NOT be sent back as the
+ * `bookingId` of a new reservation.
+ *
+ * <p>courtscheduler's {@code ReservationService.guardAgainstConfirmedAllocation} refuses to
+ * reserve against an id that already carries a confirmed allocation. That guard is right - the
+ * confirmed listing must not be disturbed by a hold - but the picker used to resend the shared id
+ * regardless, which is what made "amend a shared result and pick a different session" fail. The
+ * clerk saw "this session is fully booked" about a session that was free.
+ *
+ * <p>When this returns true the picker omits `bookingId` entirely and courtscheduler mints a new
+ * one. The old confirmed listing is left exactly as it was: it is released and replaced by the
+ * amended share itself, which reconciles via {@code releaseOldAllocatedListings(hearingId)} -
+ * keyed on hearing_id, never on bookingId, so changing the reference cannot strand it.
+ *
+ * @param bookings the `bookings` array from listing's bookingStatus response
+ * @param bookingId the booking the result line is currently carrying
+ * @returns true only when courtscheduler reports that id as already shared
+ */
+export const isSharedBooking = (
+  bookings: { bookingId: string; status: string }[] | undefined,
+  bookingId: string
+): boolean =>
+  (bookings || []).some(
+    booking => booking.bookingId === bookingId && booking.status === SHARED_BOOKING_STATUS
+  );
