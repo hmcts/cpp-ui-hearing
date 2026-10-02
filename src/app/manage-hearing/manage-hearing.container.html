@@ -96,6 +96,7 @@
         [isGroupCaseApplicationText]="(isGroupCaseApplication$ | async) && ('MANAGE_HEARING.BULK_DEFENDANTS' | translate)"
         [hearingType]="hearingType$ | async"
         [showSubject]="true"
+        [isStandaloneApplication]="isStandAloneApplication$ | async"
         [pleasMapping]="pleasMapping$ | async"
         [guiltyPleasValues]="guiltyPleasValues$ | async"
         [caseStatus]="caseStatus$ | async"

@@ -22,16 +22,34 @@ import { ApplicationResultsComponent } from './application-results.component';
   selector: 'application-result-details',
   template: `
     <div data-test-id="application-result">
-      @for (application of courtApplications; track $index) { @if ( showSubject &&
-      (!application.masterDefendant || (application.masterDefendant.prosecutionCases || []).length
-      === 0) ) {
+      @for (application of courtApplications; track $index) { @if (isStandaloneApplication) {
+      <defendant-level-detail
+        pdk-margin-top="6"
+        class="defendant-level-detail"
+        [hearing]="hearing"
+        [hearingId]="hearingId"
+        [defendant]="toApplicationDefendant(application)"
+        [isStandaloneApplication]="true"
+        [applicationId]="application.applications[0]?.id"
+        [attendanceErrors]="attendanceErrors"
+        [caseStatus]="caseStatus"
+        [todayDefendantsAttendance]="todayDefendantsAttendance"
+        [selectedHearingDate]="selectedHearingDate"
+        (onOutstandingFine)="onOutstandingFine.emit($event)"
+        (onPresenceChanged)="onPresenceChanged.emit($event)"
+        (onYouthCourtToggle)="onYouthCourtToggle.emit($event)"
+        (selectedParticipant)="onSelectedParticipant.emit($event)"
+      >
+      </defendant-level-detail>
+      } @if ( !isStandaloneApplication && showSubject && (!application.masterDefendant ||
+      (application.masterDefendant.prosecutionCases || []).length === 0) ) {
       <application-subject
         [subject]="application.subject"
         [isGroupCaseApplicationText]="isGroupCaseApplicationText"
       >
       </application-subject>
-      } @if ( !!application.masterDefendant && (application.masterDefendant.prosecutionCases ||
-      []).length > 0 ) {
+      } @if ( !isStandaloneApplication && !!application.masterDefendant &&
+      (application.masterDefendant.prosecutionCases || []).length > 0 ) {
       <defendant-level-detail
         pdk-margin-top="6"
         class="defendant-level-detail"
@@ -129,6 +147,7 @@ export class ApplicationResultDetailsComponent {
   @Input() applicationCaseStatus: string;
   @Input() amendApplicationPermission: boolean;
   @Input() caseStatus: string;
+  @Input() isStandaloneApplication = false;
   @Output() onGoToEnterResult: EventEmitter<void> = new EventEmitter();
   @Output() onOutstandingFine: EventEmitter<{
     defendantId: string;
@@ -139,4 +158,21 @@ export class ApplicationResultDetailsComponent {
   @Output() onYouthCourtToggle: EventEmitter<string> = new EventEmitter();
   @Output() onPresenceChanged: EventEmitter<any> = new EventEmitter();
   @Output() onSelectedParticipant: EventEmitter<string> = new EventEmitter();
+
+  toApplicationDefendant(aggregate: ApplicationAggregate): any {
+    if (aggregate.masterDefendant) {
+      return { ...aggregate.masterDefendant, courtApplications: aggregate.applications };
+    }
+
+    const { subject } = aggregate;
+    return {
+      id: subject.id,
+      personDefendant: { personDetails: subject.personDetails },
+      prosecutionCases: [],
+      courtApplications: aggregate.applications,
+      associatedPersons: subject.organisationPersons,
+      isForApplication: true,
+      isYouth: false
+    };
+  }
 }
