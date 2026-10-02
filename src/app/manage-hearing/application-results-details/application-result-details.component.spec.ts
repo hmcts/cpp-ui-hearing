@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { ApplicationResultDetailsComponent } from './application-result-details.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { JsonPipe } from '@angular/common';

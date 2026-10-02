@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DefendantLevelDetailComponent, DefendantType } from './defendant-level-detail.component';
+import { DefendantLevelDetailComponent } from './defendant-level-detail.component';
 import { provideTranslateService } from '@ngx-translate/core';
 import { AppConfigService } from 'src/app/config';
 import {
