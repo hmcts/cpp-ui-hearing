@@ -30,7 +30,7 @@
         }
       </div>
       <div>
-        @if (!hasBulkCase) {
+        @if (!hasBulkCase && !isStandaloneApplication) {
         <div pdk-margin-bottom="3">
           @if (!defendant.legalEntityDefendant) {
           <button
@@ -51,7 +51,7 @@
             {{ 'COMMON.OUTSTANDING_FINE' | translate }}
           </button>
         </div>
-        }
+        } @if (!isStandaloneApplication) {
         <pdk-checkbox
           class="youth-selector"
           checkboxType="small"
@@ -61,6 +61,7 @@
         >
           {{ 'MANAGE_HEARING.SITTING_YOUTH_COURT' | translate }}
         </pdk-checkbox>
+        }
       </div>
     </div>
     <div pdk-padding-top="2">

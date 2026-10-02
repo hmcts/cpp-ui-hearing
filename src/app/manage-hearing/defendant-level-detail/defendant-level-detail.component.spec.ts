@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DefendantLevelDetailComponent } from './defendant-level-detail.component';
+import { DefendantLevelDetailComponent, DefendantType } from './defendant-level-detail.component';
 import { provideTranslateService } from '@ngx-translate/core';
 import { AppConfigService } from 'src/app/config';
 import {
@@ -35,5 +35,13 @@ describe('DefendantLevelDetailComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show the driver record, outstanding fine and youth court options when not a standalone application', () => {
+    const nativeElement = fixture.nativeElement as HTMLElement;
+
+    expect(nativeElement.querySelector('[data-role="driver-record"]')).not.toBeNull();
+    expect(nativeElement.querySelector('[data-role="outstanding-fine"]')).not.toBeNull();
+    expect(nativeElement.querySelector('.youth-selector')).not.toBeNull();
   });
 });

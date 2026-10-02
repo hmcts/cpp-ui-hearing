@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ApplicationResultDetailsComponent } from './application-result-details.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { JsonPipe } from '@angular/common';
@@ -49,6 +50,8 @@ class MockDefendantLevelDetailComponent {
   @Input() caseStatus: string;
   @Input() todayDefendantsAttendance: TodaysDefendantAttendance[];
   @Input() selectedHearingDate: string;
+  @Input() isStandaloneApplication: boolean;
+  @Input() applicationId: string;
   @Output() onOutstandingFine = new EventEmitter<any>();
   @Output() onPresenceChanged = new EventEmitter<any>();
   @Output() onYouthCourtToggle = new EventEmitter<any>();
@@ -214,5 +217,42 @@ describe('ApplicationResultDetailsComponent', () => {
     const event = 'participantId';
     component.onSelectedParticipant.emit(event);
     expect(component.onSelectedParticipant.emit).toHaveBeenCalledWith(event);
+  });
+
+  describe('toApplicationDefendant', () => {
+    it('should merge courtApplications onto the existing master defendant when one exists', () => {
+      const aggregate = {
+        applications: [{ id: 'app-1' } as CourtApplication],
+        subject: { id: 'subject-1' } as any,
+        masterDefendant: { id: 'master-1', prosecutionCases: [] } as any
+      } as ApplicationAggregate;
+
+      expect(component.toApplicationDefendant(aggregate)).toEqual({
+        id: 'master-1',
+        prosecutionCases: [],
+        courtApplications: [{ id: 'app-1' }]
+      });
+    });
+
+    it('should build a defendant from the subject when there is no master defendant', () => {
+      const aggregate = {
+        applications: [{ id: 'app-1' } as CourtApplication],
+        subject: {
+          id: 'subject-1',
+          personDetails: { firstName: 'Jo', lastName: 'Bloggs' },
+          organisationPersons: [{ id: 'guardian-1' }]
+        } as any
+      } as ApplicationAggregate;
+
+      expect(component.toApplicationDefendant(aggregate)).toEqual({
+        id: 'subject-1',
+        personDefendant: { personDetails: { firstName: 'Jo', lastName: 'Bloggs' } },
+        prosecutionCases: [],
+        courtApplications: [{ id: 'app-1' }],
+        associatedPersons: [{ id: 'guardian-1' }],
+        isForApplication: true,
+        isYouth: false
+      });
+    });
   });
 });
