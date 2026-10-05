@@ -59,9 +59,9 @@ import {
   getActiveOrdersExcludeForCurrentHearing,
   getCommissionOfNewOffenceBreachApplicationTypes,
   getCurrentHearingCasesAndApplicationsDefendants,
+  getIsStandAloneApplication,
   getStandaloneAncillaryResults,
   isPleaApplicable,
-  isStandAloneApplication,
   isVerdictsPageAvailable,
   selectTrialEffectivenessError
 } from '../core/selectors';
@@ -217,9 +217,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
 
     this.courtApplications$ = this.store.pipe(select(getFilteredApplications));
 
-    this.isStandAloneApplication$ = this.store
-      .pipe(select(getCurrentHearing))
-      .pipe(map(hearing => isStandAloneApplication(hearing)));
+    this.isStandAloneApplication$ = this.store.pipe(select(getIsStandAloneApplication));
 
     this.todayHearingListIds$ = this.store.pipe(select(getTodayHearingListIds));
     this.hearing$ = this.store.pipe(select(getCurrentHearing));
