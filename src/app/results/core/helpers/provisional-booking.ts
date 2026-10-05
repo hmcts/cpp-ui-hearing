@@ -1,8 +1,13 @@
 import { AnyDraftResultLine, DraftResult, ResolvedDraftResultLine } from '../../results.interfaces';
 
 const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
-// On an attach-to-existing-hearing line, related-hearings.container.ts puts a courtScheduleId in
-// bookingReference, not a bookingId - nothing was booked, so there is nothing to release.
+// An attach-to-existing-hearing line points at a hearing that is ALREADY listed. That hearing has
+// sessions of its own, allocated when it was listed - but they belong to it, not to this draft.
+// Reserve-a-slot owns only the hold a draft takes for a hearing that does not exist yet, and an
+// attach line takes none, so there is nothing here to give back.
+//
+// Keep these lines out of the release path for a second reason: SlotsRemoveService releases by
+// hearing_id as well as booking_id, so a real hearing id reaching it would unlist a live hearing.
 const EXISTING_HEARING_PROMPT_REF = 'existingHearingId';
 
 /** A hold that still holds capacity and has not been confirmed by a share. */
