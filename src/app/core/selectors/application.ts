@@ -87,6 +87,11 @@ export const isStandAloneApplication = (hearing: HearingDetail): boolean =>
   hasNoActiveProsecutionCases(hearing) &&
   !hasLinkedApplicationCases(hearing);
 
+export const getIsStandAloneApplication = createSelector(
+  getCurrentHearing,
+  isStandAloneApplication
+);
+
 export const isConcludedLinkedApplication = (hearing: HearingDetail): boolean =>
   hasCourtApplications(hearing) &&
   hasNoActiveProsecutionCases(hearing) &&

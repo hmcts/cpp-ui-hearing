@@ -59,6 +59,7 @@ import {
   getActiveOrdersExcludeForCurrentHearing,
   getCommissionOfNewOffenceBreachApplicationTypes,
   getCurrentHearingCasesAndApplicationsDefendants,
+  getIsStandAloneApplication,
   getStandaloneAncillaryResults,
   isPleaApplicable,
   isVerdictsPageAvailable,
@@ -124,6 +125,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   casesAndApplicationsGroupedByDefendant$: Observable<DefendantCasesApplications[]>;
   caseStatus$: Observable<string>;
   courtApplications$: Observable<ApplicationAggregate[]>;
+  isStandAloneApplication$: Observable<boolean>;
   pleasMapping$: Observable<{ [key: string]: string }>;
   guiltyPleasValues$: Observable<string[]>;
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -215,6 +217,8 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
 
     this.courtApplications$ = this.store.pipe(select(getFilteredApplications));
 
+    this.isStandAloneApplication$ = this.store.pipe(select(getIsStandAloneApplication));
+
     this.todayHearingListIds$ = this.store.pipe(select(getTodayHearingListIds));
     this.hearing$ = this.store.pipe(select(getCurrentHearing));
     this.defendantsNames$ = this.store.pipe(
@@ -276,7 +280,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
             hearing.courtApplications.forEach(courtApplication => {
               completedAttendanceDefendantIds.forEach(defId => {
                 const defendant = courtApplication.subject.masterDefendant;
-                const defendantId = defendant.masterDefendantId;
+                const defendantId = defendant?.masterDefendantId ?? courtApplication.subject.id;
                 if (defendantId === defId) {
                   completedAttendanceDefendantIds.push(defendantId);
                 }

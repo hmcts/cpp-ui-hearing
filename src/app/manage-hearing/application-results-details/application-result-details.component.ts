@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   ApplicationAggregate,
+  AssociatedPerson,
   CourtApplication,
+  CustodyEstablishment,
   HearingDetail,
+  Person,
+  SubjectDefendant,
   TodaysDefendantAttendance,
   VerdictType
 } from '../../core';
@@ -18,20 +22,52 @@ import { DefendantLevelDetailComponent } from '../defendant-level-detail/defenda
 import { ShareableResultsContainerComponent } from '../../results/share-results/shareable-results.container';
 import { ApplicationResultsComponent } from './application-results.component';
 
+export interface ApplicationDefendant {
+  id?: string;
+  personDefendant?: {
+    personDetails: Person;
+    custodialEstablishment?: CustodyEstablishment;
+  };
+  legalEntityDefendant?: SubjectDefendant['legalEntityDefendant'];
+  prosecutionCases: SubjectDefendant['prosecutionCases'];
+  courtApplications: CourtApplication[];
+  associatedPersons?: AssociatedPerson[];
+  isForApplication?: boolean;
+  isYouth?: boolean;
+}
+
 @Component({
   selector: 'application-result-details',
   template: `
     <div data-test-id="application-result">
-      @for (application of courtApplications; track $index) { @if ( showSubject &&
-      (!application.masterDefendant || (application.masterDefendant.prosecutionCases || []).length
-      === 0) ) {
+      @for (application of courtApplications; track $index) { @if (isStandaloneApplication) {
+      <defendant-level-detail
+        pdk-margin-top="6"
+        class="defendant-level-detail"
+        [hearing]="hearing"
+        [hearingId]="hearingId"
+        [defendant]="toApplicationDefendant(application)"
+        [isStandaloneApplication]="true"
+        [applicationId]="application.applications[0]?.id"
+        [attendanceErrors]="attendanceErrors"
+        [caseStatus]="caseStatus"
+        [todayDefendantsAttendance]="todayDefendantsAttendance"
+        [selectedHearingDate]="selectedHearingDate"
+        (onOutstandingFine)="onOutstandingFine.emit($event)"
+        (onPresenceChanged)="onPresenceChanged.emit($event)"
+        (onYouthCourtToggle)="onYouthCourtToggle.emit($event)"
+        (selectedParticipant)="onSelectedParticipant.emit($event)"
+      >
+      </defendant-level-detail>
+      } @if ( !isStandaloneApplication && showSubject && (!application.masterDefendant ||
+      (application.masterDefendant.prosecutionCases || []).length === 0) ) {
       <application-subject
         [subject]="application.subject"
         [isGroupCaseApplicationText]="isGroupCaseApplicationText"
       >
       </application-subject>
-      } @if ( !!application.masterDefendant && (application.masterDefendant.prosecutionCases ||
-      []).length > 0 ) {
+      } @if ( !isStandaloneApplication && !!application.masterDefendant &&
+      (application.masterDefendant.prosecutionCases || []).length > 0 ) {
       <defendant-level-detail
         pdk-margin-top="6"
         class="defendant-level-detail"
@@ -129,6 +165,7 @@ export class ApplicationResultDetailsComponent {
   @Input() applicationCaseStatus: string;
   @Input() amendApplicationPermission: boolean;
   @Input() caseStatus: string;
+  @Input() isStandaloneApplication = false;
   @Output() onGoToEnterResult: EventEmitter<void> = new EventEmitter();
   @Output() onOutstandingFine: EventEmitter<{
     defendantId: string;
@@ -139,4 +176,23 @@ export class ApplicationResultDetailsComponent {
   @Output() onYouthCourtToggle: EventEmitter<string> = new EventEmitter();
   @Output() onPresenceChanged: EventEmitter<any> = new EventEmitter();
   @Output() onSelectedParticipant: EventEmitter<string> = new EventEmitter();
+
+  toApplicationDefendant(aggregate: ApplicationAggregate): ApplicationDefendant {
+    if (aggregate.masterDefendant) {
+      const defendant = { ...aggregate.masterDefendant, courtApplications: aggregate.applications };
+      return defendant;
+    }
+
+    const { subject } = aggregate;
+    const defendant = {
+      id: subject.id,
+      personDefendant: { personDetails: subject.personDetails },
+      prosecutionCases: [] as ApplicationDefendant['prosecutionCases'],
+      courtApplications: aggregate.applications,
+      associatedPersons: subject.organisationPersons,
+      isForApplication: true,
+      isYouth: false
+    };
+    return defendant;
+  }
 }
