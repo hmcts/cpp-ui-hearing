@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   ApplicationAggregate,
+  AssociatedPerson,
   CourtApplication,
+  CustodyEstablishment,
   HearingDetail,
+  Person,
+  SubjectDefendant,
   TodaysDefendantAttendance,
   VerdictType
 } from '../../core';
@@ -17,6 +21,20 @@ import { ApplicationSubjectComponent } from './application-subject.component';
 import { DefendantLevelDetailComponent } from '../defendant-level-detail/defendant-level-detail.component';
 import { ShareableResultsContainerComponent } from '../../results/share-results/shareable-results.container';
 import { ApplicationResultsComponent } from './application-results.component';
+
+export interface ApplicationDefendant {
+  id?: string;
+  personDefendant?: {
+    personDetails: Person;
+    custodialEstablishment?: CustodyEstablishment;
+  };
+  legalEntityDefendant?: SubjectDefendant['legalEntityDefendant'];
+  prosecutionCases: SubjectDefendant['prosecutionCases'];
+  courtApplications: CourtApplication[];
+  associatedPersons?: AssociatedPerson[];
+  isForApplication?: boolean;
+  isYouth?: boolean;
+}
 
 @Component({
   selector: 'application-result-details',
@@ -159,20 +177,22 @@ export class ApplicationResultDetailsComponent {
   @Output() onPresenceChanged: EventEmitter<any> = new EventEmitter();
   @Output() onSelectedParticipant: EventEmitter<string> = new EventEmitter();
 
-  toApplicationDefendant(aggregate: ApplicationAggregate): any {
+  toApplicationDefendant(aggregate: ApplicationAggregate): ApplicationDefendant {
     if (aggregate.masterDefendant) {
-      return { ...aggregate.masterDefendant, courtApplications: aggregate.applications };
+      const defendant = { ...aggregate.masterDefendant, courtApplications: aggregate.applications };
+      return defendant;
     }
 
     const { subject } = aggregate;
-    return {
+    const defendant = {
       id: subject.id,
       personDefendant: { personDetails: subject.personDetails },
-      prosecutionCases: [],
+      prosecutionCases: [] as ApplicationDefendant['prosecutionCases'],
       courtApplications: aggregate.applications,
       associatedPersons: subject.organisationPersons,
       isForApplication: true,
       isYouth: false
     };
+    return defendant;
   }
 }

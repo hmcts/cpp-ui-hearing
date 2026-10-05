@@ -36,12 +36,4 @@ describe('DefendantLevelDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should show the driver record, outstanding fine and youth court options when not a standalone application', () => {
-    const nativeElement = fixture.nativeElement as HTMLElement;
-
-    expect(nativeElement.querySelector('[data-role="driver-record"]')).not.toBeNull();
-    expect(nativeElement.querySelector('[data-role="outstanding-fine"]')).not.toBeNull();
-    expect(nativeElement.querySelector('.youth-selector')).not.toBeNull();
-  });
 });

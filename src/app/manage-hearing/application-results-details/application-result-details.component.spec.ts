@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ApplicationResultDetailsComponent } from './application-result-details.component';
+import {
+  ApplicationDefendant,
+  ApplicationResultDetailsComponent
+} from './application-result-details.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import {
@@ -223,14 +226,33 @@ describe('ApplicationResultDetailsComponent', () => {
       const aggregate = {
         applications: [{ id: 'app-1' } as CourtApplication],
         subject: { id: 'subject-1' } as any,
+        masterDefendant: {
+          id: 'master-1',
+          prosecutionCases: [],
+          legalEntityDefendant: { organisation: { name: 'Acme Ltd' } }
+        } as any
+      } as ApplicationAggregate;
+
+      const result: ApplicationDefendant = component.toApplicationDefendant(aggregate);
+
+      expect(result).toEqual({
+        id: 'master-1',
+        prosecutionCases: [],
+        legalEntityDefendant: { organisation: { name: 'Acme Ltd' } },
+        courtApplications: [{ id: 'app-1' }]
+      });
+    });
+
+    it('should carry every linked application through to courtApplications', () => {
+      const aggregate = {
+        applications: [{ id: 'app-1' } as CourtApplication, { id: 'app-2' } as CourtApplication],
+        subject: { id: 'subject-1' } as any,
         masterDefendant: { id: 'master-1', prosecutionCases: [] } as any
       } as ApplicationAggregate;
 
-      expect(component.toApplicationDefendant(aggregate)).toEqual({
-        id: 'master-1',
-        prosecutionCases: [],
-        courtApplications: [{ id: 'app-1' }]
-      });
+      const result: ApplicationDefendant = component.toApplicationDefendant(aggregate);
+
+      expect(result.courtApplications).toEqual([{ id: 'app-1' }, { id: 'app-2' }]);
     });
 
     it('should build a defendant from the subject when there is no master defendant', () => {
@@ -243,7 +265,9 @@ describe('ApplicationResultDetailsComponent', () => {
         } as any
       } as ApplicationAggregate;
 
-      expect(component.toApplicationDefendant(aggregate)).toEqual({
+      const result: ApplicationDefendant = component.toApplicationDefendant(aggregate);
+
+      expect(result).toEqual({
         id: 'subject-1',
         personDefendant: { personDetails: { firstName: 'Jo', lastName: 'Bloggs' } },
         prosecutionCases: [],
@@ -252,6 +276,20 @@ describe('ApplicationResultDetailsComponent', () => {
         isForApplication: true,
         isYouth: false
       });
+    });
+
+    it('should leave associatedPersons undefined when the subject has no organisationPersons', () => {
+      const aggregate = {
+        applications: [{ id: 'app-1' } as CourtApplication],
+        subject: {
+          id: 'subject-1',
+          personDetails: { firstName: 'Jo', lastName: 'Bloggs' }
+        } as any
+      } as ApplicationAggregate;
+
+      const result: ApplicationDefendant = component.toApplicationDefendant(aggregate);
+
+      expect(result.associatedPersons).toBeUndefined();
     });
   });
 });
