@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DefendantLevelDetailComponent } from './defendant-level-detail.component';
+import { DefendantLevelDetailComponent, DefendantType } from './defendant-level-detail.component';
 import { provideTranslateService } from '@ngx-translate/core';
 import { AppConfigService } from 'src/app/config';
 import {
@@ -35,5 +35,14 @@ describe('DefendantLevelDetailComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show the driver record, outstanding fine and youth court options when not a standalone application', () => {
+    expect(component.isStandaloneApplication).toBe(false);
+    expect(component.hasBulkCase).toBeFalsy();
+  });
+
+  it('should not show the driver record, outstanding fine or youth court options', () => {
+    expect(component.isStandaloneApplication).toBe(true);
   });
 });
