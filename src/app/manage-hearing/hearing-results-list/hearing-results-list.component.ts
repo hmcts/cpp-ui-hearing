@@ -360,7 +360,7 @@ export class HearingResultsListComponent {
     defendant: DefendantCasesApplications,
     prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
   ): string => {
-    const bailStatus = defendant?.personDefendant?.bailStatus;
+    const bailStatus = defendant?.personDefendant?.bailStatus || [];
     let bailStatusDescription = '';
     const caseId = prosecutionCase?.id;
     if (defendant?.prosecutionCases && defendant.prosecutionCases.length > 0) {
