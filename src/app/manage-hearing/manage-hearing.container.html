@@ -117,6 +117,7 @@
       <cpp-share-result-container
         [pendingAttendanceDefendants]="pendingAttendanceDefendants$ | async"
         [isApplicationJourney]="(courtApplications$ | async)"
+        [isStandaloneApplication]="isStandAloneApplication$ | async"
         [amendApplicationPermission]="isAmendApplicationPermission$ | async"
         [caseStatus]="caseStatus$ | async"
         (sharedResultsValidation)="handleSharedResultsValidation($event)"

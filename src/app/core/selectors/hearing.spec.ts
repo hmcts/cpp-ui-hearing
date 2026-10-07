@@ -2407,6 +2407,42 @@ describe('getListingNoteByCourtRoomAndDate', () => {
         ])
       ).toMatchSnapshot();
     });
+
+    it('should fall back to the subject id when a standalone application subject has no master defendant', () => {
+      expect(
+        getApplicationSubjectAsCaseDefendant([
+          {
+            subject: {
+              id: 'subjectId',
+              personDetails: {
+                firstName: 'F',
+                lastName: 'L'
+              }
+            }
+          } as CourtApplication
+        ])
+      ).toEqual([
+        {
+          defendantId: 'subjectId',
+          firstName: 'F',
+          lastName: 'L',
+          offences: [],
+          masterDefendantId: 'subjectId'
+        }
+      ]);
+    });
+
+    it('should exclude a subject with neither a master defendant nor personDetails', () => {
+      expect(
+        getApplicationSubjectAsCaseDefendant([
+          {
+            subject: {
+              id: 'subjectId'
+            }
+          } as CourtApplication
+        ])
+      ).toEqual([]);
+    });
   });
 
   describe('isPleaApplicable', () => {

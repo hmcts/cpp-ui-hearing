@@ -285,6 +285,7 @@ describe('ShareResultContainerComponent', () => {
     hearingTypes = mockHearingTypes,
     pendingAttendanceDefendants = [],
     isApplicationJourney = [],
+    isStandaloneApplication = false,
     amendApplicationPermission = false,
     caseStatus = ''
   }: {
@@ -298,6 +299,7 @@ describe('ShareResultContainerComponent', () => {
     hearingTypes?: HearingType[];
     pendingAttendanceDefendants?: HearingPersonDetails[];
     isApplicationJourney?: any[];
+    isStandaloneApplication?: boolean;
     amendApplicationPermission?: boolean;
     caseStatus?: string;
   }) => {
@@ -314,6 +316,7 @@ describe('ShareResultContainerComponent', () => {
     const component = fixture.componentInstance;
     (component as any).pendingAttendanceDefendants = () => pendingAttendanceDefendants;
     (component as any).isApplicationJourney = () => isApplicationJourney;
+    (component as any).isStandaloneApplication = () => isStandaloneApplication;
     (component as any).amendApplicationPermission = () => amendApplicationPermission;
     (component as any).caseStatus = () => caseStatus;
 
@@ -418,6 +421,78 @@ describe('ShareResultContainerComponent', () => {
         hasAttendanceError: true,
         hasTrialEffectivenessError: false,
         pendingAttendanceDefendants: pendingAttendanceDefendantsMock
+      });
+    });
+
+    it('should not share the results of a standalone application when attendance is pending, even on its first hearing', async () => {
+      await draftResultBuilder.parseTextOptions({
+        applicationId: 'applicationId',
+        orderedDate: '2020-01-01',
+        originalText: 'NCOSTS'
+      });
+      await draftResultBuilder.updateResultPrompts({
+        resultLineId: 'UUID:1',
+        resultPrompts: createDraftResultPromptsForShortcode('NCOSTS')
+      });
+
+      const validationResultSpy = jest.fn();
+
+      const fixture = createFixture({
+        amendedByUserId: null,
+        currentUserId: 'userId1',
+        draftResult: draftResultBuilder.draftResult,
+        hearingState: HearingLockState.INITIALISED,
+        pendingAttendanceDefendants: pendingAttendanceDefendantsMock,
+        isApplicationJourney: [{ applications: [{ type: { linkType: LinkType.FIRST_HEARING } }] }],
+        isStandaloneApplication: true
+      });
+
+      fixture.componentInstance.sharedResultsValidation.subscribe(validationResultSpy);
+      fixture.detectChanges();
+
+      await fixture.debugElement.query(By.css('button')).nativeElement.click();
+
+      expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).toHaveBeenCalledWith({
+        hasAttendanceError: true,
+        hasTrialEffectivenessError: false,
+        pendingAttendanceDefendants: pendingAttendanceDefendantsMock
+      });
+    });
+
+    it('should still exempt the first hearing of a linked (non-standalone) application from the attendance check', async () => {
+      await draftResultBuilder.parseTextOptions({
+        applicationId: 'applicationId',
+        orderedDate: '2020-01-01',
+        originalText: 'NCOSTS'
+      });
+      await draftResultBuilder.updateResultPrompts({
+        resultLineId: 'UUID:1',
+        resultPrompts: createDraftResultPromptsForShortcode('NCOSTS')
+      });
+
+      const validationResultSpy = jest.fn();
+
+      const fixture = createFixture({
+        amendedByUserId: null,
+        currentUserId: 'userId1',
+        draftResult: draftResultBuilder.draftResult,
+        hearingState: HearingLockState.INITIALISED,
+        pendingAttendanceDefendants: pendingAttendanceDefendantsMock,
+        isApplicationJourney: [{ applications: [{ type: { linkType: LinkType.FIRST_HEARING } }] }],
+        isStandaloneApplication: false
+      });
+
+      fixture.componentInstance.sharedResultsValidation.subscribe(validationResultSpy);
+      fixture.detectChanges();
+
+      await fixture.debugElement.query(By.css('button')).nativeElement.click();
+
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).toHaveBeenCalledWith({
+        hasAttendanceError: false,
+        hasTrialEffectivenessError: false,
+        pendingAttendanceDefendants: undefined
       });
     });
   });
@@ -930,6 +1005,38 @@ describe('ShareResultContainerComponent', () => {
           pendingAttendanceDefendants: undefined
         });
         expect(mockModalService.open).toHaveBeenCalled();
+      });
+    });
+
+    describe('handleShareAmendments', () => {
+      it('should emit validationResult and NOT dispatch requestApprovalForAmendments when attendance errors exist', () => {
+        setupFixture(mockTrialHearingWithEffectiveness, pendingAttendanceDefendantsMock);
+
+        component.handleShareAmendments();
+
+        expect(validationResultSpy).toHaveBeenCalledWith({
+          hasAttendanceError: true,
+          hasTrialEffectivenessError: false,
+          pendingAttendanceDefendants: pendingAttendanceDefendantsMock
+        });
+        expect(store.dispatch).not.toHaveBeenCalledWith(
+          ShareResultsActions.requestApprovalForAmendments()
+        );
+      });
+
+      it('should dispatch requestApprovalForAmendments when there are no errors', () => {
+        setupFixture(mockTrialHearingWithEffectiveness, []);
+
+        component.handleShareAmendments();
+
+        expect(validationResultSpy).toHaveBeenCalledWith({
+          hasAttendanceError: false,
+          hasTrialEffectivenessError: false,
+          pendingAttendanceDefendants: undefined
+        });
+        expect(store.dispatch).toHaveBeenCalledWith(
+          ShareResultsActions.requestApprovalForAmendments()
+        );
       });
     });
 
