@@ -104,10 +104,48 @@ export class ShareResultContainerComponent {
     combineLatest([this.hearing$, this.hearingTypes$, this.citSubreasonEnabled$])
       .pipe(take(1))
       .subscribe(([hearing, hearingTypes, citSubreasonEnabled]) => {
-        this.validateAndShare(hearing, hearingTypes, undefined, false, citSubreasonEnabled, () => {
-          this.store.dispatch(ShareResultsActions.requestApprovalForAmendments());
+        const hasAttendanceError = this.getHasAttendanceError();
+        const hasTrialEffectivenessError = this.getHasTrialEffectivenessError(
+          hearing,
+          hearingTypes,
+          citSubreasonEnabled
+        );
+
+        //This will emit the warning banner
+        this.sharedResultsValidation.emit({
+          hasAttendanceError,
+          hasTrialEffectivenessError,
+          pendingAttendanceDefendants: hasAttendanceError
+            ? this.pendingAttendanceDefendants()
+            : undefined
         });
+
+        if (hasAttendanceError || hasTrialEffectivenessError) {
+          return;
+        }
+        this.store.dispatch(ShareResultsActions.requestApprovalForAmendments());
       });
+  }
+
+  private getHasAttendanceError(): boolean {
+    return (
+      (this.pendingAttendanceDefendants() || []).length > 0 &&
+      (this.isStandaloneApplication() || !this.isFirstHearing())
+    );
+  }
+
+  private getHasTrialEffectivenessError(
+    hearing: HearingDetail,
+    hearingTypes: HearingType[],
+    citSubreasonEnabled: boolean
+  ): boolean {
+    const isTrialApp = this.checkIfTrialApplication(hearing, hearingTypes);
+    const trialEffectivenessSelected = this.checkTrialEffectiveness(
+      hearing,
+      hearingTypes,
+      citSubreasonEnabled
+    );
+    return citSubreasonEnabled && isTrialApp && !trialEffectivenessSelected;
   }
 
   private validateAndShare(
@@ -115,21 +153,14 @@ export class ShareResultContainerComponent {
     hearingTypes: HearingType[],
     individualDefendants: IndividualDefendant[],
     withWelshTranslate: boolean = false,
-    citSubreasonEnabled: boolean = false,
-    onValid?: () => void
+    citSubreasonEnabled: boolean = false
   ): void {
-    const hasAttendanceError =
-      (this.pendingAttendanceDefendants() || []).length > 0 &&
-      (this.isStandaloneApplication() || !this.isFirstHearing());
-
-    const isTrialApp = this.checkIfTrialApplication(hearing, hearingTypes);
-    const trialEffectivenessSelected = this.checkTrialEffectiveness(
+    const hasAttendanceError = this.getHasAttendanceError();
+    const hasTrialEffectivenessError = this.getHasTrialEffectivenessError(
       hearing,
       hearingTypes,
       citSubreasonEnabled
     );
-    const hasTrialEffectivenessError =
-      citSubreasonEnabled && isTrialApp && !trialEffectivenessSelected;
 
     this.sharedResultsValidation.emit({
       hasAttendanceError,
@@ -140,10 +171,6 @@ export class ShareResultContainerComponent {
     });
 
     if (hasAttendanceError || hasTrialEffectivenessError) {
-      return;
-    }
-    if (onValid) {
-      onValid();
       return;
     }
     if (withWelshTranslate) {
