@@ -20,7 +20,7 @@ import { ResultPromptsFormLabelPipe } from '../result-prompts-form-label.pipe';
     <!-- Address lookup -->
     @if (hasAddressLookupEnabled(promptChoice)) {
     <pdk-form-field
-      label="Search UK address or Postcode"
+      label="Search UK address or postcode"
       hintText="Enter at least 3 characters to see address suggestions"
       labelType="small"
     >
