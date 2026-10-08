@@ -17,6 +17,8 @@ import {
   ResolvedDraftResultLine
 } from '../../results.interfaces';
 import { ParseTextValue } from '../draft-result/draft-result-body.component';
+import { By } from '@angular/platform-browser';
+import en from '../../../../i18n/en.json';
 import { EnterResultsContainerComponent } from '../enter-results.container';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
@@ -73,6 +75,49 @@ describe('EnterResultsContainerComponent', () => {
     store.dispatch(DraftResultActions.setDraftResult({ draftResult }));
     fixture.detectChanges();
   };
+
+  // The clerk is told the hold dies at midnight at exactly one point in the flow.
+  // Asserted on rendered text rather than a snapshot: a snapshot would record the
+  // banner's presence but not that it still says the thing it exists to say.
+  describe('session booked notice', () => {
+    const bannerText = () =>
+      fixture.debugElement.query(By.css('[data-test-id="sessionBookedBanner"]'))?.nativeElement
+        ?.textContent ?? '';
+
+    it('is absent until a session is held', () => {
+      expect(bannerText()).toBe('');
+    });
+
+    // This suite loads no i18n bundle, so keys render raw. Asserting the key proves the
+    // wiring; the copy itself is pinned separately below, because the deadline wording is
+    // the whole point of the banner and could be reworded away without failing anything.
+    it('shows the deadline notice once a session is held', () => {
+      store.dispatch(DraftResultActions.sessionBooked());
+      fixture.detectChanges();
+
+      expect(bannerText()).toContain('MANAGE_HEARING.SESSION_BOOKED_MESSAGE');
+    });
+
+    it('states the midnight deadline and the consequence in the copy', () => {
+      const copy = en.MANAGE_HEARING.SESSION_BOOKED_MESSAGE;
+
+      expect(copy).toContain('Session booked');
+      expect(copy).toContain('midnight');
+      expect(copy).toContain('released');
+    });
+
+    // It confirms an action just taken, so it must not follow the clerk around.
+    it('goes when the clerk leaves the results page', () => {
+      store.dispatch(DraftResultActions.sessionBooked());
+      fixture.detectChanges();
+      expect(bannerText()).not.toBe('');
+
+      fixture.componentInstance.ngOnDestroy();
+      fixture.detectChanges();
+
+      expect(bannerText()).toBe('');
+    });
+  });
 
   it('should render an empty draft result', () => {
     expect(fixture).toMatchSnapshot();

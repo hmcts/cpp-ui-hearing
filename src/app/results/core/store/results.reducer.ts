@@ -18,6 +18,13 @@ export interface State {
   invalidResultLines: ResolvedDraftResultLine[] | null;
   resultsValidation: ResultsValidationResponse | null;
   shareResultsValidationFailure: ResultsValidationErrors | null;
+  /**
+   * Whether to tell the clerk their newly held session expires at midnight. Deliberately
+   * transient and in-memory rather than a query param: it confirms an action just taken, so it
+   * must not survive a reload (free, being in memory) or a navigate-back (dismissSessionBooked,
+   * dispatched when the results page is destroyed).
+   */
+  sessionBookedNotification: boolean;
 }
 
 export const initialState: State = {
@@ -27,11 +34,20 @@ export const initialState: State = {
   reusableResults: null,
   invalidResultLines: null,
   resultsValidation: null,
-  shareResultsValidationFailure: null
+  shareResultsValidationFailure: null,
+  sessionBookedNotification: false
 };
 
 export const results = createReducer(
   initialState,
+  on(DraftResultActions.sessionBooked, state => ({
+    ...state,
+    sessionBookedNotification: true
+  })),
+  on(DraftResultActions.dismissSessionBooked, state => ({
+    ...state,
+    sessionBookedNotification: false
+  })),
   on(DraftResultActions.saveDraftResult, (state, { draftResult }) => ({
     ...state,
     draftResult: {

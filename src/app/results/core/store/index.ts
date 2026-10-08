@@ -51,6 +51,9 @@ export const getInvalidResultLines = (state: ResultsState) => {
   return state.results.invalidResultLines;
 };
 
+export const getSessionBookedNotification = (state: ResultsState): boolean =>
+  state.results.sessionBookedNotification;
+
 export const getDraftResultSaving = (state: ResultsState): boolean => {
   return state.results.draftResultSaving;
 };

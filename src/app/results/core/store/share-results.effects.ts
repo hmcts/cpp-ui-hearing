@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { getUserDetails } from '@cpp/users-groups';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { concat, forkJoin, from, merge, of, throwError } from 'rxjs';
+import { concat, EMPTY, forkJoin, from, merge, of, throwError } from 'rxjs';
 import {
   catchError,
   filter,
@@ -24,6 +24,7 @@ import {
   getHearingStateDetails,
   HearingLockState,
   HearingService,
+  ListingService,
   LoadHearingDetailAction,
   LoadHearingDetailSuccessAction,
   MANAGE_RESULTS_FAILED_PUBLIC_EVENT,
@@ -35,6 +36,8 @@ import {
 import { ResultsValidationFailedEvent } from '../../results-validation.interfaces';
 import { ResultsService } from '../services/results.service';
 import { ReusableInfoService } from '../services/reusable-info.service';
+import { getBookingReferencesToRelease, selectUnconfirmedBookingIds } from '../helpers';
+import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { DraftResultActions } from './draft-result.actions';
 import {
   getDraftResult,
@@ -55,6 +58,8 @@ export class ShareResultsEffects {
     private actions$: Actions,
     private draftResultBuilderService: DraftResultBuilderService,
     private hearingService: HearingService,
+    private listingService: ListingService,
+    private provisionalBookingService: ProvisionalBookingService,
     private resultService: ResultsService,
     private reusableInfoService: ReusableInfoService,
     private router: Router,
@@ -62,6 +67,51 @@ export class ShareResultsEffects {
   ) {}
 
   private draftResult$ = this.store.pipe(select(getDraftResult));
+
+  // cancelAmendments, rejectAmendments and unlockHearing discard the local draft wholesale
+  // (isResetResults: true). Any hold only that draft still pointed at becomes unreachable the
+  // instant it goes - nothing could ask for it later and only the 01:00 purge would recover it -
+  // so holds are read from the store and released here, before the reset overwrites it. Only
+  // UNCONFIRMED ones: a confirmed booking survives untouched, since only a share may change it.
+  // dispatch: false, for the same reason as DraftResultEffects.releaseAbandonedProvisionalBooking$.
+  releaseAbandonedProvisionalBookings$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(
+          ShareResultsActions.cancelAmendments,
+          ShareResultsActions.rejectAmendments,
+          ShareResultsActions.unlockHearing
+        ),
+        withLatestFrom(this.draftResult$),
+        mergeMap(([, draftResult]) => {
+          const candidates = getBookingReferencesToRelease(draftResult);
+
+          if (candidates.length === 0) {
+            return EMPTY;
+          }
+
+          // Only the holds courtscheduler still reports as unconfirmed are given back. A
+          // confirmed booking is left untouched - discarding local edits is not a share, and
+          // only a share may change it. One batched lookup covers the whole draft result.
+          return this.listingService.getBookingStatus(candidates).pipe(
+            mergeMap(response =>
+              from(selectUnconfirmedBookingIds(response?.bookings, candidates)).pipe(
+                mergeMap(bookingId =>
+                  this.provisionalBookingService
+                    .releaseProvisionalHearingSlots({ hearingId: draftResult.hearingId, bookingId })
+                    .pipe(catchError(() => EMPTY))
+                )
+              )
+            ),
+            // Fails CLOSED: an unanswered status lookup leaves us unable to tell a confirmed
+            // booking from an unconfirmed one, and releasing a confirmed one must never happen.
+            // An unconfirmed hold missed here is recovered by the 01:00 purge.
+            catchError(() => EMPTY)
+          );
+        })
+      ),
+    { dispatch: false }
+  );
   approveAmendments$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ShareResultsActions.approveAmendments),

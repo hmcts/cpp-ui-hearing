@@ -10,14 +10,20 @@ import {
   provideRouter
 } from '@angular/router';
 import { provideCppCoreHttpServices } from '@cpp/core';
+import { ValidationError } from '@cpp/pdk';
 import { HearingType, OrganisationUnit, RotaBusinessType } from '@cpp/reference-data';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
+import { provideTranslateService } from '@ngx-translate/core';
+import { of, throwError } from 'rxjs';
+import { DraftResultActions } from '../../../core/store';
 import { AppState, HearingDetail, HearingLockState } from '../../../../core';
 import { MagistratesSchedulingContainer } from './magistrates.container';
 import { MagistratesSchedulingComponent } from '../components/magistrates.component';
 import { createDraftResult, extendDraftResult } from '../../../core/testing';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService
+} from '../services/provisionalBooking.service';
 import {
   HearingSlot,
   SchedulingFilters,
@@ -180,7 +186,8 @@ describe('MagistratesSchedulingContainer', () => {
           useValue: {
             bookProvisionalHearingSlots: jest.fn()
           }
-        }
+        },
+        provideTranslateService()
       ],
       teardown: { destroyAfterEach: false }
     }).overrideComponent(MagistratesSchedulingContainer, {
@@ -299,6 +306,338 @@ describe('MagistratesSchedulingContainer', () => {
           }
         });
     };
+
+    it('sends no bookingId on a first pick (no prior booking reference)', fakeAsync(() => {
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      const [args] = (
+        provisionalBookingService.bookProvisionalHearingSlots as jest.Mock
+      ).mock.calls.pop();
+      expect(args).not.toEqual(expect.objectContaining({ bookingId: expect.anything() }));
+    }));
+
+    it('re-sends the existing bookingId when re-picking a session that already has a booking reference', fakeAsync(() => {
+      const existingBookingId = 'existing-booking-reference-id';
+      store.setState({
+        ...initialState,
+        results: {
+          draftResult: {
+            ...draftResult,
+            resultLines: {
+              ...draftResult.resultLines,
+              [resultLineId]: {
+                ...draftResult.resultLines[resultLineId],
+                resultPrompts: [
+                  {
+                    promptId: 'p-booking-ref',
+                    promptRef: 'bookingReference',
+                    label: 'Booking reference',
+                    type: 'TXT',
+                    value: existingBookingId
+                  }
+                ]
+              }
+            }
+          }
+        }
+      });
+      store.refreshState();
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(provisionalBookingService.bookProvisionalHearingSlots).toHaveBeenCalledWith(
+        expect.objectContaining({ bookingId: existingBookingId })
+      );
+    }));
+
+    // courtscheduler decrements available_duration by this value when reserving a duration-based
+    // session. Without it the reservation cannot take the capacity it claims - observed on STE02,
+    // where a duration-based mags pick reached courtscheduler carrying only courtScheduleId and
+    // hearingStartTime.
+    it('sends the picked duration so a duration-based session can take its capacity', fakeAsync(() => {
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'TRL' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z',
+          duration: 10
+        }
+      ]);
+      tick();
+
+      expect(provisionalBookingService.bookProvisionalHearingSlots).toHaveBeenCalledWith(
+        expect.objectContaining({
+          courtScheduleBookings: [
+            expect.objectContaining({
+              courtScheduleId: '1',
+              hearingStartTime: '2020-01-01T10:00:00.000Z',
+              duration: 10
+            })
+          ]
+        })
+      );
+    }));
+
+    // A slot-based session carries no duration; courtscheduler counts slots there. Passing
+    // undefined keeps the key out of the JSON entirely, which is what it expects.
+    it('leaves duration undefined for a slot-based pick', fakeAsync(() => {
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      const { courtScheduleBookings } = (
+        provisionalBookingService.bookProvisionalHearingSlots as jest.Mock
+      ).mock.calls[0][0];
+      expect(courtScheduleBookings[0].duration).toBeUndefined();
+    }));
+
+    // The banner used to be cleared ONLY on a successful booking, so a failed pick left it on
+    // screen indefinitely. Because the error carries shouldFocus, the summary reclaimed focus on
+    // every change detection and the filters became unusable - the clerk could not search again.
+    it('clears the error banner when the clerk searches again', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('boom'))
+      );
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+      expect(stub.externalErrors).not.toBeNull();
+
+      stub.filtersSubmit.emit({
+        courtRoomId: '*',
+        sessionStartDate: '2019-01-01'
+      } as MagistratesSchedulingFilters);
+      tick();
+      fixture.detectChanges();
+
+      expect(stub.externalErrors).toBeNull();
+    }));
+
+    it('clears the error banner when the clerk pages through results', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('boom'))
+      );
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+      expect(stub.externalErrors).not.toBeNull();
+
+      stub.pageChange.emit(2);
+      tick();
+      fixture.detectChanges();
+
+      expect(stub.externalErrors).toBeNull();
+    }));
+
+    it('does not write any prompt or navigate away when the reservation is refused', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('no capacity'))
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(storeNextSpy).not.toHaveBeenCalled();
+      expect(router.navigate).not.toHaveBeenCalled();
+    }));
+
+    it('surfaces an error to the component when the reservation is refused', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new BookingRefusedError('no capacity'))
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+
+      expect(stub.externalErrors).toEqual([
+        expect.objectContaining({
+          message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+        })
+      ]);
+    }));
+
+    // A technical failure of the booking call says nothing about the session's
+    // availability. Reporting it as "fully booked" sends the clerk off to re-pick
+    // a session that was never the problem - which is exactly what happened on
+    // STE02 when a schema rejection rolled the command back and no event arrived.
+    it('does not blame the session when the booking fails for a technical reason', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(
+          () => new Error('Timeout waiting for public.hearing.hearing-slots-provisionally-booked')
+        )
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+
+      expect(stub.externalErrors).toEqual([
+        expect.objectContaining({
+          message: 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
+        })
+      ]);
+    }));
+
+    it('leaves the clerk on the picker - the stream survives a failure and a later pick still succeeds', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValueOnce(
+        throwError(() => new Error('no capacity'))
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(storeNextSpy).not.toHaveBeenCalled();
+
+      const bookingId = 'bk-after-refusal';
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        of({ bookingId })
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      const dispatched = storeNextSpy.mock.calls.pop()[0];
+      const bookingRefPrompt = dispatched.resultPrompts.find(
+        (p: { promptRef: string }) => p.promptRef === 'bookingReference'
+      );
+      expect(bookingRefPrompt.value).toBe(bookingId);
+    }));
+
+    // The midnight deadline is stated to the clerk exactly once, here, on the success
+    // path. Nothing else in the flow mentions that the hold is provisional, so if this
+    // dispatch is lost the rule becomes invisible until the share is refused next day.
+    it('announces the midnight deadline when a session is held', fakeAsync(() => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        of({ bookingId: 'bk-notice' })
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(dispatch).toHaveBeenCalledWith(DraftResultActions.sessionBooked());
+    }));
+
+    it('does not announce the deadline when the pick is refused', fakeAsync(() => {
+      const dispatch = jest.spyOn(store, 'dispatch');
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        throwError(() => new Error('no capacity'))
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      expect(dispatch).not.toHaveBeenCalledWith(DraftResultActions.sessionBooked());
+    }));
+
+    it('clears an earlier error once a later pick succeeds', fakeAsync(() => {
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValueOnce(
+        throwError(() => new Error('no capacity'))
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      let stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+      expect(stub.externalErrors).not.toBeNull();
+
+      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
+        of({ bookingId: 'bk-clears-error' })
+      );
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+      fixture.detectChanges();
+
+      stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+        .componentInstance as TestMagistratesSchedulingComponent;
+      expect(stub.externalErrors).toBeNull();
+    }));
 
     it('should handle submitting a non-duration based slot', fakeAsync(() => {
       submitHearingSlotAllocations([
@@ -608,7 +947,8 @@ describe('MagistratesSchedulingContainer', () => {
     pageSize: {{ pageSize }}<br />
     rotaBusinessTypes: {{ rotaBusinessTypes | json }}<br />
     hearingData: {{ hearingData | json }}<br />
-    totalResults: {{ totalResults }}
+    totalResults: {{ totalResults }}<br />
+    externalErrors: {{ externalErrors | json }}
   `,
   imports: [JsonPipe]
 })
@@ -623,6 +963,7 @@ class TestMagistratesSchedulingComponent {
   @Input() rotaBusinessTypes: RotaBusinessType[] = [];
   @Input() totalResults = -1;
   @Input() hearingData: HearingDetail;
+  @Input() externalErrors: ValidationError[] | null = null;
   @Output() cancel = new EventEmitter<void>();
   @Output() filtersSubmit = new EventEmitter<MagistratesSchedulingFilters>();
   @Output() hearingSlotAllocationsSubmit = new EventEmitter<AllocateHearingParams>();

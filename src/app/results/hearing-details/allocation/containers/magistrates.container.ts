@@ -14,9 +14,11 @@ import {
   defaultHearingTypePlaceHolder
 } from '@cpp/reference-data';
 import { select, Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { ValidationError } from '@cpp/pdk';
 import moment from 'moment';
-import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, EMPTY, Observable, of } from 'rxjs';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
   createNameAddressResultPromptForCourtCentre,
@@ -27,7 +29,10 @@ import {
 import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
 import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService
+} from '../services/provisionalBooking.service';
 import {
   getSearchMetadata,
   getSearchParams,
@@ -64,12 +69,19 @@ import { MagistratesSchedulingComponent } from '../components/magistrates.compon
       (hearingSlotAllocationsSubmit)="hearingSubmitAllocations($event)"
       (pageChange)="handlePageChange($event)"
       [hearingData]="hearing$ | async"
+      [externalErrors]="bookingErrors$ | async"
     >
     </magistrates-scheduling>
   `,
   imports: [MagistratesSchedulingComponent, AsyncPipe]
 })
 export class MagistratesSchedulingContainer {
+  private static readonly SESSION_NOT_AVAILABLE_ERROR_ID = 'magistrates-session-not-available';
+
+  private readonly bookingErrorSubject = new BehaviorSubject<ValidationError[] | null>(null);
+  readonly bookingErrors$: Observable<ValidationError[] | null> =
+    this.bookingErrorSubject.asObservable();
+
   currentPage$: Observable<number>;
   defaultFilters$: Observable<Partial<MagistratesSchedulingFilters>>;
   filters$: Observable<Partial<SchedulingFilters>>;
@@ -86,7 +98,8 @@ export class MagistratesSchedulingContainer {
     private store: Store<ResultsState>,
     private route: ActivatedRoute,
     private router: Router,
-    private provisionalBookingService: ProvisionalBookingService
+    private provisionalBookingService: ProvisionalBookingService,
+    private translateService: TranslateService
   ) {
     const metadata$ = this.store.pipe(select(getSearchMetadata));
 
@@ -171,6 +184,12 @@ export class MagistratesSchedulingContainer {
     organisationUnit,
     ...filters
   }: MagistratesSchedulingFilters): void {
+    // Clear any banner from a previous pick. It is only otherwise cleared on a SUCCESSFUL
+    // booking, so a failed one left it on screen indefinitely - and because the error carries
+    // shouldFocus, the summary reclaimed focus on every change detection and the filters became
+    // effectively unusable. A new search is a new attempt; last attempt's outcome does not apply.
+    this.bookingErrorSubject.next(null);
+
     let hearingTypeId;
 
     if (hearingType && hearingType.id && hearingType.id !== defaultHearingTypePlaceHolder.id) {
@@ -189,6 +208,12 @@ export class MagistratesSchedulingContainer {
   }
 
   handlePageChange(pageNumber: number): void {
+    // Clear any banner from a previous pick. It is only otherwise cleared on a SUCCESSFUL
+    // booking, so a failed one left it on screen indefinitely - and because the error carries
+    // shouldFocus, the summary reclaimed focus on every change detection and the filters became
+    // effectively unusable. A new search is a new attempt; last attempt's outcome does not apply.
+    this.bookingErrorSubject.next(null);
+
     this.store
       .pipe(
         select(getSearchParams),
@@ -209,6 +234,9 @@ export class MagistratesSchedulingContainer {
     hearingType,
     ...params
   }: AllocateHearingParams) {
+    // A retry starts clean: the previous attempt's banner must not outlive the attempt itself.
+    this.bookingErrorSubject.next(null);
+
     const parentParams = this.route.parent?.snapshot.params || {};
     const currentParams = this.route.snapshot.params;
     const { hearingId, resultLineId } = { ...parentParams, ...currentParams };
@@ -223,9 +251,21 @@ export class MagistratesSchedulingContainer {
         take(1),
         switchMap(([organisationUnits, rotaBusinessTypes, resultLine, filters]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
+          const existingBookingReference = (
+            resultLine as ExtendedResolvedDraftResultLine
+          ).resultPrompts?.find(prompt => prompt.promptRef === 'bookingReference')?.value as
+            | string
+            | undefined;
+          // duration is what courtscheduler decrements available_duration by when reserving a
+          // DURATION-BASED session, so omitting it leaves such a reservation unable to take the
+          // capacity it is claiming. It is undefined for slot-based sessions and is dropped from
+          // the JSON in that case, which is what courtscheduler expects - it counts slots there.
+          // The crown picker has always sent it; magistrates did not, so a duration-based mags
+          // pick reached courtscheduler with no duration at all.
           const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
             courtScheduleId: allocation.hearingSlot.courtScheduleId,
-            hearingStartTime: allocation.hearingSlotTime
+            hearingStartTime: allocation.hearingSlotTime,
+            duration: allocation.duration
           }));
 
           // We need the take the earliest hearing slot from our array of hearing slots.
@@ -256,8 +296,19 @@ export class MagistratesSchedulingContainer {
           };
 
           return this.provisionalBookingService
-            .bookProvisionalHearingSlots({ hearingId, courtScheduleBookings })
+            .bookProvisionalHearingSlots({
+              hearingId,
+              courtScheduleBookings,
+              bookingId: existingBookingReference
+            })
             .pipe(
+              tap(() => {
+                this.bookingErrorSubject.next(null);
+                // The hold is provisional and dies at midnight. This is the only
+                // point in the flow where the clerk is told that rule, so it is
+                // raised on the success path itself rather than inferred later.
+                this.store.dispatch(DraftResultActions.sessionBooked());
+              }),
               map(({ bookingId }) => {
                 return DraftResultActions.updateResultPromptsForDraftResultLine({
                   resultLineId,
@@ -273,6 +324,25 @@ export class MagistratesSchedulingContainer {
                     )
                   ]
                 });
+              }),
+              // A failure must NOT propagate to `.subscribe(this.store)`: NgRx's Store.error()
+              // forwards to the shared ActionsSubject and would end dispatching for the whole
+              // application. Catch here and complete empty, so no prompt is written and no
+              // redirect happens. Only a deliberate refusal blames the session - see
+              // BookingRefusedError.
+              catchError(error => {
+                this.bookingErrorSubject.next([
+                  {
+                    id: MagistratesSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
+                    message: this.translateService.instant(
+                      error instanceof BookingRefusedError
+                        ? 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+                        : 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
+                    ),
+                    shouldFocus: true
+                  }
+                ]);
+                return EMPTY;
               })
             );
         })

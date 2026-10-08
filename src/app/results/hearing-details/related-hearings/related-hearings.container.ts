@@ -152,7 +152,7 @@ export class RelatedHearingsContainer implements OnInit, OnDestroy {
             currentCourtRoom => currentCourtRoom.id === relatedHearingSlot.courtRoomId
           );
           const hearingDateTime = this.dateUtil.localDate(relatedHearingSlot.startTime);
-          const promptRefToValueMap: Record<string, unknown> = {
+          const promptRefToValueMap = {
             fixedDate: this.dateUtil.format(hearingDateTime, 'YYYY-MM-DD'),
             HDATE: this.dateUtil.format(hearingDateTime, 'YYYY-MM-DD'),
             timeOfHearing: this.dateUtil.format(hearingDateTime, 'HH:mm'),
@@ -161,13 +161,6 @@ export class RelatedHearingsContainer implements OnInit, OnDestroy {
             HEST: getDurationValueFromMinutes(relatedHearingSlot.estimatedMinutes),
             existingHearingId: relatedHearingSlot.hearingId
           };
-
-          if (
-            this.jurisdictionType === JurisdictionTypes.CROWN &&
-            relatedHearingSlot.courtScheduleId
-          ) {
-            promptRefToValueMap.bookingReference = relatedHearingSlot.courtScheduleId;
-          }
 
           return DraftResultActions.updateResultPromptsForDraftResultLine({
             resultLineId,

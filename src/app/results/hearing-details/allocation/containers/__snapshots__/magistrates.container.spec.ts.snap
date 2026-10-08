@@ -2,6 +2,8 @@
 
 exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
 <magistrates-scheduling-container
+  bookingErrorSubject={[Function BehaviorSubject]}
+  bookingErrors$={[Function Observable]}
   currentPage$={[Function _Store]}
   defaultFilters$={[Function Observable]}
   filters$={[Function Observable]}
@@ -17,6 +19,7 @@ exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
   searchResult$={[Function _Store]}
   store={[Function _MockStore]}
   totalResults$={[Function _Store]}
+  translateService={[Function _TranslateService]}
 >
   <magistrates-scheduling>
      currentPage: 2
@@ -126,7 +129,9 @@ exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
     "prosecutionCases": []
   }
     <br />
-     totalResults: 25 
+     totalResults: 25
+    <br />
+     externalErrors: null 
   </magistrates-scheduling>
 </magistrates-scheduling-container>
 `;
