@@ -1263,12 +1263,82 @@ describe('ShareResultContainerComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
     });
 
+    // Amending is TWO shares: the amender submits for approval, then a second user approves,
+    // potentially the next morning with the 01:00 purge in between. Both stages reach listing, so
+    // both need the check - these four tests exist because neither had one, and an amended result
+    // reached listing having never been asked whether its session still existed.
+    it('checks the booking status before submitting an amendment for approval', () => {
+      setup(crownHearing, crownDraftResult);
+      const bookingStatusSpy = jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'RESERVED' }] })
+        );
+
+      component.handleShareAmendments();
+
+      expect(bookingStatusSpy).toHaveBeenCalledWith(['booking-1']);
+      expect(store.dispatch).toHaveBeenCalledWith(
+        ShareResultsActions.requestApprovalForAmendments()
+      );
+    });
+
+    it('does not submit an amendment for approval when the booking is gone', () => {
+      setup(crownHearing, crownDraftResult);
+      jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
+        );
+
+      component.handleShareAmendments();
+
+      expect(store.dispatch).not.toHaveBeenCalledWith(
+        ShareResultsActions.requestApprovalForAmendments()
+      );
+      expect(validationResultSpy).toHaveBeenCalledWith(
+        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NOT_FOUND' })
+      );
+    });
+
+    it('re-checks the booking status at approval, not just at amendment', () => {
+      setup(crownHearing, crownDraftResult);
+      const bookingStatusSpy = jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'RESERVED' }] })
+        );
+
+      component.handleApproveAmendments();
+
+      expect(bookingStatusSpy).toHaveBeenCalledWith(['booking-1']);
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.approveAmendments());
+    });
+
+    // The dangerous window: RESERVED when the amender submitted, purged before the approver
+    // clicked. Approval is the last moment before the amendment becomes real.
+    it('does not approve an amendment whose hold was purged after it was submitted', () => {
+      setup(crownHearing, crownDraftResult);
+      jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
+        );
+
+      component.handleApproveAmendments();
+
+      expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.approveAmendments());
+      expect(validationResultSpy).toHaveBeenCalledWith(
+        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NOT_FOUND' })
+      );
+    });
+
     it('blocks sharing and emits the reason when the booking is no longer safe to share', () => {
       setup(crownHearing, crownDraftResult);
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NONE' }] })
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
         );
 
       component.handleShareDraftResult();
@@ -1278,7 +1348,7 @@ describe('ShareResultContainerComponent', () => {
         hasAttendanceError: false,
         hasTrialEffectivenessError: false,
         hasSessionAvailabilityError: true,
-        sessionUnavailableReason: 'NONE'
+        sessionUnavailableReason: 'NOT_FOUND'
       });
     });
 
@@ -1357,7 +1427,7 @@ describe('ShareResultContainerComponent', () => {
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NONE' }] })
+          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NOT_FOUND' }] })
         );
 
       component.handleShareDraftResult();
@@ -1367,19 +1437,21 @@ describe('ShareResultContainerComponent', () => {
         hasAttendanceError: false,
         hasTrialEffectivenessError: false,
         hasSessionAvailabilityError: true,
-        sessionUnavailableReason: 'NONE'
+        sessionUnavailableReason: 'NOT_FOUND'
       });
     });
 
-    // A magistrates draft saved before reserve-a-slot shipped holds no reservation row.
-    // courtscheduler answers LEGACY with safeToShare true, so it must NOT be blocked -
-    // this is what made it safe to start checking NHMC at all (DEC-1 / NEW-7a).
-    it('shares a legacy magistrates draft that holds no reservation', () => {
+    // The magistrates path is gated on safeToShare alone, exactly as the crown one is. This used
+    // to cover a pre-reserve-a-slot draft, which courtscheduler reported safe on the strength of
+    // a provisional_booking row; it no longer does, because that row proves a booking was once
+    // recorded and never that a session is still held, so such a draft now answers NOT_FOUND and
+    // is correctly blocked by the test above.
+    it('shares a magistrates next hearing whose hold is still live', () => {
       setup(crownHearing, magistratesDraftResult());
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'LEGACY' }] })
+          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'RESERVED' }] })
         );
 
       component.handleShareDraftResult();

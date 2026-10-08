@@ -147,9 +147,9 @@ describe('isUnconfirmedBooking', () => {
     expect(isUnconfirmedBooking(bookings, 'booking-1')).toBe(false);
   });
 
-  // LEGACY predates reserve-a-slot and holds no reservation row; NONE already expired and was
-  // purged. Neither has anything to give back.
-  it.each(['LEGACY', 'NONE', 'UNKNOWN'])('is false for %s', status => {
+  // NOT_FOUND means the hold expired and was purged; UNKNOWN means the check never reached
+  // courtscheduler. Neither is a hold this draft can give back.
+  it.each(['NOT_FOUND', 'UNKNOWN'])('is false for %s', status => {
     expect(isUnconfirmedBooking([{ bookingId: 'booking-1', status }], 'booking-1')).toBe(false);
   });
 
@@ -167,7 +167,7 @@ describe('selectUnconfirmedBookingIds', () => {
     const bookings = [
       { bookingId: 'booking-confirmed', status: 'SHARED' },
       { bookingId: 'booking-held', status: 'RESERVED' },
-      { bookingId: 'booking-expired', status: 'NONE' }
+      { bookingId: 'booking-expired', status: 'NOT_FOUND' }
     ];
 
     expect(

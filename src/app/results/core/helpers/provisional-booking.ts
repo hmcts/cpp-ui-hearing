@@ -17,6 +17,13 @@ export const RESERVED_BOOKING_STATUS = 'RESERVED';
 export const SHARED_BOOKING_STATUS = 'SHARED';
 
 /**
+ * No row under this bookingId in either shape: the hold expired and was purged, so there is
+ * nothing left to share against and the clerk must re-pick. The only status for which
+ * courtscheduler reports `safeToShare: false`.
+ */
+export const NOT_FOUND_BOOKING_STATUS = 'NOT_FOUND';
+
+/**
  * The bookingId of the slot hold a result line is carrying, if any.
  *
  * <p>A CANDIDATE, not a decision: whether the hold may be released depends on whether a share has

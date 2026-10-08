@@ -95,8 +95,17 @@ export class ShareResultContainerComponent {
     private destroyRef: DestroyRef
   ) {}
 
+  /**
+   * Approving an amendment is the last moment before it becomes real, and it happens in a
+   * SEPARATE session from the amendment itself - potentially the next morning, with the 01:00
+   * purge in between. So the hold has to be re-checked here even though the amender's own share
+   * already checked it: what was RESERVED when they submitted can be NONE by the time it is
+   * approved.
+   */
   handleApproveAmendments() {
-    this.store.dispatch(ShareResultsActions.approveAmendments());
+    this.withSessionAvailabilityCheck(() =>
+      this.store.dispatch(ShareResultsActions.approveAmendments())
+    );
   }
 
   handleCancelAmendments() {
@@ -109,8 +118,15 @@ export class ShareResultContainerComponent {
     this.store.dispatch(ShareResultsActions.rejectAmendments());
   }
 
+  /**
+   * The amender's half of the two-stage amendment flow. Checked for a different reason from the
+   * approver's: this one stops a clerk building an amendment on a session that is already gone,
+   * rather than stopping a lost hearing. Both stages need it - neither alone is enough.
+   */
   handleShareAmendments() {
-    this.store.dispatch(ShareResultsActions.requestApprovalForAmendments());
+    this.withSessionAvailabilityCheck(() =>
+      this.store.dispatch(ShareResultsActions.requestApprovalForAmendments())
+    );
   }
 
   private validateAndShare(
@@ -151,6 +167,23 @@ export class ShareResultContainerComponent {
     withWelshTranslate: boolean,
     individualDefendants: IndividualDefendant[]
   ): void {
+    this.withSessionAvailabilityCheck(() =>
+      this.proceedWithResultShare(withWelshTranslate, individualDefendants)
+    );
+  }
+
+  /**
+   * Runs the pre-share hold check, then performs {@param onAvailable} only if every booking the
+   * draft carries is still safe to share.
+   *
+   * <p>One implementation, every caller. The earlier version inlined the share into this pipeline,
+   * so the two amendment routes - which share by a different action - simply had no check at all,
+   * and an amended result reached listing having never been asked whether its session still
+   * existed. That is the STE failure where the clerk's share succeeded and the hearing was never
+   * listed. A second copy of the check would have drifted the same way the result short-code
+   * allowlist did; hence a callback rather than a duplicate.
+   */
+  private withSessionAvailabilityCheck(onAvailable: () => void): void {
     this.draftResult$
       .pipe(
         take(1),
@@ -189,7 +222,7 @@ export class ShareResultContainerComponent {
             sessionUnavailableReason: result.status
           });
         } else {
-          this.proceedWithResultShare(withWelshTranslate, individualDefendants);
+          onAvailable();
         }
       });
   }
