@@ -35,7 +35,8 @@ export class OffencesListComponent {
     if (
       this.defendant &&
       this.defendant.personDefendant &&
-      this.defendant.personDefendant.bailStatus
+      this.defendant.personDefendant.bailStatus &&
+      this.defendant.personDefendant.bailStatus.length > 0
     ) {
       return this.defendant.personDefendant.bailStatus[0].description;
     }
