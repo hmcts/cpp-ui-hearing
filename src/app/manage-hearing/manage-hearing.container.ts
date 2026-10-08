@@ -77,6 +77,7 @@ import {
   getShareResultsValidationFailure,
   ResultsState
 } from '../results/core/store';
+import { NOT_FOUND_BOOKING_STATUS } from '../results/core/helpers/provisional-booking';
 import { OffenceLike, ResolvedDraftResultLine } from '../results/results.interfaces';
 import { ValidationMessage } from '../results/results-validation.interfaces';
 import { canAmendApplication, hasResultingAssistant } from '../core/selectors/user-groups';
@@ -489,7 +490,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   sessionNotAvailableHandler(reason?: string): void {
     this.sessionNotAvailable = true;
     this.sessionNotAvailableKey =
-      reason === 'NONE'
+      reason === NOT_FOUND_BOOKING_STATUS
         ? 'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED'
         : 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
     this.window.scroll(0, 0);

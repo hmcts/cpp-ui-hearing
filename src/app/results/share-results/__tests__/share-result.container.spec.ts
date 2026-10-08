@@ -1288,7 +1288,7 @@ describe('ShareResultContainerComponent', () => {
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NONE' }] })
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
         );
 
       component.handleShareAmendments();
@@ -1297,7 +1297,7 @@ describe('ShareResultContainerComponent', () => {
         ShareResultsActions.requestApprovalForAmendments()
       );
       expect(validationResultSpy).toHaveBeenCalledWith(
-        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NONE' })
+        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NOT_FOUND' })
       );
     });
 
@@ -1322,14 +1322,14 @@ describe('ShareResultContainerComponent', () => {
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NONE' }] })
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
         );
 
       component.handleApproveAmendments();
 
       expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.approveAmendments());
       expect(validationResultSpy).toHaveBeenCalledWith(
-        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NONE' })
+        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NOT_FOUND' })
       );
     });
 
@@ -1338,7 +1338,7 @@ describe('ShareResultContainerComponent', () => {
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NONE' }] })
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
         );
 
       component.handleShareDraftResult();
@@ -1348,7 +1348,7 @@ describe('ShareResultContainerComponent', () => {
         hasAttendanceError: false,
         hasTrialEffectivenessError: false,
         hasSessionAvailabilityError: true,
-        sessionUnavailableReason: 'NONE'
+        sessionUnavailableReason: 'NOT_FOUND'
       });
     });
 
@@ -1427,7 +1427,7 @@ describe('ShareResultContainerComponent', () => {
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NONE' }] })
+          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NOT_FOUND' }] })
         );
 
       component.handleShareDraftResult();
@@ -1437,19 +1437,21 @@ describe('ShareResultContainerComponent', () => {
         hasAttendanceError: false,
         hasTrialEffectivenessError: false,
         hasSessionAvailabilityError: true,
-        sessionUnavailableReason: 'NONE'
+        sessionUnavailableReason: 'NOT_FOUND'
       });
     });
 
-    // A magistrates draft saved before reserve-a-slot shipped holds no reservation row.
-    // courtscheduler answers LEGACY with safeToShare true, so it must NOT be blocked -
-    // this is what made it safe to start checking NHMC at all (DEC-1 / NEW-7a).
-    it('shares a legacy magistrates draft that holds no reservation', () => {
+    // The magistrates path is gated on safeToShare alone, exactly as the crown one is. This used
+    // to cover a pre-reserve-a-slot draft, which courtscheduler reported safe on the strength of
+    // a provisional_booking row; it no longer does, because that row proves a booking was once
+    // recorded and never that a session is still held, so such a draft now answers NOT_FOUND and
+    // is correctly blocked by the test above.
+    it('shares a magistrates next hearing whose hold is still live', () => {
       setup(crownHearing, magistratesDraftResult());
       jest
         .spyOn(listingService, 'getBookingStatus')
         .mockReturnValue(
-          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'LEGACY' }] })
+          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'RESERVED' }] })
         );
 
       component.handleShareDraftResult();

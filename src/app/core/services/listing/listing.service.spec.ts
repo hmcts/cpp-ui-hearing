@@ -148,7 +148,7 @@ describe('ListingService', () => {
     const url = '/listing-query-api/query/api/rest/listing/bookingStatus';
     const requestType = 'application/vnd.listing.query.booking.status+json';
 
-    const bookings = [{ bookingId: 'booking-1', safeToShare: false, status: 'NONE' }];
+    const bookings = [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }];
 
     it('sends the bookingIds and returns the bookings response', () => {
       const response = { bookings };

@@ -428,9 +428,9 @@ describe('ManageHearingContainer', () => {
           hasAttendanceError: false,
           hasTrialEffectivenessError: false,
           hasSessionAvailabilityError: true,
-          sessionUnavailableReason: 'NONE'
+          sessionUnavailableReason: 'NOT_FOUND'
         });
-        expect(component.sessionNotAvailableHandler).toHaveBeenCalledWith('NONE');
+        expect(component.sessionNotAvailableHandler).toHaveBeenCalledWith('NOT_FOUND');
       });
 
       it('should reset the session-not-available key back to the default before re-evaluating', () => {
@@ -454,7 +454,7 @@ describe('ManageHearingContainer', () => {
       });
 
       it('should show the session-reservation-expired key when the reason is NONE', () => {
-        component.sessionNotAvailableHandler('NONE');
+        component.sessionNotAvailableHandler('NOT_FOUND');
 
         expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_RESERVATION_EXPIRED');
       });
