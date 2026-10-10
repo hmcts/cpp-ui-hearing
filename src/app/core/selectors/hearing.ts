@@ -1310,15 +1310,18 @@ const groupCasesAndApplicationsByDefendant = (
 
     let groupedDefendant = { ...defendant };
 
+    // Only for individual defendant
     if (!!defendant.personDefendant) {
-      const defWithBailStatus = sortedDefendants.find(
-        def =>
-          def.masterDefendantId === defendant.masterDefendantId &&
-          def.id === defendant.masterDefendantId &&
-          def.masterDefendantId === defendant.id &&
-          defendant.personDefendant &&
-          defendant.personDefendant.bailStatus
-      );
+      const defWithBailStatus = sortedDefendants.find(def => {
+        // Find matched defendant
+        const isDefendantMatched =
+          def.masterDefendantId === defendant.masterDefendantId ||
+          def.id === defendant.masterDefendantId ||
+          def.masterDefendantId === defendant.id;
+
+        // Get the defendant with the bail status
+        return isDefendantMatched && def.personDefendant && def.personDefendant.bailStatus;
+      });
 
       if (defWithBailStatus) {
         const rawBailStatus: BailStatus | BailStatus[] | undefined =
