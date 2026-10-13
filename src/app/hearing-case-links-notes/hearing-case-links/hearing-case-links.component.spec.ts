@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { HearingCaseLinksComponent } from './hearing-case-links.component';
+import { OffenceActiveOrderType } from '@cpp/reference-data';
 import { CourtApplication, HearingCaseLinkType, ProsecutionCaseDetails } from '../../core';
 
 describe('HearingCaseLinksComponent', () => {
@@ -62,73 +63,160 @@ describe('HearingCaseLinksComponent', () => {
     expect(caseReference).toBe('URN1');
   });
 
-  it('should return null for parentApplication if there are prosecution cases', () => {
-    expect(component.parentApplication).toBeNull();
-  });
+  describe('application links (hearing without prosecution cases)', () => {
+    const inactiveApp = {
+      id: 'inactiveApp',
+      applicationReference: 'INACTIVE_REF',
+      courtApplicationCases: [
+        { prosecutionCaseId: 'case1', offences: [{ id: 'o1', proceedingsConcluded: true }] }
+      ]
+    } as CourtApplication;
+    const activeApp = {
+      id: 'activeApp',
+      applicationReference: 'ACTIVE_REF',
+      courtApplicationCases: [
+        { prosecutionCaseId: 'case2', offences: [{ id: 'o2', proceedingsConcluded: false }] }
+      ]
+    } as CourtApplication;
+    const breachApp = {
+      id: 'breachApp',
+      applicationReference: 'BREACH_REF',
+      courtOrder: { courtOrderOffences: [{ prosecutionCaseId: 'case3' }] },
+      courtApplicationCases: []
+    } as CourtApplication;
+    const standaloneApp = {
+      id: 'standaloneApp',
+      applicationReference: 'STANDALONE_REF'
+    } as CourtApplication;
+    const notApplicableApp = {
+      id: 'notApplicableApp',
+      applicationReference: 'NA_REF',
+      type: { offenceActiveOrder: OffenceActiveOrderType.NOT_APPLICABLE },
+      courtApplicationCases: [{ prosecutionCaseId: 'case4' }]
+    } as CourtApplication;
+    const childOf = (parent: CourtApplication): CourtApplication =>
+      ({
+        id: `childOf_${parent.id}`,
+        applicationReference: `CHILD_${parent.applicationReference}`,
+        parentApplicationId: parent.id
+      } as CourtApplication);
 
-  it('should return the correct parentApplication if there are no prosecution cases', () => {
-    component.prosecutionCases = [];
-    fixture.detectChanges();
-    expect(component.parentApplication).toEqual(component.courtApplications[0]);
-  });
+    const render = (courtApplications: CourtApplication[], canAddChildApplication = true) => {
+      fixture = TestBed.createComponent(HearingCaseLinksComponent);
+      component = fixture.componentInstance;
+      component.prosecutionCases = [];
+      component.isStandAloneApplication = false;
+      component.courtApplications = courtApplications;
+      component.canAddChildApplication = canAddChildApplication;
+      fixture.detectChanges();
+    };
+    const addLinks = () =>
+      fixture.debugElement.queryAll(By.css('[data-test-id="add-application-link"]'));
+    const addLinkFor = (reference: string) =>
+      fixture.debugElement.query(
+        By.css(`[data-test-id="${reference}"] [data-test-id="add-application-link"]`)
+      );
+    const clickAddLink = (reference: string) => {
+      jest.spyOn(component.onGoToCaseLink, 'emit');
+      addLinkFor(reference).triggerEventHandler('click', null);
+    };
 
-  it('should return null for parentApplication when application has parentApplicationId', () => {
-    component.prosecutionCases = [];
-    component.courtApplications = [
-      {
-        id: 'app1',
-        parentApplicationId: 'parent123',
-        applicationReference: 'APP_REF1',
-        courtApplicationCases: [{ prosecutionCaseId: 'case1', caseStatus: 'INACTIVE' }]
-      } as CourtApplication
-    ];
-    fixture.detectChanges();
-    expect(component.parentApplication).toBeUndefined();
-  });
+    it('should emit an add child application link for an application on inactive offences', () => {
+      render([inactiveApp]);
+      clickAddLink('INACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case1',
+        applicationId: 'inactiveApp',
+        type: HearingCaseLinkType.ADD_CHILD_APPLICATION
+      });
+    });
 
-  it('should return parentApplication when application has courtOrder', () => {
-    component.prosecutionCases = [];
-    component.courtApplications = [
-      {
-        id: 'app1',
-        applicationReference: 'APP_REF1',
-        courtOrder: {
-          courtOrderOffences: [{ prosecutionCaseId: 'case123' }]
-        },
-        courtApplicationCases: []
-      } as CourtApplication
-    ];
-    fixture.detectChanges();
-    expect(component.parentApplication).toEqual(component.courtApplications[0]);
-  });
+    it('should use the application offences rather than the case status to decide child eligibility', () => {
+      render([
+        {
+          ...inactiveApp,
+          courtApplicationCases: [{ ...inactiveApp.courtApplicationCases[0], caseStatus: 'ACTIVE' }]
+        }
+      ]);
+      clickAddLink('INACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith(
+        expect.objectContaining({ type: HearingCaseLinkType.ADD_CHILD_APPLICATION })
+      );
+    });
 
-  it('should return caseIdFromParentApplication from courtApplicationCases', () => {
-    component.prosecutionCases = [];
-    component.courtApplications = [
-      {
-        id: 'app1',
-        applicationReference: 'APP_REF1',
-        courtApplicationCases: [{ prosecutionCaseId: 'case456', caseStatus: 'INACTIVE' }]
-      } as CourtApplication
-    ];
-    fixture.detectChanges();
-    expect(component.caseIdFromParentApplication).toBe('case456');
-  });
+    it('should emit an add child application link for a breach application on an active order', () => {
+      render([breachApp]);
+      clickAddLink('BREACH_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case3',
+        applicationId: 'breachApp',
+        type: HearingCaseLinkType.ADD_CHILD_APPLICATION
+      });
+    });
 
-  it('should return caseIdFromParentApplication from courtOrder offences', () => {
-    component.prosecutionCases = [];
-    component.courtApplications = [
-      {
-        id: 'app1',
-        applicationReference: 'APP_REF1',
-        courtOrder: {
-          courtOrderOffences: [{ prosecutionCaseId: 'case789' }]
-        },
-        courtApplicationCases: []
-      } as CourtApplication
-    ];
-    fixture.detectChanges();
-    expect(component.caseIdFromParentApplication).toBe('case789');
+    it('should not show the add child application link without the child application permission', () => {
+      render([inactiveApp], false);
+      expect(addLinks().length).toBe(0);
+    });
+
+    it('should emit an add parent application link for an application on active offences', () => {
+      render([activeApp]);
+      clickAddLink('ACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case2',
+        type: HearingCaseLinkType.ADD_APPLICATION
+      });
+    });
+
+    it('should show the add parent application link without the child application permission', () => {
+      render([activeApp], false);
+      expect(addLinkFor('ACTIVE_REF')).toBeTruthy();
+    });
+
+    it('should treat an application type without offences as active and add a parent application', () => {
+      render([notApplicableApp]);
+      clickAddLink('NA_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case4',
+        type: HearingCaseLinkType.ADD_APPLICATION
+      });
+    });
+
+    it('should not show any add application link when active and inactive applications are mixed', () => {
+      render([inactiveApp, activeApp]);
+      expect(addLinks().length).toBe(0);
+      expect(fixture.debugElement.query(By.css('[data-test-id="INACTIVE_REF"]'))).toBeTruthy();
+      expect(fixture.debugElement.query(By.css('[data-test-id="ACTIVE_REF"]'))).toBeTruthy();
+    });
+
+    it('should not show the add application link for a child application listed alone', () => {
+      render([childOf(inactiveApp)]);
+      expect(addLinks().length).toBe(0);
+    });
+
+    it('should add the child to the parent application when parent and child share the hearing', () => {
+      const child = childOf(inactiveApp);
+      render([child, inactiveApp]);
+      expect(addLinks().length).toBe(1);
+      expect(addLinkFor(child.applicationReference)).toBeNull();
+      clickAddLink('INACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case1',
+        applicationId: 'inactiveApp',
+        type: HearingCaseLinkType.ADD_CHILD_APPLICATION
+      });
+    });
+
+    it('should not show the add application link for a standalone application', () => {
+      render([standaloneApp]);
+      expect(fixture.debugElement.query(By.css('[data-test-id="STANDALONE_REF"]'))).toBeTruthy();
+      expect(addLinks().length).toBe(0);
+    });
+
+    it('should not show application links when the hearing has prosecution cases', () => {
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.css('[data-test-id="APP_REF1"]'))).toBeNull();
+    });
   });
 
   it('should match the snapshot', () => {

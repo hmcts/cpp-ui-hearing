@@ -9,3 +9,4 @@ export * from './selectors';
 export * from './services';
 export * from './utils/cpp-date';
 export * from './utils/utils';
+export * from './utils/child-application';
