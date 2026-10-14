@@ -786,13 +786,18 @@ describe('ShareResultEffects', () => {
       store.dispatch(DraftResultActions.setDraftResult({ draftResult: nextDraftResult }));
     };
 
-    it('releases every bookingReference on the draft result being discarded, excluding related-hearings lines', () => {
+    // LPT-2599. An attached line used to be excluded here on the belief that its
+    // bookingReference held a courtScheduleId. related-hearings.container.ts writes no
+    // bookingReference at all, so a line carrying both prompts took a real hold during the pick
+    // journey and was attached afterwards - its hold is surplus and this sweep is what gives it
+    // back. A line with no bookingReference still contributes nothing.
+    it('releases every bookingReference on the draft result being discarded, including attached lines', () => {
       seedDraftResult(
         draftResultWithLines({
           'line-1': { resultPrompts: [bookingReferencePrompt('booking-1')] },
           'line-2': {
             resultPrompts: [
-              bookingReferencePrompt('court-schedule-1'),
+              bookingReferencePrompt('booking-2'),
               existingHearingIdPrompt('existing-hearing-id')
             ]
           },
@@ -803,13 +808,18 @@ describe('ShareResultEffects', () => {
       provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => release$);
 
       actions$ = hot('-a--', { a: ShareResultsActions.cancelAmendments() });
-      const expected$ = cold('--r', { r: undefined });
+
+      // Two holds now, released concurrently, so both land on the same frame.
+      const expected$ = cold('--(rr)', { r: undefined });
 
       expect(effects.releaseAbandonedProvisionalBookings$).toBeObservable(expected$);
-      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledTimes(1);
       expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
         hearingId: draftResult.hearingId,
         bookingId: 'booking-1'
+      });
+      expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith({
+        hearingId: draftResult.hearingId,
+        bookingId: 'booking-2'
       });
     });
 

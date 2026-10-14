@@ -50,15 +50,37 @@ describe('getBookingReferenceToRelease', () => {
     expect(getBookingReferenceToRelease(resultLine('line-1', []))).toBeUndefined();
   });
 
-  // Regression guard for related-hearings.container.ts: attaching to an already-listed
-  // hearing writes a genuine courtScheduleId into bookingReference and books nothing, so
-  // releasing on that value would be meaningless at best.
-  it('skips a line whose prompts include existingHearingId, even though it carries a bookingReference', () => {
+  // LPT-2599. This used to assert the opposite, on the stated grounds that
+  // related-hearings.container.ts writes a courtScheduleId into bookingReference. It does not:
+  // that container writes existingHearingId and no bookingReference at all, and the only two
+  // writers of bookingReference - magistrates.container.ts and crown-scheduling.container.ts -
+  // both write the bookingId that bookProvisionalHearingSlots returned, against a real hold.
+  //
+  // So a line carrying BOTH prompts was picked first and attached afterwards. Its hold is
+  // surplus from that moment: nothing will list against it, and the hearing-keyed release
+  // downstream cannot see it because a reservation carries no hearing_id. Skipping these lines
+  // is how the reservation survived the share.
+  it('releases the hold of a line that was picked and then attached to an existing hearing', () => {
     expect(
       getBookingReferenceToRelease(
         resultLine('line-1', [
-          bookingReferencePrompt('court-schedule-1'),
+          bookingReferencePrompt('booking-1'),
           existingHearingIdPrompt('existing-hearing-id')
+        ])
+      )
+    ).toBe('booking-1');
+  });
+
+  // The one value that must never reach SlotsRemoveService.remove: it releases by hearing_id as
+  // well as booking_id, so a real hearing id would unlist a live hearing. Nothing writes a
+  // hearing id into bookingReference today - this is defence in depth, kept because the cost if
+  // it ever happened is a vacated court hearing.
+  it("never returns a value that is also the line's existing hearing id", () => {
+    expect(
+      getBookingReferenceToRelease(
+        resultLine('line-1', [
+          bookingReferencePrompt('same-id'),
+          existingHearingIdPrompt('same-id')
         ])
       )
     ).toBeUndefined();
@@ -100,17 +122,21 @@ describe('getBookingReferencesToRelease', () => {
     expect(getBookingReferencesToRelease(draftResult)).toEqual(['booking-1', 'booking-2']);
   });
 
-  it('excludes lines with no bookingReference and lines carrying existingHearingId', () => {
+  // An attached line's hold is included for the reason given above: it is surplus, and this
+  // sweep is the only thing that will ever give it back. A line with no bookingReference at all
+  // still contributes nothing - that is the case the old exclusion was written for, and it is
+  // handled by the absence of the prompt rather than by inspecting existingHearingId.
+  it('excludes lines with no bookingReference but keeps the hold of an attached line', () => {
     const draftResult = buildDraftResult({
       'line-1': resultLine('line-1', []),
       'line-2': resultLine('line-2', [
-        bookingReferencePrompt('court-schedule-1'),
+        bookingReferencePrompt('booking-2'),
         existingHearingIdPrompt('existing-hearing-id')
       ]),
       'line-3': resultLine('line-3', [bookingReferencePrompt('booking-3')])
     });
 
-    expect(getBookingReferencesToRelease(draftResult)).toEqual(['booking-3']);
+    expect(getBookingReferencesToRelease(draftResult)).toEqual(['booking-2', 'booking-3']);
   });
 
   // reset-results discards the whole draft and sweeps every hold it was carrying. Shared lines
