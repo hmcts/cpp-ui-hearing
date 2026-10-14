@@ -780,21 +780,28 @@ describe('DraftResultEffects', () => {
         expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
       });
 
-      // Same exclusion as Task 1 (session-availability.helper.ts): related-hearings.container.ts
-      // writes a genuine courtScheduleId into bookingReference for a line attached to an
-      // already-listed hearing - nothing was booked, so releasing would be meaningless at best.
-      it('calls nothing for a related-hearings line that carries existingHearingId', () => {
+      // LPT-2599. Previously asserted the opposite. A line carrying BOTH prompts was picked
+      // first - taking a real hold - and attached to an already-listed hearing afterwards, so
+      // its hold is surplus and this is the moment to give it back. related-hearings.container.ts
+      // writes no bookingReference at all, so the line this exclusion was meant to protect never
+      // reaches here; all it achieved was stranding real reservations.
+      it('releases the hold of a line that was picked and then attached to an existing hearing', () => {
         seedDraftResult(
           draftResultWithLine([
-            bookingReferencePrompt('court-schedule-1'),
+            bookingReferencePrompt('booking-1'),
             existingHearingIdPrompt('existing-hearing-id')
           ])
         );
         provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
 
         actions$ = hot('-a--', { a: requestAction });
-        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
-        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+        // The release now happens, so the effect emits where it previously stayed silent.
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(
+          cold('-r', { r: undefined })
+        );
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).toHaveBeenCalledWith(
+          expect.objectContaining({ bookingId: 'booking-1' })
+        );
       });
 
       it('does not block or surface an error when the release fails', () => {

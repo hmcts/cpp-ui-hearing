@@ -1,13 +1,16 @@
 import { AnyDraftResultLine, DraftResult, ResolvedDraftResultLine } from '../../results.interfaces';
 
 const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
-// An attach-to-existing-hearing line points at a hearing that is ALREADY listed. That hearing has
-// sessions of its own, allocated when it was listed - but they belong to it, not to this draft.
-// Reserve-a-slot owns only the hold a draft takes for a hearing that does not exist yet, and an
-// attach line takes none, so there is nothing here to give back.
+// An attach-to-existing-hearing line points at a hearing that is ALREADY listed, and
+// related-hearings.container.ts writes ONLY this prompt - no bookingReference. The two places
+// that write a bookingReference (magistrates.container.ts, crown-scheduling.container.ts) both
+// write the bookingId that bookProvisionalHearingSlots returned, against a real reservation.
 //
-// Keep these lines out of the release path for a second reason: SlotsRemoveService releases by
-// hearing_id as well as booking_id, so a real hearing id reaching it would unlist a live hearing.
+// So a line carrying BOTH prompts went through the pick journey, took a real hold, and was only
+// afterwards attached to an existing hearing. Its hold is surplus the moment that happens:
+// nothing will ever list against it, and - because a reservation carries no hearing_id - the
+// hearing-keyed release downstream cannot see it either. It must be released here or it holds a
+// slot until the overnight purge. LPT-2599.
 const EXISTING_HEARING_PROMPT_REF = 'existingHearingId';
 
 /** A hold that still holds capacity and has not been confirmed by a share. */
@@ -36,14 +39,39 @@ export const getBookingReferenceToRelease = (
 ): string | undefined => {
   const prompts = (resultLine as ResolvedDraftResultLine | undefined)?.resultPrompts || [];
 
-  if (prompts.some(prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF)) {
+  const bookingReference = prompts.find(
+    prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF
+  )?.value as string | undefined;
+
+  if (!bookingReference) {
     return undefined;
   }
 
-  return prompts.find(prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF)?.value as
-    | string
-    | undefined;
+  // The one value that must never reach SlotsRemoveService.remove: it releases by hearing_id as
+  // well as booking_id, so a real hearing id would unlist a live hearing. Nothing writes a
+  // hearing id into bookingReference today, so this is defence in depth rather than a case we
+  // have seen - but the blast radius if it ever happened is a vacated court hearing, so the
+  // check stays. Excluding the whole LINE was the previous guard and went far too wide: it
+  // skipped every attach line, including the ones holding a genuine reservation.
+  const existingHearingId = prompts.find(
+    prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF
+  )?.value as string | undefined;
+
+  return bookingReference === existingHearingId ? undefined : bookingReference;
 };
+
+/**
+ * Whether the line has been attached to an already-listed hearing.
+ *
+ * <p>Such a line needs no hold of its own to be shareable - the hearing it points at exists
+ * already - so the pre-share gate must not fail it over a missing one. The release path makes the
+ * opposite call and deliberately includes these lines; see
+ * {@link getBookingReferenceToRelease}.
+ */
+export const isAttachedToExistingHearing = (resultLine: AnyDraftResultLine | undefined): boolean =>
+  ((resultLine as ResolvedDraftResultLine | undefined)?.resultPrompts || []).some(
+    prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF
+  );
 
 /** Every hold across a draft result, for the reset-results sweep that discards the whole draft. */
 export const getBookingReferencesToRelease = (draftResult: DraftResult | undefined): string[] =>
