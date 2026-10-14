@@ -18,7 +18,7 @@ import {
 } from '@cpp/pdk';
 import { TranslatePipe } from '@ngx-translate/core';
 
-interface ApplicationCaseLink {
+interface ApplicationCase {
   application: CourtApplication;
   addLink: HearingCaseLink | null;
 }
@@ -85,13 +85,13 @@ interface ApplicationCaseLink {
           </div>
         </pdk-inset-text>
       </div>
-      } } @if (!prosecutionCases?.length) { @for (applicationLink of applicationLinks; track
-      applicationLink.application.id) {
+      } } @if (!prosecutionCases?.length) { @for (applicationCase of applicationCases; track
+      applicationCase.application.id) {
       <ng-template
         [ngTemplateOutlet]="applicationTemplate"
         [ngTemplateOutletContext]="{
-            application: applicationLink.application,
-            addLink: applicationLink.addLink,
+            application: applicationCase.application,
+            addLink: applicationCase.addLink,
           }"
       >
       </ng-template>
@@ -190,7 +190,7 @@ export class HearingCaseLinksComponent {
    * - application on active offences (or without offences): creates a new PARENT application
    * - mixed active and inactive applications in the hearing: none
    */
-  get applicationLinks(): ApplicationCaseLink[] {
+  get applicationCases(): ApplicationCase[] {
     const applications = this.courtApplications || [];
     const parentCandidates = applications.filter(
       application => !application.parentApplicationId && !isStandaloneCourtApplication(application)
