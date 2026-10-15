@@ -18,6 +18,8 @@ const bookingReferencePrompt = (value: string) => ({
   value
 });
 
+const amendmentReason = { id: 'a02018a1-0000-0000-0000-000000000000', description: 'Slip rule' };
+
 const existingHearingIdPrompt = (value: string) => ({
   type: 'HIDDEN',
   promptId: 'existing-hearing-prompt-id',
@@ -102,6 +104,53 @@ describe('getBookingReferencesToCheck', () => {
     });
 
     expect(getBookingReferencesToCheck(draftResult)).toEqual(['crown-1', 'mags-1']);
+  });
+
+
+  /**
+   * LPT-2599. A line the share has already settled must not be checked: its booking is either a
+   * confirmed listing or a reservation the share deliberately released, and courtscheduler
+   * answers NOT_FOUND for the released one exactly as it does for a purged hold. Checking it
+   * blocked every later share on the hearing, silently.
+   *
+   * Values here are the ones captured from the STE02 reproduction.
+   */
+  it('skips a line that was shared and not touched since', () => {
+    const draftResult = buildDraftResult({
+      'line-1': {
+        resultLineId: 'line-1',
+        shortCode: 'NHMC',
+        sharedDate: '2026-10-14T20:23:10.743Z',
+        resultPrompts: [bookingReferencePrompt('6858a3bb')]
+      },
+      'line-2': {
+        resultLineId: 'line-2',
+        shortCode: 'NHMC',
+        resultPrompts: [bookingReferencePrompt('36f0fd7b')]
+      }
+    });
+
+    expect(getBookingReferencesToCheck(draftResult)).toEqual(['36f0fd7b']);
+  });
+
+  /**
+   * The other half of the rule, and the reason it is not simply "skip anything shared":
+   * amending a shared line and re-picking leaves the original sharedDate in place but gives the
+   * line a FRESH unconfirmed booking. That booking must still be checked - if it expired, the
+   * share would list against nothing. amendmentReason is what the amend flow sets.
+   */
+  it('still checks a shared line that has since been amended', () => {
+    const draftResult = buildDraftResult({
+      'line-1': {
+        resultLineId: 'line-1',
+        shortCode: 'NHMC',
+        sharedDate: '2026-10-14T23:42:21.797Z',
+        amendmentReason,
+        resultPrompts: [bookingReferencePrompt('b9e27f06')]
+      }
+    });
+
+    expect(getBookingReferencesToCheck(draftResult)).toEqual(['b9e27f06']);
   });
 
   // Short code is no longer consulted: carrying a bookingReference IS what makes a line
