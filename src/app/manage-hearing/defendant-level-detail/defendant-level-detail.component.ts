@@ -89,6 +89,8 @@ export class DefendantLevelDetailComponent implements OnInit {
   @Input() selectedHearingDate: string;
   @Input() attendanceErrors?: ValidationError[] | null;
   @Input() hasBulkCase: boolean;
+  @Input() isStandaloneApplication = false;
+  @Input() applicationId?: string;
   @Output() onYouthCourtToggle: EventEmitter<string> = new EventEmitter();
   @Output() onPresenceChanged: EventEmitter<any> = new EventEmitter();
   @Output() selectedParticipant: EventEmitter<string> = new EventEmitter();
@@ -124,7 +126,13 @@ export class DefendantLevelDetailComponent implements OnInit {
     this.isForApplication = this.defendant.isForApplication;
     this.isAccordionOpen = (this.attendanceErrors?.length || 0) > 0;
     this.translate.get('MANAGE_HEARING').subscribe(value => {
-      if (!this.isCaseActive) {
+      if (this.isStandaloneApplication) {
+        this.defendantType = DefendantType.Respondent;
+        this.editDefendantType = value['EDIT_RESPONDENT'];
+        this.participantPresent = value['IS_RESPONDENT_PRESENT'];
+        this.defendantNotPresent = value['RESPONDENT_PRESENCE_NOT_YET_ENTERED'];
+        this.participantPresenceRequired = value['RESPONDENT_PRESENCE_REQUIRED'];
+      } else if (!this.isCaseActive) {
         this.extractDefendantType(this.defendant);
         if (this.defendantType === DefendantType.Applicant) {
           this.editDefendantType = value['EDIT_APPLICANT'];
@@ -209,7 +217,7 @@ export class DefendantLevelDetailComponent implements OnInit {
 
     const reference = !!defendant.prosecutionCases?.length
       ? defendant.prosecutionCases[0].prosecutionCaseIdentifier?.caseURN
-      : defendant.courtApplications[0]?.applicationReference;
+      : defendant.courtApplications?.[0]?.applicationReference;
     const { firstName, lastName, dateOfBirth, address, gender } =
       defendant.personDefendant.personDetails;
     return toHttpParams({
@@ -263,6 +271,10 @@ export class DefendantLevelDetailComponent implements OnInit {
     }
   }
   get editDefendantUrl(): string {
+    if (this.isStandaloneApplication) {
+      return `${this.appUrl}/prosecution-casefile/application/overview?applicationId=${this.applicationId}`;
+    }
+
     const caseId = this.defendant.prosecutionCases[0]?.id;
     const defendantId = this.defendant.id;
     const queryParams =
