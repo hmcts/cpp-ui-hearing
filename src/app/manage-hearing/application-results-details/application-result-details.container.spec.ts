@@ -60,6 +60,15 @@ describe('Applications result details container', () => {
     expect(fixture).toMatchSnapshot();
   });
 
+  it('should pass isStandaloneApplication through to the inner component', () => {
+    component.applicationResults = fakeCourtApplications;
+    component.hearingType = 'MAGISTRATES';
+    component.showSubject = true;
+    component.isStandaloneApplication = true;
+    fixture.detectChanges();
+    expect(fixture).toMatchSnapshot();
+  });
+
   @Component({
     selector: 'application-result-details',
     template: `
@@ -70,6 +79,7 @@ describe('Applications result details container', () => {
       <div>applicationResults: {{ applicationResults | json }}</div>
       <div>isGroupCaseApplicationText: {{ isGroupCaseApplicationText }}</div>
       <div>showSubject: {{ showSubject }}</div>
+      <div>isStandaloneApplication: {{ isStandaloneApplication }}</div>
       <div>pleasMapping: {{ pleasMapping | json }}</div>
       <div>guiltyPleasValues: {{ guiltyPleasValues | json }}</div>
       <div>verdictTypes: {{ verdictTypes | json }}</div>
@@ -91,6 +101,7 @@ describe('Applications result details container', () => {
     @Input() applicationResults: CourtApplication[];
     @Input() isGroupCaseApplicationText: string;
     @Input() showSubject: boolean;
+    @Input() isStandaloneApplication: boolean;
     @Input() pleasMapping: { [key: string]: string };
     @Input() guiltyPleasValues: string[];
     @Input() verdictTypes: VerdictType[];
