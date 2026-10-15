@@ -93,7 +93,7 @@ export class JudiciaryTypeaheadComponent
       .pipe(
         filter(text => text.length > 1),
         auditTime(250),
-        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 10)),
+        switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 50)),
         map(judicialMembers =>
           judicialMembers.map(judicialMember => {
             let judiciaryTitle = judicialMember.titlePrefix || '';
