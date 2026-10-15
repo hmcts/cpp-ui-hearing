@@ -57,6 +57,18 @@ describe('HearingCaseLinksComponent', () => {
     expect(component.onGoToCreateTask.emit).toHaveBeenCalledWith('URN1');
   });
 
+  it('should emit an add application link for the case when the case add application link is clicked', () => {
+    jest.spyOn(component.onGoToCaseLink, 'emit');
+    const addApplicationLink = fixture.debugElement.query(
+      By.css('[data-test-id="URN1"] a:nth-child(3)')
+    );
+    addApplicationLink.triggerEventHandler('click', null);
+    expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+      caseId: 'case1',
+      type: HearingCaseLinkType.ADD_APPLICATION
+    });
+  });
+
   it('should return the correct case reference', () => {
     const prosecutionCase = component.prosecutionCases[0];
     const caseReference = component.getCaseReference(prosecutionCase);
@@ -187,6 +199,58 @@ describe('HearingCaseLinksComponent', () => {
       expect(addLinks().length).toBe(0);
       expect(fixture.debugElement.query(By.css('[data-test-id="INACTIVE_REF"]'))).toBeTruthy();
       expect(fixture.debugElement.query(By.css('[data-test-id="ACTIVE_REF"]'))).toBeTruthy();
+    });
+
+    it('should show an add child application link for each application when all are on inactive offences', () => {
+      const secondInactiveApp = {
+        ...inactiveApp,
+        id: 'secondInactiveApp',
+        applicationReference: 'SECOND_INACTIVE_REF',
+        courtApplicationCases: [
+          { prosecutionCaseId: 'case5', offences: [{ id: 'o5', proceedingsConcluded: true }] }
+        ]
+      } as CourtApplication;
+      render([inactiveApp, secondInactiveApp]);
+      expect(addLinks().length).toBe(2);
+
+      clickAddLink('INACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case1',
+        applicationId: 'inactiveApp',
+        type: HearingCaseLinkType.ADD_CHILD_APPLICATION
+      });
+
+      clickAddLink('SECOND_INACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case5',
+        applicationId: 'secondInactiveApp',
+        type: HearingCaseLinkType.ADD_CHILD_APPLICATION
+      });
+    });
+
+    it('should show an add parent application link for each application when all are on active offences', () => {
+      const secondActiveApp = {
+        ...activeApp,
+        id: 'secondActiveApp',
+        applicationReference: 'SECOND_ACTIVE_REF',
+        courtApplicationCases: [
+          { prosecutionCaseId: 'case6', offences: [{ id: 'o6', proceedingsConcluded: false }] }
+        ]
+      } as CourtApplication;
+      render([activeApp, secondActiveApp]);
+      expect(addLinks().length).toBe(2);
+
+      clickAddLink('ACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case2',
+        type: HearingCaseLinkType.ADD_APPLICATION
+      });
+
+      clickAddLink('SECOND_ACTIVE_REF');
+      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
+        caseId: 'case6',
+        type: HearingCaseLinkType.ADD_APPLICATION
+      });
     });
 
     it('should not show the add application link for a child application listed alone', () => {
