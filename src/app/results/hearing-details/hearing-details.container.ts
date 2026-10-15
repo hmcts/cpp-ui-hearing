@@ -233,17 +233,24 @@ export class HearingDetailsContainer implements OnInit {
   }
 
   private navigateToHearingDetails(weekCommencingDetails?: HearingDateFormValues): void {
-    this.router.navigate(['related-hearings'], {
-      relativeTo: this.route,
-      queryParams: {
-        courtId: this.selectedOrganisationUnit.id,
-        jurisdictionType: this.jurisdictionType,
-        weekCommencingType: weekCommencingDetails ? weekCommencingDetails.dateType : undefined
-      },
-      queryParamsHandling: 'merge'
-    });
+    this.canAllocateRelatedHearing$.pipe(take(1)).subscribe(canAllocateRelatedHearing => {
+      const childPath =
+        this.jurisdictionType === JurisdictionTypes.CROWN || canAllocateRelatedHearing
+          ? 'related-hearings'
+          : 'hearing-details';
 
-    this.currentStep.set(AvailableHearingStep.HEARING_DETAILS);
+      this.router.navigate([childPath], {
+        relativeTo: this.route,
+        queryParams: {
+          courtId: this.selectedOrganisationUnit.id,
+          jurisdictionType: this.jurisdictionType,
+          weekCommencingType: weekCommencingDetails ? weekCommencingDetails.dateType : undefined
+        },
+        queryParamsHandling: 'merge'
+      });
+
+      this.currentStep.set(AvailableHearingStep.HEARING_DETAILS);
+    });
   }
 
   private saveCourtDetailsPromtpsAndRedirect({
