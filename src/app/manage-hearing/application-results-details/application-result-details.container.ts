@@ -30,6 +30,7 @@ import { AsyncPipe } from '@angular/common';
       [verdictTypes]="verdictTypes"
       [attendanceErrors]="attendanceErrors"
       [caseStatus]="caseStatus"
+      [isStandaloneApplication]="isStandaloneApplication"
       [isPleaApplicableFlag]="isPleaApplicableFlag"
       [isVerdictsPageAvailable]="isVerdictsPageAvailable"
       [todayDefendantsAttendance]="todayDefendantsAttendance"
@@ -62,6 +63,7 @@ export class ApplicationResultDetailsContainer {
   @Input() todayDefendantsAttendance: TodaysDefendantAttendance[];
   @Input() selectedHearingDate: string;
   @Input() caseStatus: string;
+  @Input() isStandaloneApplication = false;
   @Input() attendanceErrors?: ValidationError[] | null;
   @Output() onGoToEnterResult: EventEmitter<void> = new EventEmitter();
   @Output() onPresenceChanged: EventEmitter<any> = new EventEmitter();

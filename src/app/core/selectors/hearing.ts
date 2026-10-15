@@ -1501,6 +1501,22 @@ export const getApplicationSubjectAsCaseDefendant = (
       ];
     }
 
+    // Standalone application subject with no prior master defendant record (e.g. a
+    // respondent never seen in the system before) - fall back to the subject's own
+    // id so they are still tracked for pending attendance validation.
+    if (app.subject.personDetails) {
+      return [
+        ...results,
+        {
+          defendantId: app.subject.id,
+          firstName: app.subject.personDetails.firstName,
+          lastName: app.subject.personDetails.lastName,
+          offences: [],
+          masterDefendantId: app.subject.id
+        }
+      ];
+    }
+
     return results;
   }, [] as HearingPersonDetails[]);
 };
