@@ -1,4 +1,4 @@
-import { AnyDraftResultLine, DraftResult } from '../results.interfaces';
+import { AnyDraftResultLine, DraftResult, ResolvedDraftResultLine } from '../results.interfaces';
 import { getBookingReferenceToRelease, isAttachedToExistingHearing } from '../core/helpers';
 
 /**
@@ -25,8 +25,34 @@ import { getBookingReferenceToRelease, isAttachedToExistingHearing } from '../co
  * @param draftResult the draft about to be shared
  * @returns the bookingIds to check, in result-line order
  */
+/**
+ * A line that a share has already settled: shared, and not touched since.
+ *
+ * <p>Its slot is decided. Either the share listed against the booking - in which case the
+ * booking is a confirmed listing - or the share merged the line onto a session another
+ * reference won, and the surplus reservation was released. Both are correct outcomes, and
+ * NEITHER says anything about whether the share the clerk is about to make can succeed.
+ *
+ * <p>The released case is why this exists. courtscheduler answers NOT_FOUND for a booking it
+ * deliberately deleted, exactly as it does for one that expired and was purged - it cannot tell
+ * them apart. The gate read that as "nothing left to share against" and refused every later
+ * share on the hearing, silently. LPT-2599; reproduced twice on STE02, and absent on STE34,
+ * which has no reservations to release.
+ *
+ * <p>An AMENDED line is deliberately not settled. Amending and re-picking leaves the line with
+ * its original sharedDate but a fresh, unconfirmed booking, and that booking does need checking -
+ * if it has expired the share must not proceed. amendmentReason is what separates the two: the
+ * amend flow sets it, and it is absent on a line nobody has touched since the share. Verified
+ * against captured draft payloads for both cases.
+ */
+const isSettledShare = (resultLine: AnyDraftResultLine): boolean => {
+  const line = resultLine as ResolvedDraftResultLine | undefined;
+  return !!line?.sharedDate && !line?.amendmentReason;
+};
+
 export const getBookingReferencesToCheck = (draftResult: DraftResult): string[] =>
   (Object.values(draftResult?.resultLines || {}) as AnyDraftResultLine[])
     .filter(resultLine => !isAttachedToExistingHearing(resultLine))
+    .filter(resultLine => !isSettledShare(resultLine))
     .map(getBookingReferenceToRelease)
     .filter((bookingReference): bookingReference is string => !!bookingReference);
