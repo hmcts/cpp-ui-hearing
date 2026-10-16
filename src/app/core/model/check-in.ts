@@ -36,6 +36,7 @@ export interface HearingSummariesGroupedByCaseIdCase {
   }[];
   courtroomName: string;
   hearingId: string;
+  hearingType: string;
 }
 
 export interface CheckInProsecutorResult {
