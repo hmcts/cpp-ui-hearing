@@ -18,9 +18,9 @@ import {
 } from '@cpp/pdk';
 import { TranslatePipe } from '@ngx-translate/core';
 
-interface ApplicationCase {
-  application: CourtApplication;
-  addLink: HearingCaseLink | null;
+interface AddApplicationLink {
+  applicationId: string;
+  link: HearingCaseLink;
 }
 
 @Component({
@@ -85,13 +85,13 @@ interface ApplicationCase {
           </div>
         </pdk-inset-text>
       </div>
-      } } @if (!prosecutionCases?.length) { @for (applicationCase of applicationCases; track
-      applicationCase.application.id) {
+      } } @if (!prosecutionCases?.length) { @let addApplication = addApplicationLink; @for
+      (application of courtApplications; track application.id) {
       <ng-template
         [ngTemplateOutlet]="applicationTemplate"
         [ngTemplateOutletContext]="{
-            application: applicationCase.application,
-            addLink: applicationCase.addLink,
+            application: application,
+            addLink: application.id === addApplication?.applicationId ? addApplication.link : null,
           }"
       >
       </ng-template>
@@ -181,18 +181,18 @@ export class HearingCaseLinksComponent {
   hearingCaseLinkType = HearingCaseLinkType;
 
   /**
-   * Applications shown under 'Case Links' when the hearing has no prosecution cases, each with
-   * the "Add application" link it should offer (if any):
-   * - child application: none - a child cannot take a child; when its parent is in the same
-   *   hearing the parent carries the link
-   * - standalone application: none - AAAG is the only child entry point for standalones
+   * The single "Add application" link for the hearing (at most one per hearing), or null.
+   * Only used when the hearing has no prosecution cases. It sits in the box of the first
+   * eligible application:
+   * - child applications are skipped - a child cannot take a child; when its parent is in the
+   *   same hearing the parent carries the link
+   * - standalone applications are skipped - AAAG is the only child entry point for standalones
    * - application on inactive offences: creates a CHILD of it (needs the child application permission)
    * - application on active offences (or without offences): creates a new PARENT application
-   * - mixed active and inactive applications in the hearing: none
+   * - mixed active and inactive applications in the hearing: no link
    */
-  get applicationCases(): ApplicationCase[] {
-    const applications = this.courtApplications || [];
-    const parentCandidates = applications.filter(
+  get addApplicationLink(): AddApplicationLink | null {
+    const parentCandidates = (this.courtApplications || []).filter(
       application => !application.parentApplicationId && !isStandaloneCourtApplication(application)
     );
     const hasInactive = parentCandidates.some(isApplicationOnInactiveOffences);
@@ -201,11 +201,14 @@ export class HearingCaseLinksComponent {
     );
     const isMixed = hasInactive && hasActive;
 
-    return applications.map(application => ({
-      application,
-      addLink:
-        isMixed || !parentCandidates.includes(application) ? null : this.getAddLink(application)
-    }));
+    if (!parentCandidates.length || isMixed) {
+      return null;
+    }
+
+    const [application] = parentCandidates;
+    const link = this.getAddLink(application);
+
+    return link ? { applicationId: application.id, link } : null;
   }
 
   private getAddLink(application: CourtApplication): HearingCaseLink | null {

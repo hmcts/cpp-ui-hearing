@@ -201,7 +201,7 @@ describe('HearingCaseLinksComponent', () => {
       expect(fixture.debugElement.query(By.css('[data-test-id="ACTIVE_REF"]'))).toBeTruthy();
     });
 
-    it('should show an add child application link for each application when all are on inactive offences', () => {
+    it('should show only one add child application link, on the first application, when all are on inactive offences', () => {
       const secondInactiveApp = {
         ...inactiveApp,
         id: 'secondInactiveApp',
@@ -211,7 +211,8 @@ describe('HearingCaseLinksComponent', () => {
         ]
       } as CourtApplication;
       render([inactiveApp, secondInactiveApp]);
-      expect(addLinks().length).toBe(2);
+      expect(addLinks().length).toBe(1);
+      expect(addLinkFor('SECOND_INACTIVE_REF')).toBeNull();
 
       clickAddLink('INACTIVE_REF');
       expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
@@ -219,16 +220,9 @@ describe('HearingCaseLinksComponent', () => {
         applicationId: 'inactiveApp',
         type: HearingCaseLinkType.ADD_CHILD_APPLICATION
       });
-
-      clickAddLink('SECOND_INACTIVE_REF');
-      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
-        caseId: 'case5',
-        applicationId: 'secondInactiveApp',
-        type: HearingCaseLinkType.ADD_CHILD_APPLICATION
-      });
     });
 
-    it('should show an add parent application link for each application when all are on active offences', () => {
+    it('should show only one add parent application link, on the first application, when all are on active offences', () => {
       const secondActiveApp = {
         ...activeApp,
         id: 'secondActiveApp',
@@ -238,19 +232,21 @@ describe('HearingCaseLinksComponent', () => {
         ]
       } as CourtApplication;
       render([activeApp, secondActiveApp]);
-      expect(addLinks().length).toBe(2);
+      expect(addLinks().length).toBe(1);
+      expect(addLinkFor('SECOND_ACTIVE_REF')).toBeNull();
 
       clickAddLink('ACTIVE_REF');
       expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
         caseId: 'case2',
         type: HearingCaseLinkType.ADD_APPLICATION
       });
+    });
 
-      clickAddLink('SECOND_ACTIVE_REF');
-      expect(component.onGoToCaseLink.emit).toHaveBeenCalledWith({
-        caseId: 'case6',
-        type: HearingCaseLinkType.ADD_APPLICATION
-      });
+    it('should show the add application link on the parent when the child is listed first', () => {
+      const child = childOf(activeApp);
+      render([child, activeApp]);
+      expect(addLinks().length).toBe(1);
+      expect(addLinkFor('ACTIVE_REF')).toBeTruthy();
     });
 
     it('should not show the add application link for a child application listed alone', () => {
