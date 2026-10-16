@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, computed, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -69,7 +69,7 @@ enum AvailableHearingStep {
       [mapOrganisationUnits]="mapOrganisationUnits"
     ></cpp-change-of-jurisdiction>
     <cpp-hearing-details-tabs
-      [canAllocateRelatedHearing]="canAllocateRelatedHearing$ | async"
+      [showRelatedHearingsTab]="showRelatedHearingsTab()"
       [jurisdictionType]="jurisdictionType"
       [weekCommencingType]="weekCommencingInfo?.dateType"
     ></cpp-hearing-details-tabs>
@@ -90,13 +90,19 @@ enum AvailableHearingStep {
   ]
 })
 export class HearingDetailsContainer implements OnInit {
-  canAllocateRelatedHearing$: Observable<boolean>;
   organisationUnits: OrganisationUnit[];
   selectedOrganisationUnit: OrganisationUnit;
   errors: ValidationError[] = null;
   jurisdictionType: JurisdictionTypes;
   availableHearingStep = AvailableHearingStep;
   currentStep = signal(AvailableHearingStep.COURT_SELECTION);
+  private isStandaloneBoxworkApplication = this.store.selectSignal(
+    isCurrentHearingStandaloneBoxworkApplication
+  );
+  showRelatedHearingsTab = computed(
+    () =>
+      this.jurisdictionType === JurisdictionTypes.CROWN || !this.isStandaloneBoxworkApplication()
+  );
   weekCommencingInfo: HearingDateFormValues;
   hasSameJurisdiction$: Observable<boolean>;
   hearings$: Observable<AvailableHearing[]>;
@@ -107,10 +113,6 @@ export class HearingDetailsContainer implements OnInit {
     private router: Router,
     private store: Store<ResultsState>
   ) {
-    this.canAllocateRelatedHearing$ = this.store.pipe(
-      select(isCurrentHearingStandaloneBoxworkApplication),
-      map(value => !value)
-    );
     this.store
       .select(getOrganisationUnits)
       .pipe(
@@ -233,7 +235,9 @@ export class HearingDetailsContainer implements OnInit {
   }
 
   private navigateToHearingDetails(weekCommencingDetails?: HearingDateFormValues): void {
-    this.router.navigate(['related-hearings'], {
+    const childPath = this.showRelatedHearingsTab() ? 'related-hearings' : 'hearing-details';
+
+    this.router.navigate([childPath], {
       relativeTo: this.route,
       queryParams: {
         courtId: this.selectedOrganisationUnit.id,
