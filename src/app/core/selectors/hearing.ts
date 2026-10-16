@@ -1184,7 +1184,7 @@ function groupHearingSummariesByCaseId(
           kaseSummary.prosecutionCaseIdentifier.prosecutionAuthorityReference,
         caseId: kaseSummary.id,
         hearingId: hearingSummary.id,
-        hearingType: 'First Type',
+        hearingType: hearingSummary.type?.description ?? '',
         defendants: kaseSummary.defendants.map(defendant => ({
           hearingId: hearingSummary.id,
           name: defendant.organisationName
