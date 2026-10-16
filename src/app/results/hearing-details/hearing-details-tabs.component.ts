@@ -13,24 +13,19 @@ import {
   selector: 'cpp-hearing-details-tabs',
   template: `
     <pdk-tabs-navigation>
-      @if (jurisdictionType() === jurisdictionTypes.CROWN) {
+      @if (showRelatedHearingsTab()) {
       <pdk-tabs-nav-item [selected]="isActive('related-hearings')">
         <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('related-hearings')"
           >Related hearings</a
         >
       </pdk-tabs-nav-item>
+      } @if (jurisdictionType() === jurisdictionTypes.CROWN) {
       <pdk-tabs-nav-item [selected]="isActive('court-details')">
         <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('court-details')">{{
           weekCommencingType() === 'WEEK_COMMENCING' ? 'Enter hearing details' : 'Find a hearing'
         }}</a>
       </pdk-tabs-nav-item>
-      } @else { @if (canAllocateRelatedHearing()) {
-      <pdk-tabs-nav-item [selected]="isActive('related-hearings')">
-        <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('related-hearings')"
-          >Related hearings</a
-        >
-      </pdk-tabs-nav-item>
-      }
+      } @else {
       <pdk-tabs-nav-item [selected]="isActive('hearing-details')">
         <a href="javascript:void(0)" pdk-tabs-link (click)="navigateTab('hearing-details')"
           >Find a hearing</a
@@ -43,7 +38,7 @@ import {
   imports: [PdkTabsNavigationComponent, PdkTabsNavItemDirective, PdkTabsLinkDirective]
 })
 export class HearingDetailsTabsComponent {
-  canAllocateRelatedHearing = input(true);
+  showRelatedHearingsTab = input(true);
   jurisdictionType = input<JurisdictionTypes>();
   weekCommencingType = input<'FIXED' | 'WEEK_COMMENCING' | 'DATE_TO_BE_FIXED'>();
 
