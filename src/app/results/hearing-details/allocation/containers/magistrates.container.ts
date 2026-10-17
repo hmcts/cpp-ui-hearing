@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   getLocalJusticeAreas,
@@ -17,17 +17,17 @@ import { select, Store } from '@ngrx/store';
 import moment from 'moment';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
+import { ValidationError } from '@cpp/pdk';
+import { TranslateService } from '@ngx-translate/core';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
+import { getDurationValueFromMinutes } from '../../../core/helpers';
 import {
-  createNameAddressResultPromptForCourtCentre,
-  createDraftResultPromptsFromValueMap,
-  getDurationValueFromMinutes,
-  isNameAddressPromptChoice
-} from '../../../core/helpers';
-import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
-import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
+  getHearingSlotsBookingError,
+  HearingSlotsBookingActions,
+  ResultsState
+} from '../../../core/store';
 import { AllocationQueryParams } from '../guards/allocation.guard';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
+import { HEARING_SLOTS_BOOKING_ERROR_MESSAGES } from '../types/allocation';
 import {
   getSearchMetadata,
   getSearchParams,
@@ -64,6 +64,7 @@ import { MagistratesSchedulingComponent } from '../components/magistrates.compon
       (hearingSlotAllocationsSubmit)="hearingSubmitAllocations($event)"
       (pageChange)="handlePageChange($event)"
       [hearingData]="hearing$ | async"
+      [bookingErrors]="bookingErrors()"
     >
     </magistrates-scheduling>
   `,
@@ -81,12 +82,24 @@ export class MagistratesSchedulingContainer {
   searchResult$: Observable<HearingSlot[]>;
   totalResults$: Observable<number>;
   hearing$: Observable<HearingDetail>;
+  private readonly hearingSlotsBookingError = this.store.selectSignal(getHearingSlotsBookingError);
+  readonly bookingErrors = computed<ValidationError[]>(() => {
+    const code = this.hearingSlotsBookingError()?.error?.code;
+    return code
+      ? [
+          {
+            id: 'backendError',
+            message: this.translateService.instant(HEARING_SLOTS_BOOKING_ERROR_MESSAGES[code])
+          }
+        ]
+      : [];
+  });
 
   constructor(
     private store: Store<ResultsState>,
     private route: ActivatedRoute,
     private router: Router,
-    private provisionalBookingService: ProvisionalBookingService
+    private translateService: TranslateService
   ) {
     const metadata$ = this.store.pipe(select(getSearchMetadata));
 
@@ -213,19 +226,14 @@ export class MagistratesSchedulingContainer {
     const currentParams = this.route.snapshot.params;
     const { hearingId, resultLineId } = { ...parentParams, ...currentParams };
 
-    combineLatest([
-      this.organisationUnits$,
-      this.rotaBusinessTypes$,
-      this.store.pipe(select(getDraftResultLineById(resultLineId))),
-      this.filters$
-    ])
+    combineLatest([this.organisationUnits$, this.rotaBusinessTypes$])
       .pipe(
         take(1),
-        switchMap(([organisationUnits, rotaBusinessTypes, resultLine, filters]) => {
-          const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
+        map(([organisationUnits, rotaBusinessTypes]) => {
           const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
             courtScheduleId: allocation.hearingSlot.courtScheduleId,
-            hearingStartTime: allocation.hearingSlotTime
+            hearingStartTime: allocation.hearingSlotTime,
+            duration: allocation.duration
           }));
 
           // We need the take the earliest hearing slot from our array of hearing slots.
@@ -255,26 +263,14 @@ export class MagistratesSchedulingContainer {
             )
           };
 
-          return this.provisionalBookingService
-            .bookProvisionalHearingSlots({ hearingId, courtScheduleBookings })
-            .pipe(
-              map(({ bookingId }) => {
-                return DraftResultActions.updateResultPromptsForDraftResultLine({
-                  resultLineId,
-                  redirectTo,
-                  resultPrompts: [
-                    ...createDraftResultPromptsFromValueMap(promptChoices, {
-                      ...promptRefToValueMap,
-                      bookingReference: bookingId
-                    }),
-                    createNameAddressResultPromptForCourtCentre(
-                      promptChoices.find(isNameAddressPromptChoice),
-                      organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode)
-                    )
-                  ]
-                });
-              })
-            );
+          return HearingSlotsBookingActions.bookHearingSlots({
+            hearingId,
+            resultLineId,
+            courtScheduleBookings,
+            promptRefToValueMap,
+            courtCentre: organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode),
+            redirectTo
+          });
         })
       )
       .subscribe(this.store);

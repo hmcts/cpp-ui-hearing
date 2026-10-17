@@ -8,9 +8,11 @@ import {
   AvailableHearing,
   getAvailableFutureHearingsWithOffenceSelected,
   getHasSameJurisdiction,
-  isCurrentHearingStandaloneBoxworkApplication
+  isCurrentHearingStandaloneBoxworkApplication,
+  ResetAvailableHearingsAction
 } from '../../core';
 import { JurisdictionTypes } from '../../hearing-events-log/core/models/jurisdiction-types';
+import { HearingSlotsBookingActions } from '../core/store';
 import { ChangeOfJurisdictionComponent } from './change-of-jurisdiction/change-of-jurisdiction.component';
 import { CourtSelectionComponent } from './court-selection/court-selection.component';
 import { HearingDetailsTabsComponent } from './hearing-details-tabs.component';
@@ -161,6 +163,23 @@ describe('HearingDetailsContainer', () => {
     fixture.detectChanges();
     return fixture.componentInstance;
   }
+
+  describe('when the page opens', () => {
+    beforeEach(() => {
+      jest.spyOn(store, 'dispatch');
+      createContainer(JurisdictionTypes.MAGISTRATES, false);
+    });
+
+    it('should reset the available hearings', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(new ResetAvailableHearingsAction());
+    });
+
+    it('should clear errors from an earlier booking attempt', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(
+        HearingSlotsBookingActions.removeHearingSlotsBookingError()
+      );
+    });
+  });
 
   describe('magistrates', () => {
     it('navigates to related hearings after court selection when related hearings can be allocated', () => {

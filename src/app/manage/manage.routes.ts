@@ -26,6 +26,7 @@ import { UserDetailsGuard } from '@cpp/users-groups';
 import { resultsReducer } from '../results/core/store';
 import { DraftResultEffects } from '../results/core/store/draft-result.effects';
 import { ShareResultsEffects } from '../results/core/store/share-results.effects';
+import { HearingSlotsBookingEffects } from '../results/core/store/hearing-slots-booking.effects';
 import { HearingDayEffects } from '../results/core/patch/hearing-day.effects';
 
 export const routes: Routes = [
@@ -34,7 +35,12 @@ export const routes: Routes = [
     loadComponent: () => import('./manage.container').then(m => m.ManageContainer),
     providers: [
       provideState('results', resultsReducer),
-      provideEffects([DraftResultEffects, ShareResultsEffects, HearingDayEffects]),
+      provideEffects([
+        DraftResultEffects,
+        ShareResultsEffects,
+        HearingDayEffects,
+        HearingSlotsBookingEffects
+      ]),
       DefendantNamesPipe,
       HearingEventsLogService,
       CoreReferenceDataService,
