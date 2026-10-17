@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
 import { CPPDate, getCPPDate, getCurrentHearing } from '../../core';
@@ -20,6 +20,8 @@ import {
   getDraftResultPromptsValid,
   getDraftResultReadOnly,
   getDraftResultSaving,
+  getSessionBookedNotification,
+  HearingSlotsBookingActions,
   getProsecutortobenotified,
   getResultLinesGroupedByTargetId,
   getResultsValidationErrorMessagesByOffenceId,
@@ -66,12 +68,15 @@ import { AsyncPipe } from '@angular/common';
       (retryFailedAction)="store.dispatch($event)"
       (saveAndContinue)="handleSaveAndContinue()"
       (shadowListedOffenceIdsChange)="handleShadowListedOffenceIds($event)"
+      [sessionBooked]="sessionBooked()"
     >
     </cpp-enter-results>
   `,
   imports: [EnterResultsComponent, AsyncPipe]
 })
-export class EnterResultsContainerComponent {
+export class EnterResultsContainerComponent implements OnInit {
+  readonly sessionBooked = signal(false);
+  private readonly sessionBookedOnArrival = this.store.selectSignal(getSessionBookedNotification);
   isSelectedHearingInFuture$ = this.store.pipe(select(isSelectedHearingInFuture));
   delegatedPowers$ = this.store.pipe(select(getDelegatedPowers));
   draftResultError$ = this.store.pipe(select(getDraftResultError));
@@ -111,6 +116,10 @@ export class EnterResultsContainerComponent {
     this.isHmctsOrganisation$ = this.route.data.pipe(map(data => data && data.isHmctsOrganisation));
   }
 
+  ngOnInit() {
+    this.sessionBooked.set(this.sessionBookedOnArrival());
+    this.store.dispatch(HearingSlotsBookingActions.resetSessionBooked());
+  }
   handleDelegatedPowers(value: DelegatedPowersValue) {
     this.store.dispatch(DraftResultActions.setDelegatedPowers(value));
   }

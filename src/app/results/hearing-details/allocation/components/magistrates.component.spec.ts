@@ -265,6 +265,29 @@ describe('MagistratesSchedulingComponent', () => {
       expect(fixture).toMatchSnapshot();
     });
   });
+
+  describe('when the booking is refused', () => {
+    beforeEach(() => {
+      fixture.componentRef.setInput('bookingErrors', [
+        { id: 'backendError', message: 'The session is fully booked' }
+      ]);
+    });
+
+    it('should raise an error summary for the refused booking', () => {
+      fixture.detectChanges();
+
+      expect(fixture).toMatchSnapshot();
+    });
+
+    it('should raise an error summary for the refused booking and invalid filters', () => {
+      fixture.componentInstance.errors = [
+        { id: 'id', message: 'Error message' }
+      ] as ValidationError[];
+      fixture.detectChanges();
+
+      expect(fixture).toMatchSnapshot();
+    });
+  });
 });
 
 @Component({
