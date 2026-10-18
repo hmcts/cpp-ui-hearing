@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   defaultHearingTypePlaceHolder,
@@ -13,15 +13,15 @@ import { select, Store } from '@ngrx/store';
 import moment from 'moment';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
+import { ValidationError } from '@cpp/pdk';
+import { TranslateService } from '@ngx-translate/core';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
+import { getDurationValueFromMinutes } from '../../../core/helpers';
 import {
-  createDraftResultPromptsFromValueMap,
-  createNameAddressResultPromptForCourtCentre,
-  getDurationValueFromMinutes,
-  isNameAddressPromptChoice
-} from '../../../core/helpers';
-import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
-import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
+  getHasHearingSlotsBookingError,
+  HearingSlotsBookingActions,
+  ResultsState
+} from '../../../core/store';
 import { AllocationQueryParams } from '../guards/allocation.guard';
 import {
   CrownSchedulingFilters,
@@ -49,6 +49,7 @@ import { AllocateHearingParams } from './magistrates.container';
       [rotaBusinessTypes]="rotaBusinessTypes$ | async"
       [totalResults]="totalResults$ | async"
       [hearingData]="hearing$ | async"
+      [bookingErrors]="bookingErrors()"
       (cancel)="handleReturnToResults()"
       (filtersSubmit)="handleFiltersSubmit($event)"
       (hearingSlotAllocationsSubmit)="hearingSubmitAllocations($event)"
@@ -69,11 +70,26 @@ export class CrownSchedulingContainer {
   searchResult$: Observable<HearingSlot[]>;
   totalResults$: Observable<number>;
   hearing$: Observable<HearingDetail>;
+  private readonly hasHearingSlotsBookingError = this.store.selectSignal(
+    getHasHearingSlotsBookingError
+  );
+  readonly bookingErrors = computed<ValidationError[]>(() =>
+    this.hasHearingSlotsBookingError()
+      ? [
+          {
+            id: 'backendError',
+            message: this.translateService.instant('MANAGE_HEARING.SESSION_NOT_AVAILABLE'),
+            shouldFocus: true
+          }
+        ]
+      : []
+  );
 
   constructor(
     private store: Store<ResultsState>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     const metadata$ = this.store.pipe(select(getSearchMetadata));
 
@@ -186,15 +202,15 @@ export class CrownSchedulingContainer {
     const currentParams = this.route.snapshot.params;
     const { hearingId, resultLineId } = { ...parentParams, ...currentParams };
 
-    combineLatest([
-      this.organisationUnits$,
-      this.rotaBusinessTypes$,
-      this.store.pipe(select(getDraftResultLineById(resultLineId)))
-    ])
+    combineLatest([this.organisationUnits$, this.rotaBusinessTypes$])
       .pipe(
         take(1),
-        map(([organisationUnits, rotaBusinessTypes, resultLine]) => {
-          const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
+        map(([organisationUnits, rotaBusinessTypes]) => {
+          const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
+            courtScheduleId: allocation.hearingSlot.courtScheduleId,
+            hearingStartTime: allocation.hearingSlotTime,
+            duration: allocation.duration
+          }));
           const { hearingSlot, hearingSlotTime, duration } = hearingSlotAllocations[0];
           const redirectTo = ['/manage', hearingId, 'enter-results'];
           const rotaBusinessType = rotaBusinessTypes.find(
@@ -211,20 +227,16 @@ export class CrownSchedulingContainer {
               rotaBusinessType && rotaBusinessType.duration
                 ? duration || (hearingSlot.courtSession === 'AD' ? 360 : 180)
                 : hearingType.defaultDurationMin || 20
-            ),
-            bookingReference: hearingSlot.courtScheduleId
+            )
           };
 
-          return DraftResultActions.updateResultPromptsForDraftResultLine({
+          return HearingSlotsBookingActions.bookHearingSlots({
+            hearingId,
             resultLineId,
-            redirectTo,
-            resultPrompts: [
-              ...createDraftResultPromptsFromValueMap(promptChoices, promptRefToValueMap),
-              createNameAddressResultPromptForCourtCentre(
-                promptChoices.find(isNameAddressPromptChoice),
-                organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode)
-              )
-            ]
+            courtScheduleBookings,
+            promptRefToValueMap,
+            courtCentre: organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode),
+            redirectTo
           });
         })
       )
