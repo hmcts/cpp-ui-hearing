@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   EventEmitter,
   Inject,
+  input,
   Input,
   Output,
   ViewChild
@@ -33,8 +35,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div pdk-padding="6" pdk-margin-bottom="6" class="crown-scheduling-filters--bordered">
-      @if (errors) {
-      <pdk-error-summary [errors]="errors"></pdk-error-summary>
+      @if (displayErrors) {
+      <pdk-error-summary [errors]="displayErrors"></pdk-error-summary>
       }
       <crown-scheduling-filters
         [organisationUnits]="organisationUnits"
@@ -115,6 +117,7 @@ export class CrownSchedulingComponent {
   @Output() filtersSubmit = new EventEmitter<CrownSchedulingFilters>();
   @Output() hearingSlotAllocationsSubmit = new EventEmitter<SchedulingSlotAllocationSubmit>();
   @Output() pageChange = new EventEmitter<number>();
+  readonly bookingErrors = input<ValidationError[]>([]);
   @ViewChild('slotsRef') slotsRef: CrownSchedulingSlotsComponent;
 
   errors: ValidationError[] | null;
@@ -122,7 +125,18 @@ export class CrownSchedulingComponent {
   constructor(
     @Inject(ALLOCATION_FORM_CONFIGS)
     private allocationFormConfigs: Record<string, AllocationsFormConfig>
-  ) {}
+  ) {
+    effect(() => {
+      if (this.bookingErrors().length) {
+        this.slotsRef?.reset();
+      }
+    });
+  }
+
+  get displayErrors(): ValidationError[] | null {
+    const bookingErrors = this.bookingErrors();
+    return bookingErrors.length ? [...bookingErrors, ...(this.errors || [])] : this.errors;
+  }
 
   get allocationFormConfig(): AllocationsFormConfig {
     return this.allocationFormConfigs['showHearingType'];
