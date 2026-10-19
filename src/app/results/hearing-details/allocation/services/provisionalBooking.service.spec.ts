@@ -3,7 +3,11 @@ import { CppHttp } from '@cpp/core';
 import { cold } from 'jasmine-marbles';
 import { of, throwError } from 'rxjs';
 import { ListingService } from '../../../../core/services/listing/listing.service';
-import { BookingRefusedError, ProvisionalBookingService } from './provisionalBooking.service';
+import {
+  BookingRefusedError,
+  ProvisionalBookingService,
+  refusalMessageKey
+} from './provisionalBooking.service';
 
 describe('ProvisionalBookingService', () => {
   let service: ProvisionalBookingService;
@@ -127,7 +131,7 @@ describe('ProvisionalBookingService', () => {
         requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
         body: { slots: params.courtScheduleBookings },
         successEvent: 'public.hearing.hearing-slots-provisionally-booked',
-        errorEvent: 'public.hearing.hearing-slots-unconfirmed-booking-failed'
+        errorEvent: 'public.hearing.hearing-slots-provisional-booking-refused'
       });
     });
 
@@ -136,9 +140,9 @@ describe('ProvisionalBookingService', () => {
      * so they reach this service as an observable ERROR shaped `{ status: -1, data }` rather
      * than as a resolved value. These helpers build that shape.
      */
-    const commandError = (code: string, reason = 'because') => ({
+    const commandError = (type: string, code: string, reason = 'because') => ({
       status: -1,
-      data: { error: { code, reason } },
+      data: { error: { type, code, reason } },
       originalEvent: {}
     });
 
@@ -163,8 +167,8 @@ describe('ProvisionalBookingService', () => {
     };
 
     it('produces an errored observable when the backend refuses the booking', () => {
-      const response$ = cold('-#', {}, commandError('NO_CAPACITY', 'no capacity'));
-      const expected$ = cold('-#', {}, new BookingRefusedError('no capacity'));
+      const response$ = cold('-#', {}, commandError('BUSINESS', 'NO_CAPACITY', 'no capacity'));
+      const expected$ = cold('-#', {}, new BookingRefusedError('no capacity', 'NO_CAPACITY'));
 
       http.commandSync = jest.fn().mockReturnValue(response$);
 
@@ -181,31 +185,39 @@ describe('ProvisionalBookingService', () => {
     // technical failure. If this stops being a BookingRefusedError, both pickers
     // silently fall back to the generic "technical problem" message and a genuine
     // "session is full" stops telling the clerk to choose another session.
-    it('refuses with a BookingRefusedError, not a plain Error', done => {
+    it('refuses with a BookingRefusedError carrying the code, not a plain Error', done => {
       bookAndCatch(
-        commandError('NO_CAPACITY', 'no capacity'),
+        commandError('BUSINESS', 'NO_CAPACITY', 'no capacity'),
         error => {
           expect(error).toBeInstanceOf(BookingRefusedError);
           expect((error as Error).message).toBe('no capacity');
+          expect((error as BookingRefusedError).code).toBe('NO_CAPACITY');
         },
         done
       );
     });
 
-    // The session was withdrawn between the search and the pick. Still the session's fault, so
-    // still "pick another one" - the clerk's next action is the same.
-    it('treats NO_SESSION as a refusal of the chosen session', done => {
-      bookAndCatch(
-        commandError('NO_SESSION', 'No session found for sessionId abc'),
-        error => expect(error).toBeInstanceOf(BookingRefusedError),
-        done
-      );
-    });
+    // Every BUSINESS code is a refusal shown on the page, whatever the code (LPT-2590).
+    describe.each([['NO_CAPACITY'], ['NO_SESSION_AVAILABLE'], ['CONFIRMED_BOOKING_EXISTS']])(
+      'BUSINESS %s',
+      code => {
+        it('is a refusal', done => {
+          bookAndCatch(
+            commandError('BUSINESS', code, `reason for ${code}`),
+            error => {
+              expect(error).toBeInstanceOf(BookingRefusedError);
+              expect((error as BookingRefusedError).code).toBe(code);
+            },
+            done
+          );
+        });
+      }
+    );
 
     // The reason text is courtscheduler's, and it is what the BookingRefusedError carries.
     it('carries the backend reason as the refusal message', done => {
       bookAndCatch(
-        commandError('NO_CAPACITY', 'Session 7f2a has no remaining capacity'),
+        commandError('BUSINESS', 'NO_CAPACITY', 'Session 7f2a has no remaining capacity'),
         error => expect((error as Error).message).toBe('Session 7f2a has no remaining capacity'),
         done
       );
@@ -215,7 +227,11 @@ describe('ProvisionalBookingService', () => {
     // empty Error message makes the WildFly-side diagnosis impossible.
     it('falls back to a default message when the backend sends no reason', done => {
       bookAndCatch(
-        { status: -1, data: { error: { code: 'NO_CAPACITY' } }, originalEvent: {} },
+        {
+          status: -1,
+          data: { error: { type: 'BUSINESS', code: 'NO_CAPACITY' } },
+          originalEvent: {}
+        },
         error =>
           expect((error as Error).message).toBe('Provisional hearing slot booking was refused'),
         done
@@ -223,37 +239,21 @@ describe('ProvisionalBookingService', () => {
     });
 
     /**
-     * The other half of the split, and the reason the codes exist at all. None of these may
-     * become a BookingRefusedError: the session may be perfectly free, and telling the clerk to
-     * pick another one sends them off for nothing. The error must also pass through UNTOUCHED,
-     * so the pickers' `instanceof` check falls to the generic technical message.
-     *
-     * <p>Every backend failure code that is NOT in SESSION_REFUSAL_CODES is listed here. If a
-     * code is added to ProvisionalBookingFailureCode and nobody decides which side of the line it
-     * belongs on, it is absent from both this list and the allowlist - so add it here, or to
-     * SESSION_REFUSAL_CODES with a reason.
+     * The other half of the split. None of these may become a BookingRefusedError: they go to the
+     * standard technical error page, so the error must pass through UNTOUCHED for the pickers to
+     * dispatch it as an ApiError. An unknown or missing type is technical too - the safe default.
      */
     describe.each([
-      // Our request was malformed - courtscheduler's validator rejected what hearing built.
-      ['BAD_REQUEST'],
-      // courtscheduler reached its own code and that code threw.
-      ['INTERNAL_SERVER_ERROR'],
-      // Something answered instead of courtscheduler, or its own upstream call failed.
-      ['BAD_GATEWAY'],
-      // Never reached courtscheduler's logic at all: 503/504 or a connection failure.
-      ['SERVICE_UNAVAILABLE'],
-      // Answered, but not in a way the contract allows.
-      ['UNEXPECTED_RESPONSE'],
-      // Re-picking cannot help: the booking being reused is already shared. bookingIdToReuse
-      // should stop this reaching courtscheduler at all, but if one slips past, the generic
-      // message is the honest one.
-      ['BOOKING_ALREADY_CONFIRMED'],
-      // A code added to the backend after this build shipped. Falling back to the generic
-      // message is the safe default; guessing "pick another session" is not.
-      ['SOMETHING_ADDED_AFTER_THIS_BUILD_SHIPPED']
-    ])('%s', code => {
+      ['TECHNICAL', 'COURTSCHEDULER_ERROR'],
+      ['SOMETHING_ADDED_AFTER_THIS_BUILD_SHIPPED', 'NO_CAPACITY'],
+      [undefined, 'NO_CAPACITY']
+    ])('type %s, code %s', (type, code) => {
       it('does not blame the session, and passes the error through untouched', done => {
-        const thrown = commandError(code, `reason for ${code}`);
+        const thrown = {
+          status: -1,
+          data: { error: { type, code, reason: 'r' } },
+          originalEvent: {}
+        };
         bookAndCatch(
           thrown,
           error => {
@@ -294,6 +294,26 @@ describe('ProvisionalBookingService', () => {
       const command$ = service.bookProvisionalHearingSlots(params);
 
       expect(command$).toBeObservable(expected$);
+    });
+  });
+
+  describe('refusalMessageKey()', () => {
+    it('says the session is unavailable when it is full or gone', () => {
+      expect(refusalMessageKey(new BookingRefusedError('r', 'NO_CAPACITY'))).toBe(
+        'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+      );
+      expect(refusalMessageKey(new BookingRefusedError('r', 'NO_SESSION_AVAILABLE'))).toBe(
+        'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
+      );
+    });
+
+    it('uses the generic refusal for any other business code', () => {
+      expect(refusalMessageKey(new BookingRefusedError('r', 'CONFIRMED_BOOKING_EXISTS'))).toBe(
+        'MANAGE_HEARING.SESSION_BOOKING_REFUSED'
+      );
+      expect(refusalMessageKey(new BookingRefusedError('r'))).toBe(
+        'MANAGE_HEARING.SESSION_BOOKING_REFUSED'
+      );
     });
   });
 

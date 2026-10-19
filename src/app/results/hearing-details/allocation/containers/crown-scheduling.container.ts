@@ -15,7 +15,7 @@ import { ValidationError } from '@cpp/pdk';
 import moment from 'moment';
 import { BehaviorSubject, combineLatest, EMPTY, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
-import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
+import { ApiError, getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
   createDraftResultPromptsFromValueMap,
   createNameAddressResultPromptForCourtCentre,
@@ -27,7 +27,8 @@ import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
 import {
   BookingRefusedError,
-  ProvisionalBookingService
+  ProvisionalBookingService,
+  refusalMessageKey
 } from '../services/provisionalBooking.service';
 import {
   CrownSchedulingFilters,
@@ -288,17 +289,18 @@ export class CrownSchedulingContainer {
               // A failure must NOT propagate to `.subscribe(this.store)`: NgRx's Store.error()
               // forwards to the shared ActionsSubject and would end dispatching for the whole
               // application. Catch here and complete empty, so no prompt is written and no
-              // redirect happens. Only a deliberate refusal blames the session - see
-              // BookingRefusedError.
+              // redirect happens. A BUSINESS refusal is shown on the page; anything technical
+              // goes to the standard error page, like any other API failure (LPT-2590).
               catchError(error => {
+                if (!(error instanceof BookingRefusedError)) {
+                  this.bookingErrorSubject.next(null);
+                  this.store.dispatch(new ApiError(error));
+                  return EMPTY;
+                }
                 this.bookingErrorSubject.next([
                   {
                     id: CrownSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
-                    message: this.translateService.instant(
-                      error instanceof BookingRefusedError
-                        ? 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
-                        : 'MANAGE_HEARING.SESSION_BOOKING_FAILED'
-                    ),
+                    message: this.translateService.instant(refusalMessageKey(error)),
                     shouldFocus: true
                   }
                 ]);
