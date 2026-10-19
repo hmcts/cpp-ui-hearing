@@ -8,7 +8,7 @@
     </parent>
     <groupId>uk.gov.moj.cpp.ui</groupId>
     <artifactId>ui-hearing</artifactId>
-    <version>19.0.54-ras-SNAPSHOT</version>
+    <version>25.104.45-rasproto-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
         <skip.node.install>false</skip.node.install>
