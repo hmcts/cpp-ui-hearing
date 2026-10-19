@@ -273,6 +273,18 @@ describe('HearingCaseLinksComponent', () => {
       expect(addLinks().length).toBe(0);
     });
 
+    it('should return no add application link when court applications are undefined', () => {
+      render(undefined);
+      expect(component.addApplicationLink).toBeNull();
+      expect(addLinks().length).toBe(0);
+    });
+
+    it('should return no add application link when there are no court applications', () => {
+      render([]);
+      expect(component.addApplicationLink).toBeNull();
+      expect(addLinks().length).toBe(0);
+    });
+
     it('should not show application links when the hearing has prosecution cases', () => {
       fixture.detectChanges();
       expect(fixture.debugElement.query(By.css('[data-test-id="APP_REF1"]'))).toBeNull();
