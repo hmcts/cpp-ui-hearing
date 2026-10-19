@@ -16,9 +16,6 @@ const EXISTING_HEARING_PROMPT_REF = 'existingHearingId';
 /** A hold that still holds capacity and has not been confirmed by a share. */
 export const RESERVED_BOOKING_STATUS = 'RESERVED';
 
-/** A booking a share has confirmed: a real listing now (`expires_at IS NULL`), not a hold. */
-export const SHARED_BOOKING_STATUS = 'SHARED';
-
 /**
  * No row under this bookingId in either shape: the hold expired and was purged, so there is
  * nothing left to share against and the clerk must re-pick. The only status for which
@@ -39,9 +36,8 @@ export const getBookingReferenceToRelease = (
 ): string | undefined => {
   const prompts = (resultLine as ResolvedDraftResultLine | undefined)?.resultPrompts || [];
 
-  const bookingReference = prompts.find(
-    prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF
-  )?.value as string | undefined;
+  const bookingReference = prompts.find(prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF)
+    ?.value as string | undefined;
 
   if (!bookingReference) {
     return undefined;
@@ -53,9 +49,8 @@ export const getBookingReferenceToRelease = (
   // have seen - but the blast radius if it ever happened is a vacated court hearing, so the
   // check stays. Excluding the whole LINE was the previous guard and went far too wide: it
   // skipped every attach line, including the ones holding a genuine reservation.
-  const existingHearingId = prompts.find(
-    prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF
-  )?.value as string | undefined;
+  const existingHearingId = prompts.find(prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF)
+    ?.value as string | undefined;
 
   return bookingReference === existingHearingId ? undefined : bookingReference;
 };
@@ -103,15 +98,3 @@ export const selectUnconfirmedBookingIds = (
   bookings: { bookingId: string; status: string }[] | undefined,
   candidates: string[]
 ): string[] => candidates.filter(bookingId => isUnconfirmedBooking(bookings, bookingId));
-
-/**
- * Whether a bookingId has already been confirmed by a share, and so must NOT be resent as the
- * `bookingId` of a new reservation - courtscheduler's guardAgainstConfirmedAllocation refuses
- * that, which is what used to break "amend a shared result and pick a different session".
- * The picker omits the id instead and courtscheduler mints a fresh one; the old listing is
- * reconciled by the amended share, which releases by hearing_id rather than bookingId.
- */
-export const isSharedBooking = (
-  bookings: { bookingId: string; status: string }[] | undefined,
-  bookingId: string
-): boolean => hasStatus(bookings, bookingId, SHARED_BOOKING_STATUS);

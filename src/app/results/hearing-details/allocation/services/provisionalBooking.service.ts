@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CppHttp } from '@cpp/core';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { ListingService } from '../../../../core/services/listing/listing.service';
-import { isSharedBooking } from '../../../core/helpers/provisional-booking';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 /** Success. Carries only the bookingId - see BOOKING_FAILED_EVENT for why that is now true. */
 const BOOKING_BOOKED_EVENT = 'public.hearing.hearing-slots-provisionally-booked';
@@ -64,30 +62,18 @@ function failureOf(error: unknown): BookingFailure['error'] {
 
 @Injectable()
 export class ProvisionalBookingService {
-  constructor(private cppHttp: CppHttp, private listingService: ListingService) {}
+  constructor(private cppHttp: CppHttp) {}
 
   /**
-   * Which bookingId, if any, a new reservation may be taken against.
+   * Books the picked session(s) and emits the booking id they are held under.
    *
-   * <p>Reusing the id is how a clerk changes their mind: courtscheduler releases the abandoned
-   * hold and takes the new one under the same reference. That only works while it is still a
-   * HOLD - once a share confirms it, guardAgainstConfirmedAllocation refuses, which is the amend
-   * journey. Returning undefined makes the caller omit the id so a fresh one is minted.
-   *
-   * <p>A failed lookup reuses the id rather than minting: minting on every transient blip would
-   * strand the old hold's capacity until the nightly purge.
+   * <p>A re-pick sends the booking id the result line already carries, whatever state it is in
+   * (LPT-2592). Courtscheduler decides: it keeps the id while it is still an unconfirmed hold, so
+   * the abandoned session is released in the same step, and otherwise - confirmed by a share,
+   * released, expired - books under a fresh one. The emitted id is the one actually used, and the
+   * caller writes exactly that back onto the line. The UI no longer asks for the booking's status
+   * first, or decides which id to send.
    */
-  private bookingIdToReuse(bookingId?: string): Observable<string | undefined> {
-    if (!bookingId) {
-      return of(undefined);
-    }
-
-    return this.listingService.getBookingStatus([bookingId]).pipe(
-      map(({ bookings }) => (isSharedBooking(bookings, bookingId) ? undefined : bookingId)),
-      catchError(() => of(bookingId))
-    );
-  }
-
   bookProvisionalHearingSlots({
     hearingId,
     bookingId,
@@ -104,25 +90,21 @@ export class ProvisionalBookingService {
     }[];
     priority?: string;
   }): Observable<{ bookingId: string }> {
-    return this.bookingIdToReuse(bookingId)
-      .pipe(
-        switchMap(reusableBookingId =>
-          this.cppHttp.commandSync<{ bookingId: string }>({
-            url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
-            requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
-            successEvent: BOOKING_BOOKED_EVENT,
-            // A refusal now has its own event name, so commandSync can error the stream itself
-            // rather than resolving with a payload we then have to inspect. The booked event is
-            // success and nothing else.
-            errorEvent: BOOKING_FAILED_EVENT,
-            body: {
-              ...filters,
-              ...(reusableBookingId ? { bookingId: reusableBookingId } : {}),
-              slots: courtScheduleBookings
-            }
-          })
-        )
-      )
+    return this.cppHttp
+      .commandSync<{ bookingId: string }>({
+        url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
+        requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
+        successEvent: BOOKING_BOOKED_EVENT,
+        // A refusal now has its own event name, so commandSync can error the stream itself
+        // rather than resolving with a payload we then have to inspect. The booked event is
+        // success and nothing else.
+        errorEvent: BOOKING_FAILED_EVENT,
+        body: {
+          ...filters,
+          ...(bookingId ? { bookingId } : {}),
+          slots: courtScheduleBookings
+        }
+      })
       .pipe(
         // Everything reaching here is already an error; this only decides WHICH error - see
         // BookingRefusedError. A BUSINESS refusal becomes BookingRefusedError, carrying its code;

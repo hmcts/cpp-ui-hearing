@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { CppHttp } from '@cpp/core';
 import { cold } from 'jasmine-marbles';
 import { of, throwError } from 'rxjs';
-import { ListingService } from '../../../../core/services/listing/listing.service';
 import {
   BookingRefusedError,
   ProvisionalBookingService,
@@ -12,7 +11,6 @@ import {
 describe('ProvisionalBookingService', () => {
   let service: ProvisionalBookingService;
   let http: CppHttp;
-  let listingService: ListingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,83 +22,62 @@ describe('ProvisionalBookingService', () => {
             query: jest.fn(),
             command: jest.fn()
           }
-        },
-        {
-          provide: ListingService,
-          useValue: {
-            getBookingStatus: jest.fn()
-          }
         }
       ],
       teardown: { destroyAfterEach: false }
     });
     http = TestBed.inject(CppHttp);
-    listingService = TestBed.inject(ListingService);
     service = TestBed.inject(ProvisionalBookingService);
   });
 
   /**
-   * A result line whose booking has already been shared must NOT have that bookingId resent:
-   * courtscheduler refuses to reserve against a confirmed allocation, and before this the clerk
-   * was told "this session is fully booked" about a session that was free. See
-   * ProvisionalBookingService.bookingIdToReuse.
+   * LPT-2592: on a re-pick the UI sends the booking id the line already carries, whatever state
+   * it is in, and courtscheduler decides whether to keep it or book under a fresh one. The UI does
+   * not look the booking up first, and writes back whichever id comes back.
    */
-  describe('amending a result whose booking is already shared', () => {
-    const bookSlot = (bookingId: string) =>
-      service
-        .bookProvisionalHearingSlots({
-          hearingId: 'hearingId',
-          bookingId,
-          courtScheduleBookings: [{ courtScheduleId: 'session-1' }]
-        })
-        .subscribe({ error: () => undefined });
-
+  describe('re-picking a session on a line that already has a booking', () => {
     const sentBody = () => (http.commandSync as jest.Mock).mock.calls[0][0].body;
 
-    beforeEach(() => {
+    it("sends the line's booking id unchanged, without asking for its status first", () => {
+      http.commandSync = jest.fn().mockReturnValue(of({ bookingId: 'existing-booking' }));
+
+      service
+        .bookProvisionalHearingSlots({
+          hearingId: 'hearingId',
+          bookingId: 'existing-booking',
+          courtScheduleBookings: [{ courtScheduleId: 'session-2' }]
+        })
+        .subscribe();
+
+      expect(http.commandSync).toHaveBeenCalledTimes(1);
+      expect(sentBody().bookingId).toBe('existing-booking');
+      expect(http.query).not.toHaveBeenCalled();
+    });
+
+    it('emits the booking id courtscheduler used, which may be a fresh one', () => {
+      http.commandSync = jest
+        .fn()
+        .mockReturnValue(cold('-a|', { a: { bookingId: 'fresh-booking' } }));
+
+      const booked$ = service.bookProvisionalHearingSlots({
+        hearingId: 'hearingId',
+        bookingId: 'shared-booking',
+        courtScheduleBookings: [{ courtScheduleId: 'session-2' }]
+      });
+
+      expect(booked$).toBeObservable(cold('-b|', { b: { bookingId: 'fresh-booking' } }));
+    });
+
+    it('sends no booking id on a first pick', () => {
       http.commandSync = jest.fn().mockReturnValue(of({ bookingId: 'minted' }));
-    });
 
-    it('omits the bookingId so courtscheduler mints a new one when the booking is SHARED', () => {
-      (listingService.getBookingStatus as jest.Mock).mockReturnValue(
-        of({ bookings: [{ bookingId: 'shared-booking', status: 'SHARED' }] })
-      );
-
-      bookSlot('shared-booking');
-
-      expect(listingService.getBookingStatus).toHaveBeenCalledWith(['shared-booking']);
-      expect(sentBody()).not.toHaveProperty('bookingId');
-    });
-
-    it('reuses the bookingId when the booking is still an unconfirmed hold', () => {
-      (listingService.getBookingStatus as jest.Mock).mockReturnValue(
-        of({ bookings: [{ bookingId: 'held-booking', status: 'RESERVED' }] })
-      );
-
-      bookSlot('held-booking');
-
-      expect(sentBody().bookingId).toBe('held-booking');
-    });
-
-    it('reuses the bookingId when the status lookup fails, rather than stranding the old hold', () => {
-      (listingService.getBookingStatus as jest.Mock).mockReturnValue(
-        throwError(() => new Error('listing unreachable'))
-      );
-
-      bookSlot('held-booking');
-
-      expect(sentBody().bookingId).toBe('held-booking');
-    });
-
-    it('does not ask listing anything when the line carries no booking yet', () => {
       service
         .bookProvisionalHearingSlots({
           hearingId: 'hearingId',
           courtScheduleBookings: [{ courtScheduleId: 'session-1' }]
         })
-        .subscribe({ error: () => undefined });
+        .subscribe();
 
-      expect(listingService.getBookingStatus).not.toHaveBeenCalled();
       expect(sentBody()).not.toHaveProperty('bookingId');
     });
   });
