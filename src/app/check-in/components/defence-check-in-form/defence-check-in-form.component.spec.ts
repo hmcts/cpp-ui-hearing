@@ -50,6 +50,7 @@ class TestDefenceCheckInComponent {
         {
           caseReference: 'TFL9171265',
           caseId: '7f56aa3f-9533-4759-ae9e-8f13c7375d35',
+          hearingType: 'First Hearing',
           hearingId: 'b3351a71-386b-4649-aaa4-e6e204a3c6b7',
           defendants: [
             {
@@ -68,6 +69,7 @@ class TestDefenceCheckInComponent {
         {
           caseReference: '40GD2744720',
           caseId: '0305e414-bbfb-4785-8962-f8d5fbe06528',
+          hearingType: 'First Hearing',
           hearingId: 'e229c90a-8e1f-45f2-93b1-f66e6062ff93',
           defendants: [
             {
@@ -86,6 +88,7 @@ class TestDefenceCheckInComponent {
         {
           caseReference: 'TFL0370072',
           caseId: '5abcb7dd-a7c8-4562-b5b8-0172797e517d',
+          hearingType: 'First Hearing',
           hearingId: '4bd513ae-10b0-4f27-923e-00c898f93318',
           defendants: [
             {

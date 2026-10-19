@@ -232,6 +232,13 @@ exports[`DefenceCheckInFormComponent should render the component 1`] = `
                                       pdk-table-header="column"
                                       scope="col"
                                     >
+                                      Hearing type
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                    >
                                       Defendant
                                     </th>
                                     <th
@@ -312,6 +319,17 @@ exports[`DefenceCheckInFormComponent should render the component 1`] = `
                                         pdk-margin-top="2"
                                       >
                                          TFL9171265 
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-2"
+                                        pdk-margin-top="2"
+                                      >
+                                         First Hearing 
                                       </div>
                                     </td>
                                     <td
@@ -522,6 +540,13 @@ exports[`DefenceCheckInFormComponent should render the component 1`] = `
                                       pdk-table-header="column"
                                       scope="col"
                                     >
+                                      Hearing type
+                                    </th>
+                                    <th
+                                      class="govuk-table__cell"
+                                      pdk-table-header="column"
+                                      scope="col"
+                                    >
                                       Defendant
                                     </th>
                                     <th
@@ -602,6 +627,17 @@ exports[`DefenceCheckInFormComponent should render the component 1`] = `
                                         pdk-margin-top="2"
                                       >
                                          40GD2744720 
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-2"
+                                        pdk-margin-top="2"
+                                      >
+                                         First Hearing 
                                       </div>
                                     </td>
                                     <td
@@ -763,6 +799,17 @@ exports[`DefenceCheckInFormComponent should render the component 1`] = `
                                         pdk-margin-top="2"
                                       >
                                          TFL0370072 
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="govuk-table__cell"
+                                      pdk-table-cell=""
+                                    >
+                                      <div
+                                        class="govuk-!-margin-top-2"
+                                        pdk-margin-top="2"
+                                      >
+                                         First Hearing 
                                       </div>
                                     </td>
                                     <td

@@ -1,3 +1,5 @@
+import { HearingType } from './shared/hearing-type';
+
 export interface CheckInDefendant {
   id: string;
   firstName?: string;
@@ -23,6 +25,7 @@ export interface CheckInCourtCentre {
 
 export interface CheckInHearingSummary {
   id: string;
+  type?: HearingType;
   courtCentre: CheckInCourtCentre;
   prosecutionCaseSummaries: CheckInProsecutionCaseSummary[];
 }

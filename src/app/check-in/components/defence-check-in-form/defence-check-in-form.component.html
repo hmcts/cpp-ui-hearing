@@ -24,6 +24,7 @@
                       </select-all>
                     </th>
                     <th pdk-table-header="column">URN</th>
+                    <th pdk-table-header="column">Hearing type</th>
                     <th pdk-table-header="column">Defendant</th>
                     <th pdk-table-header="column" style="width: 100px">
                       Check in as defence
@@ -54,6 +55,11 @@
                     <td pdk-table-cell>
                       <div pdk-margin-top="2">
                         {{ case.caseReference }}
+                      </div>
+                    </td>
+                    <td pdk-table-cell>
+                      <div pdk-margin-top="2">
+                        {{ case.hearingType }}
                       </div>
                     </td>
                     <td pdk-table-cell colspan="2">
