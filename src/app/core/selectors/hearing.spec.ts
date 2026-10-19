@@ -241,6 +241,7 @@ describe('Hearing selectors', () => {
     const personDefendantSummary = {
       id: 'hearing-1',
       courtCentre: { roomName: 'Courtroom 01' },
+      type: { id: 'hearing-type-1', description: 'First Hearing' },
       prosecutionCaseSummaries: [
         {
           id: 'case-1',
@@ -260,6 +261,7 @@ describe('Hearing selectors', () => {
     const organisationDefendantSummary = {
       id: 'hearing-2',
       courtCentre: { roomName: 'Courtroom 02' },
+      type: { id: 'hearing-type-1', description: 'First Hearing' },
       prosecutionCaseSummaries: [
         {
           id: 'case-2',
@@ -300,6 +302,7 @@ describe('Hearing selectors', () => {
               caseId: 'case-1',
               hearingId: 'hearing-1',
               courtroomName: 'Courtroom 01',
+              hearingType: 'First Hearing',
               defendants: [{ hearingId: 'hearing-1', id: 'def-1', name: 'Glennie M BAILEY' }]
             }
           ]
@@ -326,6 +329,7 @@ describe('Hearing selectors', () => {
               caseId: 'case-2',
               hearingId: 'hearing-2',
               courtroomName: 'Courtroom 02',
+              hearingType: 'First Hearing',
               defendants: [{ hearingId: 'hearing-2', id: 'def-2', name: 'Acme Holdings Ltd' }]
             }
           ]

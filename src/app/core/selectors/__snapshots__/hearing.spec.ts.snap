@@ -453,6 +453,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "0d4aeb8a-37aa-46dd-8f76-d4c8d4e3be1b",
@@ -476,6 +477,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "09a19f77-3194-46cf-9daa-b78965b2a67b",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "1a56f502-88d2-4117-aab1-90cc277f0dfd",
@@ -489,6 +491,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "952772be-1c54-4e6c-a72b-5d3cf4ebb267",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "8533cae2-9fdb-4878-ba64-22943f0159bb",
@@ -502,6 +505,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "c4be3132-e703-44ad-b176-e497551d1691",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "d7fd987d-28d5-47f8-85df-dc44ddf56af1",
@@ -515,6 +519,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "615917ae-988e-4721-9c96-4fe7a7a594dd",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "b8dc5796-165e-4a72-a708-2426ea8eb337",
@@ -528,6 +533,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "c3afbd62-39ce-4a14-88a7-fe8f0ba2289e",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "96e43d86-15df-4cfd-959c-843b417079e4",
@@ -541,6 +547,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "ffcc03b7-b504-461d-abff-42a121b197af",
+        "hearingType": "First hearing",
       },
       {
         "caseId": "a47a8bb2-a2ed-414f-94c3-ed0c04a3ee48",
@@ -554,6 +561,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "b38178ca-1cd6-4857-b178-6ff0e90e5dde",
+        "hearingType": "First hearing",
       },
     ],
     "courtroomName": "Courtroom 01",
@@ -572,6 +580,7 @@ exports[`Hearing selectors should return the hearing summaries grouped by case i
           },
         ],
         "hearingId": "b50d8216-7130-4f3a-89b4-b082c1cec931",
+        "hearingType": "First hearing",
       },
     ],
     "courtroomName": "Courtroom 02",
