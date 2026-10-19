@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   CourtApplication,
+  getCaseIdFromApplication,
   HearingCaseLink,
   HearingCaseLinkType,
+  isApplicationOnInactiveOffences,
+  isStandaloneCourtApplication,
   ProsecutionCaseDetails
 } from '../../core';
 import { NgTemplateOutlet } from '@angular/common';
@@ -14,6 +17,11 @@ import {
   PdkLinkDirective
 } from '@cpp/pdk';
 import { TranslatePipe } from '@ngx-translate/core';
+
+interface AddApplicationLink {
+  applicationId: string;
+  link: HearingCaseLink;
+}
 
 @Component({
   selector: 'hearing-case-links',
@@ -77,41 +85,18 @@ import { TranslatePipe } from '@ngx-translate/core';
           </div>
         </pdk-inset-text>
       </div>
-      } } @if (parentApplication) {
+      } } @if (!prosecutionCases?.length) { @let addApplication = addApplicationLink; @for
+      (application of courtApplications; track application.id) {
       <ng-template
         [ngTemplateOutlet]="applicationTemplate"
         [ngTemplateOutletContext]="{
-            application: parentApplication,
-            isChild: false,
-            addType: hearingCaseLinkType.ADD_CHILD_APPLICATION,
-            caseId: caseIdFromParentApplication,
+            application: application,
+            addLink: application.id === addApplication?.applicationId ? addApplication.link : null,
           }"
       >
       </ng-template>
-      } @if (isStandAloneApplication && !parentApplication) { @for (application of
-      courtApplications; track application.id) {
-      <div [attr.data-test-id]="application.applicationReference">
-        <ng-template
-          [ngTemplateOutlet]="applicationTemplate"
-          [ngTemplateOutletContext]="{
-                application: application,
-                isChild: !!application.parentApplicationId,
-                addType: hearingCaseLinkType.ADD_APPLICATION,
-                caseId: application.courtApplicationCases?.length
-                  ? application.courtApplicationCases[0].prosecutionCaseId
-                  : null,
-              }"
-        >
-        </ng-template>
-      </div>
       } }
-      <ng-template
-        #applicationTemplate
-        let-application="application"
-        let-addType="addType"
-        let-caseId="caseId"
-        let-isChild="isChild"
-      >
+      <ng-template #applicationTemplate let-application="application" let-addLink="addLink">
         <div [attr.data-test-id]="application.applicationReference">
           <span pdk-visually-hidden>Case reference: </span>
           <h4 data-test-id="reference" pdk-typography="heading-small" pdk-margin-bottom="1">
@@ -144,19 +129,13 @@ import { TranslatePipe } from '@ngx-translate/core';
               >
                 {{ 'COMMON.CASE_MATERIAL' | translate }}
               </a>
-              @if ( !isChild && (addType !== hearingCaseLinkType.ADD_CHILD_APPLICATION ||
-              canAddChildApplication) ) {
+              @if (addLink) {
               <a
                 pdk-link
                 href="javascript:void(0);"
                 pdk-margin-top="2"
-                (click)="
-                    onGoToCaseLink.emit({
-                      caseId: caseId,
-                      applicationId: application.id,
-                      type: addType,
-                    })
-                  "
+                data-test-id="add-application-link"
+                (click)="onGoToCaseLink.emit(addLink)"
               >
                 {{ 'HEARING_LIST.GO_TO_ADD_APPLICATION' | translate }}
               </a>
@@ -201,37 +180,47 @@ export class HearingCaseLinksComponent {
 
   hearingCaseLinkType = HearingCaseLinkType;
 
-  get parentApplication(): CourtApplication | null {
-    // This check is valid for only  application hearing with inactive cases
-    if (this.prosecutionCases && this.prosecutionCases.length > 0) {
+  /**
+   * The single "Add application" link for the hearing (at most one per hearing), or null.
+   * Only used when the hearing has no prosecution cases. It sits in the box of the first
+   * eligible application:
+   * - child applications are skipped - a child cannot take a child; when its parent is in the
+   *   same hearing the parent carries the link
+   * - standalone applications are skipped - AAAG is the only child entry point for standalones
+   * - application on inactive offences: creates a CHILD of it (needs the child application permission)
+   * - application on active offences (or without offences): creates a new PARENT application
+   * - mixed active and inactive applications in the hearing: no link
+   */
+  get addApplicationLink(): AddApplicationLink | null {
+    const parentCandidates = (this.courtApplications || []).filter(
+      application => !application.parentApplicationId && !isStandaloneCourtApplication(application)
+    );
+    const hasInactive = parentCandidates.some(isApplicationOnInactiveOffences);
+    const hasActive = parentCandidates.some(
+      application => !isApplicationOnInactiveOffences(application)
+    );
+    const isMixed = hasInactive && hasActive;
+
+    if (!parentCandidates.length || isMixed) {
       return null;
     }
 
-    // Cases attached to the applications must be inactive
-    return this.courtApplications.find(application => {
-      if (application.parentApplicationId) {
-        return false;
-      }
+    const [application] = parentCandidates;
+    const link = this.getAddLink(application);
 
-      // Check if the application is a court order
-      if (application.courtOrder) {
-        return true;
-      }
-
-      return (application.courtApplicationCases || []).every(
-        ({ caseStatus }) => caseStatus === 'INACTIVE'
-      );
-    });
+    return link ? { applicationId: application.id, link } : null;
   }
 
-  get caseIdFromParentApplication(): string {
-    const parentApplication = this.parentApplication;
+  private getAddLink(application: CourtApplication): HearingCaseLink | null {
+    const caseId = getCaseIdFromApplication(application);
 
-    return (
-      parentApplication?.courtApplicationCases?.[0]?.prosecutionCaseId ??
-      parentApplication?.courtOrder?.courtOrderOffences?.[0]?.prosecutionCaseId ??
-      null
-    );
+    if (!isApplicationOnInactiveOffences(application)) {
+      return { caseId, type: HearingCaseLinkType.ADD_APPLICATION };
+    }
+
+    return this.canAddChildApplication
+      ? { caseId, applicationId: application.id, type: HearingCaseLinkType.ADD_CHILD_APPLICATION }
+      : null;
   }
 
   getCaseReference(prosecutionCase: ProsecutionCaseDetails): string {
