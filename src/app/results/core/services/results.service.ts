@@ -280,6 +280,22 @@ export class ResultsService {
   }
 
   /**
+   * The last shared result for a hearing day, exactly as stored.
+   *
+   * <p>Read-only: unlike {@link fetchSharedResult} it converts nothing and has no side effects,
+   * so it is safe to call just to look at what was shared.
+   *
+   * @param hearingId the id of the hearing
+   * @param hearingDay the day of the hearing (YYYY-MM-DD)
+   */
+  getSharedResult(hearingId: string, hearingDay: string): Observable<SharedResult> {
+    return this.cppHttp.query<SharedResult>({
+      url: `/hearing-query-api/query/api/rest/hearing/hearings/${hearingId}/${hearingDay}/share-results`,
+      requestType: 'application/vnd.hearing.get-share-result-v2+json'
+    });
+  }
+
+  /**
    * Fetch a draft result that represents the currently shared results. This is
    * emitted using the draft result interface, where the last shared result
    * lines are transformed into a draft result.
@@ -295,35 +311,30 @@ export class ResultsService {
     isBoxWork: boolean,
     firstSharedDate: string
   ): Observable<DraftResult> {
-    return this.cppHttp
-      .query<SharedResult>({
-        url: `/hearing-query-api/query/api/rest/hearing/hearings/${hearingId}/${hearingDay}/share-results`,
-        requestType: 'application/vnd.hearing.get-share-result-v2+json'
+    return this.getSharedResult(hearingId, hearingDay).pipe(
+      switchMap(sharedResult => {
+        // If there are no shared result lines, then this must be a legacy
+        // hearing, prior to when shared result lines were saved by the
+        // database. Consequently, to recover the legacy shared results, we
+        // must revert to the legacy draft result by deleting the current
+        // draft.
+        if (sharedResult.resultLines.length === 0) {
+          return this.cppHttp
+            .commandSync({
+              url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/${hearingDay}`,
+              requestType: 'application/vnd.hearing.delete-draft-result-v2+json',
+              successEvent: 'public.hearing.draft-result-deleted-v2',
+              body: { hearingId, hearingDay }
+            })
+            .pipe(
+              switchMap(() =>
+                this.fetchExtendedDraftResult(hearingId, hearingDay, isBoxWork, firstSharedDate)
+              )
+            );
+        }
+        return this.mapSharedResultToDraftResult(hearingId, hearingDay, sharedResult, true);
       })
-      .pipe(
-        switchMap(sharedResult => {
-          // If there are no shared result lines, then this must be a legacy
-          // hearing, prior to when shared result lines were saved by the
-          // database. Consequently, to recover the legacy shared results, we
-          // must revert to the legacy draft result by deleting the current
-          // draft.
-          if (sharedResult.resultLines.length === 0) {
-            return this.cppHttp
-              .commandSync({
-                url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/${hearingDay}`,
-                requestType: 'application/vnd.hearing.delete-draft-result-v2+json',
-                successEvent: 'public.hearing.draft-result-deleted-v2',
-                body: { hearingId, hearingDay }
-              })
-              .pipe(
-                switchMap(() =>
-                  this.fetchExtendedDraftResult(hearingId, hearingDay, isBoxWork, firstSharedDate)
-                )
-              );
-          }
-          return this.mapSharedResultToDraftResult(hearingId, hearingDay, sharedResult, true);
-        })
-      );
+    );
   }
 
   /**

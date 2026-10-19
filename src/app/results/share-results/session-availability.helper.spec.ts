@@ -1,5 +1,8 @@
-import { DraftResult } from '../results.interfaces';
-import { getBookingReferencesToCheck } from './session-availability.helper';
+import { DraftResult, SharedResult } from '../results.interfaces';
+import {
+  getBookingReferencesToCheck,
+  getSharedBookingReferences
+} from './session-availability.helper';
 
 const buildDraftResult = (resultLines: Record<string, unknown>): DraftResult =>
   ({
@@ -15,6 +18,17 @@ const bookingReferencePrompt = (value: string) => ({
   promptId: 'booking-prompt-id',
   promptRef: 'bookingReference',
   label: 'Booking reference',
+  value
+});
+
+// What get-share-result-v2 returns: one entry per shared line, prompts serialised to strings.
+const sharedResult = (lines: { resultLineId: string; prompts?: unknown[] }[]): SharedResult =>
+  ({ version: 1, resultLines: lines } as unknown as SharedResult);
+
+const sharedPrompt = (promptRef: string, value: string) => ({
+  id: `${promptRef}-id`,
+  promptRef,
+  label: promptRef,
   value
 });
 
@@ -105,7 +119,6 @@ describe('getBookingReferencesToCheck', () => {
 
     expect(getBookingReferencesToCheck(draftResult)).toEqual(['crown-1', 'mags-1']);
   });
-
 
   /**
    * LPT-2599. A line the share has already settled must not be checked: its booking is either a
@@ -214,8 +227,151 @@ describe('getBookingReferencesToCheck', () => {
     expect(getBookingReferencesToCheck(draftResult)).toEqual([]);
   });
 
+  // LPT-2600, taken from the real draft on STE02 (hearing faef00c5, 2026-10-16 11:07-11:09 UTC).
+  //
+  // Sequence: four lines are shared at 11:07:34, so all four get a sharedDate. One second later
+  // the share's own merge releases 62984736 - two next hearings resolved to the session 706ccfdf
+  // won, and courtscheduler DELETEs the loser. An amendment (a02018a1) is then started which
+  // marks that released line, and a NEW line is added under the same amendment carrying a fresh
+  // hold (88f2f534, no sharedDate).
+  //
+  // 62984736 now has BOTH a sharedDate and an amendmentReason, so isSettledShare excludes it
+  // from "settled" and the gate keeps asking courtscheduler about a booking that no longer
+  // exists. It answered NOT_FOUND to eleven such calls over four hours, and every share on that
+  // hearing was silently refused - "The session you reserved has expired and been released".
+  //
+  // Only 88f2f534 is a live hold the next share depends on. 62984736 went out in the 11:07:34
+  // share, so progression resolved and recorded it then, and reads it from that record on every
+  // later share without asking courtscheduler. It must not be checked: courtscheduler can only
+  // ever answer NOT_FOUND for it now, so checking it refuses the share forever.
+  it('does not check a released bookingReference on a line that was shared and then amended', () => {
+    const draftResult = buildDraftResult({
+      'merged-away-then-amended': {
+        resultLineId: 'merged-away-then-amended',
+        shortCode: 'NHMC',
+        sharedDate: '2026-10-16T11:07:34.007Z',
+        amendmentReason,
+        resultPrompts: [bookingReferencePrompt('62984736-2c07-4465-8626-6b570d7af630')]
+      },
+      'listed-by-the-merge': {
+        resultLineId: 'listed-by-the-merge',
+        shortCode: 'NHMC',
+        sharedDate: '2026-10-16T11:07:34.007Z',
+        resultPrompts: [bookingReferencePrompt('706ccfdf-90f1-432e-b1d4-b1bfb04a2d29')]
+      },
+      'added-under-the-amendment': {
+        resultLineId: 'added-under-the-amendment',
+        shortCode: 'NHMC',
+        amendmentReason,
+        resultPrompts: [bookingReferencePrompt('88f2f534-b5ae-4c17-94fe-8e734590c0eb')]
+      }
+    });
+
+    const lastShare = sharedResult([
+      {
+        resultLineId: 'merged-away-then-amended',
+        prompts: [sharedPrompt('bookingReference', '62984736-2c07-4465-8626-6b570d7af630')]
+      },
+      {
+        resultLineId: 'listed-by-the-merge',
+        prompts: [sharedPrompt('bookingReference', '706ccfdf-90f1-432e-b1d4-b1bfb04a2d29')]
+      }
+    ]);
+
+    expect(getBookingReferencesToCheck(draftResult, getSharedBookingReferences(lastShare))).toEqual(
+      ['88f2f534-b5ae-4c17-94fe-8e734590c0eb']
+    );
+  });
+
+  // When the last share cannot be fetched (or a legacy hearing has no shared lines) the set is
+  // empty and the gate must behave exactly as it did before the set existed.
+  it('without a last share, checks exactly what it checked before', () => {
+    const draftResult = buildDraftResult({
+      'merged-away-then-amended': {
+        resultLineId: 'merged-away-then-amended',
+        shortCode: 'NHMC',
+        sharedDate: '2026-10-16T11:07:34.007Z',
+        amendmentReason,
+        resultPrompts: [bookingReferencePrompt('62984736-2c07-4465-8626-6b570d7af630')]
+      }
+    });
+
+    expect(getBookingReferencesToCheck(draftResult)).toEqual([
+      '62984736-2c07-4465-8626-6b570d7af630'
+    ]);
+    expect(getBookingReferencesToCheck(draftResult, new Set())).toEqual([
+      '62984736-2c07-4465-8626-6b570d7af630'
+    ]);
+  });
+
+  // The case the amendmentReason clause exists for, now decided by the reference: amending and
+  // re-picking leaves the original sharedDate on the line but gives it a reference the last
+  // share never carried, so it is still checked.
+  it('still checks an amended, re-picked line whose new reference was never shared', () => {
+    const draftResult = buildDraftResult({
+      'line-1': {
+        resultLineId: 'line-1',
+        shortCode: 'NHMC',
+        sharedDate: '2026-10-14T23:42:21.797Z',
+        amendmentReason,
+        resultPrompts: [bookingReferencePrompt('re-picked-booking')]
+      }
+    });
+    const lastShare = sharedResult([
+      { resultLineId: 'line-1', prompts: [sharedPrompt('bookingReference', 'originally-shared')] }
+    ]);
+
+    expect(getBookingReferencesToCheck(draftResult, getSharedBookingReferences(lastShare))).toEqual(
+      ['re-picked-booking']
+    );
+  });
+
+  it('does not check a reference the last share carried, whichever line it now sits on', () => {
+    const draftResult = buildDraftResult({
+      'new-line': {
+        resultLineId: 'new-line',
+        shortCode: 'NHMC',
+        resultPrompts: [bookingReferencePrompt('already-shared')]
+      }
+    });
+
+    expect(getBookingReferencesToCheck(draftResult, new Set(['already-shared']))).toEqual([]);
+  });
+
   it('handles an empty or missing draft result safely', () => {
     expect(getBookingReferencesToCheck(buildDraftResult({}))).toEqual([]);
     expect(getBookingReferencesToCheck(undefined as unknown as DraftResult)).toEqual([]);
+  });
+});
+
+describe('getSharedBookingReferences', () => {
+  it('collects the bookingReference value of every shared line', () => {
+    const lastShare = sharedResult([
+      { resultLineId: 'line-1', prompts: [sharedPrompt('bookingReference', 'booking-1')] },
+      {
+        resultLineId: 'line-2',
+        prompts: [
+          sharedPrompt('HDATE', '2026-10-20'),
+          sharedPrompt('bookingReference', 'booking-2')
+        ]
+      }
+    ]);
+
+    expect(getSharedBookingReferences(lastShare)).toEqual(new Set(['booking-1', 'booking-2']));
+  });
+
+  it('ignores other prompts and empty values', () => {
+    const lastShare = sharedResult([
+      { resultLineId: 'line-1', prompts: [sharedPrompt('existingHearingId', 'hearing-1')] },
+      { resultLineId: 'line-2', prompts: [sharedPrompt('bookingReference', '')] },
+      { resultLineId: 'line-3' }
+    ]);
+
+    expect(getSharedBookingReferences(lastShare)).toEqual(new Set());
+  });
+
+  it('handles a missing shared result or one with no lines', () => {
+    expect(getSharedBookingReferences(undefined)).toEqual(new Set());
+    expect(getSharedBookingReferences(sharedResult([]))).toEqual(new Set());
   });
 });

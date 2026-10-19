@@ -18,6 +18,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -56,6 +57,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -100,6 +102,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended adm
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -126,6 +129,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -170,6 +174,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -196,6 +201,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended req
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -234,6 +240,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -272,6 +279,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -316,6 +324,7 @@ exports[`ShareResultContainerComponent when a shared result has been amended use
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -342,6 +351,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -380,6 +390,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -406,6 +417,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -432,6 +444,7 @@ exports[`ShareResultContainerComponent when the hearing has no shared results sh
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -470,6 +483,7 @@ exports[`ShareResultContainerComponent when the hearing has shared results shoul
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >
@@ -496,6 +510,7 @@ exports[`ShareResultContainerComponent when the hearing has shared results shoul
   listingService={[Function ListingService]}
   modalService={[Function Object]}
   pendingAttendanceDefendants={[Function Function]}
+  resultsService={[Function Object]}
   sharedResultsValidation={[Function OutputEmitterRef]}
   store={[Function _Store]}
 >

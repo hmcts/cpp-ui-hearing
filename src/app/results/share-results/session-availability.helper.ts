@@ -1,5 +1,13 @@
-import { AnyDraftResultLine, DraftResult, ResolvedDraftResultLine } from '../results.interfaces';
+import { flatten } from 'lodash-es';
+import {
+  AnyDraftResultLine,
+  DraftResult,
+  ResolvedDraftResultLine,
+  SharedResult
+} from '../results.interfaces';
 import { getBookingReferenceToRelease, isAttachedToExistingHearing } from '../core/helpers';
+
+const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
 
 /**
  * Every bookingId the pre-share gate must ask courtscheduler about.
@@ -50,9 +58,36 @@ const isSettledShare = (resultLine: AnyDraftResultLine): boolean => {
   return !!line?.sharedDate && !line?.amendmentReason;
 };
 
-export const getBookingReferencesToCheck = (draftResult: DraftResult): string[] =>
+/**
+ * The booking references the last share of this hearing day carried.
+ *
+ * <p>Progression records every reference it resolves at a share, and on every later share reads
+ * those from its own record without asking courtscheduler again. So a reference that went out in
+ * a previous share is placeable whatever courtscheduler now says about it - including NOT_FOUND
+ * after the merge released it as surplus. LPT-2600: an amended line whose reference was released
+ * kept the gate refusing every later share, because isSettledShare has to treat every amended
+ * line as possibly re-picked. The line cannot tell "amended and re-picked" from "amended, still
+ * pointing at what was shared"; the reference can.
+ */
+export const getSharedBookingReferences = (sharedResult: SharedResult | undefined): Set<string> =>
+  new Set(
+    flatten((sharedResult?.resultLines ?? []).map(resultLine => resultLine.prompts ?? []))
+      .filter(prompt => prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF && !!prompt.value)
+      .map(prompt => prompt.value)
+  );
+
+/**
+ * @param sharedBookingReferences references carried by the last share of this hearing day (see
+ *   {@link getSharedBookingReferences}); none of them is checked. Empty - a first share, a legacy
+ *   hearing, or the shared result could not be fetched - leaves the gate exactly as it was.
+ */
+export const getBookingReferencesToCheck = (
+  draftResult: DraftResult,
+  sharedBookingReferences: ReadonlySet<string> = new Set()
+): string[] =>
   (Object.values(draftResult?.resultLines || {}) as AnyDraftResultLine[])
     .filter(resultLine => !isAttachedToExistingHearing(resultLine))
     .filter(resultLine => !isSettledShare(resultLine))
     .map(getBookingReferenceToRelease)
-    .filter((bookingReference): bookingReference is string => !!bookingReference);
+    .filter((bookingReference): bookingReference is string => !!bookingReference)
+    .filter(bookingReference => !sharedBookingReferences.has(bookingReference));

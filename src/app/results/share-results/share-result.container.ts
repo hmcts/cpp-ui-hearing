@@ -33,7 +33,11 @@ import { catchError, map, switchMap, take } from 'rxjs/operators';
 import { ShareResultActionBarComponent } from './share-result-action-bar.component';
 import { AsyncPipe } from '@angular/common';
 import { getHearingTypes, HearingType } from '@cpp/reference-data';
-import { getBookingReferencesToCheck } from './session-availability.helper';
+import {
+  getBookingReferencesToCheck,
+  getSharedBookingReferences
+} from './session-availability.helper';
+import { ResultsService } from '../core/services/results.service';
 
 export interface ShareValidationResult {
   hasAttendanceError: boolean;
@@ -92,6 +96,7 @@ export class ShareResultContainerComponent {
     private store: Store<ResultsState>,
     private modalService: ModalService,
     private listingService: ListingService,
+    private resultsService: ResultsService,
     private destroyRef: DestroyRef
   ) {}
 
@@ -188,28 +193,27 @@ export class ShareResultContainerComponent {
       .pipe(
         take(1),
         switchMap(draftResult => {
-          const bookingReferences = getBookingReferencesToCheck(draftResult);
-
-          if (bookingReferences.length === 0) {
+          if (getBookingReferencesToCheck(draftResult).length === 0) {
             return of({ blocked: false as const });
           }
 
-          return this.listingService.getBookingStatus(bookingReferences).pipe(
-            map(response => {
-              const unsafe = (response?.bookings ?? []).filter(b => b.safeToShare === false);
-              // status: 'UNKNOWN' means listing could not reach courtscheduler; it answers
-              // safeToShare: true for that case, so it naturally falls through here and does
-              // not block - an advisory check must not block a share on a transient blip.
-              return unsafe.length === 0
-                ? { blocked: false as const }
-                : { blocked: true as const, status: unsafe[0].status };
-            }),
-            // Fails open deliberately: if the booking-status call itself errors (network,
-            // 5xx, unreachable, etc.) we must not block every Crown share in the building for
-            // an advisory check over a transient failure - the share still validates
-            // server-side. Do not "tighten" this to rethrow.
-            catchError(() => of({ blocked: false as const }))
-          );
+          // References the last share carried are not checked - progression resolves them from
+          // its own record, whatever courtscheduler now says (LPT-2600). If the last share can't
+          // be fetched the set is empty, which is exactly the gate as it was before.
+          return this.resultsService
+            .getSharedResult(draftResult.hearingId, draftResult.hearingDay)
+            .pipe(
+              map(getSharedBookingReferences),
+              catchError(() => of(new Set<string>())),
+              map(sharedBookingReferences =>
+                getBookingReferencesToCheck(draftResult, sharedBookingReferences)
+              ),
+              switchMap(bookingReferences =>
+                bookingReferences.length === 0
+                  ? of({ blocked: false as const })
+                  : this.checkBookingStatus(bookingReferences)
+              )
+            );
         }),
         takeUntilDestroyed(this.destroyRef)
       )
@@ -225,6 +229,25 @@ export class ShareResultContainerComponent {
           onAvailable();
         }
       });
+  }
+
+  private checkBookingStatus(bookingReferences: string[]) {
+    return this.listingService.getBookingStatus(bookingReferences).pipe(
+      map(response => {
+        const unsafe = (response?.bookings ?? []).filter(b => b.safeToShare === false);
+        // status: 'UNKNOWN' means listing could not reach courtscheduler; it answers
+        // safeToShare: true for that case, so it naturally falls through here and does
+        // not block - an advisory check must not block a share on a transient blip.
+        return unsafe.length === 0
+          ? { blocked: false as const }
+          : { blocked: true as const, status: unsafe[0].status };
+      }),
+      // Fails open deliberately: if the booking-status call itself errors (network,
+      // 5xx, unreachable, etc.) we must not block every Crown share in the building for
+      // an advisory check over a transient failure - the share still validates
+      // server-side. Do not "tighten" this to rethrow.
+      catchError(() => of({ blocked: false as const }))
+    );
   }
 
   private proceedWithResultShare(

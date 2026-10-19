@@ -27,7 +27,8 @@ import {
   resultsReducer
 } from '../../core/store';
 import { createDraftResultPromptsForShortcode, DraftResultBuilder } from '../../core/testing';
-import { DraftResult } from '../../results.interfaces';
+import { DraftResult, SharedResult } from '../../results.interfaces';
+import { ResultsService } from '../../core/services/results.service';
 import { ShareResultContainerComponent } from '../share-result.container';
 import { ShareResultActionBarComponent } from '../share-result-action-bar.component';
 import { provideCppCoreHttpServices } from '@cpp/core';
@@ -210,6 +211,12 @@ describe('ShareResultContainerComponent', () => {
       imports: [ShareResultContainerComponent],
       providers: [
         provideCppCoreHttpServices(),
+        // The gate only reads the last share; the real service drags in config and draft
+        // builders this module does not need. Gate tests override the return per case.
+        {
+          provide: ResultsService,
+          useValue: { getSharedResult: jest.fn(() => of({ version: 1, resultLines: [] })) }
+        },
         provideStore(reducers, {
           runtimeChecks: {},
           initialState: {
@@ -1219,7 +1226,18 @@ describe('ShareResultContainerComponent', () => {
 
     let component: ShareResultContainerComponent;
     let listingService: ListingService;
+    let resultsService: ResultsService;
+    let getSharedResultSpy: jest.SpyInstance;
     let validationResultSpy: jest.Mock;
+
+    const lastShareCarrying = (...bookingReferences: string[]) =>
+      ({
+        version: 1,
+        resultLines: bookingReferences.map((value, index) => ({
+          resultLineId: `shared-line-${index}`,
+          prompts: [{ id: 'p', promptRef: 'bookingReference', label: 'Booking reference', value }]
+        }))
+      } as unknown as SharedResult);
 
     const setup = (hearing: HearingDetail, draftResult: DraftResult) => {
       validationResultSpy = jest.fn();
@@ -1232,6 +1250,11 @@ describe('ShareResultContainerComponent', () => {
       });
       component = fixture.componentInstance;
       listingService = (component as any).listingService;
+      resultsService = (component as any).resultsService;
+      // First share by default: nothing shared yet, so the gate checks everything it used to.
+      getSharedResultSpy = jest
+        .spyOn(resultsService, 'getSharedResult')
+        .mockReturnValue(of(lastShareCarrying()));
       component.sharedResultsValidation.subscribe(validationResultSpy);
       return fixture;
     };
@@ -1297,7 +1320,10 @@ describe('ShareResultContainerComponent', () => {
         ShareResultsActions.requestApprovalForAmendments()
       );
       expect(validationResultSpy).toHaveBeenCalledWith(
-        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NOT_FOUND' })
+        expect.objectContaining({
+          hasSessionAvailabilityError: true,
+          sessionUnavailableReason: 'NOT_FOUND'
+        })
       );
     });
 
@@ -1329,7 +1355,10 @@ describe('ShareResultContainerComponent', () => {
 
       expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.approveAmendments());
       expect(validationResultSpy).toHaveBeenCalledWith(
-        expect.objectContaining({ hasSessionAvailabilityError: true, sessionUnavailableReason: 'NOT_FOUND' })
+        expect.objectContaining({
+          hasSessionAvailabilityError: true,
+          sessionUnavailableReason: 'NOT_FOUND'
+        })
       );
     });
 
@@ -1406,6 +1435,55 @@ describe('ShareResultContainerComponent', () => {
     // `bookingReferences.length === 0` and never called listing, and the share went through
     // whatever state the hold was in. Reproduced on STE02 by deleting the reservation row for
     // booking 751930c9 and sharing an NHMC result, which succeeded silently.
+    // LPT-2600: a reference the last share carried is placeable whatever courtscheduler says
+    // about it, so it is not asked about at all - even NOT_FOUND must not refuse the share.
+    it('does not check a reference the last share carried, and shares', () => {
+      setup(crownHearing, crownDraftResult);
+      getSharedResultSpy.mockReturnValue(of(lastShareCarrying('booking-1')));
+      const bookingStatusSpy = jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
+        );
+
+      component.handleShareDraftResult();
+
+      expect(getSharedResultSpy).toHaveBeenCalledWith('hearingId', '2026-06-01');
+      expect(bookingStatusSpy).not.toHaveBeenCalled();
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    it('still checks a reference the last share did not carry', () => {
+      setup(crownHearing, crownDraftResult);
+      getSharedResultSpy.mockReturnValue(of(lastShareCarrying('some-other-booking')));
+      const bookingStatusSpy = jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }] })
+        );
+
+      component.handleShareDraftResult();
+
+      expect(bookingStatusSpy).toHaveBeenCalledWith(['booking-1']);
+      expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    // Without the last share the gate must be exactly what it was: check everything.
+    it('checks every reference as before when the last share cannot be fetched', () => {
+      setup(crownHearing, crownDraftResult);
+      getSharedResultSpy.mockReturnValue(throwError(() => new Error('hearing query unreachable')));
+      const bookingStatusSpy = jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'RESERVED' }] })
+        );
+
+      component.handleShareDraftResult();
+
+      expect(bookingStatusSpy).toHaveBeenCalledWith(['booking-1']);
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
     it('checks a magistrates next hearing (NHMC) and shares when the hold is still good', () => {
       setup(crownHearing, magistratesDraftResult());
       const bookingStatusSpy = jest.spyOn(listingService, 'getBookingStatus').mockReturnValue(
@@ -1424,11 +1502,11 @@ describe('ShareResultContainerComponent', () => {
     // refused rather than proceeding into a booking that no longer exists.
     it('blocks a magistrates next hearing whose hold has expired', () => {
       setup(crownHearing, magistratesDraftResult());
-      jest
-        .spyOn(listingService, 'getBookingStatus')
-        .mockReturnValue(
-          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NOT_FOUND' }] })
-        );
+      jest.spyOn(listingService, 'getBookingStatus').mockReturnValue(
+        of({
+          bookings: [{ bookingId: 'mags-booking-id', safeToShare: false, status: 'NOT_FOUND' }]
+        })
+      );
 
       component.handleShareDraftResult();
 
@@ -1448,11 +1526,11 @@ describe('ShareResultContainerComponent', () => {
     // is correctly blocked by the test above.
     it('shares a magistrates next hearing whose hold is still live', () => {
       setup(crownHearing, magistratesDraftResult());
-      jest
-        .spyOn(listingService, 'getBookingStatus')
-        .mockReturnValue(
-          of({ bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'RESERVED' }] })
-        );
+      jest.spyOn(listingService, 'getBookingStatus').mockReturnValue(
+        of({
+          bookings: [{ bookingId: 'mags-booking-id', safeToShare: true, status: 'RESERVED' }]
+        })
+      );
 
       component.handleShareDraftResult();
 
