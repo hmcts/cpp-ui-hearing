@@ -76,9 +76,9 @@ describe('MagistratesSchedulingComponent', () => {
   });
 
   it('should raise an error summary when submitting invalid filters', fakeAsync(() => {
-    fixture.componentInstance.errors = [
+    fixture.componentInstance.errors.set([
       { id: 'id', message: 'Error message' }
-    ] as ValidationError[];
+    ] as ValidationError[]);
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();
@@ -262,6 +262,50 @@ describe('MagistratesSchedulingComponent', () => {
     });
 
     it('should render the slots', () => {
+      expect(fixture).toMatchSnapshot();
+    });
+
+    it('should clear the selected slots when the booking is refused', () => {
+      const reset = jest.spyOn(fixture.componentInstance.slotsRef, 'reset');
+
+      fixture.componentRef.setInput('bookingErrors', [
+        { id: 'backendError', message: 'The session is fully booked' }
+      ]);
+      fixture.detectChanges();
+
+      expect(reset).toHaveBeenCalled();
+    });
+  });
+
+  describe('when the booking is refused', () => {
+    beforeEach(() => {
+      fixture.componentRef.setInput('bookingErrors', [
+        { id: 'backendError', message: 'The session is fully booked' }
+      ]);
+    });
+
+    it('should raise an error summary for the refused booking', () => {
+      fixture.detectChanges();
+
+      expect(fixture).toMatchSnapshot();
+    });
+
+    it('should keep the same errors for the error summary when the slots report no errors again', () => {
+      fixture.detectChanges();
+      const displayErrors = fixture.componentInstance.displayErrors();
+
+      fixture.componentInstance.errors.set(null);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.displayErrors()).toBe(displayErrors);
+    });
+
+    it('should raise an error summary for the refused booking and invalid filters', () => {
+      fixture.componentInstance.errors.set([
+        { id: 'id', message: 'Error message' }
+      ] as ValidationError[]);
+      fixture.detectChanges();
+
       expect(fixture).toMatchSnapshot();
     });
   });

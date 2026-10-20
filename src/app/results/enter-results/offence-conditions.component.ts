@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  input,
   Input,
   OnChanges,
   Output,
@@ -14,6 +15,7 @@ import {
   PdkMarginDirective,
   PdkTypographyDirective
 } from '@cpp/pdk';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Action } from '@ngrx/store';
 import { AmendmentReason, HearingDetail } from '../../core';
 import { Offence } from '../../magistrates/interfaces/magistrates-hearing.interface';
@@ -34,7 +36,13 @@ export interface DelegatedPowersValue {
   selector: 'cpp-enter-results',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @if (isSelectedHearingInFuture) {
+    @if (sessionBooked()) {
+    <div pdk-margin-bottom="3">
+      <pdk-alert type="success" icon="true" data-test-id="sessionBookedBanner">
+        {{ 'MANAGE_HEARING.SESSION_BOOKED_MESSAGE' | translate }}
+      </pdk-alert>
+    </div>
+    } @if (isSelectedHearingInFuture) {
     <div pdk-margin-bottom="3">
       <pdk-alert type="warning" icon="true" data-test-id="futureHearingWarningBanner">
         This hearing is in the future. Are you sure you want to result it?
@@ -96,6 +104,7 @@ export interface DelegatedPowersValue {
   ],
   imports: [
     PdkAlertComponent,
+    TranslatePipe,
     PdkErrorSummaryComponent,
     PdkMarginDirective,
     PdkTypographyDirective,
@@ -106,6 +115,7 @@ export interface DelegatedPowersValue {
   providers: [AmendmentService]
 })
 export class EnterResultsComponent implements OnChanges {
+  readonly sessionBooked = input(false);
   @Input() isSelectedHearingInFuture = false;
   @Input() delegatedPowers = false;
   @Input() draftResultError = false;
