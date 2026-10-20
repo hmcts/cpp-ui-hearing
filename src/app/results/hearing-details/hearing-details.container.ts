@@ -20,7 +20,12 @@ import {
   HearingDateFormValues,
   FixedDateWeekCommencingComponent
 } from './week-commencing/fixed-date-week-commencing.component';
-import { DraftResultActions, getDraftResultLineById, ResultsState } from '../core/store';
+import {
+  DraftResultActions,
+  getDraftResultLineById,
+  HearingSlotsBookingActions,
+  ResultsState
+} from '../core/store';
 import { ExtendedResolvedDraftResultLine } from '../results.interfaces';
 import {
   createDraftResultPromptsFromValueMap,
@@ -168,6 +173,7 @@ export class HearingDetailsContainer implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new ResetAvailableHearingsAction());
+    this.store.dispatch(HearingSlotsBookingActions.removeHearingSlotsBookingError());
   }
 
   backToCourtSelection(): void {

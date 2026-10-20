@@ -37,7 +37,8 @@ describe('ProvisionalBookingService', () => {
         courtScheduleBookings: [
           {
             courtScheduleId: '*',
-            hearingStartTime: new Date().toISOString()
+            hearingStartTime: new Date().toISOString(),
+            duration: 30
           }
         ]
       };
@@ -47,9 +48,10 @@ describe('ProvisionalBookingService', () => {
 
       expect(http.commandSync).toHaveBeenCalledWith({
         url: `/hearing-command-api/command/api/rest/hearing/hearings/hearingId/hearing-slots`,
-        requestType: 'application/vnd.hearing.book-provisional-hearing-slots+json',
+        requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
         body: { slots: params.courtScheduleBookings },
-        successEvent: 'public.hearing.hearing-slots-provisionally-booked'
+        successEvent: 'public.hearing.hearing-slots-provisionally-booked',
+        errorEvent: 'public.hearing.hearing-slots-provisional-booking-refused'
       });
     });
   });

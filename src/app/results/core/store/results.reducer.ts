@@ -5,9 +5,11 @@ import {
   ResultsValidationResponse
 } from '../../results-validation.interfaces';
 import { DraftResultActions } from './draft-result.actions';
+import { HearingSlotsBookingActions } from './hearing-slots-booking.actions';
 import { ResultsValidationActions } from './results-validation.actions';
 import { ShareResultsActions } from './share-results.actions';
 import { ManageHearingPublicEventError } from '../../../manage-hearing-error-page/manage-hearing-error-page.interfaces';
+import { HearingSlotsBookingPublicEventError } from '../../hearing-details/allocation/types/allocation';
 
 export interface State {
   draftResultError: { error: string; action: Action } | null;
@@ -18,6 +20,8 @@ export interface State {
   invalidResultLines: ResolvedDraftResultLine[] | null;
   resultsValidation: ResultsValidationResponse | null;
   shareResultsValidationFailure: ResultsValidationErrors | null;
+  hearingSlotsBookingError: HearingSlotsBookingPublicEventError | null;
+  sessionBookedNotification: boolean;
 }
 
 export const initialState: State = {
@@ -27,11 +31,37 @@ export const initialState: State = {
   reusableResults: null,
   invalidResultLines: null,
   resultsValidation: null,
-  shareResultsValidationFailure: null
+  shareResultsValidationFailure: null,
+  hearingSlotsBookingError: null,
+  sessionBookedNotification: false
 };
 
 export const results = createReducer(
   initialState,
+  on(HearingSlotsBookingActions.bookHearingSlots, state => ({
+    ...state,
+    hearingSlotsBookingError: null as State['hearingSlotsBookingError'],
+    sessionBookedNotification: false
+  })),
+  on(HearingSlotsBookingActions.bookHearingSlotsSuccess, state => ({
+    ...state,
+    sessionBookedNotification: true
+  })),
+  on(
+    HearingSlotsBookingActions.setHearingSlotsBookingError,
+    (state, { hearingSlotsBookingError }) => ({
+      ...state,
+      hearingSlotsBookingError
+    })
+  ),
+  on(HearingSlotsBookingActions.removeHearingSlotsBookingError, state => ({
+    ...state,
+    hearingSlotsBookingError: null as State['hearingSlotsBookingError']
+  })),
+  on(HearingSlotsBookingActions.resetSessionBookedNotification, state => ({
+    ...state,
+    sessionBookedNotification: false
+  })),
   on(DraftResultActions.saveDraftResult, (state, { draftResult }) => ({
     ...state,
     draftResult: {

@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   EventEmitter,
   Inject,
+  input,
   Input,
   Output,
   ViewChild
@@ -33,8 +35,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div pdk-padding="6" pdk-margin-bottom="6" class="magistrates-scheduling-filters--bordered">
-      @if (errors) {
-      <pdk-error-summary [errors]="errors"></pdk-error-summary>
+      @if (displayErrors) {
+      <pdk-error-summary [errors]="displayErrors"></pdk-error-summary>
       }
       <magistrates-scheduling-filters
         [organisationUnits]="organisationUnits"
@@ -118,6 +120,7 @@ export class MagistratesSchedulingComponent {
     hearingType: HearingType;
   }>();
   @Output() pageChange = new EventEmitter<number>();
+  readonly bookingErrors = input<ValidationError[]>([]);
   @ViewChild('slotsRef') slotsRef: MagistratesSchedulingSlotsComponent;
 
   errors: ValidationError[] | null;
@@ -125,7 +128,18 @@ export class MagistratesSchedulingComponent {
   constructor(
     @Inject(ALLOCATION_FORM_CONFIGS)
     private allocationFormConfigs: Record<string, AllocationsFormConfig>
-  ) {}
+  ) {
+    effect(() => {
+      if (this.bookingErrors().length) {
+        this.slotsRef?.reset();
+      }
+    });
+  }
+
+  get displayErrors(): ValidationError[] | null {
+    const bookingErrors = this.bookingErrors();
+    return bookingErrors.length ? [...bookingErrors, ...(this.errors || [])] : this.errors;
+  }
 
   get allocationFormConfig(): AllocationsFormConfig {
     return this.allocationFormConfigs['showHearingType'];
