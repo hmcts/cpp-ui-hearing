@@ -7,7 +7,6 @@ import { AppConfigService } from './config';
 import { AppState, reducers } from './core/reducers';
 import { UsersGroupsActions, RolePermission, SystemAnnouncementsService } from '@cpp/users-groups';
 import { provideCPPApplicationEnvironment } from '@cpp/application';
-import { Title } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
@@ -42,7 +41,6 @@ describe('App page component', () => {
             getServicesUrl
           }
         },
-        { provide: Title, useValue: { getTitle: jest.fn(), setTitle: jest.fn() } },
         {
           provide: SystemAnnouncementsService,
           useValue: {
