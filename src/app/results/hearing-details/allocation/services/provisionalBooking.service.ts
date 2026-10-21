@@ -16,13 +16,15 @@ export class ProvisionalBookingService {
     courtScheduleBookings: {
       courtScheduleId: string;
       hearingStartTime?: string;
+      duration?: number;
     }[];
     priority?: string;
   }): Observable<{ bookingId: string }> {
     return this.cppHttp.commandSync<{ bookingId: string }>({
       url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
-      requestType: 'application/vnd.hearing.book-provisional-hearing-slots+json',
+      requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
       successEvent: 'public.hearing.hearing-slots-provisionally-booked',
+      errorEvent: 'public.hearing.hearing-slots-provisional-booking-refused',
       body: {
         ...filters,
         slots: courtScheduleBookings

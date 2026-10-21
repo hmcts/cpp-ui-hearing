@@ -12,12 +12,11 @@ import {
 import { provideCppCoreHttpServices } from '@cpp/core';
 import { HearingType, OrganisationUnit, RotaBusinessType } from '@cpp/reference-data';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
+import { provideTranslateService } from '@ngx-translate/core';
 import { AppState, HearingDetail, HearingLockState } from '../../../../core';
 import { MagistratesSchedulingContainer } from './magistrates.container';
 import { MagistratesSchedulingComponent } from '../components/magistrates.component';
 import { createDraftResult, extendDraftResult } from '../../../core/testing';
-import { ProvisionalBookingService } from '../services/provisionalBooking.service';
 import {
   HearingSlot,
   SchedulingFilters,
@@ -26,6 +25,7 @@ import {
 } from '@cpp/scheduling';
 import { AllocateHearingParams } from './magistrates.container';
 import { MagistratesSchedulingFilters } from '../types/allocation';
+import { ValidationError } from '@cpp/pdk';
 
 describe('MagistratesSchedulingContainer', () => {
   let activatedRoute: ActivatedRoute;
@@ -33,7 +33,6 @@ describe('MagistratesSchedulingContainer', () => {
   let router: Router;
   let store: MockStore<AppState>;
   let storeNextSpy: jest.SpyInstance;
-  let provisionalBookingService: ProvisionalBookingService;
 
   const searchParams: SearchHearingSlotsParams = {
     oucodeL2Code: '1',
@@ -165,6 +164,7 @@ describe('MagistratesSchedulingContainer', () => {
         provideCppCoreHttpServices(),
         provideMockStore({ initialState }),
         provideRouter([]),
+        provideTranslateService(),
         {
           provide: ActivatedRoute,
           useValue: activatedRoute
@@ -173,12 +173,6 @@ describe('MagistratesSchedulingContainer', () => {
           provide: Router,
           useValue: {
             navigate: jest.fn()
-          }
-        },
-        {
-          provide: ProvisionalBookingService,
-          useValue: {
-            bookProvisionalHearingSlots: jest.fn()
           }
         }
       ],
@@ -197,16 +191,10 @@ describe('MagistratesSchedulingContainer', () => {
     storeNextSpy = (store as any).next as jest.Mock;
 
     router = TestBed.inject<Router>(Router);
-    provisionalBookingService = TestBed.inject(ProvisionalBookingService);
 
     fixture = TestBed.createComponent(MagistratesSchedulingContainer);
 
     router.navigate = jest.fn();
-    (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-      of({
-        bookingId: 'test-booking-reference-id'
-      })
-    );
     fixture.detectChanges();
   });
 
@@ -309,71 +297,7 @@ describe('MagistratesSchedulingContainer', () => {
       ]);
       tick();
 
-      expect(storeNextSpy.mock.calls.pop()[0]).toMatchSnapshot(`
-         {
-            "redirectTo": [
-              "/manage",
-              "HEARINGID1",
-              "enter-results",
-            ],
-            "resultLineId": "UUID:1",
-            "resultPrompts": [
-              {
-                "label": "Date of hearing",
-                "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
-                "promptRef": "HDATE",
-                "type": "DATE",
-                "value": "2020-01-01"},
-              {
-                "label": "Time of hearing",
-                "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
-                "promptRef": "timeOfHearing",
-                "type": "TIME",
-                "value": "10:00"},
-              {
-                "label": "Courtroom",
-                "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
-                "promptRef": "HCROOM",
-                "type": "HCROOM",
-                "value": "Courtroom 01"},
-              {
-                "label": "Hearing type",
-                "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
-                "promptRef": "HTYPE",
-                "type": "FIXL",
-                "value": "Hearing Type A"},
-              {
-                "label": "Estimated duration",
-                "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
-                "promptRef": "HEST",
-                "type": "DURATION",
-                "value": [
-                  {
-                    "label": "MINUTES",
-                    "value": 20},
-                ]},
-              {
-                "label": "Booking reference",
-                "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
-                "promptRef": "bookingReference",
-                "type": "TXT",
-                "value": "test-booking-reference-id"},
-              {
-                "label": "Courthouse",
-                "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
-                "promptRef": "hCHOUSE",
-                "type": "NAMEADDRESS",
-                "value": [
-                  {
-                    "label": "Courthouse organisation name",
-                    "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
-                    "promptRef": "hCHOUSEOrganisationName",
-                    "type": "TXT",
-                    "value": "Courthouse A"},
-                ]},
-            ],
-            "type": "UPDATE_RESULT_PROMPTS"}
-      `);
+      expect(storeNextSpy.mock.calls.pop()[0]).toMatchSnapshot();
     }));
 
     it('should handle submitting a duration-based slot with a known duration', fakeAsync(() => {
@@ -391,77 +315,41 @@ describe('MagistratesSchedulingContainer', () => {
       tick();
       expect(storeNextSpy.mock.calls.pop()[0]).toMatchInlineSnapshot(`
         {
+          "courtCentre": {
+            "id": "COURT002",
+            "oucode": "OUCODEL32",
+            "oucodeL2Code": "1",
+            "oucodeL2Name": "OUL2 X",
+            "oucodeL3Code": "OUCODEL32",
+            "oucodeL3Name": "Courthouse B",
+          },
+          "courtScheduleBookings": [
+            {
+              "courtScheduleId": "1",
+              "duration": 120,
+              "hearingStartTime": "2020-01-01T10:00:00.000Z",
+            },
+          ],
+          "hearingId": "HEARINGID1",
+          "promptRefToValueMap": {
+            "HCROOM": "Courtroom 01",
+            "HDATE": "2020-01-01",
+            "HEST": [
+              {
+                "label": "MINUTES",
+                "value": 20,
+              },
+            ],
+            "HTYPE": "Hearing Type A",
+            "timeOfHearing": "10:00",
+          },
           "redirectTo": [
             "/manage",
             "HEARINGID1",
             "enter-results",
           ],
           "resultLineId": "UUID:1",
-          "resultPrompts": [
-            {
-              "label": "Date of hearing",
-              "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
-              "promptRef": "HDATE",
-              "type": "DATE",
-              "value": "2020-01-01",
-            },
-            {
-              "label": "Time of hearing",
-              "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
-              "promptRef": "timeOfHearing",
-              "type": "TIME",
-              "value": "10:00",
-            },
-            {
-              "label": "Courtroom",
-              "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
-              "promptRef": "HCROOM",
-              "type": "HCROOM",
-              "value": "Courtroom 01",
-            },
-            {
-              "label": "Hearing type",
-              "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
-              "promptRef": "HTYPE",
-              "type": "FIXL",
-              "value": "Hearing Type A",
-            },
-            {
-              "label": "Estimated duration",
-              "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
-              "promptRef": "HEST",
-              "type": "DURATION",
-              "value": [
-                {
-                  "label": "MINUTES",
-                  "value": 20,
-                },
-              ],
-            },
-            {
-              "label": "Booking reference",
-              "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
-              "promptRef": "bookingReference",
-              "type": "TXT",
-              "value": "test-booking-reference-id",
-            },
-            {
-              "label": "Courthouse",
-              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
-              "promptRef": "hCHOUSE",
-              "type": "NAMEADDRESS",
-              "value": [
-                {
-                  "label": "Courthouse organisation name",
-                  "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
-                  "promptRef": "hCHOUSEOrganisationName",
-                  "type": "TXT",
-                  "value": "Courthouse B",
-                },
-              ],
-            },
-          ],
-          "type": "UPDATE_RESULT_PROMPTS",
+          "type": "BOOK_HEARING_SLOTS",
         }
       `);
     }));
@@ -478,77 +366,41 @@ describe('MagistratesSchedulingContainer', () => {
       tick();
       expect(storeNextSpy.mock.calls.pop()[0]).toMatchInlineSnapshot(`
         {
+          "courtCentre": {
+            "id": "COURT002",
+            "oucode": "OUCODEL32",
+            "oucodeL2Code": "1",
+            "oucodeL2Name": "OUL2 X",
+            "oucodeL3Code": "OUCODEL32",
+            "oucodeL3Name": "Courthouse B",
+          },
+          "courtScheduleBookings": [
+            {
+              "courtScheduleId": "1",
+              "duration": undefined,
+              "hearingStartTime": "2020-01-01T10:00:00.000Z",
+            },
+          ],
+          "hearingId": "HEARINGID1",
+          "promptRefToValueMap": {
+            "HCROOM": "Courtroom 01",
+            "HDATE": "2020-01-01",
+            "HEST": [
+              {
+                "label": "MINUTES",
+                "value": 20,
+              },
+            ],
+            "HTYPE": "Hearing Type A",
+            "timeOfHearing": "10:00",
+          },
           "redirectTo": [
             "/manage",
             "HEARINGID1",
             "enter-results",
           ],
           "resultLineId": "UUID:1",
-          "resultPrompts": [
-            {
-              "label": "Date of hearing",
-              "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
-              "promptRef": "HDATE",
-              "type": "DATE",
-              "value": "2020-01-01",
-            },
-            {
-              "label": "Time of hearing",
-              "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
-              "promptRef": "timeOfHearing",
-              "type": "TIME",
-              "value": "10:00",
-            },
-            {
-              "label": "Courtroom",
-              "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
-              "promptRef": "HCROOM",
-              "type": "HCROOM",
-              "value": "Courtroom 01",
-            },
-            {
-              "label": "Hearing type",
-              "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
-              "promptRef": "HTYPE",
-              "type": "FIXL",
-              "value": "Hearing Type A",
-            },
-            {
-              "label": "Estimated duration",
-              "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
-              "promptRef": "HEST",
-              "type": "DURATION",
-              "value": [
-                {
-                  "label": "MINUTES",
-                  "value": 20,
-                },
-              ],
-            },
-            {
-              "label": "Booking reference",
-              "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
-              "promptRef": "bookingReference",
-              "type": "TXT",
-              "value": "test-booking-reference-id",
-            },
-            {
-              "label": "Courthouse",
-              "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
-              "promptRef": "hCHOUSE",
-              "type": "NAMEADDRESS",
-              "value": [
-                {
-                  "label": "Courthouse organisation name",
-                  "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
-                  "promptRef": "hCHOUSEOrganisationName",
-                  "type": "TXT",
-                  "value": "Courthouse B",
-                },
-              ],
-            },
-          ],
-          "type": "UPDATE_RESULT_PROMPTS",
+          "type": "BOOK_HEARING_SLOTS",
         }
       `);
     }));
@@ -594,6 +446,23 @@ describe('MagistratesSchedulingContainer', () => {
       expect(storeNextSpy.mock.calls.pop()[0]).toMatchSnapshot();
     }));
   });
+
+  describe('when the booking is refused', () => {
+    it('should pass the session not available message to the component', () => {
+      store.setState({
+        ...initialState,
+        results: { ...initialState.results, hasHearingSlotsBookingError: true }
+      });
+      fixture.detectChanges();
+
+      expect(
+        fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
+          .componentInstance.bookingErrors
+      ).toEqual([
+        { id: 'backendError', message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE', shouldFocus: true }
+      ]);
+    });
+  });
 });
 
 @Component({
@@ -623,6 +492,7 @@ class TestMagistratesSchedulingComponent {
   @Input() rotaBusinessTypes: RotaBusinessType[] = [];
   @Input() totalResults = -1;
   @Input() hearingData: HearingDetail;
+  @Input() bookingErrors: ValidationError[] = [];
   @Output() cancel = new EventEmitter<void>();
   @Output() filtersSubmit = new EventEmitter<MagistratesSchedulingFilters>();
   @Output() hearingSlotAllocationsSubmit = new EventEmitter<AllocateHearingParams>();
