@@ -22,12 +22,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import { getDurationValueFromMinutes } from '../../../core/helpers';
 import {
-  getHearingSlotsBookingError,
+  getHasHearingSlotsBookingError,
   HearingSlotsBookingActions,
   ResultsState
 } from '../../../core/store';
 import { AllocationQueryParams } from '../guards/allocation.guard';
-import { HEARING_SLOTS_BOOKING_ERROR_MESSAGE_KEYS } from '../types/allocation';
 import {
   getSearchMetadata,
   getSearchParams,
@@ -82,19 +81,20 @@ export class MagistratesSchedulingContainer {
   searchResult$: Observable<HearingSlot[]>;
   totalResults$: Observable<number>;
   hearing$: Observable<HearingDetail>;
-  private readonly hearingSlotsBookingError = this.store.selectSignal(getHearingSlotsBookingError);
-  readonly bookingErrors = computed<ValidationError[]>(() => {
-    const code = this.hearingSlotsBookingError()?.error?.code;
-    return code
+  private readonly hasHearingSlotsBookingError = this.store.selectSignal(
+    getHasHearingSlotsBookingError
+  );
+  readonly bookingErrors = computed<ValidationError[]>(() =>
+    this.hasHearingSlotsBookingError()
       ? [
           {
             id: 'backendError',
-            message: this.translateService.instant(HEARING_SLOTS_BOOKING_ERROR_MESSAGE_KEYS[code]),
+            message: this.translateService.instant('MANAGE_HEARING.SESSION_NOT_AVAILABLE'),
             shouldFocus: true
           }
         ]
-      : [];
-  });
+      : []
+  );
 
   constructor(
     private store: Store<ResultsState>,

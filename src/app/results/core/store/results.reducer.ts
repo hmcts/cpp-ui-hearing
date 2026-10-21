@@ -9,7 +9,6 @@ import { HearingSlotsBookingActions } from './hearing-slots-booking.actions';
 import { ResultsValidationActions } from './results-validation.actions';
 import { ShareResultsActions } from './share-results.actions';
 import { ManageHearingPublicEventError } from '../../../manage-hearing-error-page/manage-hearing-error-page.interfaces';
-import { HearingSlotsBookingPublicEventError } from '../../hearing-details/allocation/types/allocation';
 
 export interface State {
   draftResultError: { error: string; action: Action } | null;
@@ -20,7 +19,7 @@ export interface State {
   invalidResultLines: ResolvedDraftResultLine[] | null;
   resultsValidation: ResultsValidationResponse | null;
   shareResultsValidationFailure: ResultsValidationErrors | null;
-  hearingSlotsBookingError: HearingSlotsBookingPublicEventError | null;
+  hasHearingSlotsBookingError: boolean;
   sessionBookedNotification: boolean;
 }
 
@@ -32,7 +31,7 @@ export const initialState: State = {
   invalidResultLines: null,
   resultsValidation: null,
   shareResultsValidationFailure: null,
-  hearingSlotsBookingError: null,
+  hasHearingSlotsBookingError: false,
   sessionBookedNotification: false
 };
 
@@ -40,23 +39,20 @@ export const results = createReducer(
   initialState,
   on(HearingSlotsBookingActions.bookHearingSlots, state => ({
     ...state,
-    hearingSlotsBookingError: null as State['hearingSlotsBookingError'],
+    hasHearingSlotsBookingError: false,
     sessionBookedNotification: false
   })),
   on(HearingSlotsBookingActions.bookHearingSlotsSuccess, state => ({
     ...state,
     sessionBookedNotification: true
   })),
-  on(
-    HearingSlotsBookingActions.setHearingSlotsBookingError,
-    (state, { hearingSlotsBookingError }) => ({
-      ...state,
-      hearingSlotsBookingError
-    })
-  ),
+  on(HearingSlotsBookingActions.setHearingSlotsBookingError, state => ({
+    ...state,
+    hasHearingSlotsBookingError: true
+  })),
   on(HearingSlotsBookingActions.removeHearingSlotsBookingError, state => ({
     ...state,
-    hearingSlotsBookingError: null as State['hearingSlotsBookingError']
+    hasHearingSlotsBookingError: false
   })),
   on(HearingSlotsBookingActions.resetSessionBookedNotification, state => ({
     ...state,

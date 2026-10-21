@@ -7,24 +7,12 @@ import {
 import { createDraftResult } from '../../testing';
 import { DraftResultActions } from '../draft-result.actions';
 import { HearingSlotsBookingActions } from '../hearing-slots-booking.actions';
-import {
-  HearingSlotsBookingErrorCode,
-  HearingSlotsBookingErrorType,
-  HearingSlotsBookingPublicEventError
-} from '../../../hearing-details/allocation/types/allocation';
 import { ResultsValidationActions } from '../results-validation.actions';
 import { ShareResultsActions } from '../share-results.actions';
 import { initialState, results as reducer } from '../results.reducer';
 
 describe('ResultsReducer', () => {
   const draftResult = createDraftResult();
-  const hearingSlotsBookingError = {
-    error: {
-      type: HearingSlotsBookingErrorType.BUSINESS,
-      code: HearingSlotsBookingErrorCode.NO_CAPACITY,
-      reason: 'courtscheduler returned 409'
-    }
-  } as HearingSlotsBookingPublicEventError;
   const invalidResultLines: ResolvedDraftResultLine[] = [
     {
       label: 'Case-Defendant level result',
@@ -53,7 +41,7 @@ describe('ResultsReducer', () => {
         {
           "draftResultError": null,
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -82,7 +70,7 @@ describe('ResultsReducer', () => {
           },
           "draftResultError": null,
           "draftResultSaving": true,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -103,7 +91,7 @@ describe('ResultsReducer', () => {
         {
           "draftResultError": null,
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -132,7 +120,7 @@ describe('ResultsReducer', () => {
           },
           "draftResultError": null,
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -169,7 +157,7 @@ describe('ResultsReducer', () => {
             "error": "*",
           },
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -190,7 +178,7 @@ describe('ResultsReducer', () => {
         {
           "draftResultError": null,
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": [
             {
               "caseId": "caseId",
@@ -231,7 +219,7 @@ describe('ResultsReducer', () => {
         {
           "draftResultError": null,
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -273,7 +261,7 @@ describe('ResultsReducer', () => {
         {
           "draftResultError": null,
           "draftResultSaving": false,
-          "hearingSlotsBookingError": null,
+          "hasHearingSlotsBookingError": false,
           "invalidResultLines": null,
           "manageHearingError": null,
           "resultsValidation": null,
@@ -405,11 +393,11 @@ describe('ResultsReducer', () => {
         redirectTo: []
       });
       const result = reducer(
-        { ...initialState, hearingSlotsBookingError, sessionBookedNotification: true },
+        { ...initialState, hasHearingSlotsBookingError: true, sessionBookedNotification: true },
         action
       );
 
-      expect(result.hearingSlotsBookingError).toBeNull();
+      expect(result.hasHearingSlotsBookingError).toBe(false);
       expect(result.sessionBookedNotification).toBe(false);
     });
   });
@@ -423,24 +411,24 @@ describe('ResultsReducer', () => {
   });
 
   describe('HearingSlotsBookingActions.setHearingSlotsBookingError', () => {
-    it('should store the booking error on state', () => {
+    it('should set the booking error', () => {
       const result = reducer(
         initialState,
-        HearingSlotsBookingActions.setHearingSlotsBookingError({ hearingSlotsBookingError })
+        HearingSlotsBookingActions.setHearingSlotsBookingError()
       );
 
-      expect(result.hearingSlotsBookingError).toBe(hearingSlotsBookingError);
+      expect(result.hasHearingSlotsBookingError).toBe(true);
     });
   });
 
   describe('HearingSlotsBookingActions.removeHearingSlotsBookingError', () => {
     it('should clear the booking error', () => {
       const result = reducer(
-        { ...initialState, hearingSlotsBookingError },
+        { ...initialState, hasHearingSlotsBookingError: true },
         HearingSlotsBookingActions.removeHearingSlotsBookingError()
       );
 
-      expect(result.hearingSlotsBookingError).toBeNull();
+      expect(result.hasHearingSlotsBookingError).toBe(false);
     });
   });
 

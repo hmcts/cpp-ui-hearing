@@ -1,6 +1,5 @@
 import { OrganisationUnit } from '@cpp/reference-data';
 import { createAction, props } from '@ngrx/store';
-import { HearingSlotsBookingPublicEventError } from '../../hearing-details/allocation/types/allocation';
 
 const bookHearingSlots = createAction(
   'BOOK_HEARING_SLOTS',
@@ -20,10 +19,7 @@ const bookHearingSlots = createAction(
 
 const bookHearingSlotsSuccess = createAction('BOOK_HEARING_SLOTS_SUCCESS');
 
-const setHearingSlotsBookingError = createAction(
-  'SET_HEARING_SLOTS_BOOKING_ERROR',
-  props<{ hearingSlotsBookingError: HearingSlotsBookingPublicEventError }>()
-);
+const setHearingSlotsBookingError = createAction('SET_HEARING_SLOTS_BOOKING_ERROR');
 
 const removeHearingSlotsBookingError = createAction('REMOVE_HEARING_SLOTS_BOOKING_ERROR');
 

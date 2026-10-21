@@ -24,11 +24,7 @@ import {
   HearingSlotAllocation
 } from '@cpp/scheduling';
 import { AllocateHearingParams } from './magistrates.container';
-import {
-  HearingSlotsBookingErrorCode,
-  HearingSlotsBookingErrorType,
-  MagistratesSchedulingFilters
-} from '../types/allocation';
+import { MagistratesSchedulingFilters } from '../types/allocation';
 import { ValidationError } from '@cpp/pdk';
 
 describe('MagistratesSchedulingContainer', () => {
@@ -452,25 +448,19 @@ describe('MagistratesSchedulingContainer', () => {
   });
 
   describe('when the booking is refused', () => {
-    it.each([
-      [HearingSlotsBookingErrorCode.NO_CAPACITY, 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'],
-      [HearingSlotsBookingErrorCode.NO_SESSION_AVAILABLE, 'MANAGE_HEARING.SESSION_NOT_AVAILABLE']
-    ])('should pass the message for %s to the component', (code, message) => {
+    it('should pass the session not available message to the component', () => {
       store.setState({
         ...initialState,
-        results: {
-          ...initialState.results,
-          hearingSlotsBookingError: {
-            error: { type: HearingSlotsBookingErrorType.BUSINESS, code, reason: 'reason' }
-          }
-        }
+        results: { ...initialState.results, hasHearingSlotsBookingError: true }
       });
       fixture.detectChanges();
 
       expect(
         fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
           .componentInstance.bookingErrors
-      ).toEqual([{ id: 'backendError', message, shouldFocus: true }]);
+      ).toEqual([
+        { id: 'backendError', message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE', shouldFocus: true }
+      ]);
     });
   });
 });

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CppHttp } from '@cpp/core';
 import { Observable } from 'rxjs';
-import { HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT } from '../../../../core/constants';
 
 @Injectable()
 export class ProvisionalBookingService {
@@ -25,7 +24,7 @@ export class ProvisionalBookingService {
       url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
       requestType: 'application/vnd.hearing.book-unconfirmed-hearing-slots+json',
       successEvent: 'public.hearing.hearing-slots-provisionally-booked',
-      errorEvent: HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT,
+      errorEvent: 'public.hearing.hearing-slots-provisional-booking-refused',
       body: {
         ...filters,
         slots: courtScheduleBookings

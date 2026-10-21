@@ -14,17 +14,8 @@ import {
 } from '@cpp/scheduling';
 import { cold, getTestScheduler, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
-import {
-  ApiError,
-  HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT,
-  reducers
-} from '../../../../core';
+import { ApiError, reducers } from '../../../../core';
 import { ProvisionalBookingService } from '../../../hearing-details/allocation/services/provisionalBooking.service';
-import {
-  HearingSlotsBookingErrorCode,
-  HearingSlotsBookingErrorType,
-  HearingSlotsBookingPublicEventError
-} from '../../../hearing-details/allocation/types/allocation';
 import { getDurationValueFromMinutes } from '../../helpers';
 import { createDraftResult, extendDraftResult } from '../../testing';
 import { DraftResultActions } from '../draft-result.actions';
@@ -118,67 +109,42 @@ describe('HearingSlotsBookingEffects', () => {
       expect(actions[1]).toMatchSnapshot();
     });
 
-    const bookingFailure = (error: HearingSlotsBookingPublicEventError['error']) => {
-      const originalEvent = {
-        _metadata: {
-          id: HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT,
-          name: HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT
+    const bookingRefused = (status?: number) =>
+      ({
+        status: -1,
+        originalEvent: {
+          _metadata: {
+            id: 'public.hearing.hearing-slots-provisional-booking-refused',
+            name: 'public.hearing.hearing-slots-provisional-booking-refused'
+          }
         },
-        bookingId: 'bookingId',
-        error
-      } as HearingSlotsBookingPublicEventError;
+        data: { error: { status, message: `courtscheduler returned ${status}` } }
+      } as CommandError<{ error: { status?: number; message: string } }>);
 
-      return { status: -1, originalEvent, data: { bookingId: 'bookingId', error } } as CommandError;
-    };
-
-    it('should set the booking error when the booking is refused for a business reason', () => {
-      const failure = bookingFailure({
-        type: HearingSlotsBookingErrorType.BUSINESS,
-        code: HearingSlotsBookingErrorCode.NO_CAPACITY,
-        reason: 'courtscheduler returned 409'
-      });
-
+    it('should set the booking error when the session is not available', () => {
       actions$ = hot('        -a----', { a: requestAction });
-      const response$ = cold(' -#   ', undefined, failure);
+      const response$ = cold(' -#   ', undefined, bookingRefused(422));
       const expected$ = cold('--b---', {
-        b: HearingSlotsBookingActions.setHearingSlotsBookingError({
-          hearingSlotsBookingError: failure.originalEvent as HearingSlotsBookingPublicEventError
-        })
+        b: HearingSlotsBookingActions.setHearingSlotsBookingError()
       });
       provisionalBookingService.bookProvisionalHearingSlots = jest.fn(() => response$);
 
       expect(effects.bookHearingSlots$).toBeObservable(expected$);
     });
 
-    it('should handle a technical booking failure', () => {
-      const failure = bookingFailure({
-        type: HearingSlotsBookingErrorType.TECHNICAL,
-        code: HearingSlotsBookingErrorCode.COURTSCHEDULER_ERROR,
-        reason: 'courtscheduler returned 500'
-      });
+    it.each([500, undefined])(
+      'should handle a refused booking with courtscheduler status %s as an error',
+      status => {
+        const error = bookingRefused(status);
 
-      actions$ = hot('        -a----', { a: requestAction });
-      const response$ = cold(' -#   ', undefined, failure);
-      const expected$ = cold('--b---', { b: new ApiError(failure) });
-      provisionalBookingService.bookProvisionalHearingSlots = jest.fn(() => response$);
+        actions$ = hot('        -a----', { a: requestAction });
+        const response$ = cold(' -#   ', undefined, error);
+        const expected$ = cold('--b---', { b: new ApiError(error.data.error) });
+        provisionalBookingService.bookProvisionalHearingSlots = jest.fn(() => response$);
 
-      expect(effects.bookHearingSlots$).toBeObservable(expected$);
-    });
-
-    it('should handle an unrecognised booking failure', () => {
-      const failure = bookingFailure({
-        type: HearingSlotsBookingErrorType.BUSINESS,
-        code: 'UNKNOWN' as HearingSlotsBookingErrorCode,
-        reason: 'unknown'
-      });
-
-      actions$ = hot('        -a----', { a: requestAction });
-      const response$ = cold(' -#   ', undefined, failure);
-      const expected$ = cold('--b---', { b: new ApiError(failure) });
-      provisionalBookingService.bookProvisionalHearingSlots = jest.fn(() => response$);
-
-      expect(effects.bookHearingSlots$).toBeObservable(expected$);
-    });
+        expect(effects.bookHearingSlots$).toBeObservable(expected$);
+      }
+    );
 
     it('should handle an error', () => {
       const error = new HttpErrorResponse({ status: 500 });
@@ -200,15 +166,7 @@ describe('HearingSlotsBookingEffects', () => {
       pageNumber: 2,
       pageSize: 10
     } as SearchHearingSlotsParams;
-    const requestAction = HearingSlotsBookingActions.setHearingSlotsBookingError({
-      hearingSlotsBookingError: {
-        error: {
-          type: HearingSlotsBookingErrorType.BUSINESS,
-          code: HearingSlotsBookingErrorCode.NO_CAPACITY,
-          reason: 'courtscheduler returned 409'
-        }
-      } as HearingSlotsBookingPublicEventError
-    });
+    const requestAction = HearingSlotsBookingActions.setHearingSlotsBookingError();
 
     beforeEach(() => {
       store.dispatch(loadHearingSlotsSuccess({ params, hearingSlots: [], totalResults: 1 }));

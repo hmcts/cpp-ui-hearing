@@ -52,8 +52,8 @@ export const getInvalidResultLines = (state: ResultsState) => {
   return state.results.invalidResultLines;
 };
 
-export const getHearingSlotsBookingError = (state: ResultsState) => {
-  return state.results.hearingSlotsBookingError;
+export const getHasHearingSlotsBookingError = (state: ResultsState): boolean => {
+  return state.results.hasHearingSlotsBookingError;
 };
 
 export const getSessionBookedNotification = (state: ResultsState): boolean => {

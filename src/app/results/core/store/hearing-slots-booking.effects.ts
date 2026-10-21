@@ -1,18 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CommandError } from '@cpp/core';
 import { getSchedulingState, SchedulingService } from '@cpp/scheduling';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { from, of } from 'rxjs';
 import { catchError, mergeMap, switchMap, take, withLatestFrom } from 'rxjs/operators';
-import { ApiError, HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT } from '../../../core';
+import { ApiError } from '../../../core';
 import { searchHearingSlotsToActions } from '../../hearing-details/allocation/helpers/search-hearing-slots-to-actions';
 import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
-import {
-  HEARING_SLOTS_BOOKING_ERROR_MESSAGE_KEYS,
-  HearingSlotsBookingErrorType,
-  HearingSlotsBookingPublicEventError
-} from '../../hearing-details/allocation/types/allocation';
 import { ExtendedResolvedDraftResultLine } from '../../results.interfaces';
 import {
   createDraftResultPromptsFromValueMap,
@@ -22,6 +16,7 @@ import {
 import { DraftResultActions } from './draft-result.actions';
 import { HearingSlotsBookingActions } from './hearing-slots-booking.actions';
 import { getDraftResultLineById, ResultsState } from './index';
+import { CommandError } from '@cpp/core';
 
 @Injectable()
 export class HearingSlotsBookingEffects {
@@ -74,27 +69,12 @@ export class HearingSlotsBookingEffects {
                   })
                 )
               ),
-              catchError((error: CommandError | Error) => {
-                if (
-                  'originalEvent' in error &&
-                  error.originalEvent?._metadata?.name ===
-                    HEARING_SLOTS_PROVISIONAL_BOOKING_REFUSED_PUBLIC_EVENT
-                ) {
-                  const hearingSlotsBookingError =
-                    error.originalEvent as HearingSlotsBookingPublicEventError;
-                  if (
-                    hearingSlotsBookingError.error?.type ===
-                      HearingSlotsBookingErrorType.BUSINESS &&
-                    HEARING_SLOTS_BOOKING_ERROR_MESSAGE_KEYS[hearingSlotsBookingError.error.code]
-                  ) {
-                    return of(
-                      HearingSlotsBookingActions.setHearingSlotsBookingError({
-                        hearingSlotsBookingError
-                      })
-                    );
-                  }
+              catchError((error: CommandError<{ error: { status: number } }> | Error) => {
+                if ('originalEvent' in error) {
+                  return error.data?.error?.status === 422
+                    ? of(HearingSlotsBookingActions.setHearingSlotsBookingError())
+                    : of(new ApiError(error.data?.error));
                 }
-
                 return of(new ApiError(error));
               })
             )
