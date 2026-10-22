@@ -1468,20 +1468,60 @@ describe('ShareResultContainerComponent', () => {
       expect(store.dispatch).not.toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
     });
 
-    // Without the last share the gate must be exactly what it was: check everything.
-    it('checks every reference as before when the last share cannot be fetched', () => {
+    // Previously asserted the opposite: without the last share, check every reference as before.
+    // That fallback is exactly how LPT-2600 came back on any failure of this one call, so a
+    // failed fetch now skips the check, the way a failed booking-status lookup already does.
+    it('skips the check and shares when the last share cannot be fetched', () => {
       setup(crownHearing, crownDraftResult);
       getSharedResultSpy.mockReturnValue(throwError(() => new Error('hearing query unreachable')));
-      const bookingStatusSpy = jest
-        .spyOn(listingService, 'getBookingStatus')
-        .mockReturnValue(
-          of({ bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'RESERVED' }] })
-        );
+      const bookingStatusSpy = jest.spyOn(listingService, 'getBookingStatus');
 
       component.handleShareDraftResult();
 
-      expect(bookingStatusSpy).toHaveBeenCalledWith(['booking-1']);
+      expect(bookingStatusSpy).not.toHaveBeenCalled();
       expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+    });
+
+    // LPT-2600 must not come back whenever the last-share fetch fails. The line below is the
+    // STE02 one: shared, then amended without a re-pick, still pointing at the booking the
+    // share's merge released - so courtscheduler answers NOT_FOUND. With the last share in hand
+    // it is skipped; without it, the fallback above checks it and refuses every share on the
+    // hearing. The booking-status call already fails open on error; a failed fetch of the last
+    // share is the same kind of transient failure and must not refuse the share either.
+    it('does not refuse the share over a merged-away reference when the last share cannot be fetched', () => {
+      setup(
+        magistratesHearing,
+        draftResultWithLines({
+          'line-1': {
+            resultLineId: 'line-1',
+            shortCode: 'nhmc',
+            sharedDate: '2026-06-01',
+            amendmentReason: { id: 'reason-id', reasonDescription: 'Admin error' },
+            resultPrompts: [
+              {
+                type: 'HIDDEN',
+                promptId: 'booking-prompt-id',
+                promptRef: 'bookingReference',
+                label: 'Booking reference',
+                value: 'merged-away-booking'
+              }
+            ]
+          }
+        })
+      );
+      getSharedResultSpy.mockReturnValue(throwError(() => new Error('hearing query unreachable')));
+      jest.spyOn(listingService, 'getBookingStatus').mockReturnValue(
+        of({
+          bookings: [{ bookingId: 'merged-away-booking', safeToShare: false, status: 'NOT_FOUND' }]
+        })
+      );
+
+      component.handleShareDraftResult();
+
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).not.toHaveBeenCalledWith(
+        expect.objectContaining({ hasSessionAvailabilityError: true })
+      );
     });
 
     it('checks a magistrates next hearing (NHMC) and shares when the hold is still good', () => {

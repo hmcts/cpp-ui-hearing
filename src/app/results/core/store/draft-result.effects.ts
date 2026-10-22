@@ -26,7 +26,12 @@ import { ReusableInfoService } from '../services/reusable-info.service';
 import { ResultsService } from '../services/results.service';
 import { ResultsValidationService } from '../services/results-validation.service';
 import { buildResultsValidationRequest } from '../helpers/results-validation';
-import { getBookingReferenceToRelease, getResultLineById, isUnconfirmedBooking } from '../helpers';
+import {
+  getBookingReferenceToRelease,
+  getResultLineById,
+  isBookingReferenceCarriedByAnotherLine,
+  isUnconfirmedBooking
+} from '../helpers';
 import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { getUserDetails } from '@cpp/users-groups';
 import { hasResultingAssistant } from '../../../core/selectors/user-groups';
@@ -349,6 +354,13 @@ export class DraftResultEffects {
     const bookingReference = getBookingReferenceToRelease(resultLine);
 
     if (!bookingReference) {
+      return EMPTY;
+    }
+
+    // A copied result carries the same bookingReference as its original. While another line
+    // still points at the booking it is not this line's to give up: releasing it would leave
+    // that line with no hold, and the pre-share check would refuse the share over it.
+    if (isBookingReferenceCarriedByAnotherLine(draftResult, bookingReference, resultLineId)) {
       return EMPTY;
     }
 

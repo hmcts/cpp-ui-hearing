@@ -198,21 +198,26 @@ export class ShareResultContainerComponent {
           }
 
           // References the last share carried are not checked - progression resolves them from
-          // its own record, whatever courtscheduler now says (LPT-2600). If the last share can't
-          // be fetched the set is empty, which is exactly the gate as it was before.
+          // its own record, whatever courtscheduler now says (LPT-2600).
+          //
+          // If the last share can't be fetched, the check is skipped and the share goes ahead.
+          // Falling back to checking every reference would bring LPT-2600 straight back: a
+          // merged-away reference answers NOT_FOUND and the share is refused, over a failure
+          // that has nothing to do with it. This is the same call the booking-status lookup
+          // below makes on its own errors: an advisory check must not block on a transient
+          // failure.
           return this.resultsService
             .getSharedResult(draftResult.hearingId, draftResult.hearingDay)
             .pipe(
-              map(getSharedBookingReferences),
-              catchError(() => of(new Set<string>())),
-              map(sharedBookingReferences =>
-                getBookingReferencesToCheck(draftResult, sharedBookingReferences)
+              map(sharedResult =>
+                getBookingReferencesToCheck(draftResult, getSharedBookingReferences(sharedResult))
               ),
               switchMap(bookingReferences =>
                 bookingReferences.length === 0
                   ? of({ blocked: false as const })
                   : this.checkBookingStatus(bookingReferences)
-              )
+              ),
+              catchError(() => of({ blocked: false as const }))
             );
         }),
         takeUntilDestroyed(this.destroyRef)

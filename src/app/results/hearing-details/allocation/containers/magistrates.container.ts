@@ -21,12 +21,18 @@ import { BehaviorSubject, combineLatest, EMPTY, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { ApiError, getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
-  createNameAddressResultPromptForCourtCentre,
   createDraftResultPromptsFromValueMap,
+  createNameAddressResultPromptForCourtCentre,
   getDurationValueFromMinutes,
+  isBookingReferenceCarriedByAnotherLine,
   isNameAddressPromptChoice
 } from '../../../core/helpers';
-import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
+import {
+  DraftResultActions,
+  getDraftResult,
+  getDraftResultLineById,
+  ResultsState
+} from '../../../core/store';
 import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
 import {
@@ -246,17 +252,27 @@ export class MagistratesSchedulingContainer {
       this.organisationUnits$,
       this.rotaBusinessTypes$,
       this.store.pipe(select(getDraftResultLineById(resultLineId))),
-      this.filters$
+      this.filters$,
+      this.store.pipe(select(getDraftResult))
     ])
       .pipe(
         take(1),
-        switchMap(([organisationUnits, rotaBusinessTypes, resultLine, filters]) => {
+        switchMap(([organisationUnits, rotaBusinessTypes, resultLine, filters, draftResult]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
-          const existingBookingReference = (
+          const lineBookingReference = (
             resultLine as ExtendedResolvedDraftResultLine
           ).resultPrompts?.find(prompt => prompt.promptRef === 'bookingReference')?.value as
             | string
             | undefined;
+          // A copied result shares its booking with the line it was copied from. Re-sending that
+          // id would make courtscheduler release every hold under it - the other line's too -
+          // and move it to this pick, so the other line would be listed at this session. Ask for
+          // a fresh booking instead and leave the shared one with the line still using it.
+          const existingBookingReference =
+            lineBookingReference &&
+            !isBookingReferenceCarriedByAnotherLine(draftResult, lineBookingReference, resultLineId)
+              ? lineBookingReference
+              : undefined;
           // duration is what courtscheduler decrements available_duration by when reserving a
           // DURATION-BASED session, so omitting it leaves such a reservation unable to take the
           // capacity it is claiming. It is undefined for slot-based sessions and is dropped from

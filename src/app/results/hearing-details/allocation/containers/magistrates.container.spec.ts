@@ -362,6 +362,57 @@ describe('MagistratesSchedulingContainer', () => {
       );
     }));
 
+    // A copied result line carries the SAME bookingReference as its original (copyResultLines
+    // keeps every prompt but sharedDate). Re-sending that id on a re-pick of one copy makes
+    // courtscheduler's reserveAll release EVERY hold under the id - including the other copy's -
+    // and re-take only the new session. The other copy then resolves to this copy's new session
+    // at share and its next hearing is listed in the wrong place, silently. The id is not this
+    // line's alone to move, so the re-pick must ask for a fresh one.
+    it('sends no bookingId when re-picking a line whose booking reference another line also carries (copied result)', fakeAsync(() => {
+      const sharedBookingId = 'copied-booking-reference-id';
+      const bookingReferencePrompt = {
+        promptId: 'p-booking-ref',
+        promptRef: 'bookingReference',
+        label: 'Booking reference',
+        type: 'TXT',
+        value: sharedBookingId
+      };
+      store.setState({
+        ...initialState,
+        results: {
+          draftResult: {
+            ...draftResult,
+            resultLines: {
+              ...draftResult.resultLines,
+              [resultLineId]: {
+                ...draftResult.resultLines[resultLineId],
+                resultPrompts: [bookingReferencePrompt]
+              },
+              'copied-result-line-id': {
+                ...draftResult.resultLines[resultLineId],
+                resultLineId: 'copied-result-line-id',
+                resultPrompts: [bookingReferencePrompt]
+              }
+            }
+          }
+        }
+      });
+      store.refreshState();
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+      tick();
+
+      const [args] = (
+        provisionalBookingService.bookProvisionalHearingSlots as jest.Mock
+      ).mock.calls.pop();
+      expect(args).not.toEqual(expect.objectContaining({ bookingId: expect.anything() }));
+    }));
+
     // courtscheduler decrements available_duration by this value when reserving a duration-based
     // session. Without it the reservation cannot take the capacity it claims - observed on STE02,
     // where a duration-based mags pick reached courtscheduler carrying only courtScheduleId and

@@ -68,6 +68,29 @@ export const isAttachedToExistingHearing = (resultLine: AnyDraftResultLine | und
     prompt => prompt.promptRef === EXISTING_HEARING_PROMPT_REF
   );
 
+/**
+ * Whether a line other than `resultLineId` carries `bookingReference`.
+ *
+ * <p>Copying a result (`DraftResultBuilderService.copyResultLines`) keeps every prompt but
+ * sharedDate, so a copied next hearing points at the SAME booking as its original. That booking
+ * is then not any one line's to give up: releasing it when one line is deleted leaves the other
+ * pointing at a booking with no rows (the pre-share check then refuses the share), and moving it
+ * on a re-pick of one line moves the other line's session too.
+ */
+export const isBookingReferenceCarriedByAnotherLine = (
+  draftResult: DraftResult | undefined,
+  bookingReference: string,
+  resultLineId: string
+): boolean =>
+  (Object.values(draftResult?.resultLines || {}) as AnyDraftResultLine[]).some(
+    resultLine =>
+      (resultLine as ResolvedDraftResultLine).resultLineId !== resultLineId &&
+      ((resultLine as ResolvedDraftResultLine).resultPrompts || []).some(
+        prompt =>
+          prompt.promptRef === BOOKING_REFERENCE_PROMPT_REF && prompt.value === bookingReference
+      )
+  );
+
 /** Every hold across a draft result, for the reset-results sweep that discards the whole draft. */
 export const getBookingReferencesToRelease = (draftResult: DraftResult | undefined): string[] =>
   (Object.values(draftResult?.resultLines || {}) as AnyDraftResultLine[])

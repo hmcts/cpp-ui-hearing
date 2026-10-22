@@ -332,6 +332,47 @@ describe('CrownSchedulingContainer', () => {
       );
     }));
 
+    // Same as the magistrates picker: a copied result shares its booking with the original, and
+    // re-sending that id would move the other line's hold to this pick.
+    it('sends no bookingId when re-picking a line whose booking reference another line also carries (copied result)', fakeAsync(() => {
+      const bookingReferencePrompt = {
+        promptId: 'p-booking-ref',
+        promptRef: 'bookingReference',
+        label: 'Booking reference',
+        type: 'TXT',
+        value: 'copied-booking-reference-id'
+      };
+      store.setState({
+        ...initialState,
+        results: {
+          draftResult: {
+            ...draftResult,
+            resultLines: {
+              ...draftResult.resultLines,
+              [resultLineId]: {
+                ...draftResult.resultLines[resultLineId],
+                resultPrompts: [bookingReferencePrompt]
+              },
+              'copied-result-line-id': {
+                ...draftResult.resultLines[resultLineId],
+                resultLineId: 'copied-result-line-id',
+                resultPrompts: [bookingReferencePrompt]
+              }
+            }
+          }
+        }
+      });
+      store.refreshState();
+
+      submitHearingSlotAllocations();
+      tick();
+
+      const [args] = (
+        provisionalBookingService.bookProvisionalHearingSlots as jest.Mock
+      ).mock.calls.pop();
+      expect(args).not.toEqual(expect.objectContaining({ bookingId: expect.anything() }));
+    }));
+
     it('does not write any prompt when the reservation fails', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
         throwError(() => new Error('no capacity'))

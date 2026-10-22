@@ -813,6 +813,35 @@ describe('DraftResultEffects', () => {
         // The failure is swallowed: the effect completes quietly rather than erroring.
         expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
       });
+
+      // copyResultLines copies every prompt but sharedDate, so a copied next hearing carries the
+      // SAME bookingReference as its original. Deleting one of them must not release the hold the
+      // other still relies on: the survivor would point at a booking with no rows, the pre-share
+      // gate would get NOT_FOUND, and the share would be refused with "the session you reserved
+      // has expired" - the LPT-2600 symptom, reached without any merge.
+      it('does not release a booking that another line in the draft still carries (copied result)', () => {
+        seedDraftResult({
+          ...draftResult,
+          resultLines: {
+            resultLineId: {
+              resultLineId: 'resultLineId',
+              shortCode: 'NHMC',
+              resultPrompts: [bookingReferencePrompt('booking-1')]
+            },
+            copiedResultLineId: {
+              resultLineId: 'copiedResultLineId',
+              shortCode: 'NHMC',
+              resultPrompts: [bookingReferencePrompt('booking-1')]
+            }
+          }
+        } as unknown as DraftResult);
+        provisionalBookingService.releaseProvisionalHearingSlots = jest.fn(() => of(undefined));
+
+        actions$ = hot('-a--', { a: requestAction });
+
+        expect(effects.releaseAbandonedProvisionalBooking$).toBeObservable(cold('----'));
+        expect(provisionalBookingService.releaseProvisionalHearingSlots).not.toHaveBeenCalled();
+      });
     });
 
     describe('DraftResultActions.setAmendmentReason (destroyResultLine via amend)', () => {

@@ -20,9 +20,15 @@ import {
   createDraftResultPromptsFromValueMap,
   createNameAddressResultPromptForCourtCentre,
   getDurationValueFromMinutes,
+  isBookingReferenceCarriedByAnotherLine,
   isNameAddressPromptChoice
 } from '../../../core/helpers';
-import { DraftResultActions, getDraftResultLineById, ResultsState } from '../../../core/store';
+import {
+  DraftResultActions,
+  getDraftResult,
+  getDraftResultLineById,
+  ResultsState
+} from '../../../core/store';
 import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
 import {
@@ -220,17 +226,27 @@ export class CrownSchedulingContainer {
     combineLatest([
       this.organisationUnits$,
       this.rotaBusinessTypes$,
-      this.store.pipe(select(getDraftResultLineById(resultLineId)))
+      this.store.pipe(select(getDraftResultLineById(resultLineId))),
+      this.store.pipe(select(getDraftResult))
     ])
       .pipe(
         take(1),
-        switchMap(([organisationUnits, rotaBusinessTypes, resultLine]) => {
+        switchMap(([organisationUnits, rotaBusinessTypes, resultLine, draftResult]) => {
           const { promptChoices } = resultLine as ExtendedResolvedDraftResultLine;
-          const existingBookingReference = (
+          const lineBookingReference = (
             resultLine as ExtendedResolvedDraftResultLine
           ).resultPrompts?.find(prompt => prompt.promptRef === 'bookingReference')?.value as
             | string
             | undefined;
+          // A copied result shares its booking with the line it was copied from. Re-sending that
+          // id would make courtscheduler release every hold under it - the other line's too -
+          // and move it to this pick, so the other line would be listed at this session. Ask for
+          // a fresh booking instead and leave the shared one with the line still using it.
+          const existingBookingReference =
+            lineBookingReference &&
+            !isBookingReferenceCarriedByAnotherLine(draftResult, lineBookingReference, resultLineId)
+              ? lineBookingReference
+              : undefined;
           const { hearingSlot, hearingSlotTime, duration } = hearingSlotAllocations[0];
           const redirectTo = ['/manage', hearingId, 'enter-results'];
           const rotaBusinessType = rotaBusinessTypes.find(
