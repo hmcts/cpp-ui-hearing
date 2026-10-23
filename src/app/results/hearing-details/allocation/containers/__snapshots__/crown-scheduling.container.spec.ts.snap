@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CrownSchedulingContainer should compile correctly 1`] = `
+<crown-scheduling-container
+  bookingErrors={[Function Function]}
+  currentPage$={[Function _Store]}
+  defaultFilters$={[Function Observable]}
+  filters$={[Function Observable]}
+  hasHearingSlotsBookingError={[Function Function]}
+  hearing$={[Function _Store]}
+  hearingTypes$={[Function _Store]}
+  organisationUnits$={[Function _Store]}
+  pageSize$={[Function _Store]}
+  rotaBusinessTypes$={[Function _Store]}
+  route={[Function Object]}
+  router={[Function Object]}
+  searchResult$={[Function _Store]}
+  store={[Function _MockStore]}
+  totalResults$={[Function _Store]}
+  translateService={[Function _TranslateService]}
+>
+  <crown-scheduling>
+     currentPage: 1
+    <br />
+     filters: {
+    "oucodeL2Code": "1",
+    "ouCode": "OUCODEL32",
+    "sessionStartDate": "2019-01-01",
+    "sessionEndDate": "2019-03-31",
+    "panel": "ADULT,YOUTH",
+    "jurisdiction": "CROWN",
+    "organisationUnit": {
+      "id": "COURT002",
+      "oucode": "OUCODEL32",
+      "oucodeL2Code": "1",
+      "oucodeL2Name": "OUL2 X",
+      "oucodeL3Code": "OUCODEL32",
+      "oucodeL3Name": "Crown Court B"
+    },
+    "hearingType": {
+      "id": "All",
+      "hearingCode": "All",
+      "seqId": 0,
+      "defaultDurationMin": 0,
+      "welshHearingDescription": "",
+      "hearingDescription": "All hearing types",
+      "magistratesFlag": true,
+      "crownFlag": true
+    }
+  }
+    <br />
+     hearingSlots: [
+    {
+      "courtScheduleId": "*"
+    }
+  ]
+    <br />
+     hearingTypes: [
+    {
+      "id": "HEARINGTYPEA",
+      "hearingDescription": "Hearing Type A",
+      "defaultDurationMin": 20
+    }
+  ]
+    <br />
+     organisationUnits: [
+    {
+      "id": "COURT002",
+      "oucode": "OUCODEL32",
+      "oucodeL2Code": "1",
+      "oucodeL2Name": "OUL2 X",
+      "oucodeL3Code": "OUCODEL32",
+      "oucodeL3Name": "Crown Court B"
+    }
+  ]
+    <br />
+     pageSize: 10
+    <br />
+     rotaBusinessTypes: [
+    {
+      "id": "RBT001",
+      "typeCode": "DVLA",
+      "typeDescription": "DVLA",
+      "duration": false,
+      "jurisdiction": "CROWN"
+    },
+    {
+      "id": "RBT002",
+      "typeCode": "TRL",
+      "typeDescription": "TRL",
+      "duration": true,
+      "jurisdiction": "CROWN"
+    }
+  ]
+    <br />
+     hearingData: {
+    "id": "HEARINGID1",
+    "hearingDays": [
+      {
+        "sittingDay": "2019-01-01T09:00:00.000Z"
+      }
+    ],
+    "prosecutionCases": []
+  }
+    <br />
+     totalResults: 1 
+  </crown-scheduling>
+</crown-scheduling-container>
+`;
+
+exports[`CrownSchedulingContainer submitting a hearing slot should handle submitting a duration-based slot with a known duration 1`] = `
+{
+  "courtCentre": {
+    "id": "COURT002",
+    "oucode": "OUCODEL32",
+    "oucodeL2Code": "1",
+    "oucodeL2Name": "OUL2 X",
+    "oucodeL3Code": "OUCODEL32",
+    "oucodeL3Name": "Crown Court B",
+  },
+  "courtScheduleBookings": [
+    {
+      "courtScheduleId": "1",
+      "duration": 120,
+      "hearingStartTime": "2020-01-01T10:00:00.000Z",
+    },
+  ],
+  "hearingId": "HEARINGID1",
+  "promptRefToValueMap": {
+    "HCROOM": "Courtroom 01",
+    "HDATE": "2020-01-01",
+    "HEST": [
+      {
+        "label": "HOURS",
+        "value": 2,
+      },
+    ],
+    "HTYPE": "Hearing Type A",
+    "fixedDate": "2020-01-01",
+    "timeOfHearing": "10:00",
+  },
+  "redirectTo": [
+    "/manage",
+    "HEARINGID1",
+    "enter-results",
+  ],
+  "resultLineId": "UUID:1",
+  "type": "BOOK_HEARING_SLOTS",
+}
+`;
+
+exports[`CrownSchedulingContainer submitting a hearing slot should handle submitting a non-duration based slot 1`] = `
+{
+  "courtCentre": {
+    "id": "COURT002",
+    "oucode": "OUCODEL32",
+    "oucodeL2Code": "1",
+    "oucodeL2Name": "OUL2 X",
+    "oucodeL3Code": "OUCODEL32",
+    "oucodeL3Name": "Crown Court B",
+  },
+  "courtScheduleBookings": [
+    {
+      "courtScheduleId": "1",
+      "duration": undefined,
+      "hearingStartTime": "2020-01-01T10:00:00.000Z",
+    },
+  ],
+  "hearingId": "HEARINGID1",
+  "promptRefToValueMap": {
+    "HCROOM": "Courtroom 01",
+    "HDATE": "2020-01-01",
+    "HEST": [
+      {
+        "label": "MINUTES",
+        "value": 20,
+      },
+    ],
+    "HTYPE": "Hearing Type A",
+    "fixedDate": "2020-01-01",
+    "timeOfHearing": "10:00",
+  },
+  "redirectTo": [
+    "/manage",
+    "HEARINGID1",
+    "enter-results",
+  ],
+  "resultLineId": "UUID:1",
+  "type": "BOOK_HEARING_SLOTS",
+}
+`;

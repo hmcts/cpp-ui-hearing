@@ -1,10 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   EventEmitter,
   Inject,
+  input,
   Input,
   Output,
+  signal,
   ViewChild
 } from '@angular/core';
 import {
@@ -33,15 +37,15 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div pdk-padding="6" pdk-margin-bottom="6" class="crown-scheduling-filters--bordered">
-      @if (errors) {
-      <pdk-error-summary [errors]="errors"></pdk-error-summary>
+      @if (displayErrors()) {
+      <pdk-error-summary [errors]="displayErrors()"></pdk-error-summary>
       }
       <crown-scheduling-filters
         [organisationUnits]="organisationUnits"
         [rotaBusinessTypes]="rotaBusinessTypes"
         [defaultValues]="filters"
         (filtersSubmit)="handleSubmitFilters($event)"
-        (errors)="errors = $event"
+        (errors)="errors.set($event)"
       >
       </crown-scheduling-filters>
       @if (totalResults > -1) {
@@ -65,7 +69,7 @@ import {
           [pageSize]="pageSize"
           [rotaBusinessTypes]="rotaBusinessTypes"
           [totalResults]="totalResults"
-          (errors)="errors = $event"
+          (errors)="errors.set($event)"
           (hearingSlotAllocations)="hearingSlotAllocationsSubmit.emit($event)"
           (pageChange)="pageChange.emit($event)"
         >
@@ -115,14 +119,26 @@ export class CrownSchedulingComponent {
   @Output() filtersSubmit = new EventEmitter<CrownSchedulingFilters>();
   @Output() hearingSlotAllocationsSubmit = new EventEmitter<SchedulingSlotAllocationSubmit>();
   @Output() pageChange = new EventEmitter<number>();
+  readonly bookingErrors = input<ValidationError[]>([]);
   @ViewChild('slotsRef') slotsRef: CrownSchedulingSlotsComponent;
 
-  errors: ValidationError[] | null;
+  readonly errors = signal<ValidationError[] | null>(null);
+  readonly displayErrors = computed(() => {
+    const bookingErrors = this.bookingErrors();
+    const errors = this.errors();
+    return bookingErrors.length ? [...bookingErrors, ...(errors || [])] : errors;
+  });
 
   constructor(
     @Inject(ALLOCATION_FORM_CONFIGS)
     private allocationFormConfigs: Record<string, AllocationsFormConfig>
-  ) {}
+  ) {
+    effect(() => {
+      if (this.bookingErrors().length) {
+        this.slotsRef?.reset();
+      }
+    });
+  }
 
   get allocationFormConfig(): AllocationsFormConfig {
     return this.allocationFormConfigs['showHearingType'];
