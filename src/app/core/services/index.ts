@@ -9,3 +9,5 @@ export { ReferenceDataService } from './referencedata/reference-data.service';
 export { SessionTimesService } from './session-times/session-times.service';
 export { UserGroupsService } from './usergroups/usergroups.service';
 export { FutureHearingsService } from './future-hearings/future-hearings.service';
+export { PageTitleService } from './page-title/page-title.service';
+export { PageTitleStrategy } from './page-title/page-title.strategy';

@@ -3,7 +3,6 @@
 exports[`App page component should compile correctly with all header urls 1`] = `
 <app-root
   accountUrl={[Function String]}
-  activatedRoute={[Function ActivatedRoute]}
   appConfigService={[Function Object]}
   baseUrl={[Function String]}
   bootstrap={[Function Object]}
@@ -13,9 +12,7 @@ exports[`App page component should compile correctly with all header urls 1`] = 
   loading$={[Function Observable]}
   logoutUrl={[Function String]}
   online$={[Function _Store]}
-  router={[Function _Router]}
   store={[Function _Store]}
-  titleService={[Function Object]}
   translate={[Function _TranslateService]}
   yourServicesUrl={[Function String]}
 >
@@ -510,7 +507,6 @@ exports[`App page component should compile correctly with all header urls 1`] = 
 exports[`App page component when search is available should compile correctly  1`] = `
 <app-root
   accountUrl={[Function String]}
-  activatedRoute={[Function ActivatedRoute]}
   appConfigService={[Function Object]}
   baseUrl={[Function String]}
   bootstrap={[Function Object]}
@@ -520,9 +516,7 @@ exports[`App page component when search is available should compile correctly  1
   loading$={[Function Observable]}
   logoutUrl={[Function String]}
   online$={[Function _Store]}
-  router={[Function _Router]}
   store={[Function _Store]}
-  titleService={[Function Object]}
   translate={[Function _TranslateService]}
   yourServicesUrl={[Function String]}
 >

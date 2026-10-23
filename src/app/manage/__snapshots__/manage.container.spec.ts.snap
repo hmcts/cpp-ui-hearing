@@ -28,6 +28,7 @@ exports[`ManageContainer should have the expected template 1`] = `
   isVerdictsPageAvailable$={[Function Observable]}
   modalService={[Function _ModalService]}
   offences$={[Function Observable]}
+  pageTitleService={[Function Object]}
   router={[Function Object]}
   selectedHearingDate$={[Function Observable]}
   showFutureHearingsRemoved$={[Function Observable]}

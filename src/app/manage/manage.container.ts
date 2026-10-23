@@ -1,4 +1,11 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet, RouterLink } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
@@ -45,6 +52,7 @@ import {
   loadHearingEventLogCountAction,
   LoadHearingEventsAction,
   Offence,
+  PageTitleService,
   RemoveFutureHearingsReset,
   SetSelectedHearingDateAction
 } from '../core';
@@ -138,6 +146,8 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
   showFutureHearingsRemoved$: Observable<boolean>;
   displayUnlockHearingLink: boolean;
 
+  private pageTitleService = inject(PageTitleService);
+
   constructor(
     private store: Store<AppState>,
     private activatedRoute: ActivatedRoute,
@@ -207,6 +217,13 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
       this.translate.get('COMMON.BULK_DEFENDANT')
     ]).pipe(
       take(1),
+      // the tab title uses the first of the defendants shown here, standalone application
+      // subjects come through as { personDefendant }
+      tap(([{ defendants }]) =>
+        this.pageTitleService.setDefendantNames(
+          defendants.map(defendant => defendant.personDefendant || defendant)
+        )
+      ),
       map(
         ([{ defendants, hasBulkDefendant }, bulkDefendantName]) =>
           `${
@@ -320,6 +337,7 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.complete();
+    this.pageTitleService.clearDefendantNames();
   }
 
   get isStandaloneApplication(): boolean {

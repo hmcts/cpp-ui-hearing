@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { getUserHasPermission } from '@cpp/users-groups';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,8 +14,7 @@ import {
 } from './config';
 import { AppState } from './core/reducers';
 import { BootstrapService, getHasApiActivity, getOnlineStatus } from './core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +29,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
   ],
   imports: [CppApplicationLayoutComponent, RouterOutlet, AsyncPipe]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   loading$: Observable<boolean>;
   online$: Observable<boolean>;
   headerNavItems$: Observable<HeaderNavItem[]>;
@@ -46,9 +45,7 @@ export class AppComponent implements OnInit {
     private bootstrap: BootstrapService,
     private appConfigService: AppConfigService,
     private translate: TranslateService,
-    private titleService: Title,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
+    router: Router,
     @Inject(EXPECTED_HEARING_USER_PERMISSIONS) public expectedPermissions: HearingUserPermissions
   ) {
     this.bootstrap.startConnectivityMonitor();
@@ -104,26 +101,6 @@ export class AppComponent implements OnInit {
     this.hasSearchEnabled$ = this.store.pipe(
       select(getUserHasPermission([expectedPermissions.viewCpSearch]))
     );
-  }
-  ngOnInit(): void {
-    const appTitle = this.titleService.getTitle();
-    this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        map(() => {
-          let child = this.activatedRoute.firstChild;
-          while (child.firstChild) {
-            child = child.firstChild;
-          }
-          if (child.snapshot.data['title']) {
-            return child.snapshot.data['title'];
-          }
-          return appTitle;
-        })
-      )
-      .subscribe((ttl: string) => {
-        this.titleService.setTitle(ttl);
-      });
   }
 
   get searchUrl(): string {

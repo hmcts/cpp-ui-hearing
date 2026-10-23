@@ -10,6 +10,7 @@ import {
   HearingCaseLinkType,
   HearingDetail,
   HearingLockState,
+  PageTitleService,
   SetSelectedHearingDateAction
 } from '../core';
 import * as mockData from '../core/selectors/mock/hearing.json';
@@ -31,6 +32,7 @@ describe('ManageContainer', () => {
   let state: any;
   let dispatchSpy: any;
   let component: ManageContainer;
+  let pageTitleService: jest.Mocked<PageTitleService>;
   const store: Store<AppState> = null;
   const getBaseUrl = jest.fn();
   const mockWofdWarningService = {
@@ -78,6 +80,7 @@ describe('ManageContainer', () => {
 
     scrollSpy = jest.fn();
     dispatchSpy = jest.fn();
+    pageTitleService = { setDefendantNames: jest.fn(), clearDefendantNames: jest.fn() } as any;
     selectSpy = jest.fn().mockImplementation(selectorFunc => {
       return of(selectorFunc.call(store, state));
     });
@@ -116,7 +119,8 @@ describe('ManageContainer', () => {
           }
         },
         DefendantNamesPipe,
-        { provide: WofdWarningService, useValue: mockWofdWarningService }
+        { provide: WofdWarningService, useValue: mockWofdWarningService },
+        { provide: PageTitleService, useValue: pageTitleService }
       ],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
@@ -309,6 +313,56 @@ describe('ManageContainer', () => {
       routerMock.url = '/manage/hearingId/manage-hearing-error';
       routerMock.events.next(new NavigationEnd(1, routerMock.url, routerMock.url));
       expect(component.displayUnlockHearingLink).toBe(false);
+    });
+  });
+
+  describe('page title', () => {
+    it('should not put any names in the tab while the header is not shown', () => {
+      // the user is not (yet) known to be allowed to see the hearing, so there is no header
+      expect(pageTitleService.setDefendantNames).not.toHaveBeenCalled();
+    });
+
+    it('should hand the defendants shown in the header to the page title service', () => {
+      component.defendantsNames$.subscribe();
+
+      expect(pageTitleService.setDefendantNames).toHaveBeenCalledWith([
+        expect.objectContaining({ firstName: 'Harry', lastName: 'Kane Junior' })
+      ]);
+    });
+
+    it('should unwrap standalone application subjects for the page title service', () => {
+      // a new state object, the memoised selectors would otherwise return the cached hearing
+      state = {
+        ...state,
+        hearings: {
+          ...state.hearings,
+          current: {
+            ...state.hearings.current,
+            hearing: {
+              ...mockHearing,
+              prosecutionCases: [],
+              courtApplications: [
+                {
+                  ...mockHearing.courtApplications[0],
+                  subject: { personDetails: { firstName: 'Anna', lastName: 'Smith' } }
+                }
+              ]
+            }
+          }
+        }
+      };
+      component.ngOnInit();
+      component.defendantsNames$.subscribe();
+
+      expect(pageTitleService.setDefendantNames).toHaveBeenLastCalledWith([
+        expect.objectContaining({ firstName: 'Anna', lastName: 'Smith' })
+      ]);
+    });
+
+    it('should clear the page title names when it is destroyed', () => {
+      component.ngOnDestroy();
+
+      expect(pageTitleService.clearDefendantNames).toHaveBeenCalledTimes(1);
     });
   });
 });
