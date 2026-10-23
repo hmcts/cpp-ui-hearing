@@ -97,6 +97,28 @@ describe('HearingSlotsBookingEffects', () => {
       });
     });
 
+    it('should send the existing bookingId when the session is changed', () => {
+      actions$ = hot('        -a----', {
+        a: HearingSlotsBookingActions.bookHearingSlots({ ...requestAction, bookingId: 'BOOKING1' })
+      });
+      const response$ = cold(' -(r|)', { r: { bookingId: 'BOOKING1' } });
+      provisionalBookingService.bookProvisionalHearingSlots = jest.fn(() => response$);
+
+      expect(effects.bookHearingSlots$).toBeObservable(
+        cold('--(bc)', {
+          b: HearingSlotsBookingActions.bookHearingSlotsSuccess(),
+          c: expect.objectContaining({
+            type: DraftResultActions.updateResultPromptsForDraftResultLine.type
+          })
+        })
+      );
+      expect(provisionalBookingService.bookProvisionalHearingSlots).toHaveBeenCalledWith({
+        hearingId: 'hearingId',
+        bookingId: 'BOOKING1',
+        courtScheduleBookings
+      });
+    });
+
     it('should write the bookingId into the result prompts', () => {
       actions$ = hot('        -a----', { a: requestAction });
       const response$ = cold(' -(r|)', { r: { bookingId: 'bookingId' } });

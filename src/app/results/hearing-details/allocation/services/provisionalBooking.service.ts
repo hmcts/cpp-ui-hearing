@@ -12,6 +12,7 @@ export class ProvisionalBookingService {
     ...filters
   }: {
     hearingId: string;
+    bookingId?: string;
     bookingType?: string;
     courtScheduleBookings: {
       courtScheduleId: string;

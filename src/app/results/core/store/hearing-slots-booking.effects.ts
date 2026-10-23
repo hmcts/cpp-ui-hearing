@@ -34,13 +34,14 @@ export class HearingSlotsBookingEffects {
         ({
           hearingId,
           resultLineId,
+          bookingId,
           courtScheduleBookings,
           promptRefToValueMap,
           courtCentre,
           redirectTo
         }) =>
           this.provisionalBookingService
-            .bookProvisionalHearingSlots({ hearingId, courtScheduleBookings })
+            .bookProvisionalHearingSlots({ hearingId, bookingId, courtScheduleBookings })
             .pipe(
               switchMap(({ bookingId }) =>
                 this.store.pipe(
