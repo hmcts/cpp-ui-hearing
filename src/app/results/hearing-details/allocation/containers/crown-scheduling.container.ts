@@ -18,10 +18,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import { getDurationValueFromMinutes } from '../../../core/helpers';
 import {
+  getDraftResultLineById,
   getHasHearingSlotsBookingError,
   HearingSlotsBookingActions,
   ResultsState
 } from '../../../core/store';
+import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
 import {
   CrownSchedulingFilters,
@@ -202,10 +204,17 @@ export class CrownSchedulingContainer {
     const currentParams = this.route.snapshot.params;
     const { hearingId, resultLineId } = { ...parentParams, ...currentParams };
 
-    combineLatest([this.organisationUnits$, this.rotaBusinessTypes$])
+    combineLatest([
+      this.organisationUnits$,
+      this.rotaBusinessTypes$,
+      this.store.pipe(select(getDraftResultLineById(resultLineId)))
+    ])
       .pipe(
         take(1),
-        map(([organisationUnits, rotaBusinessTypes]) => {
+        map(([organisationUnits, rotaBusinessTypes, resultLine]) => {
+          const bookingId = (resultLine as ExtendedResolvedDraftResultLine)?.resultPrompts?.find(
+            ({ promptRef }) => promptRef === 'bookingReference'
+          )?.value as string | undefined;
           const courtScheduleBookings = hearingSlotAllocations.map(allocation => ({
             courtScheduleId: allocation.hearingSlot.courtScheduleId,
             hearingStartTime: allocation.hearingSlotTime,
@@ -233,6 +242,7 @@ export class CrownSchedulingContainer {
           return HearingSlotsBookingActions.bookHearingSlots({
             hearingId,
             resultLineId,
+            bookingId,
             courtScheduleBookings,
             promptRefToValueMap,
             courtCentre: organisationUnits.find(ou => ou.oucode === hearingSlot.ouCode),

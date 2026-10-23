@@ -220,6 +220,38 @@ describe('CrownSchedulingContainer', () => {
 
       expect(storeNextSpy).not.toHaveBeenCalled();
     });
+
+    it('should send the existing booking when the line already has a session', () => {
+      const resultLine = draftResult.resultLines[resultLineId];
+      store.setState({
+        ...initialState,
+        results: {
+          draftResult: {
+            ...draftResult,
+            resultLines: {
+              ...draftResult.resultLines,
+              [resultLineId]: {
+                ...resultLine,
+                resultPrompts: [
+                  ...('resultPrompts' in resultLine ? resultLine.resultPrompts : []),
+                  { promptRef: 'bookingReference', value: 'BOOKING1' }
+                ]
+              }
+            }
+          }
+        }
+      });
+      storeNextSpy.mockClear();
+
+      submitHearingSlotAllocations([
+        {
+          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
+          hearingSlotTime: '2020-01-01T10:00:00.000Z'
+        }
+      ]);
+
+      expect(storeNextSpy.mock.calls.pop()[0].bookingId).toBe('BOOKING1');
+    });
   });
 
   describe('when the booking is refused', () => {
