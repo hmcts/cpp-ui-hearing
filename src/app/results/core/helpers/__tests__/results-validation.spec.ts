@@ -1,7 +1,8 @@
 import { Defendant } from '../../../../core/model/defendant';
 import { HearingDetail } from '../../../../core/model/hearing-detail';
-import { PersonDefendant } from '../../../../core/model/person-defendant';
-import { Organisation } from '../../../../core/model/organisation';
+import { HearingPersonDetails } from '../../../../core/model/hearing-person-details';
+import { Offence } from '../../../../core/model/offence';
+import { ProsecutionCaseDetails } from '../../../../core/model/shared/prosecution-case-details';
 import { DraftResult, ResolvedDraftResultLine } from '../../../results.interfaces';
 import {
   ResultsLineValidation,
@@ -43,6 +44,17 @@ describe('buildResultsValidationRequest', () => {
       ...overrides
     } as Defendant);
 
+  const createHearingPersonDetails = (
+    overrides: Partial<HearingPersonDetails> = {}
+  ): HearingPersonDetails => ({
+    firstName: 'Alice',
+    lastName: 'Smith',
+    defendantId: 'defendantId1',
+    masterDefendantId: 'masterDefendantId1',
+    offences: [],
+    ...overrides
+  });
+
   const createResolvedResultLine = (
     overrides: Partial<ResolvedDraftResultLine> = {}
   ): ResolvedDraftResultLine =>
@@ -83,7 +95,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toEqual([
@@ -99,7 +111,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toEqual([
@@ -115,7 +127,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toEqual([
@@ -131,7 +143,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toHaveLength(1);
@@ -144,7 +156,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toHaveLength(1);
@@ -164,7 +176,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0]).toEqual(
@@ -195,7 +207,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].isConcurrent).toBe(true);
@@ -206,7 +218,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0]).not.toHaveProperty('isConcurrent');
@@ -229,7 +241,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].consecutiveToOffence).toBe('offenceId3');
@@ -250,7 +262,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0]).not.toHaveProperty('consecutiveToOffence');
@@ -286,7 +298,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0]).toEqual({
@@ -329,7 +341,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].prompts).toEqual([
@@ -360,7 +372,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].prompts).toEqual([
@@ -398,7 +410,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].prompts).toEqual([
@@ -421,7 +433,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].prompts).toEqual([
@@ -447,7 +459,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].prompts).toEqual([
@@ -477,7 +489,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0].prompts).toEqual([
@@ -491,7 +503,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0]).not.toHaveProperty('prompts');
@@ -512,7 +524,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({ [line.resultLineId]: line });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines[0]).not.toHaveProperty('prompts');
@@ -533,7 +545,7 @@ describe('buildResultsValidationRequest', () => {
         });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toHaveLength(1);
@@ -558,7 +570,7 @@ describe('buildResultsValidationRequest', () => {
         });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toHaveLength(1);
@@ -569,7 +581,7 @@ describe('buildResultsValidationRequest', () => {
         const draftResult = createDraftResult({});
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toEqual([]);
@@ -580,7 +592,7 @@ describe('buildResultsValidationRequest', () => {
         (draftResult as any).resultLines = undefined;
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toEqual([]);
@@ -621,7 +633,7 @@ describe('buildResultsValidationRequest', () => {
         });
 
         const request = buildResultsValidationRequest(draftResult, createMinimalHearing(), [
-          createDefendant()
+          createHearingPersonDetails()
         ]);
 
         expect(request.resultLines).toHaveLength(4);
@@ -661,13 +673,13 @@ describe('buildResultsValidationRequest', () => {
   });
 
   describe('defendants mapping', () => {
-    it('should map person defendant fields', () => {
-      const defendant = createDefendant({
-        id: 'defendantId2',
+    it('should map defendant fields', () => {
+      const defendant = createHearingPersonDetails({
+        defendantId: 'defendantId2',
         masterDefendantId: 'masterDefendantId2',
-        personDefendant: {
-          personDetails: { firstName: 'Bob', lastName: 'Jones', dateOfBirth: '1990-05-20' }
-        } as Partial<PersonDefendant> as PersonDefendant
+        firstName: 'Bob',
+        lastName: 'Jones',
+        dateOfBirth: '1990-05-20'
       });
 
       const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
@@ -686,9 +698,9 @@ describe('buildResultsValidationRequest', () => {
     });
 
     it('should deduplicate defendants by id', () => {
-      const def1 = createDefendant({ id: 'defendantId1' });
-      const def1Dup = createDefendant({ id: 'defendantId1' });
-      const def2 = createDefendant({ id: 'defendantId2' });
+      const def1 = createHearingPersonDetails({ defendantId: 'defendantId1' });
+      const def1Dup = createHearingPersonDetails({ defendantId: 'defendantId1' });
+      const def2 = createHearingPersonDetails({ defendantId: 'defendantId2' });
 
       const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
         def1,
@@ -699,46 +711,11 @@ describe('buildResultsValidationRequest', () => {
       expect(request.defendants).toHaveLength(2);
     });
 
-    it('should use organisation name for legal entity defendants', () => {
-      const defendant = createDefendant({
-        id: 'defendantId3',
-        personDefendant: undefined as any,
-        legalEntityDefendant: {
-          organisation: { name: 'ACME Corp' }
-        } as any
-      });
-
-      const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
-        defendant
-      ]);
-
-      expect(request.defendants[0].firstName).toBe('ACME Corp');
-      expect(request.defendants[0].lastName).toBe('');
-    });
-
-    it('should leave dateOfBirth undefined for a legal entity (organisation) defendant', () => {
-      const defendant = createDefendant({
-        id: 'defendantId3',
-        personDefendant: {
-          personDetails: {}
-        } as Partial<PersonDefendant> as PersonDefendant,
-        legalEntityDefendant: {
-          organisation: { name: 'ACME Corp' } as Partial<Organisation> as Organisation
-        }
-      });
-
-      const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
-        defendant
-      ]);
-
-      expect(request.defendants[0].dateOfBirth).toBeUndefined();
-    });
-
-    it('should fallback to empty string when defendant has no personDefendant and no legalEntityDefendant', () => {
-      const defendant = createDefendant({
-        id: 'defendantId4',
-        personDefendant: undefined as any,
-        legalEntityDefendant: undefined as any
+    it('should fallback to empty string when firstName/lastName are not present on the defendant', () => {
+      const defendant = createHearingPersonDetails({
+        defendantId: 'defendantId4',
+        firstName: undefined as any,
+        lastName: undefined as any
       });
 
       const request = buildResultsValidationRequest(createDraftResult({}), createMinimalHearing(), [
@@ -783,8 +760,49 @@ describe('buildResultsValidationRequest', () => {
           orderIndex: 1,
           caseUrn: 'caseURN1',
           hasExistingCtlRecord: false,
-          isConvicted: false
+          isConvicted: false,
+          defendantId: 'defendantId1'
         }
+      ]);
+    });
+
+    it('should map defendantId to the offence from its owning defendant', () => {
+      const hearing = createMinimalHearing({
+        prosecutionCases: [
+          {
+            id: 'prosecutionCaseId1',
+            prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+            defendants: [
+              createDefendant({
+                id: 'defendantId1',
+                offences: [
+                  {
+                    id: 'offenceId1',
+                    offenceCode: 'TH68001',
+                    offenceTitle: 'Theft'
+                  } as Partial<Offence> as Offence
+                ]
+              }),
+              createDefendant({
+                id: 'defendantId2',
+                offences: [
+                  {
+                    id: 'offenceId2',
+                    offenceCode: 'TH68002',
+                    offenceTitle: 'Burglary'
+                  } as Partial<Offence> as Offence
+                ]
+              })
+            ]
+          } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+        ]
+      });
+
+      const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+      expect(request.offences).toEqual([
+        expect.objectContaining({ offenceId: 'offenceId1', defendantId: 'defendantId1' }),
+        expect.objectContaining({ offenceId: 'offenceId2', defendantId: 'defendantId2' })
       ]);
     });
 
@@ -930,6 +948,74 @@ describe('buildResultsValidationRequest', () => {
         expect(request.offences[0]).toEqual(
           expect.objectContaining({ hasExistingCtlRecord: true, isConvicted: true })
         );
+      });
+    });
+
+    describe('bailStatus field', () => {
+      const buildHearingWithOffence = (offence: object) =>
+        createMinimalHearing({
+          prosecutionCases: [
+            {
+              id: 'prosecutionCaseId1',
+              prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+              defendants: [createDefendant({ offences: [offence as any] })]
+            } as any
+          ]
+        });
+
+      it('should include bailStatus mapped from bailStatus.code when the offence has a bailStatus object', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1,
+          bailStatus: { code: 'B', description: 'Bail', id: 'bailStatusId1' }
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).toEqual(expect.objectContaining({ bailStatus: 'B' }));
+      });
+
+      it('should NOT include bailStatus when the offence has no bailStatus object', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('bailStatus');
+      });
+
+      it('should NOT include bailStatus when the bailStatus object is undefined', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1,
+          bailStatus: undefined
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('bailStatus');
+      });
+
+      it('should include bailStatus as undefined-code value when bailStatus object is present but code is missing', () => {
+        const hearing = buildHearingWithOffence({
+          id: 'offenceId1',
+          offenceCode: 'TH68001',
+          offenceTitle: 'Theft',
+          orderIndex: 1,
+          bailStatus: { description: 'Bail', id: 'bailStatusId1' }
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).toEqual(expect.objectContaining({ bailStatus: undefined }));
       });
     });
   });

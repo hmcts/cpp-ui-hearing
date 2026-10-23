@@ -1,5 +1,6 @@
 import { NotificationEvent } from '@cpp/core';
 import { JurisdictionType } from '../core/model/hearing-detail';
+import { Offence } from '../core';
 
 export interface ResultsValidationErrors {
   errorMessages: string[];
@@ -100,6 +101,8 @@ export interface ResultsValidationOffence {
   caseUrn?: string;
   hasExistingCtlRecord?: boolean;
   isConvicted?: boolean;
+  bailStatus?: string;
+  defendantId: string;
 }
 
 export interface ResultsValidation {
@@ -110,4 +113,10 @@ export interface ResultsValidation {
   resultLines: ResultsLineValidation[];
   defendants: ResultsValidationDefendant[];
   offences: ResultsValidationOffence[];
+}
+
+export interface OffenceWithCaseAndDefendant {
+  offence: Offence;
+  caseUrn?: string;
+  defendantId: string;
 }
