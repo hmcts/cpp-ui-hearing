@@ -35,7 +35,7 @@ import {
   template: `
     @if (hasAvailableActions) {
     <pdk-button-group>
-      @if (canAdjudicateAmendmentsValidate) {
+      @if (canAdjudicateAmendments) {
       <button pdk-button (click)="approveAmendments.emit()">Validate amendments</button>
       } @if (canAdjudicateAmendments) {
       <button pdk-button="secondary" (click)="rejectAmendments.emit()">Reject amendments</button>
@@ -126,13 +126,6 @@ export class ShareResultActionBarComponent {
     );
   }
 
-  get canAdjudicateAmendmentsValidate(): boolean {
-    return (
-      this.hearingLockState === HearingLockState.APPROVAL_REQUESTED &&
-      !this.amendedByCurrentUser &&
-      !this.hasValidationErrors
-    );
-  }
   // When a hearing has been locked for amendments, these amendments can be
   // cancelled only by the amending user. Upon cancellation, the draft result
   // will be reverted to its last shared state.
@@ -153,7 +146,6 @@ export class ShareResultActionBarComponent {
   get canRequestApproval(): boolean {
     return (
       this.draftResultValid &&
-      !this.hasValidationErrors &&
       (this.hearingLockState === HearingLockState.SHARED_AMEND_LOCKED_ADMIN_ERROR ||
         this.hearingLockState === HearingLockState.SHARED_AMEND_LOCKED_USER_ERROR) &&
       this.amendedByCurrentUser
@@ -178,7 +170,6 @@ export class ShareResultActionBarComponent {
       (this.canAdjudicateAmendments ||
         this.canCancelAmendments ||
         this.canRequestApproval ||
-        this.canAdjudicateAmendmentsValidate ||
         this.canShareUnlockedDraftResult)
     );
   }
