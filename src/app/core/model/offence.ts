@@ -51,11 +51,6 @@ export interface Offence {
   civilOffence?: {
     isExParte?: boolean;
   };
-  bailStatus?: {
-    code: string;
-    description: string;
-    id: string;
-  };
 }
 
 export interface OffenceVerdict {
