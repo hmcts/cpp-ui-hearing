@@ -88,8 +88,6 @@ import {
   ]
 })
 export class DurationInputComponent implements ControlValueAccessor, FormFieldControlV2, Validator {
-  readonly digitsOnlyRegex = /^\d+$/;
-
   @Input() ariaDescribedBy: string;
   @Input() hasError = false;
   @Input() promptChoice: DurationPromptChoice;
@@ -119,10 +117,6 @@ export class DurationInputComponent implements ControlValueAccessor, FormFieldCo
     {
       rule: 'minimumValue',
       message: `Enter a value that is greater than or equal to {{minValue}}`
-    },
-    {
-      rule: 'number',
-      message: `Enter a valid number`
     }
   ];
   multi = true;
@@ -198,11 +192,6 @@ export class DurationInputComponent implements ControlValueAccessor, FormFieldCo
       const minValue = Number(child.minValue || 0);
 
       if (ngModel.value) {
-        if (!this.digitsOnlyRegex.test(String(ngModel.value))) {
-          errors = { number: true };
-          return;
-        }
-
         const value = Number(ngModel.value);
 
         if (value >= 0) {
