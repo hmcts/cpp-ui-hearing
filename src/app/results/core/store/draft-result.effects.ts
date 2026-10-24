@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { EMPTY, forkJoin, from, merge, of } from 'rxjs';
+import { forkJoin, from, merge, of } from 'rxjs';
 import {
   catchError,
   concatMap,
   filter,
   map,
   mapTo,
-  mergeMap,
   switchMap,
   tap,
   withLatestFrom,
@@ -20,25 +19,18 @@ import {
   getCurrentHearingState,
   getDefendantsFromAllCases
 } from '../../../core/selectors/hearing';
-import { getCurrentHearing, ListingService } from '../../../core';
+import { getCurrentHearing } from '../../../core';
 import { DraftResultBuilderService } from '../services/draft-result-builder.service';
 import { ReusableInfoService } from '../services/reusable-info.service';
 import { ResultsService } from '../services/results.service';
 import { ResultsValidationService } from '../services/results-validation.service';
 import { buildResultsValidationRequest } from '../helpers/results-validation';
-import {
-  getBookingReferenceToRelease,
-  getResultLineById,
-  isBookingReferenceCarriedByAnotherLine,
-  isUnconfirmedBooking
-} from '../helpers';
-import { ProvisionalBookingService } from '../../hearing-details/allocation/services/provisionalBooking.service';
 import { getUserDetails } from '@cpp/users-groups';
 import { hasResultingAssistant } from '../../../core/selectors/user-groups';
 import { DraftResultActions } from './draft-result.actions';
 import { ResultsValidationActions } from './results-validation.actions';
 import { ResultsState, getDraftResult } from './index';
-import { DraftResult, InvalidResulLinesError } from '../../results.interfaces';
+import { InvalidResulLinesError } from '../../results.interfaces';
 import { ManageHearingPublicEventError } from '../../../manage-hearing-error-page/manage-hearing-error-page.interfaces';
 import { CommandError } from '@cpp/core';
 import {
@@ -54,8 +46,6 @@ export class DraftResultEffects {
   constructor(
     private actions$: Actions,
     private draftResultBuilderService: DraftResultBuilderService,
-    private listingService: ListingService,
-    private provisionalBookingService: ProvisionalBookingService,
     private resultService: ResultsService,
     private resultsValidationService: ResultsValidationService,
     private reusableInfoService: ReusableInfoService,
@@ -321,68 +311,6 @@ export class DraftResultEffects {
       })
     )
   );
-
-  // Releases the hold a result line carries the instant the line is abandoned. Both trigger
-  // paths end in destroyResultLine, which rebuilds the draft without the line - and so without
-  // the only pointer to the bookingId - so the reference is read here, before that happens.
-  //
-  // Only a booking courtscheduler reports as UNCONFIRMED is released; a confirmed one is left
-  // alone, since only a share may change it. The line's own sharedDate cannot decide this - see
-  // isUnconfirmedBooking.
-  //
-  // dispatch: false, and kept out of the draftResultEvents$ merge whose catchError would turn a
-  // failed release into a failed delete. It is best-effort and idempotent on the backend.
-  releaseAbandonedProvisionalBooking$ = createEffect(
-    () =>
-      merge(
-        this.actions$.pipe(ofType(DraftResultActions.destroyDraftResultLine)),
-        this.actions$.pipe(
-          ofType(DraftResultActions.setAmendmentReason),
-          filter(({ destroyResultLine }) => !!destroyResultLine)
-        )
-      ).pipe(
-        withLatestFrom(this.draftResult$),
-        mergeMap(([{ resultLineId }, draftResult]) =>
-          this.releaseProvisionalBookingForResultLine(draftResult, resultLineId)
-        )
-      ),
-    { dispatch: false }
-  );
-
-  private releaseProvisionalBookingForResultLine(draftResult: DraftResult, resultLineId: string) {
-    const resultLine = getResultLineById(draftResult, resultLineId);
-    const bookingReference = getBookingReferenceToRelease(resultLine);
-
-    if (!bookingReference) {
-      return EMPTY;
-    }
-
-    // A copied result carries the same bookingReference as its original. While another line
-    // still points at the booking it is not this line's to give up: releasing it would leave
-    // that line with no hold, and the pre-share check would refuse the share over it.
-    if (isBookingReferenceCarriedByAnotherLine(draftResult, bookingReference, resultLineId)) {
-      return EMPTY;
-    }
-
-    // Ask courtscheduler whether this booking is still unconfirmed before touching it. A
-    // confirmed booking may only be changed by another share, and the bookingReference alone
-    // cannot tell them apart - a re-pick reuses the same id. See isUnconfirmedBooking.
-    return this.listingService.getBookingStatus([bookingReference]).pipe(
-      switchMap(response =>
-        isUnconfirmedBooking(response?.bookings, bookingReference)
-          ? this.provisionalBookingService.releaseProvisionalHearingSlots({
-              hearingId: draftResult.hearingId,
-              bookingId: bookingReference
-            })
-          : EMPTY
-      ),
-      // Fails CLOSED, unlike the pre-share gate: if the status lookup itself fails we do not
-      // know whether the booking is confirmed, and releasing a confirmed one is the thing that
-      // must never happen. Skipping costs only that an unconfirmed hold waits for the 01:00
-      // purge, which exists for exactly this.
-      catchError(() => EMPTY)
-    );
-  }
 
   validate$ = createEffect(() =>
     this.actions$.pipe(

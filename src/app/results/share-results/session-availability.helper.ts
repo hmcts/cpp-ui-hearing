@@ -5,25 +5,16 @@ import {
   ResolvedDraftResultLine,
   SharedResult
 } from '../results.interfaces';
-import { getBookingReferenceToRelease, isAttachedToExistingHearing } from '../core/helpers';
+import { getBookingReference, isAttachedToExistingHearing } from '../core/helpers';
 
 const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
 
 /**
  * Every bookingId the pre-share gate must ask courtscheduler about.
  *
- * <p>This used to delegate wholesale to {@link getBookingReferencesToRelease} on the grounds that
- * the two predicates should never drift. They have to differ in exactly one respect, because the
- * two callers ask different questions:
- *
- * <ul>
- *   <li>the RELEASE path asks "is there a live hold behind this value?" - an attach-to-existing
- *       line that went through the pick journey does hold one, and it is surplus, so it is
- *       included there;</li>
- *   <li>this GATE asks "does this line need a live hold to be shareable?" - an attach line does
- *       not, since the hearing it points at is already listed. Checking it would let a hold that
- *       expired hours ago block a share that is perfectly valid.</li>
- * </ul>
+ * <p>A line attached to an existing hearing is left out: it needs no hold of its own to be
+ * shareable, since the hearing it points at is already listed, and checking it would let a hold
+ * that expired hours ago block a share that is perfectly valid.
  *
  * <p>What must NOT come back is the old allowlist of result short codes: it silently returned []
  * for any code nobody remembered to add, the gate then skipped the call entirely, and a clerk
@@ -88,6 +79,6 @@ export const getBookingReferencesToCheck = (
   (Object.values(draftResult?.resultLines || {}) as AnyDraftResultLine[])
     .filter(resultLine => !isAttachedToExistingHearing(resultLine))
     .filter(resultLine => !isSettledShare(resultLine))
-    .map(getBookingReferenceToRelease)
+    .map(getBookingReference)
     .filter((bookingReference): bookingReference is string => !!bookingReference)
     .filter(bookingReference => !sharedBookingReferences.has(bookingReference));

@@ -124,23 +124,4 @@ export class ProvisionalBookingService {
         })
       );
   }
-
-  /**
-   * Releases a hold. Fire-and-forget: the backend treats an unknown or already-released
-   * bookingId as a no-op and publishes no event, so `command` is used rather than `commandSync`,
-   * which would wait forever for an event that never comes.
-   */
-  releaseProvisionalHearingSlots({
-    hearingId,
-    bookingId
-  }: {
-    hearingId: string;
-    bookingId: string;
-  }): Observable<void> {
-    return this.cppHttp.command({
-      url: `/hearing-command-api/command/api/rest/hearing/hearings/${hearingId}/hearing-slots`,
-      requestType: 'application/vnd.hearing.release-unconfirmed-hearing-slots+json',
-      body: { bookingId }
-    });
-  }
 }

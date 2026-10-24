@@ -293,26 +293,4 @@ describe('ProvisionalBookingService', () => {
       );
     });
   });
-
-  describe('releaseProvisionalHearingSlots()', () => {
-    it('should release the booked hearing slots', () => {
-      const response$ = cold('-a|', { a: undefined });
-      const expected$ = cold('-b|', { b: undefined });
-
-      http.command = jest.fn().mockReturnValue(response$);
-
-      const command$ = service.releaseProvisionalHearingSlots({
-        hearingId: 'hearingId',
-        bookingId: 'booking-1'
-      });
-
-      expect(command$).toBeObservable(expected$);
-
-      expect(http.command).toHaveBeenCalledWith({
-        url: `/hearing-command-api/command/api/rest/hearing/hearings/hearingId/hearing-slots`,
-        requestType: 'application/vnd.hearing.release-unconfirmed-hearing-slots+json',
-        body: { bookingId: 'booking-1' }
-      });
-    });
-  });
 });
