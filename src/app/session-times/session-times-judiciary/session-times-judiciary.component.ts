@@ -82,9 +82,11 @@ export class SessionTimesJudiciaryComponent {
 
     let session: CourtSession;
 
-    session = this.addJudicialMemnberToSession(form.judge1, 0, form, session);
-    session = this.addJudicialMemnberToSession(form.judge2, 1, form, session);
-    session = this.addJudicialMemnberToSession(form.judge3, 2, form, session);
+    Object.entries(form.judiciaries || {})
+      .sort(([leftIndex], [rightIndex]) => Number(leftIndex) - Number(rightIndex))
+      .forEach(([index, judicialMember]) => {
+        session = this.addJudicialMemberToSession(judicialMember, Number(index), form, session);
+      });
 
     session = this.addOtherJudiciariesToSession(form.otherJudiciaries, session);
 
@@ -133,7 +135,7 @@ export class SessionTimesJudiciaryComponent {
     this.isSaveBtnEnabled = false;
   }
 
-  private addJudicialMemnberToSession(
+  private addJudicialMemberToSession(
     judicialMember: JudicialMember,
     judicialMemberIndex: number,
     form: SessionTimesCourtForm,
