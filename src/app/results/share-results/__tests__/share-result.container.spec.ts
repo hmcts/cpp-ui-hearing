@@ -1286,6 +1286,24 @@ describe('ShareResultContainerComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
     });
 
+    // LPT-2611: the hold had expired, but its session still had room and courtscheduler took it
+    // again under the same booking id. The clerk must not be sent back to re-pick.
+    it('shares when an expired booking was re-booked (REBOOKED)', () => {
+      setup(crownHearing, crownDraftResult);
+      jest
+        .spyOn(listingService, 'getBookingStatus')
+        .mockReturnValue(
+          of({ bookings: [{ bookingId: 'booking-1', safeToShare: true, status: 'REBOOKED' }] })
+        );
+
+      component.handleShareDraftResult();
+
+      expect(store.dispatch).toHaveBeenCalledWith(ShareResultsActions.shareDraftResult());
+      expect(validationResultSpy).not.toHaveBeenCalledWith(
+        expect.objectContaining({ hasSessionAvailabilityError: true })
+      );
+    });
+
     // Amending is TWO shares: the amender submits for approval, then a second user approves,
     // potentially the next morning with the 01:00 purge in between. Both stages reach listing, so
     // both need the check - these four tests exist because neither had one, and an amended result

@@ -150,6 +150,8 @@ describe('ListingService', () => {
 
     const bookings = [{ bookingId: 'booking-1', safeToShare: false, status: 'NOT_FOUND' }];
 
+    // LPT-2611: the pre-share gate is the only caller, and it always asks listing to re-book an
+    // expired booking whose session still has room; such a booking comes back REBOOKED.
     it('sends the bookingIds and returns the bookings response', () => {
       const response = { bookings };
       const httpResponse$ = cold('-a|', { a: response });
@@ -163,7 +165,7 @@ describe('ListingService', () => {
       expect(commandSpy).toHaveBeenCalledWith({
         url,
         requestType,
-        body: { bookingIds: ['booking-1'] }
+        body: { bookingIds: ['booking-1'], reserveIfExpired: true }
       });
     });
 

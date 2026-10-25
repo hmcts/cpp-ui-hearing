@@ -98,7 +98,10 @@ export class ListingService {
       .command({
         url: '/listing-query-api/query/api/rest/listing/bookingStatus',
         requestType: 'application/vnd.listing.query.booking.status+json',
-        body: { bookingIds }
+        // LPT-2611: a booking whose hold expired is re-booked on the same session if it still has
+        // room, and comes back REBOOKED with safeToShare true - so the clerk is only sent back to
+        // re-pick when the session really is gone or full.
+        body: { bookingIds, reserveIfExpired: true }
       })
       .pipe(map(response => parseBookingStatusResponse(response)));
   }
