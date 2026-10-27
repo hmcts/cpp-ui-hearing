@@ -10,7 +10,6 @@ import {
   HearingCaseLinkType,
   HearingDetail,
   HearingLockState,
-  PageTitleService,
   SetSelectedHearingDateAction
 } from '../core';
 import * as mockData from '../core/selectors/mock/hearing.json';
@@ -19,6 +18,7 @@ import { PleaType } from '@cpp/reference-data';
 import { mockSummary } from '../mock-data/test-mock-data';
 import { DefendantNamesPipe } from '../shared/pipes/defendant-names.pipe';
 import { WofdWarningService } from '@cpp/application';
+import { PageTitleService } from '@cpp/core';
 
 const mockHearing = (mockData as any).hearing as HearingDetail;
 const pleaTypes = (mockData as any).pleaTypes as PleaType[];
