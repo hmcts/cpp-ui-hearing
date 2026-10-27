@@ -8,7 +8,7 @@ export const routes: Routes = [
       import('./magistrates-hearing-list.container').then(m => m.MagistratesHearingListContainer),
     canActivate: [LoadMagistratesHearingGuard],
     data: {
-      title: 'Magistrates list | Common Platform | GOV.UK'
+      title: 'Magistrates list'
     }
   }
 ];

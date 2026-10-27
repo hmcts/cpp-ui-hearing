@@ -16,7 +16,7 @@ export const routes: Routes = [
         m => m.routes
       ),
     data: {
-      title: 'Outstanding Fines - Defendant | Common Platform | GOV.UK'
+      title: 'Outstanding Fines - Defendant'
     }
   },
   {
@@ -27,7 +27,7 @@ export const routes: Routes = [
         m => m.routes
       ),
     data: {
-      title: 'Outstanding Fines - Courtrooms | Common Platform | GOV.UK'
+      title: 'Outstanding Fines - Courtrooms'
     }
   },
   {
@@ -37,7 +37,7 @@ export const routes: Routes = [
         m => m.routes
       ),
     data: {
-      title: 'Outstanding Fines - Create Report | Common Platform | GOV.UK'
+      title: 'Outstanding Fines - Create Report'
     }
   }
 ];

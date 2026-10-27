@@ -10,7 +10,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./check-and-challenge.container').then(m => m.CheckAndChallengeContainer),
     data: {
-      title: 'Check and Challenge | Common Platform | GOV.UK'
+      title: 'Check and Challenge'
     }
   }
 ];

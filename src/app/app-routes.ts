@@ -73,7 +73,7 @@ export const appRoutes: Routes = [
             loadChildren: () =>
               import('./check-and-challenge/check-and-challenge.routes').then(m => m.routes),
             data: {
-              title: 'Check and challenge | Common Platform | GOV.UK'
+              title: 'Check and challenge'
             }
           },
           {
@@ -82,7 +82,7 @@ export const appRoutes: Routes = [
             canActivate: [CheckFeaturesGuard, HearingTypesGuard, UserDetailsGuard, TrialTypesGuard],
             data: {
               allowedFeatures: ['hearing-viewList', 'hearing-viewListAndManageHearings'],
-              title: 'My hearing list | Common Platform | GOV.UK'
+              title: 'My hearing list'
             }
           },
           {
@@ -91,7 +91,7 @@ export const appRoutes: Routes = [
             canActivate: [OrganisationUnitsGuard, UserGroupsGuard, UserDetailsGuard, CheckInGuard],
             data: {
               allowedFeatures: ['hearing-viewList', 'hearing-viewListAndManageHearings'],
-              title: 'Check in | Common Platform | GOV.UK'
+              title: 'Check in'
             }
           },
           {
@@ -101,14 +101,14 @@ export const appRoutes: Routes = [
             canActivate: [CheckFeaturesGuard],
             data: {
               allowedFeatures: ['magistrates-list'],
-              title: 'Magistrates list | Common Platform | GOV.UK'
+              title: 'Magistrates list'
             }
           },
           {
             path: 'session-times',
             loadChildren: () => import('./session-times/session-times.routes').then(m => m.routes),
             data: {
-              title: 'Session times | Common Platform | GOV.UK'
+              title: 'Session times'
             }
           },
           {
@@ -120,7 +120,7 @@ export const appRoutes: Routes = [
             loadChildren: () =>
               import('./outstanding-fines/outstanding-fines.routes').then(m => m.routes),
             data: {
-              title: 'Outstanding fines | Common Platform | GOV.UK'
+              title: 'Outstanding fines'
             }
           },
           {
@@ -128,7 +128,7 @@ export const appRoutes: Routes = [
             loadChildren: () =>
               import('./remove-future-hearing/remove-future-hearing.routes').then(m => m.routes),
             data: {
-              title: 'Remove future hearing | Common platform | GOV.UK'
+              title: 'Remove future hearing'
             }
           }
         ]
