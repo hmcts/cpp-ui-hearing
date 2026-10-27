@@ -37,8 +37,7 @@ import { ExtendedResolvedDraftResultLine } from '../../../results.interfaces';
 import { AllocationQueryParams } from '../guards/allocation.guard';
 import {
   BookingRefusedError,
-  ProvisionalBookingService,
-  refusalMessageKey
+  ProvisionalBookingService
 } from '../services/provisionalBooking.service';
 import {
   getSearchMetadata,
@@ -345,7 +344,7 @@ export class MagistratesSchedulingContainer {
               // A failure must NOT propagate to `.subscribe(this.store)`: NgRx's Store.error()
               // forwards to the shared ActionsSubject and would end dispatching for the whole
               // application. Catch here and complete empty, so no prompt is written and no
-              // redirect happens. A BUSINESS refusal is shown on the page; anything technical
+              // redirect happens. A refusal (422) is shown on the page; anything technical
               // goes to the standard error page, like any other API failure (LPT-2590).
               catchError(error => {
                 if (!(error instanceof BookingRefusedError)) {
@@ -356,7 +355,7 @@ export class MagistratesSchedulingContainer {
                 this.bookingErrorSubject.next([
                   {
                     id: MagistratesSchedulingContainer.SESSION_NOT_AVAILABLE_ERROR_ID,
-                    message: this.translateService.instant(refusalMessageKey(error)),
+                    message: this.translateService.instant('MANAGE_HEARING.SESSION_NOT_AVAILABLE'),
                     shouldFocus: true
                   }
                 ]);

@@ -14,40 +14,36 @@ const BOOKING_BOOKED_EVENT = 'public.hearing.hearing-slots-provisionally-booked'
 const BOOKING_FAILED_EVENT = 'public.hearing.hearing-slots-provisional-booking-refused';
 
 /**
- * Payload of BOOKING_FAILED_EVENT, shaped like public.hearing.manage-results-failed. `type` is
- * what decides the reaction; `reason` is courtscheduler's own text, for logs only. `bookingId`
- * is present only when the request carried one.
+ * Payload of BOOKING_FAILED_EVENT. Hearing passes courtscheduler's answer on without interpreting
+ * it: `status` is courtscheduler's HTTP status, absent when it never answered (connection
+ * refused, timeout); `message` is its own text plus that status, for logs only - never shown to
+ * the clerk. `bookingId` is present only when the request carried one.
  */
 interface BookingFailure {
   bookingId?: string;
-  error?: { type?: string; code?: string; reason?: string };
+  error?: { status?: number; message?: string };
 }
 
-/** The codes that mean the chosen session itself is unavailable, so "select another" is right. */
-const SESSION_UNAVAILABLE_CODES: ReadonlySet<string> = new Set([
-  'NO_CAPACITY',
-  'NO_SESSION_AVAILABLE'
-]);
+/**
+ * Courtscheduler answers 422 for every deliberate refusal: no capacity, the session is gone or
+ * inactive, or the id already carries a confirmed booking - and since LPT-2592 a re-pick never
+ * reaches that last one. Each means "select another session".
+ */
+const REFUSED_STATUS = 422;
 
 /**
- * The backend deliberately refused the booking: `error.type` BUSINESS. Only this is shown to the
- * clerk as a message on the page. Everything else - a TECHNICAL failure, an unknown type, a
- * timeout, an HTTP error - is technical and goes to the standard error page.
+ * Courtscheduler deliberately refused the booking (status 422). Only this is shown to the clerk
+ * as a message on the page. Everything else - another status, no status, a timeout, an HTTP
+ * error - is technical and goes to the standard error page.
  */
 export class BookingRefusedError extends Error {
-  constructor(message: string, readonly code?: string) {
+  constructor(message: string) {
     super(message);
     this.name = 'BookingRefusedError';
     // Restores the prototype chain so `instanceof` works when targeting ES5 downlevel output.
     Object.setPrototypeOf(this, BookingRefusedError.prototype);
   }
 }
-
-/** The translation key for a refusal's message on the page. */
-export const refusalMessageKey = (error: BookingRefusedError): string =>
-  error.code !== undefined && SESSION_UNAVAILABLE_CODES.has(error.code)
-    ? 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
-    : 'MANAGE_HEARING.SESSION_BOOKING_REFUSED';
 
 /**
  * Pulls the failure out of whatever commandSync threw.
@@ -107,16 +103,15 @@ export class ProvisionalBookingService {
       })
       .pipe(
         // Everything reaching here is already an error; this only decides WHICH error - see
-        // BookingRefusedError. A BUSINESS refusal becomes BookingRefusedError, carrying its code;
-        // anything else passes through unchanged and the pickers treat it as technical.
+        // BookingRefusedError. A 422 becomes BookingRefusedError; anything else passes through
+        // unchanged and the pickers treat it as technical.
         catchError(error => {
           const failure = failureOf(error);
-          if (failure?.type === 'BUSINESS') {
+          if (failure?.status === REFUSED_STATUS) {
             return throwError(
               () =>
                 new BookingRefusedError(
-                  failure.reason || 'Provisional hearing slot booking was refused',
-                  failure.code
+                  failure.message || 'Provisional hearing slot booking was refused'
                 )
             );
           }

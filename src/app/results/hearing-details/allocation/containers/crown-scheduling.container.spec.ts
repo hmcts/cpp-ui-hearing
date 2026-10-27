@@ -397,7 +397,7 @@ describe('CrownSchedulingContainer', () => {
 
     it('surfaces an error to the component when the reservation is refused', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new BookingRefusedError('no capacity', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations();
@@ -410,27 +410,6 @@ describe('CrownSchedulingContainer', () => {
       expect(stub.externalErrors).toEqual([
         expect.objectContaining({
           message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
-        })
-      ]);
-    }));
-
-    // A business refusal that is not about the session itself (CONFIRMED_BOOKING_EXISTS, or a
-    // code added later) still stays on the page, with the generic refusal message.
-    it('shows the generic refusal for a business refusal that is not about the session', fakeAsync(() => {
-      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new BookingRefusedError('already confirmed', 'CONFIRMED_BOOKING_EXISTS'))
-      );
-
-      submitHearingSlotAllocations();
-      tick();
-      fixture.detectChanges();
-
-      const stub = fixture.debugElement.query(By.directive(TestCrownSchedulingComponent))
-        .componentInstance as TestCrownSchedulingComponent;
-
-      expect(stub.externalErrors).toEqual([
-        expect.objectContaining({
-          message: 'MANAGE_HEARING.SESSION_BOOKING_REFUSED'
         })
       ]);
     }));
@@ -459,7 +438,7 @@ describe('CrownSchedulingContainer', () => {
 
     it('leaves the clerk on the picker - the stream survives a failure and a later pick still succeeds', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValueOnce(
-        throwError(() => new BookingRefusedError('no capacity', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations();
@@ -484,7 +463,7 @@ describe('CrownSchedulingContainer', () => {
 
     it('clears an earlier error once a later pick succeeds', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValueOnce(
-        throwError(() => new BookingRefusedError('no capacity', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations();

@@ -6,11 +6,12 @@ const BOOKING_REFERENCE_PROMPT_REF = 'bookingReference';
 const EXISTING_HEARING_PROMPT_REF = 'existingHearingId';
 
 /**
- * No row under this bookingId in either shape: the hold expired and was purged, so there is
- * nothing left to share against and the clerk must re-pick. The only status for which
- * courtscheduler reports `safeToShare: false`.
+ * Statuses that mean the clerk's hold lapsed: EXPIRED (purged, and the pre-share re-book found no
+ * room), or NOT_FOUND (nothing recorded - which is also what a courtscheduler older than EXPIRED
+ * answers for a lapsed hold). Only the message depends on the status; whether the share is
+ * blocked is courtscheduler's `safeToShare`.
  */
-export const NOT_FOUND_BOOKING_STATUS = 'NOT_FOUND';
+export const EXPIRED_BOOKING_STATUSES: readonly string[] = ['EXPIRED', 'NOT_FOUND'];
 
 /**
  * The bookingId of the slot hold a result line is carrying, if any.

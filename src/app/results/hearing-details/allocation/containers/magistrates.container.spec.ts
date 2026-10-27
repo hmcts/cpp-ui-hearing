@@ -462,7 +462,7 @@ describe('MagistratesSchedulingContainer', () => {
     // every change detection and the filters became unusable - the clerk could not search again.
     it('clears the error banner when the clerk searches again', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new BookingRefusedError('boom', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('boom'))
       );
       submitHearingSlotAllocations([
         {
@@ -489,7 +489,7 @@ describe('MagistratesSchedulingContainer', () => {
 
     it('clears the error banner when the clerk pages through results', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new BookingRefusedError('boom', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('boom'))
       );
       submitHearingSlotAllocations([
         {
@@ -530,7 +530,7 @@ describe('MagistratesSchedulingContainer', () => {
 
     it('surfaces an error to the component when the reservation is refused', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new BookingRefusedError('no capacity', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations([
@@ -548,32 +548,6 @@ describe('MagistratesSchedulingContainer', () => {
       expect(stub.externalErrors).toEqual([
         expect.objectContaining({
           message: 'MANAGE_HEARING.SESSION_NOT_AVAILABLE'
-        })
-      ]);
-    }));
-
-    // A business refusal that is not about the session itself (CONFIRMED_BOOKING_EXISTS, or a
-    // code added later) still stays on the page, with the generic refusal message.
-    it('shows the generic refusal for a business refusal that is not about the session', fakeAsync(() => {
-      (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValue(
-        throwError(() => new BookingRefusedError('already confirmed', 'CONFIRMED_BOOKING_EXISTS'))
-      );
-
-      submitHearingSlotAllocations([
-        {
-          hearingSlot: createHearingSlot({ businessType: 'DVLA' }),
-          hearingSlotTime: '2020-01-01T10:00:00.000Z'
-        }
-      ]);
-      tick();
-      fixture.detectChanges();
-
-      const stub = fixture.debugElement.query(By.directive(TestMagistratesSchedulingComponent))
-        .componentInstance as TestMagistratesSchedulingComponent;
-
-      expect(stub.externalErrors).toEqual([
-        expect.objectContaining({
-          message: 'MANAGE_HEARING.SESSION_BOOKING_REFUSED'
         })
       ]);
     }));
@@ -607,7 +581,7 @@ describe('MagistratesSchedulingContainer', () => {
 
     it('leaves the clerk on the picker - the stream survives a failure and a later pick still succeeds', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValueOnce(
-        throwError(() => new BookingRefusedError('no capacity', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations([
@@ -679,7 +653,7 @@ describe('MagistratesSchedulingContainer', () => {
 
     it('clears an earlier error once a later pick succeeds', fakeAsync(() => {
       (provisionalBookingService.bookProvisionalHearingSlots as jest.Mock).mockReturnValueOnce(
-        throwError(() => new BookingRefusedError('no capacity', 'NO_CAPACITY'))
+        throwError(() => new BookingRefusedError('no capacity'))
       );
 
       submitHearingSlotAllocations([

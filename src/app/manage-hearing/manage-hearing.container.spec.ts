@@ -453,17 +453,26 @@ describe('ManageHearingContainer', () => {
         expect(scrollSpy).toHaveBeenCalledWith(0, 0);
       });
 
-      it('should show the session-reservation-expired key when the reason is NONE', () => {
-        component.sessionNotAvailableHandler('NOT_FOUND');
+      it.each(['EXPIRED', 'NOT_FOUND'])(
+        'should show the session-reservation-expired key when the reason is %s',
+        reason => {
+          component.sessionNotAvailableHandler(reason);
 
-        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_RESERVATION_EXPIRED');
-      });
+          expect(component.sessionNotAvailableKey).toBe(
+            'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED'
+          );
+        }
+      );
 
-      it('should show the default session-not-available key for any other reason', () => {
-        component.sessionNotAvailableHandler('BOOKED');
+      // RELEASED: the booking was dropped from the draft - nothing lapsed, so "expired" would mislead
+      it.each(['RELEASED', 'BOOKED'])(
+        'should show the default session-not-available key when the reason is %s',
+        reason => {
+          component.sessionNotAvailableHandler(reason);
 
-        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
-      });
+          expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
+        }
+      );
     });
 
     it('should clear attendance errors array when onClearAttendanceError is called', () => {
