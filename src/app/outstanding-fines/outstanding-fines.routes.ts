@@ -16,7 +16,7 @@ export const routes: Routes = [
         m => m.routes
       ),
     data: {
-      title: 'Outstanding Fines - Defendant'
+      title: 'Outstanding Fines – Defendant'
     }
   },
   {
@@ -27,7 +27,7 @@ export const routes: Routes = [
         m => m.routes
       ),
     data: {
-      title: 'Outstanding Fines - Courtrooms'
+      title: 'Outstanding Fines – Courtrooms'
     }
   },
   {
@@ -37,7 +37,7 @@ export const routes: Routes = [
         m => m.routes
       ),
     data: {
-      title: 'Outstanding Fines - Create Report'
+      title: 'Outstanding Fines – Create Report'
     }
   }
 ];
