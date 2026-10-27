@@ -2,14 +2,6 @@
 
 <div [hidden]="hasApiActivity$ | async">
   <pdk-grid container>
-    @if (sessionNotAvailable) {
-    <pdk-grid full>
-      <pdk-alert type="warning" icon="true" data-test-id="sessionNotAvailableAlert">
-        {{ sessionNotAvailableKey | translate }}
-      </pdk-alert>
-    </pdk-grid>
-    }
-
     <pdk-grid full>
       @if ((pendingAttendanceDefendants$ | async)?.length > 0 && getAllErrors()?.length === 0 &&
       (isFirstHearing$ | async) === false) {

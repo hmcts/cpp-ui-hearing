@@ -1,5 +1,4 @@
-import { Component, DestroyRef, input, output } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, input, output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
   ApplicationAggregate,
@@ -11,7 +10,6 @@ import {
   HearingPersonDetails,
   IndividualDefendant,
   isCurrentHearingInWelshCourt,
-  ListingService,
   setStandaloneAncillaryResults,
   WelshDefendantTranslate,
   HearingDetail
@@ -27,23 +25,16 @@ import {
 import { ResolvedDraftResultLine } from '../results.interfaces';
 import { ModalService } from '@cpp/pdk';
 import { WelshDefendantTranslateComponent } from './welsh-defendant-translate.component';
-import { combineLatest, of } from 'rxjs';
-import { catchError, map, switchMap, take } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { ShareResultActionBarComponent } from './share-result-action-bar.component';
 import { AsyncPipe } from '@angular/common';
 import { getHearingTypes, HearingType } from '@cpp/reference-data';
-import {
-  getBookingReferencesToCheck,
-  getSharedBookingReferences
-} from './session-availability.helper';
-import { ResultsService } from '../core/services/results.service';
 
 export interface ShareValidationResult {
   hasAttendanceError: boolean;
   hasTrialEffectivenessError: boolean;
-  hasSessionAvailabilityError?: boolean;
-  sessionUnavailableReason?: string;
   pendingAttendanceDefendants?: HearingPersonDetails[];
 }
 
@@ -72,7 +63,7 @@ export interface ShareValidationResult {
     </cpp-share-result-action-bar>
   `,
   imports: [ShareResultActionBarComponent, AsyncPipe],
-  providers: [ModalService, ListingService]
+  providers: [ModalService]
 })
 export class ShareResultContainerComponent {
   pendingAttendanceDefendants = input<HearingPersonDetails[]>([]);
@@ -92,25 +83,10 @@ export class ShareResultContainerComponent {
   hearingTypes$ = this.store.pipe(select(getHearingTypes));
   citSubreasonEnabled$ = this.store.pipe(select(hasCitSubreason));
 
-  constructor(
-    private store: Store<ResultsState>,
-    private modalService: ModalService,
-    private listingService: ListingService,
-    private resultsService: ResultsService,
-    private destroyRef: DestroyRef
-  ) {}
+  constructor(private store: Store<ResultsState>, private modalService: ModalService) {}
 
-  /**
-   * Approving an amendment is the last moment before it becomes real, and it happens in a
-   * SEPARATE session from the amendment itself - potentially the next morning, with the 01:00
-   * purge in between. So the hold has to be re-checked here even though the amender's own share
-   * already checked it: what was RESERVED when they submitted can be NONE by the time it is
-   * approved.
-   */
   handleApproveAmendments() {
-    this.withSessionAvailabilityCheck(() =>
-      this.store.dispatch(ShareResultsActions.approveAmendments())
-    );
+    this.store.dispatch(ShareResultsActions.approveAmendments());
   }
 
   handleCancelAmendments() {
@@ -123,15 +99,8 @@ export class ShareResultContainerComponent {
     this.store.dispatch(ShareResultsActions.rejectAmendments());
   }
 
-  /**
-   * The amender's half of the two-stage amendment flow. Checked for a different reason from the
-   * approver's: this one stops a clerk building an amendment on a session that is already gone,
-   * rather than stopping a lost hearing. Both stages need it - neither alone is enough.
-   */
   handleShareAmendments() {
-    this.withSessionAvailabilityCheck(() =>
-      this.store.dispatch(ShareResultsActions.requestApprovalForAmendments())
-    );
+    this.store.dispatch(ShareResultsActions.requestApprovalForAmendments());
   }
 
   private validateAndShare(
@@ -165,94 +134,9 @@ export class ShareResultContainerComponent {
       return;
     }
 
-    this.validateSessionAvailabilityAndShare(withWelshTranslate, individualDefendants);
-  }
-
-  private validateSessionAvailabilityAndShare(
-    withWelshTranslate: boolean,
-    individualDefendants: IndividualDefendant[]
-  ): void {
-    this.withSessionAvailabilityCheck(() =>
-      this.proceedWithResultShare(withWelshTranslate, individualDefendants)
-    );
-  }
-
-  /**
-   * Runs the pre-share hold check, then performs {@param onAvailable} only if every booking the
-   * draft carries is still safe to share.
-   *
-   * <p>One implementation, every caller. The earlier version inlined the share into this pipeline,
-   * so the two amendment routes - which share by a different action - simply had no check at all,
-   * and an amended result reached listing having never been asked whether its session still
-   * existed. That is the STE failure where the clerk's share succeeded and the hearing was never
-   * listed. A second copy of the check would have drifted the same way the result short-code
-   * allowlist did; hence a callback rather than a duplicate.
-   */
-  private withSessionAvailabilityCheck(onAvailable: () => void): void {
-    this.draftResult$
-      .pipe(
-        take(1),
-        switchMap(draftResult => {
-          if (getBookingReferencesToCheck(draftResult).length === 0) {
-            return of({ blocked: false as const });
-          }
-
-          // References the last share carried are not checked - progression resolves them from
-          // its own record, whatever courtscheduler now says (LPT-2600).
-          //
-          // If the last share can't be fetched, the check is skipped and the share goes ahead.
-          // Falling back to checking every reference would bring LPT-2600 straight back: a
-          // merged-away reference answers NOT_FOUND and the share is refused, over a failure
-          // that has nothing to do with it. This is the same call the booking-status lookup
-          // below makes on its own errors: an advisory check must not block on a transient
-          // failure.
-          return this.resultsService
-            .getSharedResult(draftResult.hearingId, draftResult.hearingDay)
-            .pipe(
-              map(sharedResult =>
-                getBookingReferencesToCheck(draftResult, getSharedBookingReferences(sharedResult))
-              ),
-              switchMap(bookingReferences =>
-                bookingReferences.length === 0
-                  ? of({ blocked: false as const })
-                  : this.checkBookingStatus(bookingReferences)
-              ),
-              catchError(() => of({ blocked: false as const }))
-            );
-        }),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe(result => {
-        if (result.blocked) {
-          this.sharedResultsValidation.emit({
-            hasAttendanceError: false,
-            hasTrialEffectivenessError: false,
-            hasSessionAvailabilityError: true,
-            sessionUnavailableReason: result.status
-          });
-        } else {
-          onAvailable();
-        }
-      });
-  }
-
-  private checkBookingStatus(bookingReferences: string[]) {
-    return this.listingService.getBookingStatus(bookingReferences).pipe(
-      map(response => {
-        const unsafe = (response?.bookings ?? []).filter(b => b.safeToShare === false);
-        // status: 'UNKNOWN' means listing could not reach courtscheduler; it answers
-        // safeToShare: true for that case, so it naturally falls through here and does
-        // not block - an advisory check must not block a share on a transient blip.
-        return unsafe.length === 0
-          ? { blocked: false as const }
-          : { blocked: true as const, status: unsafe[0].status };
-      }),
-      // Fails open deliberately: if the booking-status call itself errors (network,
-      // 5xx, unreachable, etc.) we must not block every Crown share in the building for
-      // an advisory check over a transient failure - the share still validates
-      // server-side. Do not "tighten" this to rethrow.
-      catchError(() => of({ blocked: false as const }))
-    );
+    // Whether each picked session is still held is checked by hearing as part of the share, with
+    // the results validation, and comes back as a results-validation failure against the offences.
+    this.proceedWithResultShare(withWelshTranslate, individualDefendants);
   }
 
   private proceedWithResultShare(

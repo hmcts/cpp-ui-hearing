@@ -77,7 +77,6 @@ import {
   getShareResultsValidationFailure,
   ResultsState
 } from '../results/core/store';
-import { EXPIRED_BOOKING_STATUSES } from '../results/core/helpers/provisional-booking';
 import { OffenceLike, ResolvedDraftResultLine } from '../results/results.interfaces';
 import { ValidationMessage } from '../results/results-validation.interfaces';
 import { canAmendApplication, hasResultingAssistant } from '../core/selectors/user-groups';
@@ -147,9 +146,7 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   translated: { [key: string]: string };
   errors: ValidationError[] = [];
   trialEffectivenessError: ValidationError[] | null = null;
-  sessionNotAvailable = false;
   shareValidationErrors: ValidationError[] = [];
-  sessionNotAvailableKey = 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
   isTrialApplication$: Observable<boolean>;
 
   pendingAttendanceDefendants$: Observable<HearingPersonDetails[]>;
@@ -470,8 +467,6 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
 
   handleSharedResultsValidation(result: ShareValidationResult): void {
     this.errors = [];
-    this.sessionNotAvailable = false;
-    this.sessionNotAvailableKey = 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
     this.clearTrialEffectivenessError();
 
     if (result.hasAttendanceError && result.pendingAttendanceDefendants) {
@@ -481,19 +476,6 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
     if (result.hasTrialEffectivenessError) {
       this.onTrialEffectivenessMissing();
     }
-
-    if (result.hasSessionAvailabilityError) {
-      this.sessionNotAvailableHandler(result.sessionUnavailableReason);
-    }
-  }
-
-  sessionNotAvailableHandler(reason?: string): void {
-    this.sessionNotAvailable = true;
-    this.sessionNotAvailableKey =
-      reason && EXPIRED_BOOKING_STATUSES.includes(reason)
-        ? 'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED'
-        : 'MANAGE_HEARING.SESSION_NOT_AVAILABLE';
-    this.window.scroll(0, 0);
   }
 
   private setStandaloneAncillaryResultsErrors(

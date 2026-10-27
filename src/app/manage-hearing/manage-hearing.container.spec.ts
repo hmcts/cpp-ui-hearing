@@ -386,12 +386,6 @@ describe('ManageHearingContainer', () => {
         jest.spyOn(component, 'clearTrialEffectivenessError');
         jest.spyOn(component, 'missingAttendanceHandler');
         jest.spyOn(component, 'onTrialEffectivenessMissing');
-        jest.spyOn(component, 'sessionNotAvailableHandler');
-      });
-
-      it('should clear errors, the session alert and trial effectiveness error', () => {
-        component.errors = [{ id: 'test', message: 'test' }];
-        component.sessionNotAvailable = true;
       });
 
       it('should clear errors and trial effectiveness error', () => {
@@ -401,7 +395,6 @@ describe('ManageHearingContainer', () => {
           hasTrialEffectivenessError: false
         });
         expect(component.errors).toEqual([]);
-        expect(component.sessionNotAvailable).toBe(false);
         expect(component.clearTrialEffectivenessError).toHaveBeenCalled();
       });
 
@@ -422,57 +415,6 @@ describe('ManageHearingContainer', () => {
         });
         expect(component.onTrialEffectivenessMissing).toHaveBeenCalled();
       });
-
-      it('should call sessionNotAvailableHandler with the reason if hasSessionAvailabilityError is true', () => {
-        component.handleSharedResultsValidation({
-          hasAttendanceError: false,
-          hasTrialEffectivenessError: false,
-          hasSessionAvailabilityError: true,
-          sessionUnavailableReason: 'NOT_FOUND'
-        });
-        expect(component.sessionNotAvailableHandler).toHaveBeenCalledWith('NOT_FOUND');
-      });
-
-      it('should reset the session-not-available key back to the default before re-evaluating', () => {
-        component.sessionNotAvailableKey = 'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED';
-        component.handleSharedResultsValidation({
-          hasAttendanceError: false,
-          hasTrialEffectivenessError: false
-        });
-        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
-      });
-    });
-
-    describe('sessionNotAvailableHandler', () => {
-      it('should show the session-not-available alert with the default key and scroll to the top of the page', () => {
-        component.sessionNotAvailableHandler();
-
-        expect(component.sessionNotAvailable).toBe(true);
-        expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
-        expect(component.errors).toEqual([]);
-        expect(scrollSpy).toHaveBeenCalledWith(0, 0);
-      });
-
-      it.each(['EXPIRED', 'NOT_FOUND'])(
-        'should show the session-reservation-expired key when the reason is %s',
-        reason => {
-          component.sessionNotAvailableHandler(reason);
-
-          expect(component.sessionNotAvailableKey).toBe(
-            'MANAGE_HEARING.SESSION_RESERVATION_EXPIRED'
-          );
-        }
-      );
-
-      // RELEASED: the booking was dropped from the draft - nothing lapsed, so "expired" would mislead
-      it.each(['RELEASED', 'BOOKED'])(
-        'should show the default session-not-available key when the reason is %s',
-        reason => {
-          component.sessionNotAvailableHandler(reason);
-
-          expect(component.sessionNotAvailableKey).toBe('MANAGE_HEARING.SESSION_NOT_AVAILABLE');
-        }
-      );
     });
 
     it('should clear attendance errors array when onClearAttendanceError is called', () => {
