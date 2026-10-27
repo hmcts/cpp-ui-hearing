@@ -6,6 +6,7 @@ const bookHearingSlots = createAction(
   props<{
     hearingId: string;
     resultLineId: string;
+    bookingId?: string;
     courtScheduleBookings: {
       courtScheduleId: string;
       hearingStartTime?: string;

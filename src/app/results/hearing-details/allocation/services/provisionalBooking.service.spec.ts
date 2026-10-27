@@ -54,5 +54,22 @@ describe('ProvisionalBookingService', () => {
         errorEvent: 'public.hearing.hearing-slots-provisional-booking-refused'
       });
     });
+
+    it('should send the existing bookingId when the session is changed', () => {
+      http.commandSync = jest.fn().mockReturnValue(cold('-a|', { a: { bookingId: 'BOOKING1' } }));
+
+      const courtScheduleBookings = [{ courtScheduleId: '*', duration: 30 }];
+      service.bookProvisionalHearingSlots({
+        hearingId: 'hearingId',
+        bookingId: 'BOOKING1',
+        courtScheduleBookings
+      });
+
+      expect(http.commandSync).toHaveBeenCalledWith(
+        expect.objectContaining({
+          body: { bookingId: 'BOOKING1', slots: courtScheduleBookings }
+        })
+      );
+    });
   });
 });

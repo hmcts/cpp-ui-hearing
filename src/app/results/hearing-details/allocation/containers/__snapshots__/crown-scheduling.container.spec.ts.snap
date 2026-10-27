@@ -110,6 +110,7 @@ exports[`CrownSchedulingContainer should compile correctly 1`] = `
 
 exports[`CrownSchedulingContainer submitting a hearing slot should handle submitting a duration-based slot with a known duration 1`] = `
 {
+  "bookingId": undefined,
   "courtCentre": {
     "id": "COURT002",
     "oucode": "OUCODEL32",
@@ -151,6 +152,7 @@ exports[`CrownSchedulingContainer submitting a hearing slot should handle submit
 
 exports[`CrownSchedulingContainer submitting a hearing slot should handle submitting a non-duration based slot 1`] = `
 {
+  "bookingId": undefined,
   "courtCentre": {
     "id": "COURT002",
     "oucode": "OUCODEL32",

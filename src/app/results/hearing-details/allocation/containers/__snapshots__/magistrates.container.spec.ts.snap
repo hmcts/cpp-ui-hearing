@@ -135,6 +135,7 @@ exports[`MagistratesSchedulingContainer should compile correctly 1`] = `
 
 exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting a non-duration based slot 1`] = `
 {
+  "bookingId": undefined,
   "courtCentre": {
     "id": "COURT002",
     "oucode": "OUCODEL32",
@@ -175,6 +176,7 @@ exports[`MagistratesSchedulingContainer submitting a hearing slot should handle 
 
 exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting an afternoon duration-based slot of unknown duration 1`] = `
 {
+  "bookingId": undefined,
   "courtCentre": {
     "id": "COURT002",
     "oucode": "OUCODEL32",
@@ -217,6 +219,7 @@ exports[`MagistratesSchedulingContainer submitting a hearing slot should handle 
 
 exports[`MagistratesSchedulingContainer submitting a hearing slot should handle submitting an application 1`] = `
 {
+  "bookingId": undefined,
   "courtCentre": {
     "id": "COURT002",
     "oucode": "OUCODEL32",
