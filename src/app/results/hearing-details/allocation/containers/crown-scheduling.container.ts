@@ -12,7 +12,8 @@ import {
 import { select, Store } from '@ngrx/store';
 import moment from 'moment';
 import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
+import { isEqual } from 'lodash-es';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
 import {
   createDraftResultPromptsFromValueMap,
@@ -124,7 +125,8 @@ export class CrownSchedulingContainer {
             status: params.status
           })
         } as Partial<CrownSchedulingFilters>);
-      })
+      }),
+      distinctUntilChanged(isEqual)
     );
 
     this.hearingTypes$ = this.store.pipe(select(getHearingTypes));
