@@ -21,6 +21,7 @@ import {
 } from '../../core/model/breach-application';
 import { ProsecutionCaseDetails } from '../../core/model/shared/prosecution-case-details';
 import * as mockData from '../../core/selectors/mock/hearing.json';
+import { CPPDate } from '../../core/utils/cpp-date';
 import { mockCourtOrderOne, mockCourtOrders } from '../../mock-data/test-mock-data';
 import { HearingResultsListComponent } from './hearing-results-list.component';
 import { groupedCasesMock } from './mock/grouped-cases-mock';
@@ -113,6 +114,14 @@ describe('HearingResultsListComponent', () => {
       value: {}
     }
   } as Offence;
+
+  beforeEach(() => {
+    // The snapshots record groupedCasesMock's defendant (born 27 October 2001) as 24 years old, so
+    // "today" is pinned for the age pipe; on the real clock the snapshot broke on their birthday.
+    jest
+      .spyOn(CPPDate.prototype, 'getCurrentDate')
+      .mockReturnValue(new Date('2026-06-01T12:00:00Z'));
+  });
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
