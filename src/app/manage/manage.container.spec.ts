@@ -80,7 +80,11 @@ describe('ManageContainer', () => {
 
     scrollSpy = jest.fn();
     dispatchSpy = jest.fn();
-    pageTitleService = { setDefendantNames: jest.fn(), clearDefendantNames: jest.fn() } as any;
+    pageTitleService = {
+      setDefendantNames: jest.fn(),
+      setReference: jest.fn(),
+      clearHeaderDetails: jest.fn()
+    } as any;
     selectSpy = jest.fn().mockImplementation(selectorFunc => {
       return of(selectorFunc.call(store, state));
     });
@@ -159,7 +163,7 @@ describe('ManageContainer', () => {
     });
 
     it('should select all required data from Store upon initialization', () => {
-      expect(selectSpy).toHaveBeenCalledTimes(22);
+      expect(selectSpy).toHaveBeenCalledTimes(23);
     });
 
     it('should dispatch an action when a day is selected and it has a value', () => {
@@ -317,9 +321,10 @@ describe('ManageContainer', () => {
   });
 
   describe('page title', () => {
-    it('should not put any names in the tab while the header is not shown', () => {
+    it('should not put any names or reference in the tab while the header is not shown', () => {
       // the user is not (yet) known to be allowed to see the hearing, so there is no header
       expect(pageTitleService.setDefendantNames).not.toHaveBeenCalled();
+      expect(pageTitleService.setReference).not.toHaveBeenCalled();
     });
 
     it('should hand the defendants shown in the header to the page title service', () => {
@@ -330,7 +335,13 @@ describe('ManageContainer', () => {
       ]);
     });
 
-    it('should unwrap standalone application subjects for the page title service', () => {
+    it("should hand the URN of the first defendant's case to the page title service", () => {
+      component.defendantsNames$.subscribe();
+
+      expect(pageTitleService.setReference).toHaveBeenCalledWith('8C720B32E45B');
+    });
+
+    it('should unwrap standalone application subjects and use the application reference for the page title service', () => {
       // a new state object, the memoised selectors would otherwise return the cached hearing
       state = {
         ...state,
@@ -344,6 +355,7 @@ describe('ManageContainer', () => {
               courtApplications: [
                 {
                   ...mockHearing.courtApplications[0],
+                  applicationReference: 'APP-REF-1',
                   subject: { personDetails: { firstName: 'Anna', lastName: 'Smith' } }
                 }
               ]
@@ -357,12 +369,13 @@ describe('ManageContainer', () => {
       expect(pageTitleService.setDefendantNames).toHaveBeenLastCalledWith([
         expect.objectContaining({ firstName: 'Anna', lastName: 'Smith' })
       ]);
+      expect(pageTitleService.setReference).toHaveBeenLastCalledWith('APP-REF-1');
     });
 
-    it('should clear the page title names when it is destroyed', () => {
+    it('should clear the page title names and reference when it is destroyed', () => {
       component.ngOnDestroy();
 
-      expect(pageTitleService.clearDefendantNames).toHaveBeenCalledTimes(1);
+      expect(pageTitleService.clearHeaderDetails).toHaveBeenCalledTimes(1);
     });
   });
 });
