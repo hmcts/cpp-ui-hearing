@@ -706,6 +706,47 @@ describe('HearingResultsListComponent', () => {
         component.getRemandStatus(defendantWithBailStatus(), prosecutionCaseWithInitiationCode())
       ).toBe('Not recorded');
     });
+
+    it('should not throw and should fall back to the initiation code when bailStatus is undefined', () => {
+      const defendant = {
+        personDefendant: {},
+        prosecutionCases: [{ id: 'case-1' }]
+      } as DefendantCasesApplications;
+
+      expect(() =>
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))
+      ).not.toThrow();
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('S'))).toBe(
+        'Summons'
+      );
+    });
+
+    it('should not throw and should fall back to the initiation code when bailStatus is null', () => {
+      const defendant = {
+        personDefendant: { bailStatus: null },
+        prosecutionCases: [{ id: 'case-1' }]
+      } as DefendantCasesApplications;
+
+      expect(() =>
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('Q'))
+      ).not.toThrow();
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('Q'))).toBe(
+        'Postal Requisition/Written charge'
+      );
+    });
+
+    it('should not throw and should return "Not recorded" when personDefendant itself is undefined', () => {
+      const defendant = {
+        prosecutionCases: [{ id: 'case-1' }]
+      } as DefendantCasesApplications;
+
+      expect(() =>
+        component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('A'))
+      ).not.toThrow();
+      expect(component.getRemandStatus(defendant, prosecutionCaseWithInitiationCode('A'))).toBe(
+        'Not recorded'
+      );
+    });
   });
 
   describe('remand status display', () => {
