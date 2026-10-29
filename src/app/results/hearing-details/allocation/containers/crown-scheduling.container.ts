@@ -12,7 +12,8 @@ import {
 import { select, Store } from '@ngrx/store';
 import moment from 'moment';
 import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, take } from 'rxjs/operators';
+import { isEqual } from 'lodash-es';
 import { ValidationError } from '@cpp/pdk';
 import { TranslateService } from '@ngx-translate/core';
 import { getCurrentHearing, getRouteQueryParams, HearingDetail } from '../../../../core';
@@ -142,7 +143,8 @@ export class CrownSchedulingContainer {
             status: params.status
           })
         } as Partial<CrownSchedulingFilters>);
-      })
+      }),
+      distinctUntilChanged(isEqual)
     );
 
     this.hearingTypes$ = this.store.pipe(select(getHearingTypes));
