@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   ValidationError,
-  PdkAlertComponent,
   PdkVisuallyHiddenDirective,
   PdkGridComponent,
   PdkGridDirective,
@@ -96,7 +95,6 @@ import {
   styleUrls: ['./manage-hearing.container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    PdkAlertComponent,
     PdkVisuallyHiddenDirective,
     PdkGridComponent,
     PdkGridDirective,
@@ -146,7 +144,6 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
   translated: { [key: string]: string };
   errors: ValidationError[] = [];
   trialEffectivenessError: ValidationError[] | null = null;
-  sessionNotAvailable = false;
   shareValidationErrors: ValidationError[] = [];
   isTrialApplication$: Observable<boolean>;
 
@@ -468,7 +465,6 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
 
   handleSharedResultsValidation(result: ShareValidationResult): void {
     this.errors = [];
-    this.sessionNotAvailable = false;
     this.clearTrialEffectivenessError();
 
     if (result.hasAttendanceError && result.pendingAttendanceDefendants) {
@@ -478,15 +474,6 @@ export class ManageHearingContainer implements OnDestroy, OnInit {
     if (result.hasTrialEffectivenessError) {
       this.onTrialEffectivenessMissing();
     }
-
-    if (result.hasSessionAvailabilityError) {
-      this.sessionNotAvailableHandler();
-    }
-  }
-
-  sessionNotAvailableHandler(): void {
-    this.sessionNotAvailable = true;
-    this.window.scroll(0, 0);
   }
 
   private setStandaloneAncillaryResultsErrors(
