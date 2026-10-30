@@ -6,7 +6,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./manage-hearing-error-page.container').then(m => m.ManageHearingErrorPageContainer),
     data: {
-      title: 'Manage hearing error | Common Platform | GOV.UK'
+      title: 'Manage hearing error'
     }
   }
 ];

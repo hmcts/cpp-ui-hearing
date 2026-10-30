@@ -32,6 +32,7 @@ import {
   getCurrentHearingDays,
   getCurrentHearingNotes,
   getCurrentHearingUrn,
+  getCurrentHearingTitleReference,
   getHasFutureHearings,
   getHearingCaseUrl,
   getHearingHasBulkCaseOnly,
@@ -52,11 +53,11 @@ import {
   loadHearingEventLogCountAction,
   LoadHearingEventsAction,
   Offence,
-  PageTitleService,
   RemoveFutureHearingsReset,
   SetSelectedHearingDateAction
 } from '../core';
 import { WofdWarningService } from '@cpp/application';
+import { PageTitleService } from '@cpp/core';
 import { Breadcrumb } from '../core/model/breadcrumb';
 import { ClickedMenuItemEvent, TopMenu, TopMenuItem } from '../shared/components/top-menu/top-menu';
 import { getUserCourtCentreOuCodes } from '../core/selectors/user-groups';
@@ -214,18 +215,20 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
     this.selectedHearingDate$ = this.store.select(getSelectedHearingDate);
     this.defendantsNames$ = combineLatest([
       this.store.select(getNonBulkCaseDefendants),
+      this.store.select(getCurrentHearingTitleReference),
       this.translate.get('COMMON.BULK_DEFENDANT')
     ]).pipe(
       take(1),
-      // the tab title uses the first of the defendants shown here, standalone application
-      // subjects come through as { personDefendant }
-      tap(([{ defendants }]) =>
+      // the tab title uses the first of the defendants shown here and their case's reference,
+      // standalone application subjects come through as { personDefendant }
+      tap(([{ defendants }, reference]) => {
         this.pageTitleService.setDefendantNames(
           defendants.map(defendant => defendant.personDefendant || defendant)
-        )
-      ),
+        );
+        this.pageTitleService.setReference(reference);
+      }),
       map(
-        ([{ defendants, hasBulkDefendant }, bulkDefendantName]) =>
+        ([{ defendants, hasBulkDefendant }, , bulkDefendantName]) =>
           `${
             hasBulkDefendant ? bulkDefendantName + ',' : ''
           } ${this.defendantNamesPipe.transformDefendants(defendants)}`
@@ -337,7 +340,7 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.complete();
-    this.pageTitleService.clearDefendantNames();
+    this.pageTitleService.clearHeaderDetails();
   }
 
   get isStandaloneApplication(): boolean {
