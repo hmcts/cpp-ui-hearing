@@ -81,9 +81,8 @@ describe('ManageContainer', () => {
     scrollSpy = jest.fn();
     dispatchSpy = jest.fn();
     pageTitleService = {
-      setDefendantNames: jest.fn(),
-      setReference: jest.fn(),
-      clearHeaderDetails: jest.fn()
+      setInformation: jest.fn(),
+      clearInformation: jest.fn()
     } as any;
     selectSpy = jest.fn().mockImplementation(selectorFunc => {
       return of(selectorFunc.call(store, state));
@@ -323,22 +322,18 @@ describe('ManageContainer', () => {
   describe('page title', () => {
     it('should not put any names or reference in the tab while the header is not shown', () => {
       // the user is not (yet) known to be allowed to see the hearing, so there is no header
-      expect(pageTitleService.setDefendantNames).not.toHaveBeenCalled();
-      expect(pageTitleService.setReference).not.toHaveBeenCalled();
+      expect(pageTitleService.setInformation).not.toHaveBeenCalled();
     });
 
-    it('should hand the defendants shown in the header to the page title service', () => {
+    it("should hand the defendants shown in the header and the URN of the first defendant's case to the page title service", () => {
       component.defendantsNames$.subscribe();
 
-      expect(pageTitleService.setDefendantNames).toHaveBeenCalledWith([
-        expect.objectContaining({ firstName: 'Harry', lastName: 'Kane Junior' })
-      ]);
-    });
-
-    it("should hand the URN of the first defendant's case to the page title service", () => {
-      component.defendantsNames$.subscribe();
-
-      expect(pageTitleService.setReference).toHaveBeenCalledWith('8C720B32E45B');
+      expect(pageTitleService.setInformation).toHaveBeenCalledWith(
+        expect.objectContaining({
+          names: [expect.objectContaining({ firstName: 'Harry', lastName: 'Kane Junior' })],
+          caseReference: '8C720B32E45B'
+        })
+      );
     });
 
     it('should unwrap standalone application subjects and use the application reference for the page title service', () => {
@@ -366,16 +361,18 @@ describe('ManageContainer', () => {
       component.ngOnInit();
       component.defendantsNames$.subscribe();
 
-      expect(pageTitleService.setDefendantNames).toHaveBeenLastCalledWith([
-        expect.objectContaining({ firstName: 'Anna', lastName: 'Smith' })
-      ]);
-      expect(pageTitleService.setReference).toHaveBeenLastCalledWith('APP-REF-1');
+      expect(pageTitleService.setInformation).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          names: [expect.objectContaining({ firstName: 'Anna', lastName: 'Smith' })],
+          caseReference: 'APP-REF-1'
+        })
+      );
     });
 
-    it('should clear the page title names and reference when it is destroyed', () => {
+    it('should clear the page title information when it is destroyed', () => {
       component.ngOnDestroy();
 
-      expect(pageTitleService.clearHeaderDetails).toHaveBeenCalledTimes(1);
+      expect(pageTitleService.clearInformation).toHaveBeenCalledTimes(1);
     });
   });
 });
