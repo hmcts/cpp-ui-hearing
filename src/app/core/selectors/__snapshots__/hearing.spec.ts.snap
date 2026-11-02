@@ -596,7 +596,9 @@ exports[`getListingNoteByCourtRoomAndDate getAllOffencesFromHearing should selec
 exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant should select all subject legal entity defendants from hearing 1`] = `
 [
   {
-    "defendantId": "master-defendant-id",
+    "caseURN": "CASE-URN-2",
+    "dateOfBirth": "",
+    "defendantId": "case-defendant-id-2",
     "firstName": "Org",
     "lastName": "",
     "masterDefendantId": "master-defendant-id",
@@ -604,11 +606,9 @@ exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant s
       {
         "offenceTitle": "Application offence",
       },
-      [
-        {
-          "offenceTitle": "Court order offence",
-        },
-      ],
+      {
+        "offenceTitle": "Court order offence",
+      },
     ],
   },
 ]
@@ -617,7 +617,9 @@ exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant s
 exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant should select all subject person defendants from hearing 1`] = `
 [
   {
-    "defendantId": "master-defendant-id",
+    "caseURN": "CASE-URN-1",
+    "dateOfBirth": "1945-02-18",
+    "defendantId": "case-defendant-id",
     "firstName": "F",
     "lastName": "L",
     "masterDefendantId": "master-defendant-id",
@@ -625,11 +627,9 @@ exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant s
       {
         "offenceTitle": "Application offence",
       },
-      [
-        {
-          "offenceTitle": "Court order offence",
-        },
-      ],
+      {
+        "offenceTitle": "Court order offence",
+      },
     ],
   },
 ]
