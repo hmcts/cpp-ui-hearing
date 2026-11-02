@@ -18,8 +18,8 @@
         <skip.integration.tests>true</skip.integration.tests>
         <skip.report.pack>true</skip.report.pack>
         <skip.dist.pack>false</skip.dist.pack>
-        <node.version>v18.20.7</node.version>
-        <npm.version>10.8.2</npm.version>
+        <node.version>v22.23.4</node.version>
+        <npm.version>10.9.9</npm.version>
         <npm.test.options />
         <npm.lint.options />
         <npm.build.options />
