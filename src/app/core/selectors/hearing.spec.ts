@@ -921,82 +921,529 @@ describe('Hearing selectors', () => {
       });
   });
 
-  it('should normalise a single bailStatus for a defendant whose id equals its masterDefendantId', () => {
-    const hearing: HearingDetail = {
-      jurisdictionType: 'MAGISTRATES',
-      prosecutionCases: [
-        {
-          id: 'case-1',
-          offences: [],
-          defendants: [
-            {
-              id: 'master-1',
-              masterDefendantId: 'master-1',
-              offences: [],
-              personDefendant: {
-                bailStatus: { code: 'C', description: 'CONDITIONAL' } as any
-              }
-            }
-          ]
-        }
-      ],
-      courtApplications: []
-    } as HearingDetail;
+  describe('#getCasesAndApplicationsGroupedByDefendant bailStatus', () => {
+    const conditionalBail = { code: 'C', description: 'CONDITIONAL' };
+    const unconditionalBail = { code: 'U', description: 'UNCONDITIONAL' };
+    const custodyBail = { code: 'S', description: 'CUSTODY' };
 
-    store.dispatch(
-      new fromActions.LoadHearingDetailSuccessAction({
-        hearing,
-        hearingState: HearingLockState.INITIALISED
-      })
-    );
+    const buildPersonDefendant = (
+      id: string,
+      masterDefendantId: string,
+      lastName: string,
+      bailStatus?: unknown
+    ) => ({
+      id,
+      masterDefendantId,
+      offences: [] as unknown[],
+      personDefendant: {
+        personDetails: { firstName: 'John', lastName, dateOfBirth: '1990/01/01' },
+        ...(bailStatus ? { bailStatus } : {})
+      }
+    });
 
-    let result: DefendantCasesApplications[];
-    store
-      .select(fromSelectors.getCasesAndApplicationsGroupedByDefendant)
-      .subscribe(value => (result = value));
+    const buildOrganisationDefendant = (id: string, masterDefendantId: string, name: string) => ({
+      id,
+      masterDefendantId,
+      offences: [] as unknown[],
+      legalEntityDefendant: { organisation: { name } }
+    });
 
-    expect(result[0].personDefendant.bailStatus).toEqual([
-      { code: 'C', description: 'CONDITIONAL' }
-    ]);
-  });
+    const buildCase = (id: string, defendants: unknown[]) => ({
+      id,
+      offences: [] as unknown[],
+      prosecutionCaseIdentifier: { caseURN: id },
+      defendants
+    });
 
-  it('should leave bailStatus untouched for a case-linked defendant whose id differs from its masterDefendantId', () => {
-    const hearing: HearingDetail = {
-      jurisdictionType: 'MAGISTRATES',
-      prosecutionCases: [
-        {
-          id: 'case-1',
-          offences: [],
-          defendants: [
-            {
-              id: 'case-defendant-1',
-              masterDefendantId: 'master-1',
-              offences: [],
-              personDefendant: {
-                bailStatus: { code: 'C', description: 'CONDITIONAL' } as any
-              }
-            }
-          ]
-        }
-      ],
-      courtApplications: []
-    } as HearingDetail;
+    const groupByDefendant = (prosecutionCases: unknown[]): DefendantCasesApplications[] => {
+      let result: DefendantCasesApplications[];
 
-    store.dispatch(
-      new fromActions.LoadHearingDetailSuccessAction({
-        hearing,
-        hearingState: HearingLockState.INITIALISED
-      })
-    );
+      store.dispatch(
+        new fromActions.LoadHearingDetailSuccessAction({
+          hearing: {
+            jurisdictionType: 'MAGISTRATES',
+            prosecutionCases,
+            courtApplications: []
+          } as unknown as HearingDetail,
+          hearingState: HearingLockState.INITIALISED
+        })
+      );
 
-    let result: DefendantCasesApplications[];
-    store
-      .select(fromSelectors.getCasesAndApplicationsGroupedByDefendant)
-      .subscribe(value => (result = value));
+      store
+        .select(fromSelectors.getCasesAndApplicationsGroupedByDefendant)
+        .subscribe(value => (result = value));
 
-    expect(result[0].personDefendant.bailStatus).toEqual({
-      code: 'C',
-      description: 'CONDITIONAL'
+      return result;
+    };
+
+    const caseIds = (defendant: DefendantCasesApplications) =>
+      defendant.prosecutionCases.map(prosecutionCase => prosecutionCase.id);
+
+    describe('single defendant on a single case', () => {
+      it('should normalise a single bailStatus to an array when id equals masterDefendantId', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should normalise a single bailStatus to an array when id differs from masterDefendantId', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('case-defendant-1', 'master-1', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should keep bailStatus as it is when it is already an array', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Smith', [
+              conditionalBail,
+              unconditionalBail
+            ])
+          ])
+        ]);
+
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail, unconditionalBail]);
+      });
+
+      it('should keep the rest of the personDefendant when normalising bailStatus', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect(result[0].personDefendant.personDetails).toEqual({
+          firstName: 'John',
+          lastName: 'Smith',
+          dateOfBirth: '1990/01/01'
+        });
+        expect(result[0].id).toBe('master-1');
+        expect(result[0].masterDefendantId).toBe('master-1');
+      });
+
+      it('should not add bailStatus when the defendant has none', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('master-1', 'master-1', 'Smith')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].personDefendant.bailStatus).toBeUndefined();
+      });
+
+      it('should not add a personDefendant to an organisation defendant', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildOrganisationDefendant('org-1', 'org-1', 'Acme Ltd')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].personDefendant).toBeUndefined();
+        expect(result[0].legalEntityDefendant.organisation.name).toBe('Acme Ltd');
+      });
+
+      it('should remove offences from the grouped defendant and attach its cases and applications', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect((result[0] as any).offences).toBeUndefined();
+        expect(caseIds(result[0])).toEqual(['case-1']);
+        expect(result[0].courtApplications).toEqual([]);
+      });
+    });
+
+    describe('multiple defendants on a single case', () => {
+      it('should only set bailStatus on the defendant that has one', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Adams', conditionalBail),
+            buildPersonDefendant('master-2', 'master-2', 'Brown')
+          ])
+        ]);
+
+        expect(result.length).toBe(2);
+        expect(result[0].id).toBe('master-1');
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+        expect(result[1].id).toBe('master-2');
+        expect(result[1].personDefendant.bailStatus).toBeUndefined();
+      });
+
+      it('should only set bailStatus on the defendant that has one when it is sorted last', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-2', 'master-2', 'Brown', conditionalBail),
+            buildPersonDefendant('master-1', 'master-1', 'Adams')
+          ])
+        ]);
+
+        expect(result.length).toBe(2);
+        expect(result[0].id).toBe('master-1');
+        expect(result[0].personDefendant.bailStatus).toBeUndefined();
+        expect(result[1].id).toBe('master-2');
+        expect(result[1].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should give each defendant its own bailStatus when all of them have one', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Adams', conditionalBail),
+            buildPersonDefendant('master-2', 'master-2', 'Brown', [unconditionalBail]),
+            buildPersonDefendant('master-3', 'master-3', 'Clark', custodyBail)
+          ])
+        ]);
+
+        expect(result.map(defendant => defendant.personDefendant.bailStatus)).toEqual([
+          [conditionalBail],
+          [unconditionalBail],
+          [custodyBail]
+        ]);
+      });
+
+      it('should not share bailStatus between a person and an organisation defendant', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildOrganisationDefendant('org-1', 'org-1', 'Acme Ltd'),
+            buildPersonDefendant('master-1', 'master-1', 'Brown', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(2);
+        expect(result[0].id).toBe('org-1');
+        expect(result[0].personDefendant).toBeUndefined();
+        expect(result[1].id).toBe('master-1');
+        expect(result[1].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+    });
+
+    describe('single defendant on multiple cases', () => {
+      it('should group the cases when both defendants have the same id and masterDefendantId', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'master-1', 'Smith', conditionalBail)
+          ]),
+          buildCase('case-2', [
+            buildPersonDefendant('master-1', 'master-1', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should match defendants sharing the same masterDefendantId', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('case-defendant-1', 'master-1', 'Smith', conditionalBail)
+          ]),
+          buildCase('case-2', [buildPersonDefendant('case-defendant-2', 'master-1', 'Smith')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('case-defendant-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should match a defendant whose id is the masterDefendantId of the other', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('case-defendant-1', 'master-1', 'Smith', conditionalBail)
+          ]),
+          buildCase('case-2', [buildPersonDefendant('master-1', 'other-master', 'Smith')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('case-defendant-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should match a defendant whose masterDefendantId is the id of the other', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('master-1', 'other-master', 'Smith', conditionalBail)
+          ]),
+          buildCase('case-2', [buildPersonDefendant('case-defendant-2', 'master-1', 'Smith')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('master-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should use the bailStatus of the first matched defendant when the cases differ', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('case-defendant-1', 'master-1', 'Smith', conditionalBail)
+          ]),
+          buildCase('case-2', [
+            buildPersonDefendant('case-defendant-2', 'master-1', 'Smith', unconditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should take the bailStatus from the other case when they share the same masterDefendantId', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('case-defendant-1', 'master-1', 'Smith')]),
+          buildCase('case-2', [
+            buildPersonDefendant('case-defendant-2', 'master-1', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('case-defendant-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should take the bailStatus from the other case when its defendant id is the masterDefendantId', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('case-defendant-1', 'master-1', 'Smith')]),
+          buildCase('case-2', [
+            buildPersonDefendant('master-1', 'other-master', 'Smith', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('case-defendant-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should take the bailStatus from the other case when its masterDefendantId is the defendant id', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('master-1', 'other-master', 'Smith')]),
+          buildCase('case-2', [
+            buildPersonDefendant('case-defendant-2', 'master-1', 'Smith', [conditionalBail])
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('master-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should take the first available bailStatus when only the later cases have one', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('case-defendant-1', 'master-1', 'Smith')]),
+          buildCase('case-2', [
+            buildPersonDefendant('case-defendant-2', 'master-1', 'Smith', unconditionalBail)
+          ]),
+          buildCase('case-3', [
+            buildPersonDefendant('case-defendant-3', 'master-1', 'Smith', custodyBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2', 'case-3']);
+        expect(result[0].personDefendant.bailStatus).toEqual([unconditionalBail]);
+      });
+
+      it('should not add bailStatus when none of the matched defendants has one', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('case-defendant-1', 'master-1', 'Smith')]),
+          buildCase('case-2', [buildPersonDefendant('case-defendant-2', 'master-1', 'Smith')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toBeUndefined();
+      });
+
+      it('should keep its own bailStatus when an earlier matched defendant has none', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('a', 'a', 'Smith')]),
+          buildCase('case-2', [buildPersonDefendant('b', 'a', 'Smith')]),
+          buildCase('case-3', [buildPersonDefendant('c', 'b', 'Smith', conditionalBail)])
+        ]);
+
+        expect(result.map(defendant => defendant.id)).toEqual(['a', 'c']);
+        expect(result[0].personDefendant.bailStatus).toBeUndefined();
+        expect(result[1].personDefendant.bailStatus).toEqual([conditionalBail]);
+      });
+
+      it('should ignore a matched organisation defendant when looking for the bailStatus', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [buildPersonDefendant('case-defendant-1', 'master-1', 'Adams')]),
+          buildCase('case-2', [buildOrganisationDefendant('org-2', 'master-1', 'Brown Ltd')])
+        ]);
+
+        expect(result.length).toBe(1);
+        expect(result[0].id).toBe('case-defendant-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toBeUndefined();
+      });
+
+      it('should not group defendants when none of the matching criteria is met', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('case-defendant-1', 'master-1', 'Adams', conditionalBail)
+          ]),
+          buildCase('case-2', [buildPersonDefendant('case-defendant-2', 'master-2', 'Brown')])
+        ]);
+
+        expect(result.length).toBe(2);
+        expect(caseIds(result[0])).toEqual(['case-1']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+        expect(caseIds(result[1])).toEqual(['case-2']);
+        expect(result[1].personDefendant.bailStatus).toBeUndefined();
+      });
+    });
+
+    describe('multiple defendants on multiple cases', () => {
+      it('should group each defendant with its own cases and bailStatus', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('adams-1', 'master-adams', 'Adams', conditionalBail),
+            buildPersonDefendant('brown-1', 'master-brown', 'Brown')
+          ]),
+          buildCase('case-2', [
+            buildPersonDefendant('adams-2', 'master-adams', 'Adams', conditionalBail),
+            buildPersonDefendant('clark-2', 'master-clark', 'Clark', [unconditionalBail])
+          ]),
+          buildCase('case-3', [buildPersonDefendant('brown-3', 'master-brown', 'Brown')])
+        ]);
+
+        expect(result.length).toBe(3);
+
+        expect(result[0].id).toBe('adams-1');
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+
+        expect(result[1].id).toBe('brown-1');
+        expect(caseIds(result[1])).toEqual(['case-1', 'case-3']);
+        expect(result[1].personDefendant.bailStatus).toBeUndefined();
+
+        expect(result[2].id).toBe('clark-2');
+        expect(caseIds(result[2])).toEqual(['case-2']);
+        expect(result[2].personDefendant.bailStatus).toEqual([unconditionalBail]);
+      });
+
+      it('should apply every matching criteria across the cases', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('adams-1', 'master-adams', 'Adams', conditionalBail),
+            buildPersonDefendant('brown-1', 'master-brown', 'Brown', unconditionalBail),
+            buildPersonDefendant('master-clark', 'clark-other', 'Clark', custodyBail)
+          ]),
+          buildCase('case-2', [
+            buildPersonDefendant('adams-2', 'master-adams', 'Adams'),
+            buildPersonDefendant('master-brown', 'brown-other', 'Brown'),
+            buildPersonDefendant('clark-2', 'master-clark', 'Clark')
+          ])
+        ]);
+
+        expect(result.length).toBe(3);
+        expect(result.map(defendant => defendant.id)).toEqual([
+          'adams-1',
+          'brown-1',
+          'master-clark'
+        ]);
+        result.forEach(defendant => expect(caseIds(defendant)).toEqual(['case-1', 'case-2']));
+        expect(result.map(defendant => defendant.personDefendant.bailStatus)).toEqual([
+          [conditionalBail],
+          [unconditionalBail],
+          [custodyBail]
+        ]);
+      });
+
+      it('should only give the bailStatus from another case to the defendant it belongs to', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('adams-1', 'master-adams', 'Adams'),
+            buildPersonDefendant('brown-1', 'master-brown', 'Brown'),
+            buildPersonDefendant('clark-1', 'master-clark', 'Clark', custodyBail)
+          ]),
+          buildCase('case-2', [
+            buildPersonDefendant('adams-2', 'master-adams', 'Adams', conditionalBail),
+            buildPersonDefendant('brown-2', 'master-brown', 'Brown')
+          ])
+        ]);
+
+        expect(result.map(defendant => defendant.id)).toEqual(['adams-1', 'brown-1', 'clark-1']);
+
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[0].personDefendant.bailStatus).toEqual([conditionalBail]);
+
+        expect(caseIds(result[1])).toEqual(['case-1', 'case-2']);
+        expect(result[1].personDefendant.bailStatus).toBeUndefined();
+
+        expect(caseIds(result[2])).toEqual(['case-1']);
+        expect(result[2].personDefendant.bailStatus).toEqual([custodyBail]);
+      });
+
+      it('should take the bailStatus from another case for every matching criteria', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildPersonDefendant('adams-1', 'master-adams', 'Adams'),
+            buildPersonDefendant('brown-1', 'master-brown', 'Brown'),
+            buildPersonDefendant('master-clark', 'clark-other', 'Clark')
+          ]),
+          buildCase('case-2', [
+            buildPersonDefendant('adams-2', 'master-adams', 'Adams', conditionalBail),
+            buildPersonDefendant('master-brown', 'brown-other', 'Brown', unconditionalBail),
+            buildPersonDefendant('clark-2', 'master-clark', 'Clark', custodyBail)
+          ])
+        ]);
+
+        expect(result.map(defendant => defendant.id)).toEqual([
+          'adams-1',
+          'brown-1',
+          'master-clark'
+        ]);
+        result.forEach(defendant => expect(caseIds(defendant)).toEqual(['case-1', 'case-2']));
+        expect(result.map(defendant => defendant.personDefendant.bailStatus)).toEqual([
+          [conditionalBail],
+          [unconditionalBail],
+          [custodyBail]
+        ]);
+      });
+
+      it('should keep person and organisation defendants apart across the cases', () => {
+        const result = groupByDefendant([
+          buildCase('case-1', [
+            buildOrganisationDefendant('org-1', 'master-org', 'Acme Ltd'),
+            buildPersonDefendant('brown-1', 'master-brown', 'Brown', conditionalBail)
+          ]),
+          buildCase('case-2', [
+            buildOrganisationDefendant('org-2', 'master-org', 'Acme Ltd'),
+            buildPersonDefendant('brown-2', 'master-brown', 'Brown', conditionalBail)
+          ])
+        ]);
+
+        expect(result.length).toBe(2);
+        expect(result[0].id).toBe('org-1');
+        expect(result[0].personDefendant).toBeUndefined();
+        expect(caseIds(result[0])).toEqual(['case-1', 'case-2']);
+        expect(result[1].id).toBe('brown-1');
+        expect(result[1].personDefendant.bailStatus).toEqual([conditionalBail]);
+        expect(caseIds(result[1])).toEqual(['case-1', 'case-2']);
+      });
+    });
+
+    it('should return an empty list when the hearing has no prosecution cases', () => {
+      expect(groupByDefendant(undefined)).toEqual([]);
+    });
+
+    it('should return an empty list when there is no hearing', () => {
+      expect(fromSelectors.getCasesAndApplicationsGroupedByDefendant.projector(null)).toEqual([]);
     });
   });
 
