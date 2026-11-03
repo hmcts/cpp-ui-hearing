@@ -724,6 +724,7 @@ class MockApplicationResultDetailsContainer {
 class MockShareResultContainerComponent {
   @Input() pendingAttendanceDefendants: any;
   @Input() isApplicationJourney: boolean;
+  @Input() isStandaloneApplication: boolean;
   @Input() amendApplicationPermission: boolean;
   @Input() caseStatus: string;
   @Output() sharedResultsValidation = new EventEmitter();

@@ -36,6 +36,7 @@ export class HearingCaseLinksNotesComponent implements OnInit {
   @Input() selectedHearingDate: string;
   @Input() isStandAloneApplication: boolean;
   @Input() canAddChildApplication = false;
+  @Input() relatedApplicationId: string;
 
   @Output() onGoToCaseLink: EventEmitter<HearingCaseLink> = new EventEmitter();
   @Output() onGoToCreateTask = new EventEmitter<{ caseUrn: string; courtCentreId: string }>();

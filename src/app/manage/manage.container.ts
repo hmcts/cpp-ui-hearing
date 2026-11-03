@@ -31,6 +31,7 @@ import {
   getIsGroupCaseApplication,
   getManageHearingSidebarHidden,
   getNonBulkCaseDefendants,
+  getRelatedAppId,
   getSelectedHearingDate,
   getShowFutureHearingsRemovedAlert,
   HearingCaseLink,
@@ -120,6 +121,7 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
   hearingHasBulkCaseOnly: boolean;
   hasFutureHearing$: Observable<boolean>;
   canAddChildApplications$: Observable<boolean>;
+  relatedApplicationId$: Observable<string>;
 
   urns$: Observable<string>;
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -200,6 +202,7 @@ export class ManageContainer implements OnDestroy, OnInit, AfterViewChecked {
     this.canAddChildApplications$ = this.store
       .select(getFeatures)
       .pipe(map(services => services.includes('childApplication')));
+    this.relatedApplicationId$ = this.store.select(getRelatedAppId);
 
     this.selectedHearingDate$ = this.store.select(getSelectedHearingDate);
     this.defendantsNames$ = combineLatest([

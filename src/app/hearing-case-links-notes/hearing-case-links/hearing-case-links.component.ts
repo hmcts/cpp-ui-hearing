@@ -175,6 +175,7 @@ export class HearingCaseLinksComponent {
   @Input() courtApplications: CourtApplication[];
   @Input() isStandAloneApplication: boolean;
   @Input() canAddChildApplication = false;
+  @Input() relatedApplicationId: string;
   @Output() onGoToCaseLink: EventEmitter<HearingCaseLink> = new EventEmitter();
   @Output() onGoToCreateTask = new EventEmitter<string>();
 
@@ -184,14 +185,23 @@ export class HearingCaseLinksComponent {
    * The single "Add application" link for the hearing (at most one per hearing), or null.
    * Only used when the hearing has no prosecution cases. It sits in the box of the first
    * eligible application:
-   * - child applications are skipped - a child cannot take a child; when its parent is in the
-   *   same hearing the parent carries the link
+   * - child applications are skipped - a child cannot take a child; when it is listed into its
+   *   parent's hearing the parent carries the link
+   * - a child application's own hearing: no link - its parent is only pulled in for context
    * - standalone applications are skipped - AAAG is the only child entry point for standalones
    * - application on inactive offences: creates a CHILD of it (needs the child application permission)
    * - application on active offences (or without offences): creates a new PARENT application
    * - mixed active and inactive applications in the hearing: no link
    */
   get addApplicationLink(): AddApplicationLink | null {
+    const relatedApplication = (this.courtApplications || []).find(
+      application => application.id === this.relatedApplicationId
+    );
+
+    if (relatedApplication?.parentApplicationId) {
+      return null;
+    }
+
     const parentCandidates = (this.courtApplications || []).filter(
       application => !application.parentApplicationId && !isStandaloneCourtApplication(application)
     );
