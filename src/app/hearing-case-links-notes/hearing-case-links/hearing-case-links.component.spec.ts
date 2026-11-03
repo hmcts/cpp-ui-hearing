@@ -113,13 +113,18 @@ describe('HearingCaseLinksComponent', () => {
         parentApplicationId: parent.id
       } as CourtApplication);
 
-    const render = (courtApplications: CourtApplication[], canAddChildApplication = true) => {
+    const render = (
+      courtApplications: CourtApplication[],
+      canAddChildApplication = true,
+      relatedApplicationId?: string
+    ) => {
       fixture = TestBed.createComponent(HearingCaseLinksComponent);
       component = fixture.componentInstance;
       component.prosecutionCases = [];
       component.isStandAloneApplication = false;
       component.courtApplications = courtApplications;
       component.canAddChildApplication = canAddChildApplication;
+      component.relatedApplicationId = relatedApplicationId;
       fixture.detectChanges();
     };
     const addLinks = () =>
@@ -265,6 +270,19 @@ describe('HearingCaseLinksComponent', () => {
         applicationId: 'inactiveApp',
         type: HearingCaseLinkType.ADD_CHILD_APPLICATION
       });
+    });
+
+    it('should show the add application link on the parent when the child is listed into the parent hearing', () => {
+      const child = childOf(inactiveApp);
+      render([child, inactiveApp], true, inactiveApp.id);
+      expect(addLinks().length).toBe(1);
+      expect(addLinkFor('INACTIVE_REF')).toBeTruthy();
+    });
+
+    it('should not show the add application link in the child application own hearing with its parent pulled in', () => {
+      const child = childOf(inactiveApp);
+      render([child, inactiveApp], true, child.id);
+      expect(addLinks().length).toBe(0);
     });
 
     it('should not show the add application link for a standalone application', () => {

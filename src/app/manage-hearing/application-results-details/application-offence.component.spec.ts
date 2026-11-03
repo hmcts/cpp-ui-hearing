@@ -152,6 +152,7 @@ class MockShareableResultsContainer {
   @Input() masterDefendantId: string;
   @Input() offenceId: string;
   @Input() showResultsPlaceholder: boolean;
+  @Input() showCaseLevelOffences: boolean;
   @Input() isCourtApplicationFinalised: boolean;
   @Input() amendApplicationPermission: boolean;
 }

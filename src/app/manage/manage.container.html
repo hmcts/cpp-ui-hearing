@@ -117,6 +117,7 @@
           [hidden]="!topMenuDetails[0][1]?.active"
           [hearing]="hearing$ | async"
           [canAddChildApplication]="canAddChildApplications$ | async"
+          [relatedApplicationId]="relatedApplicationId$ | async"
           [isStandAloneApplication]="isStandaloneApplication"
           [selectedHearingDate]="selectedHearingDate$ | async"
           [hearingNotes]="hearingNotes$ | async"
