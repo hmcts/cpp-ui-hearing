@@ -198,7 +198,7 @@ exports[`HearingResultsListComponent custodial establishment display should disp
                           pdk-margin="0"
                         >
                           <span>
-                             24 COMMON.YEARS_OLD 
+                             25 COMMON.YEARS_OLD 
                           </span>
                         </dd>
                       </div>
@@ -964,7 +964,7 @@ exports[`HearingResultsListComponent should render the template with the values 
                           pdk-margin="0"
                         >
                           <span>
-                             24 COMMON.YEARS_OLD 
+                             25 COMMON.YEARS_OLD 
                           </span>
                         </dd>
                       </div>
