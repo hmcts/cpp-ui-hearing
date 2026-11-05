@@ -56,8 +56,7 @@ import {
   RemoveFutureHearingsReset,
   SetSelectedHearingDateAction
 } from '../core';
-import { WofdWarningService } from '@cpp/application';
-import { PageTitleService, TitleCaseReference } from '@cpp/core';
+import { PageTitleService, TitleCaseReference, WofdWarningService } from '@cpp/application';
 import { Breadcrumb } from '../core/model/breadcrumb';
 import { ClickedMenuItemEvent, TopMenu, TopMenuItem } from '../shared/components/top-menu/top-menu';
 import { getUserCourtCentreOuCodes } from '../core/selectors/user-groups';
