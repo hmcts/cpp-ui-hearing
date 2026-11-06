@@ -8,7 +8,7 @@ export const routes: Routes = [
     providers: [IdpcIngestionComponentStore, UserGroupsService],
     loadComponent: () => import('./hearing-list.container').then(m => m.HearingListContainer),
     data: {
-      title: 'My hearing list | Common Platform | GOV.UK'
+      title: 'My hearing list'
     }
   }
 ];

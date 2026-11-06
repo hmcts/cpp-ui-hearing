@@ -9,7 +9,7 @@ export const routes: Routes = [
       import('./remove-future-hearing.container').then(m => m.RemoveFutureHearingContainer),
     canActivate: [TrialTypesGuard, CheckFutureHearingsGuard],
     data: {
-      title: 'Remove future hearing | Common Platform | GOV.UK'
+      title: 'Remove future hearing'
     }
   }
 ];

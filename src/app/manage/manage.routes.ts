@@ -53,7 +53,7 @@ export const routes: Routes = [
     canActivateChild: [LoadCourtOrdersGuard],
     data: {
       allowedFeatures: ['hearing-viewListAndManageHearings'],
-      title: 'Manage hearing | Common Platform | GOV.UK'
+      title: 'Manage hearing'
     },
     children: [
       {
@@ -73,7 +73,7 @@ export const routes: Routes = [
             loadChildren: () => import('../enter-pleas/enter-pleas.routes').then(m => m.routes),
             canActivate: [HearingNotLockedByOtherUserGuard, EnterPleasGuard],
             data: {
-              title: 'Enter pleas | Common Platform | GOV.UK'
+              title: 'Enter pleas'
             }
           },
           {
@@ -82,7 +82,7 @@ export const routes: Routes = [
               import('../enter-verdicts/enter-verdicts.routes').then(m => m.routes),
             canActivate: [HearingNotLockedByOtherUserGuard],
             data: {
-              title: 'Enter verdicts | Common Platform | GOV.UK'
+              title: 'Enter verdicts'
             }
           },
           {
@@ -91,7 +91,7 @@ export const routes: Routes = [
               import('../tier-and-list-type/tier-and-list-type.routes').then(m => m.routes),
             canActivate: [CrownCourtOnlyGuard],
             data: {
-              title: 'Tier and list type | Common Platform | GOV.UK'
+              title: 'Tier and list type'
             }
           },
           {
@@ -99,7 +99,7 @@ export const routes: Routes = [
             canActivate: [LoadDefendantsTrackingStatusGuard],
             loadChildren: () => import('../results/results.routes').then(m => m.routes),
             data: {
-              title: 'Enter results | Common Platform | GOV.UK'
+              title: 'Enter results'
             }
           },
           {
@@ -109,7 +109,7 @@ export const routes: Routes = [
                 m => m.routes
               ),
             data: {
-              title: 'Manage hearing error | Common Platform | GOV.UK'
+              title: 'Manage hearing error'
             }
           }
         ]

@@ -10,7 +10,6 @@ import {
   HearingCaseLinkType,
   HearingDetail,
   HearingLockState,
-  PageTitleService,
   SetSelectedHearingDateAction
 } from '../core';
 import * as mockData from '../core/selectors/mock/hearing.json';
@@ -18,7 +17,7 @@ import { ManageContainer } from './manage.container';
 import { PleaType } from '@cpp/reference-data';
 import { mockSummary } from '../mock-data/test-mock-data';
 import { DefendantNamesPipe } from '../shared/pipes/defendant-names.pipe';
-import { WofdWarningService } from '@cpp/application';
+import { PageTitleService, WofdWarningService } from '@cpp/application';
 
 const mockHearing = (mockData as any).hearing as HearingDetail;
 const pleaTypes = (mockData as any).pleaTypes as PleaType[];
@@ -80,7 +79,10 @@ describe('ManageContainer', () => {
 
     scrollSpy = jest.fn();
     dispatchSpy = jest.fn();
-    pageTitleService = { setDefendantNames: jest.fn(), clearDefendantNames: jest.fn() } as any;
+    pageTitleService = {
+      setInformation: jest.fn(),
+      clearInformation: jest.fn()
+    } as any;
     selectSpy = jest.fn().mockImplementation(selectorFunc => {
       return of(selectorFunc.call(store, state));
     });
@@ -159,7 +161,7 @@ describe('ManageContainer', () => {
     });
 
     it('should select all required data from Store upon initialization', () => {
-      expect(selectSpy).toHaveBeenCalledTimes(22);
+      expect(selectSpy).toHaveBeenCalledTimes(23);
     });
 
     it('should dispatch an action when a day is selected and it has a value', () => {
@@ -317,20 +319,23 @@ describe('ManageContainer', () => {
   });
 
   describe('page title', () => {
-    it('should not put any names in the tab while the header is not shown', () => {
+    it('should not put any names or reference in the tab while the header is not shown', () => {
       // the user is not (yet) known to be allowed to see the hearing, so there is no header
-      expect(pageTitleService.setDefendantNames).not.toHaveBeenCalled();
+      expect(pageTitleService.setInformation).not.toHaveBeenCalled();
     });
 
-    it('should hand the defendants shown in the header to the page title service', () => {
+    it("should hand the defendants shown in the header and the URN of the first defendant's case to the page title service", () => {
       component.defendantsNames$.subscribe();
 
-      expect(pageTitleService.setDefendantNames).toHaveBeenCalledWith([
-        expect.objectContaining({ firstName: 'Harry', lastName: 'Kane Junior' })
-      ]);
+      expect(pageTitleService.setInformation).toHaveBeenCalledWith(
+        expect.objectContaining({
+          names: [expect.objectContaining({ firstName: 'Harry', lastName: 'Kane Junior' })],
+          caseReference: '8C720B32E45B'
+        })
+      );
     });
 
-    it('should unwrap standalone application subjects for the page title service', () => {
+    it('should unwrap standalone application subjects and use the application reference for the page title service', () => {
       // a new state object, the memoised selectors would otherwise return the cached hearing
       state = {
         ...state,
@@ -344,6 +349,7 @@ describe('ManageContainer', () => {
               courtApplications: [
                 {
                   ...mockHearing.courtApplications[0],
+                  applicationReference: 'APP-REF-1',
                   subject: { personDetails: { firstName: 'Anna', lastName: 'Smith' } }
                 }
               ]
@@ -354,15 +360,18 @@ describe('ManageContainer', () => {
       component.ngOnInit();
       component.defendantsNames$.subscribe();
 
-      expect(pageTitleService.setDefendantNames).toHaveBeenLastCalledWith([
-        expect.objectContaining({ firstName: 'Anna', lastName: 'Smith' })
-      ]);
+      expect(pageTitleService.setInformation).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          names: [expect.objectContaining({ firstName: 'Anna', lastName: 'Smith' })],
+          caseReference: 'APP-REF-1'
+        })
+      );
     });
 
-    it('should clear the page title names when it is destroyed', () => {
+    it('should clear the page title information when it is destroyed', () => {
       component.ngOnDestroy();
 
-      expect(pageTitleService.clearDefendantNames).toHaveBeenCalledTimes(1);
+      expect(pageTitleService.clearInformation).toHaveBeenCalledTimes(1);
     });
   });
 });

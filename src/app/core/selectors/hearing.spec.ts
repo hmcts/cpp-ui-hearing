@@ -425,6 +425,79 @@ describe('Hearing selectors', () => {
     expect(result).toEqual(['8C720B32E45B']);
   });
 
+  describe('getCurrentHearingTitleReference', () => {
+    const defendant = (id: string, lastName: string) => ({
+      ...mockHearing.prosecutionCases[0].defendants[0],
+      id,
+      masterDefendantId: id,
+      personDefendant: {
+        ...mockHearing.prosecutionCases[0].defendants[0].personDefendant,
+        personDetails: {
+          ...mockHearing.prosecutionCases[0].defendants[0].personDefendant.personDetails,
+          lastName
+        }
+      }
+    });
+    const prosecutionCase = (caseURN: string, defendants: any[]) => ({
+      ...mockHearing.prosecutionCases[0],
+      prosecutionCaseIdentifier: {
+        ...mockHearing.prosecutionCases[0].prosecutionCaseIdentifier,
+        caseURN
+      },
+      defendants
+    });
+    const loadHearing = (hearing: any) =>
+      store.dispatch(
+        new fromActions.LoadHearingDetailSuccessAction({
+          hearing,
+          hearingState: HearingLockState.INITIALISED
+        })
+      );
+
+    let result: string;
+
+    beforeEach(() => {
+      store
+        .select(fromSelectors.getCurrentHearingTitleReference)
+        .subscribe(value => (result = value));
+    });
+
+    it('should return the URN of the case', () => {
+      loadHearing(mockHearing);
+
+      expect(result).toBe('8C720B32E45B');
+    });
+
+    it('should return the URN of the first defendant shown, not of the first case', () => {
+      // the header sorts the defendants by name, so Adams on the second case is shown first
+      loadHearing({
+        ...mockHearing,
+        prosecutionCases: [
+          prosecutionCase('CASE00000001', [defendant('d1', 'Young')]),
+          prosecutionCase('CASE00000002', [defendant('d2', 'Adams')])
+        ]
+      });
+
+      expect(result).toBe('CASE00000002');
+    });
+
+    it('should return the application reference for a standalone application', () => {
+      loadHearing({
+        ...mockHearing,
+        prosecutionCases: [],
+        courtApplications: [
+          {
+            ...mockHearing.courtApplications[0],
+            applicationReference: 'APP-REF-1',
+            subject: { personDetails: { firstName: 'Anna', lastName: 'Smith' } }
+          }
+        ]
+      });
+
+      expect(result).toBe('APP-REF-1');
+    });
+  });
+
   it('should return the current hearing stored in the store', () => {
     let result: any;
 

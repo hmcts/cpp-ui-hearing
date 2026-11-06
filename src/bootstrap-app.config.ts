@@ -5,13 +5,13 @@ import {
   provideAppInitializer,
   InjectionToken
 } from '@angular/core';
-import { provideRouter, TitleStrategy, withRouterConfig } from '@angular/router';
+import { provideRouter, withRouterConfig } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideCppCoreHttpServices, withCppHttpOverrides, GENERATE_UNIQUE_KEY } from '@cpp/core';
 import { provideStore } from '@ngrx/store';
 import { provideRouterStore, RouterState } from '@ngrx/router-store';
 import { provideEffects } from '@ngrx/effects';
-import { provideCPPApplicationEnvironment } from '@cpp/application';
+import { provideCPPApplicationEnvironment, provideCppPageTitle } from '@cpp/application';
 import { provideUserGroupsEnvironmentContext } from '@cpp/users-groups';
 import { provideReferenceDataEnvironmentContext } from '@cpp/reference-data';
 import { ListingNotesService, provideSchedulingEnvironmentContext } from '@cpp/scheduling';
@@ -48,8 +48,7 @@ import {
   LoadFutureHearingsGuard,
   CustomRouterStateSerializer,
   HearingService,
-  CourtOrderService,
-  PageTitleStrategy
+  CourtOrderService
 } from './app/core';
 import { UserGroupsGuard } from '@cpp/users-groups';
 import { TrialTypesGuard } from '@cpp/reference-data';
@@ -134,7 +133,7 @@ export const bootstrapAppConfig: ApplicationConfig = {
         paramsInheritanceStrategy: 'always'
       })
     ),
-    { provide: TitleStrategy, useClass: PageTitleStrategy },
+    provideCppPageTitle(),
     provideAppInitializer(async () => await inject(AppConfigService).load()),
     provideStore(reducers, {
       runtimeChecks: {

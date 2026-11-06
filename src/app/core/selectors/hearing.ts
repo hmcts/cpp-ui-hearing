@@ -235,6 +235,11 @@ const extractDefenceCouncils = (hearing: HearingDetail, selectedHearindDate: str
     }));
 };
 
+const getCaseIdentifier = (aCase: ProsecutionCaseDetails) =>
+  aCase.prosecutionCaseIdentifier.caseURN ||
+  aCase.prosecutionCaseIdentifier.prosecutionAuthorityReference ||
+  aCase.prosecutionCaseIdentifier.prosecutionAuthorityCode;
+
 const extractUrns = (hearing: HearingDetail) => {
   if (!hearing) {
     return undefined;
@@ -244,16 +249,7 @@ const extractUrns = (hearing: HearingDetail) => {
   if (hearing.prosecutionCases && !!hearing.prosecutionCases.length) {
     hearing.prosecutionCases
       .filter(kase => !kase.isGroupMaster)
-      .forEach(aCase => {
-        let identifier = aCase.prosecutionCaseIdentifier.caseURN;
-        if (!identifier) {
-          identifier = aCase.prosecutionCaseIdentifier.prosecutionAuthorityReference;
-          if (!identifier) {
-            identifier = aCase.prosecutionCaseIdentifier.prosecutionAuthorityCode;
-          }
-        }
-        urns.add(identifier);
-      });
+      .forEach(aCase => urns.add(getCaseIdentifier(aCase)));
   } else {
     hearing.courtApplications.forEach(application => {
       const identifier = application.applicationReference;
@@ -655,6 +651,25 @@ export const getCurrentHearingUrn = createSelector(getCurrentHearing, hearing =>
 
 export const getCurrentHearingUrnList = createSelector(getCurrentHearing, hearing =>
   extractUrns(hearing)
+);
+
+// The reference for the tab title: the case of the first defendant shown in the header, which
+// isn't always the first case as the header sorts defendants by name. Otherwise the first
+// reference shown, e.g. the application reference for a standalone application.
+export const getCurrentHearingTitleReference = createSelector(
+  getCurrentHearing,
+  getNonBulkCaseDefendants,
+  (hearing, { defendants }) => {
+    const leadDefendantId = defendants[0]?.defendantId;
+    const leadCase =
+      leadDefendantId &&
+      hearing?.prosecutionCases?.find(
+        kase =>
+          !kase.isGroupMaster &&
+          kase.defendants?.some(defendant => defendant.id === leadDefendantId)
+      );
+    return leadCase ? getCaseIdentifier(leadCase) : extractUrns(hearing)?.[0];
+  }
 );
 
 export const getCasesAndApplicationsGroupedByDefendant = createSelector(
