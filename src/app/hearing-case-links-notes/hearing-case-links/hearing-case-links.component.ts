@@ -86,7 +86,7 @@ interface AddApplicationLink {
         </pdk-inset-text>
       </div>
       } } @if (!prosecutionCases?.length) { @let addApplication = addApplicationLink; @for
-      (application of courtApplications; track application.id) {
+      (application of linkedApplications; track application.id) {
       <ng-template
         [ngTemplateOutlet]="applicationTemplate"
         [ngTemplateOutletContext]="{
@@ -180,6 +180,17 @@ export class HearingCaseLinksComponent {
   @Output() onGoToCreateTask = new EventEmitter<string>();
 
   hearingCaseLinkType = HearingCaseLinkType;
+
+  /**
+   * Applications given a links box. A child listed with its parent (in the parent's hearing or
+   * its own hearing with the parent pulled in) is represented by the parent's links only.
+   */
+  get linkedApplications(): CourtApplication[] {
+    const applications = this.courtApplications || [];
+    const applicationIds = new Set(applications.map(({ id }) => id));
+
+    return applications.filter(application => !applicationIds.has(application.parentApplicationId));
+  }
 
   /**
    * The single "Add application" link for the hearing (at most one per hearing), or null.

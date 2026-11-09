@@ -285,6 +285,45 @@ describe('HearingCaseLinksComponent', () => {
       expect(addLinks().length).toBe(0);
     });
 
+    describe.each([
+      ['listed into the parent hearing', inactiveApp.id],
+      ['listed into its own hearing', childOf(inactiveApp).id]
+    ])('when a child application is %s', (_, relatedApplicationId) => {
+      beforeEach(() => render([childOf(inactiveApp), inactiveApp], true, relatedApplicationId));
+
+      it('should only show the parent application links', () => {
+        const boxes = fixture.debugElement.queryAll(By.css('[data-test-id="reference"]'));
+        expect(boxes.map(box => box.nativeElement.textContent.trim())).toEqual(['INACTIVE_REF']);
+        expect(
+          fixture.debugElement.query(By.css(`[data-test-id="CHILD_INACTIVE_REF"]`))
+        ).toBeNull();
+      });
+
+      it('should link to the parent application at a glance and material', () => {
+        jest.spyOn(component.onGoToCaseLink, 'emit');
+        const [atAGlance, material] = fixture.debugElement.queryAll(
+          By.css('[data-test-id="INACTIVE_REF"] a')
+        );
+        atAGlance.triggerEventHandler('click', null);
+        material.triggerEventHandler('click', null);
+        expect(component.onGoToCaseLink.emit).toHaveBeenNthCalledWith(1, {
+          applicationId: 'inactiveApp',
+          type: HearingCaseLinkType.APPLICATION_AT_A_GLANCE
+        });
+        expect(component.onGoToCaseLink.emit).toHaveBeenNthCalledWith(2, {
+          applicationId: 'inactiveApp',
+          type: HearingCaseLinkType.APPLICATION_MATERIAL
+        });
+      });
+    });
+
+    it('should still show a child application when its parent is not in the hearing', () => {
+      render([childOf(inactiveApp)]);
+      expect(
+        fixture.debugElement.query(By.css('[data-test-id="CHILD_INACTIVE_REF"]'))
+      ).toBeTruthy();
+    });
+
     it('should not show the add application link for a standalone application', () => {
       render([standaloneApp]);
       expect(fixture.debugElement.query(By.css('[data-test-id="STANDALONE_REF"]'))).toBeTruthy();
