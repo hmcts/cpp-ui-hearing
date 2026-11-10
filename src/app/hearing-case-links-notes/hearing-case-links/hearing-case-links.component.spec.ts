@@ -285,6 +285,29 @@ describe('HearingCaseLinksComponent', () => {
       expect(addLinks().length).toBe(0);
     });
 
+    describe('linkedApplications', () => {
+      it('should only link the parent when a child is listed with its parent', () => {
+        component.courtApplications = [childOf(inactiveApp), inactiveApp];
+        expect(component.linkedApplications).toEqual([inactiveApp]);
+      });
+
+      it('should link a child application when its parent is not in the hearing', () => {
+        const child = childOf(inactiveApp);
+        component.courtApplications = [child];
+        expect(component.linkedApplications).toEqual([child]);
+      });
+
+      it('should link every application when none are related', () => {
+        component.courtApplications = [inactiveApp, activeApp];
+        expect(component.linkedApplications).toEqual([inactiveApp, activeApp]);
+      });
+
+      it('should link no applications when court applications are undefined', () => {
+        component.courtApplications = undefined;
+        expect(component.linkedApplications).toEqual([]);
+      });
+    });
+
     it('should not show the add application link for a standalone application', () => {
       render([standaloneApp]);
       expect(fixture.debugElement.query(By.css('[data-test-id="STANDALONE_REF"]'))).toBeTruthy();
