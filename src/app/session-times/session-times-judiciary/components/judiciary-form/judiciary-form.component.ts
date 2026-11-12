@@ -202,7 +202,7 @@ export class JudiciaryFormComponent implements OnChanges {
     if (judiciaries) {
       this.selectedJudiciaries = this.prepareSelectedJudiciaires(judiciaries);
 
-      const withIds = judiciaries.filter(j => j.judiciaryId).map(j => j.judicialMember);
+      const withIds = judiciaries.filter(j => j.judicialMember).map(j => j.judicialMember);
       const withNamesOnly = judiciaries
         .filter(j => !j.judiciaryId && j.judiciaryName)
         .map(j => j.judiciaryName);
@@ -239,7 +239,7 @@ export class JudiciaryFormComponent implements OnChanges {
 
   private prepareSelectedJudiciaires(judiciaries: CourtSessionJudiciary[]): SelectedJudiciary[] {
     const matching = judiciaries
-      .filter(j => j.judiciaryId)
+      .filter(j => j.judicialMember)
       .map((withId, index) => {
         if (!!withId.benchChairman) {
           this.selectedAmJudiciaryIndex = index;

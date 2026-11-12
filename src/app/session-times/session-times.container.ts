@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CourtCentre, CourtOfficerTypeaheadOptions, CourtType } from '../core/model';
+import { CourtCentre, CourtOfficerTypeaheadOptions } from '../core/model';
 import { ValidationError, PdkErrorSummaryComponent, PdkTypographyDirective } from '@cpp/pdk';
 import { AppState } from '../core/reducers';
 import { Store, select } from '@ngrx/store';
@@ -117,13 +117,7 @@ export class SessionTimesContainer implements OnInit, OnDestroy {
     ).courtroomName;
 
     this.sessionDate = sessionDate;
-    const { id, oucodeL1Code } = courtCentre;
-
-    const oucode = courtCentre.oucode;
-
-    this.store.dispatch(
-      new GetSessionTimesAction(id, oucode, courtRoomId, oucodeL1Code as CourtType, sessionDate)
-    );
+    this.store.dispatch(new GetSessionTimesAction(courtCentre.id, courtRoomId, sessionDate));
   }
 
   onCourtJudiciarySubmit(judiciaryForm: SessionTimesCourt) {
