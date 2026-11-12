@@ -10,7 +10,7 @@
     </parent>
     <groupId>uk.gov.moj.cpp.ui</groupId>
     <artifactId>ui-hearing</artifactId>
-    <version>19.0.69-CHD-2689-SNAPSHOT</version>
+    <version>19.0.70-CHD-2689-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
         <skip.node.install>false</skip.node.install>
