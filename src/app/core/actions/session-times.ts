@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { CourtType, SessionTimesCourt, CourtOfficersByRole } from '../model';
+import { SessionTimesCourt, CourtOfficersByRole } from '../model';
 
 export const RECORD_SESSION_TIMES = 'RECORD_SESSION_TIMES';
 export const RECORD_SESSION_TIMES_SUCCESS = 'RECORD_SESSION_TIMES_SUCCESS';
@@ -27,9 +27,7 @@ export class GetSessionTimesAction implements Action {
   readonly type = GET_SESSION_TIMES;
   constructor(
     public readonly courtHouseId: string,
-    public readonly ouCode: string,
     public readonly courtRoomId: string,
-    public readonly courtType: CourtType,
     public readonly sessionDate: string
   ) {}
 }

@@ -69,4 +69,17 @@ describe('SessionTimesService', () => {
       });
     });
   });
+
+  describe('Get Allocated Judiciaries', () => {
+    it('should return the judiciaries allocated to the AM and PM sessions of a courthouse/courtroom combination', done => {
+      service.getAllocatedJudiciaries('123', '456', 'some-date').subscribe(allocated => {
+        expect(allocated.courtHouseId).toBe('123');
+        expect(allocated.courtRoomId).toBe('456');
+        expect(allocated.courtSessionDate).toBe('some-date');
+        expect(allocated.amCourtSession.judiciaries.length).toBeGreaterThan(0);
+        expect(allocated.pmCourtSession.judiciaries.length).toBeGreaterThan(0);
+        done();
+      });
+    });
+  });
 });

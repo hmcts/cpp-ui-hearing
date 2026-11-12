@@ -15,12 +15,10 @@ import {
   getActions,
   TestActions,
   mockSessionTimesCourt,
-  mockHearingSlots,
   mockJudicialMembers
 } from '../../mock-data/test-mock-data';
 import { SessionTimesEffects } from './session-times';
-import { JudicialMember, CourtSession } from '../model';
-import { SchedulingService } from '@cpp/scheduling';
+import { JudicialMember, CourtSession, SessionTimesCourt } from '../model';
 
 describe('Session Times effects', () => {
   let actions$: TestActions;
@@ -30,14 +28,14 @@ describe('Session Times effects', () => {
   let getJudicialMembersByIds: jest.Mock;
   let getSessionTimes: jest.Mock;
   let recordSessionTimes: jest.Mock;
-  let searchHearingSlots: jest.Mock;
+  let getAllocatedJudiciaries: jest.Mock;
   let getUsersForGroupByGroupName: jest.Mock;
 
   beforeEach(() => {
     getJudicialMembersByIds = jest.fn();
     getSessionTimes = jest.fn();
     recordSessionTimes = jest.fn();
-    searchHearingSlots = jest.fn();
+    getAllocatedJudiciaries = jest.fn();
     getUsersForGroupByGroupName = jest.fn();
 
     TestBed.configureTestingModule({
@@ -55,13 +53,8 @@ describe('Session Times effects', () => {
           provide: SessionTimesService,
           useValue: {
             getSessionTimes,
+            getAllocatedJudiciaries,
             recordSessionTimes
-          }
-        },
-        {
-          provide: SchedulingService,
-          useValue: {
-            searchHearingSlots
           }
         },
         {
@@ -88,16 +81,8 @@ describe('Session Times effects', () => {
 
   describe('getSessionTimes$', () => {
     const { courtHouseId, courtRoomId } = mockSessionTimesCourt;
-    const ouCode = 'B01LY00';
-    const courtType = 'B';
     const sessionDate = '2020-10-02';
-    const inputAction = new GetSessionTimesAction(
-      courtHouseId,
-      ouCode,
-      courtRoomId,
-      courtType,
-      sessionDate
-    );
+    const inputAction = new GetSessionTimesAction(courtHouseId, courtRoomId, sessionDate);
 
     it('should return current session if session has previously been saved', () => {
       actions$.stream = hot('-a', { a: inputAction });
@@ -121,6 +106,7 @@ describe('Session Times effects', () => {
       getJudicialMembersByIds.mockReturnValue(judicialMembers$);
 
       expect(effects.getSessionTimes$).toBeObservable(expected$);
+      expect(getAllocatedJudiciaries).not.toHaveBeenCalled();
     });
 
     it('should emit ApiError if bad request', () => {
@@ -135,62 +121,110 @@ describe('Session Times effects', () => {
       expect(effects.getSessionTimes$).toBeObservable(expected$);
     });
 
-    it('should return if no existing session for Crown Court', () => {
-      getSessionTimes.mockReturnValue(cold('-a|', { a: null }));
-      const action = {
-        ...inputAction,
-        courtType: 'C'
-      };
-
-      actions$.stream = hot('-a', { a: action });
-      const expected$ = cold('--b', {
-        b: new GetSessionTimesSuccessAction({
-          courtHouseId,
-          courtRoomId,
-          courtSessionDate: sessionDate
-        })
-      });
-
-      expect(effects.getSessionTimes$).toBeObservable(expected$);
-    });
-
-    it('should call ROTA if no existing session for Magistrates Court', () => {
-      const expectedRotaJudiciary = [
-        {
-          judiciaryId: mockJudicialMembers[0].id,
-          benchChairman: false,
-          judicialMember: mockJudicialMembers[0]
+    describe('when a session has nothing saved', () => {
+      const allocatedJudiciaries: SessionTimesCourt = {
+        courtHouseId,
+        courtRoomId,
+        courtSessionDate: sessionDate,
+        amCourtSession: {
+          judiciaries: [{ judiciaryId: mockJudicialMembers[0].id }]
         },
-        {
-          judiciaryId: mockJudicialMembers[1].id,
-          benchChairman: true,
-          judicialMember: mockJudicialMembers[1]
+        pmCourtSession: {
+          judiciaries: [{ judiciaryId: mockJudicialMembers[1].id }]
         }
-      ];
+      };
+      const prefilledAmSession = extendSessionWithJudicialMembers(
+        allocatedJudiciaries.amCourtSession,
+        mockJudicialMembers
+      );
+      const prefilledPmSession = extendSessionWithJudicialMembers(
+        allocatedJudiciaries.pmCourtSession,
+        mockJudicialMembers
+      );
 
-      actions$.stream = hot('-a', { a: inputAction });
-      const noExistingSession$ = cold('-(b|)', { b: null });
-      const hearingSlots$ = cold('-(c|)', { c: { hearingSlots: mockHearingSlots } });
-      const judicialMembers$ = cold('-(d|)', { d: mockJudicialMembers });
-      const expected$ = cold('----e', {
-        e: new GetSessionTimesSuccessAction({
-          courtHouseId,
-          courtRoomId,
-          courtSessionDate: sessionDate,
-          amCourtSession: {
-            judiciaries: expectedRotaJudiciary
-          },
-          pmCourtSession: {
-            judiciaries: expectedRotaJudiciary
-          }
-        })
+      beforeEach(() => {
+        getAllocatedJudiciaries.mockReturnValue(cold('-(c|)', { c: allocatedJudiciaries }));
+        getJudicialMembersByIds.mockReturnValue(cold('-(d|)', { d: mockJudicialMembers }));
       });
 
-      getSessionTimes.mockReturnValue(noExistingSession$);
-      searchHearingSlots.mockReturnValue(hearingSlots$);
-      getJudicialMembersByIds.mockReturnValue(judicialMembers$);
+      it('should fall back to the allocated judiciaries for both sessions if nothing is saved', () => {
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: null }));
 
-      expect(effects.getSessionTimes$).toBeObservable(expected$);
+        const expected$ = cold('----e', {
+          e: new GetSessionTimesSuccessAction({
+            courtHouseId,
+            courtRoomId,
+            courtSessionDate: sessionDate,
+            amCourtSession: prefilledAmSession,
+            pmCourtSession: prefilledPmSession
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+        expect(getAllocatedJudiciaries).toHaveBeenCalledWith(
+          courtHouseId,
+          courtRoomId,
+          sessionDate
+        );
+      });
+
+      it('should keep the saved AM session and fall back to the allocated judiciaries for the PM session', () => {
+        const { pmCourtSession, ...amOnlySavedSession } = mockSessionTimesCourt;
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: amOnlySavedSession }));
+
+        const expected$ = cold('----e', {
+          e: new GetSessionTimesSuccessAction({
+            ...amOnlySavedSession,
+            amCourtSession: extendSessionWithJudicialMembers(
+              mockSessionTimesCourt.amCourtSession,
+              mockJudicialMembers
+            ),
+            pmCourtSession: prefilledPmSession
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+      });
+
+      it('should keep the saved PM session and fall back to the allocated judiciaries for the AM session', () => {
+        const { amCourtSession, ...pmOnlySavedSession } = mockSessionTimesCourt;
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: pmOnlySavedSession }));
+
+        const expected$ = cold('----e', {
+          e: new GetSessionTimesSuccessAction({
+            ...pmOnlySavedSession,
+            amCourtSession: prefilledAmSession,
+            pmCourtSession: extendSessionWithJudicialMembers(
+              mockSessionTimesCourt.pmCourtSession,
+              mockJudicialMembers
+            )
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+      });
+
+      it('should leave the sessions blank if no judiciaries are allocated', () => {
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: null }));
+        getAllocatedJudiciaries.mockReturnValue(
+          cold('-(c|)', { c: { courtHouseId, courtRoomId, courtSessionDate: sessionDate } })
+        );
+
+        const expected$ = cold('---e', {
+          e: new GetSessionTimesSuccessAction({
+            courtHouseId,
+            courtRoomId,
+            courtSessionDate: sessionDate
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+        expect(getJudicialMembersByIds).not.toHaveBeenCalled();
+      });
     });
   });
 

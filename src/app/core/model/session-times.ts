@@ -23,7 +23,7 @@ export interface CourtSession {
 export interface CourtSessionJudiciary {
   judiciaryId?: string;
   judiciaryName?: string;
-  benchChairman: boolean;
+  benchChairman?: boolean;
   index?: number;
   judicialMember?: JudicialMember;
 }
@@ -51,8 +51,6 @@ export interface SessionTimesCourtForm {
   startTime: string;
   endTime: string;
 }
-
-export type CourtType = 'C' | 'B';
 
 export type CourtOfficersByRole = { [role in CourtOfficerRole]: UserDetails[] };
 

@@ -20,16 +20,9 @@ import {
   CourtOfficerRole,
   CourtSession,
   CourtSessionJudiciary,
-  CourtType,
   JudicialMember,
   SessionTimesCourt
 } from '../model';
-import {
-  SchedulingService,
-  SearchHearingSlotsParams,
-  HearingSlot,
-  HearingSlotJudiciary
-} from '@cpp/scheduling';
 
 @Injectable()
 export class SessionTimesEffects {
@@ -37,34 +30,20 @@ export class SessionTimesEffects {
     this.actions$.pipe(
       ofType(SessionTimesActions.GET_SESSION_TIMES),
       switchMap((action: GetSessionTimesAction) => {
-        const { courtHouseId, ouCode, courtRoomId, courtType, sessionDate } = action;
+        const { courtHouseId, courtRoomId, sessionDate } = action;
         return this.sessionTimesService
           .getSessionTimes(courtHouseId, courtRoomId, sessionDate)
           .pipe(
-            switchMap(existingSession => {
-              if (existingSession) {
-                return this.extendSessionTimesCourtJudiciaries(existingSession).pipe(
-                  map(extended => new GetSessionTimesSuccessAction(extended))
-                );
-              }
-
-              if (this.isCrownCourt(courtType)) {
-                return [
-                  new GetSessionTimesSuccessAction({
-                    courtHouseId,
-                    courtRoomId,
-                    courtSessionDate: sessionDate
-                  })
-                ];
-              }
-
-              return this.extendSessionTimesCourtWithRotaMagistrates(
+            switchMap(savedSession =>
+              this.fallbackToAllocatedJudiciaries(
+                savedSession,
                 courtHouseId,
-                ouCode,
                 courtRoomId,
                 sessionDate
-              ).pipe(map(extended => new GetSessionTimesSuccessAction(extended)));
-            }),
+              )
+            ),
+            switchMap(sessionTimes => this.extendSessionTimesCourtJudiciaries(sessionTimes)),
+            map(extended => new GetSessionTimesSuccessAction(extended)),
             catchError(error => of(new ApiError(error)))
           );
       })
@@ -144,51 +123,31 @@ export class SessionTimesEffects {
   }
 
   /*
-   * Extend the local representation of the `SessionTimesCourt` model
-   * such that its `judiciary` entries are populated with pre-allocated
-   * magistrates retrieved from calling Rota S&L.
+   * A session (AM or PM) that has been saved is shown exactly as saved.
+   * A session with nothing saved falls back to the judiciary allocated
+   * to the hearings listed in the court room on that date.
    */
-  private extendSessionTimesCourtWithRotaMagistrates(
+  private fallbackToAllocatedJudiciaries(
+    savedSession: SessionTimesCourt,
     courtHouseId: string,
-    ouCode: string,
     courtRoomId: string,
     sessionDate: string
   ): Observable<SessionTimesCourt> {
-    const options = this.searchHearingSlotsParams(ouCode, courtRoomId, sessionDate);
-    return this.schedulingService.searchHearingSlots(options).pipe(
-      switchMap(({ hearingSlots }) => {
-        return of(
-          hearingSlots.reduce(
-            (judiciaryIds, slot) => [
-              ...judiciaryIds,
-              ...this.addHearingSlotJudiciaryIds(slot.judiciaries)
-            ],
-            [] as string[]
-          )
-        ).pipe(
-          map(uniq),
-          switchMap(ids =>
-            ids.length === 0 ? of([]) : this.referenceDataService.getJudicialMembersByIds(ids)
-          ),
-          map((judicialMembers: JudicialMember[]) => {
-            return hearingSlots.reduce(
-              (newSession, hearingSlot) => {
-                const sessionJudiciaries = this.getHearingSlotJudiciaries(
-                  hearingSlot,
-                  judicialMembers
-                );
-                return this.addJudiciaryToCourtSession(
-                  newSession,
-                  sessionJudiciaries,
-                  hearingSlot.courtSession
-                );
-              },
-              { courtHouseId, courtRoomId, courtSessionDate: sessionDate }
-            );
-          })
-        );
-      })
-    );
+    if (savedSession?.amCourtSession && savedSession?.pmCourtSession) {
+      return of(savedSession);
+    }
+
+    return this.sessionTimesService
+      .getAllocatedJudiciaries(courtHouseId, courtRoomId, sessionDate)
+      .pipe(
+        map(allocatedJudiciaries => ({
+          courtHouseId,
+          courtRoomId,
+          courtSessionDate: sessionDate,
+          ...allocatedJudiciaries,
+          ...savedSession
+        }))
+      );
   }
 
   private addJudiciaryIds(judiciaries: CourtSessionJudiciary[]): string[] {
@@ -197,10 +156,6 @@ export class SessionTimesEffects {
           .filter(judiciary => !!judiciary.judiciaryId)
           .map(judiciary => judiciary.judiciaryId)
       : [];
-  }
-
-  private addHearingSlotJudiciaryIds(judiciaries: HearingSlotJudiciary[]): string[] {
-    return judiciaries ? judiciaries.map(judiciary => judiciary.judiciaryId) : [];
   }
 
   private extendSessionJudiciariesData(
@@ -227,74 +182,11 @@ export class SessionTimesEffects {
     };
   }
 
-  private searchHearingSlotsParams(
-    ouCode: string,
-    courtRoomId: string,
-    sessionDate: string
-  ): SearchHearingSlotsParams {
-    return {
-      sessionStartDate: sessionDate,
-      sessionEndDate: sessionDate,
-      ouCode,
-      courtRoomId,
-      panel: 'ADULT,YOUTH',
-      pageNumber: 1,
-      pageSize: 10,
-      showOverbookedSlots: true
-    };
-  }
-
-  private getHearingSlotJudiciaries(
-    hearingSlot: HearingSlot,
-    judicialMembers: JudicialMember[]
-  ): CourtSessionJudiciary[] {
-    return hearingSlot.judiciaries.map(judiciary => {
-      const { judiciaryId, benchChairman } = judiciary;
-      const judicialMember = this.findJudicialMemberById(judiciaryId, judicialMembers);
-      return {
-        judiciaryId,
-        benchChairman,
-        judicialMember
-      };
-    });
-  }
-
-  private addJudiciaryToCourtSession(
-    session: SessionTimesCourt,
-    sessionJudiciaries: CourtSessionJudiciary[],
-    sessionSlot: 'AM' | 'PM' | 'AD'
-  ): SessionTimesCourt {
-    switch (sessionSlot) {
-      case 'AD':
-        return {
-          ...session,
-          amCourtSession: { judiciaries: sessionJudiciaries },
-          pmCourtSession: { judiciaries: sessionJudiciaries }
-        };
-      case 'AM':
-        return {
-          ...session,
-          amCourtSession: { judiciaries: sessionJudiciaries }
-        };
-      case 'PM':
-        return {
-          ...session,
-          pmCourtSession: { judiciaries: sessionJudiciaries }
-        };
-      default:
-        return session;
-    }
-  }
-
   private findJudicialMemberById(
     judiciaryId: string,
     judicialMembers: JudicialMember[]
   ): JudicialMember {
     return judicialMembers.find(({ id }) => id === judiciaryId);
-  }
-
-  private isCrownCourt(courtType: CourtType): boolean {
-    return courtType === 'C';
   }
 
   private getCourtOfficerRoleMapping(roleName: string): CourtOfficerRole {
@@ -314,7 +206,6 @@ export class SessionTimesEffects {
     private actions$: Actions,
     private referenceDataService: ReferenceDataService,
     private sessionTimesService: SessionTimesService,
-    private schedulingService: SchedulingService,
     private userGroupsService: UserGroupsService
   ) {}
 }
