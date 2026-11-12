@@ -43,22 +43,12 @@ describe('Session Times actions', () => {
   describe('Getting Session Times', () => {
     it('Should create a GetSessionTimesAction', () => {
       const { courtHouseId, courtRoomId } = mockSessionTimesCourt;
-      const ouCode = 'B01LY00';
-      const courtType = 'B';
       const sessionDate = '2020-10-03';
-      const action = new GetSessionTimesAction(
-        courtHouseId,
-        ouCode,
-        courtRoomId,
-        courtType,
-        sessionDate
-      );
+      const action = new GetSessionTimesAction(courtHouseId, courtRoomId, sessionDate);
       expect({ ...action }).toEqual({
         type: GET_SESSION_TIMES,
         courtHouseId,
-        ouCode,
         courtRoomId,
-        courtType,
         sessionDate
       });
     });
