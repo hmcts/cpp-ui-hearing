@@ -1498,6 +1498,10 @@ export const getApplicationSubjectAsCaseDefendant = (
           ...(app.courtOrder.courtOrderOffences || []).map(({ offence }) => offence)
         ];
       }
+      let isCivil = false;
+      if (app.courtCivilApplication) {
+        isCivil = app.courtCivilApplication?.isCivil;
+      }
 
       return [
         ...results,
@@ -1508,7 +1512,8 @@ export const getApplicationSubjectAsCaseDefendant = (
           offences,
           masterDefendantId: app.subject?.masterDefendant?.masterDefendantId,
           dateOfBirth,
-          caseURN
+          caseURN,
+          isCivil
         }
       ];
     }

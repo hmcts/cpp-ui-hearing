@@ -58,6 +58,7 @@ export interface CourtApplication {
   allocationDecision?: AllocationDecision;
   isGroupCaseApplication?: boolean;
   amendmentAllowed?: boolean;
+  courtCivilApplication?: CourtCivilApplication;
 }
 
 export type SubjectCourtApplicationCase = CourtApplicationCase | CourtOrder;
@@ -91,4 +92,8 @@ export interface WeekCommencing {
   startDate: string;
   // Number of weeks
   duration?: number;
+}
+
+export interface CourtCivilApplication {
+  isCivil: boolean;
 }

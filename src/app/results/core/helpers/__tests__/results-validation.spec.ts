@@ -761,7 +761,8 @@ describe('buildResultsValidationRequest', () => {
           caseUrn: 'caseURN1',
           hasExistingCtlRecord: false,
           isConvicted: false,
-          defendantId: 'defendantId1'
+          defendantId: 'defendantId1',
+          isCivil: false
         }
       ]);
     });

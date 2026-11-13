@@ -9,4 +9,5 @@ export interface HearingPersonDetails {
   title?: string;
   dateOfBirth?: string;
   caseURN?: string;
+  isCivil?: boolean;
 }
