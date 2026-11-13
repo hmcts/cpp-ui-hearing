@@ -600,6 +600,7 @@ exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant s
     "dateOfBirth": "",
     "defendantId": "case-defendant-id-2",
     "firstName": "Org",
+    "isCivil": false,
     "lastName": "",
     "masterDefendantId": "master-defendant-id",
     "offences": [
@@ -621,6 +622,7 @@ exports[`getListingNoteByCourtRoomAndDate getApplicationSubjectAsCaseDefendant s
     "dateOfBirth": "1945-02-18",
     "defendantId": "case-defendant-id",
     "firstName": "F",
+    "isCivil": false,
     "lastName": "L",
     "masterDefendantId": "master-defendant-id",
     "offences": [

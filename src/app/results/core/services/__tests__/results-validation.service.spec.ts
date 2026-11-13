@@ -27,7 +27,13 @@ describe('ResultsValidationService', () => {
     ],
     defendants: [{ defendantId: 'def-1', firstName: 'Alice', lastName: 'Smith' }],
     offences: [
-      { offenceId: 'off-1', offenceCode: 'OC1', offenceTitle: 'Some offence', defendantId: 'def-1' }
+      {
+        offenceId: 'off-1',
+        offenceCode: 'OC1',
+        offenceTitle: 'Some offence',
+        defendantId: 'def-1',
+        isCivil: false
+      }
     ]
   };
 

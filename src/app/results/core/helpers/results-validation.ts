@@ -154,7 +154,8 @@ const buildApplicationOffences = (
       hearingPersonDetails.offences.map(offence => ({
         offence,
         caseUrn: hearingPersonDetails.caseURN,
-        defendantId: hearingPersonDetails.defendantId
+        defendantId: hearingPersonDetails.defendantId,
+        isCivil: hearingPersonDetails.isCivil
       }))
     );
   }, []);
@@ -165,6 +166,10 @@ const buildCaseOffences = (
 ): OffenceWithCaseAndDefendant[] => {
   return (prosecutionCases || []).reduce<OffenceWithCaseAndDefendant[]>((acc, kase) => {
     const caseUrn = kase.prosecutionCaseIdentifier?.caseURN;
+    let isCivil = false;
+    if (kase.isCivil) {
+      isCivil = kase.isCivil;
+    }
     return acc.concat(
       (kase.defendants || [])
         .reduce<{ offence: Offence; defendantId: string }[]>(
@@ -172,7 +177,7 @@ const buildCaseOffences = (
             offAcc.concat((d.offences || []).map(offence => ({ offence, defendantId: d.id }))),
           []
         )
-        .map(({ offence, defendantId }) => ({ offence, caseUrn, defendantId }))
+        .map(({ offence, defendantId }) => ({ offence, caseUrn, defendantId, isCivil }))
     );
   }, []);
 };
@@ -191,7 +196,7 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
       uniqueOffences.add(offence.id);
       return true;
     })
-    .map(({ offence, caseUrn, defendantId }) => {
+    .map(({ offence, caseUrn, defendantId, isCivil }) => {
       let isConvicted = !!offence.convictionDate;
       if (isConvicted && offence?.verdict?.isDeleted) {
         isConvicted = false;
@@ -205,7 +210,8 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
         caseUrn,
         hasExistingCtlRecord: !!offence.custodyTimeLimit,
         isConvicted,
-        defendantId
+        defendantId,
+        isCivil
       };
 
       if (offence?.bailStatus) {
