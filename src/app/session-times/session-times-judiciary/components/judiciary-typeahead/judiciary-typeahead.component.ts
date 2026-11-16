@@ -22,6 +22,7 @@ import { auditTime, filter, map, switchMap } from 'rxjs/operators';
 import { FormFieldControl, PdkAutosuggestLiteComponent } from '@cpp/pdk';
 import { JudicialMember } from '../../../../core/model';
 import { ReferenceDataService } from '../../../../core/services';
+import { judicialMemberName } from '../../../../core/utils/utils';
 import { AsyncPipe } from '@angular/common';
 
 export interface JudiciaryAutoSuggestOption extends JudicialMember {
@@ -97,10 +98,6 @@ export class JudiciaryTypeaheadComponent
         switchMap(text => referenceDataService.getJudicialMembersByNamePattern(text, 50)),
         map(judicialMembers =>
           judicialMembers.map(judicialMember => {
-            let judiciaryTitle = judicialMember.titlePrefix || '';
-            if (judicialMember.titleJudicialPrefix) {
-              judiciaryTitle = judicialMember.titleJudicialPrefix;
-            }
             let judiciaryLocation = judicialMember.ljaShortName || '';
             if (judicialMember.baseLocation) {
               judiciaryLocation = judicialMember.baseLocation;
@@ -108,8 +105,7 @@ export class JudiciaryTypeaheadComponent
             let judiciaryMemberType = judicialMember.judiciaryType || '';
             return {
               ...judicialMember,
-              judicialMemberName:
-                `${judiciaryTitle} ${judicialMember.forenames} ${judicialMember.surname}`.trim(),
+              judicialMemberName: judicialMemberName(judicialMember),
               judicialMemberLocation: `${judiciaryMemberType} ${judiciaryLocation}`.trim()
             } as JudiciaryAutoSuggestOption;
           })
@@ -146,13 +142,9 @@ export class JudiciaryTypeaheadComponent
 
   writeValue(value: JudicialMember): void {
     if (this.autoSuggest && value) {
-      let judiciaryTitle = value.titlePrefix || '';
-      if (value.titleJudicialPrefix) {
-        judiciaryTitle = value.titleJudicialPrefix;
-      }
       this.selectedJudicialMember = {
         ...value,
-        judicialMemberName: `${judiciaryTitle} ${value.forenames} ${value.surname}`.trim()
+        judicialMemberName: judicialMemberName(value)
       };
       this.autoSuggest.writeValue(this.selectedJudicialMember);
     }

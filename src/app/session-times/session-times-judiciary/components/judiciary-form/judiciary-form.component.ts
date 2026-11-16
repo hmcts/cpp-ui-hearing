@@ -15,7 +15,8 @@ import {
   SelectedJudiciary,
   SessionTypeEnum,
   TypeaheadOption,
-  CourtSessionJudiciary
+  CourtSessionJudiciary,
+  MAX_SELECTABLE_JUDICIARIES
 } from '../../../../core';
 import { ControlContainer, NgForm, FormsModule } from '@angular/forms';
 import {
@@ -96,23 +97,14 @@ export class JudiciaryFormComponent implements OnChanges {
   };
 
   selectedAmJudiciaryIndex: number;
-  selectedJudiciaries: SelectedJudiciary[] = [
-    {
-      index: 0,
+  readonly judiciarySlots = Array.from({ length: MAX_SELECTABLE_JUDICIARIES }, (_, i) => i);
+  selectedJudiciaries: SelectedJudiciary[] = this.judiciarySlots.map(
+    (index): SelectedJudiciary => ({
+      index,
       isEnabled: false,
       value: null
-    },
-    {
-      index: 1,
-      isEnabled: false,
-      value: null
-    },
-    {
-      index: 2,
-      isEnabled: false,
-      value: null
-    }
-  ];
+    })
+  );
   otherJudiciaries: string[] = [];
 
   ngOnChanges(changes: SimpleChanges) {

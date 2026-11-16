@@ -423,9 +423,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   class="flex-column-one govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
-                  <pdk-form-field
-                    labeltype="small"
-                  >
+                  <pdk-form-field>
                     <pdk-form-group
                       class="pdk-form-group"
                     >
@@ -438,7 +436,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <judiciary-typeahead
                         class="ng-untouched ng-pristine ng-valid"
                         data-role="judiciary-typeahead-0"
-                        name="judge1"
                       >
                         <div
                           class="judiciary-typeahead"
@@ -494,10 +491,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                       </judiciary-typeahead>
                     </pdk-form-group>
                   </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 2"
-                    labeltype="none"
-                  >
+                  <pdk-form-field>
                     <pdk-form-group
                       class="pdk-form-group"
                     >
@@ -510,7 +504,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <judiciary-typeahead
                         class="ng-untouched ng-pristine ng-valid"
                         data-role="judiciary-typeahead-1"
-                        name="judge2"
                       >
                         <div
                           class="judiciary-typeahead"
@@ -566,10 +559,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                       </judiciary-typeahead>
                     </pdk-form-group>
                   </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 3"
-                    labeltype="none"
-                  >
+                  <pdk-form-field>
                     <pdk-form-group
                       class="pdk-form-group"
                     >
@@ -582,7 +572,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <judiciary-typeahead
                         class="ng-untouched ng-pristine ng-valid"
                         data-role="judiciary-typeahead-2"
-                        name="judge3"
                       >
                         <div
                           class="judiciary-typeahead"
@@ -1193,9 +1182,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                   class="flex-column-one govuk-grid-column-one-quarter"
                   one-quarter=""
                 >
-                  <pdk-form-field
-                    labeltype="small"
-                  >
+                  <pdk-form-field>
                     <pdk-form-group
                       class="pdk-form-group"
                     >
@@ -1208,7 +1195,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <judiciary-typeahead
                         class="ng-untouched ng-pristine ng-valid"
                         data-role="judiciary-typeahead-0"
-                        name="judge1"
                       >
                         <div
                           class="judiciary-typeahead"
@@ -1264,10 +1250,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                       </judiciary-typeahead>
                     </pdk-form-group>
                   </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 2"
-                    labeltype="none"
-                  >
+                  <pdk-form-field>
                     <pdk-form-group
                       class="pdk-form-group"
                     >
@@ -1280,7 +1263,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <judiciary-typeahead
                         class="ng-untouched ng-pristine ng-valid"
                         data-role="judiciary-typeahead-1"
-                        name="judge2"
                       >
                         <div
                           class="judiciary-typeahead"
@@ -1336,10 +1318,7 @@ exports[`SessionTimesContainer should render the template with the values expect
                       </judiciary-typeahead>
                     </pdk-form-group>
                   </pdk-form-field>
-                  <pdk-form-field
-                    label="Judiciary 3"
-                    labeltype="none"
-                  >
+                  <pdk-form-field>
                     <pdk-form-group
                       class="pdk-form-group"
                     >
@@ -1352,7 +1331,6 @@ exports[`SessionTimesContainer should render the template with the values expect
                       <judiciary-typeahead
                         class="ng-untouched ng-pristine ng-valid"
                         data-role="judiciary-typeahead-2"
-                        name="judge3"
                       >
                         <div
                           class="judiciary-typeahead"

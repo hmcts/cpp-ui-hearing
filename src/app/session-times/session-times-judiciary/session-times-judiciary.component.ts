@@ -5,7 +5,8 @@ import {
   SessionTimesCourt,
   SessionTimesCourtForm,
   SessionTypeEnum,
-  JudicialMember
+  JudicialMember,
+  MAX_SELECTABLE_JUDICIARIES
 } from '../../core';
 import { ControlContainer, NgForm, FormsModule } from '@angular/forms';
 import {
@@ -82,9 +83,9 @@ export class SessionTimesJudiciaryComponent {
 
     let session: CourtSession;
 
-    session = this.addJudicialMemnberToSession(form.judge1, 0, form, session);
-    session = this.addJudicialMemnberToSession(form.judge2, 1, form, session);
-    session = this.addJudicialMemnberToSession(form.judge3, 2, form, session);
+    for (let i = 0; i < MAX_SELECTABLE_JUDICIARIES; i++) {
+      session = this.addJudicialMemnberToSession(form[`judge${i + 1}`], i, form, session);
+    }
 
     session = this.addOtherJudiciariesToSession(form.otherJudiciaries, form.chairman, session);
 
