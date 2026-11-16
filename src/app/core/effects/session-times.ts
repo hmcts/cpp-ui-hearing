@@ -21,8 +21,10 @@ import {
   CourtSession,
   CourtSessionJudiciary,
   JudicialMember,
+  MAX_SELECTABLE_JUDICIARIES,
   SessionTimesCourt
 } from '../model';
+import { judicialMemberName } from '../utils/utils';
 
 @Injectable()
 export class SessionTimesEffects {
@@ -123,9 +125,9 @@ export class SessionTimesEffects {
   }
 
   /*
-   * A session (AM or PM) that has been saved is shown exactly as saved.
-   * A session with nothing saved falls back to the judiciary allocated
-   * to the hearings listed in the court room on that date.
+   * A saved record is shown exactly as saved, even if its AM or PM session is empty.
+   * With nothing saved, the sessions fall back to the judiciaries allocated
+   * to the court room on that date.
    */
   private fallbackToAllocatedJudiciaries(
     savedSession: SessionTimesCourt,
@@ -133,7 +135,7 @@ export class SessionTimesEffects {
     courtRoomId: string,
     sessionDate: string
   ): Observable<SessionTimesCourt> {
-    if (savedSession?.amCourtSession && savedSession?.pmCourtSession) {
+    if (savedSession) {
       return of(savedSession);
     }
 
@@ -144,8 +146,7 @@ export class SessionTimesEffects {
           courtHouseId,
           courtRoomId,
           courtSessionDate: sessionDate,
-          ...allocatedJudiciaries,
-          ...savedSession
+          ...allocatedJudiciaries
         }))
       );
   }
@@ -178,8 +179,19 @@ export class SessionTimesEffects {
 
     return {
       ...session,
-      judiciaries: extendedJudiciaries
+      judiciaries: this.overflowToNames(extendedJudiciaries)
     };
+  }
+
+  private overflowToNames(judiciaries: CourtSessionJudiciary[]): CourtSessionJudiciary[] {
+    if (judiciaries.length > MAX_SELECTABLE_JUDICIARIES) {
+      return judiciaries.map((judiciary, i) =>
+        !judiciary.judicialMember || i < MAX_SELECTABLE_JUDICIARIES
+          ? judiciary
+          : { judiciaryName: judicialMemberName(judiciary.judicialMember), benchChairman: false }
+      );
+    }
+    return judiciaries;
   }
 
   private findJudicialMemberById(

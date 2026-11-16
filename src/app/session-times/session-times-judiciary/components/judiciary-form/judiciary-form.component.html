@@ -4,30 +4,19 @@
       <h3>{{ sessionType | uppercase }}</h3>
     </pdk-grid>
     <pdk-grid one-quarter class="flex-column-one">
-      <pdk-form-field label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}" labelType="small">
+      @for (slot of judiciarySlots; track slot) {
+      <pdk-form-field
+        [label]="slot === 0 ? ('SESSION_TIMES.JUDICIARY' | translate) : 'Judiciary ' + (slot + 1)"
+        [labelType]="slot === 0 ? 'small' : 'none'"
+      >
         <judiciary-typeahead
-          data-role="judiciary-typeahead-0"
-          name="judge1"
-          [ngModel]="getJudiciaryWithId(0)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 0)"
+          [attr.data-role]="'judiciary-typeahead-' + slot"
+          [name]="'judge' + (slot + 1)"
+          [ngModel]="getJudiciaryWithId(slot)"
+          (ngModelChange)="onSetJudiciaryTypeahead($event, slot)"
         ></judiciary-typeahead>
       </pdk-form-field>
-      <pdk-form-field label="Judiciary 2" labelType="none">
-        <judiciary-typeahead
-          name="judge2"
-          data-role="judiciary-typeahead-1"
-          [ngModel]="getJudiciaryWithId(1)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 1)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
-      <pdk-form-field label="Judiciary 3" labelType="none">
-        <judiciary-typeahead
-          name="judge3"
-          data-role="judiciary-typeahead-2"
-          [ngModel]="getJudiciaryWithId(2)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 2)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
+      }
       <pdk-form-group ngModelGroup="otherJudiciaries">
         @for (otherJudiciary of otherJudiciaries; track $index; let i = $index) {
         <pdk-form-field>
@@ -65,30 +54,16 @@
           class="chairman-radio-group"
           data-role="chairman-radio-group"
         >
+          @for (slot of judiciarySlots; track slot) {
           <pdk-radio-button
-            [value]="0"
-            [disabled]="isChairmanDisabled(0)"
+            [value]="slot"
+            [disabled]="isChairmanDisabled(slot)"
             class="chairman-radio-button"
-            data-role="chairman-radio-btn-0"
+            [attr.data-role]="'chairman-radio-btn-' + slot"
           >
-            <span pdk-visually-hidden>Judiciary 1</span>
+            <span pdk-visually-hidden>Judiciary {{ slot + 1 }}</span>
           </pdk-radio-button>
-          <pdk-radio-button
-            [value]="1"
-            [disabled]="isChairmanDisabled(1)"
-            class="chairman-radio-button"
-            data-role="chairman-radio-btn-1"
-          >
-            <span pdk-visually-hidden>Judiciary 2</span>
-          </pdk-radio-button>
-          <pdk-radio-button
-            [value]="2"
-            [disabled]="isChairmanDisabled(2)"
-            class="chairman-radio-button"
-            data-role="chairman-radio-btn-2"
-          >
-            <span pdk-visually-hidden>Judiciary 3</span>
-          </pdk-radio-button>
+          }
         </pdk-radio-group>
       </pdk-form-field>
     </pdk-grid>
