@@ -11,6 +11,7 @@ import {
   HearingCaseLink,
   HearingCaseLinkType,
   HearingDetail,
+  JudicialMember,
   JurisdictionType,
   Offence,
   ProsecutionCaseDetails,
@@ -540,3 +541,8 @@ export const getHearingCaseUrl = (hearingId: string, hearingCaseLink: HearingCas
       return '';
   }
 };
+
+export const judicialMemberName = (member: JudicialMember): string =>
+  `${member.titleJudicialPrefix || member.titlePrefix || ''} ${member.forenames} ${
+    member.surname
+  }`.trim();

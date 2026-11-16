@@ -15,12 +15,16 @@ import {
   getActions,
   TestActions,
   mockSessionTimesCourt,
-  mockHearingSlots,
   mockJudicialMembers
 } from '../../mock-data/test-mock-data';
 import { SessionTimesEffects } from './session-times';
-import { JudicialMember, CourtSession } from '../model';
-import { SchedulingService } from '@cpp/scheduling';
+import {
+  JudicialMember,
+  CourtSession,
+  CourtSessionJudiciary,
+  MAX_SELECTABLE_JUDICIARIES,
+  SessionTimesCourt
+} from '../model';
 
 describe('Session Times effects', () => {
   let actions$: TestActions;
@@ -30,14 +34,14 @@ describe('Session Times effects', () => {
   let getJudicialMembersByIds: jest.Mock;
   let getSessionTimes: jest.Mock;
   let recordSessionTimes: jest.Mock;
-  let searchHearingSlots: jest.Mock;
+  let getAllocatedJudiciaries: jest.Mock;
   let getUsersForGroupByGroupName: jest.Mock;
 
   beforeEach(() => {
     getJudicialMembersByIds = jest.fn();
     getSessionTimes = jest.fn();
     recordSessionTimes = jest.fn();
-    searchHearingSlots = jest.fn();
+    getAllocatedJudiciaries = jest.fn();
     getUsersForGroupByGroupName = jest.fn();
 
     TestBed.configureTestingModule({
@@ -55,13 +59,8 @@ describe('Session Times effects', () => {
           provide: SessionTimesService,
           useValue: {
             getSessionTimes,
+            getAllocatedJudiciaries,
             recordSessionTimes
-          }
-        },
-        {
-          provide: SchedulingService,
-          useValue: {
-            searchHearingSlots
           }
         },
         {
@@ -88,16 +87,8 @@ describe('Session Times effects', () => {
 
   describe('getSessionTimes$', () => {
     const { courtHouseId, courtRoomId } = mockSessionTimesCourt;
-    const ouCode = 'B01LY00';
-    const courtType = 'B';
     const sessionDate = '2020-10-02';
-    const inputAction = new GetSessionTimesAction(
-      courtHouseId,
-      ouCode,
-      courtRoomId,
-      courtType,
-      sessionDate
-    );
+    const inputAction = new GetSessionTimesAction(courtHouseId, courtRoomId, sessionDate);
 
     it('should return current session if session has previously been saved', () => {
       actions$.stream = hot('-a', { a: inputAction });
@@ -121,6 +112,7 @@ describe('Session Times effects', () => {
       getJudicialMembersByIds.mockReturnValue(judicialMembers$);
 
       expect(effects.getSessionTimes$).toBeObservable(expected$);
+      expect(getAllocatedJudiciaries).not.toHaveBeenCalled();
     });
 
     it('should emit ApiError if bad request', () => {
@@ -135,62 +127,236 @@ describe('Session Times effects', () => {
       expect(effects.getSessionTimes$).toBeObservable(expected$);
     });
 
-    it('should return if no existing session for Crown Court', () => {
-      getSessionTimes.mockReturnValue(cold('-a|', { a: null }));
-      const action = {
-        ...inputAction,
-        courtType: 'C'
+    describe('when a session has nothing saved', () => {
+      const allocatedJudiciaries: SessionTimesCourt = {
+        courtHouseId,
+        courtRoomId,
+        courtSessionDate: sessionDate,
+        amCourtSession: {
+          judiciaries: [{ judiciaryId: mockJudicialMembers[0].id }]
+        },
+        pmCourtSession: {
+          judiciaries: [{ judiciaryId: mockJudicialMembers[1].id }]
+        }
       };
+      const prefilledAmSession = extendSessionWithJudicialMembers(
+        allocatedJudiciaries.amCourtSession,
+        mockJudicialMembers
+      );
+      const prefilledPmSession = extendSessionWithJudicialMembers(
+        allocatedJudiciaries.pmCourtSession,
+        mockJudicialMembers
+      );
 
-      actions$.stream = hot('-a', { a: action });
-      const expected$ = cold('--b', {
-        b: new GetSessionTimesSuccessAction({
-          courtHouseId,
-          courtRoomId,
-          courtSessionDate: sessionDate
-        })
+      beforeEach(() => {
+        getAllocatedJudiciaries.mockReturnValue(cold('-(c|)', { c: allocatedJudiciaries }));
+        getJudicialMembersByIds.mockReturnValue(cold('-(d|)', { d: mockJudicialMembers }));
       });
 
-      expect(effects.getSessionTimes$).toBeObservable(expected$);
+      it('should fall back to the allocated judiciaries for both sessions if nothing is saved', () => {
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: null }));
+
+        const expected$ = cold('----e', {
+          e: new GetSessionTimesSuccessAction({
+            courtHouseId,
+            courtRoomId,
+            courtSessionDate: sessionDate,
+            amCourtSession: prefilledAmSession,
+            pmCourtSession: prefilledPmSession
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+        expect(getAllocatedJudiciaries).toHaveBeenCalledWith(
+          courtHouseId,
+          courtRoomId,
+          sessionDate
+        );
+      });
+
+      it('should keep a saved record as it is without calling for the allocated judiciaries, even if a session is empty', () => {
+        const { pmCourtSession, ...amOnlySavedSession } = mockSessionTimesCourt;
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: amOnlySavedSession }));
+
+        const expected$ = cold('---e', {
+          e: new GetSessionTimesSuccessAction({
+            ...amOnlySavedSession,
+            amCourtSession: extendSessionWithJudicialMembers(
+              mockSessionTimesCourt.amCourtSession,
+              mockJudicialMembers
+            )
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+        expect(getAllocatedJudiciaries).not.toHaveBeenCalled();
+      });
+
+      it('should keep a saved session without judiciaries as it is', () => {
+        const { judiciaries, ...amSavedWithoutJudiciaries } = mockSessionTimesCourt.amCourtSession;
+        const savedSession: SessionTimesCourt = {
+          ...mockSessionTimesCourt,
+          amCourtSession: { ...amSavedWithoutJudiciaries, judiciaries: [] }
+        };
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: savedSession }));
+
+        const expected$ = cold('---e', {
+          e: new GetSessionTimesSuccessAction({
+            ...savedSession,
+            pmCourtSession: extendSessionWithJudicialMembers(
+              mockSessionTimesCourt.pmCourtSession,
+              mockJudicialMembers
+            )
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+        expect(getAllocatedJudiciaries).not.toHaveBeenCalled();
+      });
+
+      it('should leave the sessions blank if no judiciaries are allocated', () => {
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: null }));
+        getAllocatedJudiciaries.mockReturnValue(
+          cold('-(c|)', { c: { courtHouseId, courtRoomId, courtSessionDate: sessionDate } })
+        );
+
+        const expected$ = cold('---e', {
+          e: new GetSessionTimesSuccessAction({
+            courtHouseId,
+            courtRoomId,
+            courtSessionDate: sessionDate
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+        expect(getJudicialMembersByIds).not.toHaveBeenCalled();
+      });
     });
 
-    it('should call ROTA if no existing session for Magistrates Court', () => {
-      const expectedRotaJudiciary = [
-        {
-          judiciaryId: mockJudicialMembers[0].id,
-          benchChairman: false,
-          judicialMember: mockJudicialMembers[0]
-        },
-        {
-          judiciaryId: mockJudicialMembers[1].id,
-          benchChairman: true,
-          judicialMember: mockJudicialMembers[1]
-        }
-      ];
+    describe('judiciaries beyond the selectable ones', () => {
+      const count = MAX_SELECTABLE_JUDICIARIES + 2;
+      const members: JudicialMember[] = Array.from({ length: count }, (_, i) => ({
+        id: `judiciary-${i + 1}`,
+        seqId: i + 1,
+        titlePrefix: 'Mr',
+        forenames: `Forename${i + 1}`,
+        surname: `Surname${i + 1}`,
+        judiciaryType: 'Magistrate'
+      }));
 
-      actions$.stream = hot('-a', { a: inputAction });
-      const noExistingSession$ = cold('-(b|)', { b: null });
-      const hearingSlots$ = cold('-(c|)', { c: { hearingSlots: mockHearingSlots } });
-      const judicialMembers$ = cold('-(d|)', { d: mockJudicialMembers });
-      const expected$ = cold('----e', {
-        e: new GetSessionTimesSuccessAction({
-          courtHouseId,
-          courtRoomId,
-          courtSessionDate: sessionDate,
+      /** The first MAX keep their id and reference-data member; the rest are names only, never chairman. */
+      const expectedJudiciaries = (chairmanIndex: number): CourtSessionJudiciary[] =>
+        members.map((member, i) =>
+          i < MAX_SELECTABLE_JUDICIARIES
+            ? { judiciaryId: member.id, benchChairman: i === chairmanIndex, judicialMember: member }
+            : { judiciaryName: `Mr Forename${i + 1} Surname${i + 1}`, benchChairman: false }
+        );
+
+      it('should turn saved judiciaries beyond the selectable ones into names', () => {
+        // The chairman sits beyond the selectable ones: there is no chairman option for it, so it is dropped.
+        const chairmanIndex = MAX_SELECTABLE_JUDICIARIES;
+        const { pmCourtSession, ...amOnlySavedSession } = mockSessionTimesCourt;
+        const savedSession: SessionTimesCourt = {
+          ...amOnlySavedSession,
           amCourtSession: {
-            judiciaries: expectedRotaJudiciary
-          },
-          pmCourtSession: {
-            judiciaries: expectedRotaJudiciary
+            judiciaries: members.map((member, i) => ({
+              judiciaryId: member.id,
+              benchChairman: i === chairmanIndex
+            }))
           }
-        })
+        };
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: { ...savedSession, pmCourtSession } }));
+        getJudicialMembersByIds.mockReturnValue(cold('-(c|)', { c: members }));
+
+        const expected$ = cold('---d', {
+          d: new GetSessionTimesSuccessAction({
+            ...savedSession,
+            amCourtSession: { judiciaries: expectedJudiciaries(-1) },
+            pmCourtSession
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
       });
 
-      getSessionTimes.mockReturnValue(noExistingSession$);
-      searchHearingSlots.mockReturnValue(hearingSlots$);
-      getJudicialMembersByIds.mockReturnValue(judicialMembers$);
+      it('should keep saved name-only judiciaries as they are', () => {
+        const nameOnly: CourtSessionJudiciary = {
+          judiciaryName: 'Ms Other Judiciary',
+          benchChairman: false
+        };
+        const selectableMembers = members.slice(0, MAX_SELECTABLE_JUDICIARIES);
+        const { pmCourtSession, ...amOnlySavedSession } = mockSessionTimesCourt;
+        const savedSession: SessionTimesCourt = {
+          ...amOnlySavedSession,
+          amCourtSession: {
+            judiciaries: [
+              ...selectableMembers.map(member => ({
+                judiciaryId: member.id,
+                benchChairman: false
+              })),
+              nameOnly
+            ]
+          }
+        };
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: { ...savedSession, pmCourtSession } }));
+        getJudicialMembersByIds.mockReturnValue(cold('-(c|)', { c: members }));
 
-      expect(effects.getSessionTimes$).toBeObservable(expected$);
+        const expected$ = cold('---d', {
+          d: new GetSessionTimesSuccessAction({
+            ...savedSession,
+            amCourtSession: {
+              judiciaries: [
+                ...expectedJudiciaries(-1).slice(0, MAX_SELECTABLE_JUDICIARIES),
+                nameOnly
+              ]
+            },
+            pmCourtSession
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+      });
+
+      it('should turn allocated judiciaries beyond the selectable ones into names', () => {
+        actions$.stream = hot('-a', { a: inputAction });
+        getSessionTimes.mockReturnValue(cold('-(b|)', { b: null }));
+        getAllocatedJudiciaries.mockReturnValue(
+          cold('-(c|)', {
+            c: {
+              courtHouseId,
+              courtRoomId,
+              courtSessionDate: sessionDate,
+              amCourtSession: { judiciaries: members.map(({ id }) => ({ judiciaryId: id })) }
+            }
+          })
+        );
+        getJudicialMembersByIds.mockReturnValue(cold('-(d|)', { d: members }));
+
+        const expected$ = cold('----e', {
+          e: new GetSessionTimesSuccessAction({
+            courtHouseId,
+            courtRoomId,
+            courtSessionDate: sessionDate,
+            amCourtSession: {
+              // Allocated judiciaries carry no chairman flag, so the selectable ones have none.
+              judiciaries: [
+                ...members
+                  .slice(0, MAX_SELECTABLE_JUDICIARIES)
+                  .map(member => ({ judiciaryId: member.id, judicialMember: member })),
+                ...expectedJudiciaries(-1).slice(MAX_SELECTABLE_JUDICIARIES)
+              ]
+            }
+          })
+        });
+
+        expect(effects.getSessionTimes$).toBeObservable(expected$);
+      });
     });
   });
 

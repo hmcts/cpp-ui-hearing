@@ -2,6 +2,9 @@ import { UserDetails } from './shared/user-details';
 import { JudicialMember } from './judicial-member';
 import { OrganisationUnit } from '@cpp/reference-data';
 
+/** Judiciaries picked from reference data: one typeahead and one chairman option each. Any more are shown and saved as names. */
+export const MAX_SELECTABLE_JUDICIARIES = 3;
+
 export interface SessionTimesCourt {
   courtHouseId: string;
   courtRoomId: string;
@@ -23,7 +26,7 @@ export interface CourtSession {
 export interface CourtSessionJudiciary {
   judiciaryId?: string;
   judiciaryName?: string;
-  benchChairman: boolean;
+  benchChairman?: boolean;
   index?: number;
   judicialMember?: JudicialMember;
 }
@@ -41,9 +44,7 @@ export interface SelectedJudiciary {
 
 export interface SessionTimesCourtForm {
   chairman: number;
-  judge1: JudicialMember;
-  judge2: JudicialMember;
-  judge3: JudicialMember;
+  [judge: `judge${number}`]: JudicialMember;
   otherJudiciaries: string[];
   courtClerk: TypeaheadOption;
   courtAssociate: TypeaheadOption;
@@ -51,8 +52,6 @@ export interface SessionTimesCourtForm {
   startTime: string;
   endTime: string;
 }
-
-export type CourtType = 'C' | 'B';
 
 export type CourtOfficersByRole = { [role in CourtOfficerRole]: UserDetails[] };
 
