@@ -2,7 +2,8 @@ import { createSelector } from '@ngrx/store';
 import {
   extractApplicantRespondentOrAppellantFromCourtApplication,
   getCasesAndApplicationsGroupedByDefendant,
-  getCurrentHearing
+  getCurrentHearing,
+  hasLinkedApplicationCases
 } from './hearing';
 import { SubjectDefendant, CourtApplication, CourtApplicationParty, HearingDetail } from '../model';
 import { ProsecutionCaseSummary } from '../model/shared/prosecution-case-summary';
@@ -76,11 +77,6 @@ const hasCourtApplications = (hearing: HearingDetail): boolean =>
 
 const hasNoActiveProsecutionCases = (hearing: HearingDetail): boolean =>
   !hearing.prosecutionCases?.length;
-
-const hasLinkedApplicationCases = (hearing: HearingDetail): boolean =>
-  (hearing.courtApplications || []).some(
-    application => (application.courtApplicationCases || []).length > 0
-  );
 
 export const isStandAloneApplication = (hearing: HearingDetail): boolean =>
   hasCourtApplications(hearing) &&
