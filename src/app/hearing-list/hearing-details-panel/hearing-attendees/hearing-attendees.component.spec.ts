@@ -137,6 +137,57 @@ describe('HearingAttendeesComponent', () => {
     expect(fixture).toMatchSnapshot();
   });
 
+  describe('application attendee flow – advocates checked in as Prosecution / Defence (CAD-1923)', () => {
+    const namesIn = (testId: string): string[] =>
+      fixture.debugElement
+        .queryAll(By.css(`[data-test-id="${testId}"] [data-test-id="name"]`))
+        .map(el => el.nativeElement.textContent.trim());
+
+    beforeEach(() => {
+      component.isStandAloneApplication = true;
+      component.hearing = hearingWithOnlyApplications as any;
+    });
+
+    it('should list the checked-in prosecution and defence advocates under hearing parties', () => {
+      fixture.detectChanges();
+
+      expect(namesIn('prosecutionCounsels').length).toBe(mockProsecutionCounsels.length);
+      expect(namesIn('defenceCounsels').length).toBe(mockDefenceCounsels.length);
+      expect(fixture.debugElement.query(By.css('[data-test-id="applicantCounsels"]'))).toBeTruthy();
+      expect(
+        fixture.debugElement.query(By.css('[data-test-id="respondentCounsels"]'))
+      ).toBeTruthy();
+    });
+
+    it('should not show empty prosecution / defence sections when nobody has checked in', () => {
+      component.prosecutionCounsels = [];
+      component.defenceCounsels = [];
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('[data-test-id="prosecutionCounsels"]'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('[data-test-id="defenceCounsels"]'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('[data-test-id="applicantCounsels"]'))).toBeTruthy();
+    });
+
+    it('should not show company representatives in the application flow', () => {
+      fixture.detectChanges();
+
+      expect(
+        fixture.debugElement.query(By.css('[data-test-id="companyRepresentatives"]'))
+      ).toBeNull();
+    });
+  });
+
+  it('should still show prosecution and defence sections (with placeholders) in the case flow', () => {
+    component.isStandAloneApplication = false;
+    component.prosecutionCounsels = [];
+    component.defenceCounsels = [];
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('[data-test-id="prosecutionCounsels"]'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('[data-test-id="defenceCounsels"]'))).toBeTruthy();
+  });
+
   it('should show `Appellant` label when `applicantAppellantFlag` is true', () => {
     component.isStandAloneApplication = true;
     component.hearing = hearingWithApplicantAppellantFlagTrue;

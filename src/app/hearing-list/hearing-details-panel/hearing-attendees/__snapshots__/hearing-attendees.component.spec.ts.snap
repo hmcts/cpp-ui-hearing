@@ -1270,6 +1270,120 @@ exports[`HearingAttendeesComponent should render correctly for application only 
           </ul>
         </dd>
       </dl>
+      <dl
+        data-test-id="prosecutionCounsels"
+      >
+        <dt
+          class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+          pdk-margin-bottom="1"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-xsmall"
+        >
+           HEARING_LIST.PROSECUTION 
+        </dt>
+        <dd>
+          <ul>
+            <li
+              class="name govuk-!-margin-bottom-2 govuk-body-s"
+              data-role="attendee-name"
+              data-test-id="attendee"
+              pdk-margin-bottom="2"
+              pdk-typography="body-small"
+            >
+              <dl>
+                <dt
+                  data-test-id="name"
+                >
+                   test Pc-1 PC-1 
+                </dt>
+                <dd
+                  data-test-id="description"
+                >
+                  test
+                </dd>
+              </dl>
+            </li>
+            <li
+              class="name govuk-!-margin-bottom-2 govuk-body-s"
+              data-role="attendee-name"
+              data-test-id="attendee"
+              pdk-margin-bottom="2"
+              pdk-typography="body-small"
+            >
+              <dl>
+                <dt
+                  data-test-id="name"
+                >
+                   test Pc-2 PC-2 
+                </dt>
+                <dd
+                  data-test-id="description"
+                >
+                  test
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <dl
+        class="attendee govuk-!-margin-bottom-2"
+        data-test-id="defenceCounsels"
+        pdk-margin-bottom="2"
+      >
+        <dt
+          class="govuk-!-margin-bottom-1 pdk-!-text-color-dark-grey govuk-body-xs"
+          pdk-margin-bottom="1"
+          pdk-text-colour="dark-grey"
+          pdk-typography="body-xsmall"
+        >
+           HEARING_LIST.DEFENCE 
+        </dt>
+        <dd>
+          <ul>
+            <li
+              class="name govuk-!-margin-bottom-1 govuk-body-s"
+              data-role="attendee-name"
+              data-test-id="attendee"
+              pdk-margin-bottom="1"
+              pdk-typography="body-small"
+            >
+              <dl>
+                <dt
+                  data-test-id="name"
+                >
+                   test Pc-1 PC-1 
+                </dt>
+                <dd
+                  data-test-id="description"
+                >
+                  test
+                </dd>
+              </dl>
+            </li>
+            <li
+              class="name govuk-!-margin-bottom-1 govuk-body-s"
+              data-role="attendee-name"
+              data-test-id="attendee"
+              pdk-margin-bottom="1"
+              pdk-typography="body-small"
+            >
+              <dl>
+                <dt
+                  data-test-id="name"
+                >
+                   test Pc-2 PC-2 
+                </dt>
+                <dd
+                  data-test-id="description"
+                >
+                  test
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </dd>
+      </dl>
       <intermediary-attendees>
         <section
           class="intermediry-counsels"

@@ -2712,6 +2712,26 @@ describe('Read-only "Hearing parties" selectors', () => {
       });
       expect(fromSelectors.getCurrentHearingProsecutionCounsels(state)).toEqual([]);
     });
+
+    it('should return the checked-in prosecutors for an application linked to an inactive case when prosecution cases are omitted (CAD-1923)', () => {
+      const state = buildState({
+        courtApplications: [
+          { id: 'app1', courtApplicationCases: [{ prosecutionCaseId: 'case1' }] }
+        ],
+        prosecutionCounsels: [prosecutionCounsel({ id: 'p1', attendanceDays: [DAY] })]
+      } as Partial<HearingDetail>);
+      expect(fromSelectors.getCurrentHearingProsecutionCounsels(state).map(c => c.id)).toEqual([
+        'p1'
+      ]);
+    });
+
+    it('should return [] for a standalone application hearing without prosecution cases', () => {
+      const state = buildState({
+        courtApplications: [{ id: 'app1', courtApplicationCases: [] }],
+        prosecutionCounsels: [prosecutionCounsel({ id: 'p1', attendanceDays: [DAY] })]
+      } as Partial<HearingDetail>);
+      expect(fromSelectors.getCurrentHearingProsecutionCounsels(state)).toEqual([]);
+    });
   });
 
   describe('#getCurrentHearingDefenceCounsels', () => {
@@ -2733,6 +2753,28 @@ describe('Read-only "Hearing parties" selectors', () => {
     it('should return [] when the hearing payload omits defence counsels', () => {
       const state = buildState({ prosecutionCases: [] });
       expect(fromSelectors.getCurrentHearingDefenceCounsels(state)).toEqual([]);
+    });
+
+    it('should return [] when the hearing has no prosecution cases nor linked application cases', () => {
+      const state = buildState({
+        defenceCounsels: [
+          defenceCounsel({ id: 'd1', defendants: ['def-a'], attendanceDays: [DAY] })
+        ]
+      });
+      expect(fromSelectors.getCurrentHearingDefenceCounsels(state)).toEqual([]);
+    });
+
+    it('should return the checked-in defence advocates for an application linked to an inactive case when prosecution cases are omitted (CAD-1923)', () => {
+      const state = buildState({
+        courtApplications: [
+          { id: 'app1', courtApplicationCases: [{ prosecutionCaseId: 'case1' }] }
+        ],
+        defenceCounsels: [
+          defenceCounsel({ id: 'd1', defendants: ['def-a'], attendanceDays: [DAY] }),
+          defenceCounsel({ id: 'd2', defendants: ['def-a'], attendanceDays: ['2024-01-01'] })
+        ]
+      } as Partial<HearingDetail>);
+      expect(fromSelectors.getCurrentHearingDefenceCounsels(state).map(c => c.id)).toEqual(['d1']);
     });
   });
 

@@ -875,6 +875,14 @@ export const getCurrentHearingDefenseCounsels = createSelector(
   (hearing, selectedHearingDate) => extractDefenceCouncils(hearing, selectedHearingDate)
 );
 
+export const hasLinkedApplicationCases = (hearing: HearingDetail): boolean =>
+  (hearing?.courtApplications || []).some(
+    application => (application.courtApplicationCases || []).length > 0
+  );
+
+const hasCaseForCounsels = (hearing: HearingDetail): boolean =>
+  !!hearing && (!!hearing.prosecutionCases || hasLinkedApplicationCases(hearing));
+
 const filterCounselsByAttendanceDay = <T extends { attendanceDays?: string[] }>(
   counsels: T[],
   selectedHearingDate: string
@@ -892,7 +900,7 @@ export const getCurrentHearingProsecutionCounsels = createSelector(
   getCurrentHearing,
   getSelectedHearingDate,
   (hearing, selectedHearingDate): ProsecutionCounsel[] =>
-    hearing && hearing.prosecutionCases
+    hasCaseForCounsels(hearing)
       ? filterCounselsByAttendanceDay(hearing.prosecutionCounsels || [], selectedHearingDate)
       : []
 );
@@ -901,7 +909,7 @@ export const getCurrentHearingDefenceCounsels = createSelector(
   getCurrentHearing,
   getSelectedHearingDate,
   (hearing, selectedHearingDate): DefenceCounsel[] =>
-    hearing && hearing.prosecutionCases
+    hasCaseForCounsels(hearing)
       ? filterCounselsByAttendanceDay(
           sortCounselsByFirstDefendant(hearing.defenceCounsels || []),
           selectedHearingDate

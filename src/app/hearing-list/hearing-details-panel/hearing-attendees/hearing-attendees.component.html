@@ -115,6 +115,11 @@
       }
     </dd>
   </dl>
+  @if (showProsecutionCounsels) {
+  <ng-container [ngTemplateOutlet]="prosecutionCounselsList"></ng-container>
+  } @if (showDefenceCounsels) {
+  <ng-container [ngTemplateOutlet]="defenceCounselsList"></ng-container>
+  }
   <intermediary-attendees [intermediariesCounsel]="intermediariesCounsel"> </intermediary-attendees>
   <a
     pdk-link
@@ -131,73 +136,9 @@
   <div pdk-margin-bottom="2" class="attendee">
     <!-- Prosecution counsels -->
 
-    <dl data-test-id="prosecutionCounsels">
-      <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
-        {{ 'HEARING_LIST.PROSECUTION' | translate }}
-      </dt>
-      <dd>
-        @if (showProsecutionCounsels) {
-        <ul>
-          @for (prosecutionCounsel of prosecutionCounsels; track prosecutionCounsel.id) {
-          <li
-            pdk-typography="body-small"
-            pdk-margin-bottom="2"
-            data-test-id="attendee"
-            data-role="attendee-name"
-            class="name"
-          >
-            <dl>
-              <dt data-test-id="name">
-                {{ prosecutionCounsel.title }} {{ prosecutionCounsel | fullName : true }}
-              </dt>
-              <dd data-test-id="description">{{ prosecutionCounsel.status }}</dd>
-            </dl>
-          </li>
-          }
-        </ul>
-        } @if (!showProsecutionCounsels) {
-        <span>
-          <span pdk-visually-hidden>No {{ 'HEARING_LIST.PROSECUTION' | translate }}</span
-          >–
-        </span>
-        }
-      </dd>
-    </dl>
-
+    <ng-container [ngTemplateOutlet]="prosecutionCounselsList"></ng-container>
+    <ng-container [ngTemplateOutlet]="defenceCounselsList"></ng-container>
     @if (!isStandAloneApplication) {
-    <dl data-test-id="defenceCounsels" pdk-margin-bottom="2" class="attendee">
-      <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
-        {{ 'HEARING_LIST.DEFENCE' | translate }}
-      </dt>
-      <dd>
-        @if (showDefenceCounsels) {
-        <ul>
-          @for (defenceCounsel of defenceCounsels; track defenceCounsel.id) {
-          <li
-            pdk-typography="body-small"
-            pdk-margin-bottom="1"
-            data-test-id="attendee"
-            data-role="attendee-name"
-            class="name"
-          >
-            <dl>
-              <dt data-test-id="name">
-                {{ defenceCounsel.title }} {{ defenceCounsel | fullName : true }}
-              </dt>
-              <dd data-test-id="description">{{ defenceCounsel.status }}</dd>
-            </dl>
-          </li>
-          }
-        </ul>
-        } @if (!showDefenceCounsels) {
-        <span>
-          <span pdk-visually-hidden>No {{ 'HEARING_LIST.DEFENCE' | translate }}</span
-          >–
-        </span>
-        }
-      </dd>
-    </dl>
-    } @if (!isStandAloneApplication) {
     <dl data-test-id="companyRepresentatives" pdk-margin-bottom="2" class="attendee">
       <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
         {{ 'HEARING_LIST.REPRESENTATIVE' | translate }}
@@ -287,3 +228,73 @@
   </div>
   }
 </div>
+
+<ng-template #prosecutionCounselsList>
+  <dl data-test-id="prosecutionCounsels">
+    <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+      {{ 'HEARING_LIST.PROSECUTION' | translate }}
+    </dt>
+    <dd>
+      @if (showProsecutionCounsels) {
+      <ul>
+        @for (prosecutionCounsel of prosecutionCounsels; track prosecutionCounsel.id) {
+        <li
+          pdk-typography="body-small"
+          pdk-margin-bottom="2"
+          data-test-id="attendee"
+          data-role="attendee-name"
+          class="name"
+        >
+          <dl>
+            <dt data-test-id="name">
+              {{ prosecutionCounsel.title }} {{ prosecutionCounsel | fullName : true }}
+            </dt>
+            <dd data-test-id="description">{{ prosecutionCounsel.status }}</dd>
+          </dl>
+        </li>
+        }
+      </ul>
+      } @if (!showProsecutionCounsels) {
+      <span>
+        <span pdk-visually-hidden>No {{ 'HEARING_LIST.PROSECUTION' | translate }}</span
+        >–
+      </span>
+      }
+    </dd>
+  </dl>
+</ng-template>
+
+<ng-template #defenceCounselsList>
+  <dl data-test-id="defenceCounsels" pdk-margin-bottom="2" class="attendee">
+    <dt pdk-typography="body-xsmall" pdk-margin-bottom="1" pdk-text-colour="dark-grey">
+      {{ 'HEARING_LIST.DEFENCE' | translate }}
+    </dt>
+    <dd>
+      @if (showDefenceCounsels) {
+      <ul>
+        @for (defenceCounsel of defenceCounsels; track defenceCounsel.id) {
+        <li
+          pdk-typography="body-small"
+          pdk-margin-bottom="1"
+          data-test-id="attendee"
+          data-role="attendee-name"
+          class="name"
+        >
+          <dl>
+            <dt data-test-id="name">
+              {{ defenceCounsel.title }} {{ defenceCounsel | fullName : true }}
+            </dt>
+            <dd data-test-id="description">{{ defenceCounsel.status }}</dd>
+          </dl>
+        </li>
+        }
+      </ul>
+      } @if (!showDefenceCounsels) {
+      <span>
+        <span pdk-visually-hidden>No {{ 'HEARING_LIST.DEFENCE' | translate }}</span
+        >–
+      </span>
+      }
+    </dd>
+  </dl>
+</ng-template>

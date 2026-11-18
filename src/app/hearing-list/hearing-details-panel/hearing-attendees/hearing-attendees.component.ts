@@ -8,6 +8,7 @@ import {
   Output,
   SimpleChanges
 } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 import {
   Defendant,
@@ -49,6 +50,7 @@ export interface PeopleListInfo {
   templateUrl: './hearing-attendees.component.html',
   styleUrls: ['./hearing-attendees.component.scss'],
   imports: [
+    NgTemplateOutlet,
     PanelItemComponent,
     AttendeeComponent,
     PdkDividerComponent,
