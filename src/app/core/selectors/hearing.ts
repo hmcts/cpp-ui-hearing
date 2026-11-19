@@ -1483,7 +1483,11 @@ export const getApplicationSubjectAsCaseDefendant = (
 
       const [defendantCase] = app.subject.masterDefendant?.defendantCase || [];
       const caseURN = defendantCase?.caseReference;
+      let defendantId = defendantCase?.defendantId;
 
+      if (!defendantId) {
+        defendantId = app.subject?.masterDefendant?.masterDefendantId; // to handle summons application
+      }
       let offences = (app.courtApplicationCases || []).reduce(
         (allOffences, courtApplicationCase) => [
           ...allOffences,
@@ -1502,7 +1506,7 @@ export const getApplicationSubjectAsCaseDefendant = (
       return [
         ...results,
         {
-          defendantId: defendantCase?.defendantId,
+          defendantId,
           firstName,
           lastName,
           offences,
