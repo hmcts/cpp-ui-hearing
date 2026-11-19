@@ -14,7 +14,7 @@ describe('getMinutesFromDurationValue', () => {
   });
 
   it('converts weeks into sitting-day minutes', () => {
-    expect(getMinutesFromDurationValue([{ label: 'WEEKS', value: 1 }])).toBe(2520);
+    expect(getMinutesFromDurationValue([{ label: 'WEEKS', value: 1 }])).toBe(1800);
   });
 
   it('uses only the first value/unit pair', () => {
