@@ -12,6 +12,7 @@
         <judiciary-typeahead
           [attr.data-role]="'judiciary-typeahead-' + slot"
           [name]="'judge' + (slot + 1)"
+          [ariaLabel]="'Judge ' + (slot + 1) + ' name'"
           [ngModel]="getJudiciaryWithId(slot)"
           (ngModelChange)="onSetJudiciaryTypeahead($event, slot)"
         ></judiciary-typeahead>
@@ -20,13 +21,16 @@
       <pdk-form-group ngModelGroup="otherJudiciaries">
         @for (otherJudiciary of otherJudiciaries; track $index; let i = $index) {
         <pdk-form-field>
-          <judiciary-typeahead
-            [attr.data-role]="'other-judiciary-typeahead-' + i"
+          <input
+            pdk-typography="body-xsmall"
+            type="text"
             [name]="'otherJudiciary' + i"
-            [ariaLabel]="'Additional Judge ' + (i + 1) + ' name'"
-            [ngModel]="otherJudiciary.value"
-            (ngModelChange)="onSetOtherJudiciary($event, i)"
-          ></judiciary-typeahead>
+            [ngModel]="otherJudiciary"
+            (ngModelChange)="addOtherJudiciary($event)"
+            pdk-text-input
+            class="other-judiciary"
+            [attr.data-role]="'otherJudiciary-' + i"
+          />
         </pdk-form-field>
         }
         <p class="mt-m">

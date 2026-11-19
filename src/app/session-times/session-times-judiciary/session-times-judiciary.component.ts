@@ -87,7 +87,7 @@ export class SessionTimesJudiciaryComponent {
       session = this.addJudicialMemnberToSession(form[`judge${i + 1}`], i, form, session);
     }
 
-    session = this.addOtherJudiciariesToSession(form.otherJudiciaries, form.chairman, session);
+    session = this.addOtherJudiciariesToSession(form.otherJudiciaries, session);
 
     if (!!form.startTime) {
       session = {
@@ -157,26 +157,18 @@ export class SessionTimesJudiciaryComponent {
 
   private addOtherJudiciariesToSession(
     otherJudiciaries: object,
-    chairman: number,
     session: CourtSession
   ): CourtSession {
     if (!!otherJudiciaries) {
-      const extraJudiciaries = Object.entries(otherJudiciaries)
-        .filter(([, judicialMember]) => !!judicialMember)
-        .map(([key, judicialMember], index) => {
-          const judiciaryIndex = Number(key.replace('otherJudiciary', ''));
-          const member = judicialMember as JudicialMember;
-          const isNameOnly = !member.id;
-          return {
-            ...(isNameOnly ? { judiciaryName: member.forenames } : { judiciaryId: member.id }),
-            benchChairman: chairman === judiciaryIndex + 3
-          };
-        });
+      const nameOnlyJudiciaries = Object.values(otherJudiciaries).map(name => ({
+        judiciaryName: name,
+        benchChairman: false
+      }));
       return {
         ...session,
         judiciaries: [
           ...(session && session.judiciaries ? session.judiciaries : []),
-          ...extraJudiciaries
+          ...nameOnlyJudiciaries
         ]
       };
     }
