@@ -44,7 +44,7 @@ export const getMinutesFromDurationValue = (value: DraftResultPromptValue[]): nu
   const minutesPerUnit: { [unit: string]: number } = {
     HOURS: minutesPerHour,
     DAYS: sittingHoursPerDay * minutesPerHour,
-    WEEKS: 7 * sittingHoursPerDay * minutesPerHour
+    WEEKS: minutesPerWeek
   };
 
   const { label, value: amount } = value[0];
