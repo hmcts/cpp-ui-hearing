@@ -356,6 +356,9 @@ export class HearingResultsListComponent {
     return casesAndApplications.prosecutionCases.some(kase => !!kase.isGroupMaster);
   }
 
+  isCivilCase(casesAndApplications: DefendantCasesApplications): boolean {
+    return casesAndApplications.prosecutionCases?.some(kase => !!kase.isCivil);
+  }
   getRemandStatus = (
     defendant: DefendantCasesApplications,
     prosecutionCase: Omit<ProsecutionCaseDetails, 'defendants'>
