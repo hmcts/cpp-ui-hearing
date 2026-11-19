@@ -68,5 +68,51 @@ describe('SessionTimesService', () => {
         params: httpParams
       });
     });
+
+    it('should rethrow any other error', () => {
+      const error = { status: 500 };
+      query.mockReturnValue(cold('-#', null, error));
+
+      const query$ = service.getSessionTimes(courtHouseId, courtRoomId, sessionDate);
+
+      expect(query$).toBeObservable(cold('-#', null, error));
+    });
+  });
+
+  describe('Get Allocated Judiciaries', () => {
+    it('should query listing for the judiciaries allocated to a courthouse/courtroom combination on a date', () => {
+      const response$ = cold('-(a|)', { a: mockSessionTimesCourt });
+      query.mockReturnValue(response$);
+
+      const query$ = service.getAllocatedJudiciaries('123', '456', '2026-11-11');
+      const httpParams = new HttpParams()
+        .set('courtCentreId', '123')
+        .set('courtRoomId', '456')
+        .set('searchDate', '2026-11-11');
+
+      expect(query$).toBeObservable(cold('-(b|)', { b: mockSessionTimesCourt }));
+      expect(query).toHaveBeenCalledWith({
+        url: '/listing-query-api/query/api/rest/listing/judiciary',
+        requestType: 'application/vnd.listing.search.judiciary+json',
+        params: httpParams
+      });
+    });
+
+    it('should convert a 404 to null when no judiciary is allocated', () => {
+      query.mockReturnValue(cold('-#', null, { status: 404 }));
+
+      const query$ = service.getAllocatedJudiciaries('123', '456', '2026-11-11');
+
+      expect(query$).toBeObservable(cold('-(b|)', { b: null }));
+    });
+
+    it('should rethrow any other error', () => {
+      const error = { status: 500 };
+      query.mockReturnValue(cold('-#', null, error));
+
+      const query$ = service.getAllocatedJudiciaries('123', '456', '2026-11-11');
+
+      expect(query$).toBeObservable(cold('-#', null, error));
+    });
   });
 });

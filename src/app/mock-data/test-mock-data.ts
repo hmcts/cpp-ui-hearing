@@ -27,7 +27,6 @@ import { SessionTimesState } from '../core/reducers/session-times';
 import { CourtOrder } from '../core/model/court-orders';
 import { CourtOrderState } from '../core/reducers/court-order';
 import { ElectronicMonitoringDefendant } from '../core/model/hearing-detail';
-import { HearingSlot } from '@cpp/scheduling';
 
 export const hearingCaseNoteMock: HearingCaseNotes = {
   courtClerk: {
@@ -800,42 +799,6 @@ export const legalAdviser: UserDetails = {
   lastName: 'Wilson',
   email: 'erica.wilson@hmcts.net'
 };
-
-export const mockHearingSlots: HearingSlot[] = [
-  {
-    courtScheduleId: '48e0894c-c3c3-4edf-8264-d9ded13e1dc5',
-    ouCode: 'B01LY00',
-    courtRoomId: '9e4932f7-97b2-3010-b942-ddd2624e4dd8',
-    courtRoomNumber: 2330,
-    courtHouseName: 'Lavender Hill Magistrates Court',
-    courtRoomName: 'Courtroom 01',
-    businessType: 'G1T',
-    courtSession: 'AD',
-    sessionDate: '2020-04-01',
-    maxSlots: 0,
-    maxDuration: 0,
-    availableSlots: 0,
-    availableDuration: 0,
-    judiciaries: [
-      {
-        judiciaryId: mockJudicialMembers[0].id,
-        courtScheduleId: '48e0894c-c3c3-4edf-8264-d9ded13e1dc5',
-        courtListingProfileId: 'CS2368149',
-        judiciaryType: 'MAGISTRATE',
-        benchChairman: false,
-        deputy: true
-      },
-      {
-        judiciaryId: mockJudicialMembers[1].id,
-        courtScheduleId: '48e0894c-c3c3-4edf-8264-d9ded13e1dc5',
-        courtListingProfileId: 'CS2368149',
-        judiciaryType: 'MAGISTRATE',
-        benchChairman: true,
-        deputy: false
-      }
-    ]
-  } as HearingSlot
-];
 
 export const mockHearingState = {
   summaries: [mockSummary],

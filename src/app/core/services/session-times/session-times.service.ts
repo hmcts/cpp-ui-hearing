@@ -31,11 +31,35 @@ export class SessionTimesService {
       })
       .pipe(
         catchError(error => {
-          if ((error.statusCode = 404)) {
+          if (error.status === 404) {
             return of(null);
-          } else {
-            throw error;
           }
+          throw error;
+        })
+      );
+  }
+
+  getAllocatedJudiciaries(
+    courtHouseId: string,
+    courtRoomId: string,
+    courtSessionDate: string
+  ): Observable<SessionTimesCourt> {
+    const httpParams = new HttpParams()
+      .set('courtCentreId', courtHouseId)
+      .set('courtRoomId', courtRoomId)
+      .set('searchDate', courtSessionDate);
+    return this.api
+      .query<SessionTimesCourt>({
+        url: '/listing-query-api/query/api/rest/listing/judiciary',
+        requestType: 'application/vnd.listing.search.judiciary+json',
+        params: httpParams
+      })
+      .pipe(
+        catchError(error => {
+          if (error.status === 404) {
+            return of(null);
+          }
+          throw error;
         })
       );
   }

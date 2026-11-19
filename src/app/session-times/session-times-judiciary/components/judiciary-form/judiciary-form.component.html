@@ -4,43 +4,33 @@
       <h3>{{ sessionType | uppercase }}</h3>
     </pdk-grid>
     <pdk-grid one-quarter class="flex-column-one">
-      <pdk-form-field label="{{ 'SESSION_TIMES.JUDICIARY' | translate }}" labelType="small">
+      @for (slot of judiciarySlots; track slot) {
+      <pdk-form-field
+        [label]="slot === 0 ? ('SESSION_TIMES.JUDICIARY' | translate) : 'Judiciary ' + (slot + 1)"
+        [labelType]="slot === 0 ? 'small' : 'none'"
+      >
         <judiciary-typeahead
-          data-role="judiciary-typeahead-0"
-          name="judge1"
-          [ariaLabel]="'First Judge name'"
-          [ngModel]="getJudiciaryWithId(0)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 0)"
+          [attr.data-role]="'judiciary-typeahead-' + slot"
+          [name]="'judge' + (slot + 1)"
+          [ariaLabel]="'Judge ' + (slot + 1) + ' name'"
+          [ngModel]="getJudiciaryWithId(slot)"
+          (ngModelChange)="onSetJudiciaryTypeahead($event, slot)"
         ></judiciary-typeahead>
       </pdk-form-field>
-      <pdk-form-field label="Judiciary 2" labelType="none">
-        <judiciary-typeahead
-          name="judge2"
-          data-role="judiciary-typeahead-1"
-          [ariaLabel]="'Second Judge name'"
-          [ngModel]="getJudiciaryWithId(1)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 1)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
-      <pdk-form-field label="Judiciary 3" labelType="none">
-        <judiciary-typeahead
-          name="judge3"
-          data-role="judiciary-typeahead-2"
-          [ariaLabel]="'Third Judge name'"
-          [ngModel]="getJudiciaryWithId(2)"
-          (ngModelChange)="onSetJudiciaryTypeahead($event, 2)"
-        ></judiciary-typeahead>
-      </pdk-form-field>
+      }
       <pdk-form-group ngModelGroup="otherJudiciaries">
         @for (otherJudiciary of otherJudiciaries; track $index; let i = $index) {
         <pdk-form-field>
-          <judiciary-typeahead
-            [attr.data-role]="'other-judiciary-typeahead-' + i"
+          <input
+            pdk-typography="body-xsmall"
+            type="text"
             [name]="'otherJudiciary' + i"
-            [ariaLabel]="'Additional Judge ' + (i + 1) + ' name'"
-            [ngModel]="otherJudiciary.value"
-            (ngModelChange)="onSetOtherJudiciary($event, i)"
-          ></judiciary-typeahead>
+            [ngModel]="otherJudiciary"
+            (ngModelChange)="addOtherJudiciary($event)"
+            pdk-text-input
+            class="other-judiciary"
+            [attr.data-role]="'otherJudiciary-' + i"
+          />
         </pdk-form-field>
         }
         <p class="mt-m">
@@ -67,18 +57,14 @@
           class="chairman-radio-group"
           data-role="chairman-radio-group"
         >
-          @for (selectedJudiciary of selectedJudiciaries; track selectedJudiciary.index; let i =
-          $index) {
+          @for (slot of judiciarySlots; track slot) {
           <pdk-radio-button
-            [value]="i"
-            [disabled]="isChairmanDisabled(i)"
+            [value]="slot"
+            [disabled]="isChairmanDisabled(slot)"
             class="chairman-radio-button"
-            [attr.data-role]="'chairman-radio-btn-' + i"
+            [attr.data-role]="'chairman-radio-btn-' + slot"
           >
-            <span pdk-visually-hidden
-              >Judiciary {{ i + 1
-              }}{{ getJudiciaryDisplayName(i) ? ' ' + getJudiciaryDisplayName(i) : '' }}</span
-            >
+            <span pdk-visually-hidden>Judiciary {{ slot + 1 }}</span>
           </pdk-radio-button>
           }
         </pdk-radio-group>

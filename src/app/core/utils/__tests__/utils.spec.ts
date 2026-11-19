@@ -4,6 +4,7 @@ import {
   getDistinctDefendants,
   getHearingCaseUrl,
   groupApplicantRespondentOrAppellantFromCourtApplication,
+  judicialMemberName,
   resolveProceedingsConcluded
 } from '../utils';
 import {
@@ -12,7 +13,8 @@ import {
   CourtApplication,
   Offence,
   HearingCaseLink,
-  HearingCaseLinkType
+  HearingCaseLinkType,
+  JudicialMember
 } from '../../model';
 
 describe('Utils', () => {
@@ -444,6 +446,38 @@ describe('Utils', () => {
       } as HearingDetail;
 
       expect(resolveProceedingsConcluded(hearing)).toBe(true);
+    });
+  });
+
+  describe('judicialMemberName', () => {
+    const member: JudicialMember = {
+      id: 'j1',
+      seqId: 1,
+      forenames: 'Fiona Helen',
+      surname: 'Chambers',
+      judiciaryType: 'Magistrate'
+    };
+
+    it('should prefer the judicial title over the title', () => {
+      expect(
+        judicialMemberName({ ...member, titlePrefix: 'Mrs', titleJudicialPrefix: 'HHJ' })
+      ).toBe('HHJ Fiona Helen Chambers');
+    });
+
+    it('should use the title when there is no judicial title', () => {
+      expect(judicialMemberName({ ...member, titlePrefix: 'Mrs' })).toBe(
+        'Mrs Fiona Helen Chambers'
+      );
+    });
+
+    it('should not start with a space when there is no title', () => {
+      expect(judicialMemberName(member)).toBe('Fiona Helen Chambers');
+    });
+
+    it('should ignore Welsh titles', () => {
+      expect(judicialMemberName({ ...member, titlePrefixWelsh: 'Mrs' })).toBe(
+        'Fiona Helen Chambers'
+      );
     });
   });
 });
