@@ -154,12 +154,6 @@ export class JudiciaryFormComponent implements OnChanges {
     this.otherJudiciaries.push('');
   }
 
-  addOtherJudiciary(event: any): void {
-    if (event) {
-      this.enableSave();
-    }
-  }
-
   getJudiciaryWithId(index: number): JudicialMember {
     const withIds = this.judiciaryModelGroup.withIds;
     return withIds.length > index ? withIds[index] : null;
