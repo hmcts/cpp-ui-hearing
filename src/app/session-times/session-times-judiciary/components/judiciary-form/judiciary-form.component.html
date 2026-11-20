@@ -26,7 +26,7 @@
             type="text"
             [name]="'otherJudiciary' + i"
             [ngModel]="otherJudiciary"
-            (ngModelChange)="addOtherJudiciary($event)"
+            (ngModelChange)="enableSave()"
             pdk-text-input
             class="other-judiciary"
             [attr.data-role]="'otherJudiciary-' + i"

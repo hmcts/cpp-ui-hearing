@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {
   CourtOfficerTypeaheadOptions,
   CourtSession,
@@ -40,7 +48,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe
   ]
 })
-export class SessionTimesJudiciaryComponent {
+export class SessionTimesJudiciaryComponent implements OnChanges {
   @ViewChild('recordSessionTimesForm') recordSessionTimesForm: NgForm;
   @Input() sessionTimesCourt: SessionTimesCourt;
   @Input() selectedCourtCentre: string;
@@ -54,6 +62,12 @@ export class SessionTimesJudiciaryComponent {
   sessionType = SessionTypeEnum;
 
   isSaveBtnEnabled = false;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.sessionTimesCourt) {
+      this.isSaveBtnEnabled = false;
+    }
+  }
 
   getTodayDate() {
     return new Date();
