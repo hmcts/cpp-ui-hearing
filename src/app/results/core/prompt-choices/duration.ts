@@ -38,24 +38,6 @@ export const getDurationValueFromMinutes = (minutes: number): DraftResultPromptV
   return [{ label: 'MINUTES', value: minutes }];
 };
 
-export const getMinutesFromDurationValue = (value: DraftResultPromptValue[]): number => {
-  const sittingHoursPerDay = 6;
-
-  const minutesPerUnit: { [unit: string]: number } = {
-    HOURS: minutesPerHour,
-    DAYS: sittingHoursPerDay * minutesPerHour,
-    WEEKS: minutesPerWeek
-  };
-
-  const { label, value: amount } = value[0];
-
-  if (label === 'MINUTES') {
-    return amount;
-  }
-
-  return amount * minutesPerUnit[label];
-};
-
 export const serializeDurationValue = (value: DraftResultPromptValue[]): string => {
   return value
     .map(draftResultPrompt => `${draftResultPrompt.value} ${draftResultPrompt.label}`)
