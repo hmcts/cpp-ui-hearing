@@ -3,9 +3,11 @@
  * result from the defendant's custodial establishment recorded in Edit Case.
  *
  * Order of precedence for the prison prompt of a newly added result line:
- *  1. the defendant's custodial establishment (own case first, then the same
- *     master defendant on another case in this hearing, then the same master
- *     defendant as the subject of an application in this hearing)
+ *  1. the defendant's custodial establishment in this hearing: the most
+ *     recently updated one (`lastUpdated`) across the defendant's own case, the
+ *     same master defendant on other cases and as the subject of an application
+ *     (AC9b, AC9d). Without dates: own case first, then the other cases, then
+ *     the application subjects
  *  2. the prison from the last custodial result entered in the session
  *     (existing reuse-of-information cache, untouched here)
  *  3. blank
@@ -27,9 +29,6 @@ export interface CustodialEstablishmentTarget {
   masterDefendantId?: string;
 }
 
-const hasEstablishment = (defendant: Defendant): boolean =>
-  !!defendant?.personDefendant?.custodialEstablishment?.name?.trim();
-
 const normalise = (value: string): string => (value || '').trim().toLowerCase();
 
 /** The prison prompt choice of a result definition, if it has one. */
@@ -41,14 +40,24 @@ export const getPrisonPromptChoice = (
       promptChoice.promptRef === PRISON_PROMPT_REF && isNameAddressPromptChoice(promptChoice)
   );
 
+/** When the establishment was last updated; one without a (valid) date sorts last. */
+const lastUpdatedTime = (establishment: CustodyEstablishment): number => {
+  const time = Date.parse(establishment.lastUpdated ?? '');
+
+  return Number.isNaN(time) ? Number.NEGATIVE_INFINITY : time;
+};
+
 /**
- * The custodial establishment to use for a result target: the target
- * defendant's own establishment, otherwise the first case in this hearing on
- * which the same master defendant has one, otherwise the same master defendant
- * as the subject of an application in this hearing (AC11a: an application on an
- * inactive case keeps the prison shared on its last hearing on the subject).
- * Cases outside the hearing are never considered, as only the current
- * hearing's cases and applications are searched.
+ * The custodial establishment to use for a result target, from the same master
+ * defendant in this hearing only (AC9e: cases outside the hearing are never
+ * considered):
+ *  - the most recently updated establishment wins (AC9b, AC9d), whether it is
+ *    on the target's own case, on a matched case or on the subject of an
+ *    application (AC11a);
+ *  - one with a `lastUpdated` date wins over one without, as the date is only
+ *    recorded when an establishment changes;
+ *  - otherwise (no dates, or equal dates) the target's own case comes first,
+ *    then the other cases in hearing order, then the application subjects.
  */
 export const getCustodialEstablishmentForTarget = (
   hearing: Pick<HearingDetail, 'prosecutionCases' | 'courtApplications'> | undefined,
@@ -57,13 +66,9 @@ export const getCustodialEstablishmentForTarget = (
   if (!hearing || !target?.masterDefendantId) {
     return undefined;
   }
-  const defendants: Defendant[] = (hearing.prosecutionCases || []).reduce(
-    (all: Defendant[], prosecutionCase) => all.concat(prosecutionCase.defendants || []),
-    []
-  );
-  const sameMasterDefendant = defendants.filter(
-    defendant => defendant.masterDefendantId === target.masterDefendantId
-  );
+  const sameMasterDefendant: Defendant[] = (hearing.prosecutionCases || [])
+    .reduce((all: Defendant[], prosecutionCase) => all.concat(prosecutionCase.defendants || []), [])
+    .filter(defendant => defendant.masterDefendantId === target.masterDefendantId);
   const own = sameMasterDefendant.find(
     defendant =>
       defendant.id === target.defendantId &&
@@ -71,22 +76,24 @@ export const getCustodialEstablishmentForTarget = (
         !defendant.prosecutionCaseId ||
         defendant.prosecutionCaseId === target.caseId)
   );
-
-  if (own && hasEstablishment(own)) {
-    return own.personDefendant.custodialEstablishment;
-  }
-  const matched = sameMasterDefendant.find(hasEstablishment);
-
-  if (matched) {
-    return matched.personDefendant.custodialEstablishment;
-  }
-  return (hearing.courtApplications || [])
+  const applicationSubjects = (hearing.courtApplications || [])
     .map(application => application.subject?.masterDefendant)
-    .find(
-      masterDefendant =>
-        masterDefendant?.masterDefendantId === target.masterDefendantId &&
-        !!masterDefendant.personDefendant?.custodialEstablishment?.name?.trim()
-    )?.personDefendant.custodialEstablishment;
+    .filter(masterDefendant => masterDefendant?.masterDefendantId === target.masterDefendantId);
+
+  // in order of precedence for when the dates do not decide
+  const establishments = [
+    ...(own ? [own] : []),
+    ...sameMasterDefendant.filter(defendant => defendant !== own),
+    ...applicationSubjects
+  ]
+    .map(defendant => defendant.personDefendant?.custodialEstablishment)
+    .filter(establishment => !!establishment?.name?.trim());
+
+  return establishments.reduce<CustodyEstablishment | undefined>(
+    (latest, establishment) =>
+      !latest || lastUpdatedTime(establishment) > lastUpdatedTime(latest) ? establishment : latest,
+    undefined
+  );
 };
 
 /**

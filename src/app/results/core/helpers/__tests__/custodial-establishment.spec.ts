@@ -218,6 +218,173 @@ describe('custodial-establishment helpers (CHD-2714)', () => {
       });
     });
 
+    describe('most recently updated establishment (AC9b, AC9d)', () => {
+      const dated = (name: string, lastUpdated?: string): CustodyEstablishment => ({
+        ...establishment(name),
+        ...(lastUpdated ? { lastUpdated } : {})
+      });
+      const onCase = (
+        caseId: string,
+        id: string,
+        masterDefendantId: string,
+        custodialEstablishment?: CustodyEstablishment
+      ) => ({
+        id,
+        prosecutionCaseId: caseId,
+        masterDefendantId,
+        personDefendant: custodialEstablishment ? { custodialEstablishment } : {}
+      });
+      const hearingOf = (
+        defendants: ReturnType<typeof onCase>[],
+        courtApplications: unknown[] = []
+      ): HearingDetail =>
+        ({
+          prosecutionCases: [...new Set(defendants.map(d => d.prosecutionCaseId))].map(id => ({
+            id,
+            defendants: defendants.filter(d => d.prosecutionCaseId === id)
+          })),
+          courtApplications
+        } as unknown as HearingDetail);
+      const nameFor = (h: HearingDetail, caseId: string, defendantId: string) =>
+        getCustodialEstablishmentForTarget(h, { caseId, defendantId, masterDefendantId: 'MD' })
+          ?.name;
+
+      it('AC9b: should pre-populate both cases with the most recently updated establishment', () => {
+        const both = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-10-01T09:00:00Z')),
+          onCase('case2', 'd-case2', 'MD', dated('HMP/YOI Eastwood Park', '2026-11-01T09:00:00Z'))
+        ]);
+
+        // the newer matched case wins over the defendant's own case
+        expect(nameFor(both, 'case1', 'd-case1')).toBe('HMP/YOI Eastwood Park');
+        expect(nameFor(both, 'case2', 'd-case2')).toBe('HMP/YOI Eastwood Park');
+      });
+
+      it('AC9d: own case blank, should use the matched case with the most recent update (case 2 – Bristol)', () => {
+        const three = hearingOf([
+          onCase('case1', 'd-case1', 'MD'),
+          onCase('case2', 'd-case2', 'MD', dated('HMP Bristol', '2026-11-10T09:00:00Z')),
+          onCase('case3', 'd-case3', 'MD', dated('HMP/YOI Eastwood Park', '2026-10-10T09:00:00Z'))
+        ]);
+
+        expect(nameFor(three, 'case1', 'd-case1')).toBe('HMP Bristol');
+      });
+
+      it('AC9d: should not depend on the order of the cases in the hearing', () => {
+        const three = hearingOf([
+          onCase('case1', 'd-case1', 'MD'),
+          onCase('case2', 'd-case2', 'MD', dated('HMP Bristol', '2026-10-10T09:00:00Z')),
+          onCase('case3', 'd-case3', 'MD', dated('HMP/YOI Eastwood Park', '2026-11-10T09:00:00Z'))
+        ]);
+
+        expect(nameFor(three, 'case1', 'd-case1')).toBe('HMP/YOI Eastwood Park');
+      });
+
+      it('should compare the dates as instants, not as text (time zones)', () => {
+        const zones = hearingOf([
+          // 09:00Z
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-11-01T11:00:00+02:00')),
+          // 10:00Z – the most recent
+          onCase('case2', 'd-case2', 'MD', dated('HMP/YOI Eastwood Park', '2026-11-01T10:00:00Z'))
+        ]);
+
+        expect(nameFor(zones, 'case1', 'd-case1')).toBe('HMP/YOI Eastwood Park');
+      });
+
+      it('should prefer an establishment with a date over one without (only changes are dated)', () => {
+        const mixed = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol')),
+          onCase('case2', 'd-case2', 'MD', dated('HMP/YOI Eastwood Park', '2026-11-01T09:00:00Z'))
+        ]);
+
+        expect(nameFor(mixed, 'case1', 'd-case1')).toBe('HMP/YOI Eastwood Park');
+      });
+
+      it('should keep the own case first when the dates are equal', () => {
+        const same = '2026-11-01T09:00:00Z';
+        const tie = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', same)),
+          onCase('case2', 'd-case2', 'MD', dated('HMP/YOI Eastwood Park', same))
+        ]);
+
+        expect(nameFor(tie, 'case1', 'd-case1')).toBe('HMP Bristol');
+        expect(nameFor(tie, 'case2', 'd-case2')).toBe('HMP/YOI Eastwood Park');
+      });
+
+      it('should keep the own case first when there are no dates (e.g. data before the BE change)', () => {
+        const undated = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol')),
+          onCase('case2', 'd-case2', 'MD', dated('HMP/YOI Eastwood Park'))
+        ]);
+
+        expect(nameFor(undated, 'case1', 'd-case1')).toBe('HMP Bristol');
+        expect(nameFor(undated, 'case2', 'd-case2')).toBe('HMP/YOI Eastwood Park');
+      });
+
+      it('should treat an invalid date as no date', () => {
+        const invalid = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-10-01T09:00:00Z')),
+          onCase('case2', 'd-case2', 'MD', dated('HMP/YOI Eastwood Park', 'not-a-date'))
+        ]);
+
+        expect(nameFor(invalid, 'case2', 'd-case2')).toBe('HMP Bristol');
+      });
+
+      it('should ignore a more recent establishment with a blank name', () => {
+        const blank = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-10-01T09:00:00Z')),
+          onCase('case2', 'd-case2', 'MD', dated('  ', '2026-11-01T09:00:00Z'))
+        ]);
+
+        expect(nameFor(blank, 'case2', 'd-case2')).toBe('HMP Bristol');
+      });
+
+      it('should ignore a more recent establishment of another defendant', () => {
+        const other = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-10-01T09:00:00Z')),
+          onCase('case1', 'other', 'OTHER', dated('HMP/YOI Eastwood Park', '2026-11-01T09:00:00Z'))
+        ]);
+
+        expect(nameFor(other, 'case1', 'd-case1')).toBe('HMP Bristol');
+      });
+
+      it('should use the application subject when it was updated most recently (AC11a)', () => {
+        const subject = {
+          id: 'app',
+          subject: {
+            id: 'subject',
+            masterDefendant: {
+              masterDefendantId: 'MD',
+              personDefendant: {
+                custodialEstablishment: dated('HMP Wandsworth', '2026-11-15T09:00:00Z')
+              }
+            }
+          }
+        };
+        const withApplication = hearingOf(
+          [onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-10-01T09:00:00Z'))],
+          [subject]
+        );
+        const caseNewer = hearingOf(
+          [onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-11-20T09:00:00Z'))],
+          [subject]
+        );
+
+        expect(nameFor(withApplication, 'case1', 'd-case1')).toBe('HMP Wandsworth');
+        expect(nameFor(caseNewer, 'case1', 'd-case1')).toBe('HMP Bristol');
+      });
+
+      it('should return the establishment with its date', () => {
+        const one = hearingOf([
+          onCase('case1', 'd-case1', 'MD', dated('HMP Bristol', '2026-10-01T09:00:00Z'))
+        ]);
+
+        expect(
+          getCustodialEstablishmentForTarget(one, { caseId: 'case1', masterDefendantId: 'MD' })
+        ).toEqual(dated('HMP Bristol', '2026-10-01T09:00:00Z'));
+      });
+    });
+
     it('should ignore an establishment with a blank name', () => {
       const blank = {
         prosecutionCases: [{ id: 'c', defendants: [defendant('d', 'c', 'MD', '  ')] }]

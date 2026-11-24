@@ -19,7 +19,8 @@ import { ReusableInfoService } from '../reusable-info.service';
 
 /**
  * CHD-2714 / CHD-3288 – 'Select prison' is pre-populated from the defendant's
- * custodial establishment in Edit Case when a custodial result is added.
+ * custodial establishment in Edit Case when a custodial result is added; across
+ * matched cases the most recently updated one (lastUpdated) is used.
  */
 describe('DraftResultBuilderService – prison from custodial establishment (CHD-2714)', () => {
   let draftResultBuilder: DraftResultBuilder;
@@ -104,6 +105,68 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
       hearing.prosecutionCases[1]
     ]
   };
+
+  // AC9b / AC9d – establishments with the date they were last updated (BE: lastUpdated)
+  const datedDefendant = (
+    id: string,
+    caseId: string,
+    masterDefendantId: string,
+    prison?: string,
+    lastUpdated?: string
+  ) => ({
+    id,
+    prosecutionCaseId: caseId,
+    masterDefendantId,
+    personDefendant: prison
+      ? { custodialEstablishment: { id: prison, name: prison, custody: 'Prison', lastUpdated } }
+      : {}
+  });
+  const hearingWithDates = {
+    id: 'hearingId',
+    prosecutionCases: [
+      {
+        id: 'case1',
+        defendants: [
+          datedDefendant('D5', 'case1', 'MD5', 'HMP Bure', '2026-10-01T09:00:00Z'),
+          datedDefendant('D6', 'case1', 'MD6'),
+          datedDefendant('D7', 'case1', 'MD7')
+        ]
+      },
+      {
+        id: 'case2',
+        defendants: [
+          datedDefendant(
+            'D5-case2',
+            'case2',
+            'MD5',
+            'HMP/YOI Eastwood Park',
+            '2026-11-01T09:00:00Z'
+          ),
+          datedDefendant(
+            'D6-case2',
+            'case2',
+            'MD6',
+            'HMP/YOI Eastwood Park',
+            '2026-10-10T09:00:00Z'
+          )
+        ]
+      },
+      {
+        id: 'case3',
+        defendants: [datedDefendant('D6-case3', 'case3', 'MD6', 'HMP Bure', '2026-11-10T09:00:00Z')]
+      }
+    ]
+  };
+
+  const addRiOn = (caseId: string, defendantId: string, masterDefendantId: string) =>
+    draftResultBuilder.parseTextOptions({
+      caseId,
+      defendantId,
+      masterDefendantId,
+      offenceId: `${defendantId}-O1`,
+      originalText: 'ri',
+      orderedDate
+    });
 
   beforeEach(() => {
     sessionCache = [];
@@ -231,6 +294,66 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
       await addRi('D4', 'MD4');
 
       expect(prisonOf('D4-O1')?.prisonOrganisationName).toBe('HMP Bure');
+    });
+  });
+
+  describe('when matched cases in the hearing hold different establishments', () => {
+    beforeEach(() => getHearing.mockReturnValue(of({ hearing: hearingWithDates })));
+
+    it('AC9b: should pre-populate both cases with the most recently updated establishment', async () => {
+      await addRiOn('case1', 'D5', 'MD5');
+      await addRiOn('case2', 'D5-case2', 'MD5');
+
+      // case 1 holds HMP Bure, but Eastwood Park on case 2 was updated more recently
+      expect(prisonOf('D5-O1')).toEqual({
+        prisonOrganisationName: 'HMP/YOI Eastwood Park',
+        prisonEmailAddress1: 'Custody.Eastwoodpark@justice.gov.uk',
+        prisonEmailAddress2: 'Reception.EastwoodPark@justice.gov.uk'
+      });
+      expect(prisonOf('D5-case2-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+    });
+
+    it('AC9d: own case blank, should use the matched case with the most recently updated establishment', async () => {
+      await addRiOn('case1', 'D6', 'MD6');
+
+      // case 2 – Eastwood Park (10 Oct), case 3 – Bure (10 Nov)
+      expect(prisonOf('D6-O1')).toEqual({
+        prisonOrganisationName: 'HMP Bure',
+        prisonEmailAddress1: 'OMU.Bure@justice.gov.uk'
+      });
+    });
+
+    it('AC9c: should still use the session prison when no matched case has an establishment', async () => {
+      sessionCache = [
+        {
+          promptRef: 'prison',
+          type: 'NAMEADDRESS',
+          value: { prisonOrganisationName: 'HMP/YOI High Down' }
+        }
+      ];
+      await addRiOn('case1', 'D7', 'MD7');
+
+      expect(prisonOf('D7-O1')?.prisonOrganisationName).toBe('HMP/YOI High Down');
+    });
+
+    it('AC1B: should copy with the most recently updated establishment of each target defendant', async () => {
+      TestBed.inject(Store).dispatch(
+        new LoadHearingDetailSuccessAction({
+          hearing: hearingWithDates
+        } as unknown as HearingDetailResponse)
+      );
+      await addRiOn('case1', 'D7', 'MD7');
+      await draftResultBuilder.copyResultLines([
+        {
+          originalResultLineId: resultLineFor('D7-O1').resultLineId,
+          caseId: 'case1',
+          defendantId: 'D5',
+          masterDefendantId: 'MD5',
+          offenceId: 'D5-O1'
+        }
+      ]);
+
+      expect(prisonOf('D5-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
     });
   });
 
