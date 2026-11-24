@@ -2,10 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideStore, Store } from '@ngrx/store';
 import { provideCppCoreHttpServices } from '@cpp/core';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import {
   AppState,
   HearingDetailResponse,
+  HearingService,
   LoadHearingDetailSuccessAction,
   reducers
 } from '../../../../core';
@@ -23,6 +24,7 @@ import { ReusableInfoService } from '../reusable-info.service';
 describe('DraftResultBuilderService – prison from custodial establishment (CHD-2714)', () => {
   let draftResultBuilder: DraftResultBuilder;
   let sessionCache: { promptRef: string; type: string; value: unknown }[];
+  let getHearing: jest.Mock;
 
   const orderedDate = '2021-01-01';
 
@@ -87,8 +89,26 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
       : undefined;
   };
 
+  // the hearing after D3's custodial establishment was set in Edit Case
+  const hearingWithD3InEastwoodPark = {
+    ...hearing,
+    prosecutionCases: [
+      {
+        ...hearing.prosecutionCases[0],
+        defendants: [
+          defendant('D1', 'case1', 'MD1', 'HMP Bure'),
+          defendant('D2', 'case1', 'MD2'),
+          defendant('D3', 'case1', 'MD3', 'HMP/YOI Eastwood Park')
+        ]
+      },
+      hearing.prosecutionCases[1]
+    ]
+  };
+
   beforeEach(() => {
     sessionCache = [];
+    // by default the latest hearing is the one in the store
+    getHearing = jest.fn(() => of({ hearing }));
     TestBed.configureTestingModule({
       providers: [
         provideCppCoreHttpServices(),
@@ -105,6 +125,7 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
             getValuesForHierarchy: jest.fn(() => of({}))
           }
         },
+        { provide: HearingService, useValue: { getHearing } },
         NotepadParserService,
         FullNamePipe
       ],
@@ -153,32 +174,63 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
       expect(prisonOf('D3-O1')).toBeUndefined();
     });
 
-    it('should use the latest hearing data at the point the result is added (AC8)', async () => {
+    it('should re-fetch the hearing, in the background, when a result with a prison is added (AC8)', async () => {
+      // Edit Case updated while the notepad is open: the store still holds the old hearing
+      getHearing.mockReturnValue(of({ hearing: hearingWithD3InEastwoodPark }));
       await addRi('D3', 'MD3');
-      expect(prisonOf('D3-O1')).toBeUndefined();
 
-      // Edit Case updated while the notepad is open: the hearing is reloaded into the store
+      expect(getHearing).toHaveBeenCalledWith('hearingId', { background: true });
+      expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+    });
+
+    it('should use the hearing in the store when the hearing cannot be re-fetched (AC8)', async () => {
+      getHearing.mockReturnValue(throwError(() => new Error('offline')));
       TestBed.inject(Store).dispatch(
         new LoadHearingDetailSuccessAction({
-          hearing: {
-            ...hearing,
-            prosecutionCases: [
-              {
-                ...hearing.prosecutionCases[0],
-                defendants: [
-                  defendant('D1', 'case1', 'MD1', 'HMP Bure'),
-                  defendant('D2', 'case1', 'MD2'),
-                  defendant('D3', 'case1', 'MD3', 'HMP/YOI Eastwood Park')
-                ]
-              },
-              hearing.prosecutionCases[1]
-            ]
-          }
+          hearing: hearingWithD3InEastwoodPark
         } as unknown as HearingDetailResponse)
       );
-      await addRi('D3', 'MD3', 'D3-O2');
+      await addRi('D3', 'MD3');
 
-      expect(prisonOf('D3-O2')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+      expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+    });
+
+    it('should not re-fetch the hearing for a result without a prison', async () => {
+      await draftResultBuilder.parseTextOptions({
+        ...target('D1', 'MD1'),
+        originalText: 'rr',
+        orderedDate
+      });
+
+      expect(getHearing).not.toHaveBeenCalled();
+    });
+
+    it('should use the establishment of the application subject when no case in the hearing has one (AC11a)', async () => {
+      getHearing.mockReturnValue(
+        of({
+          hearing: {
+            id: 'hearingId',
+            prosecutionCases: [],
+            courtApplications: [
+              {
+                id: 'app1',
+                subject: {
+                  id: 'subject1',
+                  masterDefendant: {
+                    masterDefendantId: 'MD4',
+                    personDefendant: {
+                      custodialEstablishment: { id: 'x', name: 'HMP Bure', custody: 'Prison' }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        })
+      );
+      await addRi('D4', 'MD4');
+
+      expect(prisonOf('D4-O1')?.prisonOrganisationName).toBe('HMP Bure');
     });
   });
 

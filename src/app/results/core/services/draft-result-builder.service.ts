@@ -3,6 +3,7 @@ import produce from 'immer';
 import { find, isObjectLike, omit, sortBy, uniqBy } from 'lodash-es';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import {
+  catchError,
   defaultIfEmpty,
   filter,
   map,
@@ -20,6 +21,7 @@ import {
   AmendmentReason,
   getCurrentHearing,
   HearingDetail,
+  HearingService,
   omitUndefined,
   UserDetails
 } from '../../../core';
@@ -39,6 +41,7 @@ import {
   OffenceLike,
   ParseChildOptions,
   ParseTextOptions,
+  PromptChoice,
   ReplaceDraftResultLineOptions,
   ResolvedDraftResultLine,
   Result,
@@ -76,7 +79,8 @@ import {
   isSharedResultLine,
   validateDraftResultPrompts,
   applyCustodialEstablishmentToResultPrompts,
-  getCustodialEstablishmentForTarget
+  getCustodialEstablishmentForTarget,
+  getPrisonPromptChoice
 } from '../helpers';
 import { NotepadParserService } from './notepad-parser.service';
 import { ReusableInfoService } from './reusable-info.service';
@@ -112,7 +116,8 @@ export class DraftResultBuilderService {
     private draftResultCacheService: ReusableInfoService,
     private notepadParserService: NotepadParserService,
     private fullNamePipe: FullNamePipe,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private hearingService: HearingService
   ) {}
 
   /**
@@ -871,7 +876,14 @@ export class DraftResultBuilderService {
                     });
 
                 return cachedValues$.pipe(
-                  map(cachedItems => {
+                  switchMap(cachedItems =>
+                    this.getLatestHearingForPrisonPrompt(
+                      parsedResult.promptChoices,
+                      options.hearingId,
+                      hearing
+                    ).pipe(map(latestHearing => [cachedItems, latestHearing] as const))
+                  ),
+                  map(([cachedItems, latestHearing]) => {
                     const resultPromptsFromCache = createDraftResultPromptsFromValueMap(
                       parsedResult.promptChoices,
                       cachedItems.reduce((valueMap, cachedItem) => {
@@ -906,7 +918,8 @@ export class DraftResultBuilderService {
                     // CHD-2714: the prison of a custodial result is taken from the
                     // defendant's custodial establishment (Edit Case) when there is
                     // one, ahead of the session cache. Evaluated now, from the latest
-                    // hearing, so only newly added result lines are affected.
+                    // hearing (re-fetched, AC8), so only newly added result lines are
+                    // affected.
                     const resultPrompts = applyCustodialEstablishmentToResultPrompts(
                       parsedResult.promptChoices,
                       sortBy(
@@ -918,7 +931,7 @@ export class DraftResultBuilderService {
                           find(parsedResult.promptChoices, { promptRef }).promptOrder
                       ),
                       getCustodialEstablishmentForTarget(
-                        hearing,
+                        latestHearing,
                         getForeignKeysForTarget(options as CreateDraftResultLineOptions)
                       ),
                       resolvedResultPrompts
@@ -951,6 +964,26 @@ export class DraftResultBuilderService {
             })
           )
       )
+    );
+  }
+
+  /**
+   * CHD-2714 AC8: the custodial establishment may have been changed in Edit Case
+   * since the hearing was loaded, so a result with a prison prompt is resolved
+   * against the latest hearing, fetched in the background. Any other result, or a
+   * failed fetch, uses the hearing already in the store.
+   */
+  private getLatestHearingForPrisonPrompt(
+    promptChoices: PromptChoice[],
+    hearingId: string,
+    hearing: HearingDetail
+  ): Observable<HearingDetail> {
+    if (!hearingId || !getPrisonPromptChoice(promptChoices)) {
+      return of(hearing);
+    }
+    return this.hearingService.getHearing(hearingId, { background: true }).pipe(
+      map(response => response?.hearing || hearing),
+      catchError(() => of(hearing))
     );
   }
 

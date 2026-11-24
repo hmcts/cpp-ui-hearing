@@ -4,7 +4,8 @@
  *
  * Order of precedence for the prison prompt of a newly added result line:
  *  1. the defendant's custodial establishment (own case first, then the same
- *     master defendant on another case in this hearing)
+ *     master defendant on another case in this hearing, then the same master
+ *     defendant as the subject of an application in this hearing)
  *  2. the prison from the last custodial result entered in the session
  *     (existing reuse-of-information cache, untouched here)
  *  3. blank
@@ -43,11 +44,14 @@ export const getPrisonPromptChoice = (
 /**
  * The custodial establishment to use for a result target: the target
  * defendant's own establishment, otherwise the first case in this hearing on
- * which the same master defendant has one. Cases outside the hearing are never
- * considered, as only the current hearing's cases are searched.
+ * which the same master defendant has one, otherwise the same master defendant
+ * as the subject of an application in this hearing (AC11a: an application on an
+ * inactive case keeps the prison shared on its last hearing on the subject).
+ * Cases outside the hearing are never considered, as only the current
+ * hearing's cases and applications are searched.
  */
 export const getCustodialEstablishmentForTarget = (
-  hearing: Pick<HearingDetail, 'prosecutionCases'> | undefined,
+  hearing: Pick<HearingDetail, 'prosecutionCases' | 'courtApplications'> | undefined,
   target: CustodialEstablishmentTarget
 ): CustodyEstablishment | undefined => {
   if (!hearing || !target?.masterDefendantId) {
@@ -71,7 +75,18 @@ export const getCustodialEstablishmentForTarget = (
   if (own && hasEstablishment(own)) {
     return own.personDefendant.custodialEstablishment;
   }
-  return sameMasterDefendant.find(hasEstablishment)?.personDefendant.custodialEstablishment;
+  const matched = sameMasterDefendant.find(hasEstablishment);
+
+  if (matched) {
+    return matched.personDefendant.custodialEstablishment;
+  }
+  return (hearing.courtApplications || [])
+    .map(application => application.subject?.masterDefendant)
+    .find(
+      masterDefendant =>
+        masterDefendant?.masterDefendantId === target.masterDefendantId &&
+        !!masterDefendant.personDefendant?.custodialEstablishment?.name?.trim()
+    )?.personDefendant.custodialEstablishment;
 };
 
 /**

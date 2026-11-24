@@ -422,6 +422,21 @@ describe('HearingService', () => {
       });
     });
 
+    it('should query in the background, without the loading spinner, when asked', () => {
+      const response = { hearing: { id: '123' }, hearingState: 'INITIALISED' };
+
+      http.query = jest.fn().mockReturnValue(cold('-a|', { a: response }));
+
+      expect(service.getHearing('123', { background: true })).toBeObservable(
+        cold('-b|', { b: response })
+      );
+      expect(http.query).toHaveBeenCalledWith({
+        url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        background: true
+      });
+    });
+
     it('should handle API error response', () => {
       const errorResponse = { status: 404, statusText: 'Not Found' };
       const hearings$ = cold('-#', {}, errorResponse);

@@ -172,6 +172,52 @@ describe('custodial-establishment helpers (CHD-2714)', () => {
       ).toBeUndefined();
     });
 
+    describe('application subjects in the hearing (AC11a)', () => {
+      const subject = (masterDefendantId: string, prison?: string) => ({
+        id: `app-${masterDefendantId}`,
+        subject: {
+          id: `subject-${masterDefendantId}`,
+          masterDefendant: {
+            masterDefendantId,
+            personDefendant: prison ? { custodialEstablishment: establishment(prison) } : {}
+          }
+        }
+      });
+      const applicationHearing = (
+        prosecutionCases: unknown[],
+        courtApplications: unknown[]
+      ): HearingDetail => ({ prosecutionCases, courtApplications } as unknown as HearingDetail);
+
+      it('should use the establishment of the application subject when no case in the hearing has one', () => {
+        expect(
+          getCustodialEstablishmentForTarget(
+            applicationHearing([], [subject('MD9', 'HMP Bristol')]),
+            { caseId: 'inactive', defendantId: 'd9', masterDefendantId: 'MD9' }
+          )?.name
+        ).toBe('HMP Bristol');
+      });
+
+      it('should prefer a case in the hearing over the application subject', () => {
+        expect(
+          getCustodialEstablishmentForTarget(
+            applicationHearing(hearing.prosecutionCases, [subject('MD1', 'HMP Wandsworth')]),
+            { caseId: 'case1', defendantId: 'd1-case1', masterDefendantId: 'MD1' }
+          )?.name
+        ).toBe('HMP Bristol');
+      });
+
+      it('should return nothing when the subject has no establishment or is another defendant (AC11a: never the old case value)', () => {
+        const withSubjects = applicationHearing(
+          [],
+          [subject('MD9'), subject('MD8', 'HMP Bristol')]
+        );
+
+        expect(
+          getCustodialEstablishmentForTarget(withSubjects, { masterDefendantId: 'MD9' })
+        ).toBeUndefined();
+      });
+    });
+
     it('should ignore an establishment with a blank name', () => {
       const blank = {
         prosecutionCases: [{ id: 'c', defendants: [defendant('d', 'c', 'MD', '  ')] }]

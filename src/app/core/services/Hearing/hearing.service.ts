@@ -88,11 +88,15 @@ export class HearingService {
       .pipe(map(res => res.hearingSummaries));
   }
 
-  getHearing(hearingId: string): Observable<HearingDetailResponse> {
+  getHearing(
+    hearingId: string,
+    { background = false }: { background?: boolean } = {}
+  ): Observable<HearingDetailResponse> {
     return this.api
       .query<HearingDetailResponse>({
         url: constructApiEndPointUrl('hearingQuery', 'hearings', hearingId),
-        requestType: 'application/vnd.hearing.get.hearing+json'
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        ...(background ? { background } : {})
       })
       .pipe(
         map(hearingDetails => {
