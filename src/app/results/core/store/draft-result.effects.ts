@@ -17,7 +17,7 @@ import {
 import {
   getHearingLockStateByAmendmentReason,
   getCurrentHearingState,
-  getDefendantsFromAllCases
+  getCurrentHearingDefendants
 } from '../../../core/selectors/hearing';
 import { getCurrentHearing } from '../../../core';
 import { DraftResultBuilderService } from '../services/draft-result-builder.service';
@@ -58,7 +58,7 @@ export class DraftResultEffects {
   private hearingLockState$ = this.store.pipe(select(getHearingLockStateByAmendmentReason));
   private hearingState$ = this.store.pipe(select(getCurrentHearingState));
   private hearing$ = this.store.pipe(select(getCurrentHearing));
-  private defendants$ = this.store.pipe(select(getDefendantsFromAllCases));
+  private defendants$ = this.store.pipe(select(getCurrentHearingDefendants));
   private hasResultingAssistant$ = this.store.pipe(select(hasResultingAssistant));
 
   // All actions that update the draft result are handled in a single-threaded

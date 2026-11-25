@@ -130,6 +130,7 @@ const extractDefendants = (hearing: HearingDetail) => {
   }
   if (hearing?.prosecutionCases && hearing?.prosecutionCases.length > 0) {
     hearing.prosecutionCases.forEach(aCase => {
+      const caseURN = aCase.prosecutionCaseIdentifier?.caseURN;
       const sortedDefendants = [...aCase.defendants];
       sortedDefendants.sort(byPersonLastName);
       sortedDefendants.forEach(defendant => {
@@ -141,7 +142,12 @@ const extractDefendants = (hearing: HearingDetail) => {
             ? defendant.personDefendant.personDetails.lastName
             : '',
           defendantId: defendant.id,
-          offences: defendant.offences
+          dateOfBirth: defendant.personDefendant
+            ? defendant.personDefendant?.personDetails?.dateOfBirth
+            : '',
+          offences: defendant.offences,
+          caseURN,
+          masterDefendantId: defendant.masterDefendantId
         });
       });
     });
@@ -1473,6 +1479,10 @@ export const getApplicationSubjectAsCaseDefendant = (
         : legalEntityDefendant.organisation.name;
 
       const lastName = personDefendant ? personDefendant.personDetails.lastName : '';
+      const dateOfBirth = personDefendant ? personDefendant?.personDetails?.dateOfBirth : '';
+
+      const [defendantCase] = app.subject.masterDefendant?.defendantCase || [];
+      const caseURN = defendantCase?.caseReference;
 
       let offences = (app.courtApplicationCases || []).reduce(
         (allOffences, courtApplicationCase) => [
@@ -1485,18 +1495,20 @@ export const getApplicationSubjectAsCaseDefendant = (
       if (app.courtOrder) {
         offences = [
           ...offences,
-          (app.courtOrder.courtOrderOffences || []).map(({ offence }) => offence)
+          ...(app.courtOrder.courtOrderOffences || []).map(({ offence }) => offence)
         ];
       }
 
       return [
         ...results,
         {
-          defendantId: app.subject.masterDefendant.masterDefendantId,
+          defendantId: defendantCase?.defendantId,
           firstName,
           lastName,
           offences,
-          masterDefendantId: app.subject.masterDefendant.masterDefendantId
+          masterDefendantId: app.subject?.masterDefendant?.masterDefendantId,
+          dateOfBirth,
+          caseURN
         }
       ];
     }
