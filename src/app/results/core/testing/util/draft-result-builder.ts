@@ -63,7 +63,6 @@ export class DraftResultBuilder {
           transform: () => 'FirstName Lastname'
         },
         store,
-        // the latest hearing (CHD-2714 AC8) is the one in the store
         {
           getHearing: () =>
             store.pipe(

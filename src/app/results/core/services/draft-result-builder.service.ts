@@ -249,11 +249,7 @@ export class DraftResultBuilderService {
     );
   }
 
-  /**
-   * CHD-2714 (AC1B): a custodial result copied to another defendant takes that
-   * defendant's own custodial establishment as its prison, when one is recorded.
-   * Otherwise the copied prison is kept (the last prison entered in the session).
-   */
+  /** Without an establishment for the target defendant, the copied prison is kept. */
   private withCustodialEstablishmentForCopyTarget<T extends ResolvedDraftResultLine>(
     resultLine: T,
     hearing: HearingDetail | undefined
@@ -915,11 +911,6 @@ export class DraftResultBuilderService {
                     // overlap (i.e. both provide a result prompt for the same
                     // prompt choice), then we prioritize the result prompt resolved
                     // via the parser, as it's considered more recent
-                    // CHD-2714: the prison of a custodial result is taken from the
-                    // defendant's custodial establishment (Edit Case) when there is
-                    // one, ahead of the session cache. Evaluated now, from the latest
-                    // hearing (re-fetched, AC8), so only newly added result lines are
-                    // affected.
                     const resultPrompts = applyCustodialEstablishmentToResultPrompts(
                       parsedResult.promptChoices,
                       sortBy(
@@ -967,12 +958,7 @@ export class DraftResultBuilderService {
     );
   }
 
-  /**
-   * CHD-2714 AC8: the custodial establishment may have been changed in Edit Case
-   * since the hearing was loaded, so a result with a prison prompt is resolved
-   * against the latest hearing, fetched in the background. Any other result, or a
-   * failed fetch, uses the hearing already in the store.
-   */
+  /** The establishment may have changed in Edit Case since the hearing was loaded. */
   private getLatestHearingForPrisonPrompt(
     promptChoices: PromptChoice[],
     hearingId: string,
