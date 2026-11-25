@@ -967,7 +967,7 @@ export class DraftResultBuilderService {
     if (!hearingId || !getPrisonPromptChoice(promptChoices)) {
       return of(hearing);
     }
-    return this.hearingService.getHearing(hearingId, { background: true }).pipe(
+    return this.hearingService.getHearing(hearingId, true).pipe(
       map(response => response?.hearing || hearing),
       catchError(() => of(hearing))
     );

@@ -242,7 +242,7 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
       getHearing.mockReturnValue(of({ hearing: hearingWithD3InEastwoodPark }));
       await addRi('D3', 'MD3');
 
-      expect(getHearing).toHaveBeenCalledWith('hearingId', { background: true });
+      expect(getHearing).toHaveBeenCalledWith('hearingId', true);
       expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
     });
 

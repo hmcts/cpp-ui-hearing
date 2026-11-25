@@ -365,7 +365,8 @@ describe('HearingService', () => {
 
       expect(http.query).toHaveBeenCalledWith({
         url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
-        requestType: 'application/vnd.hearing.get.hearing+json'
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        background: false
       });
     });
 
@@ -394,7 +395,8 @@ describe('HearingService', () => {
 
       expect(http.query).toHaveBeenCalledWith({
         url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
-        requestType: 'application/vnd.hearing.get.hearing+json'
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        background: false
       });
     });
 
@@ -418,7 +420,8 @@ describe('HearingService', () => {
       expect(query$).toBeObservable(expected$);
       expect(http.query).toHaveBeenCalledWith({
         url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
-        requestType: 'application/vnd.hearing.get.hearing+json'
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        background: false
       });
     });
 
@@ -427,9 +430,7 @@ describe('HearingService', () => {
 
       http.query = jest.fn().mockReturnValue(cold('-a|', { a: response }));
 
-      expect(service.getHearing('123', { background: true })).toBeObservable(
-        cold('-b|', { b: response })
-      );
+      expect(service.getHearing('123', true)).toBeObservable(cold('-b|', { b: response }));
       expect(http.query).toHaveBeenCalledWith({
         url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
         requestType: 'application/vnd.hearing.get.hearing+json',
@@ -448,7 +449,8 @@ describe('HearingService', () => {
       expect(query$).toBeObservable(expected$);
       expect(http.query).toHaveBeenCalledWith({
         url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
-        requestType: 'application/vnd.hearing.get.hearing+json'
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        background: false
       });
     });
 
@@ -518,7 +520,8 @@ describe('HearingService', () => {
       expect(query$).toBeObservable(expected$);
       expect(http.query).toHaveBeenCalledWith({
         url: '/hearing-query-api/query/api/rest/hearing/hearings/123',
-        requestType: 'application/vnd.hearing.get.hearing+json'
+        requestType: 'application/vnd.hearing.get.hearing+json',
+        background: false
       });
     });
   });
