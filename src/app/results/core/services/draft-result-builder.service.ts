@@ -3,12 +3,14 @@ import produce from 'immer';
 import { find, isObjectLike, omit, sortBy, uniqBy } from 'lodash-es';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import {
+  catchError,
   defaultIfEmpty,
   filter,
   map,
   mergeMap,
   reduce,
   switchMap,
+  take,
   tap,
   withLatestFrom
 } from 'rxjs/operators';
@@ -18,6 +20,8 @@ import {
   AppState,
   AmendmentReason,
   getCurrentHearing,
+  HearingDetail,
+  HearingService,
   omitUndefined,
   UserDetails
 } from '../../../core';
@@ -37,6 +41,7 @@ import {
   OffenceLike,
   ParseChildOptions,
   ParseTextOptions,
+  PromptChoice,
   ReplaceDraftResultLineOptions,
   ResolvedDraftResultLine,
   Result,
@@ -72,7 +77,10 @@ import {
   isResolvedDraftResultLine,
   isResultLineSemanticallyEqual,
   isSharedResultLine,
-  validateDraftResultPrompts
+  validateDraftResultPrompts,
+  applyCustodialEstablishmentToResultPrompts,
+  getCustodialEstablishmentForTarget,
+  getPrisonPromptChoice
 } from '../helpers';
 import { NotepadParserService } from './notepad-parser.service';
 import { ReusableInfoService } from './reusable-info.service';
@@ -108,7 +116,8 @@ export class DraftResultBuilderService {
     private draftResultCacheService: ReusableInfoService,
     private notepadParserService: NotepadParserService,
     private fullNamePipe: FullNamePipe,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private hearingService: HearingService
   ) {}
 
   /**
@@ -147,6 +156,7 @@ export class DraftResultBuilderService {
     copyTargets: CopyDraftResultsTarget[]
   ): Observable<DraftResult> {
     const invalidResultLines: ResolvedDraftResultLine[] = [];
+    let currentHearing: HearingDetail | undefined;
     const copyResultLine = (
       originalDraftResult: DraftResult,
       options: CopyDraftResultsTarget & { belongsToResultLineId?: string }
@@ -160,14 +170,17 @@ export class DraftResultBuilderService {
         // When copying a result, the foreign keys for the target may change
         // shape – i.e. we may be copying from an application to an offence (and
         // vice versa) so we must strip any existing ones
-        let copiedResultLine = this.replaceForeignKeysForTarget(
-          {
-            // the creation of a copied result line should not inherit any
-            // shared date that's unique to the original result line.
-            ...omit(resultLine, 'sharedDate'),
-            resultLineId
-          } as ResolvedDraftResultLine,
-          foreignKeysForCopyTarget
+        let copiedResultLine = this.withCustodialEstablishmentForCopyTarget(
+          this.replaceForeignKeysForTarget(
+            {
+              // the creation of a copied result line should not inherit any
+              // shared date that's unique to the original result line.
+              ...omit(resultLine, 'sharedDate'),
+              resultLineId
+            } as ResolvedDraftResultLine,
+            foreignKeysForCopyTarget
+          ),
+          currentHearing
         );
 
         if (
@@ -220,13 +233,45 @@ export class DraftResultBuilderService {
       );
     };
 
-    const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
+    return this.store.pipe(
+      select(getCurrentHearing),
+      take(1),
+      map(hearing => {
+        currentHearing = hearing;
+        const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
 
-    if (invalidResultLines.length) {
-      throw new InvalidResulLinesError(invalidResultLines);
+        if (invalidResultLines.length) {
+          throw new InvalidResulLinesError(invalidResultLines);
+        }
+
+        return this.extendWithInferredRelations(parsedDraftResult, userDetails);
+      })
+    );
+  }
+
+  /** Without an establishment for the target defendant, the copied prison is kept. */
+  private withCustodialEstablishmentForCopyTarget<T extends ResolvedDraftResultLine>(
+    resultLine: T,
+    hearing: HearingDetail | undefined
+  ): T {
+    if (!isExtendedResolvedDraftResultLine(resultLine)) {
+      return resultLine;
     }
+    const establishment = getCustodialEstablishmentForTarget(hearing, resultLine);
+    const resultPrompts = applyCustodialEstablishmentToResultPrompts(
+      resultLine.promptChoices,
+      resultLine.resultPrompts,
+      establishment
+    );
 
-    return of(this.extendWithInferredRelations(parsedDraftResult, userDetails));
+    if (resultPrompts === resultLine.resultPrompts) {
+      return resultLine;
+    }
+    return {
+      ...resultLine,
+      resultPrompts,
+      valid: resultLine.valid && validateDraftResultPrompts(resultLine.promptChoices, resultPrompts)
+    };
   }
 
   /**
@@ -827,7 +872,14 @@ export class DraftResultBuilderService {
                     });
 
                 return cachedValues$.pipe(
-                  map(cachedItems => {
+                  switchMap(cachedItems =>
+                    this.getLatestHearingForPrisonPrompt(
+                      parsedResult.promptChoices,
+                      options.hearingId,
+                      hearing
+                    ).pipe(map(latestHearing => [cachedItems, latestHearing] as const))
+                  ),
+                  map(([cachedItems, latestHearing]) => {
                     const resultPromptsFromCache = createDraftResultPromptsFromValueMap(
                       parsedResult.promptChoices,
                       cachedItems.reduce((valueMap, cachedItem) => {
@@ -859,12 +911,21 @@ export class DraftResultBuilderService {
                     // overlap (i.e. both provide a result prompt for the same
                     // prompt choice), then we prioritize the result prompt resolved
                     // via the parser, as it's considered more recent
-                    const resultPrompts = sortBy(
-                      uniqBy(
-                        [...resolvedResultPrompts, ...resultPromptsFromCache],
-                        draftResultPrompt => draftResultPrompt.promptRef
+                    const resultPrompts = applyCustodialEstablishmentToResultPrompts(
+                      parsedResult.promptChoices,
+                      sortBy(
+                        uniqBy(
+                          [...resolvedResultPrompts, ...resultPromptsFromCache],
+                          draftResultPrompt => draftResultPrompt.promptRef
+                        ),
+                        ({ promptRef }) =>
+                          find(parsedResult.promptChoices, { promptRef }).promptOrder
                       ),
-                      ({ promptRef }) => find(parsedResult.promptChoices, { promptRef }).promptOrder
+                      getCustodialEstablishmentForTarget(
+                        latestHearing,
+                        getForeignKeysForTarget(options as CreateDraftResultLineOptions)
+                      ),
+                      resolvedResultPrompts
                     );
                     // a conditional mandatory result is considered invalid until a
                     // yes/no decision is taken by the user via the UI
@@ -894,6 +955,21 @@ export class DraftResultBuilderService {
             })
           )
       )
+    );
+  }
+
+  /** The establishment may have changed in Edit Case since the hearing was loaded. */
+  private getLatestHearingForPrisonPrompt(
+    promptChoices: PromptChoice[],
+    hearingId: string,
+    hearing: HearingDetail
+  ): Observable<HearingDetail> {
+    if (!hearingId || !getPrisonPromptChoice(promptChoices)) {
+      return of(hearing);
+    }
+    return this.hearingService.getHearing(hearingId, true).pipe(
+      map(response => response?.hearing || hearing),
+      catchError(() => of(hearing))
     );
   }
 

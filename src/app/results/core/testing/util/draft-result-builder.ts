@@ -3,8 +3,15 @@ import produce from 'immer';
 import { pick } from 'lodash-es';
 import { Server } from 'miragejs';
 import { of } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState, AmendmentReason, omitUndefined } from '../../../../core';
+import { map, take } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import {
+  AppState,
+  AmendmentReason,
+  getCurrentHearing,
+  HearingService,
+  omitUndefined
+} from '../../../../core';
 import {
   AnyDraftResultLine,
   CopyDraftResultsTarget,
@@ -44,6 +51,8 @@ export class DraftResultBuilder {
     uuid = 1;
 
     if (!draftResultBuilder) {
+      const store = TestBed.inject<Store<AppState>>(Store);
+
       draftResultBuilder = new DraftResultBuilderService(
         {
           getValuesForResultLine: () => of([]),
@@ -53,7 +62,15 @@ export class DraftResultBuilder {
         {
           transform: () => 'FirstName Lastname'
         },
-        TestBed.inject<Store<AppState>>(Store)
+        store,
+        {
+          getHearing: () =>
+            store.pipe(
+              select(getCurrentHearing),
+              take(1),
+              map(hearing => ({ hearing }))
+            )
+        } as unknown as HearingService
       );
     }
     if (!DraftResultBuilder.server) {
