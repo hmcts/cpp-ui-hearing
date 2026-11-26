@@ -380,5 +380,60 @@ describe('DraftResultBuilderService – prison from custodial establishment (CHD
 
       expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP Bure');
     });
+
+    it('should re-fetch the hearing, in the background, to copy with the latest establishment (AC8)', async () => {
+      await addRi('D1', 'MD1');
+      // Edit Case updated after the result was added: the store still holds the old hearing
+      getHearing.mockClear().mockReturnValue(of({ hearing: hearingWithD3InEastwoodPark }));
+      await draftResultBuilder.copyResultLines([
+        { originalResultLineId: resultLineFor('D1-O1').resultLineId, ...target('D3', 'MD3') }
+      ]);
+
+      expect(getHearing).toHaveBeenCalledTimes(1);
+      expect(getHearing).toHaveBeenCalledWith('hearingId', true);
+      expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+    });
+
+    it('should fetch the hearing once when copying to several defendants', async () => {
+      await addRi('D1', 'MD1');
+      getHearing.mockClear();
+      await draftResultBuilder.copyResultLines([
+        { originalResultLineId: resultLineFor('D1-O1').resultLineId, ...target('D2', 'MD2') },
+        { originalResultLineId: resultLineFor('D1-O1').resultLineId, ...target('D3', 'MD3') }
+      ]);
+
+      expect(getHearing).toHaveBeenCalledTimes(1);
+      expect(prisonOf('D2-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+      expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP Bure');
+    });
+
+    it('should copy with the hearing in the store when the hearing cannot be re-fetched', async () => {
+      await addRi('D1', 'MD1');
+      getHearing.mockReturnValue(throwError(() => new Error('offline')));
+      TestBed.inject(Store).dispatch(
+        new LoadHearingDetailSuccessAction({
+          hearing: hearingWithD3InEastwoodPark
+        } as unknown as HearingDetailResponse)
+      );
+      await draftResultBuilder.copyResultLines([
+        { originalResultLineId: resultLineFor('D1-O1').resultLineId, ...target('D3', 'MD3') }
+      ]);
+
+      expect(prisonOf('D3-O1')?.prisonOrganisationName).toBe('HMP/YOI Eastwood Park');
+    });
+
+    it('should not re-fetch the hearing when copying a result without a prison', async () => {
+      await draftResultBuilder.parseTextOptions({
+        ...target('D1', 'MD1'),
+        originalText: 'rr',
+        orderedDate
+      });
+      await draftResultBuilder.copyResultLines([
+        { originalResultLineId: resultLineFor('D1-O1').resultLineId, ...target('D3', 'MD3') }
+      ]);
+
+      expect(getHearing).not.toHaveBeenCalled();
+      expect(resultLineFor('D3-O1')).toBeDefined();
+    });
   });
 });

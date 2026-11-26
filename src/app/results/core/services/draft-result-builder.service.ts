@@ -155,7 +155,7 @@ export class DraftResultBuilderService {
     copyTargets: CopyDraftResultsTarget[]
   ): Observable<DraftResult> {
     const invalidResultLines: ResolvedDraftResultLine[] = [];
-    const currentHearing = this.store.selectSignal(getCurrentHearing)();
+    let latestHearing: HearingDetail | undefined;
     const copyResultLine = (
       originalDraftResult: DraftResult,
       options: CopyDraftResultsTarget & { belongsToResultLineId?: string }
@@ -179,7 +179,7 @@ export class DraftResultBuilderService {
             } as ResolvedDraftResultLine,
             foreignKeysForCopyTarget
           ),
-          currentHearing
+          latestHearing
         );
 
         if (
@@ -232,13 +232,40 @@ export class DraftResultBuilderService {
       );
     };
 
-    const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
+    return this.getLatestHearingForPrisonPrompt(
+      this.getPromptChoicesOfResultLines(
+        draftResult,
+        copyTargets.map(({ originalResultLineId }) => originalResultLineId)
+      ),
+      draftResult.hearingId,
+      this.store.selectSignal(getCurrentHearing)()
+    ).pipe(
+      map(hearing => {
+        latestHearing = hearing;
+        const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
 
-    if (invalidResultLines.length) {
-      throw new InvalidResulLinesError(invalidResultLines);
-    }
+        if (invalidResultLines.length) {
+          throw new InvalidResulLinesError(invalidResultLines);
+        }
 
-    return of(this.extendWithInferredRelations(parsedDraftResult, userDetails));
+        return this.extendWithInferredRelations(parsedDraftResult, userDetails);
+      })
+    );
+  }
+
+  private getPromptChoicesOfResultLines(
+    draftResult: DraftResult,
+    resultLineIds: string[]
+  ): PromptChoice[] {
+    return resultLineIds.reduce((promptChoices: PromptChoice[], resultLineId) => {
+      const { resultLine, relation } = getResultById(draftResult, resultLineId);
+
+      return [
+        ...promptChoices,
+        ...(isExtendedResolvedDraftResultLine(resultLine) ? resultLine.promptChoices || [] : []),
+        ...this.getPromptChoicesOfResultLines(draftResult, relation?.childResultLineIds || [])
+      ];
+    }, []);
   }
 
   /** Without an establishment for the target defendant, the copied prison is kept. */
