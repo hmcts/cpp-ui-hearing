@@ -3,8 +3,7 @@ import produce from 'immer';
 import { pick } from 'lodash-es';
 import { Server } from 'miragejs';
 import { of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import {
   AppState,
   AmendmentReason,
@@ -64,12 +63,7 @@ export class DraftResultBuilder {
         },
         store,
         {
-          getHearing: () =>
-            store.pipe(
-              select(getCurrentHearing),
-              take(1),
-              map(hearing => ({ hearing }))
-            )
+          getHearing: () => of({ hearing: store.selectSignal(getCurrentHearing)() })
         } as unknown as HearingService
       );
     }

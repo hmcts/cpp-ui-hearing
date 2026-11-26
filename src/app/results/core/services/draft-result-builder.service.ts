@@ -10,7 +10,6 @@ import {
   mergeMap,
   reduce,
   switchMap,
-  take,
   tap,
   withLatestFrom
 } from 'rxjs/operators';
@@ -156,7 +155,7 @@ export class DraftResultBuilderService {
     copyTargets: CopyDraftResultsTarget[]
   ): Observable<DraftResult> {
     const invalidResultLines: ResolvedDraftResultLine[] = [];
-    let currentHearing: HearingDetail | undefined;
+    let latestHearing: HearingDetail | undefined;
     const copyResultLine = (
       originalDraftResult: DraftResult,
       options: CopyDraftResultsTarget & { belongsToResultLineId?: string }
@@ -180,7 +179,7 @@ export class DraftResultBuilderService {
             } as ResolvedDraftResultLine,
             foreignKeysForCopyTarget
           ),
-          currentHearing
+          latestHearing
         );
 
         if (
@@ -233,11 +232,16 @@ export class DraftResultBuilderService {
       );
     };
 
-    return this.store.pipe(
-      select(getCurrentHearing),
-      take(1),
+    return this.getLatestHearingForPrisonPrompt(
+      this.getPromptChoicesOfResultLines(
+        draftResult,
+        copyTargets.map(({ originalResultLineId }) => originalResultLineId)
+      ),
+      draftResult.hearingId,
+      this.store.selectSignal(getCurrentHearing)()
+    ).pipe(
       map(hearing => {
-        currentHearing = hearing;
+        latestHearing = hearing;
         const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
 
         if (invalidResultLines.length) {
@@ -247,6 +251,21 @@ export class DraftResultBuilderService {
         return this.extendWithInferredRelations(parsedDraftResult, userDetails);
       })
     );
+  }
+
+  private getPromptChoicesOfResultLines(
+    draftResult: DraftResult,
+    resultLineIds: string[]
+  ): PromptChoice[] {
+    return resultLineIds.reduce((promptChoices: PromptChoice[], resultLineId) => {
+      const { resultLine, relation } = getResultById(draftResult, resultLineId);
+
+      return [
+        ...promptChoices,
+        ...(isExtendedResolvedDraftResultLine(resultLine) ? resultLine.promptChoices || [] : []),
+        ...this.getPromptChoicesOfResultLines(draftResult, relation?.childResultLineIds || [])
+      ];
+    }, []);
   }
 
   /** Without an establishment for the target defendant, the copied prison is kept. */
