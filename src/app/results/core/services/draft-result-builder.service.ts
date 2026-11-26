@@ -10,7 +10,6 @@ import {
   mergeMap,
   reduce,
   switchMap,
-  take,
   tap,
   withLatestFrom
 } from 'rxjs/operators';
@@ -156,7 +155,7 @@ export class DraftResultBuilderService {
     copyTargets: CopyDraftResultsTarget[]
   ): Observable<DraftResult> {
     const invalidResultLines: ResolvedDraftResultLine[] = [];
-    let currentHearing: HearingDetail | undefined;
+    const currentHearing = this.store.selectSignal(getCurrentHearing)();
     const copyResultLine = (
       originalDraftResult: DraftResult,
       options: CopyDraftResultsTarget & { belongsToResultLineId?: string }
@@ -233,20 +232,13 @@ export class DraftResultBuilderService {
       );
     };
 
-    return this.store.pipe(
-      select(getCurrentHearing),
-      take(1),
-      map(hearing => {
-        currentHearing = hearing;
-        const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
+    const parsedDraftResult = copyTargets.reduce(copyResultLine, draftResult);
 
-        if (invalidResultLines.length) {
-          throw new InvalidResulLinesError(invalidResultLines);
-        }
+    if (invalidResultLines.length) {
+      throw new InvalidResulLinesError(invalidResultLines);
+    }
 
-        return this.extendWithInferredRelations(parsedDraftResult, userDetails);
-      })
-    );
+    return of(this.extendWithInferredRelations(parsedDraftResult, userDetails));
   }
 
   /** Without an establishment for the target defendant, the copied prison is kept. */
