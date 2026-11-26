@@ -4,4 +4,5 @@ export interface ListingHearingDay {
   endTime: string;
   durationMinutes: number;
   sequence: number;
+  courtScheduleId?: string;
 }

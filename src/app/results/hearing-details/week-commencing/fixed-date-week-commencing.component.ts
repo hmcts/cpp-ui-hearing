@@ -24,7 +24,7 @@ import {
   PdkFormGroupDirective,
   PdkButtonComponent,
   PdkButtonDirective,
-  PdkLinkDirective
+  PdkBackLink
 } from '@cpp/pdk';
 import {
   HearingType,
@@ -66,7 +66,7 @@ export interface HearingDateFormValues {
     PdkFormGroupDirective,
     PdkButtonComponent,
     PdkButtonDirective,
-    PdkLinkDirective
+    PdkBackLink
   ]
 })
 export class FixedDateWeekCommencingComponent {

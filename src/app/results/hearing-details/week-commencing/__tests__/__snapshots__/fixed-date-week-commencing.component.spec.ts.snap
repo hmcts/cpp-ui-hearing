@@ -9,121 +9,118 @@ exports[`Refer court form component should render the component 1`] = `
   showDateToBeFixed="false"
   submitData={[Function EventEmitter_]}
 >
-  <h1
+  <div
+    class="govuk-!-margin-bottom-1"
+    pdk-margin-bottom="1"
+  >
+    <a
+      class="govuk-back-link"
+      data-role="cancel-btn"
+      href="javascript:void(0)"
+      pdk-back-link=""
+    >
+      Back
+    </a>
+  </div><h1
     class="govuk-heading-xl"
     pdk-typography="heading-xlarge"
   >
     Find hearing date
   </h1><pdk-grid
-    class="govuk-grid-row"
-    container=""
+    class="govuk-grid-column-one-half"
+    one-half=""
   >
-    <pdk-grid
-      class="govuk-grid-column-one-half"
-      one-half=""
+    <form
+      class="ng-untouched ng-pristine ng-valid"
+      data-test-id="findHearingDateForm"
+      novalidate=""
+      pdk-form=""
     >
-      <form
-        class="ng-untouched ng-pristine ng-valid"
-        data-test-id="findHearingDateForm"
-        novalidate=""
-        pdk-form=""
+      <pdk-form-field
+        label="Fixed date or week commencing?"
+        labeltype="small"
       >
-        <pdk-form-field
-          label="Fixed date or week commencing?"
-          labeltype="small"
-        >
-          <pdk-form-group
-            class="pdk-form-group"
-          >
-            <fieldset
-              class="govuk-fieldset"
-              pdk-fieldset=""
-            >
-              <legend
-                class="govuk-fieldset__legend govuk-fieldset__legend--s"
-              >
-                 Fixed date or week commencing? 
-              </legend>
-              <pdk-radio-group
-                class="ng-untouched ng-pristine ng-valid"
-                name="dateType"
-                required=""
-              >
-                <div
-                  class="govuk-radios"
-                >
-                  <pdk-radio-button
-                    value="FIXED"
-                  >
-                    <div
-                      class="govuk-radios__item"
-                    >
-                      <input
-                        class="govuk-radios__input"
-                        id="pdk-radio-GENERATED_ID"
-                        name="pdk-radio-group-GENERATED_ID"
-                        type="radio"
-                        value="FIXED"
-                      />
-                      <label
-                        class="govuk-radios__label govuk-label"
-                        for="pdk-radio-GENERATED_ID"
-                        pdk-label=""
-                      >
-                        Fixed date 
-                      </label>
-                    </div>
-                  </pdk-radio-button>
-                  <pdk-radio-button
-                    value="WEEK_COMMENCING"
-                  >
-                    <div
-                      class="govuk-radios__item"
-                    >
-                      <input
-                        class="govuk-radios__input"
-                        id="pdk-radio-GENERATED_ID"
-                        name="pdk-radio-group-GENERATED_ID"
-                        type="radio"
-                        value="WEEK_COMMENCING"
-                      />
-                      <label
-                        class="govuk-radios__label govuk-label"
-                        for="pdk-radio-GENERATED_ID"
-                        pdk-label=""
-                      >
-                         Week commencing 
-                      </label>
-                    </div>
-                  </pdk-radio-button>
-                </div>
-              </pdk-radio-group>
-            </fieldset>
-          </pdk-form-group>
-        </pdk-form-field>
         <pdk-form-group
           class="pdk-form-group"
         >
-          <button
-            class="govuk-button"
-            pdk-button=""
-            type="submit"
+          <fieldset
+            class="govuk-fieldset"
+            pdk-fieldset=""
           >
-            Continue
-          </button>
+            <legend
+              class="govuk-fieldset__legend govuk-fieldset__legend--s"
+            >
+               Fixed date or week commencing? 
+            </legend>
+            <pdk-radio-group
+              class="ng-untouched ng-pristine ng-valid"
+              name="dateType"
+              required=""
+            >
+              <div
+                class="govuk-radios"
+              >
+                <pdk-radio-button
+                  value="FIXED"
+                >
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="FIXED"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                      Fixed date 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+                <pdk-radio-button
+                  value="WEEK_COMMENCING"
+                >
+                  <div
+                    class="govuk-radios__item"
+                  >
+                    <input
+                      class="govuk-radios__input"
+                      id="pdk-radio-GENERATED_ID"
+                      name="pdk-radio-group-GENERATED_ID"
+                      type="radio"
+                      value="WEEK_COMMENCING"
+                    />
+                    <label
+                      class="govuk-radios__label govuk-label"
+                      for="pdk-radio-GENERATED_ID"
+                      pdk-label=""
+                    >
+                       Week commencing 
+                    </label>
+                  </div>
+                </pdk-radio-button>
+              </div>
+            </pdk-radio-group>
+          </fieldset>
         </pdk-form-group>
-        <div>
-          <a
-            class="govuk-link"
-            data-role="cancel-btn"
-            href="javascript:void(0)"
-            pdk-link=""
-          >
-            Back
-          </a>
-        </div>
-      </form>
-    </pdk-grid>
+      </pdk-form-field>
+      <pdk-form-group
+        class="pdk-form-group"
+      >
+        <button
+          class="govuk-button"
+          pdk-button=""
+          type="submit"
+        >
+          Continue
+        </button>
+      </pdk-form-group>
+    </form>
   </pdk-grid>
 </fixed-date-week-commencing>
 `;

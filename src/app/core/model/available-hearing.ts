@@ -51,4 +51,5 @@ export interface RelatedHearingSlot {
   estimatedMinutes?: number;
   hearingType: string;
   hearingId: string;
+  courtScheduleId?: string;
 }

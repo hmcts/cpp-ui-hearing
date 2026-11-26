@@ -1,4 +1,9 @@
 <pdk-grid container>
+  <pdk-grid full>
+    <div pdk-margin-bottom="1">
+      <a pdk-back-link [routerLink]="backUrl" data-role="cancel-btn">Back</a>
+    </div>
+  </pdk-grid>
   <div class="court-center-selection">
     <h1 pdk-typography="heading-large" pdk-margin-left="3" pdk-margin-bottom="1" pdk-margin-top="2">
       Select Court
@@ -21,7 +26,8 @@
             id="crownCourtCentre"
             name="courtCentre"
             [ariaDescribedBy]="'aria-describedby-auto-suggest'"
-            [(ngModel)]="selectedCourtCentre"
+            [ngModel]="selectedCourtCentre()"
+            (ngModelChange)="selectedCourtCentre.set($event)"
             [jurisdictionCode]="jurisdictionType === 'CROWN' ? 'C' : 'B'"
             required
             data-role="allocate-court-centre-input"
@@ -31,16 +37,6 @@
         <button pdk-button data-role="continue-btn" pdk-margin-bottom="1" type="submit">
           Continue
         </button>
-        <div pdk-margin-top="2">
-          <a
-            pdk-link
-            [routerLink]="backUrl"
-            [queryParams]="queryParams"
-            data-role="cancel-btn"
-            (click)="cancel.emit()"
-            >Back</a
-          >
-        </div>
       </form>
     </pdk-grid>
   </div>

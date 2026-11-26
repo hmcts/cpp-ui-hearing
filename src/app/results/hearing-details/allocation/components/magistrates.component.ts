@@ -1,11 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   EventEmitter,
   Inject,
+  input,
   Input,
-  OnInit,
   Output,
+  signal,
   ViewChild
 } from '@angular/core';
 import {
@@ -18,34 +21,33 @@ import {
 } from '@cpp/pdk';
 import { CommonModule } from '@angular/common';
 import { HearingType, OrganisationUnit, RotaBusinessType } from '@cpp/reference-data';
-import { CPPDate, getCPPDate, HearingDetail } from '../../../../core';
+import { HearingDetail } from '../../../../core';
 import {
   ALLOCATION_FORM_CONFIGS,
   AllocationsFormConfig,
   HearingSlotAllocation,
+  MagistratesSchedulingFiltersComponent,
+  MagistratesSchedulingSlotsComponent,
   SchedulingFilters,
-  SchedulingSlotsComponent,
-  SchedulingFiltersComponent
+  HearingSlot
 } from '@cpp/scheduling';
-import { HearingSlot } from '@cpp/scheduling';
 
 @Component({
   selector: 'magistrates-scheduling',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div pdk-padding="6" pdk-margin-bottom="6" class="magistrates-scheduling-filters--bordered">
-      @if (errors) {
-      <pdk-error-summary [errors]="errors"></pdk-error-summary>
+      @if (displayErrors()) {
+      <pdk-error-summary [errors]="displayErrors()"></pdk-error-summary>
       }
-      <scheduling-filters
+      <magistrates-scheduling-filters
         [organisationUnits]="organisationUnits"
         [rotaBusinessTypes]="rotaBusinessTypes"
         [defaultValues]="filters"
-        [minimumDate]="minimumDate"
         (filtersSubmit)="handleSubmitFilters($event)"
-        (errors)="errors = $event"
+        (errors)="errors.set($event)"
       >
-      </scheduling-filters>
+      </magistrates-scheduling-filters>
       @if (totalResults > -1) {
       <pdk-inset-text>
         <b
@@ -55,22 +57,23 @@ import { HearingSlot } from '@cpp/scheduling';
       </pdk-inset-text>
       } @if (totalResults > 0) {
       <div id="magistrates-scheduling-slots">
-        <scheduling-slots
+        <magistrates-scheduling-slots
           #slotsRef
           [selectionMode]="filters?.isMultiday ? 'multi' : 'single'"
           [formConfig]="allocationFormConfig"
           [currentPage]="currentPage"
           [hearingSlotMinutes]="filters?.availableDurationMins"
           [hearingSlots]="hearingSlots"
+          [hearingType]="filters?.hearingType"
           [hearingTypes]="hearingTypes"
           [pageSize]="pageSize"
           [rotaBusinessTypes]="rotaBusinessTypes"
           [totalResults]="totalResults"
-          (errors)="errors = $event"
+          (errors)="errors.set($event)"
           (hearingSlotAllocations)="hearingSlotAllocationsSubmit.emit($event)"
           (pageChange)="pageChange.emit($event)"
         >
-        </scheduling-slots>
+        </magistrates-scheduling-slots>
       </div>
       }
     </div>
@@ -96,13 +99,13 @@ import { HearingSlot } from '@cpp/scheduling';
     PdkPaddingDirective,
     PdkMarginDirective,
     PdkErrorSummaryComponent,
-    SchedulingFiltersComponent,
+    MagistratesSchedulingFiltersComponent,
     PdkInsetTextComponent,
-    SchedulingSlotsComponent,
+    MagistratesSchedulingSlotsComponent,
     PdkLinkDirective
   ]
 })
-export class MagistratesSchedulingComponent implements OnInit {
+export class MagistratesSchedulingComponent {
   @Input() currentPage = 0;
   @Input() filters?: Partial<SchedulingFilters>;
   @Input() hearingSlots: HearingSlot[] = [];
@@ -119,22 +122,25 @@ export class MagistratesSchedulingComponent implements OnInit {
     hearingType: HearingType;
   }>();
   @Output() pageChange = new EventEmitter<number>();
-  @ViewChild('slotsRef') slotsRef: SchedulingSlotsComponent;
+  readonly bookingErrors = input<ValidationError[]>([]);
+  @ViewChild('slotsRef') slotsRef: MagistratesSchedulingSlotsComponent;
 
-  errors: ValidationError[] | null;
-  currentHearingDate?: Date;
-  minimumDate?: string;
+  readonly errors = signal<ValidationError[] | null>(null);
+  readonly displayErrors = computed(() => {
+    const bookingErrors = this.bookingErrors();
+    const errors = this.errors();
+    return bookingErrors.length ? [...bookingErrors, ...(errors || [])] : errors;
+  });
 
   constructor(
     @Inject(ALLOCATION_FORM_CONFIGS)
     private allocationFormConfigs: Record<string, AllocationsFormConfig>
-  ) {}
-
-  ngOnInit() {
-    const dateUtil: CPPDate = getCPPDate();
-    this.currentHearingDate = dateUtil.localDate(this.hearingData.hearingDays[0].sittingDay);
-    const today = dateUtil.getCurrentDate();
-    this.minimumDate = dateUtil.format(today);
+  ) {
+    effect(() => {
+      if (this.bookingErrors().length) {
+        this.slotsRef?.reset();
+      }
+    });
   }
 
   get allocationFormConfig(): AllocationsFormConfig {

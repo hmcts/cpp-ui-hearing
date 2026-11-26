@@ -28,6 +28,7 @@ import { results, State } from './results.reducer';
 export { DraftResultActions } from './draft-result.actions';
 export { ShareResultsActions } from './share-results.actions';
 export { ResultsValidationActions } from './results-validation.actions';
+export { HearingSlotsBookingActions } from './hearing-slots-booking.actions';
 
 export interface ResultsState extends AppState {
   results: State;
@@ -49,6 +50,14 @@ export const getDraftResult = (state: ResultsState) => {
 
 export const getInvalidResultLines = (state: ResultsState) => {
   return state.results.invalidResultLines;
+};
+
+export const getHasHearingSlotsBookingError = (state: ResultsState): boolean => {
+  return state.results.hasHearingSlotsBookingError;
+};
+
+export const getSessionBookedNotification = (state: ResultsState): boolean => {
+  return state.results.sessionBookedNotification;
 };
 
 export const getDraftResultSaving = (state: ResultsState): boolean => {

@@ -4,13 +4,8 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, mapTo, switchMap, tap } from 'rxjs/operators';
 import { AppState } from '../../../../core';
-import {
-  loadHearingSlotsSuccess,
-  loadListingNotes,
-  resetHearingSlots,
-  SchedulingService,
-  SearchHearingSlotsParams
-} from '@cpp/scheduling';
+import { resetHearingSlots, SchedulingService, SearchHearingSlotsParams } from '@cpp/scheduling';
+import { searchHearingSlotsToActions } from '../helpers/search-hearing-slots-to-actions';
 
 export interface AllocationQueryParams extends Params {
   mf?: string;
@@ -29,21 +24,8 @@ export class AllocationGuard implements CanActivate {
   ) {}
 
   searchWithParams({ ...params }: SearchHearingSlotsParams) {
-    const searchParams = {
-      ...params,
-      pageSize: 10
-    };
-    return this.scheduling.searchHearingSlots(searchParams).pipe(
-      tap(result => {
-        this.store.dispatch(
-          loadHearingSlotsSuccess({
-            params: searchParams,
-            hearingSlots: result.hearingSlots,
-            totalResults: result.totalResults
-          })
-        );
-        this.store.dispatch(loadListingNotes({ notes: result.notes }));
-      }),
+    return searchHearingSlotsToActions(this.scheduling, { ...params, pageSize: 10 }).pipe(
+      tap(actions => actions.forEach(action => this.store.dispatch(action))),
       mapTo(true)
     );
   }
