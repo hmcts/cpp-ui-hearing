@@ -8,6 +8,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { AppConfigService } from '../../config';
 import {
   BailStatus,
+  CPPDate,
   DefendantCasesApplications,
   HearingDetail,
   IndicatedPlea,
@@ -25,6 +26,12 @@ import { mockCourtOrderOne, mockCourtOrders } from '../../mock-data/test-mock-da
 import { HearingResultsListComponent } from './hearing-results-list.component';
 import { groupedCasesMock } from './mock/grouped-cases-mock';
 import { casesAndApplicationsGroupedByDefendant } from './mock/hearing';
+
+const mockCppDate: CPPDate = new CPPDate();
+jest.mock('../../core', () => ({
+  ...(jest.requireActual('../../core') as any),
+  getCPPDate: jest.fn(() => mockCppDate)
+}));
 
 const hearingId = '4b9c55c-1805-4f5c-978c-54089e74f84a';
 
@@ -115,6 +122,8 @@ describe('HearingResultsListComponent', () => {
   } as Offence;
 
   beforeEach(fakeAsync(() => {
+    jest.spyOn(mockCppDate, 'getCurrentDate').mockReturnValue(new Date('2021-11-05'));
+
     TestBed.configureTestingModule({
       imports: [TestHostComponent, ModalModule.forRoot()],
       providers: [

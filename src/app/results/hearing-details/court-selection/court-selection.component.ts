@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+  input,
+  linkedSignal
+} from '@angular/core';
 import {
   ValidationError,
   PdkGridComponent,
@@ -9,7 +17,7 @@ import {
   PdkFormFieldComponent,
   PdkButtonComponent,
   PdkButtonDirective,
-  PdkLinkDirective
+  PdkBackLink
 } from '@cpp/pdk';
 import { OrganisationUnit, OrganisationUnitAutosuggestComponent } from '@cpp/reference-data';
 import { FormsModule } from '@angular/forms';
@@ -30,24 +38,23 @@ import { RouterLink } from '@angular/router';
     OrganisationUnitAutosuggestComponent,
     PdkButtonComponent,
     PdkButtonDirective,
-    PdkLinkDirective,
+    PdkBackLink,
     RouterLink
   ]
 })
 export class CourtSelectionComponent {
-  @Input() backUrl: string;
+  @Input() backUrl: string | string[];
   @Input() jurisdictionType: 'CROWN' | 'MAGISTRATES';
-  @Input() queryParams: Record<string, string>;
   @Input() organisationUnits: OrganisationUnit[];
-  @Output() cancel: EventEmitter<void> = new EventEmitter();
+  readonly courtCentre = input<OrganisationUnit>();
   @Output() continue: EventEmitter<OrganisationUnit> = new EventEmitter();
   @Output() errors: EventEmitter<ValidationError[]> = new EventEmitter();
   courtType: 'CROWN' | 'MAGISTRATES';
-  selectedCourtCentre: OrganisationUnit;
+  readonly selectedCourtCentre = linkedSignal(() => this.courtCentre());
 
   onContinue() {
-    if (this.selectedCourtCentre) {
-      this.continue.emit(this.selectedCourtCentre);
+    if (this.selectedCourtCentre()) {
+      this.continue.emit(this.selectedCourtCentre());
     }
   }
 }

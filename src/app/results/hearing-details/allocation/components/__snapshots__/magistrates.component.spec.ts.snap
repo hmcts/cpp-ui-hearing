@@ -3,16 +3,17 @@
 exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
   hearingData={[Function Object]}
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -25,7 +26,7 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -42,10 +43,10 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"
@@ -60,16 +61,17 @@ exports[`MagistratesSchedulingComponent should compile correctly 1`] = `
 exports[`MagistratesSchedulingComponent should display the courtrooms for the selected organisation unit 1`] = `
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
   hearingData={[Function Object]}
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -82,7 +84,7 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -108,10 +110,10 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"
@@ -126,17 +128,17 @@ exports[`MagistratesSchedulingComponent should display the courtrooms for the se
 exports[`MagistratesSchedulingComponent should raise an error summary when submitting invalid filters 1`] = `
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
-  errors={[Function Array]}
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
   hearingData={[Function Object]}
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -182,7 +184,7 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
         </div>
       </div>
     </pdk-error-summary>
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -199,10 +201,10 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"
@@ -217,16 +219,17 @@ exports[`MagistratesSchedulingComponent should raise an error summary when submi
 exports[`MagistratesSchedulingComponent should render a search containing no results 1`] = `
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage="0"
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
   hearingData={[Function Object]}
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
@@ -239,7 +242,7 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -256,10 +259,10 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
     <pdk-inset-text>
       <div
         class="govuk-inset-text"
@@ -283,21 +286,22 @@ exports[`MagistratesSchedulingComponent should render a search containing no res
 exports[`MagistratesSchedulingComponent when hearing slots exist should render the slots 1`] = `
 <magistrates-scheduling
   allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
   cancel={[Function EventEmitter_]}
-  currentHearingDate={[Function Date]}
   currentPage={[Function Number]}
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
   filters={[Function Object]}
   filtersSubmit={[Function EventEmitter_]}
   hearingData={[Function Object]}
   hearingSlotAllocationsSubmit={[Function EventEmitter_]}
   hearingSlots={[Function Array]}
   hearingTypes={[Function Array]}
-  minimumDate={[Function String]}
   organisationUnits={[Function Array]}
   pageChange={[Function EventEmitter_]}
   pageSize={[Function Number]}
   rotaBusinessTypes={[Function Array]}
-  slotsRef={[Function MockSchedulingSlotsComponent]}
+  slotsRef={[Function MockMagistratesSchedulingSlotsComponent]}
   totalResults={[Function Number]}
 >
   <div
@@ -305,7 +309,7 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
     pdk-margin-bottom="6"
     pdk-padding="6"
   >
-    <scheduling-filters>
+    <magistrates-scheduling-filters>
       <div>
         <p>
           Mock Scheduling Filters
@@ -322,10 +326,10 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
   }
         </p>
         <p>
-          minimumDate: "2018-02-20"
+          minimumDate: 
         </p>
       </div>
-    </scheduling-filters>
+    </magistrates-scheduling-filters>
     <pdk-inset-text>
       <div
         class="govuk-inset-text"
@@ -338,7 +342,7 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
     <div
       id="magistrates-scheduling-slots"
     >
-      <scheduling-slots>
+      <magistrates-scheduling-slots>
         <div>
           <p>
             Mock Scheduling Slots
@@ -400,8 +404,197 @@ exports[`MagistratesSchedulingComponent when hearing slots exist should render t
             totalResults: 3
           </p>
         </div>
-      </scheduling-slots>
+      </magistrates-scheduling-slots>
     </div>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;
+
+exports[`MagistratesSchedulingComponent when the booking is refused should raise an error summary for the refused booking 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
+  cancel={[Function EventEmitter_]}
+  currentPage="0"
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef="undefined"
+  totalResults={[Function Number]}
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <pdk-error-summary>
+      <div
+        class="govuk-error-summary"
+        tabindex="-1"
+      >
+        <div
+          aria-labelledby="pdk-error-sumamry-GENERATED_ID"
+          role="alert"
+        >
+          <h2
+            class="govuk-error-summary__title"
+            id="pdk-error-sumamry-GENERATED_ID"
+          >
+            There is a problem
+          </h2>
+          <div
+            class="govuk-error-summary__body"
+          >
+            <ul
+              class="govuk-list govuk-error-summary__list"
+            >
+              <li>
+                <a
+                  href="javascript:void(0)"
+                >
+                   The session is fully booked 
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </pdk-error-summary>
+    <magistrates-scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "isSlotBased": true
+  }
+        </p>
+        <p>
+          minimumDate: 
+        </p>
+      </div>
+    </magistrates-scheduling-filters>
+  </div><a
+    class="govuk-link"
+    data-test-id="returnToEnterResults"
+    href="javascript:void(0)"
+    pdk-link=""
+  >
+    Cancel and return to enter results
+  </a>
+</magistrates-scheduling>
+`;
+
+exports[`MagistratesSchedulingComponent when the booking is refused should raise an error summary for the refused booking and invalid filters 1`] = `
+<magistrates-scheduling
+  allocationFormConfigs={[Function Object]}
+  bookingErrors={[Function Function]}
+  cancel={[Function EventEmitter_]}
+  currentPage="0"
+  displayErrors={[Function Function]}
+  errors={[Function Function]}
+  filters={[Function Object]}
+  filtersSubmit={[Function EventEmitter_]}
+  hearingData={[Function Object]}
+  hearingSlotAllocationsSubmit={[Function EventEmitter_]}
+  hearingSlots={[Function Array]}
+  hearingTypes={[Function Array]}
+  organisationUnits={[Function Array]}
+  pageChange={[Function EventEmitter_]}
+  pageSize={[Function Number]}
+  rotaBusinessTypes={[Function Array]}
+  slotsRef="undefined"
+  totalResults={[Function Number]}
+>
+  <div
+    class="magistrates-scheduling-filters--bordered govuk-!-padding-6 govuk-!-margin-bottom-6"
+    pdk-margin-bottom="6"
+    pdk-padding="6"
+  >
+    <pdk-error-summary>
+      <div
+        class="govuk-error-summary"
+        tabindex="-1"
+      >
+        <div
+          aria-labelledby="pdk-error-sumamry-GENERATED_ID"
+          role="alert"
+        >
+          <h2
+            class="govuk-error-summary__title"
+            id="pdk-error-sumamry-GENERATED_ID"
+          >
+            There is a problem
+          </h2>
+          <div
+            class="govuk-error-summary__body"
+          >
+            <ul
+              class="govuk-list govuk-error-summary__list"
+            >
+              <li>
+                <a
+                  href="javascript:void(0)"
+                >
+                   The session is fully booked 
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                >
+                   Error message 
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </pdk-error-summary>
+    <magistrates-scheduling-filters>
+      <div>
+        <p>
+          Mock Scheduling Filters
+        </p>
+        <p>
+          organisationUnits: []
+        </p>
+        <p>
+          rotaBusinessTypes: []
+        </p>
+        <p>
+          defaultValues: {
+    "isSlotBased": true
+  }
+        </p>
+        <p>
+          minimumDate: 
+        </p>
+      </div>
+    </magistrates-scheduling-filters>
   </div><a
     class="govuk-link"
     data-test-id="returnToEnterResults"

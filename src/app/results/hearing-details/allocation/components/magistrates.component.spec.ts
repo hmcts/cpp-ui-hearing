@@ -9,8 +9,8 @@ import {
   allocationFormConfigs,
   SchedulingFilters,
   HearingSlot,
-  SchedulingFiltersComponent,
-  SchedulingSlotsComponent,
+  MagistratesSchedulingFiltersComponent,
+  MagistratesSchedulingSlotsComponent,
   AllocationsFormConfig,
   HearingSlotAllocation
 } from '@cpp/scheduling';
@@ -53,10 +53,13 @@ describe('MagistratesSchedulingComponent', () => {
       teardown: { destroyAfterEach: false }
     }).overrideComponent(MagistratesSchedulingComponent, {
       remove: {
-        imports: [SchedulingFiltersComponent, SchedulingSlotsComponent]
+        imports: [MagistratesSchedulingFiltersComponent, MagistratesSchedulingSlotsComponent]
       },
       add: {
-        imports: [MockSchedulingFiltersComponent, MockSchedulingSlotsComponent]
+        imports: [
+          MockMagistratesSchedulingFiltersComponent,
+          MockMagistratesSchedulingSlotsComponent
+        ]
       }
     });
 
@@ -73,9 +76,9 @@ describe('MagistratesSchedulingComponent', () => {
   });
 
   it('should raise an error summary when submitting invalid filters', fakeAsync(() => {
-    fixture.componentInstance.errors = [
+    fixture.componentInstance.errors.set([
       { id: 'id', message: 'Error message' }
-    ] as ValidationError[];
+    ] as ValidationError[]);
     fixture.detectChanges();
 
     expect(fixture).toMatchSnapshot();
@@ -261,11 +264,55 @@ describe('MagistratesSchedulingComponent', () => {
     it('should render the slots', () => {
       expect(fixture).toMatchSnapshot();
     });
+
+    it('should clear the selected slots when the booking is refused', () => {
+      const reset = jest.spyOn(fixture.componentInstance.slotsRef, 'reset');
+
+      fixture.componentRef.setInput('bookingErrors', [
+        { id: 'backendError', message: 'The session is fully booked' }
+      ]);
+      fixture.detectChanges();
+
+      expect(reset).toHaveBeenCalled();
+    });
+  });
+
+  describe('when the booking is refused', () => {
+    beforeEach(() => {
+      fixture.componentRef.setInput('bookingErrors', [
+        { id: 'backendError', message: 'The session is fully booked' }
+      ]);
+    });
+
+    it('should raise an error summary for the refused booking', () => {
+      fixture.detectChanges();
+
+      expect(fixture).toMatchSnapshot();
+    });
+
+    it('should keep the same errors for the error summary when the slots report no errors again', () => {
+      fixture.detectChanges();
+      const displayErrors = fixture.componentInstance.displayErrors();
+
+      fixture.componentInstance.errors.set(null);
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.displayErrors()).toBe(displayErrors);
+    });
+
+    it('should raise an error summary for the refused booking and invalid filters', () => {
+      fixture.componentInstance.errors.set([
+        { id: 'id', message: 'Error message' }
+      ] as ValidationError[]);
+      fixture.detectChanges();
+
+      expect(fixture).toMatchSnapshot();
+    });
   });
 });
 
 @Component({
-  selector: 'scheduling-filters',
+  selector: 'magistrates-scheduling-filters',
   template: `
     <div>
       <p>Mock Scheduling Filters</p>
@@ -277,7 +324,7 @@ describe('MagistratesSchedulingComponent', () => {
   `,
   imports: [JsonPipe]
 })
-class MockSchedulingFiltersComponent {
+class MockMagistratesSchedulingFiltersComponent {
   @Input() organisationUnits: OrganisationUnit[];
   @Input() rotaBusinessTypes: RotaBusinessType[];
   @Input() defaultValues: Partial<SchedulingFilters>;
@@ -287,7 +334,7 @@ class MockSchedulingFiltersComponent {
 }
 
 @Component({
-  selector: 'scheduling-slots',
+  selector: 'magistrates-scheduling-slots',
   template: `
     <div>
       <p>Mock Scheduling Slots</p>
@@ -304,7 +351,7 @@ class MockSchedulingFiltersComponent {
   `,
   imports: [JsonPipe]
 })
-class MockSchedulingSlotsComponent {
+class MockMagistratesSchedulingSlotsComponent {
   @Input() selectionMode: string;
   @Input() formConfig: AllocationsFormConfig;
   @Input() currentPage: number;

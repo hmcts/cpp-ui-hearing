@@ -1,85 +1,82 @@
+<div pdk-margin-bottom="1">
+  <a pdk-back-link href="javascript:void(0)" data-role="cancel-btn" (click)="goBack.emit()">Back</a>
+</div>
+
 @if (errors) {
-<pdk-error-summary [errors]="errors" focusOnChange></pdk-error-summary>
+<pdk-error-summary [errors]="errors" pdk-margin-top="4" focusOnChange></pdk-error-summary>
 }
 
 <h1 pdk-typography="heading-xlarge">Find hearing date</h1>
-<pdk-grid container>
-  <pdk-grid one-half>
-    <form
-      data-test-id="findHearingDateForm"
-      pdk-form
-      novalidate
-      (validSubmit)="submitForm(form.value)"
-      (errors)="errors = $event"
-    >
-      <pdk-form-field label="Fixed date or week commencing?" labelType="small">
-        <pdk-radio-group
-          name="dateType"
-          [ngModel]="initialValues.dateType"
-          #dateType="ngModel"
-          required
-        >
-          @if (showDateToBeFixed !== false) {
-          <pdk-radio-button value="DATE_TO_BE_FIXED">Date and Time to be fixed </pdk-radio-button>
-          } @if (dateType?.value === 'DATE_TO_BE_FIXED') {
-          <pdk-radio-conditional>
-            <!-- Court name -->
-            <pdk-form-field
-              pdk-margin-top="3"
-              label="Select a court"
-              labelType="small"
-              [hintText]="'Search for a court house'"
+
+<pdk-grid one-half>
+  <form
+    data-test-id="findHearingDateForm"
+    pdk-form
+    novalidate
+    (validSubmit)="submitForm(form.value)"
+    (errors)="errors = $event"
+  >
+    <pdk-form-field label="Fixed date or week commencing?" labelType="small">
+      <pdk-radio-group
+        name="dateType"
+        [ngModel]="initialValues?.dateType"
+        #dateType="ngModel"
+        required
+      >
+        @if (showDateToBeFixed !== false) {
+        <pdk-radio-button value="DATE_TO_BE_FIXED">Date and Time to be fixed </pdk-radio-button>
+        } @if (dateType?.value === 'DATE_TO_BE_FIXED') {
+        <pdk-radio-conditional>
+          <!-- Court name -->
+          <pdk-form-field
+            pdk-margin-top="3"
+            label="Select a court"
+            labelType="small"
+            [hintText]="'Search for a court house'"
+          >
+            <cpp-organisation-unit-autosuggest
+              [id]="'courtCentre'"
+              name="courtCentre"
+              [ngModel]="initialValues.courtCentre"
+              [jurisdictionCode]="jurisdictionCode.CROWN"
+              required
+              data-role="hearing-court-centre-input"
             >
-              <cpp-organisation-unit-autosuggest
-                [id]="'courtCentre'"
-                name="courtCentre"
-                [(ngModel)]="initialValues.courtCentre"
-                [jurisdictionCode]="jurisdictionCode.CROWN"
-                required
-                data-role="hearing-court-centre-input"
-              >
-              </cpp-organisation-unit-autosuggest>
-            </pdk-form-field>
-            <!-- Court room -->
+            </cpp-organisation-unit-autosuggest>
+          </pdk-form-field>
+          <!-- Court room -->
 
-            <pdk-form-field label="Hearing type" labelType="small">
-              <cpp-hearing-type-autosuggest
-                jurisdictionType="CROWN"
-                name="hearingType"
-                [ngModel]="initialValues.hearingType"
-                required
-                placeholder="All hearing types"
-              >
-              </cpp-hearing-type-autosuggest>
-            </pdk-form-field>
+          <pdk-form-field label="Hearing type" labelType="small">
+            <cpp-hearing-type-autosuggest
+              jurisdictionType="CROWN"
+              name="hearingType"
+              [ngModel]="initialValues.hearingType"
+              required
+              placeholder="All hearing types"
+            >
+            </cpp-hearing-type-autosuggest>
+          </pdk-form-field>
 
-            <pdk-form-field labelType="small" label="Hearing duration">
-              <duration-input
-                name="hearingDuration"
-                required
-                [ngModel]="initialValues?.hearingDuration"
-              ></duration-input>
-            </pdk-form-field>
-          </pdk-radio-conditional>
-          }
+          <pdk-form-field labelType="small" label="Hearing duration">
+            <duration-input
+              name="hearingDuration"
+              required
+              [ngModel]="initialValues?.hearingDuration"
+            ></duration-input>
+          </pdk-form-field>
+        </pdk-radio-conditional>
+        }
 
-          <!--Fixed date-->
-          <pdk-radio-button value="FIXED">Fixed date </pdk-radio-button>
+        <!--Fixed date-->
+        <pdk-radio-button value="FIXED">Fixed date </pdk-radio-button>
 
-          <!--Week commencing-->
-          <pdk-radio-button value="WEEK_COMMENCING"> Week commencing </pdk-radio-button>
-        </pdk-radio-group>
-      </pdk-form-field>
+        <!--Week commencing-->
+        <pdk-radio-button value="WEEK_COMMENCING"> Week commencing </pdk-radio-button>
+      </pdk-radio-group>
+    </pdk-form-field>
 
-      <pdk-form-group>
-        <button pdk-button type="submit">Continue</button>
-      </pdk-form-group>
-
-      <div>
-        <a pdk-link data-role="cancel-btn" href="javascript:void(0)" (click)="goBack.emit()"
-          >Back</a
-        >
-      </div>
-    </form>
-  </pdk-grid>
+    <pdk-form-group>
+      <button pdk-button type="submit">Continue</button>
+    </pdk-form-group>
+  </form>
 </pdk-grid>

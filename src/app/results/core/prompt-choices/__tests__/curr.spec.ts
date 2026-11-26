@@ -3,7 +3,7 @@ import {
   isCurrencyPromptChoice,
   formatCurrencyValue,
   serializeCurrencyValue,
-  validateCurrencyValue,
+  validateCurrencyValue
 } from '../curr';
 
 describe('CURR prompt choice', () => {
@@ -39,7 +39,7 @@ describe('CURR prompt choice', () => {
     it('should return null for valid currency values >= minValue', () => {
       const promptChoice = {
         type: 'CURR',
-        minValue: '1',
+        minValue: '1'
       } as CurrencyPromptChoice;
 
       expect(validateCurrencyValue(promptChoice, '100')).toBeNull();
@@ -50,7 +50,7 @@ describe('CURR prompt choice', () => {
     it('should return currencyMin error for values < minValue', () => {
       const promptChoice = {
         type: 'CURR',
-        minValue: '1',
+        minValue: '1'
       } as CurrencyPromptChoice;
 
       expect(validateCurrencyValue(promptChoice, '0')).toEqual({ currencyMin: { expected: 1 } });
@@ -61,19 +61,19 @@ describe('CURR prompt choice', () => {
     it('should return currencyMin error for value < 0 when minValue is 0', () => {
       const promptChoice = {
         type: 'CURR',
-        minValue: '0',
+        minValue: '0'
       } as CurrencyPromptChoice;
 
       expect(validateCurrencyValue(promptChoice, '-1')).toEqual({ currencyMin: { expected: 0 } });
       expect(validateCurrencyValue(promptChoice, '-0.01')).toEqual({
-        currencyMin: { expected: 0 },
+        currencyMin: { expected: 0 }
       });
     });
 
     it('should return null for value 0 when minValue is 0', () => {
       const promptChoice = {
         type: 'CURR',
-        minValue: '0',
+        minValue: '0'
       } as CurrencyPromptChoice;
 
       expect(validateCurrencyValue(promptChoice, '0')).toBeNull();
@@ -83,7 +83,7 @@ describe('CURR prompt choice', () => {
     it('should return currency error for non-numeric values', () => {
       const promptChoice = {
         type: 'CURR',
-        minValue: '0',
+        minValue: '0'
       } as CurrencyPromptChoice;
 
       expect(validateCurrencyValue(promptChoice, 'abc')).toEqual({ currency: true });
@@ -92,7 +92,7 @@ describe('CURR prompt choice', () => {
 
     it('should require > 0 when minValue is undefined', () => {
       const promptChoice = {
-        type: 'CURR',
+        type: 'CURR'
       } as CurrencyPromptChoice;
 
       expect(validateCurrencyValue(promptChoice, '0')).toEqual({ currency: true });

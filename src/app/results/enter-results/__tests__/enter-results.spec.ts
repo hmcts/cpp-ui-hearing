@@ -8,7 +8,12 @@ import moment from 'moment';
 import { HearingDetail, HearingState, reducers } from '../../../core';
 import { Offence } from '../../../magistrates/interfaces/magistrates-hearing.interface';
 import { NotepadParserService } from '../../core/services/notepad-parser.service';
-import { DraftResultActions, resultsReducer, ResultsState } from '../../core/store';
+import {
+  DraftResultActions,
+  HearingSlotsBookingActions,
+  resultsReducer,
+  ResultsState
+} from '../../core/store';
 import { createDraftResultPromptsForShortcode, DraftResultBuilder } from '../../core/testing';
 import {
   DraftResult,
@@ -208,6 +213,25 @@ describe('EnterResultsContainerComponent', () => {
     );
 
     expect(fixture).toMatchSnapshot();
+  });
+
+  describe('when a session has just been booked', () => {
+    beforeEach(() => {
+      store.dispatch(HearingSlotsBookingActions.bookHearingSlotsSuccess());
+      fixture = TestBed.createComponent(EnterResultsContainerComponent);
+      fixture.detectChanges();
+    });
+
+    it('should render the session booked banner', () => {
+      expect(fixture).toMatchSnapshot();
+    });
+
+    it('should not render the session booked banner on a later visit', () => {
+      fixture = TestBed.createComponent(EnterResultsContainerComponent);
+      fixture.detectChanges();
+
+      expect(fixture).toMatchSnapshot();
+    });
   });
 });
 

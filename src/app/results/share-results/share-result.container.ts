@@ -133,8 +133,16 @@ export class ShareResultContainerComponent {
     if (hasAttendanceError || hasTrialEffectivenessError) {
       return;
     }
+
+    this.proceedWithResultShare(withWelshTranslate, individualDefendants);
+  }
+
+  private proceedWithResultShare(
+    withWelshTranslate: boolean,
+    individualDefendants: IndividualDefendant[]
+  ): void {
     if (withWelshTranslate) {
-      this.shareWithWelshTranslation(individualDefendants);
+      this.shareWithWelshTranslation(individualDefendants!);
     } else {
       this.store.dispatch(ShareResultsActions.shareDraftResult());
       this.store.dispatch(clearCurrentAmendmentReason());

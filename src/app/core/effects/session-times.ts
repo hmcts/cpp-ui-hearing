@@ -240,7 +240,8 @@ export class SessionTimesEffects {
       panel: 'ADULT,YOUTH',
       pageNumber: 1,
       pageSize: 10,
-      showOverbookedSlots: true
+      showOverbookedSlots: true,
+      jurisdiction: 'MAGISTRATES'
     };
   }
 

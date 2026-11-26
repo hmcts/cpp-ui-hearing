@@ -7,8 +7,8 @@ import {
 } from '../../results.interfaces';
 
 const minutesPerHour = 60;
-const minutesPerDay = minutesPerHour * 24;
-const minutesPerWeek = minutesPerDay * 7;
+const minutesPerDay = minutesPerHour * 6;
+const minutesPerWeek = minutesPerDay * 5;
 
 export const isDurationPromptChoice = (
   promptChoice: PromptChoice | PromptChoiceChild

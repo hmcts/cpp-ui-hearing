@@ -27,6 +27,7 @@ import {
   getMappedFutureHearings,
   HearingDetail,
   RelatedHearingSlot,
+  ResetAvailableHearingsAction,
   SearchAvailableHearingsAction,
   SearchAvailableHearingsFormOptions
 } from '../../../core';
@@ -83,6 +84,7 @@ export class RelatedHearingsContainer implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(new ResetAvailableHearingsAction());
     this.jurisdictionType = this.activatedRoute.snapshot.data.jurisdictionType;
 
     this.hearing$ = this.store.select(getCurrentHearing);

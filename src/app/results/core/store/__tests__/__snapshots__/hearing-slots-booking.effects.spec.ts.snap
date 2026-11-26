@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HearingSlotsBookingEffects HearingSlotsBookingActions.bookHearingSlots should write the bookingId into the result prompts 1`] = `
+{
+  "redirectTo": [
+    "/manage",
+    "hearingId",
+    "enter-results",
+  ],
+  "resultLineId": "UUID:1",
+  "resultPrompts": [
+    {
+      "label": "Date of hearing",
+      "promptId": "d27a5d86-d51f-4c6e-914b-cb4b0abc4283",
+      "promptRef": "HDATE",
+      "type": "DATE",
+      "value": "2020-01-01",
+    },
+    {
+      "label": "Time of hearing",
+      "promptId": "4d125a5a-acbc-461d-a657-ba5643af85a6",
+      "promptRef": "timeOfHearing",
+      "type": "TIME",
+      "value": "10:00",
+    },
+    {
+      "label": "Courtroom",
+      "promptId": "49ec9b26-dd63-4637-b2e9-55ba9948a90f",
+      "promptRef": "HCROOM",
+      "type": "HCROOM",
+      "value": "Courtroom 01",
+    },
+    {
+      "label": "Hearing type",
+      "promptId": "c1116d12-dd35-4171-807a-2cb845357d22",
+      "promptRef": "HTYPE",
+      "type": "FIXL",
+      "value": "Hearing Type A",
+    },
+    {
+      "label": "Estimated duration",
+      "promptId": "d85cc2d7-66c8-471e-b6ff-c1bc60c6cdac",
+      "promptRef": "HEST",
+      "type": "DURATION",
+      "value": [
+        {
+          "label": "MINUTES",
+          "value": 30,
+        },
+      ],
+    },
+    {
+      "label": "Booking reference",
+      "promptId": "e73e6ab8-9bfe-4135-9fe6-f526544584d6",
+      "promptRef": "bookingReference",
+      "type": "TXT",
+      "value": "bookingId",
+    },
+    {
+      "label": "Courthouse",
+      "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+      "promptRef": "hCHOUSE",
+      "type": "NAMEADDRESS",
+      "value": [
+        {
+          "label": "Courthouse organisation name",
+          "promptId": "66868c04-72c4-46d9-a4fc-860a82107475",
+          "promptRef": "hCHOUSEOrganisationName",
+          "type": "TXT",
+          "value": "Courthouse B",
+        },
+      ],
+    },
+  ],
+  "type": "UPDATE_RESULT_PROMPTS",
+}
+`;

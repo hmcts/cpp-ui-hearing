@@ -97,7 +97,9 @@ export const routes: Routes = [
               import('./hearing-details/court-details/court-details.container').then(
                 m => m.CourtDetailsContainer
               ),
-            canActivate: [RotaBusinessTypesGuard]
+            providers: [AllocationGuard],
+            canActivate: [AllocationGuard, RotaBusinessTypesGuard],
+            runGuardsAndResolvers: 'always'
           }
         ]
       }
