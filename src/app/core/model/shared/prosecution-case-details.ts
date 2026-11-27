@@ -1,6 +1,6 @@
-import { Offence } from '..';
+import { CaseMarker, Offence } from '..';
 import { Defendant } from '../defendant';
-import { CaseMarkers, ProsecutionCaseIdentifier } from './prosecution-case-identifier';
+import { ProsecutionCaseIdentifier } from './prosecution-case-identifier';
 export interface ProsecutionCaseDetails {
   id: string;
   prosecutionCaseIdentifier: ProsecutionCaseIdentifier;
@@ -16,5 +16,5 @@ export interface ProsecutionCaseDetails {
   offenceType?: string;
   groupId?: string;
   isCivil?: true;
-  caseMarkers?: CaseMarkers[];
+  caseMarkers?: CaseMarker[];
 }

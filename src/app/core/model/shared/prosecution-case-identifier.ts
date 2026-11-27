@@ -5,10 +5,3 @@ export interface ProsecutionCaseIdentifier {
   caseURN?: string;
 }
 // A case can EITHER have a caseUrn OR a prosecutionAuthorityReference.
-
-export interface CaseMarkers {
-  id: string;
-  markerTypeCode: string;
-  markerTypeDescription?: string;
-  markerTypeid?: string;
-}
