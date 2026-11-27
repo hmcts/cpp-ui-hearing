@@ -1033,7 +1033,7 @@ describe('buildResultsValidationRequest', () => {
             {
               id: 'prosecutionCaseId1',
               prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
-              defendants: [createDefendant({ offences: [offence as Partial<Offence> as Offence] })],
+              defendants: [createDefendant({ offences: [offence as Offence] })],
               ...caseOverrides
             } as ProsecutionCaseDetails
           ]
