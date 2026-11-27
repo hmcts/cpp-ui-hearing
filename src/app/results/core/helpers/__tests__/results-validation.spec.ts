@@ -959,7 +959,7 @@ describe('buildResultsValidationRequest', () => {
               id: 'prosecutionCaseId1',
               prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
               defendants: [createDefendant({ offences: [offence as any] })]
-            } as any
+            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
           ]
         });
 
@@ -1033,9 +1033,9 @@ describe('buildResultsValidationRequest', () => {
             {
               id: 'prosecutionCaseId1',
               prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
-              defendants: [createDefendant({ offences: [offence as any] })],
+              defendants: [createDefendant({ offences: [offence as Partial<Offence> as Offence] })],
               ...caseOverrides
-            } as any
+            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
           ]
         });
 
@@ -1097,17 +1097,25 @@ describe('buildResultsValidationRequest', () => {
                 createDefendant({
                   id: 'defendantId1',
                   offences: [
-                    { id: 'offenceId1', offenceCode: 'TH68001', offenceTitle: 'Theft' } as any
+                    {
+                      id: 'offenceId1',
+                      offenceCode: 'TH68001',
+                      offenceTitle: 'Theft'
+                    } as Partial<Offence> as Offence
                   ]
                 }),
                 createDefendant({
                   id: 'defendantId2',
                   offences: [
-                    { id: 'offenceId2', offenceCode: 'TH68002', offenceTitle: 'Burglary' } as any
+                    {
+                      id: 'offenceId2',
+                      offenceCode: 'TH68002',
+                      offenceTitle: 'Burglary'
+                    } as Partial<Offence> as Offence
                   ]
                 })
               ]
-            } as any
+            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
           ]
         });
 
@@ -1134,7 +1142,7 @@ describe('buildResultsValidationRequest', () => {
                   ]
                 })
               ]
-            } as any,
+            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails,
             {
               id: 'prosecutionCaseId2',
               prosecutionCaseIdentifier: { caseURN: 'caseURN2' },
@@ -1146,7 +1154,7 @@ describe('buildResultsValidationRequest', () => {
                   ]
                 })
               ]
-            } as any
+            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
           ]
         });
 
