@@ -1046,7 +1046,6 @@ describe('buildResultsValidationRequest', () => {
             { id: 'marker2', markerTypeCode: 'YP' }
           ]
         });
-
         const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
 
         expect(request.offences[0]).toEqual(expect.objectContaining({ caseMarkers: ['DV', 'YP'] }));
