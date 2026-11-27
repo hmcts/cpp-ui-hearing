@@ -1138,7 +1138,11 @@ describe('buildResultsValidationRequest', () => {
                 createDefendant({
                   id: 'defendantId1',
                   offences: [
-                    { id: 'offenceId1', offenceCode: 'TH68001', offenceTitle: 'Theft' } as any
+                    {
+                      id: 'offenceId1',
+                      offenceCode: 'TH68001',
+                      offenceTitle: 'Theft'
+                    } as Partial<Offence> as Offence
                   ]
                 })
               ]
@@ -1150,7 +1154,11 @@ describe('buildResultsValidationRequest', () => {
                 createDefendant({
                   id: 'defendantId2',
                   offences: [
-                    { id: 'offenceId2', offenceCode: 'TH68002', offenceTitle: 'Burglary' } as any
+                    {
+                      id: 'offenceId2',
+                      offenceCode: 'TH68002',
+                      offenceTitle: 'Burglary'
+                    } as Partial<Offence> as Offence
                   ]
                 })
               ]
