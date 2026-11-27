@@ -20,7 +20,25 @@ describe('App page component', () => {
 
   let fixture: ComponentFixture<AppComponent>;
   let store: Store<AppState>;
+
+  let mockHref = '';
+
   beforeEach(() => {
+    mockHref = '';
+
+    Object.defineProperty(window, 'location', {
+      value: {
+        get href() {
+          return mockHref;
+        },
+        set href(value: string) {
+          mockHref = value;
+        }
+      },
+      writable: true,
+      configurable: true
+    });
+
     TestBed.configureTestingModule({
       providers: [
         provideCPPApplicationEnvironment({ production: false }),
@@ -39,7 +57,8 @@ describe('App page component', () => {
             getAccountUrl,
             getBaseUrl,
             getLogoutUrl,
-            getServicesUrl
+            getServicesUrl,
+            cppHomeUrl: ''
           }
         },
         { provide: Title, useValue: { getTitle: jest.fn(), setTitle: jest.fn() } },
@@ -58,7 +77,9 @@ describe('App page component', () => {
       ],
       teardown: { destroyAfterEach: false }
     }).configureCompiler({ preserveWhitespaces: false } as any);
+
     store = TestBed.inject<Store<AppState>>(Store);
+
     getAccountUrl.mockReturnValue('http://account-url');
     getBaseUrl.mockReturnValue('http://base-url');
     getLogoutUrl.mockReturnValue('http://logout-url');
@@ -88,9 +109,37 @@ describe('App page component', () => {
 
     it('should compile correctly ', () => {
       TestBed.inject(AppConfigService).cppHomeUrl = 'https://cpp.home';
+
       fixture = TestBed.createComponent(AppComponent);
       fixture.detectChanges();
+
       expect(fixture).toMatchSnapshot();
+    });
+
+    it('should redirect to search page when handleSearch is called with null', () => {
+      TestBed.inject(AppConfigService).cppHomeUrl = 'https://cpp.home';
+
+      fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+
+      fixture.componentInstance.handleSearch(null);
+
+      expect(window.location.href).toBe(
+        `https://cpp.home/search?referrer=${encodeURIComponent(document.baseURI)}`
+      );
+    });
+
+    it('should redirect to search page with reference when handleSearch is called with a ref', () => {
+      TestBed.inject(AppConfigService).cppHomeUrl = 'https://cpp.home';
+
+      fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+
+      fixture.componentInstance.handleSearch('ABC123');
+
+      expect(window.location.href).toBe(
+        `https://cpp.home/search?referrer=${encodeURIComponent(document.baseURI)}&reference=ABC123`
+      );
     });
   });
 });

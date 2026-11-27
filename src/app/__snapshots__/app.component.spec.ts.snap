@@ -20,8 +20,8 @@ exports[`App page component should compile correctly with all header urls 1`] = 
   yourServicesUrl={[Function String]}
 >
   <cpp-application-layout
-    searchlabel="Search by case or application reference"
-    searchplaceholder="Search by reference"
+    searchlabel="Search by case reference, application reference or PNC ID"
+    searchplaceholder="Search by Reference or PNC ID"
     servicename="Common Platform"
   >
     <pdk-provider
@@ -527,8 +527,8 @@ exports[`App page component when search is available should compile correctly  1
   yourServicesUrl={[Function String]}
 >
   <cpp-application-layout
-    searchlabel="Search by case or application reference"
-    searchplaceholder="Search by reference"
+    searchlabel="Search by case reference, application reference or PNC ID"
+    searchplaceholder="Search by Reference or PNC ID"
     servicename="Common Platform"
   >
     <pdk-provider
@@ -767,11 +767,11 @@ exports[`App page component when search is available should compile correctly  1
                       class="pdk-searchbar"
                     >
                       <input
-                        aria-label="Search by case or application reference"
+                        aria-label="Search by case reference, application reference or PNC ID"
                         class="pdk-searchbar__input pdk-searchbar__input--borderless govuk-input"
                         id="searchbar_pdk-search-GENERATED_ID"
                         pdk-input=""
-                        placeholder="Search by reference"
+                        placeholder="Search by Reference or PNC ID"
                         type="text"
                       />
                       <button
@@ -800,7 +800,7 @@ exports[`App page component when search is available should compile correctly  1
                           class="pdk-searchbar__label govuk-visually-hidden"
                           pdk-visually-hidden=""
                         >
-                           Search by case or application reference 
+                           Search by case reference, application reference or PNC ID 
                         </span>
                       </button>
                     </div>
