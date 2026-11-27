@@ -103,6 +103,7 @@ export interface ResultsValidationOffence {
   isConvicted?: boolean;
   bailStatus?: string;
   defendantId: string;
+  caseMarkers?: string[];
 }
 
 export interface ResultsValidation {
@@ -119,4 +120,5 @@ export interface OffenceWithCaseAndDefendant {
   offence: Offence;
   caseUrn?: string;
   defendantId: string;
+  caseMarkers?: string[];
 }
