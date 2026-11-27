@@ -780,7 +780,7 @@ describe('buildResultsValidationRequest', () => {
                     id: 'offenceId1',
                     offenceCode: 'TH68001',
                     offenceTitle: 'Theft'
-                  } as Partial<Offence> as Offence
+                  } as Offence
                 ]
               }),
               createDefendant({
@@ -790,11 +790,11 @@ describe('buildResultsValidationRequest', () => {
                     id: 'offenceId2',
                     offenceCode: 'TH68002',
                     offenceTitle: 'Burglary'
-                  } as Partial<Offence> as Offence
+                  } as Offence
                 ]
               })
             ]
-          } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+          } as ProsecutionCaseDetails
         ]
       });
 
@@ -958,8 +958,8 @@ describe('buildResultsValidationRequest', () => {
             {
               id: 'prosecutionCaseId1',
               prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
-              defendants: [createDefendant({ offences: [offence as any] })]
-            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+              defendants: [createDefendant({ offences: [offence as Offence] })]
+            } as ProsecutionCaseDetails
           ]
         });
 
@@ -1035,7 +1035,7 @@ describe('buildResultsValidationRequest', () => {
               prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
               defendants: [createDefendant({ offences: [offence as Partial<Offence> as Offence] })],
               ...caseOverrides
-            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+            } as ProsecutionCaseDetails
           ]
         });
 
@@ -1101,7 +1101,7 @@ describe('buildResultsValidationRequest', () => {
                       id: 'offenceId1',
                       offenceCode: 'TH68001',
                       offenceTitle: 'Theft'
-                    } as Partial<Offence> as Offence
+                    } as Offence
                   ]
                 }),
                 createDefendant({
@@ -1111,11 +1111,11 @@ describe('buildResultsValidationRequest', () => {
                       id: 'offenceId2',
                       offenceCode: 'TH68002',
                       offenceTitle: 'Burglary'
-                    } as Partial<Offence> as Offence
+                    } as Offence
                   ]
                 })
               ]
-            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+            } as ProsecutionCaseDetails
           ]
         });
 
@@ -1142,11 +1142,11 @@ describe('buildResultsValidationRequest', () => {
                       id: 'offenceId1',
                       offenceCode: 'TH68001',
                       offenceTitle: 'Theft'
-                    } as Partial<Offence> as Offence
+                    } as Offence
                   ]
                 })
               ]
-            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails,
+            } as ProsecutionCaseDetails,
             {
               id: 'prosecutionCaseId2',
               prosecutionCaseIdentifier: { caseURN: 'caseURN2' },
@@ -1158,11 +1158,11 @@ describe('buildResultsValidationRequest', () => {
                       id: 'offenceId2',
                       offenceCode: 'TH68002',
                       offenceTitle: 'Burglary'
-                    } as Partial<Offence> as Offence
+                    } as Offence
                   ]
                 })
               ]
-            } as Partial<ProsecutionCaseDetails> as ProsecutionCaseDetails
+            } as ProsecutionCaseDetails
           ]
         });
 
