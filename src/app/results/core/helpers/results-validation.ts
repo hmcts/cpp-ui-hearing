@@ -165,6 +165,7 @@ const buildCaseOffences = (
 ): OffenceWithCaseAndDefendant[] => {
   return (prosecutionCases || []).reduce<OffenceWithCaseAndDefendant[]>((acc, kase) => {
     const caseUrn = kase.prosecutionCaseIdentifier?.caseURN;
+    const caseMarkers = (kase.caseMarkers || []).map(marker => marker.markerTypeCode);
     return acc.concat(
       (kase.defendants || [])
         .reduce<{ offence: Offence; defendantId: string }[]>(
@@ -172,7 +173,7 @@ const buildCaseOffences = (
             offAcc.concat((d.offences || []).map(offence => ({ offence, defendantId: d.id }))),
           []
         )
-        .map(({ offence, defendantId }) => ({ offence, caseUrn, defendantId }))
+        .map(({ offence, defendantId }) => ({ offence, caseUrn, defendantId, caseMarkers }))
     );
   }, []);
 };
@@ -191,7 +192,7 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
       uniqueOffences.add(offence.id);
       return true;
     })
-    .map(({ offence, caseUrn, defendantId }) => {
+    .map(({ offence, caseUrn, defendantId, caseMarkers }) => {
       let isConvicted = !!offence.convictionDate;
       if (isConvicted && offence?.verdict?.isDeleted) {
         isConvicted = false;
@@ -210,6 +211,10 @@ const buildOffences = (hearing: HearingDetail): ResultsValidationOffence[] => {
 
       if (offence?.bailStatus) {
         result.bailStatus = offence.bailStatus.code;
+      }
+
+      if (caseMarkers && caseMarkers.length > 0) {
+        result.caseMarkers = caseMarkers;
       }
 
       return result;

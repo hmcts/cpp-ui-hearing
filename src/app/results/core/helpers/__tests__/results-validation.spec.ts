@@ -1018,6 +1018,145 @@ describe('buildResultsValidationRequest', () => {
         expect(request.offences[0]).toEqual(expect.objectContaining({ bailStatus: undefined }));
       });
     });
+
+    describe('caseMarkers field', () => {
+      const defaultOffence = {
+        id: 'offenceId1',
+        offenceCode: 'TH68001',
+        offenceTitle: 'Theft',
+        orderIndex: 1
+      };
+
+      const buildHearingWithCase = (caseOverrides: object, offence: object = defaultOffence) =>
+        createMinimalHearing({
+          prosecutionCases: [
+            {
+              id: 'prosecutionCaseId1',
+              prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+              defendants: [createDefendant({ offences: [offence as any] })],
+              ...caseOverrides
+            } as any
+          ]
+        });
+
+      it('should include caseMarkers mapped from markerTypeCode when the case has caseMarkers', () => {
+        const hearing = buildHearingWithCase({
+          caseMarkers: [
+            { id: 'marker1', markerTypeCode: 'DV' },
+            { id: 'marker2', markerTypeCode: 'YP' }
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).toEqual(expect.objectContaining({ caseMarkers: ['DV', 'YP'] }));
+      });
+
+      it('should include a single-element caseMarkers array when only one marker is present', () => {
+        const hearing = buildHearingWithCase({
+          caseMarkers: [{ id: 'marker1', markerTypeCode: 'VUL' }]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0].caseMarkers).toEqual(['VUL']);
+      });
+
+      it('should NOT include caseMarkers when the case has no caseMarkers property', () => {
+        const hearing = buildHearingWithCase({});
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('caseMarkers');
+      });
+
+      it('should NOT include caseMarkers when caseMarkers is an empty array', () => {
+        const hearing = buildHearingWithCase({ caseMarkers: [] });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('caseMarkers');
+      });
+
+      it('should NOT include caseMarkers when caseMarkers is undefined', () => {
+        const hearing = buildHearingWithCase({ caseMarkers: undefined });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences[0]).not.toHaveProperty('caseMarkers');
+      });
+
+      it('should apply the same caseMarkers to every offence/defendant within the same case', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [
+            {
+              id: 'prosecutionCaseId1',
+              prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+              caseMarkers: [{ id: 'marker1', markerTypeCode: 'DV' }],
+              defendants: [
+                createDefendant({
+                  id: 'defendantId1',
+                  offences: [
+                    { id: 'offenceId1', offenceCode: 'TH68001', offenceTitle: 'Theft' } as any
+                  ]
+                }),
+                createDefendant({
+                  id: 'defendantId2',
+                  offences: [
+                    { id: 'offenceId2', offenceCode: 'TH68002', offenceTitle: 'Burglary' } as any
+                  ]
+                })
+              ]
+            } as any
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        expect(request.offences).toEqual([
+          expect.objectContaining({ offenceId: 'offenceId1', caseMarkers: ['DV'] }),
+          expect.objectContaining({ offenceId: 'offenceId2', caseMarkers: ['DV'] })
+        ]);
+      });
+
+      it('should scope caseMarkers to their own case when multiple prosecution cases are present', () => {
+        const hearing = createMinimalHearing({
+          prosecutionCases: [
+            {
+              id: 'prosecutionCaseId1',
+              prosecutionCaseIdentifier: { caseURN: 'caseURN1' },
+              caseMarkers: [{ id: 'marker1', markerTypeCode: 'DV' }],
+              defendants: [
+                createDefendant({
+                  id: 'defendantId1',
+                  offences: [
+                    { id: 'offenceId1', offenceCode: 'TH68001', offenceTitle: 'Theft' } as any
+                  ]
+                })
+              ]
+            } as any,
+            {
+              id: 'prosecutionCaseId2',
+              prosecutionCaseIdentifier: { caseURN: 'caseURN2' },
+              defendants: [
+                createDefendant({
+                  id: 'defendantId2',
+                  offences: [
+                    { id: 'offenceId2', offenceCode: 'TH68002', offenceTitle: 'Burglary' } as any
+                  ]
+                })
+              ]
+            } as any
+          ]
+        });
+
+        const request = buildResultsValidationRequest(createDraftResult({}), hearing, []);
+
+        const byId = (id: string) => request.offences.find(o => o.offenceId === id)!;
+        expect(byId('offenceId1').caseMarkers).toEqual(['DV']);
+        expect(byId('offenceId2')).not.toHaveProperty('caseMarkers');
+      });
+    });
   });
 });
 
