@@ -174,21 +174,7 @@ export const sortOffences = (
     return sortBy(clonedOffences, ['orderIndex']);
   }
 
-  const countInfinityOffences = clonedOffences.map(offence => {
-    if (offence.count === 0) {
-      offence.count = Infinity;
-    }
-
-    return offence;
-  });
-  const sortedOffences = sortBy(countInfinityOffences, ['count', 'orderIndex']);
-  sortedOffences.forEach(sortedOffence => {
-    if (sortedOffence.count === Infinity) {
-      sortedOffence.count = 0;
-    }
-  });
-
-  return sortedOffences;
+  return sortBy(clonedOffences, [offence => offence.count || Infinity, 'orderIndex']);
 };
 
 /**
